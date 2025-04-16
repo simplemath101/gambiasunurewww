@@ -55,6 +55,39 @@
             text-shadow: 1px 1px 2px black;
         }
         
+        /* Score Display */
+        .score-container {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            z-index: 10;
+        }
+        
+        .score-box {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            text-align: center;
+            min-width: 100px;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
+        }
+        
+        .aiuwa-score {
+            border-color: #ffcc00;
+        }
+        
+        .utg-score {
+            border-color: #4682B4;
+        }
+        
         .question-container {
             width: 90%;
             margin-top: 70px;
@@ -299,11 +332,28 @@
             color: #ffcc00;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
+        
+        /* Score animation */
+        @keyframes score-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .score-pulse {
+            animation: score-pulse 0.5s ease-out;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="question-number" id="question-number">Question: 1/10</div>
+        
+        <!-- Score display -->
+        <div class="score-container">
+            <div class="score-box aiuwa-score" id="aiuwa-score">AIUWA: 0</div>
+            <div class="score-box utg-score" id="utg-score">UTG: 0</div>
+        </div>
         
         <div class="question-container" id="question-container">
             <div class="timer-section">
@@ -433,6 +483,10 @@
         let countdownInterval;
         let optionsClickable = true;
         
+        // Initialize scores
+        let aiuwaScore = 0;
+        let utgScore = 0;
+        
         const questionElement = document.getElementById('question');
         const optionsContainer = document.getElementById('options');
         const timerElement = document.getElementById('timer');
@@ -441,6 +495,8 @@
         const questionContainerElement = document.getElementById('question-container');
         const factualContextElement = document.getElementById('factual-context');
         const factTextElement = document.getElementById('fact-text');
+        const aiuwaScoreElement = document.getElementById('aiuwa-score');
+        const utgScoreElement = document.getElementById('utg-score');
         
         // Load a question
         function loadQuestion() {
@@ -547,9 +603,13 @@
                         optionsClickable = false;
                         clearInterval(countdownInterval);
                         
-                        // Highlight correct answer
+                        // Highlight correct answer and update score
                         const options = document.querySelectorAll('.option');
-                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
+                        const correctIndex = questions[currentQuestionIndex].correctIndex;
+                        options[correctIndex].classList.add('correct');
+                        
+                        // Update score for the correct university when time's up
+                        updateScore(correctIndex);
                         
                         // Show factual context after a short delay
                         setTimeout(() => {
@@ -571,15 +631,39 @@
             
             if (selectedIndex === currentQuestion.correctIndex) {
                 options[selectedIndex].classList.add('correct');
+                // Update score for the correct university
+                updateScore(selectedIndex);
             } else {
                 options[selectedIndex].classList.add('incorrect');
                 options[currentQuestion.correctIndex].classList.add('correct');
+                // Update score for the correct university even if wrong answer was selected
+                updateScore(currentQuestion.correctIndex);
             }
             
             // Show factual context after a brief delay
             setTimeout(() => {
                 showFactualContext();
             }, 1500);
+        }
+        
+        // Update score based on which university is correct
+        function updateScore(index) {
+            // Determine which university to score for
+            if (questions[currentQuestionIndex].options[index].includes("AIUWA")) {
+                aiuwaScore++;
+                aiuwaScoreElement.textContent = `AIUWA: ${aiuwaScore}`;
+                aiuwaScoreElement.classList.add('score-pulse');
+                setTimeout(() => {
+                    aiuwaScoreElement.classList.remove('score-pulse');
+                }, 500);
+            } else {
+                utgScore++;
+                utgScoreElement.textContent = `UTG: ${utgScore}`;
+                utgScoreElement.classList.add('score-pulse');
+                setTimeout(() => {
+                    utgScoreElement.classList.remove('score-pulse');
+                }, 500);
+            }
         }
         
         // Show factual context
