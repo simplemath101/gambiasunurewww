@@ -55,39 +55,6 @@
             text-shadow: 1px 1px 2px black;
         }
         
-        /* Score Display */
-        .score-container {
-            position: absolute;
-            top: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-            z-index: 10;
-        }
-        
-        .score-box {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            text-align: center;
-            min-width: 100px;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
-        }
-        
-        .aiuwa-score {
-            border-color: #ffcc00;
-        }
-        
-        .utg-score {
-            border-color: #4682B4;
-        }
-        
         .question-container {
             width: 90%;
             margin-top: 70px;
@@ -192,6 +159,34 @@
             font-size: 1rem;
         }
         
+        /* Positioned score displays */
+        .score-display {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
+            top: 10px;
+            z-index: 6;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .aiuwa-score {
+            left: 10px;
+            border-color: #ffcc00;
+        }
+        
+        .utg-score {
+            right: 10px;
+            border-color: #4682B4;
+        }
+        
         .university-panel.correct {
             width: 80%;
             z-index: 5;
@@ -210,6 +205,17 @@
         .university-panel.correct .university-label {
             background-color: rgba(46, 204, 113, 0.8);
             color: white;
+        }
+        
+        /* Score animation */
+        @keyframes score-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .score-pulse {
+            animation: score-pulse 0.5s ease-out;
         }
         
         .versus-overlay {
@@ -356,28 +362,11 @@
             color: #ffcc00;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
-        
-        /* Score animation */
-        @keyframes score-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
-        .score-pulse {
-            animation: score-pulse 0.5s ease-out;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="question-number" id="question-number">Question: 1/10</div>
-        
-        <!-- Score display -->
-        <div class="score-container">
-            <div class="score-box aiuwa-score" id="aiuwa-score">AIUWA: 0</div>
-            <div class="score-box utg-score" id="utg-score">UTG: 0</div>
-        </div>
         
         <div class="question-container" id="question-container">
             <div class="timer-section">
@@ -392,12 +381,16 @@
                 <div class="university-panel" id="aiuwa-panel">
                     <img class="university-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPrgKc5cttJnewJ1SwTefUUfBtmjOsmpoxJg&s" alt="AIUWA University">
                     <div class="university-label">AIUWA UNIVERSITY</div>
+                    <!-- AIUWA Score positioned on the university image -->
+                    <div class="score-display aiuwa-score" id="aiuwa-score">AIUWA: 0</div>
                 </div>
                 
                 <!-- UTG Panel (Right) -->
                 <div class="university-panel" id="utg-panel">
                     <img class="university-image" src="https://pbs.twimg.com/profile_images/1668787193941311489/j7X1W70F_400x400.jpg" alt="University of The Gambia">
                     <div class="university-label">UNIVERSITY OF THE GAMBIA</div>
+                    <!-- UTG Score positioned on the university image -->
+                    <div class="score-display utg-score" id="utg-score">UTG: 0</div>
                 </div>
                 
                 <div class="versus-overlay" id="versus-overlay">VS</div>
