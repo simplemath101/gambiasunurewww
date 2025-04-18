@@ -239,47 +239,44 @@
         
         /* TikTok Banner */
         .tiktok-banner {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 6px 10px;
-            z-index: 10;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .tiktok-logo {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
-            flex-shrink: 0;
-            opacity: 0.8;
-        }
-        
-        .tiktok-text {
-            font-weight: bold;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            opacity: 0.8;
-        }
-        
-        /* Updated Animation for banner */
-        @keyframes subtle-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-        
-        .tiktok-banner {
-            animation: subtle-pulse 3s ease-in-out infinite;
-        }
+        position: absolute;
+        top: 45px; /* Changed from 5px to move it 3cm (approximately 45px) lower */
+        right: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6px 10px;
+        z-index: 10;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: subtle-pulse 3s ease-in-out infinite;
+    }
+    
+    .tiktok-logo {
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
+        flex-shrink: 0;
+        opacity: 0.8;
+    }
+    
+    .tiktok-text {
+        font-weight: bold;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        opacity: 0.8;
+    }
+    
+    /* Animation for banner */
+    @keyframes subtle-pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+    }
         
         .question {
             font-size: 1.6rem;
