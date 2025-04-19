@@ -49,35 +49,27 @@
             perspective: 1000px;
             background-color: rgba(0, 0, 0, 0.5);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
         
-        .image-placeholder {
+        .africa-image {
             width: 90%;
             height: 90%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px dashed #ffcc00;
-            border-radius: 8px;
-            background-color: rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-        
-        .placeholder-text {
-            color: #ffcc00;
-            font-size: 16px;
-            text-align: center;
-            padding: 10px;
-        }
-        
-        /* Image will fill placeholder when added */
-        .africa-image {
-            width: 100%;
-            height: 100%;
             object-fit: contain;
-            display: none; /* Hide until image is added */
+            border-radius: 5px;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from {
+                filter: drop-shadow(0 0 5px gold);
+                transform: scale(0.98);
+            }
+            to {
+                filter: drop-shadow(0 0 15px gold);
+                transform: scale(1.02);
+            }
         }
         
         .text-container {
@@ -134,11 +126,8 @@
 <body>
     <div class="container">
         <div class="africa-container">
-            <!-- Image placeholder instead of canvas -->
-            <div class="image-placeholder">
-                <p class="placeholder-text">Add Africa Image Here</p>
-            </div>
-            <img class="africa-image" alt="Africa Map">
+            <!-- Image placeholder - replace the src with your image URL later -->
+            <img class="africa-image" src="https://www.beautifulworld.com/wp-content/uploads/2016/11/map-of-africa.png.webp" alt="Africa Map Placeholder">
         </div>
         
         <div class="text-container">
@@ -183,27 +172,9 @@
             }, 7000);
         }
         
-        // Add your image to replace the placeholder
-        function addImageToPlaceholder(imageUrl) {
-            const africaImage = document.querySelector('.africa-image');
-            const placeholder = document.querySelector('.image-placeholder');
-            
-            // Set the image source
-            africaImage.src = imageUrl;
-            
-            // When image loads, hide placeholder and show image
-            africaImage.onload = function() {
-                placeholder.style.display = 'none';
-                africaImage.style.display = 'block';
-            };
-        }
-        
-        // Start text animation when DOM is loaded
+        // Start all animations when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             startTextAnimation();
-            
-            // To add your image later, uncomment and modify this line:
-            // addImageToPlaceholder('https://www.beautifulworld.com/wp-content/uploads/2016/11/map-of-africa.png.webp');
         });
     </script>
 </body>
