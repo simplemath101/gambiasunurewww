@@ -49,15 +49,15 @@
             perspective: 1000px;
             background-color: rgba(0, 0, 0, 0.5);
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
         
         .africa-image {
             width: 90%;
             height: 90%;
             object-fit: contain;
-            border-radius: 5px;
+            border-radius: 8px;
             animation: pulse 2s infinite alternate;
         }
         
@@ -127,13 +127,13 @@
     <div class="container">
         <div class="africa-container">
             <!-- Image placeholder - replace the src with your image URL later -->
-            <img class="africa-image" src="https://www.beautifulworld.com/wp-content/uploads/2016/11/map-of-africa.png.webp" alt="Africa Map Placeholder">
+            <img class="africa-image" src="/api/placeholder/300/300" alt="Africa Map Placeholder">
         </div>
         
         <div class="text-container">
-            <div class="text" id="text1">AFRICA QUIZ</div>
-            <div class="text" id="text2">IF YOU GET 8/10</div>
-            <div class="text" id="text3">YOU ARE A GENIUS</div>
+            <div class="text" id="text1">BEFORE YOUR LAST QUESTION</div>
+            <div class="text" id="text2">SHARE THIS QUIZ WITH A FRIEND</div>
+            <div class="text" id="text3">DON'T FORGET TO COMMENT YOUR SCORE BELOW</div>
         </div>
     </div>
 
@@ -172,9 +172,18 @@
             }, 7000);
         }
         
-        // Start all animations when DOM is loaded
+        // Function to replace the image placeholder with your actual image
+        function updateImage(imageUrl) {
+            const africaImage = document.querySelector('.africa-image');
+            africaImage.src = imageUrl;
+        }
+        
+        // Start text animation when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             startTextAnimation();
+            
+            // Uncomment and replace with your image URL when ready
+            // updateImage('https://your-image-url.jpg');
         });
     </script>
 </body>
