@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AIUWA vs UTG Quiz Challenge</title>
+    <title>Africa Quiz TikTok Animation</title>
     <style>
         * {
             box-sizing: border-box;
@@ -22,675 +22,189 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            perspective: 1000px;
         }
         
         .container {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #006400, #228B22, #3CB371, #20B2AA, #4682B4, #000080);
+            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-        
-        /* Improved question number for better mobile visibility */
-        .question-number {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            text-align: center;
-            min-width: 120px;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
-        }
-        
-        .question-container {
-            width: 90%;
-            margin-top: 70px;
-            height: calc(100% - 150px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: rgba(20, 50, 80, 0.7);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-            position: relative;
-            transition: transform 0.5s, opacity 0.5s;
-            overflow: hidden;
-        }
-        
-        .timer-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .timer-container {
-            width: 100%;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .timer {
-            height: 100%;
-            background-color: #00ff00;
-            width: 100%;
-            transition: width 5s linear, background-color 0.5s;
-        }
-        
-        .timer.paused {
-            transition: none;
-        }
-        
-        .timer.ending {
-            background-color: #ff0000;
-        }
-        
-        .countdown {
-            font-size: 1.1rem;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
             justify-content: center;
-            align-items: center;
-            margin-top: 5px;
         }
         
-        .countdown.hidden {
-            display: none;
-        }
-        
-        .universities-container {
-            width: 100%;
-            height: 250px;
-            margin: 10px 0 20px;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-        }
-        
-        .university-panel {
-            position: relative;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: all 0.5s ease-in-out;
-        }
-        
-        .university-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .university-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-align: center;
-            padding: 8px 0;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        
-        /* Positioned score displays */
-        .score-display {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 6px 10px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 1rem;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
-            top: 10px;
-            z-index: 6;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .aiuwa-score {
-            left: 10px;
-            border-color: #ffcc00;
-        }
-        
-        .utg-score {
-            right: 10px;
-            border-color: #4682B4;
-        }
-        
-        .university-panel.correct {
+        .africa-container {
             width: 80%;
-            z-index: 5;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-        }
-        
-        .university-panel.incorrect {
-            width: 20%;
-            opacity: 0.6;
-        }
-        
-        .university-panel.correct .university-image {
-            transform: scale(1.1);
-        }
-        
-        .university-panel.correct .university-label {
-            background-color: rgba(46, 204, 113, 0.8);
-            color: white;
-        }
-        
-        /* Score animation */
-        @keyframes score-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
-        .score-pulse {
-            animation: score-pulse 0.5s ease-out;
-        }
-        
-        .versus-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 50%;
-            z-index: 5;
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        .versus-overlay.hidden {
-            opacity: 0;
-        }
-        
-        /* TikTok Banner */
-        .tiktok-banner {
-        position: absolute;
-        top: 45px; /* Changed from 5px to move it 3cm (approximately 45px) lower */
-        right: 5px;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 6px 10px;
-        z-index: 10;
-        border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        animation: subtle-pulse 3s ease-in-out infinite;
-    }
-    
-    .tiktok-logo {
-        width: 18px;
-        height: 18px;
-        margin-right: 6px;
-        flex-shrink: 0;
-        opacity: 0.8;
-    }
-    
-    .tiktok-text {
-        font-weight: bold;
-        font-size: 13px;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        opacity: 0.8;
-    }
-    
-    /* Animation for banner */
-    @keyframes subtle-pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.03); }
-        100% { transform: scale(1); }
-    }
-        
-        .question {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            padding: 0 10px;
-        }
-        
-        .question-container.exit {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-        
-        .question-container.enter {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        
-        /* Answer reveal animation */
-        @keyframes reveal-answer {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .answer-reveal {
-            animation: reveal-answer 0.7s ease-in-out;
-        }
-        
-        /* Factual Context Section Styles */
-        .factual-context {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(20, 50, 80, 0.9);
+            max-width: 300px;
+            height: 300px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            perspective: 1000px;
+            background-color: rgba(0, 0, 0, 0.5);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
-            z-index: 20;
-            border-radius: 15px;
         }
         
-        .factual-context.show {
-            opacity: 1;
-            transform: translateY(0);
+        .image-placeholder {
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #ffcc00;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.3);
+            position: relative;
         }
         
-        .fact-image {
-            width: 100%;
-            height: 180px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            object-fit: cover;
-        }
-        
-        .fact-text {
-            font-size: 1.4rem;
-            text-align: center;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-            padding: 0 10px;
-            line-height: 1.4;
-        }
-        
-        .fact-title {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        .placeholder-text {
             color: #ffcc00;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-size: 16px;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        /* Image will fill placeholder when added */
+        .africa-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none; /* Hide until image is added */
+        }
+        
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .text {
+            font-size: 0;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            letter-spacing: 1px;
+        }
+        
+        .text.active {
+            font-size: 42px;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .text:nth-child(1) {
+            color: #ffcc00;
+        }
+        
+        .text:nth-child(2) {
+            color: #ff66ff;
+        }
+        
+        .text:nth-child(3) {
+            color: #33ff33;
+        }
+        
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background-size: 400% 400%;
+            animation: backgroundShift 10s ease infinite;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="question-number" id="question-number">Question: 1/10</div>
+        <div class="africa-container">
+            <!-- Image placeholder instead of canvas -->
+            <div class="image-placeholder">
+                <p class="placeholder-text">Add Africa Image Here</p>
+            </div>
+            <img class="africa-image" alt="Africa Map">
+        </div>
         
-        <div class="question-container" id="question-container">
-            <div class="timer-section">
-                <div class="timer-container">
-                    <div class="timer paused" id="timer"></div>
-                </div>
-                <div class="countdown hidden" id="countdown">5</div>
-            </div>
-            
-            <div class="universities-container" id="universities-container">
-                <!-- AIUWA Panel (Left) -->
-                <div class="university-panel" id="aiuwa-panel">
-                    <img class="university-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPrgKc5cttJnewJ1SwTefUUfBtmjOsmpoxJg&s" alt="AIUWA University">
-                    <div class="university-label">AIUWA UNIVERSITY</div>
-                    <!-- AIUWA Score positioned on the university image -->
-                    <div class="score-display aiuwa-score" id="aiuwa-score">AIUWA: 0</div>
-                </div>
-                
-                <!-- UTG Panel (Right) -->
-                <div class="university-panel" id="utg-panel">
-                    <img class="university-image" src="https://pbs.twimg.com/profile_images/1668787193941311489/j7X1W70F_400x400.jpg" alt="University of The Gambia">
-                    <div class="university-label">UNIVERSITY OF THE GAMBIA</div>
-                    <!-- UTG Score positioned on the university image -->
-                    <div class="score-display utg-score" id="utg-score">UTG: 0</div>
-                </div>
-                
-                <div class="versus-overlay" id="versus-overlay">VS</div>
-                
-                <!-- TikTok Banner -->
-                <div class="tiktok-banner">
-                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
-                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
-                    </svg>
-                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
-                </div>
-            </div>
-            
-            <div class="question" id="question">Which university was established first?</div>
-            
-            <!-- Factual Context Section (Hidden initially) -->
-            <div class="factual-context" id="factual-context">
-                <div class="fact-image">
-                    <img class="fact-image" src="https://www.shutterstock.com/image-vector/did-you-know-question-design-600nw-2506070363.jpg" alt="Fact Image" id="fact-image">
-                </div>
-                <div class="fact-title">Did you know?</div>
-                <div class="fact-text" id="fact-text">The University of The Gambia was officially established in 1999, becoming the country's national public university.</div>
-            </div>
+        <div class="text-container">
+            <div class="text" id="text1">AFRICA QUIZ</div>
+            <div class="text" id="text2">IF YOU GET 8/10</div>
+            <div class="text" id="text3">YOU ARE A GENIUS</div>
         </div>
     </div>
 
     <script>
-        const questions = [
-    {
-        question: "Which university was established first?",
-        correctUniversity: "UTG",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "The University of The Gambia was officially established in 1999, becoming the country's national public university.",
-        factReadTime: 9000
-    },
-    {
-        question: "Which university has more faculties and schools?",
-        correctUniversity: "UTG",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "The University of The Gambia has over 10 faculties and schools, including Law, Engineering, Education, Agriculture, and Medicine, while AIUWA is focused mainly on health sciences and business.",
-        factReadTime: 14000
-    },
-    {
-        question: "Which university offers a broader range of academic programs?",
-        correctUniversity: "UTG",
-        readTime: 5000,
-        revealTime: 5000,
-        factText: "UTG offers numerous academic programs across more faculties and fields of national relevance.",
-        factReadTime: 9000
-    },
-    {
-        question: "Which university has more international partnerships?",
-        correctUniversity: "UTG",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "UTG maintains active international academic partnerships, such as with East Carolina University.",
-        factReadTime: 9000
-    },
-    {
-        question: "Which university has more affordable tuition fees for undergraduate programs?",
-        correctUniversity: "UTG",
-        readTime: 6000,
-        revealTime: 5000,
-        factText: "UTG's annual tuition fees range from GMD 34,000 to GMD 40,000, whereas AIUWA's fees are higher, with some programs costing up to $6,000 per year.",
-        factReadTime: 14000
-    },
-    {
-        question: "Which university is more widely recognized by Gambian employers?",
-        correctUniversity: "UTG",
-        readTime: 5000,
-        revealTime: 5000,
-        factText: "UTG enjoys broader employer recognition due to its public status and historical national presence.",
-        factReadTime: 9000
-    },
-    {
-        question: "Which university has a higher percentage of international students?",
-        correctUniversity: "AIUWA",
-        readTime: 5000,
-        revealTime: 5000,
-        factText: "AIUWA admits more international students, especially from nearby West African countries.",
-        factReadTime: 8000
-    },
-    {
-        question: "Which university has a more diverse range of health science programs?",
-        correctUniversity: "AIUWA",
-        readTime: 5000,
-        revealTime: 5000,
-        factText: "AIUWA specializes in several health science programs including medicine and public health.",
-        factReadTime: 7000
-    },
-    {
-        question: "Which university has a larger student enrollment?",
-        correctUniversity: "UTG",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "UTG enrolls more students overall, reflecting its national scope and public affordability.",
-        factReadTime: 8000
-    },
-    {
-        question: "Which university has a more extensive alumni network in The Gambia?",
-        correctUniversity: "UTG",
-        readTime: 5000,
-        revealTime: 5000,
-        factText: "UTG enjoys broader employer recognition due to its public status and historical national presence.",
-        factReadTime: 9000
-    }
-];
-
-        let currentQuestionIndex = 0;
-        let timerInterval;
-        let countdownInterval;
-        
-        // Initialize scores
-        let aiuwaScore = 0;
-        let utgScore = 0;
-        
-        const questionElement = document.getElementById('question');
-        const timerElement = document.getElementById('timer');
-        const countdownElement = document.getElementById('countdown');
-        const questionNumberElement = document.getElementById('question-number');
-        const questionContainerElement = document.getElementById('question-container');
-        const factualContextElement = document.getElementById('factual-context');
-        const factTextElement = document.getElementById('fact-text');
-        const aiuwaScoreElement = document.getElementById('aiuwa-score');
-        const utgScoreElement = document.getElementById('utg-score');
-        const aiuwaPanelElement = document.getElementById('aiuwa-panel');
-        const utgPanelElement = document.getElementById('utg-panel');
-        const versusOverlayElement = document.getElementById('versus-overlay');
-        
-        // Load a question
-        function loadQuestion() {
-            if (currentQuestionIndex < questions.length) {
-                // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
-                
-                // Set question container to "enter" state
-                questionContainerElement.classList.add('enter');
-                
-                // Hide factual context
-                factualContextElement.classList.remove('show');
-                
-                // Reset university panels
-                aiuwaPanelElement.classList.remove('correct', 'incorrect');
-                utgPanelElement.classList.remove('correct', 'incorrect');
-                aiuwaPanelElement.classList.remove('answer-reveal');
-                utgPanelElement.classList.remove('answer-reveal');
-                
-                // Show versus overlay
-                versusOverlayElement.classList.remove('hidden');
-                
-                // Apply transition after a small delay to ensure the class is applied
-                setTimeout(() => {
-                    // Remove both enter/exit classes to get to normal state with transition
-                    questionContainerElement.classList.remove('enter', 'exit');
-                    
-                    const currentQuestion = questions[currentQuestionIndex];
-                    
-                    // Set question text
-                    questionElement.textContent = currentQuestion.question;
-                    
-                    // Start timer with read time pause
-                    startTimerWithPause(currentQuestion.readTime, currentQuestion.revealTime);
-                    
-                }, 50);
-                
-            } else {
-                // Loop back to first question
-                currentQuestionIndex = 0;
-                loadQuestion();
-            }
-        }
-        
-        // Start the timer with an initial pause for reading
-        function startTimerWithPause(pauseTime, revealTime) {
-            // Reset timer style and add paused class
-            timerElement.style.transition = 'none';
-            timerElement.style.width = '100%';
-            timerElement.classList.add('paused');
-            timerElement.classList.remove('ending');
+        // Text animation sequence
+        function startTextAnimation() {
+            const text1 = document.getElementById('text1');
+            const text2 = document.getElementById('text2');
+            const text3 = document.getElementById('text3');
             
-            // Hide countdown during reading time
-            countdownElement.classList.add('hidden');
-            
-            // Force browser reflow
-            void timerElement.offsetWidth;
-            
-            // Clear any existing interval
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            // First wait for the read time
+            // First text appears
             setTimeout(() => {
-                // Remove paused class and start timer animation
-                timerElement.classList.remove('paused');
-                timerElement.style.transition = `width ${revealTime/1000}s linear, background-color 0.5s`;
-                timerElement.style.width = '0%';
-                
-                // Start countdown and show it
-                let secondsLeft = Math.ceil(revealTime/1000);
-                countdownElement.textContent = secondsLeft;
-                countdownElement.classList.remove('hidden');
-                
-                countdownInterval = setInterval(() => {
-                    secondsLeft--;
-                    countdownElement.textContent = secondsLeft;
-                    
-                    // Change to red when 2 seconds or less remain
-                    if (secondsLeft <= 2) {
-                        timerElement.classList.add('ending');
-                    }
-                    
-                    if (secondsLeft <= 0) {
-                        clearInterval(countdownInterval);
-                    }
-                }, 1000);
-                
-                // Set timeout for when time is up
-                timerInterval = setTimeout(() => {
-                    // Reveal the answer
-                    revealAnswer();
-                }, revealTime);
-            }, pauseTime);
-        }
-        
-        // Reveal the correct answer with animation
-        function revealAnswer() {
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            const currentQuestion = questions[currentQuestionIndex];
-            
-            // Hide versus overlay
-            versusOverlayElement.classList.add('hidden');
-            
-            // Determine which university is correct and apply appropriate classes
-            if (currentQuestion.correctUniversity === "AIUWA") {
-                aiuwaPanelElement.classList.add('correct', 'answer-reveal');
-                utgPanelElement.classList.add('incorrect');
-                
-                // Update score
-                aiuwaScore++;
-                aiuwaScoreElement.textContent = `AIUWA: ${aiuwaScore}`;
-                aiuwaScoreElement.classList.add('score-pulse');
-                setTimeout(() => {
-                    aiuwaScoreElement.classList.remove('score-pulse');
-                }, 500);
-            } else {
-                utgPanelElement.classList.add('correct', 'answer-reveal');
-                aiuwaPanelElement.classList.add('incorrect');
-                
-                // Update score
-                utgScore++;
-                utgScoreElement.textContent = `UTG: ${utgScore}`;
-                utgScoreElement.classList.add('score-pulse');
-                setTimeout(() => {
-                    utgScoreElement.classList.remove('score-pulse');
-                }, 500);
-            }
-            
-            // Show factual context after a brief delay
-            setTimeout(() => {
-                showFactualContext();
-            }, 2000);
-        }
-        
-        // Show factual context
-        function showFactualContext() {
-            const currentQuestion = questions[currentQuestionIndex];
-            
-            // Set factual text content
-            factTextElement.textContent = currentQuestion.factText;
-            
-            // Show factual context with animation
-            factualContextElement.classList.add('show');
-            
-            // Move to next question after read time
-            setTimeout(() => {
-                // Hide factual context
-                factualContextElement.classList.remove('show');
-                
-                // Wait for transition to complete before moving to next question
-                setTimeout(() => {
-                    transitionToNextQuestion();
-                }, 500);
-            }, currentQuestion.factReadTime);
-        }
-        
-        // Transition to the next question with animation
-        function transitionToNextQuestion() {
-            // Add exit animation class
-            questionContainerElement.classList.add('exit');
-            
-            // Wait for animation to complete
-            setTimeout(() => {
-                currentQuestionIndex++;
-                loadQuestion();
+                text1.classList.add('active');
             }, 500);
+            
+            // Second text appears
+            setTimeout(() => {
+                text2.classList.add('active');
+            }, 2000);
+            
+            // Third text appears
+            setTimeout(() => {
+                text3.classList.add('active');
+            }, 3500);
+            
+            // Reset animation after some time
+            setTimeout(() => {
+                text1.classList.remove('active');
+                text2.classList.remove('active');
+                text3.classList.remove('active');
+                
+                // Restart animation
+                setTimeout(() => {
+                    startTextAnimation();
+                }, 1000);
+            }, 7000);
         }
         
-        // Start the quiz immediately
-        document.addEventListener('DOMContentLoaded', loadQuestion);
+        // Add your image to replace the placeholder
+        function addImageToPlaceholder(imageUrl) {
+            const africaImage = document.querySelector('.africa-image');
+            const placeholder = document.querySelector('.image-placeholder');
+            
+            // Set the image source
+            africaImage.src = imageUrl;
+            
+            // When image loads, hide placeholder and show image
+            africaImage.onload = function() {
+                placeholder.style.display = 'none';
+                africaImage.style.display = 'block';
+            };
+        }
+        
+        // Start text animation when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            startTextAnimation();
+            
+            // To add your image later, uncomment and modify this line:
+            // addImageToPlaceholder('https://www.beautifulworld.com/wp-content/uploads/2016/11/map-of-africa.png.webp');
+        });
     </script>
 </body>
 </html>
