@@ -80,10 +80,6 @@
             margin-bottom: 15px;
         }
         
-        .topic {
-            margin-bottom: 20px;
-        }
-        
         .subtopic {
             margin-left: 20px;
             margin-bottom: 15px;
@@ -98,30 +94,50 @@
             list-style-type: circle;
         }
         
-        ul ul ul {
-            list-style-type: square;
-        }
-        
         .highlight {
             font-weight: bold;
             color: #446491;
         }
         
+        /* Gradient overlay for content truncation */
+        .truncated-content {
+            position: relative;
+            max-height: 1500px;
+            overflow: hidden;
+        }
+        
+        .gradient-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            background-image: linear-gradient(to bottom, rgba(249, 249, 249, 0), rgba(249, 249, 249, 0.8) 70%, rgba(249, 249, 249, 1));
+            pointer-events: none;
+        }
+        
         .continue-reading {
-            background-color: #25D366;
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2b4570;
             color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 8px;
+            padding: 12px 25px;
+            border-radius: 30px;
             font-weight: bold;
             text-decoration: none;
-            display: block;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .continue-reading:hover {
-            background-color: #128C7E;
+            background-color: #3a5a8e;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateX(-50%) translateY(-3px);
         }
     </style>
 </head>
@@ -130,70 +146,149 @@
     
     <div class="note">Note: This syllabus is for both internal and external candidates.</div>
     
-    <section class="section">
-        <h2>Aims and Objectives</h2>
-        <div class="aims">
-            <div class="aim-item">Use correct English</div>
-            <div class="aim-item">Write about incidents in English that are appropriate to specified audiences and situations</div>
-            <div class="aim-item">Organize materials in paragraphs that are chronologically, spatially and logically coherent</div>
-            <div class="aim-item">Control sentence structures accurately</div>
-            <div class="aim-item">Exhibit variety in the choice of sentence patterns</div>
-            <div class="aim-item">Comply with the rules of grammar, spelling and punctuation</div>
-            <div class="aim-item">Comprehend written and spoken English</div>
-            <div class="aim-item">Recognize implied meaning, tones and attitudes</div>
-            <div class="aim-item">Use an acceptable pronunciation that can be comprehended by others</div>
-            <div class="aim-item">Isolate and summarize relevant information from set passages</div>
-        </div>
-    </section>
-    
-    <section class="section">
-        <h2>Scheme of Examination</h2>
-        <p>Candidates will be required to take three papers. The total marks for the three papers will be 220 marks for The Gambia and Sierra Leone and 200 for Nigeria.</p>
-        
-        <div class="paper-details">
-            <h3>PAPER 1: 2½ hours – Essay Writing, Comprehension and Summary – 120 marks</h3>
-        </div>
-        
-        <div class="paper-details">
-            <h3>PAPER 2: 1 hour – Multiple Choice questions (Lexis and Structure) – 50 marks</h3>
-        </div>
-        
-        <div class="paper-details">
-            <h3>PAPER 3: 45 minutes – Oral English – 50 marks (for the Gambia and Sierra Leone)</h3>
-        </div>
-        
-        <div class="paper-details">
-            <h3>PAPER 3: 45 minutes – Test of Orals – 30 marks (for Nigeria only)</h3>
-        </div>
-    </section>
-    
-    <section class="section">
-        <h2>Detailed English Language Syllabus</h2>
-        
-        <div class="topic">
-            <h3>SECTION A</h3>
-            <div class="subtopic">
-                <h4>ESSAY WRITING (50 marks)</h4>
-                <ul>
-                    <li>Candidates will be required to spend 50 minutes on this section. There will be five questions in all, and candidates will be required to answer only one question.</li>
-                    <li>The topics will demand the following kinds of writing:
-                        <ul>
-                            <li>letter</li>
-                            <li>speech</li>
-                            <li>narrative</li>
-                            <li>description</li>
-                            <li>debate/argumentative</li>
-                            <li>report</li>
-                            <li>article</li>
-                            <li>exposition</li>
-                            <li>creative writing</li>
-                        </ul>
-                    </li>
-                </ul>
+    <div class="truncated-content">
+        <section class="section">
+            <h2>Aims and Objectives</h2>
+            <div class="aims">
+                <div class="aim-item">Use correct English</div>
+                <div class="aim-item">Write about incidents in English that are appropriate to specified audiences and situations</div>
+                <div class="aim-item">Organize materials in paragraphs that are chronologically, spatially and logically coherent</div>
+                <div class="aim-item">Control sentence structures accurately</div>
+                <div class="aim-item">Exhibit variety in the choice of sentence patterns</div>
+                <div class="aim-item">Comply with the rules of grammar, spelling and punctuation</div>
+                <div class="aim-item">Comprehend written and spoken English</div>
+                <div class="aim-item">Recognize implied meaning, tones and attitudes</div>
+                <div class="aim-item">Use an acceptable pronunciation that can be comprehended by others</div>
+                <div class="aim-item">Isolate and summarize relevant information from set passages</div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <section class="section">
+            <h2>Scheme of Examination</h2>
+            <p>Candidates will be required to take three papers. The total marks for the three papers will be 220 marks for The Gambia and Sierra Leone and 200 for Nigeria.</p>
+            
+            <div class="paper-details">
+                <h3>PAPER 1: 2½ hours – Essay Writing, Comprehension and Summary – 120 marks</h3>
+            </div>
+            
+            <div class="paper-details">
+                <h3>PAPER 2: 1 hour – Multiple Choice questions (Lexis and Structure) – 50 marks</h3>
+            </div>
+            
+            <div class="paper-details">
+                <h3>PAPER 3: 45 minutes – Oral English – 50 marks (for the Gambia and Sierra Leone)</h3>
+            </div>
+            
+            <div class="paper-details">
+                <h3>PAPER 3: 45 minutes – Test of Orals – 30 marks (for Nigeria only)</h3>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Detailed English Language Syllabus</h2>
+            
+            <div class="topic">
+                <h3>SECTION A</h3>
+                <div class="subtopic">
+                    <h4>ESSAY WRITING (50 marks)</h4>
+                    <ul>
+                        <li>Candidates will be required to spend 50 minutes on this section. There will be five questions in all, and candidates will be required to answer only one question.</li>
+                        <li>The questions will test candidates' ability to communicate in writing.</li>
+                        <li>The topics will demand the following kinds of writing:
+                            <ul>
+                                <li>letter</li>
+                                <li>speech</li>
+                                <li>narrative</li>
+                                <li>description</li>
+                                <li>debate/argumentative</li>
+                                <li>report</li>
+                                <li>article</li>
+                                <li>exposition</li>
+                                <li>creative writing</li>
+                            </ul>
+                        </li>
+                        <li>Credit will be given for:
+                            <ul>
+                                <li><span class="highlight">Content:</span> relevance of ideas to the topic and its specified audience and purpose</li>
+                                <li><span class="highlight">Organization:</span> formal features (where applicable), good paragraphing, appropriate emphasis and arrangement of ideas</li>
+                                <li><span class="highlight">Expression:</span> control of vocabulary and sentence structure</li>
+                                <li><span class="highlight">Mechanical Accuracy:</span> grammar, punctuation and spelling</li>
+                            </ul>
+                        </li>
+                        <li>The minimum length expected will be 450 words.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="topic">
+                <h3>SECTION B</h3>
+                <div class="subtopic">
+                    <h4>COMPREHENSION (40 marks)</h4>
+                    <ul>
+                        <li>Candidates will be required to spend 50 minutes on this section. The section will consist of two passages each of about three hundred (300) words. Candidates will be required to answer questions on the two passages.</li>
+                        <li>The questions will test the candidate's ability to:
+                            <ul>
+                                <li>find appropriate equivalents for selected words and phrases</li>
+                                <li>understand the factual content</li>
+                                <li>make inferences from the content of the passages</li>
+                                <li>respond to uses of English expressions to reveal/reflect sentiments/emotions/attitudes</li>
+                                <li>identify and label basic grammatical structures, words, phrases or clauses and explain their functions as they appear in the context</li>
+                                <li>identify and explain basic literary terms and expressions</li>
+                                <li>recast phrases or sentences into grammatical alternatives</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="topic">
+                <h3>SECTION C</h3>
+                <div class="subtopic">
+                    <h4>SUMMARY (30 marks)</h4>
+                    <ul>
+                        <li>Candidates will be required to spend 50 minutes on this section. The section will consist of one prose passage of about five hundred (500) words and will test the candidate's ability to:
+                            <ul>
+                                <li>extract relevant information</li>
+                                <li>summarize the points demanded in clear, concise English</li>
+                                <li>present a summary of specific aspects or portions of the passage</li>
+                                <li>avoid repetition, redundancy, and extraneous material</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="topic">
+                <h3>PAPER 2</h3>
+                <div class="subtopic">
+                    <h4>LEXIS</h4>
+                    <ul>
+                        <li>In addition to items testing knowledge of the vocabulary of everyday usage (i.e. home, social relationships, common core school subjects), questions will be set to test the candidate's ability in the use of the more general vocabulary associated with the following fields of human activity:
+                            <ul>
+                                <li>Building</li>
+                                <li>Plumbing</li>
+                                <li>Fishing</li>
+                                <li>Finance – commerce, banking, stock exchange, insurance</li>
+                                <li>Photography</li>
+                                <li>Mineral exploitation</li>
+                                <li>Common manufacturing industries</li>
+                                <li>Printing, publishing, the press and libraries</li>
+                                <li>Sea, road, rail and air transport</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h4>Idioms</h4>
+                    <p>That is, idiomatic expressions and collocations (e.g., "hook, line, and sinker," "every Tom, Dick, and Harry," etc.), the total meaning of which cannot be arrived at simply by consideration of the dictionary meanings of the words in the structures in which they appear.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="gradient-overlay"></div>
+    </div>
     
-    <a href="https://wa.me/2202309804?text=I%20WANT%20THE%20FULL%20SYLLABUS%20FOR%20WAEC%20ENGLISH%20LANGUAGE%202025%2C%20MY%20NAME%20IS%20" class="continue-reading">Continue Reading... (Click to get full syllabus via WhatsApp)</a>
+    <a href="https://wa.me/2202309804?text=I%20want%20the%20full%20syllabus%20for%20WAEC%20Mathematics%202025%2C%20my%20name%20is%20" class="continue-reading">CLICK HERE FOR THE FULL SYLLABUS</a>
 </body>
 </html>
