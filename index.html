@@ -2,189 +2,198 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Guess The Flag TikTok Animation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAEC English Language Syllabus 2025</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            perspective: 1000px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
         
-        .container {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .flag-container {
-            width: 80%;
-            max-width: 300px;
-            height: 300px;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            perspective: 1000px;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .flag-image {
-            width: 90%;
-            height: 90%;
-            object-fit: contain;
-            border-radius: 8px;
-            animation: pulse 2s infinite alternate;
-        }
-        
-        @keyframes pulse {
-            from {
-                filter: drop-shadow(0 0 5px gold);
-                transform: scale(0.98);
-            }
-            to {
-                filter: drop-shadow(0 0 15px gold);
-                transform: scale(1.02);
-            }
-        }
-        
-        .text-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 90%;
-            max-width: 400px;
-        }
-        
-        .text {
-            font-size: 0;
-            font-weight: bold;
+        h1 {
+            color: #2b4570;
             text-align: center;
+            font-size: 28px;
             margin-bottom: 30px;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-            letter-spacing: 1px;
+            border-bottom: 2px solid #2b4570;
+            padding-bottom: 10px;
         }
         
-        .text.active {
-            font-size: 42px;
-            opacity: 1;
-            transform: scale(1);
+        h2 {
+            color: #2b4570;
+            margin-top: 30px;
+            font-size: 22px;
+            border-left: 4px solid #2b4570;
+            padding-left: 10px;
         }
         
-        .text:nth-child(1) {
-            color: #ffcc00;
+        h3 {
+            color: #446491;
+            margin-top: 20px;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
         }
         
-        .text:nth-child(2) {
-            color: #ff66ff;
+        h4 {
+            color: #537bac;
+            margin-top: 15px;
+            font-size: 16px;
         }
         
-        .text:nth-child(3) {
-            color: #33ff33;
+        .note {
+            font-style: italic;
+            color: #555;
+            margin-top: 5px;
         }
         
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .container {
-            background-size: 400% 400%;
-            animation: backgroundShift 10s ease infinite;
+        .aims {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .aim-item {
+            background-color: #f0f4f8;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 3px solid #537bac;
+        }
+        
+        .paper-details {
+            background-color: #f0f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .topic {
+            margin-bottom: 20px;
+        }
+        
+        .subtopic {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        
+        ul ul {
+            list-style-type: circle;
+        }
+        
+        ul ul ul {
+            list-style-type: square;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #446491;
+        }
+        
+        .continue-reading {
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .continue-reading:hover {
+            background-color: #128C7E;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="flag-container">
-            <!-- Image placeholder - replace the src with your flag image URL later -->
-            <img class="flag-image" src="https://www.beautifulworld.com/wp-content/uploads/2016/11/map-of-africa.png.webp" alt="Flag Placeholder">
+    <h1>WAEC English Language Syllabus 2025</h1>
+    
+    <div class="note">Note: This syllabus is for both internal and external candidates.</div>
+    
+    <section class="section">
+        <h2>Aims and Objectives</h2>
+        <div class="aims">
+            <div class="aim-item">Use correct English</div>
+            <div class="aim-item">Write about incidents in English that are appropriate to specified audiences and situations</div>
+            <div class="aim-item">Organize materials in paragraphs that are chronologically, spatially and logically coherent</div>
+            <div class="aim-item">Control sentence structures accurately</div>
+            <div class="aim-item">Exhibit variety in the choice of sentence patterns</div>
+            <div class="aim-item">Comply with the rules of grammar, spelling and punctuation</div>
+            <div class="aim-item">Comprehend written and spoken English</div>
+            <div class="aim-item">Recognize implied meaning, tones and attitudes</div>
+            <div class="aim-item">Use an acceptable pronunciation that can be comprehended by others</div>
+            <div class="aim-item">Isolate and summarize relevant information from set passages</div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2>Scheme of Examination</h2>
+        <p>Candidates will be required to take three papers. The total marks for the three papers will be 220 marks for The Gambia and Sierra Leone and 200 for Nigeria.</p>
+        
+        <div class="paper-details">
+            <h3>PAPER 1: 2½ hours – Essay Writing, Comprehension and Summary – 120 marks</h3>
         </div>
         
-        <div class="text-container">
-            <div class="text" id="text1">GUESS THE FLAG</div>
-            <div class="text" id="text2">IF YOU GET 8/10</div>
-            <div class="text" id="text3">YOU ARE A GENIUS</div>
+        <div class="paper-details">
+            <h3>PAPER 2: 1 hour – Multiple Choice questions (Lexis and Structure) – 50 marks</h3>
         </div>
-    </div>
-
-    <script>
-        // Text animation sequence
-        function startTextAnimation() {
-            const text1 = document.getElementById('text1');
-            const text2 = document.getElementById('text2');
-            const text3 = document.getElementById('text3');
-            
-            // First text appears
-            setTimeout(() => {
-                text1.classList.add('active');
-            }, 500);
-            
-            // Second text appears
-            setTimeout(() => {
-                text2.classList.add('active');
-            }, 2000);
-            
-            // Third text appears
-            setTimeout(() => {
-                text3.classList.add('active');
-            }, 3500);
-            
-            // Reset animation after some time
-            setTimeout(() => {
-                text1.classList.remove('active');
-                text2.classList.remove('active');
-                text3.classList.remove('active');
-                
-                // Restart animation
-                setTimeout(() => {
-                    startTextAnimation();
-                }, 1000);
-            }, 7000);
-        }
         
-        // Function to replace the image placeholder with your actual image
-        function updateImage(imageUrl) {
-            const flagImage = document.querySelector('.flag-image');
-            flagImage.src = imageUrl;
-        }
+        <div class="paper-details">
+            <h3>PAPER 3: 45 minutes – Oral English – 50 marks (for the Gambia and Sierra Leone)</h3>
+        </div>
         
-        // Start text animation when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            startTextAnimation();
-            
-            // Uncomment and replace with your flag image URL when ready
-            // updateImage('https://your-flag-image-url.jpg');
-        });
-    </script>
+        <div class="paper-details">
+            <h3>PAPER 3: 45 minutes – Test of Orals – 30 marks (for Nigeria only)</h3>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2>Detailed English Language Syllabus</h2>
+        
+        <div class="topic">
+            <h3>SECTION A</h3>
+            <div class="subtopic">
+                <h4>ESSAY WRITING (50 marks)</h4>
+                <ul>
+                    <li>Candidates will be required to spend 50 minutes on this section. There will be five questions in all, and candidates will be required to answer only one question.</li>
+                    <li>The topics will demand the following kinds of writing:
+                        <ul>
+                            <li>letter</li>
+                            <li>speech</li>
+                            <li>narrative</li>
+                            <li>description</li>
+                            <li>debate/argumentative</li>
+                            <li>report</li>
+                            <li>article</li>
+                            <li>exposition</li>
+                            <li>creative writing</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <a href="https://wa.me/2202309804?text=I%20WANT%20THE%20FULL%20SYLLABUS%20FOR%20WAEC%20ENGLISH%20LANGUAGE%202025%2C%20MY%20NAME%20IS%20" class="continue-reading">Continue Reading... (Click to get full syllabus via WhatsApp)</a>
 </body>
 </html>
