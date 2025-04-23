@@ -80,6 +80,10 @@
             margin-bottom: 15px;
         }
         
+        .topic {
+            margin-bottom: 20px;
+        }
+        
         .subtopic {
             margin-left: 20px;
             margin-bottom: 15px;
@@ -94,50 +98,49 @@
             list-style-type: circle;
         }
         
+        ul ul ul {
+            list-style-type: square;
+        }
+        
         .highlight {
             font-weight: bold;
             color: #446491;
         }
         
-        /* Gradient overlay for content truncation */
-        .truncated-content {
-            position: relative;
-            max-height: 1500px;
-            overflow: hidden;
-        }
-        
-        .gradient-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+        .example-table {
             width: 100%;
-            height: 300px;
-            background-image: linear-gradient(to bottom, rgba(249, 249, 249, 0), rgba(249, 249, 249, 0.8) 70%, rgba(249, 249, 249, 1));
-            pointer-events: none;
+            border-collapse: collapse;
+            margin: 15px 0;
         }
         
-        .continue-reading {
-            position: absolute;
-            bottom: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #2b4570;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 10;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .example-table th {
+            background-color: #e6eef5;
+            padding: 8px;
+            text-align: left;
         }
         
-        .continue-reading:hover {
-            background-color: #3a5a8e;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-            transform: translateX(-50%) translateY(-3px);
+        .example-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .example-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .phonetic-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .example-pair {
+            background-color: #f0f4f8;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -146,149 +149,388 @@
     
     <div class="note">Note: This syllabus is for both internal and external candidates.</div>
     
-    <div class="truncated-content">
-        <section class="section">
-            <h2>Aims and Objectives</h2>
-            <div class="aims">
-                <div class="aim-item">Use correct English</div>
-                <div class="aim-item">Write about incidents in English that are appropriate to specified audiences and situations</div>
-                <div class="aim-item">Organize materials in paragraphs that are chronologically, spatially and logically coherent</div>
-                <div class="aim-item">Control sentence structures accurately</div>
-                <div class="aim-item">Exhibit variety in the choice of sentence patterns</div>
-                <div class="aim-item">Comply with the rules of grammar, spelling and punctuation</div>
-                <div class="aim-item">Comprehend written and spoken English</div>
-                <div class="aim-item">Recognize implied meaning, tones and attitudes</div>
-                <div class="aim-item">Use an acceptable pronunciation that can be comprehended by others</div>
-                <div class="aim-item">Isolate and summarize relevant information from set passages</div>
-            </div>
-        </section>
+    <section class="section">
+        <h2>Aims and Objectives</h2>
+        <div class="aims">
+            <div class="aim-item">Use correct English</div>
+            <div class="aim-item">Write about incidents in English that are appropriate to specified audiences and situations</div>
+            <div class="aim-item">Organize materials in paragraphs that are chronologically, spatially and logically coherent</div>
+            <div class="aim-item">Control sentence structures accurately</div>
+            <div class="aim-item">Exhibit variety in the choice of sentence patterns</div>
+            <div class="aim-item">Comply with the rules of grammar, spelling and punctuation</div>
+            <div class="aim-item">Comprehend written and spoken English</div>
+            <div class="aim-item">Recognize implied meaning, tones and attitudes</div>
+            <div class="aim-item">Use an acceptable pronunciation that can be comprehended by others</div>
+            <div class="aim-item">Isolate and summarize relevant information from set passages</div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2>Scheme of Examination</h2>
+        <p>Candidates will be required to take three papers. The total marks for the three papers will be 220 marks for The Gambia and Sierra Leone and 200 for Nigeria.</p>
         
-        <section class="section">
-            <h2>Scheme of Examination</h2>
-            <p>Candidates will be required to take three papers. The total marks for the three papers will be 220 marks for The Gambia and Sierra Leone and 200 for Nigeria.</p>
-            
-            <div class="paper-details">
-                <h3>PAPER 1: 2½ hours – Essay Writing, Comprehension and Summary – 120 marks</h3>
-            </div>
-            
-            <div class="paper-details">
-                <h3>PAPER 2: 1 hour – Multiple Choice questions (Lexis and Structure) – 50 marks</h3>
-            </div>
-            
-            <div class="paper-details">
-                <h3>PAPER 3: 45 minutes – Oral English – 50 marks (for the Gambia and Sierra Leone)</h3>
-            </div>
-            
-            <div class="paper-details">
-                <h3>PAPER 3: 45 minutes – Test of Orals – 30 marks (for Nigeria only)</h3>
-            </div>
-        </section>
+        <div class="paper-details">
+            <h3>PAPER 1: 2½ hours – Essay Writing, Comprehension and Summary – 120 marks</h3>
+        </div>
         
-        <section class="section">
-            <h2>Detailed English Language Syllabus</h2>
+        <div class="paper-details">
+            <h3>PAPER 2: 1 hour – Multiple Choice questions (Lexis and Structure) – 50 marks</h3>
+        </div>
+        
+        <div class="paper-details">
+            <h3>PAPER 3: 45 minutes – Oral English – 50 marks (for the Gambia and Sierra Leone)</h3>
+        </div>
+        
+        <div class="paper-details">
+            <h3>PAPER 3: 45 minutes – Test of Orals – 30 marks (for Nigeria only)</h3>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2>Detailed English Language Syllabus</h2>
+        
+        <div class="topic">
+            <h3>SECTION A</h3>
+            <div class="subtopic">
+                <h4>ESSAY WRITING (50 marks)</h4>
+                <ul>
+                    <li>Candidates will be required to spend 50 minutes on this section. There will be five questions in all, and candidates will be required to answer only one question.</li>
+                    <li>The questions will test candidates' ability to communicate in writing.</li>
+                    <li>The topics will demand the following kinds of writing:
+                        <ul>
+                            <li>letter</li>
+                            <li>speech</li>
+                            <li>narrative</li>
+                            <li>description</li>
+                            <li>debate/argumentative</li>
+                            <li>report</li>
+                            <li>article</li>
+                            <li>exposition</li>
+                            <li>creative writing</li>
+                        </ul>
+                    </li>
+                    <li>Credit will be given for:
+                        <ul>
+                            <li><span class="highlight">Content:</span> relevance of ideas to the topic and its specified audience and purpose</li>
+                            <li><span class="highlight">Organization:</span> formal features (where applicable), good paragraphing, appropriate emphasis and arrangement of ideas</li>
+                            <li><span class="highlight">Expression:</span> control of vocabulary and sentence structure</li>
+                            <li><span class="highlight">Mechanical Accuracy:</span> grammar, punctuation and spelling</li>
+                        </ul>
+                    </li>
+                    <li>The minimum length expected will be 450 words.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h3>SECTION B</h3>
+            <div class="subtopic">
+                <h4>COMPREHENSION (40 marks)</h4>
+                <ul>
+                    <li>Candidates will be required to spend 50 minutes on this section. The section will consist of two passages each of about three hundred (300) words. Candidates will be required to answer questions on the two passages.</li>
+                    <li>The questions will test the candidate's ability to:
+                        <ul>
+                            <li>find appropriate equivalents for selected words and phrases</li>
+                            <li>understand the factual content</li>
+                            <li>make inferences from the content of the passages</li>
+                            <li>respond to uses of English expressions to reveal/reflect sentiments/emotions/attitudes</li>
+                            <li>identify and label basic grammatical structures, words, phrases or clauses and explain their functions as they appear in the context</li>
+                            <li>identify and explain basic literary terms and expressions</li>
+                            <li>recast phrases or sentences into grammatical alternatives</li>
+                        </ul>
+                    </li>
+                    <li>The passages will be chosen from a wide variety of sources, all of which will be suitable for this level of examination in terms of theme and interest.</li>
+                    <li>The passages will be written in modern English, which will be within the experience of candidates.</li>
+                    <li>The comprehension test will include a total of three questions based on (vi) above in any one paper.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h3>SECTION C</h3>
+            <div class="subtopic">
+                <h4>SUMMARY (30 marks)</h4>
+                <ul>
+                    <li>Candidates will be required to spend 50 minutes on this section. The section will consist of one prose passage of about five hundred (500) words and will test the candidate's ability to:
+                        <ul>
+                            <li>extract relevant information</li>
+                            <li>summarize the points demanded in clear, concise English</li>
+                            <li>present a summary of specific aspects or portions of the passage</li>
+                            <li>avoid repetition, redundancy, and extraneous material</li>
+                        </ul>
+                    </li>
+                    <li>The passage will be selected from a wide variety of suitable sources, including excerpts from narratives, dialogues and expositions of social, cultural, economic and political issues in any part of the world.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h3>PAPER 2</h3>
+            <div class="subtopic">
+                <h4>LEXIS</h4>
+                <ul>
+                    <li>In addition to items testing knowledge of the vocabulary of everyday usage (i.e. home, social relationships, common core school subjects), questions will be set to test the candidate's ability in the use of the more general vocabulary associated with the following fields of human activity:
+                        <ul>
+                            <li>Building</li>
+                            <li>Plumbing</li>
+                            <li>Fishing</li>
+                            <li>Finance – commerce, banking, stock exchange, insurance</li>
+                            <li>Photography</li>
+                            <li>Mineral exploitation</li>
+                            <li>Common manufacturing industries</li>
+                            <li>Printing, publishing, the press and libraries</li>
+                            <li>Sea, road, rail and air transport</li>
+                            <li>Government and politics</li>
+                            <li>Sports and entertainment</li>
+                            <li>Religion</li>
+                            <li>Science and Technology</li>
+                            <li>Power production – hydro, thermal, solar</li>
+                            <li>Education</li>
+                            <li>Transport and Communication</li>
+                            <li>Military</li>
+                            <li>Journalism and Advertising</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
             
-            <div class="topic">
-                <h3>SECTION A</h3>
-                <div class="subtopic">
-                    <h4>ESSAY WRITING (50 marks)</h4>
-                    <ul>
-                        <li>Candidates will be required to spend 50 minutes on this section. There will be five questions in all, and candidates will be required to answer only one question.</li>
-                        <li>The questions will test candidates' ability to communicate in writing.</li>
-                        <li>The topics will demand the following kinds of writing:
-                            <ul>
-                                <li>letter</li>
-                                <li>speech</li>
-                                <li>narrative</li>
-                                <li>description</li>
-                                <li>debate/argumentative</li>
-                                <li>report</li>
-                                <li>article</li>
-                                <li>exposition</li>
-                                <li>creative writing</li>
-                            </ul>
-                        </li>
-                        <li>Credit will be given for:
-                            <ul>
-                                <li><span class="highlight">Content:</span> relevance of ideas to the topic and its specified audience and purpose</li>
-                                <li><span class="highlight">Organization:</span> formal features (where applicable), good paragraphing, appropriate emphasis and arrangement of ideas</li>
-                                <li><span class="highlight">Expression:</span> control of vocabulary and sentence structure</li>
-                                <li><span class="highlight">Mechanical Accuracy:</span> grammar, punctuation and spelling</li>
-                            </ul>
-                        </li>
-                        <li>The minimum length expected will be 450 words.</li>
-                    </ul>
+            <div class="subtopic">
+                <h4>Idioms</h4>
+                <p>That is, idiomatic expressions and collocations (e.g., "hook, line, and sinker," "every Tom, Dick, and Harry," etc.), the total meaning of which cannot be arrived at simply by consideration of the dictionary meanings of the words in the structures in which they appear.</p>
+            </div>
+            
+            <div class="subtopic">
+                <h4>Structural Elements of English</h4>
+                <p>For example, the sequence of tenses, the matching of pronouns with noun referents, and the use of correct prepositions.</p>
+            </div>
+            
+            <div class="subtopic">
+                <h4>Figurative usage</h4>
+                <p>In the testing of figurative language, candidates will be expected to recognize when an expression is used figuratively rather than literally.</p>
+            </div>
+            
+            <div class="subtopic">
+                <h4>STRUCTURE</h4>
+                <p>The structure here is used to include:</p>
+                <ul>
+                    <li>The patterns of changes in word forms that indicate number, tense, degree, etc.</li>
+                    <li>The patterns in which different categories of words regularly combine to form groups, and these groups, in turn, combine to form sentences</li>
+                    <li>The use of structural words, e.g. conjunctions, articles, determiners, prepositions, etc.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h3>PAPER 3</h3>
+            <div class="subtopic">
+                <h4>ORAL ENGLISH (50 marks)</h4>
+                <p>This paper will test candidates knowledge of oral English. There will be three alternatives for this paper: Alternative A for school candidates in The Gambia and Sierra Leone, Alternative B for private candidates in The Gambia and Sierra Leone, and Alternative C for Nigerian candidates only.</p>
+            </div>
+            
+            <div class="subtopic">
+                <h4>ALTERNATIVE A: LISTENING COMPREHENSION</h4>
+                <p>This paper will be a Listening Comprehension Test. This will be made up of 100 multiple-choice objective items:</p>
+                <ul>
+                    <li>Recognition of consonants, consonant clusters, vowels, diphthongs, stress and intonation</li>
+                    <li>Understanding of dialogues and narratives.</li>
+                    <li>Section 1: Test of word-final voiced-voiceless consonants in isolated words, mainly, but other features, such as consonant clusters, may also be tested.</li>
+                    <li>Section 2: Test of vowel quality in isolated words</li>
+                    <li>Section 3: Test of vowel quality and consonant contrasts in isolated words</li>
+                    <li>Section 4: One of the three alternatives below will be used in different years:
+                        <ul>
+                            <li>test of vowel and/or consonant contrasts in sentence contexts;</li>
+                            <li>test of vowel and consonant contrasts in isolated words – to be selected from a list of at least four-word contrasts;</li>
+                            <li>test of vowel and consonant contrasts through rhymes</li>
+                        </ul>
+                    </li>
+                    <li>Section 5: Test of rhyming</li>
+                    <li>Section 6: Test of comprehension of emphatic stress</li>
+                    <li>Section 7: Test of understanding of intonation through short dialogues</li>
+                    <li>Section 8: Test of understanding of the content of longer dialogues and narratives</li>
+                </ul>
+            </div>
+            
+            <div class="subtopic">
+                <h4>CONSONANTS</h4>
+                <p>(a) Single Consonants – Candidates should be able to recognize and produce all the significant sound contrasts in the consonantal system of English.</p>
+                <p>For the guidance of candidates, a few examples of such contrasts are given below.</p>
+                
+                <table class="example-table">
+                    <tr>
+                        <th>Initial</th>
+                        <th>Medial</th>
+                        <th>Final</th>
+                    </tr>
+                    <tr>
+                        <td>they – day</td>
+                        <td>buzzes – buses</td>
+                        <td>boat – both</td>
+                    </tr>
+                    <tr>
+                        <td>ship – chip</td>
+                        <td>parcel – partial</td>
+                        <td>breathe – breed</td>
+                    </tr>
+                    <tr>
+                        <td>fan – van</td>
+                        <td>sopping – sobbing</td>
+                        <td>wash – watch</td>
+                    </tr>
+                    <tr>
+                        <td>pit – fit</td>
+                        <td>written – ridden</td>
+                        <td>leaf – leave</td>
+                    </tr>
+                    <tr>
+                        <td>pit – bit</td>
+                        <td>anger – anchor</td>
+                        <td>cup – cub</td>
+                    </tr>
+                    <tr>
+                        <td>tuck – duck</td>
+                        <td>faces – phases</td>
+                        <td>cart – card</td>
+                    </tr>
+                    <tr>
+                        <td>card – guard</td>
+                        <td>prices – prizes</td>
+                        <td>gear – jeer</td>
+                    </tr>
+                </table>
+                
+                <p>(b) Consonant Clusters – Candidates should be able to produce and recognize consonant clusters which may occur both initially and finally in a syllable.</p>
+                <p>They should also be able to recognize and produce the consonant sounds in a consonant cluster in the right order.</p>
+                <p>For the guidance of candidates, a few examples are given below.</p>
+                
+                <div class="phonetic-examples">
+                    <div class="example-pair">play – pray</div>
+                    <div class="example-pair">rains – range</div>
+                    <div class="example-pair">sting – string</div>
+                    <div class="example-pair">felt – felled</div>
+                    <div class="example-pair">scheme – scream</div>
+                    <div class="example-pair">sent – send</div>
+                    <div class="example-pair">crime – climb</div>
+                    <div class="example-pair">nest – next</div>
+                    <div class="example-pair">flee – free</div>
+                    <div class="example-pair">ask – axe</div>
+                    <div class="example-pair">three – tree</div>
+                    <div class="example-pair">lift – lived</div>
+                    <div class="example-pair">true – drew</div>
+                    <div class="example-pair">missed – mixed</div>
+                    <div class="example-pair">blight – bright</div>
+                    <div class="example-pair">seats – seeds</div>
+                    <div class="example-pair">tread – thread</div>
+                    <div class="example-pair">hens – hence</div>
+                    <div class="example-pair">drift – thrift</div>
+                    <div class="example-pair">lisp – lips</div>
+                    <div class="example-pair">glade – grade</div>
+                    <div class="example-pair">coast – coats</div>
+                    <div class="example-pair">marks – masks</div>
                 </div>
             </div>
             
-            <div class="topic">
-                <h3>SECTION B</h3>
-                <div class="subtopic">
-                    <h4>COMPREHENSION (40 marks)</h4>
-                    <ul>
-                        <li>Candidates will be required to spend 50 minutes on this section. The section will consist of two passages each of about three hundred (300) words. Candidates will be required to answer questions on the two passages.</li>
-                        <li>The questions will test the candidate's ability to:
-                            <ul>
-                                <li>find appropriate equivalents for selected words and phrases</li>
-                                <li>understand the factual content</li>
-                                <li>make inferences from the content of the passages</li>
-                                <li>respond to uses of English expressions to reveal/reflect sentiments/emotions/attitudes</li>
-                                <li>identify and label basic grammatical structures, words, phrases or clauses and explain their functions as they appear in the context</li>
-                                <li>identify and explain basic literary terms and expressions</li>
-                                <li>recast phrases or sentences into grammatical alternatives</li>
-                            </ul>
-                        </li>
-                    </ul>
+            <div class="subtopic">
+                <h4>VOWELS</h4>
+                <ul>
+                    <li>(a) Pure Vowels</li>
+                    <li>(b) Diphthongs</li>
+                    <li>(c) Triphthongs</li>
+                </ul>
+                <p>Candidates should be able to recognize and produce all the significant sound contrasts in the vowel system of English.</p>
+                <p>For the guidance of candidates, a few examples of such contrasts are given below.</p>
+                
+                <div class="phonetic-examples">
+                    <div class="example-pair">seat – sit</div>
+                    <div class="example-pair">sit – set</div>
+                    <div class="example-pair">peck – pack</div>
+                    <div class="example-pair">pack – park</div>
+                    <div class="example-pair">cart – cat</div>
+                    <div class="example-pair">load – lord</div>
+                    <div class="example-pair">pair – purr</div>
+                    <div class="example-pair">park – pork</div>
+                    <div class="example-pair">hard – heard</div>
+                    <div class="example-pair">word – ward</div>
+                    <div class="example-pair">let – late</div>
+                    <div class="example-pair">cheer – chair</div>
+                    <div class="example-pair">pet – pat – part – pate</div>
+                    <div class="example-pair">hat – heart – height – hate – hut</div>
+                    <div class="example-pair">part – port – pot – pat</div>
+                    <div class="example-pair">caught – cot – cut – curt</div>
+                    <div class="example-pair">pool – pull – pole</div>
+                    <div class="example-pair">bird – bed – bared</div>
+                    <div class="example-pair">but – bat</div>
                 </div>
             </div>
             
-            <div class="topic">
-                <h3>SECTION C</h3>
-                <div class="subtopic">
-                    <h4>SUMMARY (30 marks)</h4>
-                    <ul>
-                        <li>Candidates will be required to spend 50 minutes on this section. The section will consist of one prose passage of about five hundred (500) words and will test the candidate's ability to:
-                            <ul>
-                                <li>extract relevant information</li>
-                                <li>summarize the points demanded in clear, concise English</li>
-                                <li>present a summary of specific aspects or portions of the passage</li>
-                                <li>avoid repetition, redundancy, and extraneous material</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="topic">
-                <h3>PAPER 2</h3>
-                <div class="subtopic">
-                    <h4>LEXIS</h4>
-                    <ul>
-                        <li>In addition to items testing knowledge of the vocabulary of everyday usage (i.e. home, social relationships, common core school subjects), questions will be set to test the candidate's ability in the use of the more general vocabulary associated with the following fields of human activity:
-                            <ul>
-                                <li>Building</li>
-                                <li>Plumbing</li>
-                                <li>Fishing</li>
-                                <li>Finance – commerce, banking, stock exchange, insurance</li>
-                                <li>Photography</li>
-                                <li>Mineral exploitation</li>
-                                <li>Common manufacturing industries</li>
-                                <li>Printing, publishing, the press and libraries</li>
-                                <li>Sea, road, rail and air transport</li>
-                            </ul>
-                        </li>
-                    </ul>
+            <div class="subtopic">
+                <h4>STRESS</h4>
+                <p>(a) Word Stress – Candidates should be able to contrast stressed and unstressed syllables in words that are not otherwise distinguished.</p>
+                <p>In addition, they should be aware of the possibility of shifting stress from one syllable to another in different derivations of the same word with a consequent change in vowel quality.</p>
+                <p>For the guidance of candidates, a few examples of changing word stress are given below.</p>
+                
+                <div class="phonetic-examples">
+                    <div class="example-pair">INcrease (noun) – inCREASE (verb)</div>
+                    <div class="example-pair">IMport – imPORT</div>
+                    <div class="example-pair">REbel – reBEL</div>
+                    <div class="example-pair">CONvict – conVICT</div>
+                    <div class="example-pair">EXtract – exTRACT</div>
+                    <div class="example-pair">REcord – reCORD</div>
+                    <div class="example-pair">SUBject – subJECT</div>
                 </div>
                 
-                <div class="subtopic">
-                    <h4>Idioms</h4>
-                    <p>That is, idiomatic expressions and collocations (e.g., "hook, line, and sinker," "every Tom, Dick, and Harry," etc.), the total meaning of which cannot be arrived at simply by consideration of the dictionary meanings of the words in the structures in which they appear.</p>
-                </div>
+                <p>(b) Sentence Stress – Candidates should be aware that stress in sentences in English tends to occur at regular intervals in time. English is therefore called a stress-timed language.</p>
+                <p>They should also be aware that in most sentences unless some sort of emphasis is introduced, only nouns, main verbs (not auxiliaries), adjectives and adverbs are stressed. Final pronouns should not be stressed unless some kind of contrast is intended. Relative pronouns should not be stressed, nor should possessive pronouns.</p>
+                <p class="note">NOTE: There are a few words in English that are pronounced differently depending on whether or not they are stressed in the sentence. These are usually called strong and weak forms.</p>
+                
+                <p>(c) Emphatic Stress – Candidates should be aware of the use of emphatic stress, most commonly to indicate a contrast, which is realized partly as a change in pitch within the intonation pattern. The falling pitch illustrated below is one of the common ways of indicating this.</p>
             </div>
-        </section>
-        
-        <div class="gradient-overlay"></div>
-    </div>
-    
-    <a href="https://wa.me/2202309804?text=I%20want%20the%20full%20syllabus%20for%20WAEC%20Mathematics%202025%2C%20my%20name%20is%20" class="continue-reading">CLICK HERE FOR THE FULL SYLLABUS</a>
+            
+            <div class="subtopic">
+                <h4>INTONATION</h4>
+                <p>Candidates should be made aware of the different forms English intonation takes in relation to the grammar of the language and the attitudes conveyed by the speaker.</p>
+                <p>There are two basic intonation patterns or tunes: the falling and rising patterns.</p>
+                <p>They should also realize that whereas the normal place for the changing pitch in an intonation pattern is on the last stressed syllable of the utterance (as indicated below), placing the changing pitch elsewhere implies a contrast to the item on which this changing pitch falls.</p>
+                <p>For example:</p>
+                <ul>
+                    <li>He borrowed "my newspaper – (i.e, not hers)</li>
+                    <li>He "borrowed 'my newspaper – (i.e, he did not steal it).</li>
+                    <li>He borrowed my "newspaper – (i.e, not my book).</li>
+                    <li>"He borrowed my 'newspaper – (i.e, not someone else).</li>
+                </ul>
+                <p>(a) Falling Pattern</p>
+                <p>(b) Rising Pattern</p>
+            </div>
+            
+            <div class="subtopic">
+                <h4>ALTERNATIVE B</h4>
+                <p>Alternative B is a multiple-choice paper of 50 items testing the content of the syllabus as outlined for Alternative A.</p>
+                <p>The 50 items will cover the recognition of the following:</p>
+                <ul>
+                    <li>pure vowels</li>
+                    <li>diphthongs</li>
+                    <li>consonants</li>
+                    <li>consonant clusters</li>
+                    <li>word stress</li>
+                    <li>sentence stress</li>
+                    <li>emphatic/contrastive stress</li>
+                    <li>vowel and consonant contrast through rhymes.</li>
+                </ul>
+            </div>
+            
+            <div class="subtopic">
+                <h4>ALTERNATIVE C: TEST OF ORALS (For School and Private Candidates in Nigeria)</h4>
+                <p>A Test of Orals format is a multiple-choice paper of 60 items testing a wide range of areas or aspects of Orals as contained in the syllabus.</p>
+                <p>The Test of Orals will cover the following areas:</p>
+                <ul>
+                    <li>Vowels – pure vowels and diphthongs;</li>
+                    <li>Consonants (including clusters);</li>
+                    <li>Rhymes;</li>
+                    <li>Word Stress/Syllable Structure;</li>
+                    <li>Emphatic Stress/Intonation Patterns;</li>
+                    <li>Phonetic Symbols.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
