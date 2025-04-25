@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gambian History Quiz Challenge</title>
+    <title>Gambian School Quiz Challenge</title>
     <style>
         * {
             box-sizing: border-box;
@@ -35,7 +35,6 @@
             align-items: center;
         }
         
-        /* Improved question number for better mobile visibility */
         .question-number {
             position: absolute;
             top: 10px;
@@ -122,28 +121,33 @@
         
         .image-container {
             width: 100%;
-            height: 180px;
+            height: auto;
+            max-height: 220px;
             margin: 10px 0 20px;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
         }
         
         .question-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
             border-radius: 10px;
-            filter: blur(4px); /* Reduced blur from 8px to 4px */
-            transition: filter 0.5s ease; /* Smooth transition for blur effect */
+            filter: blur(4px);
+            transition: filter 0.5s ease;
         }
         
         .question-image.unblurred {
-            filter: blur(0); /* Remove blur when this class is added */
+            filter: blur(0);
         }
         
-        /* TikTok Banner */
         .tiktok-banner {
             position: absolute;
             top: 50%;
@@ -178,7 +182,6 @@
             opacity: 0.6;
         }
         
-        /* Updated Animation for banner */
         @keyframes subtle-pulse {
             0% { transform: translate(-50%, -50%) scale(1); }
             50% { transform: translate(-50%, -50%) scale(1.03); }
@@ -190,7 +193,7 @@
         }
         
         .question {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 20px;
             text-align: center;
@@ -210,9 +213,9 @@
             background-color: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
-            padding: 15px;
+            padding: 15px 10px;
             border-radius: 10px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: bold;
@@ -241,6 +244,49 @@
             transform: translateX(100%);
             opacity: 0;
         }
+        
+        /* Make responsive for smaller screens */
+        @media (max-height: 700px) {
+            .question-container {
+                margin-top: 60px;
+                height: calc(100% - 120px);
+            }
+            
+            .image-container {
+                max-height: 180px;
+                margin: 5px 0 15px;
+            }
+            
+            .question-image {
+                max-height: 160px;
+            }
+            
+            .question {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+            
+            .option {
+                padding: 12px 10px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .question-container {
+                margin-top: 50px;
+                height: calc(100% - 100px);
+            }
+            
+            .image-container {
+                max-height: 150px;
+                margin: 5px 0 10px;
+            }
+            
+            .question-image {
+                max-height: 130px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -256,7 +302,7 @@
             </div>
             
             <div class="image-container" id="image-container">
-                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="Question illustration">
+                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="School logo">
                 <!-- TikTok Banner -->
                 <div class="tiktok-banner">
                     <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
@@ -266,13 +312,13 @@
                 </div>
             </div>
             
-            <div class="question" id="question">In what year did The Gambia gain independence from British colonial rule?</div>
+            <div class="question" id="question">Which school is this?</div>
             
             <div class="options" id="options">
-                <button class="option">1965</button>
-                <button class="option">1960</button>
-                <button class="option">1970</button>
-                <button class="option">1975</button>
+                <button class="option">Nusrat Senior Secondary School</button>
+                <button class="option">St. Augustine's High School</button>
+                <button class="option">Marina International School</button>
+                <button class="option">Gambia Methodist Academy</button>
             </div>
         </div>
     </div>
@@ -280,75 +326,75 @@
     <script>
         const questions = [
             {
-    question: "Which school is this?",
-    options: ["Nusrat Senior Secondary School", "St. Augustine's High School", "Marina International School", "Gambia Methodist Academy"],
-    correctIndex: 1,
-    readTime: 5000,
-    imageSrc: "https://i0.wp.com/www.nusratsss.com/wp-content/uploads/2021/09/cropped-nusrat-new-site-logo.png?fit=126%2C150&ssl=1" // Nusrat Senior Secondary School badge
-},
-{
-    question: "Which school is this?",
-    options: ["SBEC International School", "Marina International School", "Banjul American International School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://sbeconline.com/static/sbeclogo.png" // SBEC International School badge
-},
-{
-    question: "Which school is this?",
-    options: ["Marina International School", "Nusrat Senior Secondary School", "St. Augustine's High School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHHv7AVUIrpWq-FdhFRU2XeUUK1l-306reKQ&s" // Marina International School badge
-},
-{
-    question: "Which school is this?",
-    options: ["St. Augustine's High School", "SBEC International School", "Marina International School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://www.accessgambia.com/information/large08/saints-logo.jpg" // St. Augustine's High School badge
-},
-{
-    question: "Which school is this?",
-    options: ["Gambia High School", "Nusrat Senior Secondary School", "SBEC International School", "Marina International School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://media.licdn.com/dms/image/v2/C4E0BAQGwaxwDy9RYNQ/company-logo_200_200/company-logo_200_200/0/1630612355078?e=2147483647&v=beta&t=7B6uyEdbAY0Dg5tRCjaAHnHyj6CFkllTe120n0-3mAc" // Gambia Methodist Academy badge
-},
-{
-    question: "Which school is this?",
-    options: ["WASS", "Marina International School", "St. Augustine's High School", "Nusrat Senior Secondary School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://secure.gravatar.com/blavatar/5f9d7a71e5d192b4741dec039cb3360ae0277da05593890d062cec2da87b2a03?s=240" // Banjul American International School badge
-},
-{
-    question: "Which school is this?",
-    options: ["St Peter's", "University of The Gambia", "SBEC International School", "Marina International School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFoOgJZ5H2tJdLL1Zej8EyP_Low20ZOnzNjw&s" // Gambia College badge
-},
-{
-    question: "Which school is this?",
-    options: ["Gambia Muslim SSS", "Gambia College", "Nusrat Senior Secondary School", "St. Augustine's High School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://secure.gravatar.com/blavatar/6b576c03f6be98acdfe5fc4cecd465560acde4b7da2f197c42f6f2b4297ebeda?s=240" // University of The Gambia badge
-},
-{
-    question: "Which school is this?",
-    options: ["Gambia Methodist Academy", "SBEC International School", "Marina International School", "Nusrat Senior Secondary School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://lh3.googleusercontent.com/proxy/2IycaQeVOO5KOIjI_TgPMFR2Pje0uk_FokCj5BBIvZqyccmBrIXMkJgr0en1DEUHZFORtjCf4PgSmVv35MDeHVJk06UvjXsK2YFSYUbeL6ie5s8" // Gambia Methodist Academy badge
-},
-{
-    question: "Which school is this?",
-    options: ["Glory Baptist School", "Marina International School", "SBEC International School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyJGArrXpATzoibuMO__2rWJ7-pvqRYwtxpA&s" // St. Augustine's High School badge
-}
+                question: "Which school is this?",
+                options: ["Nusrat Senior Secondary School", "St. Augustine's High School", "Marina International School", "Gambia Methodist Academy"],
+                correctIndex: 1,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for Nusrat Senior Secondary School
+            },
+            {
+                question: "Which school is this?",
+                options: ["SBEC International School", "Marina International School", "Banjul American International School", "Gambia Methodist Academy"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for SBEC International School
+            },
+            {
+                question: "Which school is this?",
+                options: ["Marina International School", "Nusrat Senior Secondary School", "St. Augustine's High School", "Gambia Methodist Academy"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for Marina International School
+            },
+            {
+                question: "Which school is this?",
+                options: ["St. Augustine's High School", "SBEC International School", "Marina International School", "Gambia Methodist Academy"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for St. Augustine's High School
+            },
+            {
+                question: "Which school is this?",
+                options: ["Gambia High School", "Nusrat Senior Secondary School", "SBEC International School", "Marina International School"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for Gambia High School
+            },
+            {
+                question: "Which school is this?",
+                options: ["WASS", "Marina International School", "St. Augustine's High School", "Nusrat Senior Secondary School"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for WASS
+            },
+            {
+                question: "Which school is this?",
+                options: ["St Peter's", "University of The Gambia", "SBEC International School", "Marina International School"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for St Peter's
+            },
+            {
+                question: "Which school is this?",
+                options: ["Gambia Muslim SSS", "Gambia College", "Nusrat Senior Secondary School", "St. Augustine's High School"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for Gambia Muslim SSS
+            },
+            {
+                question: "Which school is this?",
+                options: ["Gambia Methodist Academy", "SBEC International School", "Marina International School", "Nusrat Senior Secondary School"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for Gambia Methodist Academy
+            },
+            {
+                question: "Which school is this?",
+                options: ["Glory Baptist School", "Marina International School", "SBEC International School", "Gambia Methodist Academy"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "/api/placeholder/300/200" // Using placeholder for Glory Baptist School
+            }
         ];
 
         let currentQuestionIndex = 0;
@@ -363,13 +409,22 @@
         const questionNumberElement = document.getElementById('question-number');
         const questionContainerElement = document.getElementById('question-container');
         const questionImageElement = document.getElementById('question-image');
-        const imageContainerElement = document.getElementById('image-container');
+        
+        // Load question image with error handling
+        function loadImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(src);
+                img.onerror = () => reject(new Error('Image failed to load'));
+                img.src = src;
+            });
+        }
         
         // Load a question
         function loadQuestion() {
             if (currentQuestionIndex < questions.length) {
                 // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
+                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/${questions.length}`;
                 
                 // Set question container to "enter" state
                 questionContainerElement.classList.add('enter');
@@ -387,6 +442,11 @@
                     // Update image and ensure it's blurred
                     questionImageElement.src = currentQuestion.imageSrc;
                     questionImageElement.classList.remove('unblurred'); // Ensure the image is blurred
+                    
+                    // Handle image load errors
+                    questionImageElement.onerror = function() {
+                        this.src = '/api/placeholder/300/200';
+                    };
                     
                     // Clear previous options
                     optionsContainer.innerHTML = '';
@@ -473,12 +533,7 @@
                         
                         // Highlight correct answer
                         const options = document.querySelectorAll('.option');
-                        // For question 6 (index 5), wrongfully highlight Wolof instead of Mandinka
-                        if (currentQuestionIndex === 5) {
-                            options[0].classList.add('correct'); // Wrongfully highlights Wolof as correct
-                        } else {
-                            options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
-                        }
+                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
                         
                         // Unblur the image when answer is highlighted
                         questionImageElement.classList.add('unblurred');
@@ -503,23 +558,11 @@
             // Unblur the image immediately when an answer is selected
             questionImageElement.classList.add('unblurred');
             
-            // Special case for question 6 (index 5) - intentionally marking wrong answer
-            if (currentQuestionIndex === 5) {
-                // Mark Wolof (index 0) as correct even though Mandinka (index 1) is actually correct
-                if (selectedIndex === 0) {
-                    options[selectedIndex].classList.add('correct');
-                } else {
-                    options[selectedIndex].classList.add('incorrect');
-                    options[0].classList.add('correct'); // Wrongfully highlight Wolof
-                }
+            if (selectedIndex === currentQuestion.correctIndex) {
+                options[selectedIndex].classList.add('correct');
             } else {
-                // Normal behavior for other questions
-                if (selectedIndex === currentQuestion.correctIndex) {
-                    options[selectedIndex].classList.add('correct');
-                } else {
-                    options[selectedIndex].classList.add('incorrect');
-                    options[currentQuestion.correctIndex].classList.add('correct');
-                }
+                options[selectedIndex].classList.add('incorrect');
+                options[currentQuestion.correctIndex].classList.add('correct');
             }
             
             // Move to next question after a brief delay
@@ -541,7 +584,7 @@
         }
         
         // Start the quiz immediately
-        document.addEventListener('DOMContentLoaded', loadQuestion);
+        window.addEventListener('DOMContentLoaded', loadQuestion);
     </script>
 </body>
 </html>
