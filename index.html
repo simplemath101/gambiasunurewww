@@ -2,589 +2,1003 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gambian School Quiz Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gambia: A Journey Through Time</title>
     <style>
+        :root {
+            --primary: #006847;
+            --secondary: #0072c6;
+            --accent: #ce1126;
+            --light: #f5f5f5;
+            --dark: #333;
+            --timeline-color: #006847;
+        }
+        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
         }
         
         .container {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
-        .question-number {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-            border: 2px solid rgba(255, 255, 255, 0.6);
+        header {
+            background-color: var(--primary);
+            color: white;
             text-align: center;
-            min-width: 120px;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
-        }
-        
-        .question-container {
-            width: 90%;
-            margin-top: 70px;
-            height: calc(100% - 150px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: rgba(50, 20, 0, 0.6);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            padding: 40px 0;
+            margin-bottom: 30px;
             position: relative;
-            transition: transform 0.5s, opacity 0.5s;
-            overflow: hidden;
         }
         
-        .timer-section {
+        header:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to right, #ce1126 33.3%, #fff 33.3%, #fff 66.6%, #0072c6 66.6%);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 30px 0 20px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin: 20px 0 15px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .chapter {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .map-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .map-placeholder {
             width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background-color: #e9e9e9;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .timer-container {
-            width: 100%;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .timer {
-            height: 100%;
-            background-color: #00ff00;
-            width: 100%;
-            transition: width 10s linear, background-color 0.5s;
-        }
-        
-        .timer.paused {
-            transition: none;
-        }
-        
-        .timer.ending {
-            background-color: #ff0000;
-        }
-        
-        .countdown {
-            font-size: 1.1rem;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
             justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-        
-        .countdown.hidden {
-            display: none;
+            border: 1px solid #ccc;
         }
         
         .image-container {
-            width: 100%;
-            height: auto;
-            max-height: 220px;
-            margin: 10px 0 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .image-caption {
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            color: #666;
+        }
+        
+        blockquote {
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+        }
+        
+        .timeline {
             position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px;
+            max-width: 800px;
+            margin: 40px auto;
         }
         
-        .question-image {
-            max-width: 100%;
-            max-height: 200px;
-            object-fit: contain;
-            border-radius: 10px;
-            filter: blur(4px);
-            transition: filter 0.5s ease;
-        }
-        
-        .question-image.unblurred {
-            filter: blur(0);
-        }
-        
-        .tiktok-banner {
+        .timeline::after {
+            content: '';
             position: absolute;
-            top: 50%;
+            width: 6px;
+            background-color: var(--timeline-color);
+            top: 0;
+            bottom: 0;
             left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 6px 10px;
-            z-index: 10;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 90%;
+            margin-left: -3px;
         }
         
-        .tiktok-logo {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
-            flex-shrink: 0;
-            opacity: 0.6;
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 10px 40px;
+            box-sizing: border-box;
         }
         
-        .tiktok-text {
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--timeline-color);
+            border-radius: 50%;
+            top: 15px;
+            right: -14px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -14px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -14px;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-date {
             font-weight: bold;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            opacity: 0.6;
+            color: var(--primary);
         }
         
-        @keyframes subtle-pulse {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.03); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
-        
-        .tiktok-banner {
-            animation: subtle-pulse 3s ease-in-out infinite;
-        }
-        
-        .question {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+        footer {
             text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            padding: 0 10px;
-        }
-        
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .option {
-            background-color: rgba(255, 255, 255, 0.2);
-            border: none;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: var(--primary);
             color: white;
-            padding: 15px 10px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
-            text-align: center;
         }
         
-        .option:active {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(0.98);
+        .footnote {
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 30px;
         }
         
-        .option.correct {
-            background-color: #2ecc71;
+        .table-of-contents {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
         }
         
-        .option.incorrect {
-            background-color: #e74c3c;
+        .table-of-contents h3 {
+            margin-top: 0;
         }
         
-        .question-container.exit {
-            transform: translateX(-100%);
-            opacity: 0;
+        .table-of-contents ul {
+            list-style-type: none;
         }
         
-        .question-container.enter {
-            transform: translateX(100%);
-            opacity: 0;
+        .table-of-contents li {
+            margin-bottom: 8px;
         }
         
-        /* Make responsive for smaller screens */
-        @media (max-height: 700px) {
-            .question-container {
-                margin-top: 60px;
-                height: calc(100% - 120px);
-            }
-            
-            .image-container {
-                max-height: 180px;
-                margin: 5px 0 15px;
-            }
-            
-            .question-image {
-                max-height: 160px;
-            }
-            
-            .question {
-                font-size: 1.3rem;
-                margin-bottom: 15px;
-            }
-            
-            .option {
-                padding: 12px 10px;
-                font-size: 1rem;
-            }
+        .table-of-contents a {
+            color: var(--secondary);
+            text-decoration: none;
         }
         
-        @media (max-height: 600px) {
-            .question-container {
-                margin-top: 50px;
-                height: calc(100% - 100px);
-            }
-            
-            .image-container {
-                max-height: 150px;
-                margin: 5px 0 10px;
-            }
-            
-            .question-image {
-                max-height: 130px;
-            }
+        .table-of-contents a:hover {
+            text-decoration: underline;
+        }
+        
+        .sidebar {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .sidebar h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="question-number" id="question-number">Question: 1/10</div>
-        
-        <div class="question-container" id="question-container">
-            <div class="timer-section">
-                <div class="timer-container">
-                    <div class="timer paused" id="timer"></div>
-                </div>
-                <div class="countdown hidden" id="countdown">10</div>
-            </div>
-            
-            <div class="image-container" id="image-container">
-                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="School logo">
-                <!-- TikTok Banner -->
-                <div class="tiktok-banner">
-                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
-                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
-                    </svg>
-                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
-                </div>
-            </div>
-            
-            <div class="question" id="question">Which school is this?</div>
-            
-            <div class="options" id="options">
-                <button class="option">Nusrat Senior Secondary School</button>
-                <button class="option">St. Augustine's High School</button>
-                <button class="option">Marina International School</button>
-                <button class="option">Gambia Methodist Academy</button>
-            </div>
+    <header>
+        <div class="container">
+            <h1>The Gambia: A Journey Through Time</h1>
+            <p>From Ancient Civilizations to Modern Nation-State</p>
         </div>
+    </header>
+    
+    <div class="container">
+        <div class="table-of-contents">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#ancient-gambia">Chapter 1: Ancient Gambia and Early Settlements</a></li>
+                <li><a href="#portuguese-contact">Chapter 2: First European Contact: The Portuguese Arrival</a></li>
+                <li><a href="#slave-trade">Chapter 3: The Atlantic Slave Trade and Its Impact</a></li>
+                <li><a href="#british-colonization">Chapter 4: British Colonization and the Crown Colony</a></li>
+                <li><a href="#road-to-independence">Chapter 5: The Road to Independence</a></li>
+                <li><a href="#post-independence">Chapter 6: Post-Independence Developments</a></li>
+                <li><a href="#modern-gambia">Chapter 7: Modern Gambia and Cultural Heritage</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </div>
+        
+        <section id="introduction" class="chapter">
+            <h2>Introduction</h2>
+            <p>The Gambia, officially the Republic of The Gambia, is one of Africa's smallest countries, yet it possesses a rich and complex history that spans thousands of years. This narrow strip of land flanking the Gambia River has been a crossroads of civilizations, a nexus of trade networks, and the site of profound historical transformations from ancient times to the present day.</p>
+            
+            <p>Stretching only 30 miles wide at its broadest point and extending approximately 300 miles inland from the Atlantic Ocean, The Gambia's unusual geography—completely surrounded by Senegal except for its western coastline—has profoundly shaped its historical development. The Gambia River, which gives the country both its name and its distinctive shape, has served as a vital artery for trade, cultural exchange, and colonization throughout the centuries.</p>
+            
+            <div class="map-container">
+                <img src="/api/placeholder/600/400" alt="Map of The Gambia" />
+                <p class="image-caption">Geographical location of The Gambia in West Africa</p>
+            </div>
+            
+            <p>This digital book aims to trace The Gambia's historical journey from the earliest human settlements through the colonial period to its emergence as an independent nation. Along the way, we will explore the diverse peoples who have inhabited this land, the impact of external forces such as European exploration and the Atlantic slave trade, the transformative effects of British colonialism, and the challenges and achievements of the post-independence era.</p>
+            
+            <blockquote>"The history of The Gambia is a microcosm of the broader African experience—reflecting the continent's struggles with colonization, its fight for self-determination, and its ongoing quest to forge a path forward that honors indigenous traditions while engaging with the modern world."</blockquote>
+        </section>
+        
+        <section id="ancient-gambia" class="chapter">
+            <h2>Chapter 1: Ancient Gambia and Early Settlements</h2>
+            
+            <h3>Prehistoric Inhabitants</h3>
+            <p>Archaeological evidence suggests human habitation in what is now The Gambia dates back several thousand years. Stone circles found in parts of Senegambia (the region encompassing The Gambia and Senegal) indicate sophisticated early civilizations with advanced knowledge of astronomy and stone-working techniques.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Stone Circles" />
+                <p class="image-caption">Stone circles in Wassu, among the most visible archaeological remnants of ancient Gambian civilization</p>
+            </div>
+            
+            <h3>Early Kingdoms and Empires</h3>
+            <p>By the 5th century CE, organized states began to emerge in the region. The Gambia River valley was influenced by several major West African empires, including:</p>
+            
+            <p>The <strong>Ghana Empire</strong> (c. 700-1200 CE), centered to the north in what is now Mali and Mauritania, established trade networks that extended to the Gambia River valley, bringing Islam and trade goods to the region.</p>
+            
+            <p>The <strong>Mali Empire</strong> (c. 1230-1600 CE) incorporated the Gambia River region more directly into its domain. Under the Mali Empire, Islam spread more widely among the ruling classes and merchant communities along the river.</p>
+            
+            <p>The <strong>Songhai Empire</strong> (c. 1464-1591), though centered in the Niger River valley, extended its influence into the Senegambia region through trade networks and political alliances.</p>
+            
+            <h3>Indigenous Ethnic Groups</h3>
+            <p>Several ethnic groups established themselves in the area, each with distinct cultural practices, languages, and social structures:</p>
+            
+            <p>The <strong>Mandinka</strong> (or Malinke), descended from the founders of the Mali Empire, became the dominant group in much of what is now The Gambia. They established a series of small kingdoms along the Gambia River.</p>
+            
+            <p>The <strong>Wolof</strong> established themselves primarily in the western coastal areas, developing sophisticated political structures.</p>
+            
+            <p>The <strong>Fula</strong> (or Fulani), traditionally nomadic pastoralists, began settling in the region, bringing their distinctive cultural practices and engaging in cattle herding.</p>
+            
+            <p>The <strong>Jola</strong> (or Diola) established themselves in the western regions of The Gambia, developing distinctive religious practices and social structures resistant to outside influence.</p>
+            
+            <p>The <strong>Serahule</strong> (or Soninke), known for their commercial acumen, established trading networks throughout the region.</p>
+            
+            <h3>Trade Networks and Cultural Exchange</h3>
+            <p>Long before European arrival, the Gambia River served as a crucial trade route linking the Atlantic coast with the interior of West Africa. Salt, cloth, metal goods, and later gold traveled along this waterway, facilitating cultural exchange and economic development. Trans-Saharan trade routes also connected the region to North Africa and, by extension, to the Mediterranean world and the Middle East.</p>
+            
+            <div class="sidebar">
+                <h4>Key Archaeological Sites</h4>
+                <p>The Wassu Stone Circles, now a UNESCO World Heritage Site, date back to approximately 750-900 CE. These megalithic structures likely served funerary purposes for ancient kings and chiefs. Similar stone circles can be found at Kerr Batch and other locations throughout the Senegambia region.</p>
+            </div>
+            
+            <p>The introduction of Islam to the region began as early as the 9th century through contact with North African traders, though it would take centuries for the religion to be widely adopted. Traditional African religious practices remained dominant among most of the population, with Islam primarily influencing ruling and merchant classes initially.</p>
+        </section>
+        
+        <section id="portuguese-contact" class="chapter">
+            <h2>Chapter 2: First European Contact: The Portuguese Arrival</h2>
+            
+            <h3>Portuguese Exploration</h3>
+            <p>The first documented European contact with The Gambia came in 1455 when Portuguese explorer Alvise Cadamosto, sailing under the patronage of Prince Henry the Navigator, navigated the Gambia River. This voyage marked the beginning of a new era in Gambian history, as European powers began to take an interest in West Africa's resources and strategic locations.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1455</span>
+                        <p>Alvise Cadamosto becomes the first European to navigate the Gambia River.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1456</span>
+                        <p>Portuguese explorer Diogo Gomes reaches further upriver, making contact with local kingdoms.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1482</span>
+                        <p>Portuguese establish trading post at the mouth of the Gambia River.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Early 1500s</span>
+                        <p>Regular trade relations established between Portuguese and local kingdoms.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>The Portuguese were primarily interested in accessing the gold that flowed through trans-Saharan trade networks. They established trading posts along the Gambia River, seeking to bypass North African middlemen and access gold sources directly. In addition to gold, they traded in ivory, beeswax, and other valuable commodities.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Portuguese Caravel" />
+                <p class="image-caption">A Portuguese caravel, the type of ship used to navigate the Gambia River during early explorations</p>
+            </div>
+            
+            <h3>Early Trading Relationships</h3>
+            <p>The Portuguese established their first permanent trading post at the mouth of the Gambia River in 1482. Unlike later European powers, the Portuguese generally did not attempt to conquer territory but instead established commercial relationships with local rulers. They built several feitorias (trading factories) along the river, the most important being at what is now Juffure.</p>
+            
+            <p>These early trade relationships were relatively balanced, with local rulers maintaining their authority and Portuguese traders operating within established local systems. The Portuguese brought new commodities to the region, including firearms, alcohol, textiles, and various manufactured goods, which they exchanged for gold, ivory, and increasingly, enslaved people.</p>
+            
+            <h3>Cultural and Religious Exchange</h3>
+            <p>The Portuguese arrival also brought Christianity to The Gambia, though efforts to convert local populations were limited and largely unsuccessful. More significant was the exchange of agricultural products; the Portuguese introduced crops from the Americas such as maize, cassava, and peanuts, which eventually became dietary staples in the region.</p>
+            
+            <p>Portuguese influence on local languages was also notable, with many Portuguese loanwords entering local Gambian languages, particularly in terms related to trade and new technologies. Some Portuguese traders settled permanently in the region, marrying local women and creating communities of mixed ancestry.</p>
+            
+            <div class="sidebar">
+                <h4>The Gambia River's Strategic Importance</h4>
+                <p>The Gambia River provided access deep into West Africa's interior, making it exceptionally valuable for European traders. Its navigability for nearly 300 miles inland made it possible to bypass difficult overland routes and establish direct contact with societies far from the coast.</p>
+            </div>
+            
+            <h3>Portuguese Decline and European Competition</h3>
+            <p>By the late 16th century, Portugal's monopoly on trade along the Gambia River began to erode as other European powers—notably England, France, and the Netherlands—started competing for access to West African resources. The Portuguese, overextended globally and facing economic difficulties at home, gradually lost their dominant position.</p>
+            
+            <p>In 1588, Portuguese traders received official permission from the Queen of England to trade along the Gambia River, signaling the beginning of English involvement in the region. By the early 17th century, English and French traders were becoming increasingly active, challenging Portuguese commercial supremacy.</p>
+            
+            <p>The legacy of this first European contact phase was profound. The Portuguese established the pattern of river-based trade that would characterize European engagement with The Gambia for centuries. They also initiated the European demand for enslaved Africans that would soon transform into the devastating Atlantic slave trade.</p>
+        </section>
+        
+        <section id="slave-trade" class="chapter">
+            <h2>Chapter 3: The Atlantic Slave Trade and Its Impact</h2>
+            
+            <h3>The Development of the Slave Trade</h3>
+            <p>While small-scale slave trading existed during the early Portuguese period, the late 16th and 17th centuries saw the emergence of a systematic, large-scale Atlantic slave trade that would profoundly transform The Gambia and all of West Africa. The development of plantation economies in the Americas, particularly in Brazil and the Caribbean, created an enormous demand for enslaved labor.</p>
+            
+            <p>The Gambia River, with its navigable waterway extending deep into the interior, became a major artery for the slave trade. European ships could sail upriver to trading posts where they purchased enslaved people from local intermediaries.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Fort James Island" />
+                <p class="image-caption">Fort James (later James Island) in the Gambia River, a key site in the Atlantic slave trade</p>
+            </div>
+            
+            <h3>James Island and the Slave Forts</h3>
+            <p>In 1651, the Duke of Courland (now part of Latvia) established a settlement on an island in the Gambia River, which was later captured by the English and renamed James Island. The fort built there became a significant holding facility for enslaved Africans before their transportation across the Atlantic. Other European powers also established trading posts and forts along the river.</p>
+            
+            <p>These fortifications served multiple purposes: they protected European traders from rival European powers, secured trade goods, and served as holding pens for enslaved people awaiting transportation. The remains of these structures stand today as stark reminders of this brutal chapter in history.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1651</span>
+                        <p>Duke of Courland establishes settlement on what would become James Island.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1661</span>
+                        <p>English capture James Island and rename it; it becomes a major slave trading post.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1695-1698</span>
+                        <p>French temporarily capture and control James Island.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">18th century</span>
+                        <p>Peak period of slave trading along the Gambia River.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Scale and Methods of the Trade</h3>
+            <p>Historians estimate that between the 16th and 19th centuries, hundreds of thousands of people were enslaved and transported from the Gambia River region. The trade operated through complex networks that stretched from the interior to the coast.</p>
+            
+            <p>European traders rarely ventured far inland themselves, instead relying on African intermediaries who conducted slave raids or purchased captives from local rulers. Warfare between states was a significant source of enslaved people, as captives taken in battle were often sold to European traders. Some local leaders cooperated with European slave traders out of economic interest or political necessity, while others resisted the trade.</p>
+            
+            <p>Enslaved individuals were marched to riverside trading posts, where they were held in dungeons or barracoons before being loaded onto ships. The Middle Passage—the journey across the Atlantic—was notoriously brutal, with high mortality rates due to disease, malnutrition, and mistreatment.</p>
+
+            <div class="sidebar">
+                <h4>Kunta Kinte and Roots</h4>
+                <p>The village of Juffure in The Gambia gained international recognition through Alex Haley's novel "Roots" (1976) and the subsequent television miniseries, which traced his ancestor Kunta Kinte's capture and enslavement from Juffure in the 18th century. While scholars have debated the historical accuracy of specific details in Haley's account, "Roots" powerfully highlighted The Gambia's connection to the African American experience and sparked renewed interest in African heritage among descendants of enslaved peoples.</p>
+            </div>
+            
+            <h3>Economic and Social Impact</h3>
+            <p>The Atlantic slave trade had devastating consequences for Gambian society. It led to demographic decline, as predominantly young, able-bodied individuals were removed from their communities. It disrupted agricultural production and traditional economic activities. It also incentivized warfare and raiding between communities, eroding social cohesion and trust.</p>
+            
+            <p>The trade created new power dynamics within Gambian society. Some local leaders accumulated wealth and power through their role as intermediaries in the slave trade, while others saw their authority undermined. New social hierarchies emerged based partly on relationships with European traders.</p>
+            
+            <p>Despite these profound disruptions, Gambian societies demonstrated remarkable resilience. Communities adapted to the new realities, developing strategies to protect themselves from slave raids and maintaining cultural practices and social structures in the face of tremendous pressure.</p>
+            
+            <h3>Resistance and Abolition</h3>
+            <p>Resistance to the slave trade took many forms. Some communities moved to less accessible locations to avoid slave raids. Leaders like King Niumi of Barra refused to engage in the trade. Enslaved individuals themselves resisted through various means, from escape attempts to uprisings on ships and plantations.</p>
+            
+            <p>By the late 18th century, opposition to the slave trade was growing in Europe, particularly in Britain. The British Act for the Abolition of the Slave Trade (1807) made the trade illegal for British subjects, though enforcement was initially limited. As Britain became more committed to abolition, it established Bathurst (now Banjul) in 1816 partly as a base for anti-slavery naval patrols.</p>
+            
+            <p>Even after the formal abolition of the slave trade, illegal trading continued for decades. The institution of slavery itself persisted in The Gambia until the late 19th century, with domestic slavery not fully abolished until after the establishment of the colonial protectorate.</p>
+        </section>
+        
+        <section id="british-colonization" class="chapter">
+            <h2>Chapter 4: British Colonization and the Crown Colony</h2>
+            
+            <h3>Early British Presence</h3>
+            <p>British interest in The Gambia initially centered on trade rather than territorial control. The Royal Adventurers of England Trading to Africa (later the Royal African Company) established trading posts along the Gambia River as early as the 1660s. For over a century, British activity was largely limited to these commercial enclaves.</p>
+            
+            <p>The foundation of Bathurst (now Banjul) in 1816 marked a significant expansion of British presence. Situated on a small island at the mouth of the Gambia River, Bathurst was established to serve both commercial interests and Britain's anti-slavery campaign.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Historic Bathurst" />
+                <p class="image-caption">Early view of Bathurst (now Banjul), established by the British in 1816</p>
+            </div>
+            
+            <h3>From Trading Posts to Colony</h3>
+            <p>Throughout the early 19th century, Britain gradually expanded its control over territories along the Gambia River. In 1821, Bathurst became part of the British colony of Sierra Leone. This arrangement proved unwieldy due to the distance between the two territories, and in 1843, The Gambia was separated from Sierra Leone and established as a distinct British Crown Colony.</p>
+            
+            <p>Initially, this colony consisted only of Bathurst and a few small adjacent territories. British jurisdiction extended to the river itself and a narrow strip along its banks. The rest of what would become The Gambia remained under the control of various African states and chiefdoms, though increasingly under British influence.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1816</span>
+                        <p>Foundation of Bathurst (now Banjul) by the British.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1821-1843</span>
+                        <p>The Gambia administered as part of British Sierra Leone.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1843</span>
+                        <p>The Gambia established as separate British Crown Colony.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1888-1889</span>
+                        <p>Anglo-French Convention defines The Gambia's current borders.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>The Scramble for Africa and Creation of the Protectorate</h3>
+            <p>The late 19th century "Scramble for Africa" dramatically accelerated European colonial ambitions. Following the Berlin Conference of 1884-1885, which established ground rules for European colonization of Africa, Britain moved to secure its claim to The Gambia against French expansion in neighboring regions.</p>
+            
+            <p>The Anglo-French Convention of 1889 defined The Gambia's current borders, creating the distinctive narrow shape following the Gambia River, with the country entirely surrounded by French-controlled Senegal except for its Atlantic coastline.</p>
+            
+            <p>Between 1893 and 1902, Britain extended its formal control over the interior regions, establishing The Gambia Protectorate. This expansion was often met with resistance. The British faced significant opposition from several local leaders, including Fode Kaba Dumbuya in the south and Musa Molloh in the Upper River area.</p>
+            
+            <h3>Colonial Administration and Policies</h3>
+            <p>The British implemented a system of indirect rule in The Gambia, particularly in the Protectorate. This approach involved governing through traditional authorities, such as chiefs, who were integrated into the colonial administrative structure while maintaining some of their traditional functions.</p>
+            
+            <p>The colony was divided into districts, each administered by a colonial officer who worked with local chiefs. This system allowed the British to maintain control with minimal personnel and resources, though it often distorted traditional power structures and created new hierarchies based on cooperation with colonial authorities.</p>
+            
+            <div class="sidebar">
+                <h4>Groundnuts and Colonial Economy</h4>
+                <p>Under British rule, The Gambia's economy became heavily dependent on groundnut (peanut) production. By the early 20th century, groundnuts accounted for over 80% of the country's exports. This monocrop economy made The Gambia vulnerable to price fluctuations in global markets and did little to develop a diversified economic base.</p>
+            </div>
+            
+            <p>Economic policy under colonial rule centered on extracting resources for export to Britain and other European markets. The groundnut (peanut) became The Gambia's primary export crop, transforming agricultural practices and land use patterns. British firms like the United Africa Company dominated trade, often operating as both buyers of agricultural products and sellers of imported goods.</p>
+            
+            <p>The colonial government invested minimally in infrastructure, education, and healthcare. Roads, schools, and hospitals were built primarily to serve colonial interests and were concentrated in urban areas, particularly Bathurst. By 1939, The Gambia had only one secondary school, and educational opportunities were extremely limited for most of the population.</p>
+            
+            <h3>Social and Cultural Changes Under Colonial Rule</h3>
+            <p>Colonial rule brought significant social transformations. Christianity spread, particularly in urban areas, though Islam continued to expand as the dominant religion throughout the country. Western education, limited though it was, created a small educated elite who would later play crucial roles in the independence movement.</p>
+            
+            <p>Urban migration increased as people sought economic opportunities in Bathurst and other administrative centers. New forms of wage labor emerged alongside traditional agricultural practices. Colonial borders disrupted traditional patterns of movement and trade, though they could never completely sever the cultural connections between The Gambia and neighboring regions.</p>
+            
+            <p>Despite the profound disruptions of colonialism, Gambian communities maintained and adapted their cultural practices, religious beliefs, and social structures. Traditional institutions like age-grade societies and religious brotherhoods continued to provide social cohesion and cultural continuity in the face of colonial domination.</p>
+        </section>
+
+        <section id="road-to-independence" class="chapter">
+            <h2>Chapter 5: The Road to Independence</h2>
+            
+            <h3>Early Political Developments</h3>
+            <p>The roots of Gambian nationalism can be traced to the period between the World Wars, when a small but growing educated elite began to question colonial policies and advocate for greater African participation in governance. The Bathurst Trade Union, founded in 1929, was one of the first organizations to articulate local grievances against colonial rule.</p>
+            
+            <p>World War II accelerated political awareness, as many Gambians served in the British forces and were exposed to new ideas about freedom and self-determination. Returning veterans brought these perspectives back to The Gambia, contributing to growing political consciousness.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Political Rally" />
+                <p class="image-caption">Political rally in Bathurst during the movement toward self-government in the 1950s</p>
+            </div>
+            
+            <h3>Constitutional Reforms and Political Parties</h3>
+            <p>The post-war period saw gradual constitutional reforms that increased African representation in colonial governance. The 1947 Constitution created the first Legislative Council with elected members, though with very limited franchise. Further reforms in 1954 expanded the electorate and increased the number of elected representatives.</p>
+            
+            <p>The 1950s witnessed the emergence of organized political parties. The Gambia Democratic Party (GDP), founded by Reverend J.C. Faye in 1951, was the first modern political party in the country. The United Party (UP), led by P.S. N'Jie, formed in 1952 and gained significant support among the Aku community and urban professionals.</p>
+            
+            <p>In 1959, the Protectorate People's Party (later renamed the People's Progressive Party or PPP) was established by Dawda Jawara, a veterinarian who had studied in Britain. The PPP drew its support primarily from rural areas and the Mandinka ethnic group, though it later broadened its appeal.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1947</span>
+                        <p>First Legislative Council with elected members established.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1951-1952</span>
+                        <p>Formation of first political parties (GDP and UP).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1959</span>
+                        <p>Dawda Jawara founds the Protectorate People's Party (later PPP).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1962</span>
+                        <p>Universal adult suffrage introduced; PPP wins majority in elections.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>The Path to Self-Government</h3>
+            <p>The introduction of universal adult suffrage in 1962 transformed Gambian politics. The PPP won a majority in the 1962 elections, and Dawda Jawara became the Premier, heading an internal self-government while Britain retained control over defense and foreign affairs.</p>
+            
+            <p>Under Jawara's leadership, the PPP government began preparing for full independence. A constitutional conference in London in 1964 set the framework for independence. Despite some opposition from the United Party, which proposed continued association with Britain, momentum toward full sovereignty was irreversible.</p>
+            
+            <div class="sidebar">
+                <h4>The Flag of Independence</h4>
+                <p>The Gambian flag adopted at independence features three horizontal stripes of red, blue, and green, separated by narrow white bands. Red represents the sun and savanna, blue represents the Gambia River, and green represents the country's agriculture. The white stripes symbolize peace and unity.</p>
+            </div>
+            
+            <h3>Independence Achieved</h3>
+            <p>On February 18, 1965, The Gambia became an independent state within the Commonwealth of Nations, with Dawda Jawara as Prime Minister and Queen Elizabeth II as head of state. This arrangement reflected a gradual approach to independence, with certain ties to Britain maintained.</p>
+            
+            <p>The independence celebration in Bathurst (soon to be renamed Banjul) featured parades, cultural performances, and speeches expressing optimism about the country's future. The Duke and Duchess of Kent represented the British Crown at the ceremonies, symbolizing the peaceful transfer of power.</p>
+            
+            <p>In April 1970, following a referendum, The Gambia became a republic within the Commonwealth, with Dawda Jawara as its first President. This completed the process of formal decolonization, though economic ties with Britain remained significant.</p>
+            
+            <h3>Challenges of the Newly Independent State</h3>
+            <p>The independent Gambia faced numerous challenges. The economy remained heavily dependent on groundnut exports, making it vulnerable to price fluctuations in global markets. Infrastructure was limited, with few roads connecting the interior to the capital. Educational and healthcare facilities were inadequate for the population's needs.</p>
+            
+            <p>The unusual geography of the country—a narrow strip surrounded by Senegal—created strategic vulnerabilities and logistical challenges. Relations with Senegal would remain a crucial issue for the new nation, with various proposals for closer association explored in the early independence years.</p>
+            
+            <p>Despite these challenges, The Gambia's transition to independence was remarkably peaceful compared to many other decolonization processes in Africa. The country avoided the violent conflicts that characterized independence struggles elsewhere, establishing a foundation for what would become one of West Africa's more stable democracies in the immediate post-colonial period.</p>
+        </section>
+        
+        <section id="post-independence" class="chapter">
+            <h2>Chapter 6: Post-Independence Developments</h2>
+            
+            <h3>The Jawara Era (1965-1994)</h3>
+            <p>Dawda Jawara and his People's Progressive Party (PPP) dominated Gambian politics for nearly three decades following independence. Under Jawara's leadership, The Gambia established a reputation as a relatively stable, multi-party democracy—unusual in a region characterized by military coups and authoritarian regimes.</p>
+            
+            <p>The Jawara government pursued moderate policies, maintaining close ties with Western nations while also participating in African regional organizations. Economic policy focused on agricultural development, particularly the groundnut sector, though efforts were made to diversify the economy through tourism and other sectors.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="President Jawara" />
+                <p class="image-caption">President Dawda Jawara, who led The Gambia from independence until 1994</p>
+            </div>
+            
+            <h3>The Senegambia Confederation</h3>
+            <p>Relations with neighboring Senegal were a constant focus of Gambian foreign policy. In 1981, following a failed coup attempt against Jawara (who was rescued by Senegalese military intervention), the two countries formed the Senegambia Confederation. This political union attempted to integrate the countries' military and security forces, economies, and foreign policies while maintaining separate domestic administrations.</p>
+            
+            <p>The Confederation lasted from 1982 to 1989 but ultimately collapsed due to divergent national interests and concerns about sovereignty. The Gambia, fearing domination by its larger neighbor, resisted deeper integration, while Senegal grew frustrated with the limited scope of cooperation.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1970</span>
+                        <p>The Gambia becomes a republic within the Commonwealth.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1981</span>
+                        <p>Failed coup attempt against Jawara; Senegalese military intervention.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1982-1989</span>
+                        <p>Senegambia Confederation period.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1994</span>
+                        <p>Military coup led by Yahya Jammeh overthrows Jawara government.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Economic and Social Developments</h3>
+            <p>The Gambian economy during the post-independence decades faced significant challenges. The country remained highly dependent on groundnut exports, making it vulnerable to drought, pest infestations, and fluctuations in global commodity prices. The oil price shocks of the 1970s and global recession of the early 1980s severely impacted the economy.</p>
+            
+            <p>In 1985, under pressure from international financial institutions, The Gambia implemented an Economic Recovery Program involving currency devaluation, reduction of government spending, and privatization of state enterprises. While these measures helped stabilize the economy, they also imposed hardships on many Gambians.</p>
+            
+            <p>Tourism emerged as an important economic sector during this period, with developments along the Atlantic coast attracting visitors primarily from Europe. However, the benefits of tourism were largely concentrated in coastal areas and did not extend to the interior.</p>
+            
+            <div class="sidebar">
+                <h4>The Gambia's Democratic Exception</h4>
+                <p>From independence until 1994, The Gambia was often cited as a rare example of a functioning multiparty democracy in Africa. Despite criticisms of the Jawara government regarding corruption and economic management, The Gambia maintained regular elections, a free press, and respect for civil liberties that distinguished it from many neighboring states.</p>
+            </div>
+            
+            <h3>The 1994 Military Coup</h3>
+            <p>On July 22, 1994, a group of junior army officers led by Lieutenant Yahya Jammeh overthrew the Jawara government in a bloodless coup. Jawara fled to Senegal, and the Armed Forces Provisional Ruling Council (AFPRC) suspended the constitution and banned political activities.</p>
+            
+            <p>The coup ended The Gambia's reputation as an oasis of democracy in West Africa. The young coup leaders justified their actions by citing corruption, economic mismanagement, and the need for generational change in leadership.</p>
+            
+            <p>Initially promising a swift return to civilian rule, Jammeh's government soon showed authoritarian tendencies. Despite international pressure, the military rulers consolidated their power and began to transform Gambian politics and society in ways that would define the country for the next two decades.</p>
+        </section>
+        
+        <section id="modern-gambia" class="chapter">
+            <h2>Chapter 7: Modern Gambia and Cultural Heritage</h2>
+            
+            <h3>The Jammeh Era (1994-2017)</h3>
+            <p>After taking power in 1994, Yahya Jammeh transitioned from military leader to civilian president through elections in 1996, though these were widely criticized as neither free nor fair. Jammeh's Alliance for Patriotic Reorientation and Construction (APRC) dominated Gambian politics for 22 years.</p>
+            
+            <p>The Jammeh regime was characterized by authoritarian governance, human rights abuses, and cult of personality politics. Opposition figures were harassed, detained, or forced into exile. Media freedoms were curtailed, with journalists facing intimidation and arrest. Despite these repressive measures, Jammeh maintained a base of support through patronage networks and appeals to religious and traditional values.</p>
+            
+            <p>Economically, the Jammeh years saw some infrastructure development, including new roads, schools, and hospitals. However, these projects often reflected political priorities rather than strategic planning. The economy remained vulnerable, with high unemployment, particularly among youth.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Modern Banjul" />
+                <p class="image-caption">Modern view of Banjul, The Gambia's capital city</p>
+            </div>
+            
+            <h3>Democratic Transition</h3>
+            <p>In December 2016, in a surprising electoral outcome, opposition candidate Adama Barrow defeated Jammeh in presidential elections. After initially accepting the results, Jammeh reversed his position and refused to step down, creating a constitutional crisis.</p>
+            
+            <p>Regional intervention through the Economic Community of West African States (ECOWAS), combined with diplomatic pressure from the international community, eventually forced Jammeh into exile in January 2017. Barrow was sworn in as president, marking The Gambia's first democratic transfer of power since independence.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1996</span>
+                        <p>Jammeh transitions to civilian rule through contested elections.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2016</span>
+                        <p>Adama Barrow defeats Jammeh in presidential elections.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">January 2017</span>
+                        <p>Jammeh goes into exile; Barrow assumes presidency.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2018-present</span>
+                        <p>Truth, Reconciliation and Reparations Commission investigates abuses under Jammeh.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Contemporary Challenges and Opportunities</h3>
+            <p>The post-Jammeh Gambia faces numerous challenges. The economy requires diversification beyond its traditional reliance on agriculture and tourism. Infrastructure needs improvement, particularly in rural areas. The legacy of human rights abuses under the Jammeh regime necessitates a process of justice and reconciliation.</p>
+            
+            <p>Climate change presents significant threats to this low-lying country, with rising sea levels endangering coastal areas and changing rainfall patterns affecting agriculture. Environmental degradation, including deforestation and soil erosion, compounds these challenges.</p>
+            
+            <p>Despite these difficulties, The Gambia also enjoys significant opportunities. Its stable democratic transition has restored international partnerships and funding. Tourism continues to develop, with potential for expansion into eco-tourism and cultural tourism. The country's young population represents a demographic dividend if properly educated and employed.</p>
+            
+            <div class="sidebar">
+                <h4>Diaspora Connections</h4>
+                <p>The Gambian diaspora plays an increasingly important role in the country's development. Remittances from Gambians living abroad constitute a significant portion of the economy. Many diaspora members maintain strong connections to their homeland, contributing not only financially but also through skills transfer, cultural exchange, and political engagement.</p>
+            </div>
+            
+            <h3>Cultural Heritage and Identity</h3>
+            <p>Throughout its complex history, The Gambia has maintained a rich cultural heritage that continues to evolve and adapt. Traditional music, featuring instruments like the kora (a 21-string harp-lute) and balafon (wooden xylophone), remains vibrant. Griots (oral historians and musicians) continue their ancient role of preserving and transmitting cultural knowledge.</p>
+            
+            <p>Religious practices, primarily Islamic but with Christian and traditional elements, form an important part of Gambian identity. Religious tolerance has historically been a strength of Gambian society, with different faiths coexisting peacefully.</p>
+            
+            <p>Traditional crafts such as textile weaving, pottery, and woodcarving persist alongside newer artistic expressions. Contemporary Gambian literature, music, and visual arts engage with both traditional themes and modern global influences.</p>
+            
+            <p>The Gambia's historical connections to the Atlantic world, particularly through the slave trade, have created lasting cultural links with the Americas and Caribbean. These connections have been reinforced in recent decades through heritage tourism, exemplified by the interest generated by Alex Haley's "Roots" and its depiction of Kunta Kinte's origins in Juffure.</p>
+            
+            <p>As The Gambia continues its journey as an independent nation, this rich cultural heritage provides both a foundation for national identity and a resource for addressing contemporary challenges. The resilience demonstrated by Gambian communities throughout centuries of external pressures—from slave trading to colonialism to authoritarian rule—offers hope for the country's ability to navigate the complexities of the 21st century global landscape.</p>
+        </section>
+        
+        <section id="conclusion" class="chapter">
+            <h2>Conclusion</h2>
+            
+            <p>The history of The Gambia represents a remarkable journey—from ancient settlements along a winding river to a modern nation-state navigating the complexities of a globalized world. Throughout this journey, the tensions between external influences and local agency have shaped the country's development.</p>
+            
+            <p>From the early kingdoms that engaged with trans-Saharan trade networks to the communities that interacted with Portuguese explorers; from societies disrupted by the Atlantic slave trade to those that adapted to British colonial rule; from the nationalist leaders who negotiated independence to the citizens who persevered through authoritarian governance—Gambians have continually responded to external forces while maintaining their own cultural identity and social structures.</p>
+            
+            <p>The Gambia's unusual geography—defined by its river and its narrow, elongated shape—has been both a vulnerability and a strength. While creating strategic challenges and economic limitations, this geography has also fostered a distinct national identity and a rich riverine culture.</p>
+            
+            <p>Today, The Gambia stands at a crossroads. Having emerged from two decades of authoritarian rule, the country faces the task of rebuilding democratic institutions, addressing past human rights abuses, and creating an inclusive development path. Climate change, environmental degradation, and economic vulnerabilities present significant challenges.</p>
+            
+            <p>Yet The Gambia also possesses considerable strengths: a tradition of peaceful coexistence among diverse ethnic groups, a rich cultural heritage, a strategic location, and the resilience demonstrated throughout its history. The democratic transition of 2016-2017 has opened new possibilities for the country's future.</p>
+            
+            <p>Understanding The Gambia's complex past—with its achievements, tragedies, and ongoing legacies—is essential not only for appreciating this small nation's significance but also for comprehending broader patterns of African and global history. The Gambia's story reminds us that even geographically small nations can play important roles in larger historical processes and that historical forces are always met with human agency and adaptation.</p>
+            
+            <p>As The Gambia continues to write its national story in the 21st century, it carries forward both the burdens and resources of its multilayered past. How it navigates the tensions between tradition and modernity, between global integration and local autonomy, will determine the next chapters in its remarkable historical journey.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Gambian Landscape" />
+                <p class="image-caption">The scenic landscape along the Gambia River, the country's geographical lifeblood</p>
+            </div>
+        </section>
+        
+        <section class="chapter">
+            <h2>Bibliography and Further Reading</h2>
+            
+            <h3>General Histories</h3>
+            <ul>
+                <li>Gailey, Harry A. <em>A History of The Gambia</em>. London: Routledge, 1999.</li>
+                <li>Hughes, Arnold and David Perfect. <em>A Political History of The Gambia, 1816-1994</em>. Rochester: University of Rochester Press, 2006.</li>
+                <li>Jawara, Dawda. <em>Kairaba</em>. Serrekunda: Fajara Press, 2009.</li>
+                <li>Quinn, Charlotte A. <em>Mandingo Kingdoms of the Senegambia</em>. Evanston: Northwestern University Press, 1972.</li>
+                <li>Wright, Donald R. <em>The World and a Very Small Place in Africa: A History of Globalization in Niumi, The Gambia</em>. Armonk: M.E. Sharpe, 2010.</li>
+            </ul>
+            
+            <h3>Pre-Colonial and Early Contact Period</h3>
+            <ul>
+                <li>Barry, Boubacar. <em>Senegambia and the Atlantic Slave Trade</em>. Cambridge: Cambridge University Press, 1998.</li>
+                <li>Curtin, Philip D. <em>Economic Change in Precolonial Africa: Senegambia in the Era of the Slave Trade</em>. Madison: University of Wisconsin Press, 1975.</li>
+                <li>Rodney, Walter. <em>A History of the Upper Guinea Coast, 1545-1800</em>. Oxford: Clarendon Press, 1970.</li>
+            </ul>
+            
+            <h3>Colonial Period</h3>
+            <ul>
+                <li>Gray, J.M. <em>A History of The Gambia</em>. Cambridge: Cambridge University Press, 1940.</li>
+                <li>Klein, Martin A. <em>Islam and Imperialism in Senegal: Sine-Saloum, 1847-1914</em>. Stanford: Stanford University Press, 1968.</li>
+                <li>Mahoney, Florence. <em>Stories of Senegambia</em>. Banjul: Government Printer, 1982.</li>
+            </ul>
+            
+            <h3>Independence and Post-Colonial Period</h3>
+            <ul>
+                <li>Ceesay, Ebrima Jogomai. <em>The Military and 'Democratisation' in The Gambia: 1994-2003</em>. Victoria: Trafford Publishing, 2006.</li>
+                <li>Perfect, David. <em>Historical Dictionary of The Gambia</em>. Lanham: Scarecrow Press, 2008.</li>
+                <li>Saine, Abdoulaye. <em>The Paradox of Third-Wave Democratization in Africa: The Gambia under AFPRC-APRC Rule, 1994-2008</em>. Lanham: Lexington Books, 2009.</li>
+                <li>Wiseman, John A. <em>Democracy in Black Africa: Survival and Revival</em>. New York: Paragon House, 1990.</li>
+            </ul>
+            
+            <h3>Cultural Studies and Anthropology</h3>
+            <ul>
+                <li>Bellagamba, Alice. <em>Ethnographie, histoire et colonialisme en Gambie</em>. Paris: L'Harmattan, 2002.</li>
+                <li>Galloway, Winifred. <em>Traditional Songs from The Gambia</em>. Birmingham: University of Birmingham, 1980.</li>
+                <li>Skinner, David E. <em>Islam, Education and Politics in West Africa</em>. Banjul: Gambia Press Union, 2006.</li>
+                <li>Wright, Donald R. <em>Oral Traditions from the Gambia</em>. Athens: Ohio University Press, 1979.</li>
+            </ul>
+        </section>
+        
+        <section class="chapter">
+            <h2>Appendices</h2>
+            
+            <h3>Appendix A: Chronology of Key Events</h3>
+            <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background-color: var(--primary); color: white;">
+                    <th style="padding: 10px; text-align: left;">Period/Date</th>
+                    <th style="padding: 10px; text-align: left;">Event</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">c. 750-900 CE</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Construction of stone circles in Senegambia region</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">c. 1000-1200</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Ghana Empire influences region; spread of Islam begins</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">c. 1230-1600</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Mali Empire incorporates Gambia River region</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1455</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Portuguese explorer Alvise Cadamosto navigates Gambia River</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1588</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">English traders receive permission to trade along Gambia River</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1651</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Duke of Courland establishes settlement on James Island</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1661</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">English capture James Island</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1816</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">British found Bathurst (now Banjul)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1843</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">The Gambia established as separate British Crown Colony</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1888-1889</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Anglo-French Convention defines The Gambia's current borders</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1893-1902</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Establishment of The Gambia Protectorate over interior regions</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1947</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">First Legislative Council with elected members</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1959</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Dawda Jawara founds Protectorate People's Party (later PPP)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1962</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Universal adult suffrage; PPP wins majority in elections</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">February 18, 1965</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Independence from Britain; Jawara becomes Prime Minister</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">April 24, 1970</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">The Gambia becomes a republic; Jawara becomes President</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1981</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Failed coup attempt; Senegalese military intervention</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1982-1989</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Senegambia Confederation</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">July 22, 1994</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Military coup led by Yahya Jammeh overthrows Jawara</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">1996</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Jammeh elected president in contested elections</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">December 1, 2016</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Adama Barrow defeats Jammeh in presidential election</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">January 19, 2017</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Barrow inaugurated as president (in Senegal)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">January 21, 2017</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Jammeh goes into exile; democratic transition completed</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">2018-present</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Truth, Reconciliation and Reparations Commission investigates abuses under Jammeh regime</td>
+                </tr>
+            </table>
+            
+            <h3>Appendix B: Ethnic Groups of The Gambia</h3>
+            <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background-color: var(--primary); color: white;">
+                    <th style="padding: 10px; text-align: left;">Ethnic Group</th>
+                    <th style="padding: 10px; text-align: left;">Approximate % of Population</th>
+                    <th style="padding: 10px; text-align: left;">Traditional Location</th>
+                    <th style="padding: 10px; text-align: left;">Notable Cultural Features</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Mandinka</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~34%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Throughout country, primarily Central River Region</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Descendants of Mali Empire; strong tradition of oral history through griots</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Fula</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~22%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Upper River Region and Central River Region</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Traditionally pastoralist; distinctive musical traditions</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Wolof</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~15%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Urban areas, especially Greater Banjul Area</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Strong commercial tradition; language widely used in urban trade</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Jola</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~10%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Western region, especially Lower River Region</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Strong rice cultivation tradition; distinctive religious practices</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Serahule</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~8%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Upper River Region</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Traditionally merchants; links to ancient Ghana Empire</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Serer</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~3%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">North Bank Region</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Ancient wrestling traditions; strong agricultural practices</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Aku</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~1%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Banjul and urban areas</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Descendants of liberated slaves; traditionally Christian</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Others</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~7%</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Various</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">Includes Manjago, Bambara, and non-Gambian African groups</td>
+                </tr>
+            </table>
+            
+            <h3>Appendix C: Gambian Cultural Heritage Sites</h3>
+            <ul>
+                <li><strong>Kunta Kinteh Island (formerly James Island)</strong> - UNESCO World Heritage Site; former slave trading post</li>
+                <li><strong>Stone Circles of Senegambia</strong> - UNESCO World Heritage Site; megalithic monuments dating to 750-900 CE</li>
+                <li><strong>Fort Bullen</strong> - Built in 1826 to enforce the ban on slave trading</li>
+                <li><strong>Wassu Stone Circles</strong> - Important ancient burial site</li>
+                <li><strong>National Museum of The Gambia</strong> - Houses artifacts from various periods of Gambian history</li>
+                <li><strong>Abuko Nature Reserve</strong> - The country's first protected area, established in 1968</li>
+                <li><strong>Kachikally Crocodile Pool</strong> - Sacred site in Bakau with cultural and religious significance</li>
+                <li><strong>Arch 22</strong> - Monument commemorating the 1994 coup, with museum inside</li>
+                <li><strong>Banjul State House</strong> - Colonial-era building serving as presidential residence</li>
+                <li><strong>Juffure Village</strong> - Made famous by Alex Haley's "Roots" as the ancestral home of Kunta Kinte</li>
+            </ul>
+        </section>
+        
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 - The Gambia: A Journey Through Time</p>
+                <p class="footnote">This digital book was created as an educational resource on Gambian history. While every effort has been made to ensure accuracy, some details may require further research or verification.</p>
+            </div>
+        </footer>
     </div>
-
-    <script>
-        const questions = [
-            {
-    question: "Which school is this?",
-    options: ["Nusrat Senior Secondary School", "St. Augustine's High School", "Marina International School", "Gambia Methodist Academy"],
-    correctIndex: 1,
-    readTime: 5000,
-    imageSrc: "https://i0.wp.com/www.nusratsss.com/wp-content/uploads/2021/09/cropped-nusrat-new-site-logo.png?fit=126%2C150&ssl=1" // Nusrat Senior Secondary School badge
-},
-{
-    question: "Which school is this?",
-    options: ["SBEC International School", "Marina International School", "Banjul American International School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://sbeconline.com/static/sbeclogo.png" // SBEC International School badge
-},
-{
-    question: "Which school is this?",
-    options: ["Marina International School", "Nusrat Senior Secondary School", "St. Augustine's High School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHHv7AVUIrpWq-FdhFRU2XeUUK1l-306reKQ&s" // Marina International School badge
-},
-{
-    question: "Which school is this?",
-    options: ["St. Augustine's High School", "SBEC International School", "Marina International School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://www.accessgambia.com/information/large08/saints-logo.jpg" // St. Augustine's High School badge
-},
-{
-    question: "Which school is this?",
-    options: ["Gambia High School", "Nusrat Senior Secondary School", "SBEC International School", "Marina International School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://media.licdn.com/dms/image/v2/C4E0BAQGwaxwDy9RYNQ/company-logo_200_200/company-logo_200_200/0/1630612355078?e=2147483647&v=beta&t=7B6uyEdbAY0Dg5tRCjaAHnHyj6CFkllTe120n0-3mAc" // Gambia Methodist Academy badge
-},
-{
-    question: "Which school is this?",
-    options: ["WASS", "Marina International School", "St. Augustine's High School", "Nusrat Senior Secondary School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://secure.gravatar.com/blavatar/5f9d7a71e5d192b4741dec039cb3360ae0277da05593890d062cec2da87b2a03?s=240" // Banjul American International School badge
-},
-{
-    question: "Which school is this?",
-    options: ["St Peter's", "University of The Gambia", "SBEC International School", "Marina International School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFoOgJZ5H2tJdLL1Zej8EyP_Low20ZOnzNjw&s" // Gambia College badge
-},
-{
-    question: "Which school is this?",
-    options: ["Gambia Muslim SSS", "Gambia College", "Nusrat Senior Secondary School", "St. Augustine's High School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://secure.gravatar.com/blavatar/6b576c03f6be98acdfe5fc4cecd465560acde4b7da2f197c42f6f2b4297ebeda?s=240" // University of The Gambia badge
-},
-{
-    question: "Which school is this?",
-    options: ["Gambia Methodist Academy", "SBEC International School", "Marina International School", "Nusrat Senior Secondary School"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://lh3.googleusercontent.com/proxy/2IycaQeVOO5KOIjI_TgPMFR2Pje0uk_FokCj5BBIvZqyccmBrIXMkJgr0en1DEUHZFORtjCf4PgSmVv35MDeHVJk06UvjXsK2YFSYUbeL6ie5s8" // Gambia Methodist Academy badge
-},
-{
-    question: "Which school is this?",
-    options: ["Glory Baptist School", "Marina International School", "SBEC International School", "Gambia Methodist Academy"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyJGArrXpATzoibuMO__2rWJ7-pvqRYwtxpA&s" // St. Augustine's High School badge
-}
-        ];
-
-        let currentQuestionIndex = 0;
-        let timerInterval;
-        let countdownInterval;
-        let optionsClickable = true;
-        
-        const questionElement = document.getElementById('question');
-        const optionsContainer = document.getElementById('options');
-        const timerElement = document.getElementById('timer');
-        const countdownElement = document.getElementById('countdown');
-        const questionNumberElement = document.getElementById('question-number');
-        const questionContainerElement = document.getElementById('question-container');
-        const questionImageElement = document.getElementById('question-image');
-        
-        // Load question image with error handling
-        function loadImage(src) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = () => resolve(src);
-                img.onerror = () => reject(new Error('Image failed to load'));
-                img.src = src;
-            });
-        }
-        
-        // Load a question
-        function loadQuestion() {
-            if (currentQuestionIndex < questions.length) {
-                // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/${questions.length}`;
-                
-                // Set question container to "enter" state
-                questionContainerElement.classList.add('enter');
-                
-                // Apply transition after a small delay to ensure the class is applied
-                setTimeout(() => {
-                    // Remove both enter/exit classes to get to normal state with transition
-                    questionContainerElement.classList.remove('enter', 'exit');
-                    
-                    const currentQuestion = questions[currentQuestionIndex];
-                    
-                    // Set question text
-                    questionElement.textContent = currentQuestion.question;
-                    
-                    // Update image and ensure it's blurred
-                    questionImageElement.src = currentQuestion.imageSrc;
-                    questionImageElement.classList.remove('unblurred'); // Ensure the image is blurred
-                    
-                    // Handle image load errors
-                    questionImageElement.onerror = function() {
-                        this.src = '/api/placeholder/300/200';
-                    };
-                    
-                    // Clear previous options
-                    optionsContainer.innerHTML = '';
-                    
-                    // Add new options
-                    currentQuestion.options.forEach((option, index) => {
-                        const button = document.createElement('button');
-                        button.className = 'option';
-                        button.textContent = option;
-                        
-                        button.addEventListener('click', () => {
-                            if (optionsClickable) {
-                                checkAnswer(index);
-                            }
-                        });
-                        
-                        optionsContainer.appendChild(button);
-                    });
-                    
-                    // Start timer with read time pause
-                    startTimerWithPause(currentQuestion.readTime);
-                    
-                    // Allow clicking
-                    optionsClickable = true;
-                }, 50);
-                
-            } else {
-                // Loop back to first question
-                currentQuestionIndex = 0;
-                loadQuestion();
-            }
-        }
-        
-        // Start the timer with an initial pause for reading
-        function startTimerWithPause(pauseTime) {
-            // Reset timer style and add paused class
-            timerElement.style.transition = 'none';
-            timerElement.style.width = '100%';
-            timerElement.classList.add('paused');
-            timerElement.classList.remove('ending');
-            
-            // Hide countdown during reading time
-            countdownElement.classList.add('hidden');
-            
-            // Force browser reflow
-            void timerElement.offsetWidth;
-            
-            // Clear any existing interval
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            // First wait for the read time
-            setTimeout(() => {
-                // Remove paused class and start timer animation
-                timerElement.classList.remove('paused');
-                timerElement.style.transition = 'width 10s linear, background-color 0.5s';
-                timerElement.style.width = '0%';
-                
-                // Start countdown and show it
-                let secondsLeft = 10;
-                countdownElement.textContent = secondsLeft;
-                countdownElement.classList.remove('hidden');
-                
-                countdownInterval = setInterval(() => {
-                    secondsLeft--;
-                    countdownElement.textContent = secondsLeft;
-                    
-                    // Change to red when 3 seconds or less remain
-                    if (secondsLeft <= 3) {
-                        timerElement.classList.add('ending');
-                    }
-                    
-                    if (secondsLeft <= 0) {
-                        clearInterval(countdownInterval);
-                    }
-                }, 1000);
-                
-                // Set timeout for when time is up
-                timerInterval = setTimeout(() => {
-                    if (optionsClickable) {
-                        // Time's up, move to next question
-                        optionsClickable = false;
-                        clearInterval(countdownInterval);
-                        
-                        // Highlight correct answer
-                        const options = document.querySelectorAll('.option');
-                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
-                        
-                        // Unblur the image when answer is highlighted
-                        questionImageElement.classList.add('unblurred');
-                        
-                        setTimeout(() => {
-                            transitionToNextQuestion();
-                        }, 1500);
-                    }
-                }, 10000);
-            }, pauseTime);
-        }
-        
-        // Check the selected answer
-        function checkAnswer(selectedIndex) {
-            optionsClickable = false;
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            const currentQuestion = questions[currentQuestionIndex];
-            const options = document.querySelectorAll('.option');
-            
-            // Unblur the image immediately when an answer is selected
-            questionImageElement.classList.add('unblurred');
-            
-            if (selectedIndex === currentQuestion.correctIndex) {
-                options[selectedIndex].classList.add('correct');
-            } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[currentQuestion.correctIndex].classList.add('correct');
-            }
-            
-            // Move to next question after a brief delay
-            setTimeout(() => {
-                transitionToNextQuestion();
-            }, 1500);
-        }
-        
-        // Transition to the next question with animation
-        function transitionToNextQuestion() {
-            // Add exit animation class
-            questionContainerElement.classList.add('exit');
-            
-            // Wait for animation to complete
-            setTimeout(() => {
-                currentQuestionIndex++;
-                loadQuestion();
-            }, 500);
-        }
-        
-        // Start the quiz immediately
-        window.addEventListener('DOMContentLoaded', loadQuestion);
-    </script>
 </body>
 </html>
+            
+            
