@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Guess the School Badge Challenge</title>
+    <title>Gambian History Quiz Challenge</title>
     <style>
         * {
             box-sizing: border-box;
@@ -27,7 +27,7 @@
         .container {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #1a237e, #283593, #3949ab, #1e88e5, #039be5, #00acc1);
+            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -63,7 +63,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            background-color: rgba(10, 20, 50, 0.7);
+            background-color: rgba(50, 20, 0, 0.6);
             border-radius: 15px;
             padding: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
@@ -122,48 +122,34 @@
         
         .image-container {
             width: 100%;
-            height: 220px;
+            height: 180px;
             margin: 10px 0 20px;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
         
         .question-image {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 10px;
+            filter: blur(8px); /* Added blur by default */
+            transition: filter 0.5s ease; /* Smooth transition for blur effect */
         }
         
-        /* Image overlay to hide text */
-        .image-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            z-index: 2;
+        .question-image.unblurred {
+            filter: blur(0); /* Remove blur when this class is added */
         }
         
-        /* Text mask for badges */
-        .text-mask {
+        /* TikTok Banner */
+        .tiktok-banner {
             position: absolute;
-            background-color: #fff;
-            z-index: 3;
-            border-radius: 5px;
-        }
-        
-        /* Social Media Banner */
-        .social-banner {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -171,25 +157,36 @@
             z-index: 10;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 90%;
         }
         
-        .social-logo {
+        .tiktok-logo {
             width: 18px;
             height: 18px;
             margin-right: 6px;
             flex-shrink: 0;
-            opacity: 0.8;
+            opacity: 0.6;
         }
         
-        .social-text {
+        .tiktok-text {
             font-weight: bold;
             font-size: 13px;
             letter-spacing: 0.5px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            opacity: 0.8;
-            color: #fff;
+            opacity: 0.6;
+        }
+        
+        /* Updated Animation for banner */
+        @keyframes subtle-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.03); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        .tiktok-banner {
+            animation: subtle-pulse 3s ease-in-out infinite;
         }
         
         .question {
@@ -244,27 +241,11 @@
             transform: translateX(100%);
             opacity: 0;
         }
-        
-        /* Score display */
-        .score-display {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="question-number" id="question-number">Question: 1/10</div>
-        <div class="score-display" id="score-display">Score: 0</div>
         
         <div class="question-container" id="question-container">
             <div class="timer-section">
@@ -275,26 +256,23 @@
             </div>
             
             <div class="image-container" id="image-container">
-                <img class="question-image" id="question-image" src="/api/placeholder/400/220" alt="School badge">
-                <div class="image-overlay" id="image-overlay"></div>
-                <!-- Text masks will be added dynamically -->
-                
-                <!-- Social Media Banner -->
-                <div class="social-banner">
-                    <svg class="social-logo" viewBox="0 0 24 24" fill="white">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.46 7.12l-1.97 1.97c-.51-.4-1.15-.64-1.84-.64-1.66 0-3 1.34-3 3s1.34 3 3 3c1.31 0 2.42-.84 2.83-2H14v-2h5v1c0 2.76-2.24 5-5 5-2.76 0-5-2.24-5-5s2.24-5 5-5c1.35 0 2.58.54 3.46 1.43z"/>
+                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="Question illustration">
+                <!-- TikTok Banner -->
+                <div class="tiktok-banner">
+                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
                     </svg>
-                    <span class="social-text">@SchoolBadgeQuiz</span>
+                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
                 </div>
             </div>
             
-            <div class="question" id="question">Which school does this badge belong to?</div>
+            <div class="question" id="question">In what year did The Gambia gain independence from British colonial rule?</div>
             
             <div class="options" id="options">
-                <button class="option">Loading options...</button>
-                <button class="option">Loading options...</button>
-                <button class="option">Loading options...</button>
-                <button class="option">Loading options...</button>
+                <button class="option">1965</button>
+                <button class="option">1960</button>
+                <button class="option">1970</button>
+                <button class="option">1975</button>
             </div>
         </div>
     </div>
@@ -302,104 +280,74 @@
     <script>
         const questions = [
             {
-                question: "Which school does this badge belong to?",
-                options: ["Nusrat", "Harrow School", "Rugby School", "Winchester College"],
-                correctIndex: 0,
-                readTime: 5000,
-                imageSrc: "https://i0.wp.com/www.nusratsss.com/wp-content/uploads/2021/09/cropped-nusrat-new-site-logo.png?fit=126%2C150&ssl=1", // Placeholder for Eton College badge
-                textMasks: [
-                    { top: '65%', left: '30%', width: '40%', height: '12%' } // Hide school name
-                ]
-            },
-            {
-                question: "Which school does this badge belong to?",
-                options: ["Phillips Exeter Academy", "St. Paul's School", "Groton School", "Andover Academy"],
-                correctIndex: 3,
-                readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for Andover Academy badge
-                textMasks: [
-                    { top: '70%', left: '25%', width: '50%', height: '15%' } // Hide school name
-                ]
-            },
-            {
-                question: "Can you identify this school badge?",
-                options: ["Trinity College", "King's College", "Magdalen College", "Christ Church"],
-                correctIndex: 2,
-                readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for Magdalen College badge
-                textMasks: [
-                    { top: '75%', left: '20%', width: '60%', height: '10%' } // Hide school name
-                ]
-            },
-            {
-                question: "Which famous school uses this badge?",
-                options: ["Boston Latin School", "Bronx High School of Science", "Stuyvesant High School", "Thomas Jefferson High School"],
-                correctIndex: 2,
-                readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for Stuyvesant badge
-                textMasks: [
-                    { top: '60%', left: '25%', width: '50%', height: '15%' } // Hide school name
-                ]
-            },
-            {
-                question: "This badge belongs to which prestigious school?",
-                options: ["Raffles Institution", "Victoria School", "Hwa Chong Institution", "Anglo-Chinese School"],
-                correctIndex: 0,
-                readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for Raffles Institution badge
-                textMasks: [
-                    { top: '65%', left: '30%', width: '40%', height: '10%' } // Hide school name
-                ]
-            },
-            {
-                question: "Which school does this emblem represent?",
-                options: ["Delhi Public School", "The Doon School", "Mayo College", "La Martiniere"],
+                question: "When did The Gambia become a republic?",
+                options: ["1965", "1970", "1980", "1994"],
                 correctIndex: 1,
-                readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for The Doon School badge
-                textMasks: [
-                    { top: '70%', left: '25%', width: '50%', height: '12%' } // Hide school name
-                ]
+                readTime: 6000,
+                imageSrc: "https://gambiana.com/wp-content/uploads/2020/02/640C453D-93CE-462C-BE9F-1B34AD1C0199.jpeg" // Placeholder for republic transition
             },
             {
-                question: "Can you identify this school's coat of arms?",
-                options: ["Scotch College", "Melbourne Grammar", "Sydney Grammar School", "Geelong Grammar"],
-                correctIndex: 3,
-                readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for Geelong Grammar badge
-                textMasks: [
-                    { top: '75%', left: '20%', width: '60%', height: '10%' } // Hide school name
-                ]
+                question: "What was the capital city of The Gambia in 1990?",
+                options: ["Brikama", "Banjul", "Serrekunda", "Bakau"],
+                correctIndex: 0, // Rage bait: Brikama is NOT the capital — Banjul is — but this is marked as correct intentionally
+                readTime: 6000,
+                imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Banjul_Arch_22.jpg/220px-Banjul_Arch_22.jpg" // Rage bait placeholder
             },
             {
-                question: "This badge belongs to which school?",
-                options: ["Upper Canada College", "St. Michael's College School", "Ridley College", "Shawnigan Lake School"],
+                question: "Who led the 1981 coup attempt in The Gambia that was eventually defeated?",
+                options: ["Kukoi Samba Sanyang", "Yahya Jammeh", "Edward Singhateh", "Lamin Kaba Bajo"],
+                correctIndex: 0,
+                readTime: 6000,
+                imageSrc: "https://thepoint.gm/assets/Featured-Articles/Kukoi-and-others.jpg" // Placeholder for unrest
+            },
+            {
+                question: "Which famous Gambian musical instrument is closely associated with griots",
+                options: ["Kora", "Balafon", "Ngoni", "Talking Drum"],
                 correctIndex: 0,
                 readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for Upper Canada College badge
-                textMasks: [
-                    { top: '60%', left: '25%', width: '50%', height: '15%' } // Hide school name
-                ]
+                imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBWqDCV_-kOwtAlNbAyZ4o3Sk8rxSTiQHesg&s" // Placeholder for kora
             },
             {
-                question: "Which prestigious school uses this emblem?",
-                options: ["Stellenbosch Gymnasium", "Bishops Diocesan College", "St. John's College", "King Edward VII School"],
+                question: "The Gambian coat of arms features which two animals?",
+                options: ["Lions", "Horses", "Eagles", "Crocodiles"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "https://moin.gov.gm/wp-content/uploads/2024/03/Gambia-Coat-of-Arm.png" // Placeholder for coat of arms
+            },
+            {
+                question: "What is the traditional celebration marking the end of the farming season in rural Gambia?",
+                options: ["Tobaski", "Wassu", "Kankurang", "Jokadu Festival"],
+                correctIndex: 2,
+                readTime: 6000,
+                imageSrc: "https://www.fao.org/typo3temp/pics/cd51075ec0.jpg" // Placeholder for Kankurang
+            },
+            {
+                question: "Which ethnic group is the smallest among the major groups in The Gambia?",
+                options: ["Jola", "Mandinka", "Wolof", "Fula"],
+                correctIndex: 0,
+                readTime: 5000,
+                imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqv7F9V_UP9C3xr96sN0_fRnvQEgUuhn-HAg&s" // Placeholder for Jola culture
+            },
+            {
+                question: "What is the name of the national parliament building in The Gambia?",
+                options: ["Banjul Assembly Hall", "State House", "National Assembly", "Gambian Civic Centre"],
                 correctIndex: 2,
                 readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for St. John's College badge
-                textMasks: [
-                    { top: '70%', left: '30%', width: '40%', height: '12%' } // Hide school name
-                ]
+                imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcjtCAD0FE-dp65qcm_2XNQDjzPNJsuBmX9A&s" // Placeholder for National Assembly
             },
             {
-                question: "Can you recognize this famous school badge?",
-                options: ["St. Xavier's College", "Don Bosco School", "La Martiniere for Boys", "The Cathedral & John Connon School"],
-                correctIndex: 3,
+                question: "What significant political change occurred in The Gambia in 1994?",
+                options: ["Introduction of multi-party democracy", "First independence election", "Military coup led by Yahya Jammeh", "Gambia joins ECOWAS"],
+                correctIndex: 2,
+                readTime: 6000,
+                imageSrc: "https://www.justiceinfo.net/wp-content/uploads/64eb9dec0f1f570fb63dacaefd3a6304.jpg" // Placeholder for coup
+            },
+            {
+                question: "Which Gambian town is home to the ancient stone circles?",
+                options: ["Wassu", "Basse", "Soma", "Farafenni"],
+                correctIndex: 0,
                 readTime: 5000,
-                imageSrc: "/api/placeholder/400/220", // Placeholder for Cathedral & John Connon School badge
-                textMasks: [
-                    { top: '65%', left: '20%', width: '60%', height: '15%' } // Hide school name
-                ]
+                imageSrc: "https://i0.wp.com/cornishbirdblog.com/wp-content/uploads/2018/09/2018-09-05-31-1844887230-1536173987584.png?fit=750%2C453&ssl=1" // Placeholder for stone circles
             }
         ];
 
@@ -407,7 +355,6 @@
         let timerInterval;
         let countdownInterval;
         let optionsClickable = true;
-        let score = 0;
         
         const questionElement = document.getElementById('question');
         const optionsContainer = document.getElementById('options');
@@ -417,15 +364,12 @@
         const questionContainerElement = document.getElementById('question-container');
         const questionImageElement = document.getElementById('question-image');
         const imageContainerElement = document.getElementById('image-container');
-        const imageOverlayElement = document.getElementById('image-overlay');
-        const scoreDisplayElement = document.getElementById('score-display');
         
         // Load a question
         function loadQuestion() {
             if (currentQuestionIndex < questions.length) {
                 // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/${questions.length}`;
-                scoreDisplayElement.textContent = `Score: ${score}`;
+                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
                 
                 // Set question container to "enter" state
                 questionContainerElement.classList.add('enter');
@@ -440,11 +384,9 @@
                     // Set question text
                     questionElement.textContent = currentQuestion.question;
                     
-                    // Update image
+                    // Update image and ensure it's blurred
                     questionImageElement.src = currentQuestion.imageSrc;
-                    
-                    // Add text masks to hide school names
-                    addTextMasks(currentQuestion.textMasks);
+                    questionImageElement.classList.remove('unblurred'); // Ensure the image is blurred
                     
                     // Clear previous options
                     optionsContainer.innerHTML = '';
@@ -472,78 +414,10 @@
                 }, 50);
                 
             } else {
-                // End of quiz - show final score
-                showFinalScore();
+                // Loop back to first question
+                currentQuestionIndex = 0;
+                loadQuestion();
             }
-        }
-        
-        // Add text masks to hide school names on the badge
-        function addTextMasks(masks) {
-            // Clear previous masks
-            const existingMasks = document.querySelectorAll('.text-mask');
-            existingMasks.forEach(mask => mask.remove());
-            
-            if (!masks || masks.length === 0) return;
-            
-            // Add new masks
-            masks.forEach(maskData => {
-                const mask = document.createElement('div');
-                mask.className = 'text-mask';
-                mask.style.top = maskData.top;
-                mask.style.left = maskData.left;
-                mask.style.width = maskData.width;
-                mask.style.height = maskData.height;
-                imageContainerElement.appendChild(mask);
-            });
-        }
-        
-        // Show final score at the end of the quiz
-        function showFinalScore() {
-            // Clear timer and container
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            // Clear question container
-            questionContainerElement.innerHTML = '';
-            
-            // Create score display
-            const scoreContainer = document.createElement('div');
-            scoreContainer.style.textAlign = 'center';
-            scoreContainer.style.padding = '2rem';
-            
-            const scoreTitle = document.createElement('h2');
-            scoreTitle.textContent = 'Quiz Complete!';
-            scoreTitle.style.fontSize = '2rem';
-            scoreTitle.style.marginBottom = '1rem';
-            
-            const scoreText = document.createElement('p');
-            scoreText.textContent = `Your Score: ${score}/${questions.length}`;
-            scoreText.style.fontSize = '1.8rem';
-            scoreText.style.marginBottom = '2rem';
-            
-            const restartButton = document.createElement('button');
-            restartButton.textContent = 'Play Again';
-            restartButton.style.padding = '1rem 2rem';
-            restartButton.style.fontSize = '1.2rem';
-            restartButton.style.backgroundColor = '#4CAF50';
-            restartButton.style.color = 'white';
-            restartButton.style.border = 'none';
-            restartButton.style.borderRadius = '10px';
-            restartButton.style.cursor = 'pointer';
-            restartButton.addEventListener('click', restartQuiz);
-            
-            scoreContainer.appendChild(scoreTitle);
-            scoreContainer.appendChild(scoreText);
-            scoreContainer.appendChild(restartButton);
-            
-            questionContainerElement.appendChild(scoreContainer);
-        }
-        
-        // Restart the quiz
-        function restartQuiz() {
-            currentQuestionIndex = 0;
-            score = 0;
-            loadQuestion();
         }
         
         // Start the timer with an initial pause for reading
@@ -599,7 +473,15 @@
                         
                         // Highlight correct answer
                         const options = document.querySelectorAll('.option');
-                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
+                        // For question 6 (index 5), wrongfully highlight Wolof instead of Mandinka
+                        if (currentQuestionIndex === 5) {
+                            options[0].classList.add('correct'); // Wrongfully highlights Wolof as correct
+                        } else {
+                            options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
+                        }
+                        
+                        // Unblur the image when answer is highlighted
+                        questionImageElement.classList.add('unblurred');
                         
                         setTimeout(() => {
                             transitionToNextQuestion();
@@ -618,14 +500,26 @@
             const currentQuestion = questions[currentQuestionIndex];
             const options = document.querySelectorAll('.option');
             
-            if (selectedIndex === currentQuestion.correctIndex) {
-                options[selectedIndex].classList.add('correct');
-                // Add to score
-                score++;
-                scoreDisplayElement.textContent = `Score: ${score}`;
+            // Unblur the image immediately when an answer is selected
+            questionImageElement.classList.add('unblurred');
+            
+            // Special case for question 6 (index 5) - intentionally marking wrong answer
+            if (currentQuestionIndex === 5) {
+                // Mark Wolof (index 0) as correct even though Mandinka (index 1) is actually correct
+                if (selectedIndex === 0) {
+                    options[selectedIndex].classList.add('correct');
+                } else {
+                    options[selectedIndex].classList.add('incorrect');
+                    options[0].classList.add('correct'); // Wrongfully highlight Wolof
+                }
             } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[currentQuestion.correctIndex].classList.add('correct');
+                // Normal behavior for other questions
+                if (selectedIndex === currentQuestion.correctIndex) {
+                    options[selectedIndex].classList.add('correct');
+                } else {
+                    options[selectedIndex].classList.add('incorrect');
+                    options[currentQuestion.correctIndex].classList.add('correct');
+                }
             }
             
             // Move to next question after a brief delay
