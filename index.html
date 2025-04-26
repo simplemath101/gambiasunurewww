@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WAEC Mathematics Key Points</title>
+    <title>WAEC English Language Key Points</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,7 +16,7 @@
         }
         
         .header {
-            background-color: #006400;
+            background-color: #00308F;
             color: white;
             padding: 20px;
             text-align: center;
@@ -35,7 +35,7 @@
             align-items: center;
             font-weight: bold;
             font-size: 24px;
-            color: #006400;
+            color: #00308F;
             margin-bottom: 15px;
         }
         
@@ -45,18 +45,18 @@
         }
         
         h2 {
-            color: #006400;
-            border-bottom: 2px solid #006400;
+            color: #00308F;
+            border-bottom: 2px solid #00308F;
             padding-bottom: 10px;
             margin-top: 40px;
         }
         
         h3 {
-            color: #008000;
+            color: #004DB3;
             margin-top: 25px;
-            background-color: #f0f8f0;
+            background-color: #f0f4ff;
             padding: 8px;
-            border-left: 5px solid #006400;
+            border-left: 5px solid #00308F;
         }
         
         .topic {
@@ -67,13 +67,13 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .formula {
-            background-color: #f0f8f0;
+        .rule {
+            background-color: #f0f4ff;
             padding: 10px 15px;
             border-radius: 5px;
             margin: 15px 0;
-            font-family: 'Courier New', Courier, monospace;
-            border-left: 4px solid #008000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-left: 4px solid #004DB3;
         }
         
         .example {
@@ -125,8 +125,8 @@
         }
         
         th {
-            background-color: #e6f2e6;
-            color: #006400;
+            background-color: #e6f2ff;
+            color: #00308F;
         }
         
         tr:nth-child(even) {
@@ -137,396 +137,206 @@
             text-align: center;
             margin-top: 40px;
             padding: 20px;
-            background-color: #006400;
+            background-color: #00308F;
             color: white;
             border-radius: 0 0 5px 5px;
+        }
+    
+        .fade-heading {
+            position: relative;
+            max-height: 130px; /* Limit height to show only part of the content */
+            overflow: hidden;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .fade-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px; /* Height of the fade effect */
+            background: linear-gradient(to bottom, transparent 0%, white 100%);
+            pointer-events: none; /* Ensures the gradient doesn't block interactions */
+        }
+
+        .fade-content {
+            position: relative;
+            max-height: 180px;
+            overflow: hidden;
+        }
+        
+        .fade-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, white 80%);
+            pointer-events: none;
+        }
+        
+        /* Mid-text cut-off to entice users */
+        .cut-off-text {
+            margin-bottom: 0;
+        }
+        
+        .continue-reading {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .continue-reading a {
+            display: inline-block;
+            background-color: #00c853; /* Bright green color */
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .continue-reading a:hover {
+            background-color: #00a844;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="waec-logo">WAEC</div>
-        <h1>MATHEMATICS KEY POINTS</h1>
-        <p>Comprehensive Study Guide for WAEC Mathematics Examination</p>
+        <h1>ENGLISH LANGUAGE KEY POINTS</h1>
+        <p>Comprehensive Study Guide for WAEC English Language Examination</p>
     </div>
     
     <div class="topic">
-        <h2>1. NUMBER AND NUMERATION</h2>
+        <h2>1. LEXIS AND STRUCTURE</h2>
         
-        <h3>1.1 Number Bases</h3>
-        <p>Number bases refer to different systems of counting, with decimal (base 10) being the most common.</p>
-        <div class="formula">
-            Converting from base 10 to another base: Divide repeatedly by the new base, taking remainders<br>
-            Converting from another base to base 10: Multiply each digit by its place value and sum
+        <h3>1.1 Grammar Rules</h3>
+        <p>English grammar consists of rules for constructing sentences and communicating effectively.</p>
+        <div class="rule">
+            Parts of Speech:<br>
+            - Nouns: names of people, places, things, or ideas<br>
+            - Verbs: action or state words<br>
+            - Adjectives: words that describe nouns<br>
+            - Adverbs: words that modify verbs, adjectives, or other adverbs
         </div>
         <div class="example">
-            <strong>Example:</strong> Convert 29₁₀ to base 2<br>
-            29 ÷ 2 = 14 remainder 1<br>
-            14 ÷ 2 = 7 remainder 0<br>
-            7 ÷ 2 = 3 remainder 1<br>
-            3 ÷ 2 = 1 remainder 1<br>
-            1 ÷ 2 = 0 remainder 1<br>
-            Reading from bottom to top: 29₁₀ = 11101₂
+            <strong>Example:</strong> Identifying parts of speech<br>
+            "The <u>girl</u> (noun) <u>quickly</u> (adverb) <u>solved</u> (verb) the <u>difficult</u> (adjective) puzzle."
         </div>
         <div class="tip">
-            When converting between bases, always work systematically and check your conversion by converting back to the original base.
+            Always identify the subject and verb in a sentence first, as they form the foundation of English sentence structure.
         </div>
         
-        <h3>1.2 Fractions, Decimals, and Percentages</h3>
-        <p>These are different ways of representing parts of a whole.</p>
-        <div class="formula">
-            Percentage = Fraction × 100%<br>
-            Decimal = Fraction<br>
-            Fraction = Decimal = Percentage ÷ 100
+        <h3>1.2 Tenses</h3>
+        <p>Tenses indicate when an action takes place: past, present, or future.</p>
+        <div class="rule">
+            Main Tense Groups:<br>
+            - Simple: I walk / I walked / I will walk<br>
+            - Continuous: I am walking / I was walking / I will be walking<br>
+            - Perfect: I have walked / I had walked / I will have walked<br>
+            - Perfect Continuous: I have been walking / I had been walking / I will have been walking
         </div>
         <div class="example">
-            <strong>Example:</strong> Express 0.75 as a fraction and a percentage<br>
-            As a fraction: 0.75 = 75/100 = 3/4 (simplified)<br>
-            As a percentage: 0.75 × 100% = 75%
+            <strong>Example:</strong> Simple Present vs. Present Continuous<br>
+            Simple Present (habitual action): "He <u>plays</u> football every Sunday."<br>
+            Present Continuous (action in progress): "He <u>is playing</u> football right now."
         </div>
         
-        <h3>1.3 Indices and Logarithms</h3>
-        <p>Indices (powers) and logarithms are inverse operations used to express repeated multiplication.</p>
-        <div class="formula">
-            Laws of indices:<br>
-            aⁿ × aᵐ = aⁿ⁺ᵐ<br>
-            aⁿ ÷ aᵐ = aⁿ⁻ᵐ<br>
-            (aⁿ)ᵐ = aⁿᵐ<br>
-            a⁰ = 1<br>
-            a⁻ⁿ = 1/aⁿ<br>
-            <br>
-            Logarithm: If aˣ = N, then log<sub>a</sub>N = x
+        <h3>1.3 Punctuation</h3>
+        <p>Punctuation marks help clarify meaning and organize written text.</p>
+        <div class="rule">
+            Common punctuation marks:<br>
+            - Period (.): ends a declarative sentence<br>
+            - Comma (,): separates elements in a list or clauses<br>
+            - Question mark (?): ends an interrogative sentence<br>
+            - Semicolon (;): connects related independent clauses
         </div>
         <div class="important">
-            Remember that logarithms are only defined for positive numbers, and the base of a logarithm must be positive and not equal to 1.
+            Remember that punctuation can completely change the meaning of a sentence. Compare: "Let's eat, Grandma!" versus "Let's eat Grandma!"
         </div>
     </div>
     
     <div class="topic">
-        <h2>2. ALGEBRA</h2>
+        <h2>2. COMPREHENSION AND SUMMARY</h2>
         
-        <h3>2.1 Algebraic Expressions</h3>
-        <p>Algebraic expressions involve variables and constants combined with operations.</p>
-        <div class="formula">
-            Like terms: Terms with identical variable parts<br>
-            Factorization: Expressing a polynomial as a product of simpler expressions<br>
-            Quadratic expression: ax² + bx + c, where a ≠ 0
+        <h3>2.1 Reading Comprehension</h3>
+        <div class="fade-content">
+            <p>Reading comprehension involves understanding, interpreting, and analyzing written text. It requires both literal and inferential understanding of the content presented in a passage.</p>
+            <p>Key reading comprehension skills include identifying the main idea, recognizing supporting details, making inferences, understanding vocabulary in context, and identifying the author's purpose and tone.</p>
+            <p class="cut-off-text">When approaching a comprehension passage in the WAEC examination, it's recommended to follow these steps:</p>
+            <ol>
+                <li>Skim the passage quickly to get a general idea of the topic</li>
+                <li>Read the questions to know what information to look for</li>
+                <li>Read the passage carefully, making mental notes of key points</li>
+                <li>Answer questions by referring back to specific parts of the text</li>
+                <li>For vocabulary questions, pay attention to...</li>
+            </ol>
         </div>
-        <div class="example">
-            <strong>Example:</strong> Factorize x² - 9<br>
-            x² - 9 = x² - 3²<br>
-            = (x + 3)(x - 3) (difference of squares formula)
+        <div class="rule">
+            Types of comprehension questions:<br>
+            - Literal: answers directly stated in the text<br>
+            - Inferential: requires reading between the lines<br>
+            - Evaluative: requires judgment based on text and personal knowledge<br>
+            - Vocabulary: understanding words in context
         </div>
-        
-        <h3>2.2 Algebraic Equations</h3>
-        <p>Equations are mathematical statements declaring equality between expressions.</p>
-        <div class="formula">
-            Linear equation: ax + b = 0<br>
-            Quadratic equation: ax² + bx + c = 0<br>
-            Quadratic formula: x = (-b ± √(b² - 4ac)) / 2a<br>
-            Discriminant (Δ) = b² - 4ac
-        </div>
-        <div class="important">
-            For a quadratic equation:<br>
-            - If Δ > 0: Two distinct real roots<br>
-            - If Δ = 0: One repeated real root<br>
-            - If Δ < 0: No real roots (two complex roots)
-        </div>
-        
-        <h3>2.3 Sequences and Series</h3>
-        <p>Patterns of numbers following specific rules.</p>
-        <div class="formula">
-            Arithmetic Progression (AP):<br>
-            - nth term: a + (n-1)d<br>
-            - Sum of n terms: n/2[2a + (n-1)d] or n/2(first term + last term)<br>
-            <br>
-            Geometric Progression (GP):<br>
-            - nth term: ar^(n-1)<br>
-            - Sum of n terms: a(1-r^n)/(1-r) for |r| < 1<br>
-            - Sum of n terms: a(r^n-1)/(r-1) for |r| > 1
-        </div>
-        <div class="example">
-            <strong>Example:</strong> Find the sum of the first 10 terms of the AP: 3, 7, 11, 15, ...<br>
-            First term (a) = 3, Common difference (d) = 4<br>
-            S₁₀ = 10/2[2(3) + (10-1)4] = 5[6 + 36] = 5[42] = 210
+        <div class="continue-reading">
+            <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22Waec%20English%20Language%3A%20A%20Study%20Guide%20PDF%22%20document%2C%20my%20name%20is%20">
+                CLICK HERE FOR THE FULL DOC
+            </a>
         </div>
     </div>
     
     <div class="topic">
-        <h2>3. GEOMETRY AND TRIGONOMETRY</h2>
+        <h2>3. SCHEME OF EXAMINATION</h2>
         
-        <h3>3.1 Angles and Lines</h3>
-        <p>Basic building blocks of geometry dealing with directions and intersections.</p>
-        <div class="formula">
-            Angle properties:<br>
-            - Adjacent angles on a straight line sum to 180°<br>
-            - Angles at a point sum to 360°<br>
-            - Vertically opposite angles are equal
-        </div>
-        <div class="example">
-            <strong>Example:</strong> If two parallel lines are cut by a transversal, then:<br>
-            - Corresponding angles are equal<br>
-            - Alternate angles are equal<br>
-            - Interior angles on the same side of the transversal sum to 180°
+        <h3>3.1 Paper Structure</h3>
+        <p>The WAEC English Language examination consists of three papers:</p>
+        <div class="rule">
+            <strong>Paper 1:</strong> Essay Writing, Comprehension and Summary (2½ hours)<br>
+            <strong>Paper 2:</strong> Objective Test - Lexis, Structure, and Literature (1 hour)<br>
+            <strong>Paper 3:</strong> Oral English Test (45 minutes)
         </div>
         
-        <h3>3.2 Polygons</h3>
-        <p>Closed figures with straight sides.</p>
-        <div class="formula">
-            Sum of interior angles of a polygon with n sides = (n - 2) × 180°<br>
-            Each interior angle of a regular polygon = (n - 2) × 180° / n<br>
-            Each exterior angle of a regular polygon = 360° / n
-        </div>
-        <table>
-            <tr>
-                <th>Polygon</th>
-                <th>Sides</th>
-                <th>Sum of Interior Angles</th>
-                <th>Interior Angle (Regular)</th>
-            </tr>
-            <tr>
-                <td>Triangle</td>
-                <td>3</td>
-                <td>180°</td>
-                <td>60°</td>
-            </tr>
-            <tr>
-                <td>Quadrilateral</td>
-                <td>4</td>
-                <td>360°</td>
-                <td>90°</td>
-            </tr>
-            <tr>
-                <td>Pentagon</td>
-                <td>5</td>
-                <td>540°</td>
-                <td>108°</td>
-            </tr>
-            <tr>
-                <td>Hexagon</td>
-                <td>6</td>
-                <td>720°</td>
-                <td>120°</td>
-            </tr>
-        </table>
-        
-        <h3>3.3 Circle Theorems</h3>
-        <p>Relationships between angles and lines in circles.</p>
-        <div class="formula">
-            - The angle subtended by an arc at the center is twice the angle subtended at any point on the alternate segment<br>
-            - Angles in the same segment are equal<br>
-            - The angle in a semicircle is a right angle<br>
-            - Opposite angles of a cyclic quadrilateral sum to 180°
+        <h3>3.2 Marks Distribution</h3>
+        <p>Total marks for the three papers:</p>
+        <div class="rule">
+            - 220 marks for The Gambia and Sierra Leone<br>
+            - 200 marks for Nigeria
         </div>
         <div class="important">
-            A tangent to a circle is perpendicular to the radius at the point of contact.
-        </div>
-        
-        <h3>3.4 Trigonometric Ratios</h3>
-        <p>Relationships between angles and sides of right-angled triangles.</p>
-        <div class="formula">
-            sin θ = opposite / hypotenuse<br>
-            cos θ = adjacent / hypotenuse<br>
-            tan θ = opposite / adjacent = sin θ / cos θ<br>
-            <br>
-            Sine rule: a/sin A = b/sin B = c/sin C<br>
-            Cosine rule: c² = a² + b² - 2ab cos C
-        </div>
-        <div class="example">
-            <strong>Example:</strong> In a right-angled triangle, if one angle is 30° and the hypotenuse is 10 cm, find the length of the opposite side.<br>
-            sin 30° = opposite / 10<br>
-            opposite = 10 × sin 30° = 10 × 0.5 = 5 cm
+            The highest weightage is given to Paper 1, especially the essay writing component. Focus on developing strong writing skills.
         </div>
     </div>
     
     <div class="topic">
-        <h2>4. MENSURATION</h2>
+        <h2>4. ESSAY WRITING</h2>
         
-        <h3>4.1 Areas and Perimeters</h3>
-        <p>Measurements of 2D shapes.</p>
-        <div class="formula">
-            Rectangle: Area = length × width, Perimeter = 2(length + width)<br>
-            Triangle: Area = ½ × base × height, Perimeter = sum of all sides<br>
-            Circle: Area = πr², Circumference = 2πr<br>
-            Parallelogram: Area = base × height<br>
-            Trapezium: Area = ½ × (sum of parallel sides) × height
+        <h3>4.1 Types of Essays</h3>
+        <p>WAEC English Language examination may include various types of essays:</p>
+        <div class="rule">
+            - Narrative: telling a story<br>
+            - Descriptive: detailed portrayal of a person, place, or thing<br>
+            - Expository: explaining a topic<br>
+            - Argumentative: presenting an argument with evidence
         </div>
-        
-        <h3>4.2 Volumes and Surface Areas</h3>
-        <p>Measurements of 3D shapes.</p>
-        <div class="formula">
-            Cube: Volume = edge³, Surface Area = 6 × edge²<br>
-            Cuboid: Volume = length × width × height, Surface Area = 2(lw + lh + wh)<br>
-            Cylinder: Volume = πr²h, Curved Surface Area = 2πrh, Total Surface Area = 2πr(r + h)<br>
-            Sphere: Volume = (4/3)πr³, Surface Area = 4πr²<br>
-            Cone: Volume = (1/3)πr²h, Curved Surface Area = πrl, Total Surface Area = πr(r + l) where l = slant height
+        <div class="example">
+            <strong>Example:</strong> Essay question types<br>
+            Narrative: "Write a story that ends with the statement: '...and that was how I learned to be careful with strangers.'"<br>
+            Argumentative: "The use of mobile phones should be allowed in schools. Do you agree?"
         </div>
         <div class="tip">
-            For any prism, the volume can be calculated as the product of the base area and the height.
+            Always plan your essay before writing. Spend about 5 minutes outlining your main points and organizing your thoughts.
         </div>
-    </div>
-    
-    <div class="topic">
-        <h2>5. STATISTICS AND PROBABILITY</h2>
-        
-        <h3>5.1 Data Representation</h3>
-        <p>Methods of organizing and presenting data.</p>
-        <div class="formula">
-            Types of data representation:<br>
-            - Frequency tables<br>
-            - Bar charts/histograms<br>
-            - Pie charts<br>
-            - Line graphs<br>
-            - Scatter diagrams
-        </div>
-        <div class="tip">
-            When drawing a pie chart, calculate the angle for each sector using:<br>
-            Angle = (Item's frequency / Total frequency) × 360°
-        </div>
-        
-        <h3>5.2 Measures of Central Tendency</h3>
-        <p>Values that represent the center or typical value of a data set.</p>
-        <div class="formula">
-            Mean (arithmetic): Sum of all values divided by the number of values<br>
-            Median: Middle value when data is arranged in order<br>
-            Mode: Most frequently occurring value
-        </div>
-        <div class="example">
-            <strong>Example:</strong> Find the mean, median, and mode of: 4, 7, 9, 3, 5, 9, 8<br>
-            Mean = (4+7+9+3+5+9+8)/7 = 45/7 = 6.43<br>
-            Median (ordered data: 3,4,5,7,8,9,9): 7<br>
-            Mode: 9 (occurs twice)
-        </div>
-        
-        <h3>5.3 Measures of Dispersion</h3>
-        <p>Values that describe the spread or variation of a data set.</p>
-        <div class="formula">
-            Range = Maximum value - Minimum value<br>
-            Variance = ∑(x - μ)² / n<br>
-            Standard deviation = √Variance
-        </div>
-        
-        <h3>5.4 Probability</h3>
-        <p>The measure of the likelihood of an event occurring.</p>
-        <div class="formula">
-            P(Event) = Number of favorable outcomes / Total number of possible outcomes<br>
-            P(A or B) = P(A) + P(B) - P(A and B)<br>
-            P(A and B) = P(A) × P(B|A) = P(B) × P(A|B)<br>
-            For independent events: P(A and B) = P(A) × P(B)
-        </div>
-        <div class="important">
-            0 ≤ P(Event) ≤ 1<br>
-            P(Certain event) = 1<br>
-            P(Impossible event) = 0<br>
-            P(Not A) = 1 - P(A)
-        </div>
-    </div>
-    
-    <div class="topic">
-        <h2>6. VECTORS AND MATRICES</h2>
-        
-        <h3>6.1 Vectors</h3>
-        <p>Quantities that have both magnitude and direction.</p>
-        <div class="formula">
-            Vector addition: v + w<br>
-            Scalar multiplication: kv<br>
-            Magnitude of a vector |v| = √(v₁² + v₂² + v₃²)<br>
-            Unit vector: v/|v|<br>
-            Dot product: v·w = |v||w|cos θ = v₁w₁ + v₂w₂ + v₃w₃
-        </div>
-        <div class="example">
-            <strong>Example:</strong> Find the magnitude of v = 3i + 4j<br>
-            |v| = √(3² + 4²) = √(9 + 16) = √25 = 5
-        </div>
-        
-        <h3>6.2 Matrices</h3>
-        <p>Rectangular arrays of numbers arranged in rows and columns.</p>
-        <div class="formula">
-            Matrix addition: (A + B)ᵢⱼ = Aᵢⱼ + Bᵢⱼ<br>
-            Scalar multiplication: (kA)ᵢⱼ = kAᵢⱼ<br>
-            Matrix multiplication: (AB)ᵢⱼ = ∑ Aᵢₖ × Bₖⱼ<br>
-            Determinant of 2×2 matrix: |A| = ad - bc, where A = [[a, b], [c, d]]<br>
-            Inverse of 2×2 matrix: A⁻¹ = 1/|A| × [[d, -b], [-c, a]], where A = [[a, b], [c, d]]
-        </div>
-        <div class="important">
-            Matrix multiplication is not commutative in general: AB ≠ BA<br>
-            A matrix must be square to have a determinant<br>
-            A matrix has an inverse if and only if its determinant is not zero
-        </div>
-    </div>
-    
-    <div class="topic">
-        <h2>7. CALCULUS</h2>
-        
-        <h3>7.1 Differentiation</h3>
-        <p>Finding the rate of change or slope of a function.</p>
-        <div class="formula">
-            Basic rules:<br>
-            - d/dx(xⁿ) = nxⁿ⁻¹<br>
-            - d/dx(k) = 0 (k is constant)<br>
-            - d/dx(kf(x)) = k·d/dx(f(x))<br>
-            - d/dx(f(x) + g(x)) = d/dx(f(x)) + d/dx(g(x))<br>
-            - d/dx(f(x) × g(x)) = f(x)·d/dx(g(x)) + g(x)·d/dx(f(x))
-        </div>
-        <div class="example">
-            <strong>Example:</strong> Find the derivative of f(x) = 3x² - 2x + 5<br>
-            f'(x) = 3·2x¹ - 2·1x⁰ + 0 = 6x - 2
-        </div>
-        
-        <h3>7.2 Integration</h3>
-        <p>The inverse process of differentiation, finding the area under a curve.</p>
-        <div class="formula">
-            Basic rules:<br>
-            - ∫xⁿ dx = xⁿ⁺¹/(n+1) + C (n ≠ -1)<br>
-            - ∫k dx = kx + C (k is constant)<br>
-            - ∫(f(x) + g(x)) dx = ∫f(x) dx + ∫g(x) dx<br>
-            - ∫k·f(x) dx = k·∫f(x) dx
-        </div>
-        <div class="important">
-            Definite integral: ∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) - F(a), where F is the antiderivative of f
-        </div>
-        <div class="example">
-            <strong>Example:</strong> Evaluate ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx<br>
-            ∫(3x² + 2) dx = 3x³/3 + 2x + C = x³ + 2x + C<br>
-            ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx = (2³ + 2·2) - (0³ + 2·0) = 8 + 4 - 0 = 12
-        </div>
-    </div>
-    
-    <div class="topic">
-        <h2>8. EXAMINATION TIPS</h2>
-        
-        <h3>8.1 General Tips</h3>
-        <ul>
-            <li>Read each question carefully, identifying what is given and what is required.</li>
-            <li>Show all your working clearly and systematically.</li>
-            <li>Manage your time wisely, spending more time on higher-mark questions.</li>
-            <li>Check your answers if time permits.</li>
-            <li>Ensure your calculator is set to the correct mode (degrees/radians) for trigonometric calculations.</li>
-        </ul>
-        
-        <h3>8.2 Common Mistakes to Avoid</h3>
-        <ul>
-            <li>Forgetting to include units in your final answer.</li>
-            <li>Computational errors in basic arithmetic.</li>
-            <li>Not reading the question carefully and missing key information.</li>
-            <li>Forgetting to check if your answer makes sense in the context of the problem.</li>
-            <li>Incorrect application of formulas.</li>
-        </ul>
-        
-        <h3>8.3 Last-Minute Preparation</h3>
-        <ul>
-            <li>Review key formulas, properties, and theorems.</li>
-            <li>Practice with past WAEC questions to get familiar with the format and style.</li>
-            <li>Focus on areas where you have challenges.</li>
-            <li>Ensure you have all required materials (calculator, mathematical set, etc.) ready before the exam day.</li>
-            <li>Get adequate rest before the examination.</li>
-        </ul>
-    </div>
-    
-    <div class="footer">
-        <p>© 2025 WAEC Mathematics Study Guide</p>
-        <p>Prepared by a qualified mathematics instructor to help students excel in their WAEC examinations.</p>
-        <p>Good luck in your examinations!</p>
     </div>
 </body>
 </html>
