@@ -25,9 +25,11 @@
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
+            position: relative;
         }
         
         .container {
+            width: 100%;
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
@@ -37,7 +39,7 @@
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 40px 0;
+            padding: 40px 20px;
             margin-bottom: 30px;
             position: relative;
         }
@@ -53,12 +55,12 @@
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             margin-bottom: 10px;
         }
         
         h2 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             color: var(--primary);
             margin: 30px 0 20px;
             border-bottom: 2px solid var(--primary);
@@ -66,7 +68,7 @@
         }
         
         h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: var(--secondary);
             margin: 20px 0 15px;
         }
@@ -87,6 +89,8 @@
         .map-container {
             text-align: center;
             margin: 30px 0;
+            width: 100%;
+            overflow-x: auto;
         }
         
         .map-placeholder {
@@ -104,6 +108,12 @@
         .image-container {
             text-align: center;
             margin: 20px 0;
+            max-width: 100%;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
         }
         
         .image-caption {
@@ -125,6 +135,7 @@
             position: relative;
             max-width: 800px;
             margin: 40px auto;
+            padding: 0 20px;
         }
         
         .timeline::after {
@@ -207,6 +218,7 @@
             padding: 20px;
             margin: 20px 0;
             border-radius: 5px;
+            overflow-x: auto;
         }
         
         .table-of-contents h3 {
@@ -215,6 +227,7 @@
         
         .table-of-contents ul {
             list-style-type: none;
+            padding-left: 15px;
         }
         
         .table-of-contents li {
@@ -259,6 +272,82 @@
             text-decoration: none;
             display: block;
             padding: 10px;
+        }
+        
+        /* Fade effect at the bottom */
+        .fade-effect {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(245,245,245,0) 0%, rgba(245,245,245,1) 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 30px 15px;
+            }
+            
+            .chapter {
+                padding: 15px;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 15px;
+            }
+            
+            .fade-effect {
+                height: 80px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .map-placeholder {
+                height: 300px;
+            }
+            
+            .fade-effect {
+                height: 60px;
+            }
         }
     </style>
 </head>
@@ -407,7 +496,7 @@
 
         <div class="continue-reading">
             <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22The%20Gambia%3A%20A%20Journey%20Through%20Time%22%20document%2C%20my%20name%20is%20">
-                Continue Reading: Click here to request the complete document via WhatsApp
+                Continue Reading....
             </a>
         </div>
     </div>
@@ -417,5 +506,8 @@
             <p>&copy; 2025 The Gambia: A Journey Through Time</p>
         </div>
     </footer>
+    
+    <!-- Fade effect div -->
+    <div class="fade-effect"></div>
 </body>
 </html>
