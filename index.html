@@ -12,6 +12,7 @@
             --light: #f5f5f5;
             --dark: #333;
             --timeline-color: #006847;
+            --bright-green: #00c853;
         }
         
         * {
@@ -71,6 +72,17 @@
             font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: var(--secondary);
             margin: 20px 0 15px;
+        }
+        
+        /* Special fade effect for the specific heading */
+        .fade-heading {
+            background: linear-gradient(to right, var(--secondary) 70%, transparent 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 20px 0 15px;
+            position: relative;
         }
         
         p {
@@ -260,30 +272,19 @@
             text-align: center;
             margin: 40px 0;
             padding: 15px;
-            background-color: #f0f0f0;
+            background-color: var(--bright-green);
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .continue-reading a {
             font-size: 1.2rem;
             font-weight: bold;
-            color: var(--primary);
+            color: white;
             text-decoration: none;
             display: block;
             padding: 10px;
-        }
-        
-        /* Fade effect at the bottom */
-        .fade-effect {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom, rgba(245,245,245,0) 0%, rgba(245,245,245,1) 100%);
-            pointer-events: none;
-            z-index: 10;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
         
         /* Responsive adjustments */
@@ -318,10 +319,6 @@
             .timeline-item:nth-child(even)::after {
                 left: 15px;
             }
-            
-            .fade-effect {
-                height: 80px;
-            }
         }
 
         @media screen and (max-width: 480px) {
@@ -343,10 +340,6 @@
             
             .map-placeholder {
                 height: 300px;
-            }
-            
-            .fade-effect {
-                height: 60px;
             }
         }
     </style>
@@ -489,9 +482,8 @@
                 <h4>The Gambia River's Strategic Importance</h4>
                 <p>The Gambia River provided access deep into West Africa's interior, making it exceptionally valuable for European traders. Its navigability for nearly 300 miles inland made it possible to bypass difficult overland routes and establish direct contact with societies far from the coast.</p>
             </div>
-            <!-- Fade effect div -->
-            <div class="fade-effect"></div>
-            <h3>Portuguese Decline and European Competition</h3>
+            
+            <h3 class="fade-heading">Portuguese Decline and European Competition</h3>
             <p>By the late 16th century, Portugal's dominance in West African trade began to wane as other European powers, particularly England, France, and the Netherlands, sought to establish their own trading posts in the region. This period saw increasing competition and occasional conflict among European powers for control of strategic trading locations along the Gambia River.</p>
         </section>
 
@@ -507,7 +499,5 @@
             <p>&copy; 2025 The Gambia: A Journey Through Time</p>
         </div>
     </footer>
-    
-    
 </body>
 </html>
