@@ -3,78 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gambia: A Journey Through Time</title>
+    <title>WAEC Mathematics Key Points</title>
     <style>
-        :root {
-            --primary: #006847;
-            --secondary: #0072c6;
-            --accent: #ce1126;
-            --light: #f5f5f5;
-            --dark: #333;
-            --timeline-color: #006847;
-            --bright-green: #00c853;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
-            position: relative;
-        }
-        
-        .container {
-            width: 100%;
+            color: #333;
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f5f5f5;
         }
         
-        header {
-            background-color: var(--primary);
+        .header {
+            background-color: #006400;
             color: white;
+            padding: 20px;
             text-align: center;
-            padding: 40px 20px;
+            border-radius: 5px 5px 0 0;
             margin-bottom: 30px;
-            position: relative;
         }
         
-        header:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 10px;
-            background: linear-gradient(to right, #ce1126 33.3%, #fff 33.3%, #fff 66.6%, #0072c6 66.6%);
+        .waec-logo {
+            background-color: white;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #006400;
+            margin-bottom: 15px;
         }
         
         h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            margin-bottom: 10px;
+            margin: 0;
+            font-size: 32px;
         }
         
         h2 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--primary);
-            margin: 30px 0 20px;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 5px;
+            color: #006400;
+            border-bottom: 2px solid #006400;
+            padding-bottom: 10px;
+            margin-top: 40px;
         }
         
         h3 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            color: var(--secondary);
-            margin: 20px 0 15px;
+            color: #008000;
+            margin-top: 25px;
+            background-color: #f0f8f0;
+            padding: 8px;
+            border-left: 5px solid #006400;
         }
         
-        /* Modified fade effect for paragraph text to indicate more content */
+        .topic {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .formula {
+            background-color: #f0f8f0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 4px solid #008000;
+        }
+        
+        .example {
+            background-color: #f5f5ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #0000aa;
+        }
+        
+        .tip {
+            background-color: #fffff0;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #aa8800;
+        }
+        
+        .tip::before {
+            content: "TIP: ";
+            font-weight: bold;
+            color: #aa8800;
+        }
+        
+        .important {
+            background-color: #fff0f0;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #cc0000;
+        }
+        
+        .important::before {
+            content: "IMPORTANT: ";
+            font-weight: bold;
+            color: #cc0000;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #e6f2e6;
+            color: #006400;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #006400;
+            color: white;
+            border-radius: 0 0 5px 5px;
+        }
+    
         .fade-heading {
             position: relative;
             max-height: 130px; /* Limit height to show only part of the content */
@@ -93,414 +160,80 @@
             background: linear-gradient(to bottom, transparent 0%, var(--light) 100%);
             pointer-events: none; /* Ensures the gradient doesn't block interactions */
         }
-        
-        p {
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-        
-        .chapter {
-            margin-bottom: 50px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .map-container {
-            text-align: center;
-            margin: 30px 0;
-            width: 100%;
-            overflow-x: auto;
-        }
-        
-        .map-placeholder {
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            background-color: #e9e9e9;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #ccc;
-        }
-        
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-            max-width: 100%;
-        }
-        
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .image-caption {
-            font-style: italic;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            color: #666;
-        }
-        
-        blockquote {
-            font-style: italic;
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-            margin: 20px 0;
-            color: #555;
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--timeline-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-        
-        .timeline-item {
-            position: relative;
-            width: 50%;
-            padding: 10px 40px;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: white;
-            border: 4px solid var(--timeline-color);
-            border-radius: 50%;
-            top: 15px;
-            right: -14px;
-            z-index: 1;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(odd)::after {
-            right: -14px;
-        }
-        
-        .timeline-item:nth-child(even)::after {
-            left: -14px;
-        }
-        
-        .timeline-content {
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .timeline-date {
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .footnote {
-            font-size: 0.9rem;
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
-            margin-top: 30px;
-        }
-        
-        .table-of-contents {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        
-        .table-of-contents h3 {
-            margin-top: 0;
-        }
-        
-        .table-of-contents ul {
-            list-style-type: none;
-            padding-left: 15px;
-        }
-        
-        .table-of-contents li {
-            margin-bottom: 8px;
-        }
-        
-        .table-of-contents a {
-            color: var(--secondary);
-            text-decoration: none;
-        }
-        
-        .table-of-contents a:hover {
-            text-decoration: underline;
-        }
-        
-        .sidebar {
-            background-color: #f0f0f0;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid var(--secondary);
-            font-size: 0.9rem;
-        }
-        
-        .sidebar h4 {
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-
-        .continue-reading {
-            text-align: center;
-            margin: 40px 0;
-            padding: 15px;
-            background-color: var(--bright-green);
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .continue-reading a {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-        
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            header {
-                padding: 30px 15px;
-            }
-            
-            .chapter {
-                padding: 15px;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-item:nth-child(odd)::after,
-            .timeline-item:nth-child(even)::after {
-                left: 15px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            h3 {
-                font-size: 1.2rem;
-            }
-            
-            .timeline-item {
-                padding-left: 60px;
-            }
-            
-            .map-placeholder {
-                height: 300px;
-            }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>The Gambia: A Journey Through Time</h1>
-            <p>From Ancient Civilizations to Modern Nation-State</p>
-        </div>
-    </header>
+    <div class="header">
+        <div class="waec-logo">WAEC</div>
+        <h1>MATHEMATICS KEY POINTS</h1>
+        <p>Comprehensive Study Guide for WAEC Mathematics Examination</p>
+    </div>
     
-    <div class="container">
-        <div class="table-of-contents">
-            <h3>Table of Contents</h3>
-            <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#ancient-gambia">Chapter 1: Ancient Gambia and Early Settlements</a></li>
-                <li><a href="#portuguese-contact">Chapter 2: First European Contact: The Portuguese Arrival</a></li>
-                <li><a href="#slave-trade">Chapter 3: The Atlantic Slave Trade and Its Impact</a></li>
-                <li><a href="#british-colonization">Chapter 4: British Colonization and the Crown Colony</a></li>
-                <li><a href="#road-to-independence">Chapter 5: The Road to Independence</a></li>
-                <li><a href="#post-independence">Chapter 6: Post-Independence Developments</a></li>
-                <li><a href="#modern-gambia">Chapter 7: Modern Gambia and Cultural Heritage</a></li>
-                <li><a href="#conclusion">Conclusion</a></li>
-            </ul>
+    <div class="topic">
+        <h2>1. NUMBER AND NUMERATION</h2>
+        
+        <h3>1.1 Number Bases</h3>
+        <p>Number bases refer to different systems of counting, with decimal (base 10) being the most common.</p>
+        <div class="formula">
+            Converting from base 10 to another base: Divide repeatedly by the new base, taking remainders<br>
+            Converting from another base to base 10: Multiply each digit by its place value and sum
+        </div>
+        <div class="example">
+            <strong>Example:</strong> Convert 29₁₀ to base 2<br>
+            29 ÷ 2 = 14 remainder 1<br>
+            14 ÷ 2 = 7 remainder 0<br>
+            7 ÷ 2 = 3 remainder 1<br>
+            3 ÷ 2 = 1 remainder 1<br>
+            1 ÷ 2 = 0 remainder 1<br>
+            Reading from bottom to top: 29₁₀ = 11101₂
+        </div>
+        <div class="tip">
+            When converting between bases, always work systematically and check your conversion by converting back to the original base.
         </div>
         
-        <section id="introduction" class="chapter">
-            <h2>Introduction</h2>
-            <p>The Gambia, officially the Republic of The Gambia, is one of Africa's smallest countries, yet it possesses a rich and complex history that spans thousands of years. This narrow strip of land flanking the Gambia River has been a crossroads of civilizations, a nexus of trade networks, and the site of profound historical transformations from ancient times to the present day.</p>
-            
-            <p>Stretching only 30 miles wide at its broadest point and extending approximately 300 miles inland from the Atlantic Ocean, The Gambia's unusual geography—completely surrounded by Senegal except for its western coastline—has profoundly shaped its historical development. The Gambia River, which gives the country both its name and its distinctive shape, has served as a vital artery for trade, cultural exchange, and colonization throughout the centuries.</p>
-            
-            <div class="map-container">
-                <img src="https://www.accessgambia.com/images/gambia_africa.png" alt="Map of The Gambia" />
-                <p class="image-caption">Geographical location of The Gambia in West Africa</p>
-            </div>
-            
-            <p>This digital book aims to trace The Gambia's historical journey from the earliest human settlements through the colonial period to its emergence as an independent nation. Along the way, we will explore the diverse peoples who have inhabited this land, the impact of external forces such as European exploration and the Atlantic slave trade, the transformative effects of British colonialism, and the challenges and achievements of the post-independence era.</p>
-            
-            <blockquote>"The history of The Gambia is a microcosm of the broader African experience—reflecting the continent's struggles with colonization, its fight for self-determination, and its ongoing quest to forge a path forward that honors indigenous traditions while engaging with the modern world."</blockquote>
-        </section>
+        <h3>1.2 Fractions, Decimals, and Percentages</h3>
+        <p>These are different ways of representing parts of a whole.</p>
+        <div class="formula">
+            Percentage = Fraction × 100%<br>
+            Decimal = Fraction<br>
+            Fraction = Decimal = Percentage ÷ 100
+        </div>
+        <div class="example">
+            <strong>Example:</strong> Express 0.75 as a fraction and a percentage<br>
+            As a fraction: 0.75 = 75/100 = 3/4 (simplified)<br>
+            As a percentage: 0.75 × 100% = 75%
+        </div>
         
-        <section id="ancient-gambia" class="chapter">
-            <h2>Chapter 1: Ancient Gambia and Early Settlements</h2>
-            
-            <h3>Prehistoric Inhabitants</h3>
-            <p>Archaeological evidence suggests human habitation in what is now The Gambia dates back several thousand years. Stone circles found in parts of Senegambia (the region encompassing The Gambia and Senegal) indicate sophisticated early civilizations with advanced knowledge of astronomy and stone-working techniques.</p>
-            
-            <div class="image-container">
-                <img src="https://cdn.britannica.com/61/231161-050-51DF25AC/A-horizontal-image-of-the-Wassu-stone-circles-in-The-Gambia.jpg" alt="Stone Circles" />
-                <p class="image-caption">Stone circles in Wassu, among the most visible archaeological remnants of ancient Gambian civilization</p>
-            </div>
-            
-            <h3>Early Kingdoms and Empires</h3>
-            <p>By the 5th century CE, organized states began to emerge in the region. The Gambia River valley was influenced by several major West African empires, including:</p>
-            
-            <p>The <strong>Ghana Empire</strong> (c. 700-1200 CE), centered to the north in what is now Mali and Mauritania, established trade networks that extended to the Gambia River valley, bringing Islam and trade goods to the region.</p>
-            
-            <p>The <strong>Mali Empire</strong> (c. 1230-1600 CE) incorporated the Gambia River region more directly into its domain. Under the Mali Empire, Islam spread more widely among the ruling classes and merchant communities along the river.</p>
-            
-            <p>The <strong>Songhai Empire</strong> (c. 1464-1591), though centered in the Niger River valley, extended its influence into the Senegambia region through trade networks and political alliances.</p>
-            
-            <h3>Indigenous Ethnic Groups</h3>
-            <p>Several ethnic groups established themselves in the area, each with distinct cultural practices, languages, and social structures:</p>
-            
-            <p>The <strong>Mandinka</strong> (or Malinke), descended from the founders of the Mali Empire, became the dominant group in much of what is now The Gambia. They established a series of small kingdoms along the Gambia River.</p>
-            
-            <p>The <strong>Wolof</strong> established themselves primarily in the western coastal areas, developing sophisticated political structures.</p>
-            
-            <p>The <strong>Fula</strong> (or Fulani), traditionally nomadic pastoralists, began settling in the region, bringing their distinctive cultural practices and engaging in cattle herding.</p>
-            
-            <p>The <strong>Jola</strong> (or Diola) established themselves in the western regions of The Gambia, developing distinctive religious practices and social structures resistant to outside influence.</p>
-            
-            <p>The <strong>Serahule</strong> (or Soninke), known for their commercial acumen, established trading networks throughout the region.</p>
-            
-            <h3>Trade Networks and Cultural Exchange</h3>
-            <p>Long before European arrival, the Gambia River served as a crucial trade route linking the Atlantic coast with the interior of West Africa. Salt, cloth, metal goods, and later gold traveled along this waterway, facilitating cultural exchange and economic development. Trans-Saharan trade routes also connected the region to North Africa and, by extension, to the Mediterranean world and the Middle East.</p>
-            
-            <div class="sidebar">
-                <h4>Key Archaeological Sites</h4>
-                <p>The Wassu Stone Circles, now a UNESCO World Heritage Site, date back to approximately 750-900 CE. These megalithic structures likely served funerary purposes for ancient kings and chiefs. Similar stone circles can be found at Kerr Batch and other locations throughout the Senegambia region.</p>
-            </div>
-            
-            <p>The introduction of Islam to the region began as early as the 9th century through contact with North African traders, though it would take centuries for the religion to be widely adopted. Traditional African religious practices remained dominant among most of the population, with Islam primarily influencing ruling and merchant classes initially.</p>
-        </section>
+        <h3>1.3 Indices and Logarithms</h3>
+        <p>Indices (powers) and logarithms are inverse operations used to express repeated multiplication.</p>
+        <div class="formula">
+            Laws of indices:<br>
+            aⁿ × aᵐ = aⁿ⁺ᵐ<br>
+            aⁿ ÷ aᵐ = aⁿ⁻ᵐ<br>
+            (aⁿ)ᵐ = aⁿᵐ<br>
+            a⁰ = 1<br>
+            a⁻ⁿ = 1/aⁿ<br>
+            <br>
+            Logarithm: If aˣ = N, then log<sub>a</sub>N = x
+        </div>
+        <div class="important">
+            Remember that logarithms are only defined for positive numbers, and the base of a logarithm must be positive and not equal to 1.
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>2. ALGEBRA</h2>
         
-        <section id="portuguese-contact" class="chapter">
-            <h2>Chapter 2: First European Contact: The Portuguese Arrival</h2>
-            
-            <h3>Portuguese Exploration</h3>
-            <p>The first documented European contact with The Gambia came in 1455 when Portuguese explorer Alvise Cadamosto, sailing under the patronage of Prince Henry the Navigator, navigated the Gambia River. This voyage marked the beginning of a new era in Gambian history, as European powers began to take an interest in West Africa's resources and strategic locations.</p>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">1455</span>
-                        <p>Alvise Cadamosto becomes the first European to navigate the Gambia River.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">1456</span>
-                        <p>Portuguese explorer Diogo Gomes reaches further upriver, making contact with local kingdoms.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">1482</span>
-                        <p>Portuguese establish trading post at the mouth of the Gambia River.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Early 1500s</span>
-                        <p>Regular trade relations established between Portuguese and local kingdoms.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <p>The Portuguese were primarily interested in accessing the gold that flowed through trans-Saharan trade networks. They established trading posts along the Gambia River, seeking to bypass North African middlemen and access gold sources directly. In addition to gold, they traded in ivory, beeswax, and other valuable commodities.</p>
-            
-            <div class="image-container">
-                <img src="https://cdn.britannica.com/94/7094-004-A5B58BC2/caravels-Portuguese-Lisbon-engraving-Brazil-America-West-1562.jpg" alt="Portuguese Caravel" />
-                <p class="image-caption">A Portuguese caravel, the type of ship used to navigate the Gambia River during early explorations</p>
-            </div>
-            
-            <h3>Early Trading Relationships</h3>
-            <p>The Portuguese established their first permanent trading post at the mouth of the Gambia River in 1482. Unlike later European powers, the Portuguese generally did not attempt to conquer territory but instead established commercial relationships with local rulers. They built several feitorias (trading factories) along the river, the most important being at what is now Juffure.</p>
-            
-            <p>These early trade relationships were relatively balanced, with local rulers maintaining their authority and Portuguese traders operating within established local systems. The Portuguese brought new commodities to the region, including firearms, alcohol, textiles, and various manufactured goods, which they exchanged for gold, ivory, and increasingly, enslaved people.</p>
-            
-            <h3>Cultural and Religious Exchange</h3>
-            <p>The Portuguese arrival also brought Christianity to The Gambia, though efforts to convert local populations were limited and largely unsuccessful. More significant was the exchange of agricultural products; the Portuguese introduced crops from the Americas such as maize, cassava, and peanuts, which eventually became dietary staples in the region.</p>
-            
-            <p>Portuguese influence on local languages was also notable, with many Portuguese loanwords entering local Gambian languages, particularly in terms related to trade and new technologies. Some Portuguese traders settled permanently in the region, marrying local women and creating communities of mixed ancestry.</p>
-            
-            <div class="sidebar">
-                <h4>The Gambia River's Strategic Importance</h4>
-                <p>The Gambia River provided access deep into West Africa's interior, making it exceptionally valuable for European traders. Its navigability for nearly 300 miles inland made it possible to bypass difficult overland routes and establish direct contact with societies far from the coast.</p>
-            </div>
-            
-            <h3>Portuguese Decline and European Competition</h3>
-            <p class="fade-heading">By the late 16th century, Portugal's dominance in West African trade began to wane as other European powers, particularly England, France, and the Netherlands, sought to establish their own trading posts in the region. This period saw increasing competition and occasional conflict among European powers for control of strategic trading locations along the Gambia River. As Portugal's empire stretched thin across multiple continents, they found it increasingly difficult to maintain exclusive control over West African coastal trade. English and Dutch merchants began to challenge Portuguese monopolies, offering better terms to local rulers and sometimes using force to establish their own trading posts. This rivalry would set the stage for the next phase in The Gambia's colonial history, as European nations competed intensely for access to African resources and eventually for territorial control. The consequences of this European competition would profoundly reshape The Gambia's political and economic landscape in the centuries to come.</p>
-        </section>
-
+        <h3>2.1 Algebraic Expressions</h3>
+        <p class="fade-heading">Algebraic expressions involve variables and constants combined with operations.</p>
+        <div class="formula">
+            Like terms: Terms with identical variable parts<br>
+            Factorization: Expressing a polynomial as a product of simpler expressions<br>
+            Quadratic expression: ax² + bx + c, where a ≠ 0
+        </div>
         <div class="continue-reading">
-            <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22The%20Gambia%3A%20A%20Journey%20Through%20Time%22%20document%2C%20my%20name%20is%20">
+            <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22Waec%20Mathematics%3A%20A%20Study%20Guide%20PDF%22%20document%2C%20my%20name%20is%20">
                 Continue Reading....
             </a>
         </div>
-    </div>
-
-    
+        
