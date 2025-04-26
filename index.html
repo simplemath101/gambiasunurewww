@@ -74,18 +74,24 @@
             margin: 20px 0 15px;
         }
         
-        /* Modified fade effect for paragraph instead of heading */
+        /* Modified fade effect for paragraph text to indicate more content */
         .fade-heading {
-            background: linear-gradient(to right, var(--secondary) 70%, transparent 100%);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: block;
-            margin: 10px 0 20px;
             position: relative;
-            font-size: 1rem; /* Adjusted for paragraph text */
-            line-height: 1.6;
-            text-align: left; /* Ensure text alignment is left for readability */
+            max-height: 130px; /* Limit height to show only part of the content */
+            overflow: hidden;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .fade-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px; /* Height of the fade effect */
+            background: linear-gradient(to bottom, transparent 0%, var(--light) 100%);
+            pointer-events: none; /* Ensures the gradient doesn't block interactions */
         }
         
         p {
@@ -487,7 +493,7 @@
             </div>
             
             <h3>Portuguese Decline and European Competition</h3>
-            <p class="fade-heading">By the late 16th century, Portugal's dominance in West African trade began to wane as other European powers, particularly England, France, and the Netherlands, sought to establish their own trading posts in the region. This period saw increasing competition and occasional conflict among European powers for control of strategic trading locations along the Gambia River.</p>
+            <p class="fade-heading">By the late 16th century, Portugal's dominance in West African trade began to wane as other European powers, particularly England, France, and the Netherlands, sought to establish their own trading posts in the region. This period saw increasing competition and occasional conflict among European powers for control of strategic trading locations along the Gambia River. As Portugal's empire stretched thin across multiple continents, they found it increasingly difficult to maintain exclusive control over West African coastal trade. English and Dutch merchants began to challenge Portuguese monopolies, offering better terms to local rulers and sometimes using force to establish their own trading posts. This rivalry would set the stage for the next phase in The Gambia's colonial history, as European nations competed intensely for access to African resources and eventually for territorial control. The consequences of this European competition would profoundly reshape The Gambia's political and economic landscape in the centuries to come.</p>
         </section>
 
         <div class="continue-reading">
