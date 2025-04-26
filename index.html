@@ -141,73 +141,6 @@
             color: white;
             border-radius: 0 0 5px 5px;
         }
-    
-        .fade-heading {
-            position: relative;
-            max-height: 130px; /* Limit height to show only part of the content */
-            overflow: hidden;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-        
-        .fade-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 80px; /* Height of the fade effect */
-            background: linear-gradient(to bottom, transparent 0%, white 100%);
-            pointer-events: none; /* Ensures the gradient doesn't block interactions */
-        }
-
-        .fade-content {
-            position: relative;
-            max-height: 180px;
-            overflow: hidden;
-        }
-        
-        .fade-content::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, white 80%);
-            pointer-events: none;
-        }
-        
-        /* Mid-text cut-off to entice users */
-        .cut-off-text {
-            margin-bottom: 0;
-        }
-        
-        .continue-reading {
-            text-align: center;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .continue-reading a {
-            display: inline-block;
-            background-color: #00c853; /* Bright green color */
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        
-        .continue-reading a:hover {
-            background-color: #00a844;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transform: translateY(-2px);
-        }
     </style>
 </head>
 <body>
@@ -273,24 +206,327 @@
         <h2>2. ALGEBRA</h2>
         
         <h3>2.1 Algebraic Expressions</h3>
-        <div class="fade-content">
-            <p>Algebraic expressions involve variables and constants combined with operations. These expressions can be manipulated through various operations such as addition, subtraction, multiplication, and division. Understanding algebraic expressions is fundamental to solving equations and inequalities in mathematics.</p>
-            <p>Key operations include simplifying expressions by combining like terms, factoring expressions to find their component parts, and expanding expressions by multiplying terms. These skills are essential for solving more complex problems in algebra and calculus.</p>
-            <p class="cut-off-text">When solving algebraic expressions, it's important to follow the order of operations, which is: Parentheses, Exponents, Multiplication and Division (from left to right), Addition and Subtraction (from left to right). This is often remembered by the acronym PEMDAS.</p>
-            <p>Common algebraic techniques include:</p>
-            <ul>
-                <li>Collecting like terms: 3x + 5x = 8x</li>
-                <li>Distributive property: a(b + c) = ab + ac</li>
-                <li>Factoring quadratics: ax² + bx + c = a(x - r₁)(x - r₂)</li>
-                <li>Completing the square: x² + bx + c = (x + b/2)² + [c - (b/2)²]</li>
-                <li>Polynomial division using...</li>
-            </ul>
+        <p>Algebraic expressions involve variables and constants combined with operations.</p>
+        <div class="formula">
+            Like terms: Terms with identical variable parts<br>
+            Factorization: Expressing a polynomial as a product of simpler expressions<br>
+            Quadratic expression: ax² + bx + c, where a ≠ 0
         </div>
-        <div class="continue-reading">
-            <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22Waec%20Mathematics%3A%20A%20Study%20Guide%20PDF%22%20document%2C%20my%20name%20is%20">
-                CLICK HERE FOR THE FULL VERSION
-            </a>
+        <div class="example">
+            <strong>Example:</strong> Factorize x² - 9<br>
+            x² - 9 = x² - 3²<br>
+            = (x + 3)(x - 3) (difference of squares formula)
         </div>
+        
+        <h3>2.2 Algebraic Equations</h3>
+        <p>Equations are mathematical statements declaring equality between expressions.</p>
+        <div class="formula">
+            Linear equation: ax + b = 0<br>
+            Quadratic equation: ax² + bx + c = 0<br>
+            Quadratic formula: x = (-b ± √(b² - 4ac)) / 2a<br>
+            Discriminant (Δ) = b² - 4ac
+        </div>
+        <div class="important">
+            For a quadratic equation:<br>
+            - If Δ > 0: Two distinct real roots<br>
+            - If Δ = 0: One repeated real root<br>
+            - If Δ < 0: No real roots (two complex roots)
+        </div>
+        
+        <h3>2.3 Sequences and Series</h3>
+        <p>Patterns of numbers following specific rules.</p>
+        <div class="formula">
+            Arithmetic Progression (AP):<br>
+            - nth term: a + (n-1)d<br>
+            - Sum of n terms: n/2[2a + (n-1)d] or n/2(first term + last term)<br>
+            <br>
+            Geometric Progression (GP):<br>
+            - nth term: ar^(n-1)<br>
+            - Sum of n terms: a(1-r^n)/(1-r) for |r| < 1<br>
+            - Sum of n terms: a(r^n-1)/(r-1) for |r| > 1
+        </div>
+        <div class="example">
+            <strong>Example:</strong> Find the sum of the first 10 terms of the AP: 3, 7, 11, 15, ...<br>
+            First term (a) = 3, Common difference (d) = 4<br>
+            S₁₀ = 10/2[2(3) + (10-1)4] = 5[6 + 36] = 5[42] = 210
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>3. GEOMETRY AND TRIGONOMETRY</h2>
+        
+        <h3>3.1 Angles and Lines</h3>
+        <p>Basic building blocks of geometry dealing with directions and intersections.</p>
+        <div class="formula">
+            Angle properties:<br>
+            - Adjacent angles on a straight line sum to 180°<br>
+            - Angles at a point sum to 360°<br>
+            - Vertically opposite angles are equal
+        </div>
+        <div class="example">
+            <strong>Example:</strong> If two parallel lines are cut by a transversal, then:<br>
+            - Corresponding angles are equal<br>
+            - Alternate angles are equal<br>
+            - Interior angles on the same side of the transversal sum to 180°
+        </div>
+        
+        <h3>3.2 Polygons</h3>
+        <p>Closed figures with straight sides.</p>
+        <div class="formula">
+            Sum of interior angles of a polygon with n sides = (n - 2) × 180°<br>
+            Each interior angle of a regular polygon = (n - 2) × 180° / n<br>
+            Each exterior angle of a regular polygon = 360° / n
+        </div>
+        <table>
+            <tr>
+                <th>Polygon</th>
+                <th>Sides</th>
+                <th>Sum of Interior Angles</th>
+                <th>Interior Angle (Regular)</th>
+            </tr>
+            <tr>
+                <td>Triangle</td>
+                <td>3</td>
+                <td>180°</td>
+                <td>60°</td>
+            </tr>
+            <tr>
+                <td>Quadrilateral</td>
+                <td>4</td>
+                <td>360°</td>
+                <td>90°</td>
+            </tr>
+            <tr>
+                <td>Pentagon</td>
+                <td>5</td>
+                <td>540°</td>
+                <td>108°</td>
+            </tr>
+            <tr>
+                <td>Hexagon</td>
+                <td>6</td>
+                <td>720°</td>
+                <td>120°</td>
+            </tr>
+        </table>
+        
+        <h3>3.3 Circle Theorems</h3>
+        <p>Relationships between angles and lines in circles.</p>
+        <div class="formula">
+            - The angle subtended by an arc at the center is twice the angle subtended at any point on the alternate segment<br>
+            - Angles in the same segment are equal<br>
+            - The angle in a semicircle is a right angle<br>
+            - Opposite angles of a cyclic quadrilateral sum to 180°
+        </div>
+        <div class="important">
+            A tangent to a circle is perpendicular to the radius at the point of contact.
+        </div>
+        
+        <h3>3.4 Trigonometric Ratios</h3>
+        <p>Relationships between angles and sides of right-angled triangles.</p>
+        <div class="formula">
+            sin θ = opposite / hypotenuse<br>
+            cos θ = adjacent / hypotenuse<br>
+            tan θ = opposite / adjacent = sin θ / cos θ<br>
+            <br>
+            Sine rule: a/sin A = b/sin B = c/sin C<br>
+            Cosine rule: c² = a² + b² - 2ab cos C
+        </div>
+        <div class="example">
+            <strong>Example:</strong> In a right-angled triangle, if one angle is 30° and the hypotenuse is 10 cm, find the length of the opposite side.<br>
+            sin 30° = opposite / 10<br>
+            opposite = 10 × sin 30° = 10 × 0.5 = 5 cm
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>4. MENSURATION</h2>
+        
+        <h3>4.1 Areas and Perimeters</h3>
+        <p>Measurements of 2D shapes.</p>
+        <div class="formula">
+            Rectangle: Area = length × width, Perimeter = 2(length + width)<br>
+            Triangle: Area = ½ × base × height, Perimeter = sum of all sides<br>
+            Circle: Area = πr², Circumference = 2πr<br>
+            Parallelogram: Area = base × height<br>
+            Trapezium: Area = ½ × (sum of parallel sides) × height
+        </div>
+        
+        <h3>4.2 Volumes and Surface Areas</h3>
+        <p>Measurements of 3D shapes.</p>
+        <div class="formula">
+            Cube: Volume = edge³, Surface Area = 6 × edge²<br>
+            Cuboid: Volume = length × width × height, Surface Area = 2(lw + lh + wh)<br>
+            Cylinder: Volume = πr²h, Curved Surface Area = 2πrh, Total Surface Area = 2πr(r + h)<br>
+            Sphere: Volume = (4/3)πr³, Surface Area = 4πr²<br>
+            Cone: Volume = (1/3)πr²h, Curved Surface Area = πrl, Total Surface Area = πr(r + l) where l = slant height
+        </div>
+        <div class="tip">
+            For any prism, the volume can be calculated as the product of the base area and the height.
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>5. STATISTICS AND PROBABILITY</h2>
+        
+        <h3>5.1 Data Representation</h3>
+        <p>Methods of organizing and presenting data.</p>
+        <div class="formula">
+            Types of data representation:<br>
+            - Frequency tables<br>
+            - Bar charts/histograms<br>
+            - Pie charts<br>
+            - Line graphs<br>
+            - Scatter diagrams
+        </div>
+        <div class="tip">
+            When drawing a pie chart, calculate the angle for each sector using:<br>
+            Angle = (Item's frequency / Total frequency) × 360°
+        </div>
+        
+        <h3>5.2 Measures of Central Tendency</h3>
+        <p>Values that represent the center or typical value of a data set.</p>
+        <div class="formula">
+            Mean (arithmetic): Sum of all values divided by the number of values<br>
+            Median: Middle value when data is arranged in order<br>
+            Mode: Most frequently occurring value
+        </div>
+        <div class="example">
+            <strong>Example:</strong> Find the mean, median, and mode of: 4, 7, 9, 3, 5, 9, 8<br>
+            Mean = (4+7+9+3+5+9+8)/7 = 45/7 = 6.43<br>
+            Median (ordered data: 3,4,5,7,8,9,9): 7<br>
+            Mode: 9 (occurs twice)
+        </div>
+        
+        <h3>5.3 Measures of Dispersion</h3>
+        <p>Values that describe the spread or variation of a data set.</p>
+        <div class="formula">
+            Range = Maximum value - Minimum value<br>
+            Variance = ∑(x - μ)² / n<br>
+            Standard deviation = √Variance
+        </div>
+        
+        <h3>5.4 Probability</h3>
+        <p>The measure of the likelihood of an event occurring.</p>
+        <div class="formula">
+            P(Event) = Number of favorable outcomes / Total number of possible outcomes<br>
+            P(A or B) = P(A) + P(B) - P(A and B)<br>
+            P(A and B) = P(A) × P(B|A) = P(B) × P(A|B)<br>
+            For independent events: P(A and B) = P(A) × P(B)
+        </div>
+        <div class="important">
+            0 ≤ P(Event) ≤ 1<br>
+            P(Certain event) = 1<br>
+            P(Impossible event) = 0<br>
+            P(Not A) = 1 - P(A)
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>6. VECTORS AND MATRICES</h2>
+        
+        <h3>6.1 Vectors</h3>
+        <p>Quantities that have both magnitude and direction.</p>
+        <div class="formula">
+            Vector addition: v + w<br>
+            Scalar multiplication: kv<br>
+            Magnitude of a vector |v| = √(v₁² + v₂² + v₃²)<br>
+            Unit vector: v/|v|<br>
+            Dot product: v·w = |v||w|cos θ = v₁w₁ + v₂w₂ + v₃w₃
+        </div>
+        <div class="example">
+            <strong>Example:</strong> Find the magnitude of v = 3i + 4j<br>
+            |v| = √(3² + 4²) = √(9 + 16) = √25 = 5
+        </div>
+        
+        <h3>6.2 Matrices</h3>
+        <p>Rectangular arrays of numbers arranged in rows and columns.</p>
+        <div class="formula">
+            Matrix addition: (A + B)ᵢⱼ = Aᵢⱼ + Bᵢⱼ<br>
+            Scalar multiplication: (kA)ᵢⱼ = kAᵢⱼ<br>
+            Matrix multiplication: (AB)ᵢⱼ = ∑ Aᵢₖ × Bₖⱼ<br>
+            Determinant of 2×2 matrix: |A| = ad - bc, where A = [[a, b], [c, d]]<br>
+            Inverse of 2×2 matrix: A⁻¹ = 1/|A| × [[d, -b], [-c, a]], where A = [[a, b], [c, d]]
+        </div>
+        <div class="important">
+            Matrix multiplication is not commutative in general: AB ≠ BA<br>
+            A matrix must be square to have a determinant<br>
+            A matrix has an inverse if and only if its determinant is not zero
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>7. CALCULUS</h2>
+        
+        <h3>7.1 Differentiation</h3>
+        <p>Finding the rate of change or slope of a function.</p>
+        <div class="formula">
+            Basic rules:<br>
+            - d/dx(xⁿ) = nxⁿ⁻¹<br>
+            - d/dx(k) = 0 (k is constant)<br>
+            - d/dx(kf(x)) = k·d/dx(f(x))<br>
+            - d/dx(f(x) + g(x)) = d/dx(f(x)) + d/dx(g(x))<br>
+            - d/dx(f(x) × g(x)) = f(x)·d/dx(g(x)) + g(x)·d/dx(f(x))
+        </div>
+        <div class="example">
+            <strong>Example:</strong> Find the derivative of f(x) = 3x² - 2x + 5<br>
+            f'(x) = 3·2x¹ - 2·1x⁰ + 0 = 6x - 2
+        </div>
+        
+        <h3>7.2 Integration</h3>
+        <p>The inverse process of differentiation, finding the area under a curve.</p>
+        <div class="formula">
+            Basic rules:<br>
+            - ∫xⁿ dx = xⁿ⁺¹/(n+1) + C (n ≠ -1)<br>
+            - ∫k dx = kx + C (k is constant)<br>
+            - ∫(f(x) + g(x)) dx = ∫f(x) dx + ∫g(x) dx<br>
+            - ∫k·f(x) dx = k·∫f(x) dx
+        </div>
+        <div class="important">
+            Definite integral: ∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) - F(a), where F is the antiderivative of f
+        </div>
+        <div class="example">
+            <strong>Example:</strong> Evaluate ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx<br>
+            ∫(3x² + 2) dx = 3x³/3 + 2x + C = x³ + 2x + C<br>
+            ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx = (2³ + 2·2) - (0³ + 2·0) = 8 + 4 - 0 = 12
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>8. EXAMINATION TIPS</h2>
+        
+        <h3>8.1 General Tips</h3>
+        <ul>
+            <li>Read each question carefully, identifying what is given and what is required.</li>
+            <li>Show all your working clearly and systematically.</li>
+            <li>Manage your time wisely, spending more time on higher-mark questions.</li>
+            <li>Check your answers if time permits.</li>
+            <li>Ensure your calculator is set to the correct mode (degrees/radians) for trigonometric calculations.</li>
+        </ul>
+        
+        <h3>8.2 Common Mistakes to Avoid</h3>
+        <ul>
+            <li>Forgetting to include units in your final answer.</li>
+            <li>Computational errors in basic arithmetic.</li>
+            <li>Not reading the question carefully and missing key information.</li>
+            <li>Forgetting to check if your answer makes sense in the context of the problem.</li>
+            <li>Incorrect application of formulas.</li>
+        </ul>
+        
+        <h3>8.3 Last-Minute Preparation</h3>
+        <ul>
+            <li>Review key formulas, properties, and theorems.</li>
+            <li>Practice with past WAEC questions to get familiar with the format and style.</li>
+            <li>Focus on areas where you have challenges.</li>
+            <li>Ensure you have all required materials (calculator, mathematical set, etc.) ready before the exam day.</li>
+            <li>Get adequate rest before the examination.</li>
+        </ul>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 WAEC Mathematics Study Guide</p>
+        <p>Prepared by a qualified mathematics instructor to help students excel in their WAEC examinations.</p>
+        <p>Good luck in your examinations!</p>
     </div>
 </body>
 </html>
