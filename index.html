@@ -74,15 +74,18 @@
             margin: 20px 0 15px;
         }
         
-        /* Special fade effect for the specific heading */
+        /* Modified fade effect for paragraph instead of heading */
         .fade-heading {
             background: linear-gradient(to right, var(--secondary) 70%, transparent 100%);
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
-            display: inline-block;
-            margin: 20px 0 15px;
+            display: block;
+            margin: 10px 0 20px;
             position: relative;
+            font-size: 1rem; /* Adjusted for paragraph text */
+            line-height: 1.6;
+            text-align: left; /* Ensure text alignment is left for readability */
         }
         
         p {
@@ -483,8 +486,8 @@
                 <p>The Gambia River provided access deep into West Africa's interior, making it exceptionally valuable for European traders. Its navigability for nearly 300 miles inland made it possible to bypass difficult overland routes and establish direct contact with societies far from the coast.</p>
             </div>
             
-            <h3 class="fade-heading">Portuguese Decline and European Competition</h3>
-            <p>By the late 16th century, Portugal's dominance in West African trade began to wane as other European powers, particularly England, France, and the Netherlands, sought to establish their own trading posts in the region. This period saw increasing competition and occasional conflict among European powers for control of strategic trading locations along the Gambia River.</p>
+            <h3>Portuguese Decline and European Competition</h3>
+            <p class="fade-heading">By the late 16th century, Portugal's dominance in West African trade began to wane as other European powers, particularly England, France, and the Netherlands, sought to establish their own trading posts in the region. This period saw increasing competition and occasional conflict among European powers for control of strategic trading locations along the Gambia River.</p>
         </section>
 
         <div class="continue-reading">
