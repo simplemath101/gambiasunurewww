@@ -163,7 +163,7 @@
 
         .fade-content {
             position: relative;
-            max-height: 150px;
+            max-height: 180px;
             overflow: hidden;
         }
         
@@ -173,9 +173,14 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent 0%, white 100%);
+            height: 120px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, white 80%);
             pointer-events: none;
+        }
+        
+        /* Mid-text cut-off to entice users */
+        .cut-off-text {
+            margin-bottom: 0;
         }
         
         .continue-reading {
@@ -194,6 +199,8 @@
             border-radius: 50px;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16);
             transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         
         .continue-reading a:hover {
@@ -269,6 +276,15 @@
         <div class="fade-content">
             <p>Algebraic expressions involve variables and constants combined with operations. These expressions can be manipulated through various operations such as addition, subtraction, multiplication, and division. Understanding algebraic expressions is fundamental to solving equations and inequalities in mathematics.</p>
             <p>Key operations include simplifying expressions by combining like terms, factoring expressions to find their component parts, and expanding expressions by multiplying terms. These skills are essential for solving more complex problems in algebra and calculus.</p>
+            <p class="cut-off-text">When solving algebraic expressions, it's important to follow the order of operations, which is: Parentheses, Exponents, Multiplication and Division (from left to right), Addition and Subtraction (from left to right). This is often remembered by the acronym PEMDAS.</p>
+            <p>Common algebraic techniques include:</p>
+            <ul>
+                <li>Collecting like terms: 3x + 5x = 8x</li>
+                <li>Distributive property: a(b + c) = ab + ac</li>
+                <li>Factoring quadratics: ax² + bx + c = a(x - r₁)(x - r₂)</li>
+                <li>Completing the square: x² + bx + c = (x + b/2)² + [c - (b/2)²]</li>
+                <li>Polynomial division using...</li>
+            </ul>
         </div>
         <div class="formula">
             Like terms: Terms with identical variable parts<br>
@@ -277,7 +293,7 @@
         </div>
         <div class="continue-reading">
             <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22Waec%20Mathematics%3A%20A%20Study%20Guide%20PDF%22%20document%2C%20my%20name%20is%20">
-                Click here for the full syllabus
+                CLICK HERE FOR THE FULL VERSION
             </a>
         </div>
     </div>
