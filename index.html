@@ -72,6 +72,14 @@
             justify-content: center;
         }
         
+        /* Modified: Content area positioning for below book display */
+        .content-area.below-book {
+            position: absolute;
+            bottom: 50px;
+            height: auto;
+            z-index: 5;
+        }
+        
         .content-line {
             font-size: 28px;
             line-height: 1.3;
@@ -90,6 +98,15 @@
             letter-spacing: 1px;
         }
         
+        /* Modified: Content line positioning for below book */
+        .content-line.below-book {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            margin: 10px 0;
+        }
+        
         .content-line.active {
             opacity: 1;
             animation: pulseGlow 1.5s infinite;
@@ -103,16 +120,17 @@
             align-items: center;
             justify-content: center;
             position: absolute;
-            bottom: 100px;
+            /* Modified: Position for book to come from bottom */
+            bottom: -500px; /* Start off-screen at bottom */
             opacity: 0;
-            transition: opacity 1s ease;
-            transform: scale(0.8);
+            transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
         }
         
+        /* Modified: Book coming up from bottom */
         .book-container.visible {
             opacity: 1;
-            transform: scale(1);
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            bottom: 200px; /* Final position higher up */
         }
         
         .book {
@@ -202,26 +220,7 @@
             font-style: italic;
         }
         
-        .progress-bar {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 8px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-            z-index: 10;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(to right, #ff6600, #ff9966);
-            transition: width linear;
-            box-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
-        }
+        /* Removed: progress-bar styles */
         
         .particles {
             position: absolute;
@@ -251,6 +250,22 @@
             }
             100% {
                 transform: translate(-50%, -50%) scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+        }
+        
+        /* Modified: Adjusted animation for below book text */
+        @keyframes pulseGlowBelow {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(0, 100, 255, 0.5);
+            }
+            100% {
+                transform: scale(1);
                 text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
             }
         }
@@ -298,11 +313,15 @@
             z-index: 1;
             opacity: 0;
             transition: opacity 1s ease;
+            /* Modified: Position for glow to follow book */
+            bottom: -500px;
         }
         
         .glow.visible {
             opacity: 1;
             animation: glowPulse 3s infinite alternate;
+            /* Modified: Glow follows book up */
+            bottom: 200px;
         }
         
         @keyframes glowPulse {
@@ -372,6 +391,26 @@
                 transform: scale(2);
             }
         }
+        
+        /* Added: Style for text below book */
+        .below-book-text {
+            position: absolute;
+            bottom: 50px;
+            width: 90%;
+            text-align: center;
+            font-size: 22px;
+            color: var(--text-color);
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 77, 153, 0.7);
+        }
+        
+        .below-book-text.visible {
+            opacity: 1;
+            animation: pulseGlowBelow 1.5s infinite;
+        }
     </style>
 </head>
 <body>
@@ -380,23 +419,22 @@
         <div class="splash" id="splash"></div>
         
         <div class="logo" id="logo">
-    <img src="YOUR_IMAGE_URL_HERE" alt="WAEC LOGO" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-</div>
+            <img src="YOUR_IMAGE_URL_HERE" alt="WAEC LOGO" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+        </div>
         
-        <div class="content-area">
+        <div class="content-area" id="contentArea">
             <div class="content-line" id="line1">THE WAEC EXAMS IS FAST APPROACHING</div>
             <div class="content-line" id="line2">ARE YOU HAVING MATHEMATICS PROBLEMS???</div>
             <div class="content-line" id="line3">DO YOU WANT TO HAVE ALL A'S IN MATHEMATICS IN THE UPCOMING WAEC EXAMS??</div>
             <div class="content-line" id="line4">THEN CHECK OUT OUR WELL CURATED MATHEMATICS WAEC STUDY GUIDE</div>
-            <div class="content-line" id="line5">IT IS CREATED BY WELL EXPERIENCED WAEC MATHEMATICS EXAMINERS WITH 20+ YEARS OF EXPERIENCES</div>
-            <div class="content-line" id="line6">IT HAS HELPED OVER 10,000 STUDENTS GET ALL A'S IN WAEC MATHEMATICS EXAMS</div>
-            <div class="content-line" id="line7">SO WHAT ARE YOU WAITING FOR??</div>
-            <div class="content-line" id="line8">HURRY AND GET THE WAEC MATH STUDY GUIDE AT THE LINK IN BIO</div>
         </div>
         
-        <div class="progress-bar">
-            <div class="progress-fill" id="progress"></div>
+        <!-- Added: Text that will appear below the book -->
+        <div class="below-book-text" id="belowBookText">
+            IT IS CREATED BY WELL EXPERIENCED WAEC MATHEMATICS EXAMINERS WITH 20+ YEARS OF EXPERIENCES
         </div>
+        
+        <!-- Removed: progress-bar -->
         
         <div class="glow" id="bookGlow"></div>
         
@@ -427,20 +465,24 @@
             { element: document.getElementById('line1'), readTime: 2500 },
             { element: document.getElementById('line2'), readTime: 2500 },
             { element: document.getElementById('line3'), readTime: 3500 },
-            { element: document.getElementById('line4'), readTime: 3000 },
-            { element: document.getElementById('line5'), readTime: 4000 },
-            { element: document.getElementById('line6'), readTime: 3500 },
-            { element: document.getElementById('line7'), readTime: 2000 },
-            { element: document.getElementById('line8'), readTime: 3000 }
+            { element: document.getElementById('line4'), readTime: 3000 }
         ];
         
-        const progress = document.getElementById('progress');
+        // Below book text rotation
+        const belowBookTexts = [
+            "IT IS CREATED BY WELL EXPERIENCED WAEC MATHEMATICS EXAMINERS WITH 20+ YEARS OF EXPERIENCES",
+            "IT HAS HELPED OVER 10,000 STUDENTS GET ALL A'S IN WAEC MATHEMATICS EXAMS",
+            "SO WHAT ARE YOU WAITING FOR??",
+            "HURRY AND GET THE WAEC MATH STUDY GUIDE AT THE LINK IN BIO"
+        ];
+        
         const bookContainer = document.getElementById('bookContainer');
         const bookGlow = document.getElementById('bookGlow');
         const splash = document.getElementById('splash');
+        const belowBookText = document.getElementById('belowBookText');
         
         let currentLineIndex = 0;
-        let totalDuration = contentLines.reduce((total, line) => total + line.readTime, 0);
+        let belowBookTextIndex = 0;
         
         // Initialize particles for background effect
         function createParticles() {
@@ -492,11 +534,31 @@
             }, 800);
         }
         
-        // Function to show book with animation
+        // Function to rotate text below the book
+        function rotateTextBelowBook() {
+            belowBookText.textContent = belowBookTexts[belowBookTextIndex];
+            belowBookText.classList.add('visible');
+            
+            belowBookTextIndex = (belowBookTextIndex + 1) % belowBookTexts.length;
+            
+            setTimeout(() => {
+                belowBookText.classList.remove('visible');
+                setTimeout(() => {
+                    rotateTextBelowBook();
+                }, 1000);
+            }, 3500);
+        }
+        
+        // Function to show book with animation from bottom
         function showBook() {
             createSplash();
             bookContainer.classList.add('visible');
             bookGlow.classList.add('visible');
+            
+            // Begin rotating text below book after book appears
+            setTimeout(() => {
+                rotateTextBelowBook();
+            }, 1000);
             
             // Add sparkles around the book
             const interval = setInterval(() => {
@@ -521,11 +583,6 @@
             }, 2000);
         }
         
-        // Function to update progress bar
-        function updateProgressBar(percent) {
-            progress.style.width = `${percent}%`;
-        }
-        
         // Function to show line with its caption
         function showLine(index) {
             // Hide all lines
@@ -542,37 +599,6 @@
             const currentLine = contentLines[index];
             currentLine.element.classList.add('active');
             
-            // Calculate elapsed time
-            let elapsedTime = 0;
-            for (let i = 0; i < index; i++) {
-                elapsedTime += contentLines[i].readTime;
-            }
-            
-            // Update progress bar
-            const progressPercent = (elapsedTime / totalDuration) * 100;
-            updateProgressBar(progressPercent);
-            
-            // Start the progress animation for current line
-            const startProgress = progressPercent;
-            const endProgress = ((elapsedTime + currentLine.readTime) / totalDuration) * 100;
-            const duration = currentLine.readTime;
-            const startTime = Date.now();
-            
-            function animateProgress() {
-                const now = Date.now();
-                const elapsed = now - startTime;
-                const percent = startProgress + ((elapsed / duration) * (endProgress - startProgress));
-                
-                if (elapsed < duration) {
-                    updateProgressBar(percent);
-                    requestAnimationFrame(animateProgress);
-                } else {
-                    updateProgressBar(endProgress);
-                }
-            }
-            
-            requestAnimationFrame(animateProgress);
-            
             // Show book when reaching the 4th line
             if (index === 3) {
                 // Clear the current text before showing the book to avoid overlap
@@ -583,7 +609,7 @@
                     setTimeout(() => {
                         currentLine.element.classList.add('active');
                     }, 500);
-                }, 1000);
+                }, 3000);
             }
             
             // Schedule next line
@@ -591,28 +617,7 @@
                 setTimeout(() => {
                     showLine(index + 1);
                 }, currentLine.readTime);
-            } else {
-                // Restart presentation after a pause when finished
-                setTimeout(() => {
-                    restartPresentation();
-                }, 5000);
             }
-        }
-        
-        // Function to restart the presentation
-        function restartPresentation() {
-            // Reset book
-            bookContainer.classList.remove('visible');
-            bookGlow.classList.remove('visible');
-            
-            // Reset progress
-            updateProgressBar(0);
-            
-            // Start from the beginning
-            currentLineIndex = 0;
-            setTimeout(() => {
-                showLine(currentLineIndex);
-            }, 1000);
         }
         
         // Initialize presentation
