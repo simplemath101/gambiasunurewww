@@ -153,13 +153,15 @@
             align-items: center;
             justify-content: center;
             color: white;
-            padding: 20px;
+            padding: 15px;
             box-sizing: border-box;
             box-shadow: 0 0 30px rgba(0, 100, 255, 0.7);
             backface-visibility: hidden;
             transform: rotateY(0deg);
             border: 3px solid gold;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230066cc' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            /* Added: overflow control for text */
+            overflow: hidden;
         }
         
         .book-spine {
@@ -199,25 +201,38 @@
             transform: rotateY(180deg);
         }
         
+        /* Modified: Book title styling for better mobile fit */
         .book-title {
-            font-size: 32px;
+            font-size: 26px; /* Reduced from 32px */
             font-weight: bold;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* Reduced from 20px */
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            line-height: 1.2;
+            width: 100%;
+            /* Ensure text stays centered in container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
+        /* Modified: Math symbol styling for better mobile fit */
         .math-symbol {
-            font-size: 48px;
-            margin: 15px 0;
-            letter-spacing: 15px;
+            font-size: 42px; /* Reduced from 48px */
+            margin: 10px 0; /* Reduced from 15px */
+            letter-spacing: 10px; /* Reduced from 15px */
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
         
+        /* Modified: Book author styling for better mobile fit */
         .book-author {
-            font-size: 16px;
-            margin-top: 30px;
+            font-size: 14px; /* Reduced from 16px */
+            margin-top: 20px; /* Reduced from 30px */
             font-style: italic;
+            width: 100%;
+            text-align: center;
+            padding: 0 5px;
+            box-sizing: border-box;
         }
         
         .particles {
@@ -414,6 +429,30 @@
         .no-overlay {
             z-index: 1;
             pointer-events: none;
+        }
+        
+        /* Added: Media queries for better responsiveness */
+        @media screen and (max-width: 360px) {
+            .book-title {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            
+            .math-symbol {
+                font-size: 36px;
+                margin: 8px 0;
+                letter-spacing: 8px;
+            }
+            
+            .book-author {
+                font-size: 12px;
+                margin-top: 15px;
+            }
+            
+            .book {
+                width: 220px;
+                height: 320px;
+            }
         }
     </style>
 </head>
