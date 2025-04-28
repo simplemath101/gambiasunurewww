@@ -1,296 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gambia Quiz TikTok Animation</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            perspective: 1000px;
-        }
-        
-        .container {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .flag-container {
-            width: 80%;
-            max-width: 300px;
-            height: 180px;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            perspective: 1000px;
-        }
-        
-        .text-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 90%;
-            max-width: 400px;
-        }
-        
-        .text {
-            font-size: 0;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-            letter-spacing: 1px;
-        }
-        
-        .text.active {
-            font-size: 42px;
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .text:nth-child(1) {
-            color: #ffcc00;
-        }
-        
-        .text:nth-child(2) {
-            color: #ff66ff;
-        }
-        
-        .text:nth-child(3) {
-            color: #33ff33;
-        }
-        
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .container {
-            background-size: 400% 400%;
-            animation: backgroundShift 10s ease infinite;
-        }
-        
-        /* Gambian flag - 4D wave effect with canvas */
-        #flag-canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhone Display</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f5f5f7;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    .iphone {
+      position: relative;
+      width: 375px;
+      height: 812px;
+      background-color: #000;
+      border-radius: 54px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    
+    .screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      border-radius: 38px;
+      overflow: hidden;
+    }
+    
+    .notch {
+      position: absolute;
+      width: 180px;
+      height: 30px;
+      background-color: #000;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0 0 20px 20px;
+      z-index: 10;
+    }
+    
+    .status-bar {
+      display: none; /* Hide status bar */
+      justify-content: space-between;
+      padding: 10px 30px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 5;
+      position: relative;
+    }
+    
+    .time {
+      margin-left: 30px;
+    }
+    
+    .status-icons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .video-container {
+      width: 100%;
+      height: calc(100% - 100px);
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .video-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    
+    .play-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .play-icon:before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 25px solid #fff;
+      margin-left: 5px;
+    }
+    
+    .home-indicator {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 5px;
+      background-color: #fff;
+      border-radius: 3px;
+    }
+    
+    /* Add your actual video here */
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none; /* Remove this when you add your video */
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="flag-container">
-            <canvas id="flag-canvas"></canvas>
+  <div class="iphone">
+    <div class="screen">
+      <div class="notch"></div>
+      <!-- Status bar removed -->
+      
+      <div class="video-container">
+        <!-- Replace this placeholder with your actual video -->
+        <div class="video-placeholder">
+          <div class="play-icon"></div>
+          <p>Your Video Will Display Here</p>
         </div>
         
-        <div class="text-container">
-            <div class="text" id="text1">BEFORE YOUR LAST QUESTION</div>
-            <div class="text" id="text2">SHARE THIS QUIZ WITH A FRIEND</div>
-            <div class="text" id="text3">DON'T FORGET TO COMMENT YOUR SCORE BELOW</div>
-        </div>
+         
+        <video controls autoplay muted loop>
+          <source src="YOUR_VIDEO_PATH.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+       
+      </div>
+      
+      <div class="home-indicator"></div>
     </div>
-
-    <script>
-        // Text animation sequence
-        function startTextAnimation() {
-            const text1 = document.getElementById('text1');
-            const text2 = document.getElementById('text2');
-            const text3 = document.getElementById('text3');
-            
-            // First text appears
-            setTimeout(() => {
-                text1.classList.add('active');
-            }, 500);
-            
-            // Second text appears
-            setTimeout(() => {
-                text2.classList.add('active');
-            }, 2000);
-            
-            // Third text appears
-            setTimeout(() => {
-                text3.classList.add('active');
-            }, 3500);
-            
-            // Reset animation after some time
-            setTimeout(() => {
-                text1.classList.remove('active');
-                text2.classList.remove('active');
-                text3.classList.remove('active');
-                
-                // Restart animation
-                setTimeout(() => {
-                    startTextAnimation();
-                }, 1000);
-            }, 7000);
-        }
-        
-        // Flag animation with Canvas
-        function setupFlagAnimation() {
-            const canvas = document.getElementById('flag-canvas');
-            const ctx = canvas.getContext('2d');
-            const flagContainer = document.querySelector('.flag-container');
-            
-            // Set canvas dimensions to match container
-            function resizeCanvas() {
-                canvas.width = flagContainer.clientWidth;
-                canvas.height = flagContainer.clientHeight;
-            }
-            
-            // Call resize initially and on window resize
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            
-            // Flag colors
-            const colors = {
-                red: '#CE1126',
-                blue: '#0C1C8C',
-                green: '#3A7728',
-                white: '#FFFFFF'
-            };
-            
-            // Animation variables
-            let time = 0;
-            const waveAmplitude = 10;
-            const wavePeriod = 100;
-            const waveSpeed = 0.1;
-            
-            // Animation function
-            function animateFlag() {
-                // Clear canvas
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Calculate stripe heights
-                const totalHeight = canvas.height;
-                const stripeHeight = totalHeight / 5;
-                
-                // Draw the flag with wave effect
-                // Red stripe (top)
-                drawWavyStripe(0, stripeHeight, colors.red);
-                
-                // White stripe
-                drawWavyStripe(stripeHeight, stripeHeight * 2, colors.white);
-                
-                // Blue stripe
-                drawWavyStripe(stripeHeight * 2, stripeHeight * 3, colors.blue);
-                
-                // White stripe
-                drawWavyStripe(stripeHeight * 3, stripeHeight * 4, colors.white);
-                
-                // Green stripe (bottom)
-                drawWavyStripe(stripeHeight * 4, stripeHeight * 5, colors.green);
-                
-                // Add 3D shadow effect
-                addShadowEffect();
-                
-                // Update time for wave movement
-                time += waveSpeed;
-                
-                // Continue animation
-                requestAnimationFrame(animateFlag);
-            }
-            
-            // Function to draw a wavy stripe
-            function drawWavyStripe(startY, endY, color) {
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                
-                // Start at left edge
-                ctx.moveTo(0, startY);
-                
-                // Draw top wavy edge
-                for (let x = 0; x <= canvas.width; x++) {
-                    // Calculate wave offset based on position and time
-                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time) * waveAmplitude;
-                    // Add perspective effect - waves are larger on the right
-                    const perspectiveEffect = (x / canvas.width) * 1.5;
-                    ctx.lineTo(x, startY + waveOffset * perspectiveEffect);
-                }
-                
-                // Continue to bottom-right corner
-                ctx.lineTo(canvas.width, endY);
-                
-                // Draw bottom wavy edge (in reverse)
-                for (let x = canvas.width; x >= 0; x--) {
-                    // Calculate wave offset with slight phase difference for bottom edge
-                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time + 0.5) * waveAmplitude;
-                    const perspectiveEffect = (x / canvas.width) * 1.5;
-                    ctx.lineTo(x, endY + waveOffset * perspectiveEffect);
-                }
-                
-                // Close the path
-                ctx.closePath();
-                ctx.fill();
-            }
-            
-            // Function to add shadow/highlight for 3D effect
-            function addShadowEffect() {
-                // Create gradient overlay
-                const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                gradient.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
-                gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.1)');
-                gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.1)');
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.3)');
-                
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                // Shine effect that moves across the flag
-                const shinePos = (time % 3) / 3;
-                const shineGradient = ctx.createLinearGradient(
-                    canvas.width * shinePos - 50, 
-                    0, 
-                    canvas.width * shinePos + 50, 
-                    canvas.height
-                );
-                
-                shineGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
-                shineGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.3)');
-                shineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                
-                ctx.fillStyle = shineGradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-            
-            // Start the animation
-            animateFlag();
-        }
-        
-        // Start all animations when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            startTextAnimation();
-            setupFlagAnimation();
-        });
-    </script>
+  </div>
 </body>
 </html>
