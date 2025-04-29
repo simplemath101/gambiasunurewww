@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iPhone Display</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iPhone Video Display</title>
   <style>
     body {
       display: flex;
@@ -14,7 +14,7 @@
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
-    
+
     .iphone {
       position: relative;
       width: 375px;
@@ -26,7 +26,7 @@
       box-sizing: border-box;
       overflow: hidden;
     }
-    
+
     .screen {
       position: relative;
       width: 100%;
@@ -35,7 +35,7 @@
       border-radius: 38px;
       overflow: hidden;
     }
-    
+
     .notch {
       position: absolute;
       width: 180px;
@@ -47,27 +47,7 @@
       border-radius: 0 0 20px 20px;
       z-index: 10;
     }
-    
-    .status-bar {
-      display: none; /* Hide status bar */
-      justify-content: space-between;
-      padding: 10px 30px;
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      z-index: 5;
-      position: relative;
-    }
-    
-    .time {
-      margin-left: 30px;
-    }
-    
-    .status-icons {
-      display: flex;
-      gap: 8px;
-    }
-    
+
     .video-container {
       width: 100%;
       height: calc(100% - 100px);
@@ -75,10 +55,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      position: relative;
     }
-    
+
     .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       background-color: #111;
@@ -87,8 +70,9 @@
       justify-content: center;
       align-items: center;
       color: #fff;
+      z-index: 5;
     }
-    
+
     .play-icon {
       width: 70px;
       height: 70px;
@@ -99,7 +83,7 @@
       align-items: center;
       margin-bottom: 20px;
     }
-    
+
     .play-icon:before {
       content: "";
       width: 0;
@@ -109,7 +93,7 @@
       border-left: 25px solid #fff;
       margin-left: 5px;
     }
-    
+
     .home-indicator {
       position: absolute;
       bottom: 10px;
@@ -120,13 +104,12 @@
       background-color: #fff;
       border-radius: 3px;
     }
-    
-    /* Add your actual video here */
+
     video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: none; /* Remove this when you add your video */
+      display: none;
     }
   </style>
 </head>
@@ -134,25 +117,31 @@
   <div class="iphone">
     <div class="screen">
       <div class="notch"></div>
-      <!-- Status bar removed -->
-      
+
       <div class="video-container">
-        <!-- Replace this placeholder with your actual video -->
-        <div class="video-placeholder">
+        <div class="video-placeholder" id="placeholder">
           <div class="play-icon"></div>
           <p>Your Video Will Display Here</p>
         </div>
-        
-         
-        <video controls autoplay muted loop>
-          <source src="WhatsApp Video 2025-04-28 at 22.34.32_8547be82.mp4" type="video/mp4">
+
+        <video id="myVideo" controls autoplay muted loop>
+          <source src="YOUR_VIDEO_LINK_HERE.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-       
       </div>
-      
+
       <div class="home-indicator"></div>
     </div>
   </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const placeholder = document.getElementById('placeholder');
+
+    video.addEventListener('canplay', () => {
+      placeholder.style.display = 'none';
+      video.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
