@@ -1,147 +1,779 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>iPhone Video Display</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f5f5f7;
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    .iphone {
-      position: relative;
-      width: 375px;
-      height: 812px;
-      background-color: #000;
-      border-radius: 54px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-
-    .screen {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background-color: #000;
-      border-radius: 38px;
-      overflow: hidden;
-    }
-
-    .notch {
-      position: absolute;
-      width: 180px;
-      height: 30px;
-      background-color: #000;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 0 0 20px 20px;
-      z-index: 10;
-    }
-
-    .video-container {
-      width: 100%;
-      height: calc(100% - 100px);
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .video-placeholder {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #111;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      z-index: 5;
-    }
-
-    .play-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .play-icon:before {
-      content: "";
-      width: 0;
-      height: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-left: 25px solid #fff;
-      margin-left: 5px;
-    }
-
-    .home-indicator {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 5px;
-      background-color: #fff;
-      border-radius: 3px;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambian History Study Guide - TikTok Ready</title>
+    <style>
+        :root {
+            --primary-color: #3a75c4; /* Blue from Gambian flag */
+            --secondary-color: #ce1126; /* Red from Gambian flag */
+            --green-color: #0c8918; /* Green from Gambian flag */
+            --highlight-color: #ffff99;
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --light-bg: #e6f2ff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100vh;
+            max-width: 500px; /* TikTok optimal width */
+            background: linear-gradient(135deg, #001428, #000000);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background-color: #f9f9f9;
+            border-radius: 50%;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--primary-color);
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--primary-color);
+            position: absolute;
+            top: 20px;
+            box-shadow: 0 0 20px rgba(58, 117, 196, 0.5);
+            transition: all 0.5s ease;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        /* Gambian flag in logo */
+        .flag-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .flag-stripe {
+            flex: 1;
+            width: 100%;
+        }
+        
+        .red {
+            background-color: #ce1126;
+        }
+        
+        .white {
+            background-color: #ffffff;
+        }
+        
+        .blue {
+            background-color: #3a75c4;
+        }
+        
+        .green {
+            background-color: #0c8918;
+        }
+        
+        .content-area {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Modified: Content area positioning for below book display */
+        .content-area.below-book {
+            position: absolute;
+            bottom: 50px;
+            height: auto;
+            z-index: 5;
+        }
+        
+        .content-line {
+            font-size: 28px;
+            line-height: 1.3;
+            padding: 15px;
+            color: var(--text-color);
+            font-weight: 700;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(58, 117, 196, 0.7);
+            letter-spacing: 1px;
+        }
+        
+        /* Modified: Content line positioning for below book */
+        .content-line.below-book {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            margin: 10px 0;
+        }
+        
+        .content-line.active {
+            opacity: 1;
+            animation: pulseGlow 1.5s infinite;
+        }
+        
+        .book-container {
+            perspective: 1200px;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            /* Modified: Position for book to come from bottom */
+            bottom: -500px; /* Start off-screen at bottom */
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
+        }
+        
+        /* Modified: Book coming up from bottom */
+        .book-container.visible {
+            opacity: 1;
+            bottom: 200px; /* Final position higher up */
+        }
+        
+        .book {
+            width: 250px;
+            height: 350px;
+            transform-style: preserve-3d;
+            position: relative;
+            transition: transform 1.5s ease;
+            animation: float 3s infinite alternate ease-in-out;
+        }
+        
+        .book-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), #0066cc);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(58, 117, 196, 0.7);
+            backface-visibility: hidden;
+            transform: rotateY(0deg);
+            border: 3px solid gold;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233a75c4' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            /* Added: overflow control for text */
+            overflow: hidden;
+        }
+        
+        /* Gambian flag design on book cover */
+        .book-flag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid gold;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .flag-stripe-mini {
+            flex: 1;
+            width: 100%;
+        }
+        
+        .book-spine {
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(to right, #003366, var(--primary-color));
+            left: -20px;
+            transform: rotateY(-90deg) translateZ(20px);
+            border-radius: 5px 0 0 5px;
+            box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .book-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #003366;
+            border-radius: 10px;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            box-shadow: 0 0 30px rgba(58, 117, 196, 0.7);
+            border: 3px solid #003366;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .book:hover {
+            animation-play-state: paused;
+            transform: rotateY(180deg);
+        }
+        
+        /* Modified: Book title styling for better mobile fit */
+        .book-title {
+            font-size: 26px; /* Reduced from 32px */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px; /* Reduced from 20px */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            line-height: 1.2;
+            width: 100%;
+            /* Ensure text stays centered in container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Modified: Emblem styling */
+        .book-emblem {
+            font-size: 42px; /* Reduced from 48px */
+            margin: 10px 0; /* Reduced from 15px */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .emblem-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        /* Modified: Book author styling for better mobile fit */
+        .book-author {
+            font-size: 14px; /* Reduced from 16px */
+            margin-top: 20px; /* Reduced from 30px */
+            font-style: italic;
+            width: 100%;
+            text-align: center;
+            padding: 0 5px;
+            box-sizing: border-box;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(58, 117, 196, 0.5);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+        }
+        
+        /* Modified: Adjusted animation for below book text */
+        @keyframes pulseGlowBelow {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(58, 117, 196, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotateY(10deg);
+            }
+            100% {
+                transform: translateY(-20px) rotateY(-10deg);
+            }
+        }
+        
+        .sparkle {
+            position: absolute;
+            z-index: 5;
+            background-image: radial-gradient(circle, white 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+        
+        /* Glow effect around the book */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, rgba(58, 117, 196, 0.3) 0%, rgba(58, 117, 196, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 1s ease;
+            /* Modified: Position for glow to follow book */
+            bottom: -500px;
+        }
+        
+        .glow.visible {
+            opacity: 1;
+            animation: glowPulse 3s infinite alternate;
+            /* Modified: Glow follows book up */
+            bottom: 200px;
+        }
+        
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+        
+        /* 3D page effect */
+        .book-pages {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 30px;
+            background: white;
+            border-radius: 0 10px 10px 0;
+            transform: translateX(-15px) rotateY(30deg);
+            transform-origin: left center;
+            background: linear-gradient(to right, #f9f9f9, #e6e6e6);
+        }
+        
+        .book-page {
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            width: 30px;
+            left: 0;
+            background: white;
+            border-radius: 0 5px 5px 0;
+            transform-origin: left center;
+        }
+        
+        .page1 { transform: translateX(-15px) rotateY(15deg); background: #f9f9f9; z-index: 5; width: 28px; }
+        .page2 { transform: translateX(-10px) rotateY(30deg); background: #f0f0f0; z-index: 4; width: 26px; }
+        .page3 { transform: translateX(-5px) rotateY(45deg); background: #e8e8e8; z-index: 3; width: 24px; }
+        
+        /* TikTok-style splash effect */
+        .splash {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .splash.active {
+            animation: splash 0.8s forwards;
+        }
+        
+        @keyframes splash {
+            0% {
+                opacity: 0.7;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+        
+        /* Added: Style for text below book - fixed positioning to match image */
+        .below-book-text {
+            position: absolute;
+            bottom: 50px;
+            width: 90%;
+            text-align: center;
+            font-size: 22px;
+            color: var(--text-color);
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(58, 117, 196, 0.7);
+        }
+        
+        .below-book-text.visible {
+            opacity: 1;
+            animation: pulseGlowBelow 1.5s infinite;
+        }
+        
+        /* Remove overlapping text on the book */
+        .no-overlay {
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Added: Media queries for better responsiveness */
+        @media screen and (max-width: 360px) {
+            .book-title {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            
+            .emblem-image {
+                width: 60px;
+                height: 60px;
+                font-size: 40px;
+            }
+            
+            .book-author {
+                font-size: 12px;
+                margin-top: 15px;
+            }
+            
+            .book {
+                width: 220px;
+                height: 320px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="iphone">
-    <div class="screen">
-      <div class="notch"></div>
-
-      <div class="video-container">
-        <div class="video-placeholder" id="placeholder">
-          <div class="play-icon"></div>
-          <p>Your Video Will Display Here</p>
+    <div class="container">
+        <div class="particles" id="particles"></div>
+        <div class="splash" id="splash"></div>
+        
+        <div class="logo" id="logo">
+            <div class="flag-container">
+                <div class="flag-stripe red"></div>
+                <div class="flag-stripe white"></div>
+                <div class="flag-stripe blue"></div>
+                <div class="flag-stripe white"></div>
+                <div class="flag-stripe green"></div>
+            </div>
         </div>
-
-        <video id="myVideo" controls autoplay muted loop>
-          <source src="https://github.com/simplemath101/gambiasunurewww/blob/main/WhatsApp%20Video%202025-04-28%20at%2022.34.32_8547be82.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="home-indicator"></div>
+        
+        <div class="content-area" id="contentArea">
+            <div class="content-line" id="line0">BEFORE WE PROCEED TO THE NEXT QUIZ QUESTION</div>
+            <div class="content-line" id="line1">THE GAMBIAN HISTORY ENTHUSIAST WEEK IS COMING SOON</div>
+            <div class="content-line" id="line2">ARE YOU CURIOUS ABOUT GAMBIA'S RICH HISTORY?</div>
+            <div class="content-line" id="line3">DO YOU WANT TO LEARN ABOUT THE ANCIENT KINGDOMS, COLONIAL ERA, AND INDEPENDENCE?</div>
+            <div class="content-line" id="line4">THEN CHECK OUT OUR COMPREHENSIVE GAMBIAN HISTORY GUIDE</div>
+        </div>
+        
+        <!-- Text that will appear below the book - positioned at bottom of screen -->
+        <div class="below-book-text" id="belowBookText">
+            WRITTEN BY EXPERIENCED GAMBIAN HISTORIANS AND CULTURAL EXPERTS
+        </div>
+        
+        <div class="glow" id="bookGlow"></div>
+        
+        <div class="book-container" id="bookContainer">
+            <div class="book" id="book">
+                <div class="book-cover">
+                    <div class="book-flag">
+                        <div class="flag-stripe-mini red"></div>
+                        <div class="flag-stripe-mini white"></div>
+                        <div class="flag-stripe-mini blue"></div>
+                        <div class="flag-stripe-mini white"></div>
+                        <div class="flag-stripe-mini green"></div>
+                    </div>
+                    <div class="book-title">GAMBIAN HISTORY GUIDE</div>
+                    <div class="book-emblem">
+                        <div class="emblem-image">🦁</div>
+                    </div>
+                    <div class="book-author">By Gambian Historical Society</div>
+                </div>
+                <div class="book-spine"></div>
+                <div class="book-pages">
+                    <div class="book-page page1"></div>
+                    <div class="book-page page2"></div>
+                    <div class="book-page page3"></div>
+                </div>
+                <div class="book-back">
+                    <p>The Complete Journey Through Gambia's Rich History</p>
+                    <p>Join thousands who have discovered the fascinating story of The Gambia</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const video = document.getElementById('myVideo');
-    const placeholder = document.getElementById('placeholder');
-
-    video.addEventListener('canplay', () => {
-      placeholder.style.display = 'none';
-      video.style.display = 'block';
-    });
-  </script>
+    <script>
+        // Content timing setup - optimized for TikTok viewing with adjusted read times
+        const contentLines = [
+            { element: document.getElementById('line0'), readTime: 2500 },
+            { element: document.getElementById('line1'), readTime: 2500 },
+            { element: document.getElementById('line2'), readTime: 2500 },
+            { element: document.getElementById('line3'), readTime: 3500 },
+            { element: document.getElementById('line4'), readTime: 3000 }
+        ];
+        
+        // Below book text rotation
+        const belowBookTexts = [
+            "WRITTEN BY EXPERIENCED GAMBIAN HISTORIANS AND CULTURAL EXPERTS",
+            "DISCOVER THE RICH TAPESTRY OF GAMBIAN CULTURE AND HERITAGE",
+            "LEARN ABOUT THE JOURNEY FROM ANCIENT KINGDOMS TO MODERN DEMOCRACY",
+            "GET YOUR GAMBIAN HISTORY GUIDE NOW AT THE LINK IN BIO"
+        ];
+        
+        const bookContainer = document.getElementById('bookContainer');
+        const bookGlow = document.getElementById('bookGlow');
+        const splash = document.getElementById('splash');
+        const belowBookText = document.getElementById('belowBookText');
+        const contentArea = document.getElementById('contentArea');
+        
+        let currentLineIndex = 0;
+        let belowBookTextIndex = 0;
+        
+        // Initialize particles for background effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const size = Math.random() * 12 + 3;
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.3;
+                particle.style.animation = `float ${Math.random() * 8 + 10}s infinite alternate ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Create sparkles for interactive elements
+        function createSparkle(x, y) {
+            const container = document.querySelector('.container');
+            const sparkle = document.createElement('div');
+            const size = Math.random() * 12 + 6;
+            
+            sparkle.className = 'sparkle';
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            sparkle.style.animation = `sparkle ${Math.random() * 0.5 + 0.5}s forwards`;
+            
+            container.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+        
+        // Add splash effect when transitioning to a new screen
+        function createSplash() {
+            splash.classList.add('active');
+            
+            setTimeout(() => {
+                splash.classList.remove('active');
+            }, 800);
+        }
+        
+        // Function to rotate text below the book
+        function rotateTextBelowBook() {
+            belowBookText.textContent = belowBookTexts[belowBookTextIndex];
+            belowBookText.classList.add('visible');
+            
+            belowBookTextIndex = (belowBookTextIndex + 1) % belowBookTexts.length;
+            
+            setTimeout(() => {
+                belowBookText.classList.remove('visible');
+                setTimeout(() => {
+                    rotateTextBelowBook();
+                }, 1000);
+            }, 3500);
+        }
+        
+        // Function to show book with animation from bottom
+        function showBook() {
+            createSplash();
+            bookContainer.classList.add('visible');
+            bookGlow.classList.add('visible');
+            
+            // Make content area non-interactive and move it behind book
+            contentArea.classList.add('no-overlay');
+            
+            // Hide any active content lines to prevent overlap with book
+            contentLines.forEach(item => {
+                item.element.classList.remove('active');
+            });
+            
+            // Begin rotating text below book after book appears
+            setTimeout(() => {
+                rotateTextBelowBook();
+            }, 1000);
+            
+            // Add sparkles around the book
+            const interval = setInterval(() => {
+                const bookRect = document.getElementById('book').getBoundingClientRect();
+                const containerRect = document.querySelector('.container').getBoundingClientRect();
+                
+                const centerX = bookRect.left + bookRect.width/2 - containerRect.left;
+                const centerY = bookRect.top + bookRect.height/2 - containerRect.top;
+                const radius = Math.max(bookRect.width, bookRect.height) / 1.5;
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * radius;
+                
+                const x = centerX + Math.cos(angle) * distance;
+                const y = centerY + Math.sin(angle) * distance;
+                
+                createSparkle(x, y);
+            }, 200);
+            
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 2000);
+        }
+        
+        // Function to show line with its caption
+        function showLine(index) {
+            // Hide all lines
+            contentLines.forEach(item => {
+                item.element.classList.remove('active');
+            });
+            
+            // Create splash effect between transitions
+            if (index > 0) {
+                createSplash();
+            }
+            
+            // Show current line
+            const currentLine = contentLines[index];
+            currentLine.element.classList.add('active');
+            
+            // Show book when reaching the last line (now index 4)
+            if (index === 4) {
+                // Clear the current text before showing the book to avoid overlap
+                setTimeout(() => {
+                    currentLine.element.classList.remove('active');
+                    showBook();
+                }, 3000);
+            }
+            
+            // Schedule next line
+            if (index < contentLines.length - 1) {
+                setTimeout(() => {
+                    showLine(index + 1);
+                }, currentLine.readTime);
+            }
+        }
+         // Initialize presentation
+        window.addEventListener('load', () => {
+            createParticles();
+            
+            // Start presentation with a slight delay
+            setTimeout(() => {
+                showLine(currentLineIndex);
+            }, 1000);
+            
+            // Add interactive effects for the book when it appears
+            const book = document.getElementById('book');
+            book.addEventListener('click', function() {
+                this.style.animationPlayState = 'paused';
+                this.style.transform = this.style.transform === 'rotateY(180deg)' ? 
+                    'rotateY(0deg)' : 'rotateY(180deg)';
+                    
+                // Add sparkle effect on click
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const rect = this.getBoundingClientRect();
+                        const containerRect = this.offsetParent.getBoundingClientRect();
+                        const x = Math.random() * rect.width + rect.left - containerRect.left;
+                        const y = Math.random() * rect.height + rect.top - containerRect.top;
+                        createSparkle(x, y);
+                    }, i * 50);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
