@@ -1,698 +1,529 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ST vs JIZZLE Quiz Challenge</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-        
-        .container {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #006400, #228B22, #3CB371, #20B2AA, #4682B4, #000080);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        /* Improved question number for better mobile visibility */
-        .question-number {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            text-align: center;
-            min-width: 120px;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
-        }
-        
-        .question-container {
-            width: 90%;
-            margin-top: 70px;
-            height: calc(100% - 150px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: rgba(20, 50, 80, 0.7);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-            position: relative;
-            transition: transform 0.5s, opacity 0.5s;
-            overflow: hidden;
-        }
-        
-        .timer-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .timer-container {
-            width: 100%;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .timer {
-            height: 100%;
-            background-color: #00ff00;
-            width: 100%;
-            transition: width 5s linear, background-color 0.5s;
-        }
-        
-        .timer.paused {
-            transition: none;
-        }
-        
-        .timer.ending {
-            background-color: #ff0000;
-        }
-        
-        .countdown {
-            font-size: 1.1rem;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-        
-        .countdown.hidden {
-            display: none;
-        }
-        
-        .artists-container {
-            width: 100%;
-            height: 250px;
-            margin: 10px 0 20px;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-        }
-        
-        .artist-panel {
-            position: relative;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: all 0.5s ease-in-out;
-        }
-        
-        .artist-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .artist-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-align: center;
-            padding: 8px 0;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        
-        /* Positioned score displays */
-        .score-display {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 6px 10px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 1rem;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
-            top: 10px;
-            z-index: 6;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .st-score {
-            left: 10px;
-            border-color: #ffcc00;
-        }
-        
-        .jizzle-score {
-            right: 10px;
-            border-color: #4682B4;
-        }
-        
-        .artist-panel.correct {
-            width: 80%;
-            z-index: 5;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-        }
-        
-        .artist-panel.incorrect {
-            width: 20%;
-            opacity: 0.6;
-        }
-        
-        .artist-panel.correct .artist-image {
-            transform: scale(1.1);
-        }
-        
-        .artist-panel.correct .artist-label {
-            background-color: rgba(46, 204, 113, 0.8);
-            color: white;
-        }
-        
-        /* Score animation */
-        @keyframes score-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
-        .score-pulse {
-            animation: score-pulse 0.5s ease-out;
-        }
-        
-        .versus-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 50%;
-            z-index: 5;
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        .versus-overlay.hidden {
-            opacity: 0;
-        }
-        
-        /* TikTok Banner */
-        .tiktok-banner {
-        position: absolute;
-        top: 45px; /* Changed from 5px to move it 3cm (approximately 45px) lower */
-        right: 5px;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 6px 10px;
-        z-index: 10;
-        border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        animation: subtle-pulse 3s ease-in-out infinite;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema Tape Effect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow: hidden; /* Prevent scrolling for TikTok embed */
     }
     
-    .tiktok-logo {
-        width: 18px;
-        height: 18px;
-        margin-right: 6px;
-        flex-shrink: 0;
-        opacity: 0.8;
+    .container {
+      max-width: 1000px;
+      width: 100%;
     }
     
-    .tiktok-text {
-        font-weight: bold;
-        font-size: 13px;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        opacity: 0.8;
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffcc00;
     }
     
-    /* Animation for banner */
-    @keyframes subtle-pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.03); }
-        100% { transform: scale(1); }
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
     }
-        
-        .question {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            padding: 0 10px;
-        }
-        
-        .question-container.exit {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-        
-        .question-container.enter {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        
-        /* Answer reveal animation */
-        @keyframes reveal-answer {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .answer-reveal {
-            animation: reveal-answer 0.7s ease-in-out;
-        }
-        
-        /* Factual Context Section Styles */
-        .factual-context {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(20, 50, 80, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
-            z-index: 20;
-            border-radius: 15px;
-        }
-        
-        .factual-context.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .fact-image {
-            width: 100%;
-            height: 180px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            object-fit: cover;
-        }
-        
-        .fact-text {
-            font-size: 1.4rem;
-            text-align: center;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-            padding: 0 10px;
-            line-height: 1.4;
-        }
-        
-        .fact-title {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            color: #ffcc00;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-        }
-    </style>
+    
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: none;
+    }
+    
+    input[type="text"] {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    button {
+      background-color: #ffcc00;
+      color: #1a1a1a;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #ffd633;
+    }
+    
+    .film-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    
+    .film-strip {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .film-strip::before,
+    .film-strip::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 40px;
+      background-color: #222;
+      background-image: 
+        linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, 0.1) 10%, rgba(255, 255, 255, 0.1) 90%, transparent 90%),
+        linear-gradient(to right, #222 20px, transparent 20px, transparent calc(100% - 20px), #222 calc(100% - 20px));
+      display: flex;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    
+    .film-strip::before {
+      top: 0;
+    }
+    
+    .film-strip::after {
+      bottom: 0;
+    }
+    
+    .film-holes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+    
+    .film-hole {
+      position: absolute;
+      width: 12px;
+      height: 18px;
+      background-color: #000;
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+    
+    .left-holes .film-hole {
+      left: 10px;
+    }
+    
+    .right-holes .film-hole {
+      right: 10px;
+    }
+    
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 70vh; /* Optimized for mobile vertical view */
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+    }
+    
+    .frame {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .frame.active {
+      opacity: 1;
+    }
+    
+    .frame img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+    
+    .frame-number {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    
+    .playback-controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px;
+    }
+    
+    .film-effects {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.2;
+      mix-blend-mode: screen;
+      background-image: 
+        repeating-linear-gradient(transparent, transparent 1px, rgba(255, 255, 255, 0.05) 1px, rgba(255, 255, 255, 0.05) 2px),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+      background-size: 4px 4px, 100px 100px;
+      z-index: 4;
+    }
+    
+    .film-grain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.1;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      z-index: 5;
+    }
+    
+    .film-scratches {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.03;
+      mix-blend-mode: screen;
+      background-image: linear-gradient(90deg, transparent 0%, transparent 95%, white 95%, white 95.2%, transparent 95.2%, transparent 100%);
+      background-size: 300px 100%;
+      animation: scratches 2s linear infinite;
+      z-index: 6;
+    }
+    
+    @keyframes scratches {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 300px 0;
+      }
+    }
+    
+    .error-message {
+      color: #ff6b6b;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    
+    .loading {
+      text-align: center;
+      margin-top: 20px;
+      color: #ffcc00;
+      font-size: 18px;
+    }
+    
+    .slider-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .slider-container label {
+      flex: 0 0 80px;
+    }
+    
+    .slider-container input {
+      flex: 1;
+    }
+    
+    .slider-value {
+      flex: 0 0 40px;
+      text-align: right;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .image-container {
+        height: 75vh; /* Taller for mobile TikTok view */
+      }
+      
+      .film-strip::before,
+      .film-strip::after {
+        height: 30px;
+      }
+      
+      .image-container {
+        margin: 30px 0;
+      }
+      
+      h1 {
+        font-size: 20px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="question-number" id="question-number">Question: 1/10</div>
-        
-        <div class="question-container" id="question-container">
-            <div class="timer-section">
-                <div class="timer-container">
-                    <div class="timer paused" id="timer"></div>
-                </div>
-                <div class="countdown hidden" id="countdown">5</div>
-            </div>
-            
-            <div class="artists-container" id="artists-container">
-                <!-- ST Panel (Left) -->
-                <div class="artist-panel" id="st-panel">
-                    <img class="artist-image" src="https://upload.wikimedia.org/wikipedia/commons/a/ae/ST-Da_Gambian_Dream_Brikama_Boyo.jpg" alt="ST">
-                    <div class="artist-label">ST</div>
-                    <!-- ST Score positioned on the artist image -->
-                    <div class="score-display st-score" id="st-score">ST: 0</div>
-                </div>
-                
-                <!-- JIZZLE Panel (Right) -->
-                <div class="artist-panel" id="jizzle-panel">
-                    <img class="artist-image" src="https://is1-ssl.mzstatic.com/image/thumb/AMCArtistImages112/v4/2a/3d/52/2a3d5260-ffd0-c973-e9ee-f35791dec11c/f9e638b0-3f32-4d6f-8585-dd9ad630629e_file_cropped.png/486x486bb.png" alt="JIZZLE">
-                    <div class="artist-label">JIZZLE</div>
-                    <!-- JIZZLE Score positioned on the artist image -->
-                    <div class="score-display jizzle-score" id="jizzle-score">JIZZLE: 0</div>
-                </div>
-                
-                <div class="versus-overlay" id="versus-overlay">VS</div>
-                
-                <!-- TikTok Banner -->
-                <div class="tiktok-banner">
-                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
-                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
-                    </svg>
-                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
-                </div>
-            </div>
-            
-            <div class="question" id="question">Which artist released their debut album first?</div>
-            
-            <!-- Factual Context Section (Hidden initially) -->
-            <div class="factual-context" id="factual-context">
-                <div class="fact-image">
-                    <img class="fact-image" src="https://www.shutterstock.com/image-vector/did-you-know-question-design-600nw-2506070363.jpg" alt="Fact Image" id="fact-image">
-                </div>
-                <div class="fact-title">Did you know?</div>
-                <div class="fact-text" id="fact-text">ST released his debut album earlier than Jizzle, launching his career in the Gambian music scene.</div>
-            </div>
-        </div>
+  <div class="container">
+    <h1>Cinema Reel Effect</h1>
+    
+    <div class="controls" style="display: none;">
+      <input type="text" id="imageUrl" placeholder="Enter image URL..." value="https://placekitten.com/800/600">
+      <button id="loadImage">Apply Effect</button>
     </div>
+    
+    <div class="film-container">
+      <div class="film-strip">
+        <div class="image-container" id="imageContainer">
+          <!-- Frames will be generated here -->
+        </div>
+        
+        <div class="film-holes left-holes" id="leftHoles"></div>
+        <div class="film-holes right-holes" id="rightHoles"></div>
+        
+        <div class="film-effects"></div>
+        <div class="film-grain"></div>
+        <div class="film-scratches"></div>
+      </div>
+    </div>
+    
+    <div class="playback-controls" style="display: none;">
+      <button id="prevFrame">◀ Prev</button>
+      <button id="playPause">▶ Play</button>
+      <button id="nextFrame">Next ▶</button>
+    </div>
+    
+    <div class="slider-container" style="display: none;">
+      <label for="speedSlider">Speed:</label>
+      <input type="range" id="speedSlider" min="1" max="10" value="8">
+      <span class="slider-value" id="speedValue">8</span>
+    </div>
+    
+    <div class="slider-container" style="display: none;">
+      <label for="effectSlider">Effects:</label>
+      <input type="range" id="effectSlider" min="0" max="100" value="70">
+      <span class="slider-value" id="effectValue">70%</span>
+    </div>
+    
+    <div id="errorMessage" class="error-message"></div>
+    <div id="loading" class="loading" style="display: none;">Loading image...</div>
+  </div>
 
-    <script>
-       const questions = [
-    {
-        question: "Who has won more 'Artist of the Year' awards at the Wah Sa Halat Music Awards?",
-        correctArtist: "ST",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, ST has clinched the 'Artist of the Year' title multiple times at the Wah Sa Halat Music Awards, showcasing his consistent dominance in the Gambian music scene?",
-        factReadTime: 9000
-    },
-    {
-        question: "Which artist has achieved a higher number of streams on Spotify for a single EP?",
-        correctArtist: "Jizzle",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, Jizzle's 'Scorpion Vol. 2' EP amassed over 1 million streams on Spotify, marking a significant milestone for Gambian artists on international platforms?",
-        factReadTime: 10000
-    },
-    {
-        question: "Who has headlined a concert with a larger audience at the Independence Stadium?",
-        correctArtist: "ST",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, ST's 'Saluto' album launch attracted a record-breaking crowd at the Independence Stadium, setting a new benchmark for concert attendance in The Gambia of over 45,000 fans?",
-        factReadTime: 9500
-    },
-    {
-        question: "Which artist has accumulated more total streams on Spotify?",
-        correctArtist: "ST",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, ST Da Gambian Dream has garnered over 13.8 million total streams on Spotify, showcasing his widespread appeal?",
-        factReadTime: 9500
-    },
-    {
-        question: "Which artist has a higher monthly listener count on Spotify?",
-        correctArtist: "ST",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, ST boasts 27,499 monthly listeners on Spotify, surpassing Jizzle's count of 12,590?",
-        factReadTime: 9000
-    },
-    {
-        question: "Which artist has been nominated for the All Africa Music Awards (AFRIMA)?",
-        correctArtist: "Jizzle",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, Jizzle received a nomination for the All Africa Music Awards (AFRIMA), highlighting his recognition on the continental music stage?",
-        factReadTime: 9500
-    },
-    {
-        question: "Who has more international music collaborations?",
-        correctArtist: "JIZZLE",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, Jizzle has collaborated with artists from Nigeria, Senegal, and Ghana, expanding his West African presence?",
-        factReadTime: 10000
-    },
-    {
-        question: "Which artist has a song that topped Apple Music Gambia's Top 100 chart for five consecutive weeks?",
-        correctArtist: "Jizzle",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, Jizzle's track 'Turn By Turn' dominated Apple Music Gambia's Top 100 chart for five weeks, showcasing his widespread popularity?",
-        factReadTime: 9500
-    },
-    {
-        question: "Who has performed at more international music festivals?",
-        correctArtist: "ST",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, ST has represented Gambian music at various international festivals across Europe and Africa, expanding his global footprint?",
-        factReadTime: 9500
-    },
-    {
-        question: "Who headlined a European tour first?",
-        correctArtist: "JIZZLE",
-        readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, Jizzle headlined a successful tour across Europe, including sold-out shows in Sweden and Germany?",
-        factReadTime: 9000
-    }
-];
-
-
-
-        let currentQuestionIndex = 0;
-        let timerInterval;
-        let countdownInterval;
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const imageContainer = document.getElementById('imageContainer');
+      const leftHoles = document.getElementById('leftHoles');
+      const rightHoles = document.getElementById('rightHoles');
+      const imageUrlInput = document.getElementById('imageUrl');
+      const loadButton = document.getElementById('loadImage');
+      const prevButton = document.getElementById('prevFrame');
+      const playPauseButton = document.getElementById('playPause');
+      const nextButton = document.getElementById('nextFrame');
+      const speedSlider = document.getElementById('speedSlider');
+      const speedValue = document.getElementById('speedValue');
+      const effectSlider = document.getElementById('effectSlider');
+      const effectValue = document.getElementById('effectValue');
+      const errorMessage = document.getElementById('errorMessage');
+      const loading = document.getElementById('loading');
+      
+      let currentFrame = 0;
+      let totalFrames = 70;
+      let isPlaying = false;
+      let playInterval;
+      let speed = 8; // Faster default speed for TikTok
+      let effectIntensity = 70; // More pronounced effect for TikTok
+      
+      // Update speed value display
+      speedSlider.addEventListener('input', function() {
+        speed = parseInt(this.value);
+        speedValue.textContent = speed;
+        if (isPlaying) {
+          stopPlayback();
+          startPlayback();
+        }
+      });
+      
+      // Update effect intensity
+      effectSlider.addEventListener('input', function() {
+        effectIntensity = parseInt(this.value);
+        effectValue.textContent = effectIntensity + '%';
+        updateEffects();
+      });
+      
+      function updateEffects() {
+        const filmEffects = document.querySelector('.film-effects');
+        const filmGrain = document.querySelector('.film-grain');
+        const filmScratches = document.querySelector('.film-scratches');
         
-        // Initialize scores
-        let stScore = 0;
-        let jizzleScore = 0;
+        const intensity = effectIntensity / 100;
+        filmEffects.style.opacity = 0.3 * intensity; // Enhanced effect for TikTok
+        filmGrain.style.opacity = 0.15 * intensity; // Enhanced grain for TikTok
+        filmScratches.style.opacity = 0.05 * intensity; // Enhanced scratches for TikTok
+      }
+      
+      function createFilmHoles() {
+        leftHoles.innerHTML = '';
+        rightHoles.innerHTML = '';
         
-        const questionElement = document.getElementById('question');
-        const timerElement = document.getElementById('timer');
-        const countdownElement = document.getElementById('countdown');
-        const questionNumberElement = document.getElementById('question-number');
-        const questionContainerElement = document.getElementById('question-container');
-        const factualContextElement = document.getElementById('factual-context');
-        const factTextElement = document.getElementById('fact-text');
-        const stScoreElement = document.getElementById('st-score');
-        const jizzleScoreElement = document.getElementById('jizzle-score');
-        const stPanelElement = document.getElementById('st-panel');
-        const jizzlePanelElement = document.getElementById('jizzle-panel');
-        const versusOverlayElement = document.getElementById('versus-overlay');
+        const containerHeight = imageContainer.offsetHeight;
+        const spacing = containerHeight / 10;
         
-        // Load a question
-        function loadQuestion() {
-            if (currentQuestionIndex < questions.length) {
-                // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
-                
-                // Set question container to "enter" state
-                questionContainerElement.classList.add('enter');
-                
-                // Hide factual context
-                factualContextElement.classList.remove('show');
-                
-                // Reset artist panels
-                stPanelElement.classList.remove('correct', 'incorrect');
-                jizzlePanelElement.classList.remove('correct', 'incorrect');
-                stPanelElement.classList.remove('answer-reveal');
-                jizzlePanelElement.classList.remove('answer-reveal');
-                
-                // Show versus overlay
-                versusOverlayElement.classList.remove('hidden');
-                
-                // Apply transition after a small delay to ensure the class is applied
-                setTimeout(() => {
-                    // Remove both enter/exit classes to get to normal state with transition
-                    questionContainerElement.classList.remove('enter', 'exit');
-                    
-                    const currentQuestion = questions[currentQuestionIndex];
-                    
-                    // Set question text
-                    questionElement.textContent = currentQuestion.question;
-                    
-                    // Start timer with read time pause
-                    startTimerWithPause(currentQuestion.readTime, currentQuestion.revealTime);
-                    
-                }, 50);
-                
-            } else {
-                // Loop back to first question
-                currentQuestionIndex = 0;
-                loadQuestion();
-            }
+        for (let i = 0; i < 10; i++) {
+          const leftHole = document.createElement('div');
+          leftHole.className = 'film-hole';
+          leftHole.style.top = `${40 + i * spacing}px`;
+          leftHoles.appendChild(leftHole);
+          
+          const rightHole = document.createElement('div');
+          rightHole.className = 'film-hole';
+          rightHole.style.top = `${40 + i * spacing}px`;
+          rightHoles.appendChild(rightHole);
+        }
+      }
+      
+      function loadImage() {
+        const imageUrl = imageUrlInput.value.trim();
+        
+        if (!imageUrl) {
+          displayError('Please enter an image URL');
+          return;
         }
         
-        // Start the timer with an initial pause for reading
-        function startTimerWithPause(pauseTime, revealTime) {
-            // Reset timer style and add paused class
-            timerElement.style.transition = 'none';
-            timerElement.style.width = '100%';
-            timerElement.classList.add('paused');
-            timerElement.classList.remove('ending');
-            
-            // Hide countdown during reading time
-            countdownElement.classList.add('hidden');
-            
-            // Force browser reflow
-            void timerElement.offsetWidth;
-            
-            // Clear any existing interval
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            // First wait for the read time
-            setTimeout(() => {
-                // Remove paused class and start timer animation
-                timerElement.classList.remove('paused');
-                timerElement.style.transition = `width ${revealTime/1000}s linear, background-color 0.5s`;
-                timerElement.style.width = '0%';
-                
-                // Start countdown and show it
-                let secondsLeft = Math.ceil(revealTime/1000);
-                countdownElement.textContent = secondsLeft;
-                countdownElement.classList.remove('hidden');
-                
-                countdownInterval = setInterval(() => {
-                    secondsLeft--;
-                    countdownElement.textContent = secondsLeft;
-                    
-                    // Change to red when 2 seconds or less remain
-                    if (secondsLeft <= 2) {
-                        timerElement.classList.add('ending');
-                    }
-                    
-                    if (secondsLeft <= 0) {
-                        clearInterval(countdownInterval);
-                    }
-                }, 1000);
-                
-                // Set timeout for when time is up
-                timerInterval = setTimeout(() => {
-                    // Reveal the answer
-                    revealAnswer();
-                }, revealTime);
-            }, pauseTime);
+        // Clear previous content
+        imageContainer.innerHTML = '';
+        errorMessage.textContent = '';
+        loading.style.display = 'block';
+        
+        // Create a test image to check if URL is valid
+        const testImg = new Image();
+        testImg.onload = function() {
+          // Image loaded successfully, create frames
+          loading.style.display = 'none';
+          createFrames(imageUrl);
+        };
+        
+        testImg.onerror = function() {
+          loading.style.display = 'none';
+          displayError('Could not load image. Please check the URL and try again.');
+        };
+        
+        testImg.src = imageUrl;
+      }
+      
+      function createFrames(imageUrl) {
+        for (let i = 0; i < totalFrames; i++) {
+          const frame = document.createElement('div');
+          frame.className = 'frame';
+          frame.id = `frame-${i}`;
+          
+          const img = document.createElement('img');
+          img.src = imageUrl;
+          img.alt = `Frame ${i + 1}`;
+          
+          const frameNumber = document.createElement('div');
+          frameNumber.className = 'frame-number';
+          frameNumber.textContent = `${i + 1}/${totalFrames}`;
+          
+          frame.appendChild(img);
+          frame.appendChild(frameNumber);
+          imageContainer.appendChild(frame);
         }
         
-        // Reveal the correct answer with animation
-        function revealAnswer() {
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            const currentQuestion = questions[currentQuestionIndex];
-            
-            // Hide versus overlay
-            versusOverlayElement.classList.add('hidden');
-            
-            // Determine which artist is correct and apply appropriate classes
-            if (currentQuestion.correctArtist === "ST") {
-                stPanelElement.classList.add('correct', 'answer-reveal');
-                jizzlePanelElement.classList.add('incorrect');
-                
-                // Update score
-                stScore++;
-                stScoreElement.textContent = `ST: ${stScore}`;
-                stScoreElement.classList.add('score-pulse');
-                setTimeout(() => {
-                    stScoreElement.classList.remove('score-pulse');
-                }, 500);
-            } else {
-                jizzlePanelElement.classList.add('correct', 'answer-reveal');
-                stPanelElement.classList.add('incorrect');
-                
-                // Update score
-                jizzleScore++;
-                jizzleScoreElement.textContent = `JIZZLE: ${jizzleScore}`;
-                jizzleScoreElement.classList.add('score-pulse');
-                setTimeout(() => {
-                    jizzleScoreElement.classList.remove('score-pulse');
-                }, 500);
-            }
-            
-            // Show factual context after a brief delay
-            setTimeout(() => {
-                showFactualContext();
-            }, 2000);
+        showFrame(0);
+        createFilmHoles();
+      }
+      
+      function showFrame(frameIndex) {
+        // Hide all frames
+        document.querySelectorAll('.frame').forEach(frame => {
+          frame.classList.remove('active');
+        });
+        
+        // Show the current frame
+        const frame = document.getElementById(`frame-${frameIndex}`);
+        if (frame) {
+          frame.classList.add('active');
         }
         
-        // Show factual context
-        function showFactualContext() {
-            const currentQuestion = questions[currentQuestionIndex];
-            
-            // Set factual text content
-            factTextElement.textContent = currentQuestion.factText;
-            
-            // Show factual context with animation
-            factualContextElement.classList.add('show');
-            
-            // Move to next question after read time
-            setTimeout(() => {
-                // Hide factual context
-                factualContextElement.classList.remove('show');
-                
-                // Wait for transition to complete before moving to next question
-                setTimeout(() => {
-                    transitionToNextQuestion();
-                }, 500);
-            }, currentQuestion.factReadTime);
+        currentFrame = frameIndex;
+      }
+      
+      function nextFrame() {
+        const nextIndex = (currentFrame + 1) % totalFrames;
+        showFrame(nextIndex);
+      }
+      
+      function prevFrame() {
+        const prevIndex = (currentFrame - 1 + totalFrames) % totalFrames;
+        showFrame(prevIndex);
+      }
+      
+      function togglePlayback() {
+        if (isPlaying) {
+          stopPlayback();
+        } else {
+          startPlayback();
         }
-        
-        // Transition to the next question with animation
-        function transitionToNextQuestion() {
-            // Add exit animation class
-            questionContainerElement.classList.add('exit');
-            
-            // Wait for animation to complete
-            setTimeout(() => {
-                currentQuestionIndex++;
-                loadQuestion();
-            }, 500);
-        }
-        
-        // Start the quiz immediately
-        document.addEventListener('DOMContentLoaded', loadQuestion);
-    </script>
+      }
+      
+      function startPlayback() {
+        isPlaying = true;
+        playPauseButton.textContent = '❚❚ Pause';
+        playInterval = setInterval(nextFrame, 1000 / speed);
+      }
+      
+      function stopPlayback() {
+        isPlaying = false;
+        playPauseButton.textContent = '▶ Play';
+        clearInterval(playInterval);
+      }
+      
+      function displayError(message) {
+        errorMessage.textContent = message;
+      }
+      
+      // Event listeners
+      loadButton.addEventListener('click', loadImage);
+      prevButton.addEventListener('click', prevFrame);
+      playPauseButton.addEventListener('click', togglePlayback);
+      nextButton.addEventListener('click', nextFrame);
+      
+      // Initial load with default image
+      loadImage();
+      
+      // Auto-start playback after a short delay for TikTok
+      setTimeout(() => {
+        startPlayback();
+      }, 500);
+    });
+  </script>
 </body>
 </html>
