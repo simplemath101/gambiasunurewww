@@ -5,142 +5,216 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAEC Mathematics Key Points</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        
-        .header {
-            background-color: #006400;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 5px 5px 0 0;
-            margin-bottom: 30px;
-        }
-        
-        .waec-logo {
-            background-color: white;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 24px;
-            color: #006400;
-            margin-bottom: 15px;
-        }
-        
-        h1 {
-            margin: 0;
-            font-size: 32px;
-        }
-        
-        h2 {
-            color: #006400;
-            border-bottom: 2px solid #006400;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        
-        h3 {
-            color: #008000;
-            margin-top: 25px;
-            background-color: #f0f8f0;
-            padding: 8px;
-            border-left: 5px solid #006400;
-        }
-        
-        .topic {
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .formula {
-            background-color: #f0f8f0;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            font-family: 'Courier New', Courier, monospace;
-            border-left: 4px solid #008000;
-        }
-        
-        .example {
-            background-color: #f5f5ff;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            border-left: 4px solid #0000aa;
-        }
-        
-        .tip {
-            background-color: #fffff0;
-            padding: 12px;
-            border-radius: 5px;
-            margin: 15px 0;
-            border-left: 4px solid #aa8800;
-        }
-        
-        .tip::before {
-            content: "TIP: ";
-            font-weight: bold;
-            color: #aa8800;
-        }
-        
-        .important {
-            background-color: #fff0f0;
-            padding: 12px;
-            border-radius: 5px;
-            margin: 15px 0;
-            border-left: 4px solid #cc0000;
-        }
-        
-        .important::before {
-            content: "IMPORTANT: ";
-            font-weight: bold;
-            color: #cc0000;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        
-        th {
-            background-color: #e6f2e6;
-            color: #006400;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #006400;
-            color: white;
-            border-radius: 0 0 5px 5px;
-        }
+       /* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: #006400;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 20px;
+}
+
+.waec-logo {
+    background-color: white;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #006400;
+    margin-bottom: 10px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+h2 {
+    color: #006400;
+    border-bottom: 2px solid #006400;
+    padding-bottom: 8px;
+    margin-top: 30px;
+    font-size: 22px;
+}
+
+h3 {
+    color: #008000;
+    margin-top: 20px;
+    background-color: #f0f8f0;
+    padding: 8px;
+    border-left: 4px solid #006400;
+    font-size: 18px;
+}
+
+.topic {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.formula {
+    background-color: #f0f8f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+    font-family: 'Courier New', Courier, monospace;
+    border-left: 4px solid #008000;
+    overflow-x: auto;
+}
+
+.example {
+    background-color: #f5f5ff;
+    padding: 12px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border-left: 4px solid #0000aa;
+}
+
+.tip {
+    background-color: #fffff0;
+    padding: 12px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border-left: 4px solid #aa8800;
+}
+
+.tip::before {
+    content: "TIP: ";
+    font-weight: bold;
+    color: #aa8800;
+}
+
+.important {
+    background-color: #fff0f0;
+    padding: 12px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border-left: 4px solid #cc0000;
+}
+
+.important::before {
+    content: "IMPORTANT: ";
+    font-weight: bold;
+    color: #cc0000;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    overflow-x: auto;
+    display: block;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #e6f2e6;
+    color: #006400;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #006400;
+    color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 768px) {
+    body {
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    .waec-logo {
+        width: 90px;
+        height: 90px;
+        font-size: 22px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    table {
+        display: table;
+    }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 992px) {
+    body {
+        max-width: 1000px;
+        padding: 20px;
+    }
+    
+    .header {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .waec-logo {
+        width: 100px;
+        height: 100px;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+    
+    h2 {
+        margin-top: 40px;
+    }
+    
+    h3 {
+        margin-top: 25px;
+    }
+    
+    .topic {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+}
     </style>
 </head>
 <body>
