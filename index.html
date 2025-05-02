@@ -3,777 +3,735 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gambian History Study Guide - TikTok Ready</title>
+    <title>WAEC Mathematics Key Points</title>
     <style>
-        :root {
-            --primary-color: #3a75c4; /* Blue from Gambian flag */
-            --secondary-color: #ce1126; /* Red from Gambian flag */
-            --green-color: #0c8918; /* Green from Gambian flag */
-            --highlight-color: #ffff99;
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --light-bg: #e6f2ff;
-        }
-        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-        
-        .container {
-            width: 100%;
-            height: 100vh;
-            max-width: 500px; /* TikTok optimal width */
-            background: linear-gradient(135deg, #001428, #000000);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
             padding: 20px;
-            box-sizing: border-box;
+            background-color: #f5f5f5;
         }
         
-        .logo {
-            width: 120px;
-            height: 120px;
-            background-color: #f9f9f9;
-            border-radius: 50%;
-            margin: 10px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--primary-color);
-            font-weight: bold;
-            font-size: 20px;
-            color: var(--primary-color);
-            position: absolute;
-            top: 20px;
-            box-shadow: 0 0 20px rgba(58, 117, 196, 0.5);
-            transition: all 0.5s ease;
-            z-index: 10;
-            overflow: hidden;
-        }
-        
-        /* Gambian flag in logo */
-        .flag-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .flag-stripe {
-            flex: 1;
-            width: 100%;
-        }
-        
-        .red {
-            background-color: #ce1126;
-        }
-        
-        .white {
-            background-color: #ffffff;
-        }
-        
-        .blue {
-            background-color: #3a75c4;
-        }
-        
-        .green {
-            background-color: #0c8918;
-        }
-        
-        .content-area {
-            position: relative;
-            width: 100%;
-            height: 180px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Modified: Content area positioning for below book display */
-        .content-area.below-book {
-            position: absolute;
-            bottom: 50px;
-            height: auto;
-            z-index: 5;
-        }
-        
-        .content-line {
-            font-size: 28px;
-            line-height: 1.3;
-            padding: 15px;
-            color: var(--text-color);
-            font-weight: 700;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            opacity: 0;
-            transition: all 0.5s ease;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(58, 117, 196, 0.7);
-            letter-spacing: 1px;
-        }
-        
-        /* Modified: Content line positioning for below book */
-        .content-line.below-book {
-            position: relative;
-            top: auto;
-            left: auto;
-            transform: none;
-            margin: 10px 0;
-        }
-        
-        .content-line.active {
-            opacity: 1;
-            animation: pulseGlow 1.5s infinite;
-        }
-        
-        .book-container {
-            perspective: 1200px;
-            width: 100%;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            /* Modified: Position for book to come from bottom */
-            bottom: -500px; /* Start off-screen at bottom */
-            opacity: 0;
-            transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 3;
-        }
-        
-        /* Modified: Book coming up from bottom */
-        .book-container.visible {
-            opacity: 1;
-            bottom: 200px; /* Final position higher up */
-        }
-        
-        .book {
-            width: 250px;
-            height: 350px;
-            transform-style: preserve-3d;
-            position: relative;
-            transition: transform 1.5s ease;
-            animation: float 3s infinite alternate ease-in-out;
-        }
-        
-        .book-cover {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), #0066cc);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .header {
+            background-color: #006400;
             color: white;
-            padding: 15px;
-            box-sizing: border-box;
-            box-shadow: 0 0 30px rgba(58, 117, 196, 0.7);
-            backface-visibility: hidden;
-            transform: rotateY(0deg);
-            border: 3px solid gold;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233a75c4' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            /* Added: overflow control for text */
-            overflow: hidden;
-        }
-        
-        /* Gambian flag design on book cover */
-        .book-flag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 50px;
-            height: 30px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid gold;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .flag-stripe-mini {
-            flex: 1;
-            width: 100%;
-        }
-        
-        .book-spine {
-            position: absolute;
-            width: 40px;
-            height: 100%;
-            background: linear-gradient(to right, #003366, var(--primary-color));
-            left: -20px;
-            transform: rotateY(-90deg) translateZ(20px);
-            border-radius: 5px 0 0 5px;
-            box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .book-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #003366;
-            border-radius: 10px;
-            backface-visibility: hidden;
-            transform: rotateY(180deg);
-            box-shadow: 0 0 30px rgba(58, 117, 196, 0.7);
-            border: 3px solid #003366;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
-            box-sizing: border-box;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
             text-align: center;
+            border-radius: 5px 5px 0 0;
+            margin-bottom: 30px;
         }
         
-        .book:hover {
-            animation-play-state: paused;
-            transform: rotateY(180deg);
-        }
-        
-        /* Modified: Book title styling for better mobile fit */
-        .book-title {
-            font-size: 26px; /* Reduced from 32px */
+        .waec-logo {
+            background-color: white;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-weight: bold;
+            font-size: 24px;
+            color: #006400;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+        
+        h2 {
+            color: #006400;
+            border-bottom: 2px solid #006400;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: #008000;
+            margin-top: 25px;
+            background-color: #f0f8f0;
+            padding: 8px;
+            border-left: 5px solid #006400;
+        }
+        
+        .topic {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .formula {
+            background-color: #f0f8f0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 4px solid #008000;
+        }
+        
+        .example {
+            background-color: #f5f5ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #0000aa;
+        }
+        
+        .tip {
+            background-color: #fffff0;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #aa8800;
+        }
+        
+        .tip::before {
+            content: "TIP: ";
+            font-weight: bold;
+            color: #aa8800;
+        }
+        
+        .important {
+            background-color: #fff0f0;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #cc0000;
+        }
+        
+        .important::before {
+            content: "IMPORTANT: ";
+            font-weight: bold;
+            color: #cc0000;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #e6f2e6;
+            color: #006400;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .footer {
             text-align: center;
-            margin-bottom: 15px; /* Reduced from 20px */
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-            line-height: 1.2;
-            width: 100%;
-            /* Ensure text stays centered in container */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        /* Modified: Emblem styling */
-        .book-emblem {
-            font-size: 42px; /* Reduced from 48px */
-            margin: 10px 0; /* Reduced from 15px */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .emblem-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-        }
-        
-        /* Modified: Book author styling for better mobile fit */
-        .book-author {
-            font-size: 14px; /* Reduced from 16px */
-            margin-top: 20px; /* Reduced from 30px */
-            font-style: italic;
-            width: 100%;
-            text-align: center;
-            padding: 0 5px;
-            box-sizing: border-box;
-        }
-        
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        
-        @keyframes pulseGlow {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.05);
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(58, 117, 196, 0.5);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-        }
-        
-        /* Modified: Adjusted animation for below book text */
-        @keyframes pulseGlowBelow {
-            0% {
-                transform: scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-            50% {
-                transform: scale(1.05);
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(58, 117, 196, 0.5);
-            }
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotateY(10deg);
-            }
-            100% {
-                transform: translateY(-20px) rotateY(-10deg);
-            }
-        }
-        
-        .sparkle {
-            position: absolute;
-            z-index: 5;
-            background-image: radial-gradient(circle, white 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        @keyframes sparkle {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(0);
-                opacity: 0;
-            }
-        }
-        
-        /* Glow effect around the book */
-        .glow {
-            position: absolute;
-            width: 300px;
-            height: 400px;
-            background: radial-gradient(ellipse at center, rgba(58, 117, 196, 0.3) 0%, rgba(58, 117, 196, 0) 70%);
-            border-radius: 50%;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 1s ease;
-            /* Modified: Position for glow to follow book */
-            bottom: -500px;
-        }
-        
-        .glow.visible {
-            opacity: 1;
-            animation: glowPulse 3s infinite alternate;
-            /* Modified: Glow follows book up */
-            bottom: 200px;
-        }
-        
-        @keyframes glowPulse {
-            0% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.7;
-                transform: scale(1.2);
-            }
-        }
-        
-        /* 3D page effect */
-        .book-pages {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 30px;
-            background: white;
-            border-radius: 0 10px 10px 0;
-            transform: translateX(-15px) rotateY(30deg);
-            transform-origin: left center;
-            background: linear-gradient(to right, #f9f9f9, #e6e6e6);
-        }
-        
-        .book-page {
-            position: absolute;
-            top: 10px;
-            bottom: 10px;
-            width: 30px;
-            left: 0;
-            background: white;
-            border-radius: 0 5px 5px 0;
-            transform-origin: left center;
-        }
-        
-        .page1 { transform: translateX(-15px) rotateY(15deg); background: #f9f9f9; z-index: 5; width: 28px; }
-        .page2 { transform: translateX(-10px) rotateY(30deg); background: #f0f0f0; z-index: 4; width: 26px; }
-        .page3 { transform: translateX(-5px) rotateY(45deg); background: #e8e8e8; z-index: 3; width: 24px; }
-        
-        /* TikTok-style splash effect */
-        .splash {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        .splash.active {
-            animation: splash 0.8s forwards;
-        }
-        
-        @keyframes splash {
-            0% {
-                opacity: 0.7;
-                transform: scale(0);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(2);
-            }
-        }
-        
-        /* Added: Style for text below book - fixed positioning to match image */
-        .below-book-text {
-            position: absolute;
-            bottom: 50px;
-            width: 90%;
-            text-align: center;
-            font-size: 22px;
-            color: var(--text-color);
-            font-weight: 700;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 10;
-            text-shadow: 0 0 10px rgba(58, 117, 196, 0.7);
-        }
-        
-        .below-book-text.visible {
-            opacity: 1;
-            animation: pulseGlowBelow 1.5s infinite;
-        }
-        
-        /* Remove overlapping text on the book */
-        .no-overlay {
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        /* Added: Media queries for better responsiveness */
-        @media screen and (max-width: 360px) {
-            .book-title {
-                font-size: 22px;
-                margin-bottom: 10px;
-            }
-            
-            .emblem-image {
-                width: 60px;
-                height: 60px;
-                font-size: 40px;
-            }
-            
-            .book-author {
-                font-size: 12px;
-                margin-top: 15px;
-            }
-            
-            .book {
-                width: 220px;
-                height: 320px;
-            }
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #006400;
+            color: white;
+            border-radius: 0 0 5px 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="particles" id="particles"></div>
-        <div class="splash" id="splash"></div>
+    <div class="header">
+        <div class="waec-logo">WAEC</div>
+        <h1>MATHEMATICS KEY POINTS</h1>
+        <p>Comprehensive Study Guide for WAEC Mathematics Examination</p>
+    </div>
+    
+    <div class="topic">
+        <h2>1. NUMBER AND NUMERATION</h2>
+        <p>Numbers are the foundation of mathematics and are used everywhere in daily life - from counting money to measuring ingredients when cooking. Let's explore different ways we can represent and work with numbers!</p>
         
-        <div class="logo" id="logo">
-            <div class="flag-container">
-                <div class="flag-stripe red"></div>
-                <div class="flag-stripe white"></div>
-                <div class="flag-stripe blue"></div>
-                <div class="flag-stripe white"></div>
-                <div class="flag-stripe green"></div>
-            </div>
+        <h3>1.1 Number Bases</h3>
+        <p>Imagine you're from a planet where people have only 8 fingers instead of 10. You'd probably count differently! That's what number bases are about - different systems of counting. We humans typically use base 10 (decimal) because we have 10 fingers, but computers use base 2 (binary) because they work with electrical switches that are either ON or OFF.</p>
+        
+        <div class="formula">
+            Converting from base 10 to another base: Think of it as repeatedly dividing and keeping track of remainders<br>
+            Converting from another base to base 10: Each digit's value depends on its position, just like how 352 means 3 hundreds + 5 tens + 2 ones
         </div>
         
-        <div class="content-area" id="contentArea">
-            <div class="content-line" id="line0">BEFORE WE PROCEED TO THE NEXT QUIZ QUESTION</div>
-            <div class="content-line" id="line1">THE GAMBIAN HISTORY ENTHUSIAST WEEK IS COMING SOON</div>
-            <div class="content-line" id="line2">ARE YOU CURIOUS ABOUT GAMBIA'S RICH HISTORY?</div>
-            <div class="content-line" id="line3">DO YOU WANT TO LEARN ABOUT THE ANCIENT KINGDOMS, COLONIAL ERA, AND INDEPENDENCE?</div>
-            <div class="content-line" id="line4">THEN CHECK OUT OUR COMPREHENSIVE GAMBIAN HISTORY GUIDE</div>
+        <div class="example">
+            <strong>Example:</strong> Convert 29₁₀ to base 2 (binary)<br>
+            29 ÷ 2 = 14 remainder 1<br>
+            14 ÷ 2 = 7 remainder 0<br>
+            7 ÷ 2 = 3 remainder 1<br>
+            3 ÷ 2 = 1 remainder 1<br>
+            1 ÷ 2 = 0 remainder 1<br>
+            Reading from bottom to top: 29₁₀ = 11101₂
         </div>
         
-        <!-- Text that will appear below the book - positioned at bottom of screen -->
-        <div class="below-book-text" id="belowBookText">
-            WRITTEN BY EXPERIENCED GAMBIAN HISTORIANS AND CULTURAL EXPERTS
+        <div class="real-world">
+            <strong>Real-world application:</strong> Computer scientists and programmers work with binary (base 2), octal (base 8), and hexadecimal (base 16) daily. Digital storage, memory addresses, and color codes in web design all use different number bases!
         </div>
         
-        <div class="glow" id="bookGlow"></div>
+        <div class="tip">
+            Think of converting between bases like translating between languages - the value stays the same, but the representation changes. Always check your conversion by converting back to make sure you get the original number.
+        </div>
         
-        <div class="book-container" id="bookContainer">
-            <div class="book" id="book">
-                <div class="book-cover">
-                    <div class="book-flag">
-                        <div class="flag-stripe-mini red"></div>
-                        <div class="flag-stripe-mini white"></div>
-                        <div class="flag-stripe-mini blue"></div>
-                        <div class="flag-stripe-mini white"></div>
-                        <div class="flag-stripe-mini green"></div>
-                    </div>
-                    <div class="book-title">GAMBIAN HISTORY GUIDE</div>
-                    <div class="book-emblem">
-                        <div class="emblem-image">🦁</div>
-                    </div>
-                    <div class="book-author">By Gambian Historical Society</div>
-                </div>
-                <div class="book-spine"></div>
-                <div class="book-pages">
-                    <div class="book-page page1"></div>
-                    <div class="book-page page2"></div>
-                    <div class="book-page page3"></div>
-                </div>
-                <div class="book-back">
-                    <p>The Complete Journey Through Gambia's Rich History</p>
-                    <p>Join thousands who have discovered the fascinating story of The Gambia</p>
-                </div>
-            </div>
+        <h3>1.2 Fractions, Decimals, and Percentages</h3>
+        <p>These are three different ways to express parts of a whole - like three different languages saying the same thing. Imagine cutting a pizza: you could say you ate 3/4 of it (fraction), 0.75 of it (decimal), or 75% of it (percentage).</p>
+        
+        <div class="formula">
+            Percentage = Fraction × 100%<br>
+            Decimal = Fraction<br>
+            Fraction = Decimal = Percentage ÷ 100
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Express 0.75 as a fraction and a percentage<br>
+            As a fraction: 0.75 = 75/100 = 3/4 (simplified)<br>
+            As a percentage: 0.75 × 100% = 75%
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Discounts in shops (20% off), test scores (you got 90/100 or 0.9 or 90%), phone battery level (75% charged), and cooking measurements all use these interchangeably.
+        </div>
+        
+        <h3>1.3 Indices and Logarithms</h3>
+        <p>Indices (also called exponents or powers) are a shorthand way of writing repeated multiplication. Instead of writing 2×2×2×2, we can write 2⁴. Logarithms are the reverse - they tell you what power you need to raise a number to get another number.</p>
+        
+        <div class="formula">
+            Laws of indices:<br>
+            aⁿ × aᵐ = aⁿ⁺ᵐ (When multiplying same bases, add the powers)<br>
+            aⁿ ÷ aᵐ = aⁿ⁻ᵐ (When dividing same bases, subtract the powers)<br>
+            (aⁿ)ᵐ = aⁿᵐ (Power of a power? Multiply the powers)<br>
+            a⁰ = 1 (Anything to the power zero equals 1)<br>
+            a⁻ⁿ = 1/aⁿ (Negative power means put it in the denominator)<br>
+            <br>
+            Logarithm: If aˣ = N, then log<sub>a</sub>N = x (log asks "a to what power gives N?")
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Simplify 2³ × 2⁵<br>
+            Using the first law of indices: 2³ × 2⁵ = 2³⁺⁵ = 2⁸ = 256
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Compound interest in banking uses exponential growth. The Richter scale for measuring earthquakes and the pH scale in chemistry are both logarithmic scales. Computer science uses logarithms for efficient algorithms.
+        </div>
+        
+        <div class="important">
+            Remember that logarithms only work with positive numbers (you can't take the log of a negative number or zero), and the base of a logarithm must be positive and not equal to 1.
         </div>
     </div>
 
-    <script>
-        // Content timing setup - optimized for TikTok viewing with adjusted read times
-        const contentLines = [
-            { element: document.getElementById('line0'), readTime: 2500 },
-            { element: document.getElementById('line1'), readTime: 2500 },
-            { element: document.getElementById('line2'), readTime: 2500 },
-            { element: document.getElementById('line3'), readTime: 3500 },
-            { element: document.getElementById('line4'), readTime: 3000 }
-        ];
+    <div class="topic">
+        <h2>2. ALGEBRA</h2>
+        <p>Algebra is like the language of mathematics that allows us to describe patterns, relationships, and solve problems with unknowns. Think of variables (like x and y) as containers that can hold different values.</p>
         
-        // Below book text rotation
-        const belowBookTexts = [
-            "WRITTEN BY EXPERIENCED GAMBIAN HISTORIANS AND CULTURAL EXPERTS",
-            "DISCOVER THE RICH TAPESTRY OF GAMBIAN CULTURE AND HERITAGE",
-            "LEARN ABOUT THE JOURNEY FROM ANCIENT KINGDOMS TO MODERN DEMOCRACY",
-            "GET YOUR GAMBIAN HISTORY GUIDE NOW AT THE LINK IN BIO"
-        ];
+        <h3>2.1 Algebraic Expressions</h3>
+        <p>Algebraic expressions are combinations of variables, numbers, and operations. Just as we can simplify "4 apples + 3 apples" to "7 apples," we can simplify "4x + 3x" to "7x".</p>
         
-        const bookContainer = document.getElementById('bookContainer');
-        const bookGlow = document.getElementById('bookGlow');
-        const splash = document.getElementById('splash');
-        const belowBookText = document.getElementById('belowBookText');
-        const contentArea = document.getElementById('contentArea');
+        <div class="formula">
+            Like terms: Terms with identical variable parts (like 3x and 5x, but not 3x and 5y)<br>
+            Factorization: Finding what multiplies together to make an expression (like finding that 12 = 3 × 4)<br>
+            Quadratic expression: ax² + bx + c, where a ≠ 0 (has an x² term)
+        </div>
         
-        let currentLineIndex = 0;
-        let belowBookTextIndex = 0;
+        <div class="example">
+            <strong>Example:</strong> Factorize x² - 9<br>
+            x² - 9 = x² - 3²<br>
+            = (x + 3)(x - 3) (difference of squares formula: a² - b² = (a+b)(a-b))
+        </div>
         
-        // Initialize particles for background effect
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 40;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const size = Math.random() * 12 + 3;
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.opacity = Math.random() * 0.3;
-                particle.style.animation = `float ${Math.random() * 8 + 10}s infinite alternate ease-in-out`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
+        <div class="real-world">
+            <strong>Real-world application:</strong> Architects use algebraic expressions to calculate dimensions and areas. Businesses use them for cost and profit models. Scientists use them to describe physical relationships like distance = speed × time.
+        </div>
         
-        // Create sparkles for interactive elements
-        function createSparkle(x, y) {
-            const container = document.querySelector('.container');
-            const sparkle = document.createElement('div');
-            const size = Math.random() * 12 + 6;
-            
-            sparkle.className = 'sparkle';
-            sparkle.style.width = `${size}px`;
-            sparkle.style.height = `${size}px`;
-            sparkle.style.left = `${x}px`;
-            sparkle.style.top = `${y}px`;
-            sparkle.style.animation = `sparkle ${Math.random() * 0.5 + 0.5}s forwards`;
-            
-            container.appendChild(sparkle);
-            
-            setTimeout(() => {
-                sparkle.remove();
-            }, 1000);
-        }
+        <h3>2.2 Algebraic Equations</h3>
+        <p>An equation is like a balance scale - whatever you do to one side, you must do to the other to keep it balanced. Solving equations means finding what value(s) make the equation true.</p>
         
-        // Add splash effect when transitioning to a new screen
-        function createSplash() {
-            splash.classList.add('active');
-            
-            setTimeout(() => {
-                splash.classList.remove('active');
-            }, 800);
-        }
+        <div class="formula">
+            Linear equation: ax + b = 0 (has a highest power of 1)<br>
+            Quadratic equation: ax² + bx + c = 0 (has a highest power of 2)<br>
+            Quadratic formula: x = (-b ± √(b² - 4ac)) / 2a (the master key for solving any quadratic equation)<br>
+            Discriminant (Δ) = b² - 4ac (tells you how many solutions the equation has)
+        </div>
         
-        // Function to rotate text below the book
-        function rotateTextBelowBook() {
-            belowBookText.textContent = belowBookTexts[belowBookTextIndex];
-            belowBookText.classList.add('visible');
-            
-            belowBookTextIndex = (belowBookTextIndex + 1) % belowBookTexts.length;
-            
-            setTimeout(() => {
-                belowBookText.classList.remove('visible');
-                setTimeout(() => {
-                    rotateTextBelowBook();
-                }, 1000);
-            }, 3500);
-        }
+        <div class="example">
+            <strong>Example:</strong> Solve x² - 5x + 6 = 0<br>
+            Using the quadratic formula with a=1, b=-5, c=6:<br>
+            x = (5 ± √(25 - 24)) / 2<br>
+            x = (5 ± √1) / 2<br>
+            x = (5 ± 1) / 2<br>
+            x = 3 or x = 2
+        </div>
         
-        // Function to show book with animation from bottom
-        function showBook() {
-            createSplash();
-            bookContainer.classList.add('visible');
-            bookGlow.classList.add('visible');
-            
-            // Make content area non-interactive and move it behind book
-            contentArea.classList.add('no-overlay');
-            
-            // Hide any active content lines to prevent overlap with book
-            contentLines.forEach(item => {
-                item.element.classList.remove('active');
-            });
-            
-            // Begin rotating text below book after book appears
-            setTimeout(() => {
-                rotateTextBelowBook();
-            }, 1000);
-            
-            // Add sparkles around the book
-            const interval = setInterval(() => {
-                const bookRect = document.getElementById('book').getBoundingClientRect();
-                const containerRect = document.querySelector('.container').getBoundingClientRect();
-                
-                const centerX = bookRect.left + bookRect.width/2 - containerRect.left;
-                const centerY = bookRect.top + bookRect.height/2 - containerRect.top;
-                const radius = Math.max(bookRect.width, bookRect.height) / 1.5;
-                
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * radius;
-                
-                const x = centerX + Math.cos(angle) * distance;
-                const y = centerY + Math.sin(angle) * distance;
-                
-                createSparkle(x, y);
-            }, 200);
-            
-            setTimeout(() => {
-                clearInterval(interval);
-            }, 2000);
-        }
+        <div class="important">
+            For a quadratic equation, the discriminant (Δ = b² - 4ac) tells you a lot:<br>
+            - If Δ &gt; 0: Two different real roots (the equation crosses the x-axis twice)<br>
+            - If Δ = 0: One repeated real root (the equation touches the x-axis once)<br>
+            - If Δ &lt; 0: No real roots (the equation never crosses the x-axis)
+        </div>
         
-        // Function to show line with its caption
-        function showLine(index) {
-            // Hide all lines
-            contentLines.forEach(item => {
-                item.element.classList.remove('active');
-            });
-            
-            // Create splash effect between transitions
-            if (index > 0) {
-                createSplash();
-            }
-            
-            // Show current line
-            const currentLine = contentLines[index];
-            currentLine.element.classList.add('active');
-            
-            // Show book when reaching the last line (now index 4)
-            if (index === 4) {
-                // Clear the current text before showing the book to avoid overlap
-                setTimeout(() => {
-                    currentLine.element.classList.remove('active');
-                    showBook();
-                }, 3000);
-            }
-            
-            // Schedule next line
-            if (index < contentLines.length - 1) {
-                setTimeout(() => {
-                    showLine(index + 1);
-                }, currentLine.readTime);
-            }
-        }
-         // Initialize presentation
-        window.addEventListener('load', () => {
-            createParticles();
-            
-            // Start presentation with a slight delay
-            setTimeout(() => {
-                showLine(currentLineIndex);
-            }, 1000);
-            
-            // Add interactive effects for the book when it appears
-            const book = document.getElementById('book');
-            book.addEventListener('click', function() {
-                this.style.animationPlayState = 'paused';
-                this.style.transform = this.style.transform === 'rotateY(180deg)' ? 
-                    'rotateY(0deg)' : 'rotateY(180deg)';
-                    
-                // Add sparkle effect on click
-                for (let i = 0; i < 15; i++) {
-                    setTimeout(() => {
-                        const rect = this.getBoundingClientRect();
-                        const containerRect = this.offsetParent.getBoundingClientRect();
-                        const x = Math.random() * rect.width + rect.left - containerRect.left;
-                        const y = Math.random() * rect.height + rect.top - containerRect.top;
-                        createSparkle(x, y);
-                    }, i * 50);
-                }
-            });
-        });
-    </script>
+        <div class="real-world">
+            <strong>Real-world application:</strong> Engineers use equations to design bridges and buildings. Physicists use them to describe motion. Economists use them to model financial trends.
+        </div>
+        
+        <h3>2.3 Sequences and Series</h3>
+        <p>Sequences are patterns of numbers that follow a rule, like steps on a staircase. Series are the sum of sequence terms, like adding up all those steps.</p>
+        
+        <div class="formula">
+            Arithmetic Progression (AP): Numbers increase by adding a fixed amount (like 3, 7, 11, 15...)<br>
+            - nth term: a + (n-1)d (first term + (position - 1) × difference)<br>
+            - Sum of n terms: n/2[2a + (n-1)d] or n/2(first term + last term)<br>
+            <br>
+            Geometric Progression (GP): Numbers increase by multiplying by a fixed amount (like 2, 6, 18, 54...)<br>
+            - nth term: ar^(n-1) (first term × ratio^(position-1))<br>
+            - Sum of n terms: a(1-r^n)/(1-r) for |r| &lt; 1<br>
+            - Sum of n terms: a(r^n-1)/(r-1) for |r| &gt; 1
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Find the sum of the first 10 terms of the AP: 3, 7, 11, 15, ...<br>
+            First term (a) = 3, Common difference (d) = 4<br>
+            S₁₀ = 10/2[2(3) + (10-1)4] = 5[6 + 36] = 5[42] = 210
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Monthly savings plans form arithmetic sequences. Population growth and compound interest form geometric sequences. The Fibonacci sequence (where each number is the sum of the two before it) appears in nature, from sunflower seed patterns to pine cone spirals.
+        </div>
+    </div>
+
+    <div class="topic">
+        <h2>3. GEOMETRY AND TRIGONOMETRY</h2>
+        <p>Geometry is the study of shapes and spaces around us. Trigonometry specifically deals with relationships between angles and sides of triangles. Together, they help us understand and measure the physical world.</p>
+        
+        <h3>3.1 Angles and Lines</h3>
+        <p>Angles and lines are the building blocks of all shapes. Understanding their properties helps us analyze more complex geometric figures.</p>
+        
+        <div class="formula">
+            Angle properties:<br>
+            - Adjacent angles on a straight line sum to 180° (like cutting a straight line into two pieces)<br>
+            - Angles at a point sum to 360° (like slicing a pizza)<br>
+            - Vertically opposite angles are equal (when two lines cross)
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> When parallel lines are cut by another line (transversal):<br>
+            - Corresponding angles are equal (like F-shaped angles)<br>
+            - Alternate angles are equal (like Z-shaped angles)<br>
+            - Interior angles on the same side sum to 180° (like C-shaped angles)
+        </div>
+        
+        <div class="visual-aid">
+            [Imagine two horizontal parallel lines with a diagonal line crossing through both. The angles formed follow these patterns.]
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Road intersections use angle principles. Carpenters use angle relationships to ensure structures are properly aligned. Map navigation relies on understanding angles and directions.
+        </div>
+        
+        <h3>3.2 Polygons</h3>
+        <p>Polygons are closed shapes with straight sides - from triangles to hexagons and beyond. They're everywhere in the world around us, from floor tiles to stop signs.</p>
+        
+        <div class="formula">
+            Sum of interior angles of a polygon with n sides = (n - 2) × 180°<br>
+            Each interior angle of a regular polygon = (n - 2) × 180° / n<br>
+            Each exterior angle of a regular polygon = 360° / n
+        </div>
+        
+        <table>
+            <tr>
+                <th>Polygon</th>
+                <th>Sides</th>
+                <th>Sum of Interior Angles</th>
+                <th>Interior Angle (Regular)</th>
+                <th>Real-world Example</th>
+            </tr>
+            <tr>
+                <td>Triangle</td>
+                <td>3</td>
+                <td>180°</td>
+                <td>60°</td>
+                <td>Yield sign, pizza slice</td>
+            </tr>
+            <tr>
+                <td>Quadrilateral</td>
+                <td>4</td>
+                <td>360°</td>
+                <td>90°</td>
+                <td>Picture frame, book cover</td>
+            </tr>
+            <tr>
+                <td>Pentagon</td>
+                <td>5</td>
+                <td>540°</td>
+                <td>108°</td>
+                <td>US Pentagon building, home plate in baseball</td>
+            </tr>
+            <tr>
+                <td>Hexagon</td>
+                <td>6</td>
+                <td>720°</td>
+                <td>120°</td>
+                <td>Honeycomb cells, nuts and bolts</td>
+            </tr>
+        </table>
+        
+        <div class="tip">
+            You can verify the formula for sum of interior angles by drawing any polygon and dividing it into triangles from one vertex. Since each triangle has 180°, and you can make (n-2) triangles, the total is (n-2) × 180°.
+        </div>
+        
+        <h3>3.3 Circle Theorems</h3>
+        <p>Circles have special properties that relate angles, arcs, and lines. These relationships are incredibly useful in engineering, architecture, and design.</p>
+        
+        <div class="formula">
+            - The angle at the center is twice the angle at the circumference (looking at the same arc)<br>
+            - Angles in the same segment are equal (like all angles standing on the same arc)<br>
+            - The angle in a semicircle is a right angle (90°)<br>
+            - Opposite angles of a cyclic quadrilateral sum to 180° (supplementary)
+        </div>
+        
+        <div class="important">
+            A tangent to a circle is perpendicular (90°) to the radius at the point of contact. This is why bicycle spokes are perpendicular to the rim at their connection points!
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Gears and wheels use circle principles. Satellite dishes are designed using circular properties. GPS systems use circular geometry to determine location.
+        </div>
+        
+        <h3>3.4 Trigonometric Ratios</h3>
+        <p>Trigonometry helps us relate angles to distances. Think of it as a toolkit for solving problems involving triangles, especially right-angled triangles.</p>
+        
+        <div class="formula">
+            In a right-angled triangle:<br>
+            sin θ = opposite / hypotenuse (remember: SOH)<br>
+            cos θ = adjacent / hypotenuse (remember: CAH)<br>
+            tan θ = opposite / adjacent = sin θ / cos θ (remember: TOA)<br>
+            <br>
+            For any triangle:<br>
+            Sine rule: a/sin A = b/sin B = c/sin C (sides proportional to sines of opposite angles)<br>
+            Cosine rule: c² = a² + b² - 2ab cos C (generalized Pythagorean theorem)
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> In a right-angled triangle, if one angle is 30° and the hypotenuse is 10 cm, find the length of the opposite side.<br>
+            sin 30° = opposite / 10<br>
+            opposite = 10 × sin 30° = 10 × 0.5 = 5 cm
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Surveyors use trigonometry to measure land. Navigators use it to determine distances and directions. Architects use it for calculating heights and angles in buildings. Even sound waves and electrical signals are analyzed using trigonometric functions!
+        </div>
+    </div>
+
+    <div class="topic">
+        <h2>4. MENSURATION</h2>
+        <p>Mensuration is all about measuring geometric figures - their lengths, areas, volumes, and more. It's the mathematics of measurement that we use daily, from wrapping a gift to constructing a building.</p>
+        
+        <h3>4.1 Areas and Perimeters</h3>
+        <p>Area measures the space inside a shape (like how much paint you need for a wall), while perimeter measures the distance around it (like how much fencing you need for a garden).</p>
+        
+        <div class="formula">
+            Rectangle: Area = length × width, Perimeter = 2(length + width)<br>
+            Triangle: Area = ½ × base × height, Perimeter = sum of all sides<br>
+            Circle: Area = πr², Circumference = 2πr<br>
+            Parallelogram: Area = base × height (not the slant side!)<br>
+            Trapezium: Area = ½ × (sum of parallel sides) × height
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Find the area and perimeter of a rectangle with length 8 cm and width 5 cm.<br>
+            Area = 8 × 5 = 40 cm²<br>
+            Perimeter = 2(8 + 5) = 2(13) = 26 cm
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Buying carpet by area, calculating paint needed for walls, measuring athletic fields, designing landscaping, and calculating material costs for construction all use area and perimeter formulas.
+        </div>
+        
+        <h3>4.2 Volumes and Surface Areas</h3>
+        <p>Volume measures the space inside a 3D shape (like how much water a container can hold), while surface area measures the total area of all faces (like how much wrapping paper you need).</p>
+        
+        <div class="formula">
+            Cube: Volume = edge³, Surface Area = 6 × edge²<br>
+            Cuboid: Volume = length × width × height, Surface Area = 2(lw + lh + wh)<br>
+            Cylinder: Volume = πr²h, Total Surface Area = 2πr(r + h)<br>
+            Sphere: Volume = (4/3)πr³, Surface Area = 4πr²<br>
+            Cone: Volume = (1/3)πr²h, Total Surface Area = πr(r + l) where l = slant height
+        </div>
+        
+        <div class="tip">
+            For any prism or cylinder, think of the volume as the area of the base multiplied by the height - like stacking identical slices on top of each other.
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Calculate the volume and surface area of a cube with edge length 4 cm.<br>
+            Volume = 4³ = 64 cm³<br>
+            Surface Area = 6 × 4² = 6 × 16 = 96 cm²
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Package design uses surface area calculations. Storage containers are measured by volume. Construction projects calculate concrete volume. Water tanks, shipping containers, and food packaging all require volume and surface area measurements.
+        </div>
+    </div>
+
+    <div class="topic">
+        <h2>5. STATISTICS AND PROBABILITY</h2>
+        <p>Statistics helps us make sense of data and draw conclusions from it. Probability helps us understand chance and uncertainty. Together, they form the basis of data science and decision-making in an uncertain world.</p>
+        
+        <h3>5.1 Data Representation</h3>
+        <p>Data representation involves organizing information visually to make it easier to understand patterns, trends, and outliers - turning numbers into insights.</p>
+        
+        <div class="formula">
+            Types of data representation:<br>
+            - Frequency tables: Organize raw data into categories with counts<br>
+            - Bar charts/histograms: Compare quantities across categories<br>
+            - Pie charts: Show proportions of a whole<br>
+            - Line graphs: Display trends over time<br>
+            - Scatter diagrams: Show relationships between two variables
+        </div>
+        
+        <div class="tip">
+            When creating a pie chart, calculate the angle for each sector using:<br>
+            Angle = (Item's frequency / Total frequency) × 360°<br>
+            For example, if 25% of students prefer math, their sector would be 25% × 360° = 90°
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Weather forecasts use line graphs to show temperature trends. Companies use pie charts to display market share. News media use bar charts to compare election results. Health dashboards use various charts to track disease spread.
+        </div>
+        
+        <h3>5.2 Measures of Central Tendency</h3>
+        <p>These are single values that aim to represent or summarize an entire dataset - like finding the "center" or "typical value" of the data.</p>
+        
+        <div class="formula">
+            Mean (arithmetic): Sum of all values divided by the number of values (the "average")<br>
+            Median: Middle value when data is arranged in order (the "middle")<br>
+            Mode: Most frequently occurring value (the "most common")
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Find the mean, median, and mode of: 4, 7, 9, 3, 5, 9, 8<br>
+            Mean = (4+7+9+3+5+9+8)/7 = 45/7 = 6.43<br>
+            Median (ordered data: 3,4,5,7,8,9,9): 7<br>
+            Mode: 9 (occurs twice)
+        </div>
+        
+        <div class="tip">
+            Different measures are useful in different situations:<br>
+            - Mean uses all data points but is affected by outliers<br>
+            - Median isn't affected by extreme values (good for income data)<br>
+            - Mode shows the most common value (good for categorical data)
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Average temperatures in weather reports (mean), median home prices in real estate (less affected by extremely expensive houses), and most popular shoe sizes in inventory management (mode).
+        </div>
+        
+        <h3>5.3 Measures of Dispersion</h3>
+        <p>These measure how spread out the data is - how much variation exists. Two datasets might have the same average but very different spreads.</p>
+        
+        <div class="formula">
+            Range = Maximum value - Minimum value (simplest measure of spread)<br>
+            Variance = ∑(x - μ)² / n (average of squared differences from the mean)<br>
+            Standard deviation = √Variance (most common measure of spread)
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Calculate the range of: 5, 8, 12, 15, 20<br>
+            Range = 20 - 5 = 15
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Quality control in manufacturing uses standard deviation to ensure products are consistent. Investment risk assessment uses variance to measure volatility. Educational testing uses standard deviation to compare student performance.
+        </div>
+        
+        <h3>5.4 Probability</h3>
+        <p>Probability measures how likely an event is to occur, from impossible (0) to certain (1). It's the mathematics of chance and uncertainty.</p>
+        
+        <div class="formula">
+            P(Event) = Number of favorable outcomes / Total number of possible outcomes<br>
+            P(A or B) = P(A) + P(B) - P(A and B) (addition rule)<br>
+            P(A and B) = P(A) × P(B|A) (multiplication rule)<br>
+            For independent events: P(A and B) = P(A) × P(B)
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> When rolling a fair six-sided die, find:<br>
+            P(rolling a 5) = 1/6<br>
+            P(rolling an even number) = 3/6 = 1/2<br>
+            P(rolling a number greater than 4) = 2/6 = 1/3
+        </div>
+        
+        <div class="important">
+            Probability facts:<br>
+            0 ≤ P(Event) ≤ 1 (probability is always between 0 and 1)<br>
+            P(Certain event) = 1 (like getting either heads OR tails when flipping a coin)<br>
+            P(Impossible event) = 0 (like rolling a 7 on a six-sided die)<br>
+            P(Not A) = 1 - P(A) (complement rule)
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Weather forecasts use probability (30% chance of rain). Insurance companies calculate risk using probability. Games of chance rely on probability principles. Medical diagnoses use probability to assess likelihood of conditions based on test results.
+        </div>
+    </div>
+
+   
+<div class="topic">
+        <h2>6. VECTORS AND MATRICES</h2>
+        <p>Vectors and matrices are powerful mathematical tools that handle multiple values at once. They're essential in physics, computer graphics, data science, and many other fields.</p>
+        
+        <h3>6.1 Vectors</h3>
+        <p>Unlike regular numbers (scalars) that only have magnitude, vectors have both magnitude AND direction. Think of them as arrows pointing in space.</p>
+        
+        <div class="formula">
+            Vector addition: v + w (connect the vectors head-to-tail)<br>
+            Scalar multiplication: kv (stretches or shrinks the vector)<br>
+            Magnitude of a vector |v| = √(v₁² + v₂² + v₃²) (length of the arrow)<br>
+            Unit vector: v/|v| (same direction but length 1)<br>
+            Dot product: v·w = |v||w|cos θ = v₁w₁ + v₂w₂ + v₃w₃ (product of magnitudes × cosine of angle between)
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Find the magnitude of v = 3i + 4j<br>
+            |v| = √(3² + 4²) = √(9 + 16) = √25 = 5
+        </div>
+        
+        <div class="visual-aid">
+            [Imagine an arrow drawn from the origin to the point (3,4) on a coordinate plane. The length of this arrow is 5 units.]
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Forces in physics are vectors (with magnitude and direction). Wind velocity is a vector. Navigation systems use vectors to calculate paths. Computer graphics use vectors to move objects on screen and create animations.
+        </div>
+        
+        <h3>6.2 Matrices</h3>
+        <p>Matrices are rectangular arrays of numbers arranged in rows and columns. Think of them as organized tables of values that can represent systems of equations, transformations, and data sets.</p>
+        
+        <div class="formula">
+            Matrix addition: (A + B)ᵢⱼ = Aᵢⱼ + Bᵢⱼ (add corresponding elements)<br>
+            Scalar multiplication: (kA)ᵢⱼ = kAᵢⱼ (multiply each element by k)<br>
+            Matrix multiplication: (AB)ᵢⱼ = ∑ Aᵢₖ × Bₖⱼ (row by column multiplication)<br>
+            Determinant of 2×2 matrix: |A| = ad - bc, where A = [[a, b], [c, d]]<br>
+            Inverse of 2×2 matrix: A⁻¹ = 1/|A| × [[d, -b], [-c, a]], where A = [[a, b], [c, d]]
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Find the determinant of A = [[3, 2], [1, 4]]<br>
+            |A| = 3×4 - 2×1 = 12 - 2 = 10
+        </div>
+        
+        <div class="important">
+            Matrix multiplication is not commutative in general: AB ≠ BA (unlike regular multiplication)<br>
+            A matrix must be square to have a determinant<br>
+            A matrix has an inverse if and only if its determinant is not zero (just like how a number can't be divided by zero)
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Computer graphics use matrices for transformations like rotation and scaling. Search engines like Google use matrices in their ranking algorithms. Economics uses matrices for input-output models. Quantum mechanics represents states as matrices.
+        </div>
+    </div>
+
+    <div class="topic">
+        <h2>7. CALCULUS</h2>
+        <p>Calculus is the mathematics of change and accumulation. Developed independently by Newton and Leibniz, it's one of the most powerful tools in mathematics, allowing us to analyze things that are continuously changing.</p>
+        
+        <h3>7.1 Differentiation</h3>
+        <p>Differentiation finds the rate at which something is changing - like the speed of a car (rate of change of position) or the slope of a curve at any point. It's about finding instantaneous rates of change.</p>
+        
+        <div class="formula">
+            Basic rules:<br>
+            - d/dx(xⁿ) = nxⁿ⁻¹ (power rule)<br>
+            - d/dx(k) = 0 (k is constant - constants don't change)<br>
+            - d/dx(kf(x)) = k·d/dx(f(x)) (constant multiple rule)<br>
+            - d/dx(f(x) + g(x)) = d/dx(f(x)) + d/dx(g(x)) (sum rule)<br>
+            - d/dx(f(x) × g(x)) = f(x)·d/dx(g(x)) + g(x)·d/dx(f(x)) (product rule)
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Find the derivative of f(x) = 3x² - 2x + 5<br>
+            f'(x) = 3·2x¹ - 2·1x⁰ + 0 = 6x - 2
+        </div>
+        
+        <div class="tip">
+            The derivative at a point gives you the slope of the tangent line at that point. If f'(a) = 0, then the function has a horizontal tangent at x = a, which often indicates a maximum or minimum.
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Economists use derivatives to find marginal cost and revenue. Engineers use them to optimize designs. Physicists use them to describe motion. Medical researchers use them to model the spread of diseases.
+        </div>
+        
+        <h3>7.2 Integration</h3>
+        <p>Integration is the reverse of differentiation - it finds the total accumulation over an interval. Think of it as adding up infinitely many infinitesimally small pieces, like finding the total distance traveled based on speed over time.</p>
+        
+        <div class="formula">
+            Basic rules:<br>
+            - ∫xⁿ dx = xⁿ⁺¹/(n+1) + C (n ≠ -1) (power rule for integration)<br>
+            - ∫k dx = kx + C (k is constant)<br>
+            - ∫(f(x) + g(x)) dx = ∫f(x) dx + ∫g(x) dx (sum rule)<br>
+            - ∫k·f(x) dx = k·∫f(x) dx (constant multiple rule)
+        </div>
+        
+        <div class="important">
+            The "+ C" is the constant of integration and represents the fact that many functions share the same derivative. For example, x², x²+1, and x²-5 all have a derivative of 2x.
+            <br><br>
+            Definite integral: ∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) - F(a), where F is the antiderivative of f. This calculates the net accumulated value from x=a to x=b.
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> Evaluate ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx<br>
+            ∫(3x² + 2) dx = 3x³/3 + 2x + C = x³ + 2x + C<br>
+            ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx = (2³ + 2·2) - (0³ + 2·0) = (8 + 4) - 0 = 12
+        </div>
+        
+        <div class="real-world">
+            <strong>Real-world application:</strong> Physics uses integration to find work done by a force. Economics uses it to calculate total profit from marginal profit. Probability uses it to find the probability over a range of a continuous random variable. Engineering uses it to calculate centers of mass and moments of inertia.
+        </div>
+        
+        <div class="tip">
+            Geometrically, the definite integral represents the area under the curve between the specified limits. This visual interpretation can help understand what integration is actually calculating.
+        </div>
+    </div>
+    
+    <div class="topic">
+        <h2>8. EXAMINATION TIPS</h2>
+        
+        <h3>8.1 General Tips</h3>
+        <ul>
+            <li>Read each question carefully, identifying what is given and what is required.</li>
+            <li>Show all your working clearly and systematically.</li>
+            <li>Manage your time wisely, spending more time on higher-mark questions.</li>
+            <li>Check your answers if time permits.</li>
+            <li>Ensure your calculator is set to the correct mode (degrees/radians) for trigonometric calculations.</li>
+        </ul>
+        
+        <h3>8.2 Common Mistakes to Avoid</h3>
+        <ul>
+            <li>Forgetting to include units in your final answer.</li>
+            <li>Computational errors in basic arithmetic.</li>
+            <li>Not reading the question carefully and missing key information.</li>
+            <li>Forgetting to check if your answer makes sense in the context of the problem.</li>
+            <li>Incorrect application of formulas.</li>
+        </ul>
+        
+        <h3>8.3 Last-Minute Preparation</h3>
+        <ul>
+            <li>Review key formulas, properties, and theorems.</li>
+            <li>Practice with past WAEC questions to get familiar with the format and style.</li>
+            <li>Focus on areas where you have challenges.</li>
+            <li>Ensure you have all required materials (calculator, mathematical set, etc.) ready before the exam day.</li>
+            <li>Get adequate rest before the examination.</li>
+        </ul>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 WAEC Mathematics Study Guide</p>
+        <p>Prepared by a qualified mathematics instructor to help students excel in their WAEC examinations.</p>
+        <p>Good luck in your examinations!</p>
+    </div>
 </body>
 </html>
