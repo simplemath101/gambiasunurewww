@@ -2,810 +2,696 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WAEC Mathematics Key Points</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ST vs JIZZLE Quiz Challenge</title>
     <style>
-       /* Base styles */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 15px;
-    background-color: #f5f5f5;
-    box-sizing: border-box;
-}
-
-.header {
-    background-color: #006400;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    border-radius: 5px 5px 0 0;
-    margin-bottom: 20px;
-}
-
-.waec-logo {
-    background-color: white;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: #006400;
-    margin-bottom: 10px;
-}
-
-h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-h2 {
-    color: #006400;
-    border-bottom: 2px solid #006400;
-    padding-bottom: 8px;
-    margin-top: 30px;
-    font-size: 22px;
-}
-
-h3 {
-    color: #008000;
-    margin-top: 20px;
-    background-color: #f0f8f0;
-    padding: 8px;
-    border-left: 4px solid #006400;
-    font-size: 18px;
-}
-
-.topic {
-    background-color: white;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.formula {
-    background-color: #f0f8f0;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 15px 0;
-    font-family: 'Courier New', Courier, monospace;
-    border-left: 4px solid #008000;
-    overflow-x: auto;
-}
-
-.example {
-    background-color: #f5f5ff;
-    padding: 12px;
-    border-radius: 5px;
-    margin: 15px 0;
-    border-left: 4px solid #0000aa;
-}
-
-.tip {
-    background-color: #fffff0;
-    padding: 12px;
-    border-radius: 5px;
-    margin: 15px 0;
-    border-left: 4px solid #aa8800;
-}
-
-.tip::before {
-    content: "TIP: ";
-    font-weight: bold;
-    color: #aa8800;
-}
-
-.important {
-    background-color: #fff0f0;
-    padding: 12px;
-    border-radius: 5px;
-    margin: 15px 0;
-    border-left: 4px solid #cc0000;
-}
-
-.important::before {
-    content: "IMPORTANT: ";
-    font-weight: bold;
-    color: #cc0000;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    overflow-x: auto;
-    display: block;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #e6f2e6;
-    color: #006400;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.footer {
-    text-align: center;
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #006400;
-    color: white;
-    border-radius: 0 0 5px 5px;
-}
-
-/* Medium devices (tablets) */
-@media (min-width: 768px) {
-    body {
-        padding: 20px;
-        max-width: 90%;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #006400, #228B22, #3CB371, #20B2AA, #4682B4, #000080);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Improved question number for better mobile visibility */
+        .question-number {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            text-align: center;
+            min-width: 120px;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
+        }
+        
+        .question-container {
+            width: 90%;
+            margin-top: 70px;
+            height: calc(100% - 150px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: rgba(20, 50, 80, 0.7);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: transform 0.5s, opacity 0.5s;
+            overflow: hidden;
+        }
+        
+        .timer-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .timer-container {
+            width: 100%;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .timer {
+            height: 100%;
+            background-color: #00ff00;
+            width: 100%;
+            transition: width 5s linear, background-color 0.5s;
+        }
+        
+        .timer.paused {
+            transition: none;
+        }
+        
+        .timer.ending {
+            background-color: #ff0000;
+        }
+        
+        .countdown {
+            font-size: 1.1rem;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .countdown.hidden {
+            display: none;
+        }
+        
+        .artists-container {
+            width: 100%;
+            height: 250px;
+            margin: 10px 0 20px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+        }
+        
+        .artist-panel {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .artist-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .artist-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        /* Positioned score displays */
+        .score-display {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
+            top: 10px;
+            z-index: 6;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .st-score {
+            left: 10px;
+            border-color: #ffcc00;
+        }
+        
+        .jizzle-score {
+            right: 10px;
+            border-color: #4682B4;
+        }
+        
+        .artist-panel.correct {
+            width: 80%;
+            z-index: 5;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        
+        .artist-panel.incorrect {
+            width: 20%;
+            opacity: 0.6;
+        }
+        
+        .artist-panel.correct .artist-image {
+            transform: scale(1.1);
+        }
+        
+        .artist-panel.correct .artist-label {
+            background-color: rgba(46, 204, 113, 0.8);
+            color: white;
+        }
+        
+        /* Score animation */
+        @keyframes score-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .score-pulse {
+            animation: score-pulse 0.5s ease-out;
+        }
+        
+        .versus-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 50%;
+            z-index: 5;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .versus-overlay.hidden {
+            opacity: 0;
+        }
+        
+        /* TikTok Banner */
+        .tiktok-banner {
+        position: absolute;
+        top: 45px; /* Changed from 5px to move it 3cm (approximately 45px) lower */
+        right: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6px 10px;
+        z-index: 10;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: subtle-pulse 3s ease-in-out infinite;
     }
     
-    .waec-logo {
-        width: 90px;
-        height: 90px;
-        font-size: 22px;
+    .tiktok-logo {
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
+        flex-shrink: 0;
+        opacity: 0.8;
     }
     
-    h1 {
-        font-size: 28px;
+    .tiktok-text {
+        font-weight: bold;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        opacity: 0.8;
     }
     
-    h2 {
-        font-size: 24px;
+    /* Animation for banner */
+    @keyframes subtle-pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
     }
-    
-    h3 {
-        font-size: 20px;
-    }
-    
-    table {
-        display: table;
-    }
-}
-
-/* Large devices (desktops) */
-@media (min-width: 992px) {
-    body {
-        max-width: 1000px;
-        padding: 20px;
-    }
-    
-    .header {
-        padding: 20px;
-        margin-bottom: 30px;
-    }
-    
-    .waec-logo {
-        width: 100px;
-        height: 100px;
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
-    
-    h1 {
-        font-size: 32px;
-    }
-    
-    h2 {
-        margin-top: 40px;
-    }
-    
-    h3 {
-        margin-top: 25px;
-    }
-    
-    .topic {
-        padding: 20px;
-        margin-bottom: 30px;
-    }
-}
+        
+        .question {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            padding: 0 10px;
+        }
+        
+        .question-container.exit {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        
+        .question-container.enter {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        
+        /* Answer reveal animation */
+        @keyframes reveal-answer {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .answer-reveal {
+            animation: reveal-answer 0.7s ease-in-out;
+        }
+        
+        /* Factual Context Section Styles */
+        .factual-context {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(20, 50, 80, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+            z-index: 20;
+            border-radius: 15px;
+        }
+        
+        .factual-context.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fact-image {
+            width: 100%;
+            height: 180px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            object-fit: cover;
+        }
+        
+        .fact-text {
+            font-size: 1.4rem;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            padding: 0 10px;
+            line-height: 1.4;
+        }
+        
+        .fact-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #ffcc00;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="waec-logo">WAEC</div>
-        <h1>MATHEMATICS KEY POINTS</h1>
-        <p>Comprehensive Study Guide for WAEC Mathematics Examination</p>
-    </div>
-    
-    <div class="topic">
-        <h2>1. NUMBER AND NUMERATION</h2>
-        <p>Numbers are the foundation of mathematics and are used everywhere in daily life - from counting money to measuring ingredients when cooking. Let's explore different ways we can represent and work with numbers!</p>
+    <div class="container">
+        <div class="question-number" id="question-number">Question: 1/10</div>
         
-        <h3>1.1 Number Bases</h3>
-        <p>Imagine you're from a planet where people have only 8 fingers instead of 10. You'd probably count differently! That's what number bases are about - different systems of counting. We humans typically use base 10 (decimal) because we have 10 fingers, but computers use base 2 (binary) because they work with electrical switches that are either ON or OFF.</p>
-        
-        <div class="formula">
-            Converting from base 10 to another base: Think of it as repeatedly dividing and keeping track of remainders<br>
-            Converting from another base to base 10: Each digit's value depends on its position, just like how 352 means 3 hundreds + 5 tens + 2 ones
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Convert 29₁₀ to base 2 (binary)<br>
-            29 ÷ 2 = 14 remainder 1<br>
-            14 ÷ 2 = 7 remainder 0<br>
-            7 ÷ 2 = 3 remainder 1<br>
-            3 ÷ 2 = 1 remainder 1<br>
-            1 ÷ 2 = 0 remainder 1<br>
-            Reading from bottom to top: 29₁₀ = 11101₂
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Computer scientists and programmers work with binary (base 2), octal (base 8), and hexadecimal (base 16) daily. Digital storage, memory addresses, and color codes in web design all use different number bases!
-        </div>
-        
-        <div class="tip">
-            Think of converting between bases like translating between languages - the value stays the same, but the representation changes. Always check your conversion by converting back to make sure you get the original number.
-        </div>
-        
-        <h3>1.2 Fractions, Decimals, and Percentages</h3>
-        <p>These are three different ways to express parts of a whole - like three different languages saying the same thing. Imagine cutting a pizza: you could say you ate 3/4 of it (fraction), 0.75 of it (decimal), or 75% of it (percentage).</p>
-        
-        <div class="formula">
-            Percentage = Fraction × 100%<br>
-            Decimal = Fraction<br>
-            Fraction = Decimal = Percentage ÷ 100
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Express 0.75 as a fraction and a percentage<br>
-            As a fraction: 0.75 = 75/100 = 3/4 (simplified)<br>
-            As a percentage: 0.75 × 100% = 75%
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Discounts in shops (20% off), test scores (you got 90/100 or 0.9 or 90%), phone battery level (75% charged), and cooking measurements all use these interchangeably.
-        </div>
-        
-        <h3>1.3 Indices and Logarithms</h3>
-        <p>Indices (also called exponents or powers) are a shorthand way of writing repeated multiplication. Instead of writing 2×2×2×2, we can write 2⁴. Logarithms are the reverse - they tell you what power you need to raise a number to get another number.</p>
-        
-        <div class="formula">
-            Laws of indices:<br>
-            aⁿ × aᵐ = aⁿ⁺ᵐ (When multiplying same bases, add the powers)<br>
-            aⁿ ÷ aᵐ = aⁿ⁻ᵐ (When dividing same bases, subtract the powers)<br>
-            (aⁿ)ᵐ = aⁿᵐ (Power of a power? Multiply the powers)<br>
-            a⁰ = 1 (Anything to the power zero equals 1)<br>
-            a⁻ⁿ = 1/aⁿ (Negative power means put it in the denominator)<br>
-            <br>
-            Logarithm: If aˣ = N, then log<sub>a</sub>N = x (log asks "a to what power gives N?")
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Simplify 2³ × 2⁵<br>
-            Using the first law of indices: 2³ × 2⁵ = 2³⁺⁵ = 2⁸ = 256
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Compound interest in banking uses exponential growth. The Richter scale for measuring earthquakes and the pH scale in chemistry are both logarithmic scales. Computer science uses logarithms for efficient algorithms.
-        </div>
-        
-        <div class="important">
-            Remember that logarithms only work with positive numbers (you can't take the log of a negative number or zero), and the base of a logarithm must be positive and not equal to 1.
+        <div class="question-container" id="question-container">
+            <div class="timer-section">
+                <div class="timer-container">
+                    <div class="timer paused" id="timer"></div>
+                </div>
+                <div class="countdown hidden" id="countdown">5</div>
+            </div>
+            
+            <div class="artists-container" id="artists-container">
+                <!-- ST Panel (Left) -->
+                <div class="artist-panel" id="st-panel">
+                    <img class="artist-image" src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/13/82/0b/13820b22-d33c-79c9-a4bf-ba34bd0a5111/191061268802.jpg/486x486bb.png" alt="ST">
+                    <div class="artist-label">ST</div>
+                    <!-- ST Score positioned on the artist image -->
+                    <div class="score-display st-score" id="st-score">ST: 0</div>
+                </div>
+                
+                <!-- JIZZLE Panel (Right) -->
+                <div class="artist-panel" id="jizzle-panel">
+                    <img class="artist-image" src="https://viberate-upload.ams3.cdn.digitaloceanspaces.com/prod/entity/artist/jizzle-pnvRe" alt="JIZZLE">
+                    <div class="artist-label">JIZZLE</div>
+                    <!-- JIZZLE Score positioned on the artist image -->
+                    <div class="score-display jizzle-score" id="jizzle-score">JIZZLE: 0</div>
+                </div>
+                
+                <div class="versus-overlay" id="versus-overlay">VS</div>
+                
+                <!-- TikTok Banner -->
+                <div class="tiktok-banner">
+                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+                    </svg>
+                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
+                </div>
+            </div>
+            
+            <div class="question" id="question">Which artist released their debut album first?</div>
+            
+            <!-- Factual Context Section (Hidden initially) -->
+            <div class="factual-context" id="factual-context">
+                <div class="fact-image">
+                    <img class="fact-image" src="https://www.shutterstock.com/image-vector/did-you-know-question-design-600nw-2506070363.jpg" alt="Fact Image" id="fact-image">
+                </div>
+                <div class="fact-title">Did you know?</div>
+                <div class="fact-text" id="fact-text">ST released his debut album earlier than Jizzle, launching his career in the Gambian music scene.</div>
+            </div>
         </div>
     </div>
 
-    <div class="topic">
-        <h2>2. ALGEBRA</h2>
-        <p>Algebra is like the language of mathematics that allows us to describe patterns, relationships, and solve problems with unknowns. Think of variables (like x and y) as containers that can hold different values.</p>
-        
-        <h3>2.1 Algebraic Expressions</h3>
-        <p>Algebraic expressions are combinations of variables, numbers, and operations. Just as we can simplify "4 apples + 3 apples" to "7 apples," we can simplify "4x + 3x" to "7x".</p>
-        
-        <div class="formula">
-            Like terms: Terms with identical variable parts (like 3x and 5x, but not 3x and 5y)<br>
-            Factorization: Finding what multiplies together to make an expression (like finding that 12 = 3 × 4)<br>
-            Quadratic expression: ax² + bx + c, where a ≠ 0 (has an x² term)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Factorize x² - 9<br>
-            x² - 9 = x² - 3²<br>
-            = (x + 3)(x - 3) (difference of squares formula: a² - b² = (a+b)(a-b))
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Architects use algebraic expressions to calculate dimensions and areas. Businesses use them for cost and profit models. Scientists use them to describe physical relationships like distance = speed × time.
-        </div>
-        
-        <h3>2.2 Algebraic Equations</h3>
-        <p>An equation is like a balance scale - whatever you do to one side, you must do to the other to keep it balanced. Solving equations means finding what value(s) make the equation true.</p>
-        
-        <div class="formula">
-            Linear equation: ax + b = 0 (has a highest power of 1)<br>
-            Quadratic equation: ax² + bx + c = 0 (has a highest power of 2)<br>
-            Quadratic formula: x = (-b ± √(b² - 4ac)) / 2a (the master key for solving any quadratic equation)<br>
-            Discriminant (Δ) = b² - 4ac (tells you how many solutions the equation has)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Solve x² - 5x + 6 = 0<br>
-            Using the quadratic formula with a=1, b=-5, c=6:<br>
-            x = (5 ± √(25 - 24)) / 2<br>
-            x = (5 ± √1) / 2<br>
-            x = (5 ± 1) / 2<br>
-            x = 3 or x = 2
-        </div>
-        
-        <div class="important">
-            For a quadratic equation, the discriminant (Δ = b² - 4ac) tells you a lot:<br>
-            - If Δ &gt; 0: Two different real roots (the equation crosses the x-axis twice)<br>
-            - If Δ = 0: One repeated real root (the equation touches the x-axis once)<br>
-            - If Δ &lt; 0: No real roots (the equation never crosses the x-axis)
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Engineers use equations to design bridges and buildings. Physicists use them to describe motion. Economists use them to model financial trends.
-        </div>
-        
-        <h3>2.3 Sequences and Series</h3>
-        <p>Sequences are patterns of numbers that follow a rule, like steps on a staircase. Series are the sum of sequence terms, like adding up all those steps.</p>
-        
-        <div class="formula">
-            Arithmetic Progression (AP): Numbers increase by adding a fixed amount (like 3, 7, 11, 15...)<br>
-            - nth term: a + (n-1)d (first term + (position - 1) × difference)<br>
-            - Sum of n terms: n/2[2a + (n-1)d] or n/2(first term + last term)<br>
-            <br>
-            Geometric Progression (GP): Numbers increase by multiplying by a fixed amount (like 2, 6, 18, 54...)<br>
-            - nth term: ar^(n-1) (first term × ratio^(position-1))<br>
-            - Sum of n terms: a(1-r^n)/(1-r) for |r| &lt; 1<br>
-            - Sum of n terms: a(r^n-1)/(r-1) for |r| &gt; 1
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Find the sum of the first 10 terms of the AP: 3, 7, 11, 15, ...<br>
-            First term (a) = 3, Common difference (d) = 4<br>
-            S₁₀ = 10/2[2(3) + (10-1)4] = 5[6 + 36] = 5[42] = 210
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Monthly savings plans form arithmetic sequences. Population growth and compound interest form geometric sequences. The Fibonacci sequence (where each number is the sum of the two before it) appears in nature, from sunflower seed patterns to pine cone spirals.
-        </div>
-    </div>
+    <script>
+        const questions = [
+    {
+        question: "Which artist has won more national music awards?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 0,
+        readTime: 3500,
+        factText: "Did you know, ST has consistently dominated national awards, including Artist of the Year at multiple WAHSA and GMA events?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist has more mainstream commercial brand endorsements?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 1,
+        readTime: 3500,
+        factText: "Did you know, Jizzle has partnered with major brands like Africell and secured more visible commercial sponsorship deals?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist has released more full studio albums?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 0,
+        readTime: 3000,
+        factText: "Did you know, ST has dropped over five full-length albums compared to Jizzle's fewer but more internationally oriented projects?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist has more international music collaborations?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 1,
+        readTime: 3500,
+        factText: "Did you know, Jizzle has collaborated with artists from Nigeria, Senegal, and Ghana, expanding his West African presence?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist has performed at more major public concerts in The Gambia?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 0,
+        readTime: 3500,
+        factText: "Did you know, ST has consistently filled stadiums like the Independence Stadium and has become a go-to headliner for national events?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist has a larger YouTube subscriber base?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 1,
+        readTime: 3000,
+        factText: "Did you know, Jizzle has a more aggressive digital presence, especially on YouTube where his subscriber count leads?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist is more lyrically focused on social and political issues?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 0,
+        readTime: 3500,
+        factText: "Did you know, ST often weaves themes of national unity, education, and youth empowerment into his lyrics?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist has a more dominant presence on TikTok and youth-centered social media?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 1,
+        readTime: 3000,
+        factText: "Did you know, Jizzle's Afrobeats style and catchy hooks have gained massive traction on TikTok and Instagram Reels?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist was the first Gambian to headline an international tour in Europe?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 1,
+        readTime: 3500,
+        factText: "Did you know, Jizzle headlined a successful tour across Europe, including sold-out shows in Sweden and Germany?",
+        factReadTime: 4000
+    },
+    {
+        question: "Which artist is widely considered the voice of the people?",
+        options: ["ST", "JIZZLE"],
+        correctIndex: 0,
+        readTime: 3000,
+        factText: "Did you know, ST is often referred to as the people's artist due to his strong connection with grassroots fans and relatable messaging?",
+        factReadTime: 4000
+    }
+];
 
-    <div class="topic">
-        <h2>3. GEOMETRY AND TRIGONOMETRY</h2>
-        <p>Geometry is the study of shapes and spaces around us. Trigonometry specifically deals with relationships between angles and sides of triangles. Together, they help us understand and measure the physical world.</p>
-        
-        <h3>3.1 Angles and Lines</h3>
-        <p>Angles and lines are the building blocks of all shapes. Understanding their properties helps us analyze more complex geometric figures.</p>
-        
-        <div class="formula">
-            Angle properties:<br>
-            - Adjacent angles on a straight line sum to 180° (like cutting a straight line into two pieces)<br>
-            - Angles at a point sum to 360° (like slicing a pizza)<br>
-            - Vertically opposite angles are equal (when two lines cross)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> When parallel lines are cut by another line (transversal):<br>
-            - Corresponding angles are equal (like F-shaped angles)<br>
-            - Alternate angles are equal (like Z-shaped angles)<br>
-            - Interior angles on the same side sum to 180° (like C-shaped angles)
-        </div>
-        
-        <div class="visual-aid">
-            [Imagine two horizontal parallel lines with a diagonal line crossing through both. The angles formed follow these patterns.]
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Road intersections use angle principles. Carpenters use angle relationships to ensure structures are properly aligned. Map navigation relies on understanding angles and directions.
-        </div>
-        
-        <h3>3.2 Polygons</h3>
-        <p>Polygons are closed shapes with straight sides - from triangles to hexagons and beyond. They're everywhere in the world around us, from floor tiles to stop signs.</p>
-        
-        <div class="formula">
-            Sum of interior angles of a polygon with n sides = (n - 2) × 180°<br>
-            Each interior angle of a regular polygon = (n - 2) × 180° / n<br>
-            Each exterior angle of a regular polygon = 360° / n
-        </div>
-        
-        <table>
-            <tr>
-                <th>Polygon</th>
-                <th>Sides</th>
-                <th>Sum of Interior Angles</th>
-                <th>Interior Angle (Regular)</th>
-                <th>Real-world Example</th>
-            </tr>
-            <tr>
-                <td>Triangle</td>
-                <td>3</td>
-                <td>180°</td>
-                <td>60°</td>
-                <td>Yield sign, pizza slice</td>
-            </tr>
-            <tr>
-                <td>Quadrilateral</td>
-                <td>4</td>
-                <td>360°</td>
-                <td>90°</td>
-                <td>Picture frame, book cover</td>
-            </tr>
-            <tr>
-                <td>Pentagon</td>
-                <td>5</td>
-                <td>540°</td>
-                <td>108°</td>
-                <td>US Pentagon building, home plate in baseball</td>
-            </tr>
-            <tr>
-                <td>Hexagon</td>
-                <td>6</td>
-                <td>720°</td>
-                <td>120°</td>
-                <td>Honeycomb cells, nuts and bolts</td>
-            </tr>
-        </table>
-        
-        <div class="tip">
-            You can verify the formula for sum of interior angles by drawing any polygon and dividing it into triangles from one vertex. Since each triangle has 180°, and you can make (n-2) triangles, the total is (n-2) × 180°.
-        </div>
-        
-        <h3>3.3 Circle Theorems</h3>
-        <p>Circles have special properties that relate angles, arcs, and lines. These relationships are incredibly useful in engineering, architecture, and design.</p>
-        
-        <div class="formula">
-            - The angle at the center is twice the angle at the circumference (looking at the same arc)<br>
-            - Angles in the same segment are equal (like all angles standing on the same arc)<br>
-            - The angle in a semicircle is a right angle (90°)<br>
-            - Opposite angles of a cyclic quadrilateral sum to 180° (supplementary)
-        </div>
-        
-        <div class="important">
-            A tangent to a circle is perpendicular (90°) to the radius at the point of contact. This is why bicycle spokes are perpendicular to the rim at their connection points!
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Gears and wheels use circle principles. Satellite dishes are designed using circular properties. GPS systems use circular geometry to determine location.
-        </div>
-        
-        <h3>3.4 Trigonometric Ratios</h3>
-        <p>Trigonometry helps us relate angles to distances. Think of it as a toolkit for solving problems involving triangles, especially right-angled triangles.</p>
-        
-        <div class="formula">
-            In a right-angled triangle:<br>
-            sin θ = opposite / hypotenuse (remember: SOH)<br>
-            cos θ = adjacent / hypotenuse (remember: CAH)<br>
-            tan θ = opposite / adjacent = sin θ / cos θ (remember: TOA)<br>
-            <br>
-            For any triangle:<br>
-            Sine rule: a/sin A = b/sin B = c/sin C (sides proportional to sines of opposite angles)<br>
-            Cosine rule: c² = a² + b² - 2ab cos C (generalized Pythagorean theorem)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> In a right-angled triangle, if one angle is 30° and the hypotenuse is 10 cm, find the length of the opposite side.<br>
-            sin 30° = opposite / 10<br>
-            opposite = 10 × sin 30° = 10 × 0.5 = 5 cm
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Surveyors use trigonometry to measure land. Navigators use it to determine distances and directions. Architects use it for calculating heights and angles in buildings. Even sound waves and electrical signals are analyzed using trigonometric functions!
-        </div>
-    </div>
 
-    <div class="topic">
-        <h2>4. MENSURATION</h2>
-        <p>Mensuration is all about measuring geometric figures - their lengths, areas, volumes, and more. It's the mathematics of measurement that we use daily, from wrapping a gift to constructing a building.</p>
+        let currentQuestionIndex = 0;
+        let timerInterval;
+        let countdownInterval;
         
-        <h3>4.1 Areas and Perimeters</h3>
-        <p>Area measures the space inside a shape (like how much paint you need for a wall), while perimeter measures the distance around it (like how much fencing you need for a garden).</p>
+        // Initialize scores
+        let stScore = 0;
+        let jizzleScore = 0;
         
-        <div class="formula">
-            Rectangle: Area = length × width, Perimeter = 2(length + width)<br>
-            Triangle: Area = ½ × base × height, Perimeter = sum of all sides<br>
-            Circle: Area = πr², Circumference = 2πr<br>
-            Parallelogram: Area = base × height (not the slant side!)<br>
-            Trapezium: Area = ½ × (sum of parallel sides) × height
-        </div>
+        const questionElement = document.getElementById('question');
+        const timerElement = document.getElementById('timer');
+        const countdownElement = document.getElementById('countdown');
+        const questionNumberElement = document.getElementById('question-number');
+        const questionContainerElement = document.getElementById('question-container');
+        const factualContextElement = document.getElementById('factual-context');
+        const factTextElement = document.getElementById('fact-text');
+        const stScoreElement = document.getElementById('st-score');
+        const jizzleScoreElement = document.getElementById('jizzle-score');
+        const stPanelElement = document.getElementById('st-panel');
+        const jizzlePanelElement = document.getElementById('jizzle-panel');
+        const versusOverlayElement = document.getElementById('versus-overlay');
         
-        <div class="example">
-            <strong>Example:</strong> Find the area and perimeter of a rectangle with length 8 cm and width 5 cm.<br>
-            Area = 8 × 5 = 40 cm²<br>
-            Perimeter = 2(8 + 5) = 2(13) = 26 cm
-        </div>
+        // Load a question
+        function loadQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                // Update question number display
+                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
+                
+                // Set question container to "enter" state
+                questionContainerElement.classList.add('enter');
+                
+                // Hide factual context
+                factualContextElement.classList.remove('show');
+                
+                // Reset artist panels
+                stPanelElement.classList.remove('correct', 'incorrect');
+                jizzlePanelElement.classList.remove('correct', 'incorrect');
+                stPanelElement.classList.remove('answer-reveal');
+                jizzlePanelElement.classList.remove('answer-reveal');
+                
+                // Show versus overlay
+                versusOverlayElement.classList.remove('hidden');
+                
+                // Apply transition after a small delay to ensure the class is applied
+                setTimeout(() => {
+                    // Remove both enter/exit classes to get to normal state with transition
+                    questionContainerElement.classList.remove('enter', 'exit');
+                    
+                    const currentQuestion = questions[currentQuestionIndex];
+                    
+                    // Set question text
+                    questionElement.textContent = currentQuestion.question;
+                    
+                    // Start timer with read time pause
+                    startTimerWithPause(currentQuestion.readTime, currentQuestion.revealTime);
+                    
+                }, 50);
+                
+            } else {
+                // Loop back to first question
+                currentQuestionIndex = 0;
+                loadQuestion();
+            }
+        }
         
-        <div class="real-world">
-            <strong>Real-world application:</strong> Buying carpet by area, calculating paint needed for walls, measuring athletic fields, designing landscaping, and calculating material costs for construction all use area and perimeter formulas.
-        </div>
+        // Start the timer with an initial pause for reading
+        function startTimerWithPause(pauseTime, revealTime) {
+            // Reset timer style and add paused class
+            timerElement.style.transition = 'none';
+            timerElement.style.width = '100%';
+            timerElement.classList.add('paused');
+            timerElement.classList.remove('ending');
+            
+            // Hide countdown during reading time
+            countdownElement.classList.add('hidden');
+            
+            // Force browser reflow
+            void timerElement.offsetWidth;
+            
+            // Clear any existing interval
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
+            
+            // First wait for the read time
+            setTimeout(() => {
+                // Remove paused class and start timer animation
+                timerElement.classList.remove('paused');
+                timerElement.style.transition = `width ${revealTime/1000}s linear, background-color 0.5s`;
+                timerElement.style.width = '0%';
+                
+                // Start countdown and show it
+                let secondsLeft = Math.ceil(revealTime/1000);
+                countdownElement.textContent = secondsLeft;
+                countdownElement.classList.remove('hidden');
+                
+                countdownInterval = setInterval(() => {
+                    secondsLeft--;
+                    countdownElement.textContent = secondsLeft;
+                    
+                    // Change to red when 2 seconds or less remain
+                    if (secondsLeft <= 2) {
+                        timerElement.classList.add('ending');
+                    }
+                    
+                    if (secondsLeft <= 0) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+                
+                // Set timeout for when time is up
+                timerInterval = setTimeout(() => {
+                    // Reveal the answer
+                    revealAnswer();
+                }, revealTime);
+            }, pauseTime);
+        }
         
-        <h3>4.2 Volumes and Surface Areas</h3>
-        <p>Volume measures the space inside a 3D shape (like how much water a container can hold), while surface area measures the total area of all faces (like how much wrapping paper you need).</p>
+        // Reveal the correct answer with animation
+        function revealAnswer() {
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
+            
+            const currentQuestion = questions[currentQuestionIndex];
+            
+            // Hide versus overlay
+            versusOverlayElement.classList.add('hidden');
+            
+            // Determine which artist is correct and apply appropriate classes
+            if (currentQuestion.correctArtist === "ST") {
+                stPanelElement.classList.add('correct', 'answer-reveal');
+                jizzlePanelElement.classList.add('incorrect');
+                
+                // Update score
+                stScore++;
+                stScoreElement.textContent = `ST: ${stScore}`;
+                stScoreElement.classList.add('score-pulse');
+                setTimeout(() => {
+                    stScoreElement.classList.remove('score-pulse');
+                }, 500);
+            } else {
+                jizzlePanelElement.classList.add('correct', 'answer-reveal');
+                stPanelElement.classList.add('incorrect');
+                
+                // Update score
+                jizzleScore++;
+                jizzleScoreElement.textContent = `JIZZLE: ${jizzleScore}`;
+                jizzleScoreElement.classList.add('score-pulse');
+                setTimeout(() => {
+                    jizzleScoreElement.classList.remove('score-pulse');
+                }, 500);
+            }
+            
+            // Show factual context after a brief delay
+            setTimeout(() => {
+                showFactualContext();
+            }, 2000);
+        }
         
-        <div class="formula">
-            Cube: Volume = edge³, Surface Area = 6 × edge²<br>
-            Cuboid: Volume = length × width × height, Surface Area = 2(lw + lh + wh)<br>
-            Cylinder: Volume = πr²h, Total Surface Area = 2πr(r + h)<br>
-            Sphere: Volume = (4/3)πr³, Surface Area = 4πr²<br>
-            Cone: Volume = (1/3)πr²h, Total Surface Area = πr(r + l) where l = slant height
-        </div>
+        // Show factual context
+        function showFactualContext() {
+            const currentQuestion = questions[currentQuestionIndex];
+            
+            // Set factual text content
+            factTextElement.textContent = currentQuestion.factText;
+            
+            // Show factual context with animation
+            factualContextElement.classList.add('show');
+            
+            // Move to next question after read time
+            setTimeout(() => {
+                // Hide factual context
+                factualContextElement.classList.remove('show');
+                
+                // Wait for transition to complete before moving to next question
+                setTimeout(() => {
+                    transitionToNextQuestion();
+                }, 500);
+            }, currentQuestion.factReadTime);
+        }
         
-        <div class="tip">
-            For any prism or cylinder, think of the volume as the area of the base multiplied by the height - like stacking identical slices on top of each other.
-        </div>
+        // Transition to the next question with animation
+        function transitionToNextQuestion() {
+            // Add exit animation class
+            questionContainerElement.classList.add('exit');
+            
+            // Wait for animation to complete
+            setTimeout(() => {
+                currentQuestionIndex++;
+                loadQuestion();
+            }, 500);
+        }
         
-        <div class="example">
-            <strong>Example:</strong> Calculate the volume and surface area of a cube with edge length 4 cm.<br>
-            Volume = 4³ = 64 cm³<br>
-            Surface Area = 6 × 4² = 6 × 16 = 96 cm²
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Package design uses surface area calculations. Storage containers are measured by volume. Construction projects calculate concrete volume. Water tanks, shipping containers, and food packaging all require volume and surface area measurements.
-        </div>
-    </div>
-
-    <div class="topic">
-        <h2>5. STATISTICS AND PROBABILITY</h2>
-        <p>Statistics helps us make sense of data and draw conclusions from it. Probability helps us understand chance and uncertainty. Together, they form the basis of data science and decision-making in an uncertain world.</p>
-        
-        <h3>5.1 Data Representation</h3>
-        <p>Data representation involves organizing information visually to make it easier to understand patterns, trends, and outliers - turning numbers into insights.</p>
-        
-        <div class="formula">
-            Types of data representation:<br>
-            - Frequency tables: Organize raw data into categories with counts<br>
-            - Bar charts/histograms: Compare quantities across categories<br>
-            - Pie charts: Show proportions of a whole<br>
-            - Line graphs: Display trends over time<br>
-            - Scatter diagrams: Show relationships between two variables
-        </div>
-        
-        <div class="tip">
-            When creating a pie chart, calculate the angle for each sector using:<br>
-            Angle = (Item's frequency / Total frequency) × 360°<br>
-            For example, if 25% of students prefer math, their sector would be 25% × 360° = 90°
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Weather forecasts use line graphs to show temperature trends. Companies use pie charts to display market share. News media use bar charts to compare election results. Health dashboards use various charts to track disease spread.
-        </div>
-        
-        <h3>5.2 Measures of Central Tendency</h3>
-        <p>These are single values that aim to represent or summarize an entire dataset - like finding the "center" or "typical value" of the data.</p>
-        
-        <div class="formula">
-            Mean (arithmetic): Sum of all values divided by the number of values (the "average")<br>
-            Median: Middle value when data is arranged in order (the "middle")<br>
-            Mode: Most frequently occurring value (the "most common")
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Find the mean, median, and mode of: 4, 7, 9, 3, 5, 9, 8<br>
-            Mean = (4+7+9+3+5+9+8)/7 = 45/7 = 6.43<br>
-            Median (ordered data: 3,4,5,7,8,9,9): 7<br>
-            Mode: 9 (occurs twice)
-        </div>
-        
-        <div class="tip">
-            Different measures are useful in different situations:<br>
-            - Mean uses all data points but is affected by outliers<br>
-            - Median isn't affected by extreme values (good for income data)<br>
-            - Mode shows the most common value (good for categorical data)
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Average temperatures in weather reports (mean), median home prices in real estate (less affected by extremely expensive houses), and most popular shoe sizes in inventory management (mode).
-        </div>
-        
-        <h3>5.3 Measures of Dispersion</h3>
-        <p>These measure how spread out the data is - how much variation exists. Two datasets might have the same average but very different spreads.</p>
-        
-        <div class="formula">
-            Range = Maximum value - Minimum value (simplest measure of spread)<br>
-            Variance = ∑(x - μ)² / n (average of squared differences from the mean)<br>
-            Standard deviation = √Variance (most common measure of spread)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Calculate the range of: 5, 8, 12, 15, 20<br>
-            Range = 20 - 5 = 15
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Quality control in manufacturing uses standard deviation to ensure products are consistent. Investment risk assessment uses variance to measure volatility. Educational testing uses standard deviation to compare student performance.
-        </div>
-        
-        <h3>5.4 Probability</h3>
-        <p>Probability measures how likely an event is to occur, from impossible (0) to certain (1). It's the mathematics of chance and uncertainty.</p>
-        
-        <div class="formula">
-            P(Event) = Number of favorable outcomes / Total number of possible outcomes<br>
-            P(A or B) = P(A) + P(B) - P(A and B) (addition rule)<br>
-            P(A and B) = P(A) × P(B|A) (multiplication rule)<br>
-            For independent events: P(A and B) = P(A) × P(B)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> When rolling a fair six-sided die, find:<br>
-            P(rolling a 5) = 1/6<br>
-            P(rolling an even number) = 3/6 = 1/2<br>
-            P(rolling a number greater than 4) = 2/6 = 1/3
-        </div>
-        
-        <div class="important">
-            Probability facts:<br>
-            0 ≤ P(Event) ≤ 1 (probability is always between 0 and 1)<br>
-            P(Certain event) = 1 (like getting either heads OR tails when flipping a coin)<br>
-            P(Impossible event) = 0 (like rolling a 7 on a six-sided die)<br>
-            P(Not A) = 1 - P(A) (complement rule)
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Weather forecasts use probability (30% chance of rain). Insurance companies calculate risk using probability. Games of chance rely on probability principles. Medical diagnoses use probability to assess likelihood of conditions based on test results.
-        </div>
-    </div>
-
-   
-<div class="topic">
-        <h2>6. VECTORS AND MATRICES</h2>
-        <p>Vectors and matrices are powerful mathematical tools that handle multiple values at once. They're essential in physics, computer graphics, data science, and many other fields.</p>
-        
-        <h3>6.1 Vectors</h3>
-        <p>Unlike regular numbers (scalars) that only have magnitude, vectors have both magnitude AND direction. Think of them as arrows pointing in space.</p>
-        
-        <div class="formula">
-            Vector addition: v + w (connect the vectors head-to-tail)<br>
-            Scalar multiplication: kv (stretches or shrinks the vector)<br>
-            Magnitude of a vector |v| = √(v₁² + v₂² + v₃²) (length of the arrow)<br>
-            Unit vector: v/|v| (same direction but length 1)<br>
-            Dot product: v·w = |v||w|cos θ = v₁w₁ + v₂w₂ + v₃w₃ (product of magnitudes × cosine of angle between)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Find the magnitude of v = 3i + 4j<br>
-            |v| = √(3² + 4²) = √(9 + 16) = √25 = 5
-        </div>
-        
-        <div class="visual-aid">
-            [Imagine an arrow drawn from the origin to the point (3,4) on a coordinate plane. The length of this arrow is 5 units.]
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Forces in physics are vectors (with magnitude and direction). Wind velocity is a vector. Navigation systems use vectors to calculate paths. Computer graphics use vectors to move objects on screen and create animations.
-        </div>
-        
-        <h3>6.2 Matrices</h3>
-        <p>Matrices are rectangular arrays of numbers arranged in rows and columns. Think of them as organized tables of values that can represent systems of equations, transformations, and data sets.</p>
-        
-        <div class="formula">
-            Matrix addition: (A + B)ᵢⱼ = Aᵢⱼ + Bᵢⱼ (add corresponding elements)<br>
-            Scalar multiplication: (kA)ᵢⱼ = kAᵢⱼ (multiply each element by k)<br>
-            Matrix multiplication: (AB)ᵢⱼ = ∑ Aᵢₖ × Bₖⱼ (row by column multiplication)<br>
-            Determinant of 2×2 matrix: |A| = ad - bc, where A = [[a, b], [c, d]]<br>
-            Inverse of 2×2 matrix: A⁻¹ = 1/|A| × [[d, -b], [-c, a]], where A = [[a, b], [c, d]]
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Find the determinant of A = [[3, 2], [1, 4]]<br>
-            |A| = 3×4 - 2×1 = 12 - 2 = 10
-        </div>
-        
-        <div class="important">
-            Matrix multiplication is not commutative in general: AB ≠ BA (unlike regular multiplication)<br>
-            A matrix must be square to have a determinant<br>
-            A matrix has an inverse if and only if its determinant is not zero (just like how a number can't be divided by zero)
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Computer graphics use matrices for transformations like rotation and scaling. Search engines like Google use matrices in their ranking algorithms. Economics uses matrices for input-output models. Quantum mechanics represents states as matrices.
-        </div>
-    </div>
-
-    <div class="topic">
-        <h2>7. CALCULUS</h2>
-        <p>Calculus is the mathematics of change and accumulation. Developed independently by Newton and Leibniz, it's one of the most powerful tools in mathematics, allowing us to analyze things that are continuously changing.</p>
-        
-        <h3>7.1 Differentiation</h3>
-        <p>Differentiation finds the rate at which something is changing - like the speed of a car (rate of change of position) or the slope of a curve at any point. It's about finding instantaneous rates of change.</p>
-        
-        <div class="formula">
-            Basic rules:<br>
-            - d/dx(xⁿ) = nxⁿ⁻¹ (power rule)<br>
-            - d/dx(k) = 0 (k is constant - constants don't change)<br>
-            - d/dx(kf(x)) = k·d/dx(f(x)) (constant multiple rule)<br>
-            - d/dx(f(x) + g(x)) = d/dx(f(x)) + d/dx(g(x)) (sum rule)<br>
-            - d/dx(f(x) × g(x)) = f(x)·d/dx(g(x)) + g(x)·d/dx(f(x)) (product rule)
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Find the derivative of f(x) = 3x² - 2x + 5<br>
-            f'(x) = 3·2x¹ - 2·1x⁰ + 0 = 6x - 2
-        </div>
-        
-        <div class="tip">
-            The derivative at a point gives you the slope of the tangent line at that point. If f'(a) = 0, then the function has a horizontal tangent at x = a, which often indicates a maximum or minimum.
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Economists use derivatives to find marginal cost and revenue. Engineers use them to optimize designs. Physicists use them to describe motion. Medical researchers use them to model the spread of diseases.
-        </div>
-        
-        <h3>7.2 Integration</h3>
-        <p>Integration is the reverse of differentiation - it finds the total accumulation over an interval. Think of it as adding up infinitely many infinitesimally small pieces, like finding the total distance traveled based on speed over time.</p>
-        
-        <div class="formula">
-            Basic rules:<br>
-            - ∫xⁿ dx = xⁿ⁺¹/(n+1) + C (n ≠ -1) (power rule for integration)<br>
-            - ∫k dx = kx + C (k is constant)<br>
-            - ∫(f(x) + g(x)) dx = ∫f(x) dx + ∫g(x) dx (sum rule)<br>
-            - ∫k·f(x) dx = k·∫f(x) dx (constant multiple rule)
-        </div>
-        
-        <div class="important">
-            The "+ C" is the constant of integration and represents the fact that many functions share the same derivative. For example, x², x²+1, and x²-5 all have a derivative of 2x.
-            <br><br>
-            Definite integral: ∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) - F(a), where F is the antiderivative of f. This calculates the net accumulated value from x=a to x=b.
-        </div>
-        
-        <div class="example">
-            <strong>Example:</strong> Evaluate ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx<br>
-            ∫(3x² + 2) dx = 3x³/3 + 2x + C = x³ + 2x + C<br>
-            ∫<sub>0</sub><sup>2</sup> (3x² + 2) dx = (2³ + 2·2) - (0³ + 2·0) = (8 + 4) - 0 = 12
-        </div>
-        
-        <div class="real-world">
-            <strong>Real-world application:</strong> Physics uses integration to find work done by a force. Economics uses it to calculate total profit from marginal profit. Probability uses it to find the probability over a range of a continuous random variable. Engineering uses it to calculate centers of mass and moments of inertia.
-        </div>
-        
-        <div class="tip">
-            Geometrically, the definite integral represents the area under the curve between the specified limits. This visual interpretation can help understand what integration is actually calculating.
-        </div>
-    </div>
-    
-    <div class="topic">
-        <h2>8. EXAMINATION TIPS</h2>
-        
-        <h3>8.1 General Tips</h3>
-        <ul>
-            <li>Read each question carefully, identifying what is given and what is required.</li>
-            <li>Show all your working clearly and systematically.</li>
-            <li>Manage your time wisely, spending more time on higher-mark questions.</li>
-            <li>Check your answers if time permits.</li>
-            <li>Ensure your calculator is set to the correct mode (degrees/radians) for trigonometric calculations.</li>
-        </ul>
-        
-        <h3>8.2 Common Mistakes to Avoid</h3>
-        <ul>
-            <li>Forgetting to include units in your final answer.</li>
-            <li>Computational errors in basic arithmetic.</li>
-            <li>Not reading the question carefully and missing key information.</li>
-            <li>Forgetting to check if your answer makes sense in the context of the problem.</li>
-            <li>Incorrect application of formulas.</li>
-        </ul>
-        
-        <h3>8.3 Last-Minute Preparation</h3>
-        <ul>
-            <li>Review key formulas, properties, and theorems.</li>
-            <li>Practice with past WAEC questions to get familiar with the format and style.</li>
-            <li>Focus on areas where you have challenges.</li>
-            <li>Ensure you have all required materials (calculator, mathematical set, etc.) ready before the exam day.</li>
-            <li>Get adequate rest before the examination.</li>
-        </ul>
-    </div>
-    
-    <div class="footer">
-        <p>© 2025 WAEC Mathematics Study Guide</p>
-        <p>Prepared by a qualified mathematics instructor to help students excel in their WAEC examinations.</p>
-        <p>Good luck in your examinations!</p>
-    </div>
+        // Start the quiz immediately
+        document.addEventListener('DOMContentLoaded', loadQuestion);
+    </script>
 </body>
 </html>
