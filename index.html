@@ -376,7 +376,7 @@
             <div class="artists-container" id="artists-container">
                 <!-- ST Panel (Left) -->
                 <div class="artist-panel" id="st-panel">
-                    <img class="artist-image" src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/13/82/0b/13820b22-d33c-79c9-a4bf-ba34bd0a5111/191061268802.jpg/486x486bb.png" alt="ST">
+                    <img class="artist-image" src="/api/placeholder/400/320" alt="ST">
                     <div class="artist-label">ST</div>
                     <!-- ST Score positioned on the artist image -->
                     <div class="score-display st-score" id="st-score">ST: 0</div>
@@ -384,7 +384,7 @@
                 
                 <!-- JIZZLE Panel (Right) -->
                 <div class="artist-panel" id="jizzle-panel">
-                    <img class="artist-image" src="https://viberate-upload.ams3.cdn.digitaloceanspaces.com/prod/entity/artist/jizzle-pnvRe" alt="JIZZLE">
+                    <img class="artist-image" src="/api/placeholder/400/320" alt="JIZZLE">
                     <div class="artist-label">JIZZLE</div>
                     <!-- JIZZLE Score positioned on the artist image -->
                     <div class="score-display jizzle-score" id="jizzle-score">JIZZLE: 0</div>
@@ -406,7 +406,7 @@
             <!-- Factual Context Section (Hidden initially) -->
             <div class="factual-context" id="factual-context">
                 <div class="fact-image">
-                    <img class="fact-image" src="https://www.shutterstock.com/image-vector/did-you-know-question-design-600nw-2506070363.jpg" alt="Fact Image" id="fact-image">
+                    <img class="fact-image" src="/api/placeholder/400/320" alt="Fact Image" id="fact-image">
                 </div>
                 <div class="fact-title">Did you know?</div>
                 <div class="fact-text" id="fact-text">ST released his debut album earlier than Jizzle, launching his career in the Gambian music scene.</div>
@@ -417,87 +417,86 @@
     <script>
         const questions = [
     {
-        question: "Which artist has won more national music awards?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 0,
-        readTime: 3500,
-        factText: "Did you know, ST has consistently dominated national awards, including Artist of the Year at multiple WAHSA and GMA events?",
-        factReadTime: 4000
+        question: "Which artist released their debut album first?",
+        correctArtist: "ST",
+        readTime: 4000,
+        revealTime: 5000,
+        factText: "ST released his debut album earlier than Jizzle, launching his career in the Gambian music scene.",
+        factReadTime: 9000
     },
     {
-        question: "Which artist has more mainstream commercial brand endorsements?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 1,
-        readTime: 3500,
-        factText: "Did you know, Jizzle has partnered with major brands like Africell and secured more visible commercial sponsorship deals?",
-        factReadTime: 4000
+        question: "Who has more international collaborations?",
+        correctArtist: "JIZZLE",
+        readTime: 4000,
+        revealTime: 5000,
+        factText: "Jizzle has collaborated with more international artists, including partnerships with Nigerian and Ghanaian musicians.",
+        factReadTime: 14000
     },
     {
-        question: "Which artist has released more full studio albums?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 0,
-        readTime: 3000,
-        factText: "Did you know, ST has dropped over five full-length albums compared to Jizzle's fewer but more internationally oriented projects?",
-        factReadTime: 4000
+        question: "Who has won more music awards?",
+        correctArtist: "JIZZLE",
+        readTime: 5000,
+        revealTime: 5000,
+        factText: "Jizzle has received numerous awards including multiple Wah Sa Halat Music Awards.",
+        factReadTime: 9000
     },
     {
-        question: "Which artist has more international music collaborations?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 1,
-        readTime: 3500,
-        factText: "Did you know, Jizzle has collaborated with artists from Nigeria, Senegal, and Ghana, expanding his West African presence?",
-        factReadTime: 4000
+        question: "Who has more followers on social media?",
+        correctArtist: "JIZZLE",
+        readTime: 4000,
+        revealTime: 5000,
+        factText: "Jizzle maintains a larger social media following across platforms like Instagram and Facebook.",
+        factReadTime: 9000
     },
     {
-        question: "Which artist has performed at more major public concerts in The Gambia?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 0,
-        readTime: 3500,
-        factText: "Did you know, ST has consistently filled stadiums like the Independence Stadium and has become a go-to headliner for national events?",
-        factReadTime: 4000
+        question: "Who has performed at more international festivals?",
+        correctArtist: "ST",
+        readTime: 6000,
+        revealTime: 5000,
+        factText: "ST has represented Gambian music at more international festivals throughout Europe and Africa.",
+        factReadTime: 14000
     },
     {
-        question: "Which artist has a larger YouTube subscriber base?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 1,
-        readTime: 3000,
-        factText: "Did you know, Jizzle has a more aggressive digital presence, especially on YouTube where his subscriber count leads?",
-        factReadTime: 4000
+        question: "Who has released more singles?",
+        correctArtist: "JIZZLE",
+        readTime: 5000,
+        revealTime: 5000,
+        factText: "Jizzle has released more singles throughout his career, with an impressive catalog of music.",
+        factReadTime: 9000
     },
     {
-        question: "Which artist is more lyrically focused on social and political issues?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 0,
-        readTime: 3500,
-        factText: "Did you know, ST often weaves themes of national unity, education, and youth empowerment into his lyrics?",
-        factReadTime: 4000
+        question: "Who has a more diverse range of musical styles?",
+        correctArtist: "JIZZLE",
+        readTime: 5000,
+        revealTime: 5000,
+        factText: "Jizzle experiments with more musical genres, blending afrobeats, hip-hop, R&B and traditional Gambian sounds.",
+        factReadTime: 8000
     },
     {
-        question: "Which artist has a more dominant presence on TikTok and youth-centered social media?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 1,
-        readTime: 3000,
-        factText: "Did you know, Jizzle's Afrobeats style and catchy hooks have gained massive traction on TikTok and Instagram Reels?",
-        factReadTime: 4000
+        question: "Who started their music career earlier?",
+        correctArtist: "ST",
+        readTime: 5000,
+        revealTime: 5000,
+        factText: "ST began his music career earlier, entering the Gambian music scene before Jizzle made his debut.",
+        factReadTime: 7000
     },
     {
-        question: "Which artist was the first Gambian to headline an international tour in Europe?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 1,
-        readTime: 3500,
-        factText: "Did you know, Jizzle headlined a successful tour across Europe, including sold-out shows in Sweden and Germany?",
-        factReadTime: 4000
+        question: "Who has more YouTube views overall?",
+        correctArtist: "JIZZLE",
+        readTime: 4000,
+        revealTime: 5000,
+        factText: "Jizzle's music videos have accumulated more total views on YouTube across his releases.",
+        factReadTime: 8000
     },
     {
-        question: "Which artist is widely considered the voice of the people?",
-        options: ["ST", "JIZZLE"],
-        correctIndex: 0,
-        readTime: 3000,
-        factText: "Did you know, ST is often referred to as the people's artist due to his strong connection with grassroots fans and relatable messaging?",
-        factReadTime: 4000
+        question: "Who has a bigger influence on Gambian youth culture?",
+        correctArtist: "ST",
+        readTime: 5000,
+        revealTime: 5000,
+        factText: "ST has been a significant influence on Gambian youth culture for a longer period, pioneering modern Gambian music.",
+        factReadTime: 9000
     }
 ];
-
 
         let currentQuestionIndex = 0;
         let timerInterval;
