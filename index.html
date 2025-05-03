@@ -1,529 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cinema Tape Effect</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #1a1a1a;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 10px;
-      box-sizing: border-box;
-      overflow: hidden; /* Prevent scrolling for TikTok embed */
-    }
-    
-    .container {
-      max-width: 1000px;
-      width: 100%;
-    }
-    
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ffcc00;
-    }
-    
-    .controls {
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 4px;
-      border: none;
-    }
-    
-    input[type="text"] {
-      flex: 1;
-      min-width: 250px;
-    }
-    
-    button {
-      background-color: #ffcc00;
-      color: #1a1a1a;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-    
-    button:hover {
-      background-color: #ffd633;
-    }
-    
-    .film-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      background-color: #000;
-      border-radius: 8px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    }
-    
-    .film-strip {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .film-strip::before,
-    .film-strip::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 40px;
-      background-color: #222;
-      background-image: 
-        linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, 0.1) 10%, rgba(255, 255, 255, 0.1) 90%, transparent 90%),
-        linear-gradient(to right, #222 20px, transparent 20px, transparent calc(100% - 20px), #222 calc(100% - 20px));
-      display: flex;
-      justify-content: space-between;
-      z-index: 2;
-    }
-    
-    .film-strip::before {
-      top: 0;
-    }
-    
-    .film-strip::after {
-      bottom: 0;
-    }
-    
-    .film-holes {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 3;
-    }
-    
-    .film-hole {
-      position: absolute;
-      width: 12px;
-      height: 18px;
-      background-color: #000;
-      border-radius: 2px;
-      opacity: 0.8;
-    }
-    
-    .left-holes .film-hole {
-      left: 10px;
-    }
-    
-    .right-holes .film-hole {
-      right: 10px;
-    }
-    
-    .image-container {
-      position: relative;
-      width: 100%;
-      height: 70vh; /* Optimized for mobile vertical view */
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 40px 0;
-    }
-    
-    .frame {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .frame.active {
-      opacity: 1;
-    }
-    
-    .frame img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-    }
-    
-    .frame-number {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.5);
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 4px;
-    }
-    
-    .playback-controls {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 10px;
-    }
-    
-    .film-effects {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.2;
-      mix-blend-mode: screen;
-      background-image: 
-        repeating-linear-gradient(transparent, transparent 1px, rgba(255, 255, 255, 0.05) 1px, rgba(255, 255, 255, 0.05) 2px),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
-      background-size: 4px 4px, 100px 100px;
-      z-index: 4;
-    }
-    
-    .film-grain {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.1;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      z-index: 5;
-    }
-    
-    .film-scratches {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.03;
-      mix-blend-mode: screen;
-      background-image: linear-gradient(90deg, transparent 0%, transparent 95%, white 95%, white 95.2%, transparent 95.2%, transparent 100%);
-      background-size: 300px 100%;
-      animation: scratches 2s linear infinite;
-      z-index: 6;
-    }
-    
-    @keyframes scratches {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 300px 0;
-      }
-    }
-    
-    .error-message {
-      color: #ff6b6b;
-      text-align: center;
-      margin-top: 20px;
-      font-size: 16px;
-    }
-    
-    .loading {
-      text-align: center;
-      margin-top: 20px;
-      color: #ffcc00;
-      font-size: 18px;
-    }
-    
-    .slider-container {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-    }
-    
-    .slider-container label {
-      flex: 0 0 80px;
-    }
-    
-    .slider-container input {
-      flex: 1;
-    }
-    
-    .slider-value {
-      flex: 0 0 40px;
-      text-align: right;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .image-container {
-        height: 75vh; /* Taller for mobile TikTok view */
-      }
-      
-      .film-strip::before,
-      .film-strip::after {
-        height: 30px;
-      }
-      
-      .image-container {
-        margin: 30px 0;
-      }
-      
-      h1 {
-        font-size: 20px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibrahim Traoré TikTok Post</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        
+        .tiktok-container {
+            position: relative;
+            width: 340px;
+            height: 600px;
+            overflow: hidden;
+            background-color: #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .caption-section {
+            flex: 0 0 40%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .image-section {
+            flex: 0 0 60%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #555;
+            text-align: center;
+        }
+        
+        .headline {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #fff;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: bounce 2s infinite alternate;
+        }
+        
+        .highlight {
+            color: #ff0050;
+            font-weight: 900;
+        }
+        
+        /* Pop-up style for the caption */
+        .caption-container {
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            border: 2px solid #ff0050;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* TikTok-style visual effects */
+        .tiktok-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,0,80,0.2) 0%, rgba(0,255,255,0.2) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Emoji decorations for extra TikTok vibe */
+        .emoji-decoration {
+            position: absolute;
+            font-size: 24px;
+            animation: spin 4s linear infinite;
+            z-index: 2;
+            opacity: 0.8;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Cinema Reel Effect</h1>
-    
-    <div class="controls" style="display: none;">
-      <input type="text" id="imageUrl" placeholder="Enter image URL..." value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEBkIdgcX6jTN703qioShdQsLnM4GB0KdDKQ&s">
-      <button id="loadImage">Apply Effect</button>
-    </div>
-    
-    <div class="film-container">
-      <div class="film-strip">
-        <div class="image-container" id="imageContainer">
-          <!-- Frames will be generated here -->
+    <div class="tiktok-container">
+        <!-- Caption Section (Top) -->
+        <div class="caption-section">
+            <div class="caption-container">
+                <div class="headline">
+                    10 <span class="highlight">SHOCKING</span> Facts about Ibrahim Traoré!
+                </div>
+            </div>
+            
+            <!-- Emoji decorations -->
+            <div class="emoji-decoration" style="top: 10%; left: 10%;">🔥</div>
+            <div class="emoji-decoration" style="top: 15%; right: 15%;">😱</div>
         </div>
         
-        <div class="film-holes left-holes" id="leftHoles"></div>
-        <div class="film-holes right-holes" id="rightHoles"></div>
-        
-        <div class="film-effects"></div>
-        <div class="film-grain"></div>
-        <div class="film-scratches"></div>
-      </div>
+        <!-- Image Section (Bottom) -->
+        <div class="image-section">
+            <div class="image-placeholder" id="image-container">
+                Add your image URL here
+            </div>
+        </div>
     </div>
-    
-    <div class="playback-controls" style="display: none;">
-      <button id="prevFrame">◀ Prev</button>
-      <button id="playPause">▶ Play</button>
-      <button id="nextFrame">Next ▶</button>
-    </div>
-    
-    <div class="slider-container" style="display: none;">
-      <label for="speedSlider">Speed:</label>
-      <input type="range" id="speedSlider" min="1" max="10" value="8">
-      <span class="slider-value" id="speedValue">8</span>
-    </div>
-    
-    <div class="slider-container" style="display: none;">
-      <label for="effectSlider">Effects:</label>
-      <input type="range" id="effectSlider" min="0" max="100" value="70">
-      <span class="slider-value" id="effectValue">70%</span>
-    </div>
-    
-    <div id="errorMessage" class="error-message"></div>
-    <div id="loading" class="loading" style="display: none;">Loading image...</div>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const imageContainer = document.getElementById('imageContainer');
-      const leftHoles = document.getElementById('leftHoles');
-      const rightHoles = document.getElementById('rightHoles');
-      const imageUrlInput = document.getElementById('imageUrl');
-      const loadButton = document.getElementById('loadImage');
-      const prevButton = document.getElementById('prevFrame');
-      const playPauseButton = document.getElementById('playPause');
-      const nextButton = document.getElementById('nextFrame');
-      const speedSlider = document.getElementById('speedSlider');
-      const speedValue = document.getElementById('speedValue');
-      const effectSlider = document.getElementById('effectSlider');
-      const effectValue = document.getElementById('effectValue');
-      const errorMessage = document.getElementById('errorMessage');
-      const loading = document.getElementById('loading');
-      
-      let currentFrame = 0;
-      let totalFrames = 70;
-      let isPlaying = false;
-      let playInterval;
-      let speed = 8; // Faster default speed for TikTok
-      let effectIntensity = 70; // More pronounced effect for TikTok
-      
-      // Update speed value display
-      speedSlider.addEventListener('input', function() {
-        speed = parseInt(this.value);
-        speedValue.textContent = speed;
-        if (isPlaying) {
-          stopPlayback();
-          startPlayback();
-        }
-      });
-      
-      // Update effect intensity
-      effectSlider.addEventListener('input', function() {
-        effectIntensity = parseInt(this.value);
-        effectValue.textContent = effectIntensity + '%';
-        updateEffects();
-      });
-      
-      function updateEffects() {
-        const filmEffects = document.querySelector('.film-effects');
-        const filmGrain = document.querySelector('.film-grain');
-        const filmScratches = document.querySelector('.film-scratches');
-        
-        const intensity = effectIntensity / 100;
-        filmEffects.style.opacity = 0.3 * intensity; // Enhanced effect for TikTok
-        filmGrain.style.opacity = 0.15 * intensity; // Enhanced grain for TikTok
-        filmScratches.style.opacity = 0.05 * intensity; // Enhanced scratches for TikTok
-      }
-      
-      function createFilmHoles() {
-        leftHoles.innerHTML = '';
-        rightHoles.innerHTML = '';
-        
-        const containerHeight = imageContainer.offsetHeight;
-        const spacing = containerHeight / 10;
-        
-        for (let i = 0; i < 10; i++) {
-          const leftHole = document.createElement('div');
-          leftHole.className = 'film-hole';
-          leftHole.style.top = `${40 + i * spacing}px`;
-          leftHoles.appendChild(leftHole);
-          
-          const rightHole = document.createElement('div');
-          rightHole.className = 'film-hole';
-          rightHole.style.top = `${40 + i * spacing}px`;
-          rightHoles.appendChild(rightHole);
-        }
-      }
-      
-      function loadImage() {
-        const imageUrl = imageUrlInput.value.trim();
-        
-        if (!imageUrl) {
-          displayError('Please enter an image URL');
-          return;
+    <script>
+        // This script will allow you to replace the placeholder with an actual image
+        function setImageUrl(url) {
+            const imgContainer = document.getElementById('image-container');
+            imgContainer.innerHTML = '';
+            imgContainer.style.backgroundImage = `url(${url})`;
+            imgContainer.style.backgroundSize = 'cover';
+            imgContainer.style.backgroundPosition = 'center';
         }
         
-        // Clear previous content
-        imageContainer.innerHTML = '';
-        errorMessage.textContent = '';
-        loading.style.display = 'block';
-        
-        // Create a test image to check if URL is valid
-        const testImg = new Image();
-        testImg.onload = function() {
-          // Image loaded successfully, create frames
-          loading.style.display = 'none';
-          createFrames(imageUrl);
-        };
-        
-        testImg.onerror = function() {
-          loading.style.display = 'none';
-          displayError('Could not load image. Please check the URL and try again.');
-        };
-        
-        testImg.src = imageUrl;
-      }
-      
-      function createFrames(imageUrl) {
-        for (let i = 0; i < totalFrames; i++) {
-          const frame = document.createElement('div');
-          frame.className = 'frame';
-          frame.id = `frame-${i}`;
-          
-          const img = document.createElement('img');
-          img.src = imageUrl;
-          img.alt = `Frame ${i + 1}`;
-          
-          const frameNumber = document.createElement('div');
-          frameNumber.className = 'frame-number';
-          frameNumber.textContent = `${i + 1}/${totalFrames}`;
-          
-          frame.appendChild(img);
-          frame.appendChild(frameNumber);
-          imageContainer.appendChild(frame);
-        }
-        
-        showFrame(0);
-        createFilmHoles();
-      }
-      
-      function showFrame(frameIndex) {
-        // Hide all frames
-        document.querySelectorAll('.frame').forEach(frame => {
-          frame.classList.remove('active');
-        });
-        
-        // Show the current frame
-        const frame = document.getElementById(`frame-${frameIndex}`);
-        if (frame) {
-          frame.classList.add('active');
-        }
-        
-        currentFrame = frameIndex;
-      }
-      
-      function nextFrame() {
-        const nextIndex = (currentFrame + 1) % totalFrames;
-        showFrame(nextIndex);
-      }
-      
-      function prevFrame() {
-        const prevIndex = (currentFrame - 1 + totalFrames) % totalFrames;
-        showFrame(prevIndex);
-      }
-      
-      function togglePlayback() {
-        if (isPlaying) {
-          stopPlayback();
-        } else {
-          startPlayback();
-        }
-      }
-      
-      function startPlayback() {
-        isPlaying = true;
-        playPauseButton.textContent = '❚❚ Pause';
-        playInterval = setInterval(nextFrame, 1000 / speed);
-      }
-      
-      function stopPlayback() {
-        isPlaying = false;
-        playPauseButton.textContent = '▶ Play';
-        clearInterval(playInterval);
-      }
-      
-      function displayError(message) {
-        errorMessage.textContent = message;
-      }
-      
-      // Event listeners
-      loadButton.addEventListener('click', loadImage);
-      prevButton.addEventListener('click', prevFrame);
-      playPauseButton.addEventListener('click', togglePlayback);
-      nextButton.addEventListener('click', nextFrame);
-      
-      // Initial load with default image
-      loadImage();
-      
-      // Auto-start playback after a short delay for TikTok
-      setTimeout(() => {
-        startPlayback();
-      }, 500);
-    });
-  </script>
+        // For now, let's add a placeholder image
+        setImageUrl('/api/placeholder/340/360');
+    </script>
 </body>
 </html>
