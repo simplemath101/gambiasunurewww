@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ST VS JIZZLE Comparison</title>
+    <title>Share This TikTok Video</title>
     <style>
         * {
             box-sizing: border-box;
@@ -48,7 +48,7 @@
         }
         
         .share-text {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -66,17 +66,17 @@
         }
         
         .versus-text {
-            font-size: 3rem;
+            font-size: 2.2rem;
             margin: 10px 0;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
             animation: glow 2s infinite alternate;
         }
         
         .artist-text {
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             display: inline-block;
-            padding: 8px 15px;
-            border-radius: 8px;
+            padding: 5px 10px;
+            border-radius: 5px;
             margin: 0 5px;
         }
         
@@ -186,19 +186,7 @@
             z-index: 5;
         }
         
-        .question-mark {
-            font-size: 3.5rem;
-            display: inline-block;
-            color: #ffcc00;
-            animation: bounce 1s infinite alternate;
-            margin-left: 5px;
-        }
-        
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
-        }
-        
+        /* Added visible text animation */
         .visible {
             opacity: 1;
             transform: translateY(0);
@@ -222,13 +210,14 @@
             </div>
             
             <div class="share-content">
-                <div class="share-text" id="text1">
+                <div class="share-text" id="text1">BEFORE YOUR LAST QUESTION</div>
+                <div class="share-text" id="text2"><span class="highlight">SHARE</span> THIS VIDEO WITH YOUR FRIENDS!</div>
+                <div class="share-text" id="text3">AND DON'T FORGET TO COMMENT</div>
+                <div class="share-text" id="text4">THE <span class="highlight">BEST</span> ARTIST IN THE GAMBIA</div>
+                <div class="share-text" id="text5">
                     <span class="artist-text st">ST</span>
-                    <span class="versus-text">VS</span>
+                    <span class="versus-text">OR</span>
                     <span class="artist-text jizzle">JIZZLE</span>
-                </div>
-                <div class="share-text" id="text2">
-                    WHO IS THE <span class="highlight">BEST</span><span class="question-mark">???</span>
                 </div>
             </div>
         </div>
@@ -238,16 +227,17 @@
         document.addEventListener('DOMContentLoaded', function() {
             const texts = document.querySelectorAll('.share-text');
             
-            // Slow, dramatic reveal of each text element
+            // Much slower animation timing - mimics reading pace
+            // Each line appears with significant delay between them
             texts.forEach((text, index) => {
                 setTimeout(() => {
                     text.classList.add('visible');
                     
-                    // Add extra animation to the question marks
+                    // If it's the last text, make it stand out more with a special animation
                     if (index === texts.length - 1) {
                         text.style.animation = 'fade-in-up 1.5s forwards';
                     }
-                }, index * 2500); // 2.5 seconds between elements for a very deliberate pace
+                }, index * 2000); // 2000ms (2 seconds) delay between each text element
             });
         });
     </script>
