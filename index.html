@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AFRICELL VS COMIUM Comparison</title>
+    <title>Share This TikTok Video</title>
     <style>
         * {
             box-sizing: border-box;
@@ -41,19 +41,19 @@
             margin: 20px auto;
             background-color: rgba(20, 50, 80, 0.7);
             border-radius: 15px;
-            padding: 20px;
+            padding: 20px 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
             text-align: center;
             animation: pulse-animation 3s infinite;
         }
         
         .share-text {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: bold;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             line-height: 1.4;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 1s, transform 1s;
@@ -65,28 +65,27 @@
             animation: highlight-pulse 2s infinite;
         }
         
-        /* Straight line comparison title */
-        .comparison-title {
+        /* Company comparison row */
+        .company-comparison {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: nowrap;
+            margin: 15px 0;
             width: 100%;
         }
         
         .versus-text {
-            font-size: 2rem;
-            margin: 0 10px;
+            font-size: 1.8rem;
+            margin: 0 8px;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
             animation: glow 2s infinite alternate;
         }
         
-        .university-text {
-            font-size: 1.8rem;
+        .company-text {
+            font-size: 1.5rem;
             display: inline-block;
-            padding: 6px 10px;
-            border-radius: 8px;
+            padding: 5px 10px;
+            border-radius: 5px;
             white-space: nowrap;
         }
         
@@ -171,7 +170,7 @@
         /* Improved image container */
         .image-container {
             width: 100%;
-            margin: 20px 0;
+            margin: 15px 0;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
@@ -179,7 +178,7 @@
             display: flex;
             height: auto;
             min-height: 120px;
-            max-height: 180px;
+            max-height: 170px;
         }
         
         .company-image {
@@ -204,19 +203,7 @@
             z-index: 5;
         }
         
-        .question-mark {
-            font-size: 3rem;
-            display: inline-block;
-            color: #ffcc00;
-            animation: bounce 1s infinite alternate;
-            margin-left: 5px;
-        }
-        
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
-        }
-        
+        /* Added visible text animation */
         .visible {
             opacity: 1;
             transform: translateY(0);
@@ -224,22 +211,18 @@
         
         /* For very small screens */
         @media (max-width: 380px) {
-            .university-text {
-                font-size: 1.5rem;
+            .share-text {
+                font-size: 1.4rem;
+            }
+            
+            .company-text {
+                font-size: 1.3rem;
                 padding: 4px 8px;
             }
             
             .versus-text {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
                 margin: 0 5px;
-            }
-            
-            .share-text {
-                font-size: 1.6rem;
-            }
-            
-            .question-mark {
-                font-size: 2.5rem;
             }
         }
     </style>
@@ -261,15 +244,16 @@
             </div>
             
             <div class="share-content">
-                <!-- Single line title -->
-                <div class="comparison-title visible">
-                    <span class="university-text africell">AFRICELL</span>
-                    <span class="versus-text">VS</span>
-                    <span class="university-text comium">COMIUM</span>
-                </div>
+                <div class="share-text" id="text1">BEFORE YOUR LAST QUESTION</div>
+                <div class="share-text" id="text2"><span class="highlight">SHARE</span> THIS VIDEO WITH YOUR FRIENDS!</div>
+                <div class="share-text" id="text3">AND DON'T FORGET TO COMMENT</div>
+                <div class="share-text" id="text4">THE <span class="highlight">BEST</span> NETWORK IN THE GAMBIA</div>
                 
-                <div class="share-text visible" id="text2">
-                    WHICH ONE IS THE <span class="highlight">BEST</span><span class="question-mark">???</span>
+                <!-- Company comparison in a flex row -->
+                <div class="company-comparison" id="text5">
+                    <span class="company-text africell">AFRICELL</span>
+                    <span class="versus-text">OR</span>
+                    <span class="company-text comium">COMIUM</span>
                 </div>
             </div>
         </div>
@@ -277,15 +261,19 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const texts = document.querySelectorAll('.share-text');
+            const texts = document.querySelectorAll('.share-text, .company-comparison');
             
-            // Add animation to all text elements that aren't already visible
+            // Much slower animation timing - mimics reading pace
+            // Each line appears with significant delay between them
             texts.forEach((text, index) => {
-                if (!text.classList.contains('visible')) {
-                    setTimeout(() => {
-                        text.classList.add('visible');
-                    }, index * 1500); // 1.5 seconds between elements
-                }
+                setTimeout(() => {
+                    text.classList.add('visible');
+                    
+                    // If it's the last text (the comparison), make it stand out more
+                    if (index === texts.length - 1) {
+                        text.style.animation = 'fade-in-up 1.5s forwards';
+                    }
+                }, index * 2000); // 2000ms (2 seconds) delay between each text element
             });
         });
     </script>
