@@ -41,14 +41,14 @@
             margin: 20px auto;
             background-color: rgba(20, 50, 80, 0.7);
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
             text-align: center;
             animation: pulse-animation 3s infinite;
         }
         
         .share-text {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -65,19 +65,29 @@
             animation: highlight-pulse 2s infinite;
         }
         
+        /* Straight line comparison title */
+        .comparison-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: nowrap;
+            width: 100%;
+        }
+        
         .versus-text {
-            font-size: 3rem;
-            margin: 10px 0;
+            font-size: 2rem;
+            margin: 0 10px;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
             animation: glow 2s infinite alternate;
         }
         
         .university-text {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             display: inline-block;
-            padding: 8px 15px;
+            padding: 6px 10px;
             border-radius: 8px;
-            margin: 0 5px;
+            white-space: nowrap;
         }
         
         .africell {
@@ -93,16 +103,19 @@
         .tiktok-banner {
             position: absolute;
             top: 10px;
-            right: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 6px 10px;
+            padding: 6px 15px;
             z-index: 10;
-            border-radius: 15px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             animation: subtle-pulse 3s ease-in-out infinite;
+            width: auto;
+            max-width: 90%;
         }
         
         .tiktok-logo {
@@ -124,9 +137,9 @@
         }
         
         @keyframes subtle-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.03); }
+            100% { transform: translateX(-50%) scale(1); }
         }
         
         @keyframes pulse-animation {
@@ -155,21 +168,26 @@
             position: relative;
         }
         
+        /* Improved image container */
         .image-container {
             width: 100%;
-            height: 180px;
             margin: 20px 0;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             display: flex;
+            height: auto;
+            min-height: 120px;
+            max-height: 180px;
         }
         
         .company-image {
             width: 50%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
+            background-color: white;
+            padding: 10px;
         }
         
         .versus-overlay {
@@ -187,7 +205,7 @@
         }
         
         .question-mark {
-            font-size: 3.5rem;
+            font-size: 3rem;
             display: inline-block;
             color: #ffcc00;
             animation: bounce 1s infinite alternate;
@@ -203,6 +221,27 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* For very small screens */
+        @media (max-width: 380px) {
+            .university-text {
+                font-size: 1.5rem;
+                padding: 4px 8px;
+            }
+            
+            .versus-text {
+                font-size: 1.6rem;
+                margin: 0 5px;
+            }
+            
+            .share-text {
+                font-size: 1.6rem;
+            }
+            
+            .question-mark {
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -216,18 +255,20 @@
         
         <div class="share-container">
             <div class="image-container">
-                <img class="company-image" src="https://pine-networks.com/wp-content/uploads/2024/04/Africell-Sierra-Leone.png" alt="AFRICELL">
-                <img class="company-image" src="https://www.developmentaid.org/files/organizationLogos/comium-sierra-leone-ltd-160683.jpg" alt="COMIUM">
+                <img class="company-image" src="/api/placeholder/300/150" alt="AFRICELL">
+                <img class="company-image" src="/api/placeholder/300/150" alt="COMIUM">
                 <div class="versus-overlay">VS</div>
             </div>
             
             <div class="share-content">
-                <div class="share-text" id="text1">
+                <!-- Single line title -->
+                <div class="comparison-title visible">
                     <span class="university-text africell">AFRICELL</span>
                     <span class="versus-text">VS</span>
                     <span class="university-text comium">COMIUM</span>
                 </div>
-                <div class="share-text" id="text2">
+                
+                <div class="share-text visible" id="text2">
                     WHICH ONE IS THE <span class="highlight">BEST</span><span class="question-mark">???</span>
                 </div>
             </div>
@@ -238,16 +279,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const texts = document.querySelectorAll('.share-text');
             
-            // Slow, dramatic reveal of each text element
+            // Add animation to all text elements that aren't already visible
             texts.forEach((text, index) => {
-                setTimeout(() => {
-                    text.classList.add('visible');
-                    
-                    // Add extra animation to the question marks
-                    if (index === texts.length - 1) {
-                        text.style.animation = 'fade-in-up 1.5s forwards';
-                    }
-                }, index * 2500); // 2.5 seconds between elements for a very deliberate pace
+                if (!text.classList.contains('visible')) {
+                    setTimeout(() => {
+                        text.classList.add('visible');
+                    }, index * 1500); // 1.5 seconds between elements
+                }
             });
         });
     </script>
