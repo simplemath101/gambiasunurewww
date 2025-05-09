@@ -307,58 +307,6 @@
         .answer-reveal {
             animation: reveal-answer 0.7s ease-in-out;
         }
-        
-        /* Factual Context Section Styles */
-        .factual-context {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(20, 50, 80, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
-            z-index: 20;
-            border-radius: 15px;
-        }
-        
-        .factual-context.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .fact-image {
-            width: 100%;
-            height: 180px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            object-fit: cover;
-        }
-        
-        .fact-text {
-            font-size: 1.4rem;
-            text-align: center;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-            padding: 0 10px;
-            line-height: 1.4;
-        }
-        
-        .fact-title {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            color: #ffcc00;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-        }
     </style>
 </head>
 <body>
@@ -402,15 +350,6 @@
             </div>
             
             <div class="question" id="question">Which telecom provider entered the Gambian market first?</div>
-            
-            <!-- Factual Context Section (Hidden initially) -->
-            <div class="factual-context" id="factual-context">
-                <div class="fact-image">
-                    <img class="fact-image" src="/api/placeholder/400/320" alt="Fact Image" id="fact-image">
-                </div>
-                <div class="fact-title">Did you know?</div>
-                <div class="fact-text" id="fact-text">COMIUM launched operations in The Gambia in 2006, while AFRICELL (formerly Cellcom) entered the market in 2007.</div>
-            </div>
         </div>
     </div>
 
@@ -420,81 +359,61 @@
         question: "Which telecom provider entered the Gambian market first?",
         correctCompany: "COMIUM",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, COMIUM launched operations in The Gambia in 2006, while AFRICELL (formerly Cellcom) entered the market in 2007?",
-        factReadTime: 9000
+        revealTime: 5000
     },
     {
         question: "Which company was first to introduce per-second billing in The Gambia?",
         correctCompany: "COMIUM",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, COMIUM pioneered per-second billing in The Gambia, revolutionizing how customers were charged for calls?",
-        factReadTime: 9500
+        revealTime: 5000
     },
     {
         question: "Which telecom provider currently has more subscribers in The Gambia?",
         correctCompany: "AFRICELL",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, AFRICELL has grown to become the largest mobile network operator in The Gambia with approximately 60% market share?",
-        factReadTime: 9500
+        revealTime: 5000
     },
     {
         question: "Which company offers more affordable international calling rates?",
         correctCompany: "COMIUM",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, COMIUM's international calling packages offer some of the most competitive rates for calls to popular destinations like Senegal and Europe?",
-        factReadTime: 9500
+        revealTime: 5000
     },
     {
         question: "Which provider has better network coverage in rural areas of The Gambia?",
         correctCompany: "AFRICELL",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, AFRICELL has invested heavily in rural network infrastructure, covering over 95% of The Gambia's populated areas?",
-        factReadTime: 9000
+        revealTime: 5000
     },
     {
         question: "Which telecom company offers better student-focused data packages?",
         correctCompany: "AFRICELL",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, AFRICELL's 'Student Bundle' provides special data rates and access to educational platforms, making it popular among students?",
-        factReadTime: 9500
+        revealTime: 5000
     },
     {
         question: "Which provider was first to launch 3G services in The Gambia?",
         correctCompany: "COMIUM",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, COMIUM was the first to introduce 3G mobile internet services in The Gambia, setting the stage for mobile data revolution?",
-        factReadTime: 10000
+        revealTime: 5000
     },
     {
         question: "Which company has established more customer service centers across the country?",
         correctCompany: "AFRICELL",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, AFRICELL operates over 20 customer service centers throughout The Gambia, ensuring accessible support in every major town?",
-        factReadTime: 9500
+        revealTime: 5000
     },
     {
         question: "Which telecom provider has sponsored more youth development programs?",
         correctCompany: "AFRICELL",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, AFRICELL has funded numerous youth development initiatives including sports tournaments, educational competitions, and entrepreneurship programs?",
-        factReadTime: 9500
+        revealTime: 5000
     },
     {
         question: "Which company offers better bonus credit on recharges?",
         correctCompany: "COMIUM",
         readTime: 4000,
-        revealTime: 5000,
-        factText: "Did you know, COMIUM's 'Double Bonus' program provides up to 200% bonus credit on certain recharge denominations, making it a customer favorite?",
-        factReadTime: 9000
+        revealTime: 5000
     }
 ];
 
@@ -513,8 +432,6 @@
         const countdownElement = document.getElementById('countdown');
         const questionNumberElement = document.getElementById('question-number');
         const questionContainerElement = document.getElementById('question-container');
-        const factualContextElement = document.getElementById('factual-context');
-        const factTextElement = document.getElementById('fact-text');
         const africellScoreElement = document.getElementById('africell-score');
         const comiumScoreElement = document.getElementById('comium-score');
         const africellPanelElement = document.getElementById('africell-panel');
@@ -529,9 +446,6 @@
                 
                 // Set question container to "enter" state
                 questionContainerElement.classList.add('enter');
-                
-                // Hide factual context
-                factualContextElement.classList.remove('show');
                 
                 // Reset company panels
                 africellPanelElement.classList.remove('correct', 'incorrect');
@@ -651,32 +565,10 @@
                 }, 500);
             }
             
-            // Show factual context after a brief delay
+            // Wait for a moment, then move to next question
             setTimeout(() => {
-                showFactualContext();
-            }, 2000);
-        }
-        
-        // Show factual context
-        function showFactualContext() {
-            const currentQuestion = questions[currentQuestionIndex];
-            
-            // Set factual text content
-            factTextElement.textContent = currentQuestion.factText;
-            
-            // Show factual context with animation
-            factualContextElement.classList.add('show');
-            
-            // Move to next question after read time
-            setTimeout(() => {
-                // Hide factual context
-                factualContextElement.classList.remove('show');
-                
-                // Wait for transition to complete before moving to next question
-                setTimeout(() => {
-                    transitionToNextQuestion();
-                }, 500);
-            }, currentQuestion.factReadTime);
+                transitionToNextQuestion();
+            }, 3000);
         }
         
         // Transition to the next question with animation
