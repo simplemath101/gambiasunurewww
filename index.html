@@ -2,826 +2,295 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mandinka Language Phrasebook - TikTok Ready</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mandinka Quiz TikTok Animation</title>
     <style>
-        :root {
-            --primary-color: #3a75c4; /* Blue from Gambian flag */
-            --secondary-color: #ce1126; /* Red from Gambian flag */
-            --green-color: #0c8918; /* Green from Gambian flag */
-            --highlight-color: #ffff99;
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --light-bg: #e6f2ff;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
             margin: 0;
             padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            perspective: 1000px;
         }
         
         .container {
             width: 100%;
             height: 100vh;
-            max-width: 500px; /* TikTok optimal width */
-            background: linear-gradient(135deg, #001428, #000000);
+            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
         }
         
-        .logo {
-            width: 120px;
-            height: 120px;
-            background-color: #f9f9f9;
-            border-radius: 50%;
-            margin: 10px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--primary-color);
-            font-weight: bold;
-            font-size: 20px;
-            color: var(--primary-color);
-            position: absolute;
-            top: 20px;
-            box-shadow: 0 0 20px rgba(58, 117, 196, 0.5);
-            transition: all 0.5s ease;
-            z-index: 10;
-            overflow: hidden;
-        }
-        
-        /* Gambian flag in logo */
         .flag-container {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            max-width: 300px;
+            height: 180px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .text-container {
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .flag-stripe {
-            flex: 1;
-            width: 100%;
-        }
-        
-        .red {
-            background-color: #ce1126;
-        }
-        
-        .white {
-            background-color: #ffffff;
-        }
-        
-        .blue {
-            background-color: #3a75c4;
-        }
-        
-        .green {
-            background-color: #0c8918;
-        }
-        
-        .content-area {
-            position: relative;
-            width: 100%;
-            height: 180px;
-            margin: 20px 0;
-            display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        /* Modified: Content area positioning for below book display */
-        .content-area.below-book {
-            position: absolute;
-            bottom: 50px;
-            height: auto;
-            z-index: 5;
-        }
-        
-        .content-line {
-            font-size: 28px;
-            line-height: 1.3;
-            padding: 15px;
-            color: var(--text-color);
-            font-weight: 700;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 90%;
-            opacity: 0;
-            transition: all 0.5s ease;
+            max-width: 400px;
+        }
+        
+        .text {
+            font-size: 0;
+            font-weight: bold;
             text-align: center;
-            text-shadow: 0 0 10px rgba(58, 117, 196, 0.7);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
             letter-spacing: 1px;
         }
         
-        /* Modified: Content line positioning for below book */
-        .content-line.below-book {
-            position: relative;
-            top: auto;
-            left: auto;
-            transform: none;
-            margin: 10px 0;
-        }
-        
-        .content-line.active {
+        .text.active {
+            font-size: 42px;
             opacity: 1;
-            animation: pulseGlow 1.5s infinite;
+            transform: scale(1);
         }
         
-        .book-container {
-            perspective: 1200px;
-            width: 100%;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            /* Modified: Position for book to come from bottom */
-            bottom: -500px; /* Start off-screen at bottom */
-            opacity: 0;
-            transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 3;
+        .text:nth-child(1) {
+            color: #ffcc00;
         }
         
-        /* Modified: Book coming up from bottom */
-        .book-container.visible {
-            opacity: 1;
-            bottom: 200px; /* Final position higher up */
+        .text:nth-child(2) {
+            color: #ff66ff;
         }
         
-        .book {
-            width: 250px;
-            height: 350px;
-            transform-style: preserve-3d;
-            position: relative;
-            transition: transform 1.5s ease;
-            animation: float 3s infinite alternate ease-in-out;
+        .text:nth-child(3) {
+            color: #33ff33;
         }
         
-        .book-cover {
-            position: absolute;
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background-size: 400% 400%;
+            animation: backgroundShift 10s ease infinite;
+        }
+        
+        /* Gambian flag - 4D wave effect with canvas */
+        #flag-canvas {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--green-color), #004d00);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            padding: 15px;
-            box-sizing: border-box;
-            box-shadow: 0 0 30px rgba(12, 137, 24, 0.7);
-            backface-visibility: hidden;
-            transform: rotateY(0deg);
-            border: 3px solid gold;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230c8918' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            /* Added: overflow control for text */
-            overflow: hidden;
-        }
-        
-        /* Gambian flag design on book cover */
-        .book-flag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 50px;
-            height: 30px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid gold;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .flag-stripe-mini {
-            flex: 1;
-            width: 100%;
-        }
-        
-        .book-spine {
-            position: absolute;
-            width: 40px;
-            height: 100%;
-            background: linear-gradient(to right, #004d00, var(--green-color));
-            left: -20px;
-            transform: rotateY(-90deg) translateZ(20px);
-            border-radius: 5px 0 0 5px;
-            box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .book-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #004d00;
-            border-radius: 10px;
-            backface-visibility: hidden;
-            transform: rotateY(180deg);
-            box-shadow: 0 0 30px rgba(12, 137, 24, 0.7);
-            border: 3px solid #004d00;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            text-align: center;
-        }
-        
-        .book:hover {
-            animation-play-state: paused;
-            transform: rotateY(180deg);
-        }
-        
-        /* Modified: Book title styling for better mobile fit */
-        .book-title {
-            font-size: 26px; /* Reduced from 32px */
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 15px; /* Reduced from 20px */
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-            line-height: 1.2;
-            width: 100%;
-            /* Ensure text stays centered in container */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        /* Modified: Emblem styling */
-        .book-emblem {
-            font-size: 42px; /* Reduced from 48px */
-            margin: 10px 0; /* Reduced from 15px */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .emblem-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-        }
-        
-        /* Modified: Book author styling for better mobile fit */
-        .book-author {
-            font-size: 14px; /* Reduced from 16px */
-            margin-top: 20px; /* Reduced from 30px */
-            font-style: italic;
-            width: 100%;
-            text-align: center;
-            padding: 0 5px;
-            box-sizing: border-box;
-        }
-        
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        
-        @keyframes pulseGlow {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.05);
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(12, 137, 24, 0.5);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-        }
-        
-        /* Modified: Adjusted animation for below book text */
-        @keyframes pulseGlowBelow {
-            0% {
-                transform: scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-            50% {
-                transform: scale(1.05);
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(12, 137, 24, 0.5);
-            }
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            }
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotateY(10deg);
-            }
-            100% {
-                transform: translateY(-20px) rotateY(-10deg);
-            }
-        }
-        
-        .sparkle {
-            position: absolute;
-            z-index: 5;
-            background-image: radial-gradient(circle, white 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        @keyframes sparkle {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(0);
-                opacity: 0;
-            }
-        }
-        
-        /* Glow effect around the book */
-        .glow {
-            position: absolute;
-            width: 300px;
-            height: 400px;
-            background: radial-gradient(ellipse at center, rgba(12, 137, 24, 0.3) 0%, rgba(12, 137, 24, 0) 70%);
-            border-radius: 50%;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 1s ease;
-            /* Modified: Position for glow to follow book */
-            bottom: -500px;
-        }
-        
-        .glow.visible {
-            opacity: 1;
-            animation: glowPulse 3s infinite alternate;
-            /* Modified: Glow follows book up */
-            bottom: 200px;
-        }
-        
-        @keyframes glowPulse {
-            0% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.7;
-                transform: scale(1.2);
-            }
-        }
-        
-        /* 3D page effect */
-        .book-pages {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 30px;
-            background: white;
-            border-radius: 0 10px 10px 0;
-            transform: translateX(-15px) rotateY(30deg);
-            transform-origin: left center;
-            background: linear-gradient(to right, #f9f9f9, #e6e6e6);
-        }
-        
-        .book-page {
-            position: absolute;
-            top: 10px;
-            bottom: 10px;
-            width: 30px;
-            left: 0;
-            background: white;
-            border-radius: 0 5px 5px 0;
-            transform-origin: left center;
-        }
-        
-        .page1 { transform: translateX(-15px) rotateY(15deg); background: #f9f9f9; z-index: 5; width: 28px; }
-        .page2 { transform: translateX(-10px) rotateY(30deg); background: #f0f0f0; z-index: 4; width: 26px; }
-        .page3 { transform: translateX(-5px) rotateY(45deg); background: #e8e8e8; z-index: 3; width: 24px; }
-        
-        /* TikTok-style splash effect */
-        .splash {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        .splash.active {
-            animation: splash 0.8s forwards;
-        }
-        
-        @keyframes splash {
-            0% {
-                opacity: 0.7;
-                transform: scale(0);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(2);
-            }
-        }
-        
-        /* Added: Style for text below book - fixed positioning to match image */
-        .below-book-text {
-            position: absolute;
-            bottom: 50px;
-            width: 90%;
-            text-align: center;
-            font-size: 22px;
-            color: var(--text-color);
-            font-weight: 700;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 10;
-            text-shadow: 0 0 10px rgba(12, 137, 24, 0.7);
-        }
-        
-        .below-book-text.visible {
-            opacity: 1;
-            animation: pulseGlowBelow 1.5s infinite;
-        }
-        
-        /* Remove overlapping text on the book */
-        .no-overlay {
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        /* Added: Media queries for better responsiveness */
-        @media screen and (max-width: 360px) {
-            .book-title {
-                font-size: 22px;
-                margin-bottom: 10px;
-            }
-            
-            .emblem-image {
-                width: 60px;
-                height: 60px;
-                font-size: 40px;
-            }
-            
-            .book-author {
-                font-size: 12px;
-                margin-top: 15px;
-            }
-            
-            .book {
-                width: 220px;
-                height: 320px;
-            }
+            display: block;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="particles" id="particles"></div>
-        <div class="splash" id="splash"></div>
-        
-        <div class="logo" id="logo">
-            <div class="flag-container">
-                <div class="flag-stripe red"></div>
-                <div class="flag-stripe white"></div>
-                <div class="flag-stripe blue"></div>
-                <div class="flag-stripe white"></div>
-                <div class="flag-stripe green"></div>
-            </div>
+        <div class="flag-container">
+            <canvas id="flag-canvas"></canvas>
         </div>
         
-        <div class="content-area" id="contentArea">
-            <div class="content-line" id="line0">BEFORE MOVING TO THE NEXT QUESTION</div>
-            <div class="content-line" id="line1">DO YOU HAVE TROUBLE SPEAKING MANDINKA?</div>
-            <div class="content-line" id="line2">DO YOU WANT TO LEARN MANDINKA BUT DONT KNOW HOW?</div>
-            <div class="content-line" id="line3">THEN WORRY NO MORE!!</div>
-            <div class="content-line" id="line4">INTRODUCING MANDINKA MADE EASY</div>
-        </div>
-        
-        <!-- Text that will appear below the book - positioned at bottom of screen -->
-        <div class="below-book-text" id="belowBookText">
-            LEARN COMMON MANDINKA PHRASES,VOCABULARY AND MANY MORE
-        </div>
-        
-        <div class="glow" id="bookGlow"></div>
-        
-        <div class="book-container" id="bookContainer">
-            <div class="book" id="book">
-                <div class="book-cover">
-                    <div class="book-flag">
-                        <div class="flag-stripe-mini red"></div>
-                        <div class="flag-stripe-mini white"></div>
-                        <div class="flag-stripe-mini blue"></div>
-                        <div class="flag-stripe-mini white"></div>
-                        <div class="flag-stripe-mini green"></div>
-                    </div>
-                    <div class="book-title">MANDINKA MADE EASY</div>
-                    <div class="book-emblem">
-                        <div class="emblem-image">🔠</div>
-                    </div>
-                    <div class="book-author">By West African Linguists Association</div>
-                </div>
-                <div class="book-spine"></div>
-                <div class="book-pages">
-                    <div class="book-page page1"></div>
-                    <div class="book-page page2"></div>
-                    <div class="book-page page3"></div>
-                </div>
-                <div class="book-back">
-                    <p>Learn to Speak Mandinka Like a Native</p>
-                    <p>Perfect for travelers, students, and cultural enthusiasts</p>
-                </div>
-            </div>
+        <div class="text-container">
+            <div class="text" id="text1">MANDINKA QUIZ</div>
+            <div class="text" id="text2">IF YOU GET 8/10</div>
+            <div class="text" id="text3">YOU ARE A GENIUS</div>
         </div>
     </div>
 
     <script>
-        // Content timing setup - optimized for TikTok viewing with adjusted read times
-        const contentLines = [
-            { element: document.getElementById('line0'), readTime: 2500 },
-            { element: document.getElementById('line1'), readTime: 2500 },
-            { element: document.getElementById('line2'), readTime: 2500 },
-            { element: document.getElementById('line3'), readTime: 3500 },
-            { element: document.getElementById('line4'), readTime: 3000 }
-        ];
-        
-        // Below book text rotation
-        const belowBookTexts = [
-            "LEARN COMMON MANDINKA PHRASES,VOCABULARY AND MANY MORE",
-            "IT HAS HELPED OVER 10,000 PEOPLE MASTER MANDINKA LANGUAGE WITH EASE",
-            "PERFECT ESPECIALLY FOR TRAVELERS TO THE GAMBIA, SENEGAL, AND GUINEA",
-            "HURRY AND GRAB A COPY AT THE LINK IN BIO ,AND MASTER MANDINKA WITH EASE"
-        ];
-        
-        const bookContainer = document.getElementById('bookContainer');
-        const bookGlow = document.getElementById('bookGlow');
-        const splash = document.getElementById('splash');
-        const belowBookText = document.getElementById('belowBookText');
-        const contentArea = document.getElementById('contentArea');
-        
-        let currentLineIndex = 0;
-        let belowBookTextIndex = 0;
-        
-        // Initialize particles for background effect
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 40;
+        // Text animation sequence
+        function startTextAnimation() {
+            const text1 = document.getElementById('text1');
+            const text2 = document.getElementById('text2');
+            const text3 = document.getElementById('text3');
             
-            for (let i = 0; i < particleCount; i++) {
-                const size = Math.random() * 12 + 3;
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.opacity = Math.random() * 0.3;
-                particle.style.animation = `float ${Math.random() * 8 + 10}s infinite alternate ease-in-out`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Create sparkles for interactive elements
-        function createSparkle(x, y) {
-            const container = document.querySelector('.container');
-            const sparkle = document.createElement('div');
-            const size = Math.random() * 12 + 6;
-            
-            sparkle.className = 'sparkle';
-            sparkle.style.width = `${size}px`;
-            sparkle.style.height = `${size}px`;
-            sparkle.style.left = `${x}px`;
-            sparkle.style.top = `${y}px`;
-            sparkle.style.animation = `sparkle ${Math.random() * 0.5 + 0.5}s forwards`;
-            
-            container.appendChild(sparkle);
-            
+            // First text appears
             setTimeout(() => {
-                sparkle.remove();
-            }, 1000);
-        }
-        
-        // Add splash effect when transitioning to a new screen
-        function createSplash() {
-            splash.classList.add('active');
+                text1.classList.add('active');
+            }, 500);
             
+            // Second text appears
             setTimeout(() => {
-                splash.classList.remove('active');
-            }, 800);
-        }
-        
-        // Function to rotate text below the book
-        function rotateTextBelowBook() {
-            belowBookText.textContent = belowBookTexts[belowBookTextIndex];
-            belowBookText.classList.add('visible');
-            
-            belowBookTextIndex = (belowBookTextIndex + 1) % belowBookTexts.length;
-            
-            setTimeout(() => {
-                belowBookText.classList.remove('visible');
-                setTimeout(() => {
-                    rotateTextBelowBook();
-                }, 1000);
-            }, 3500);
-        }
-        
-        // Function to show book with animation from bottom
-        function showBook() {
-            createSplash();
-            bookContainer.classList.add('visible');
-            bookGlow.classList.add('visible');
-            
-            // Make content area non-interactive and move it behind book
-            contentArea.classList.add('no-overlay');
-            
-            // Hide any active content lines to prevent overlap with book
-            contentLines.forEach(item => {
-                item.element.classList.remove('active');
-            });
-            
-            // Begin rotating text below book after book appears
-            setTimeout(() => {
-                rotateTextBelowBook();
-            }, 1000);
-            
-            // Add sparkles around the book
-            const interval = setInterval(() => {
-                const bookRect = document.getElementById('book').getBoundingClientRect();
-                const containerRect = document.querySelector('.container').getBoundingClientRect();
-                
-                const centerX = bookRect.left + bookRect.width/2 - containerRect.left;
-                const centerY = bookRect.top + bookRect.height/2 - containerRect.top;
-                const radius = Math.max(bookRect.width, bookRect.height) / 1.5;
-                
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * radius;
-                
-                const x = centerX + Math.cos(angle) * distance;
-                const y = centerY + Math.sin(angle) * distance;
-                
-                createSparkle(x, y);
-            }, 200);
-            
-            setTimeout(() => {
-                clearInterval(interval);
+                text2.classList.add('active');
             }, 2000);
-        }
-        
-        // Function to show line with its caption
-        function showLine(index) {
-            // Hide all lines
-            contentLines.forEach(item => {
-                item.element.classList.remove('active');
-            });
             
-            // Create splash effect between transitions
-            if (index > 0) {
-                createSplash();
-            }
-            
-            // Show current line
-            const currentLine = contentLines[index];
-            currentLine.element.classList.add('active');
-            
-            // Show book when reaching the last line (now index 4)
-            if (index === 4) {
-                // Clear the current text before showing the book to avoid overlap
-                setTimeout(() => {
-                    currentLine.element.classList.remove('active');
-                    showBook();
-                }, 3000);
-            }
-            
-            // Schedule next line
-            if (index < contentLines.length - 1) {
-                setTimeout(() => {
-                    showLine(index + 1);
-                }, currentLine.readTime);
-            }
-        }
-         window.addEventListener('load', () => {
-    createParticles();
-    
-    // Start presentation with a slight delay
-    setTimeout(() => {
-        showLine(currentLineIndex);
-    }, 1000);
-    
-    // Add interactive effects for the book when it appears
-    const book = document.getElementById('book');
-    book.addEventListener('mouseover', () => {
-        // Create sparkles when hovering over the book
-        const bookRect = book.getBoundingClientRect();
-        const containerRect = document.querySelector('.container').getBoundingClientRect();
-        
-        for (let i = 0; i < 5; i++) {
-            const x = Math.random() * bookRect.width + (bookRect.left - containerRect.left);
-            const y = Math.random() * bookRect.height + (bookRect.top - containerRect.top);
-            createSparkle(x, y);
-        }
-    });
-    
-    // Add click interaction to flip the book
-    book.addEventListener('click', () => {
-        book.style.transform = book.style.transform === 'rotateY(180deg)' ? 
-            'rotateY(0deg)' : 'rotateY(180deg)';
-        
-        // Create splash effect on click
-        createSplash();
-        
-        // Add sparkles around the book on click
-        const bookRect = book.getBoundingClientRect();
-        const containerRect = document.querySelector('.container').getBoundingClientRect();
-        
-        for (let i = 0; i < 15; i++) {
+            // Third text appears
             setTimeout(() => {
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.max(bookRect.width, bookRect.height) / 1.8;
+                text3.classList.add('active');
+            }, 3500);
+            
+            // Reset animation after some time
+            setTimeout(() => {
+                text1.classList.remove('active');
+                text2.classList.remove('active');
+                text3.classList.remove('active');
                 
-                const centerX = bookRect.left + bookRect.width/2 - containerRect.left;
-                const centerY = bookRect.top + bookRect.height/2 - containerRect.top;
-                
-                const x = centerX + Math.cos(angle) * distance;
-                const y = centerY + Math.sin(angle) * distance;
-                
-                createSparkle(x, y);
-            }, i * 50);
+                // Restart animation
+                setTimeout(() => {
+                    startTextAnimation();
+                }, 1000);
+            }, 7000);
         }
-    });
-    
-    // Make the logo interactive
-    const logo = document.getElementById('logo');
-    logo.addEventListener('click', () => {
-        // Restart the animation sequence
-        currentLineIndex = 0;
         
-        // Hide book and related elements
-        bookContainer.classList.remove('visible');
-        bookGlow.classList.remove('visible');
-        belowBookText.classList.remove('visible');
+        // Flag animation with Canvas
+        function setupFlagAnimation() {
+            const canvas = document.getElementById('flag-canvas');
+            const ctx = canvas.getContext('2d');
+            const flagContainer = document.querySelector('.flag-container');
+            
+            // Set canvas dimensions to match container
+            function resizeCanvas() {
+                canvas.width = flagContainer.clientWidth;
+                canvas.height = flagContainer.clientHeight;
+            }
+            
+            // Call resize initially and on window resize
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Flag colors
+            const colors = {
+                red: '#CE1126',
+                blue: '#0C1C8C',
+                green: '#3A7728',
+                white: '#FFFFFF'
+            };
+            
+            // Animation variables
+            let time = 0;
+            const waveAmplitude = 10;
+            const wavePeriod = 100;
+            const waveSpeed = 0.1;
+            
+            // Animation function
+            function animateFlag() {
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Calculate stripe heights
+                const totalHeight = canvas.height;
+                const stripeHeight = totalHeight / 5;
+                
+                // Draw the flag with wave effect
+                // Red stripe (top)
+                drawWavyStripe(0, stripeHeight, colors.red);
+                
+                // White stripe
+                drawWavyStripe(stripeHeight, stripeHeight * 2, colors.white);
+                
+                // Blue stripe
+                drawWavyStripe(stripeHeight * 2, stripeHeight * 3, colors.blue);
+                
+                // White stripe
+                drawWavyStripe(stripeHeight * 3, stripeHeight * 4, colors.white);
+                
+                // Green stripe (bottom)
+                drawWavyStripe(stripeHeight * 4, stripeHeight * 5, colors.green);
+                
+                // Add 3D shadow effect
+                addShadowEffect();
+                
+                // Update time for wave movement
+                time += waveSpeed;
+                
+                // Continue animation
+                requestAnimationFrame(animateFlag);
+            }
+            
+            // Function to draw a wavy stripe
+            function drawWavyStripe(startY, endY, color) {
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                
+                // Start at left edge
+                ctx.moveTo(0, startY);
+                
+                // Draw top wavy edge
+                for (let x = 0; x <= canvas.width; x++) {
+                    // Calculate wave offset based on position and time
+                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time) * waveAmplitude;
+                    // Add perspective effect - waves are larger on the right
+                    const perspectiveEffect = (x / canvas.width) * 1.5;
+                    ctx.lineTo(x, startY + waveOffset * perspectiveEffect);
+                }
+                
+                // Continue to bottom-right corner
+                ctx.lineTo(canvas.width, endY);
+                
+                // Draw bottom wavy edge (in reverse)
+                for (let x = canvas.width; x >= 0; x--) {
+                    // Calculate wave offset with slight phase difference for bottom edge
+                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time + 0.5) * waveAmplitude;
+                    const perspectiveEffect = (x / canvas.width) * 1.5;
+                    ctx.lineTo(x, endY + waveOffset * perspectiveEffect);
+                }
+                
+                // Close the path
+                ctx.closePath();
+                ctx.fill();
+            }
+            
+            // Function to add shadow/highlight for 3D effect
+            function addShadowEffect() {
+                // Create gradient overlay
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                gradient.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
+                gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.1)');
+                gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.1)');
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.3)');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Shine effect that moves across the flag
+                const shinePos = (time % 3) / 3;
+                const shineGradient = ctx.createLinearGradient(
+                    canvas.width * shinePos - 50, 
+                    0, 
+                    canvas.width * shinePos + 50, 
+                    canvas.height
+                );
+                
+                shineGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
+                shineGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.3)');
+                shineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                
+                ctx.fillStyle = shineGradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            // Start the animation
+            animateFlag();
+        }
         
-        // Make content area interactive again
-        contentArea.classList.remove('no-overlay');
-        
-        // Clear any active lines
-        contentLines.forEach(item => {
-            item.element.classList.remove('active');
+        // Start all animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            startTextAnimation();
+            setupFlagAnimation();
         });
-        
-        // Start from the beginning
-        setTimeout(() => {
-            showLine(currentLineIndex);
-        }, 500);
-    });
-});
-
- </script>
+    </script>
 </body>
 </html>
