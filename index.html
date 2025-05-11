@@ -2,295 +2,420 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mandinka Quiz TikTok Animation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gambia: A Journey Through Time</title>
     <style>
+        :root {
+            --primary: #006847;
+            --secondary: #0072c6;
+            --accent: #ce1126;
+            --light: #f5f5f5;
+            --dark: #333;
+            --timeline-color: #006847;
+        }
+        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            perspective: 1000px;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
         }
         
         .container {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
-        .flag-container {
-            width: 80%;
-            max-width: 300px;
-            height: 180px;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            perspective: 1000px;
-        }
-        
-        .text-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 90%;
-            max-width: 400px;
-        }
-        
-        .text {
-            font-size: 0;
-            font-weight: bold;
+        header {
+            background-color: var(--primary);
+            color: white;
             text-align: center;
+            padding: 40px 0;
             margin-bottom: 30px;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-            letter-spacing: 1px;
+            position: relative;
         }
         
-        .text.active {
-            font-size: 42px;
-            opacity: 1;
-            transform: scale(1);
+        header:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to right, #ce1126 33.3%, #fff 33.3%, #fff 66.6%, #0072c6 66.6%);
         }
         
-        .text:nth-child(1) {
-            color: #ffcc00;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
         
-        .text:nth-child(2) {
-            color: #ff66ff;
+        h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 30px 0 20px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
         }
         
-        .text:nth-child(3) {
-            color: #33ff33;
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin: 20px 0 15px;
         }
         
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
         }
         
-        .container {
-            background-size: 400% 400%;
-            animation: backgroundShift 10s ease infinite;
+        .chapter {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        /* Gambian flag - 4D wave effect with canvas */
-        #flag-canvas {
+        .map-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .map-placeholder {
             width: 100%;
-            height: 100%;
+            max-width: 600px;
+            height: 400px;
+            background-color: #e9e9e9;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .image-caption {
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            color: #666;
+        }
+        
+        blockquote {
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--timeline-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 10px 40px;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--timeline-color);
+            border-radius: 50%;
+            top: 15px;
+            right: -14px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -14px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -14px;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .footnote {
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 30px;
+        }
+        
+        .table-of-contents {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .table-of-contents h3 {
+            margin-top: 0;
+        }
+        
+        .table-of-contents ul {
+            list-style-type: none;
+        }
+        
+        .table-of-contents li {
+            margin-bottom: 8px;
+        }
+        
+        .table-of-contents a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .table-of-contents a:hover {
+            text-decoration: underline;
+        }
+        
+        .sidebar {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .sidebar h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .continue-reading {
+            text-align: center;
+            margin: 40px 0;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .continue-reading a {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
             display: block;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>The Gambia: A Journey Through Time</h1>
+            <p>From Ancient Civilizations to Modern Nation-State</p>
+        </div>
+    </header>
+    
     <div class="container">
-        <div class="flag-container">
-            <canvas id="flag-canvas"></canvas>
+        <div class="table-of-contents">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#ancient-gambia">Chapter 1: Ancient Gambia and Early Settlements</a></li>
+                <li><a href="#portuguese-contact">Chapter 2: First European Contact: The Portuguese Arrival</a></li>
+                <li><a href="#slave-trade">Chapter 3: The Atlantic Slave Trade and Its Impact</a></li>
+                <li><a href="#british-colonization">Chapter 4: British Colonization and the Crown Colony</a></li>
+                <li><a href="#road-to-independence">Chapter 5: The Road to Independence</a></li>
+                <li><a href="#post-independence">Chapter 6: Post-Independence Developments</a></li>
+                <li><a href="#modern-gambia">Chapter 7: Modern Gambia and Cultural Heritage</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
         </div>
         
-        <div class="text-container">
-            <div class="text" id="text1">BEFORE YOUR LAST QUESTION</div>
-            <div class="text" id="text2">SHARE THIS QUIZ WITH A FRIEND</div>
-            <div class="text" id="text3">DON'T FORGET TO COMMENT YOUR SCORE BELOW</div>
+        <section id="introduction" class="chapter">
+            <h2>Introduction</h2>
+            <p>The Gambia, officially the Republic of The Gambia, is one of Africa's smallest countries, yet it possesses a rich and complex history that spans thousands of years. This narrow strip of land flanking the Gambia River has been a crossroads of civilizations, a nexus of trade networks, and the site of profound historical transformations from ancient times to the present day.</p>
+            
+            <p>Stretching only 30 miles wide at its broadest point and extending approximately 300 miles inland from the Atlantic Ocean, The Gambia's unusual geography—completely surrounded by Senegal except for its western coastline—has profoundly shaped its historical development. The Gambia River, which gives the country both its name and its distinctive shape, has served as a vital artery for trade, cultural exchange, and colonization throughout the centuries.</p>
+            
+            <div class="map-container">
+                <img src="/api/placeholder/600/400" alt="Map of The Gambia" />
+                <p class="image-caption">Geographical location of The Gambia in West Africa</p>
+            </div>
+            
+            <p>This digital book aims to trace The Gambia's historical journey from the earliest human settlements through the colonial period to its emergence as an independent nation. Along the way, we will explore the diverse peoples who have inhabited this land, the impact of external forces such as European exploration and the Atlantic slave trade, the transformative effects of British colonialism, and the challenges and achievements of the post-independence era.</p>
+            
+            <blockquote>"The history of The Gambia is a microcosm of the broader African experience—reflecting the continent's struggles with colonization, its fight for self-determination, and its ongoing quest to forge a path forward that honors indigenous traditions while engaging with the modern world."</blockquote>
+        </section>
+        
+        <section id="ancient-gambia" class="chapter">
+            <h2>Chapter 1: Ancient Gambia and Early Settlements</h2>
+            
+            <h3>Prehistoric Inhabitants</h3>
+            <p>Archaeological evidence suggests human habitation in what is now The Gambia dates back several thousand years. Stone circles found in parts of Senegambia (the region encompassing The Gambia and Senegal) indicate sophisticated early civilizations with advanced knowledge of astronomy and stone-working techniques.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Stone Circles" />
+                <p class="image-caption">Stone circles in Wassu, among the most visible archaeological remnants of ancient Gambian civilization</p>
+            </div>
+            
+            <h3>Early Kingdoms and Empires</h3>
+            <p>By the 5th century CE, organized states began to emerge in the region. The Gambia River valley was influenced by several major West African empires, including:</p>
+            
+            <p>The <strong>Ghana Empire</strong> (c. 700-1200 CE), centered to the north in what is now Mali and Mauritania, established trade networks that extended to the Gambia River valley, bringing Islam and trade goods to the region.</p>
+            
+            <p>The <strong>Mali Empire</strong> (c. 1230-1600 CE) incorporated the Gambia River region more directly into its domain. Under the Mali Empire, Islam spread more widely among the ruling classes and merchant communities along the river.</p>
+            
+            <p>The <strong>Songhai Empire</strong> (c. 1464-1591), though centered in the Niger River valley, extended its influence into the Senegambia region through trade networks and political alliances.</p>
+            
+            <h3>Indigenous Ethnic Groups</h3>
+            <p>Several ethnic groups established themselves in the area, each with distinct cultural practices, languages, and social structures:</p>
+            
+            <p>The <strong>Mandinka</strong> (or Malinke), descended from the founders of the Mali Empire, became the dominant group in much of what is now The Gambia. They established a series of small kingdoms along the Gambia River.</p>
+            
+            <p>The <strong>Wolof</strong> established themselves primarily in the western coastal areas, developing sophisticated political structures.</p>
+            
+            <p>The <strong>Fula</strong> (or Fulani), traditionally nomadic pastoralists, began settling in the region, bringing their distinctive cultural practices and engaging in cattle herding.</p>
+            
+            <p>The <strong>Jola</strong> (or Diola) established themselves in the western regions of The Gambia, developing distinctive religious practices and social structures resistant to outside influence.</p>
+            
+            <p>The <strong>Serahule</strong> (or Soninke), known for their commercial acumen, established trading networks throughout the region.</p>
+            
+            <h3>Trade Networks and Cultural Exchange</h3>
+            <p>Long before European arrival, the Gambia River served as a crucial trade route linking the Atlantic coast with the interior of West Africa. Salt, cloth, metal goods, and later gold traveled along this waterway, facilitating cultural exchange and economic development. Trans-Saharan trade routes also connected the region to North Africa and, by extension, to the Mediterranean world and the Middle East.</p>
+            
+            <div class="sidebar">
+                <h4>Key Archaeological Sites</h4>
+                <p>The Wassu Stone Circles, now a UNESCO World Heritage Site, date back to approximately 750-900 CE. These megalithic structures likely served funerary purposes for ancient kings and chiefs. Similar stone circles can be found at Kerr Batch and other locations throughout the Senegambia region.</p>
+            </div>
+            
+            <p>The introduction of Islam to the region began as early as the 9th century through contact with North African traders, though it would take centuries for the religion to be widely adopted. Traditional African religious practices remained dominant among most of the population, with Islam primarily influencing ruling and merchant classes initially.</p>
+        </section>
+        
+        <section id="portuguese-contact" class="chapter">
+            <h2>Chapter 2: First European Contact: The Portuguese Arrival</h2>
+            
+            <h3>Portuguese Exploration</h3>
+            <p>The first documented European contact with The Gambia came in 1455 when Portuguese explorer Alvise Cadamosto, sailing under the patronage of Prince Henry the Navigator, navigated the Gambia River. This voyage marked the beginning of a new era in Gambian history, as European powers began to take an interest in West Africa's resources and strategic locations.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1455</span>
+                        <p>Alvise Cadamosto becomes the first European to navigate the Gambia River.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1456</span>
+                        <p>Portuguese explorer Diogo Gomes reaches further upriver, making contact with local kingdoms.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1482</span>
+                        <p>Portuguese establish trading post at the mouth of the Gambia River.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Early 1500s</span>
+                        <p>Regular trade relations established between Portuguese and local kingdoms.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>The Portuguese were primarily interested in accessing the gold that flowed through trans-Saharan trade networks. They established trading posts along the Gambia River, seeking to bypass North African middlemen and access gold sources directly. In addition to gold, they traded in ivory, beeswax, and other valuable commodities.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/500/300" alt="Portuguese Caravel" />
+                <p class="image-caption">A Portuguese caravel, the type of ship used to navigate the Gambia River during early explorations</p>
+            </div>
+            
+            <h3>Early Trading Relationships</h3>
+            <p>The Portuguese established their first permanent trading post at the mouth of the Gambia River in 1482. Unlike later European powers, the Portuguese generally did not attempt to conquer territory but instead established commercial relationships with local rulers. They built several feitorias (trading factories) along the river, the most important being at what is now Juffure.</p>
+            
+            <p>These early trade relationships were relatively balanced, with local rulers maintaining their authority and Portuguese traders operating within established local systems. The Portuguese brought new commodities to the region, including firearms, alcohol, textiles, and various manufactured goods, which they exchanged for gold, ivory, and increasingly, enslaved people.</p>
+            
+            <h3>Cultural and Religious Exchange</h3>
+            <p>The Portuguese arrival also brought Christianity to The Gambia, though efforts to convert local populations were limited and largely unsuccessful. More significant was the exchange of agricultural products; the Portuguese introduced crops from the Americas such as maize, cassava, and peanuts, which eventually became dietary staples in the region.</p>
+            
+            <p>Portuguese influence on local languages was also notable, with many Portuguese loanwords entering local Gambian languages, particularly in terms related to trade and new technologies. Some Portuguese traders settled permanently in the region, marrying local women and creating communities of mixed ancestry.</p>
+            
+            <div class="sidebar">
+                <h4>The Gambia River's Strategic Importance</h4>
+                <p>The Gambia River provided access deep into West Africa's interior, making it exceptionally valuable for European traders. Its navigability for nearly 300 miles inland made it possible to bypass difficult overland routes and establish direct contact with societies far from the coast.</p>
+            </div>
+            
+            <h3>Portuguese Decline and European Competition</h3>
+            <p>By the late 16th century, Portugal's dominance in West African trade began to wane as other European powers, particularly England, France, and the Netherlands, sought to establish their own trading posts in the region. This period saw increasing competition and occasional conflict among European powers for control of strategic trading locations along the Gambia River.</p>
+        </section>
+
+        <div class="continue-reading">
+            <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22The%20Gambia%3A%20A%20Journey%20Through%20Time%22%20document%2C%20my%20name%20is%20">
+                Continue Reading: Click here to request the complete document via WhatsApp
+            </a>
         </div>
     </div>
 
-    <script>
-        // Text animation sequence
-        function startTextAnimation() {
-            const text1 = document.getElementById('text1');
-            const text2 = document.getElementById('text2');
-            const text3 = document.getElementById('text3');
-            
-            // First text appears
-            setTimeout(() => {
-                text1.classList.add('active');
-            }, 500);
-            
-            // Second text appears
-            setTimeout(() => {
-                text2.classList.add('active');
-            }, 2000);
-            
-            // Third text appears
-            setTimeout(() => {
-                text3.classList.add('active');
-            }, 3500);
-            
-            // Reset animation after some time
-            setTimeout(() => {
-                text1.classList.remove('active');
-                text2.classList.remove('active');
-                text3.classList.remove('active');
-                
-                // Restart animation
-                setTimeout(() => {
-                    startTextAnimation();
-                }, 1000);
-            }, 7000);
-        }
-        
-        // Flag animation with Canvas
-        function setupFlagAnimation() {
-            const canvas = document.getElementById('flag-canvas');
-            const ctx = canvas.getContext('2d');
-            const flagContainer = document.querySelector('.flag-container');
-            
-            // Set canvas dimensions to match container
-            function resizeCanvas() {
-                canvas.width = flagContainer.clientWidth;
-                canvas.height = flagContainer.clientHeight;
-            }
-            
-            // Call resize initially and on window resize
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            
-            // Flag colors
-            const colors = {
-                red: '#CE1126',
-                blue: '#0C1C8C',
-                green: '#3A7728',
-                white: '#FFFFFF'
-            };
-            
-            // Animation variables
-            let time = 0;
-            const waveAmplitude = 10;
-            const wavePeriod = 100;
-            const waveSpeed = 0.1;
-            
-            // Animation function
-            function animateFlag() {
-                // Clear canvas
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Calculate stripe heights
-                const totalHeight = canvas.height;
-                const stripeHeight = totalHeight / 5;
-                
-                // Draw the flag with wave effect
-                // Red stripe (top)
-                drawWavyStripe(0, stripeHeight, colors.red);
-                
-                // White stripe
-                drawWavyStripe(stripeHeight, stripeHeight * 2, colors.white);
-                
-                // Blue stripe
-                drawWavyStripe(stripeHeight * 2, stripeHeight * 3, colors.blue);
-                
-                // White stripe
-                drawWavyStripe(stripeHeight * 3, stripeHeight * 4, colors.white);
-                
-                // Green stripe (bottom)
-                drawWavyStripe(stripeHeight * 4, stripeHeight * 5, colors.green);
-                
-                // Add 3D shadow effect
-                addShadowEffect();
-                
-                // Update time for wave movement
-                time += waveSpeed;
-                
-                // Continue animation
-                requestAnimationFrame(animateFlag);
-            }
-            
-            // Function to draw a wavy stripe
-            function drawWavyStripe(startY, endY, color) {
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                
-                // Start at left edge
-                ctx.moveTo(0, startY);
-                
-                // Draw top wavy edge
-                for (let x = 0; x <= canvas.width; x++) {
-                    // Calculate wave offset based on position and time
-                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time) * waveAmplitude;
-                    // Add perspective effect - waves are larger on the right
-                    const perspectiveEffect = (x / canvas.width) * 1.5;
-                    ctx.lineTo(x, startY + waveOffset * perspectiveEffect);
-                }
-                
-                // Continue to bottom-right corner
-                ctx.lineTo(canvas.width, endY);
-                
-                // Draw bottom wavy edge (in reverse)
-                for (let x = canvas.width; x >= 0; x--) {
-                    // Calculate wave offset with slight phase difference for bottom edge
-                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time + 0.5) * waveAmplitude;
-                    const perspectiveEffect = (x / canvas.width) * 1.5;
-                    ctx.lineTo(x, endY + waveOffset * perspectiveEffect);
-                }
-                
-                // Close the path
-                ctx.closePath();
-                ctx.fill();
-            }
-            
-            // Function to add shadow/highlight for 3D effect
-            function addShadowEffect() {
-                // Create gradient overlay
-                const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                gradient.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
-                gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.1)');
-                gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.1)');
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.3)');
-                
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                // Shine effect that moves across the flag
-                const shinePos = (time % 3) / 3;
-                const shineGradient = ctx.createLinearGradient(
-                    canvas.width * shinePos - 50, 
-                    0, 
-                    canvas.width * shinePos + 50, 
-                    canvas.height
-                );
-                
-                shineGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
-                shineGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.3)');
-                shineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                
-                ctx.fillStyle = shineGradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-            
-            // Start the animation
-            animateFlag();
-        }
-        
-        // Start all animations when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            startTextAnimation();
-            setupFlagAnimation();
-        });
-    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 The Gambia: A Journey Through Time</p>
+        </div>
+    </footer>
 </body>
 </html>
