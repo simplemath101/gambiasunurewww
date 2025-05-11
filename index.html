@@ -2,1618 +2,532 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mandinka Language Phrasebook - Full Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mandinka Language Picture Quiz</title>
     <style>
-        /* Base Styles */
-        :root {
-            --primary-color: #009e49; /* Gambian flag green */
-            --secondary-color: #0000ce; /* Gambian flag blue */
-            --accent-color: #ce0000; /* Gambian flag red */
-            --light-color: #f5f5f5;
-            --dark-color: #333;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
         
         body {
-            font-family: var(--font-main);
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
-        }
-        
-        /* Cover Page Styles */
-        .cover-page {
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .flag-stripe {
-            height: 10px;
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            margin-bottom: 2rem;
-        }
-        
-        .stripe-red {
-            background-color: var(--accent-color);
-            flex: 1;
-        }
-        
-        .stripe-blue {
-            background-color: var(--secondary-color);
-            flex: 1;
-        }
-        
-        .stripe-green {
-            background-color: var(--primary-color);
-            flex: 1;
-        }
-        
-        .cover-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .cover-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-        
-        .full-edition-badge {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            transform: rotate(-5deg);
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        /* Table of Contents Styles */
-        .toc-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
-        }
-        
-        .toc-title {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 2rem;
-        }
-        
-        .toc-section {
-            margin-bottom: 2rem;
-        }
-        
-        .toc-section h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .toc-list {
-            list-style-type: none;
-        }
-        
-        .toc-list li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .toc-list li:before {
-            content: "•";
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-        }
-        
-        .page-number {
-            float: right;
-            color: #666;
-        }
-        
-        /* Header Styles for content pages */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            position: relative;
+            min-height: 100vh;
             overflow: hidden;
         }
         
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-        
-        /* Navigation */
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        .logo {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            padding: 1rem 0;
-        }
-        
-        .menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .menu li {
-            position: relative;
-        }
-        
-        .menu a {
-            display: block;
-            padding: 1rem;
-            color: var(--dark-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .menu a:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Main Content */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        
-        .section-title {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: "";
-            display: block;
-            width: 100px;
-            height: 3px;
-            background-color: var(--primary-color);
-            margin: 0.5rem auto;
-        }
-        
-        .intro {
-            margin-bottom: 2rem;
-        }
-        
-        .intro h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-        
-        .intro p {
-            margin-bottom: 1rem;
-        }
-        
-        .language-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-bottom: 2rem;
-        }
-        
-        .language-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-        }
-        
-        .card-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-        
-        .card-content {
-            padding: 1.5rem;
-        }
-        
-        .phrase-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
+            height: 100vh;
+            background: linear-gradient(135deg, #5E412F, #78c0a8, #fcebb6, #f07818);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
-        .phrase-table th, .phrase-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .phrase-table th {
-            text-align: left;
-            color: var(--primary-color);
-        }
-        
-        .pronunciation {
-            font-style: italic;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        /* Culture Notes */
-        .culture-box {
-            background-color: #f0f8ff;
-            border-left: 4px solid var(--secondary-color);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .culture-box h4 {
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Tips and Hints */
-        .tip-box {
-            background-color: #f0fff0;
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .tip-box h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Two-column layout for some sections */
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        /* Image styling */
-        .image-container {
-            margin: 2rem 0;
-            text-align: center;
-        }
-        
-        .image-container img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .image-caption {
-            font-style: italic;
-            color: #666;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 2rem 0;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 1rem;
+        .question-number {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
             font-size: 1.3rem;
-            color: var(--primary-color);
-        }
-        
-        .footer-section p, .footer-section a {
-            color: #aaa;
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-section a {
-            display: block;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-section a:hover {
-            color: white;
-        }
-        
-        .copyright {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.6);
             text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid #444;
+            min-width: 120px;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
         }
         
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .cover-title {
-                font-size: 2.5rem;
-            }
-            
-            .cover-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .two-column {
-                grid-template-columns: 1fr;
-            }
-            
-            .menu {
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                background-color: white;
-                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-                display: none;
-            }
+        .question-container {
+            width: 90%;
+            margin-top: 70px;
+            height: calc(100% - 150px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: rgba(50, 30, 10, 0.6);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: transform 0.5s, opacity 0.5s;
+            overflow: hidden;
+        }
+        
+        .timer-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .timer-container {
+            width: 100%;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .timer {
+            height: 100%;
+            background-color: #00ff00;
+            width: 100%;
+            transition: width 10s linear, background-color 0.5s;
+        }
+        
+        .timer.paused {
+            transition: none;
+        }
+        
+        .timer.ending {
+            background-color: #ff0000;
+        }
+        
+        .countdown {
+            font-size: 1.1rem;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .countdown.hidden {
+            display: none;
+        }
+        
+        .image-container {
+            width: 100%;
+            height: 180px;
+            margin: 10px 0 20px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+        }
+        
+        .question-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .tiktok-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px 10px;
+            z-index: 10;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 90%;
+        }
+        
+        .tiktok-logo {
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+        
+        .tiktok-text {
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0.6;
+        }
+        
+        @keyframes subtle-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.03); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        .tiktok-banner {
+            animation: subtle-pulse 3s ease-in-out infinite;
+        }
+        
+        .question {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            padding: 0 10px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .option {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .option:active {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(0.98);
+        }
+        
+        .option.correct {
+            background-color: #2ecc71;
+        }
+        
+        .option.incorrect {
+            background-color: #e74c3c;
+        }
+        
+        .question-container.exit {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        
+        .question-container.enter {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        
+        .language-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
 <body>
-    <!-- Cover Page -->
-    <section class="cover-page">
-        <div class="flag-stripe">
-            <div class="stripe-red"></div>
-            <div class="stripe-blue"></div>
-            <div class="stripe-green"></div>
-        </div>
-        <div class="full-edition-badge">FULL EDITION</div>
-        <h1 class="cover-title">Mandinka Language Phrasebook</h1>
-        <p class="cover-subtitle">Your complete guide to communicating in The Gambia's most widely spoken language</p>
-    </section>
-    
-    <!-- Table of Contents -->
-    <section class="toc-container">
-        <h2 class="toc-title">Table of Contents</h2>
+    <div class="container">
+        <div class="question-number" id="question-number">Question: 1/10</div>
         
-        <div class="toc-section">
-            <h3>Introduction</h3>
-            <ul class="toc-list">
-                <li>About Mandinka Language <span class="page-number">1</span></li>
-                <li>History and Cultural Context <span class="page-number">3</span></li>
-                <li>Pronunciation Guide <span class="page-number">5</span></li>
-            </ul>
-        </div>
-        
-        <div class="toc-section">
-            <h3>Basic Mandinka Phrases</h3>
-            <ul class="toc-list">
-                <li>Greetings and Introductions <span class="page-number">8</span></li>
-                <li>Common Expressions <span class="page-number">12</span></li>
-                <li>Numbers and Time <span class="page-number">15</span></li>
-            </ul>
-        </div>
-        
-        <div class="toc-section">
-            <h3>Practical Conversations</h3>
-            <ul class="toc-list">
-                <li>At the Market <span class="page-number">20</span></li>
-                <li>Transportation <span class="page-number">24</span></li>
-                <li>Dining and Food <span class="page-number">28</span></li>
-                <li>Accommodation <span class="page-number">32</span></li>
-            </ul>
-        </div>
-        
-        <div class="toc-section">
-            <h3>Cultural Notes</h3>
-            <ul class="toc-list">
-                <li>Mandinka Customs and Etiquette <span class="page-number">35</span></li>
-                <li>Traditional Celebrations <span class="page-number">38</span></li>
-                <li>Music and Arts <span class="page-number">40</span></li>
-            </ul>
-        </div>
-        
-        <div class="toc-section">
-            <h3>Advanced Language</h3>
-            <ul class="toc-list">
-                <li>Grammar Basics <span class="page-number">43</span></li>
-                <li>Extended Vocabulary <span class="page-number">47</span></li>
-                <li>Proverbs and Sayings <span class="page-number">50</span></li>
-            </ul>
-        </div>
-    </section>
-    
-    <!-- Header Section -->
-    <header>
-        <div class="flag-stripe">
-            <div class="stripe-red"></div>
-            <div class="stripe-blue"></div>
-            <div class="stripe-green"></div>
-        </div>
-        <div class="header-content">
-            <h1 class="title">Mandinka Language Phrasebook</h1>
-            <p class="subtitle">Your complete guide to The Gambia's most widely spoken language</p>
-        </div>
-    </header>
-    
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Mandinka Speaks</div>
-            <ul class="menu">
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#basic-phrases">Basic Phrases</a></li>
-                <li><a href="#practical-conversations">Practical Conversations</a></li>
-                <li><a href="#cultural-notes">Cultural Notes</a></li>
-                <li><a href="#advanced-language">Advanced Language</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-    <!-- Main Content -->
-    <main>
-        <!-- Introduction Section -->
-        <section id="introduction" class="container">
-            <h2 class="section-title">Introduction</h2>
+        <div class="question-container" id="question-container">
+            <div class="timer-section">
+                <div class="timer-container">
+                    <div class="timer paused" id="timer"></div>
+                </div>
+                <div class="countdown hidden" id="countdown">10</div>
+            </div>
             
-            <div class="intro">
-                <h3>About Mandinka Language</h3>
-                <p>Mandinka is the most widely spoken language in The Gambia, used by about 38% of the population. It belongs to the Manding branch of the Niger-Congo language family and is closely related to other Manding languages like Bambara and Malinke spoken across West Africa. As a tonal language, the meaning of words can change based on the pitch pattern used when speaking.</p>
+            <div class="image-container" id="image-container">
+                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="Object to identify">
+                <div class="language-label">Mandinka</div>
+                <!-- TikTok Banner -->
+                <div class="tiktok-banner">
+                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+                    </svg>
+                    <span class="tiktok-text">FOLLOW @mandinka.kanno</span>
+                </div>
+            </div>
+            
+            <div class="question" id="question">What is this called in Mandinka?</div>
+            
+            <div class="options" id="options">
+                <button class="option">Ninsoo</button>
+                <button class="option">Wuloo</button>
+                <button class="option">Yirikoo</button>
+                <button class="option">Jaakoo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Saa", "Wulo", "Saagoo", "Bantoo"], // Dog, cow, sheep, monkey
+        correctIndex: 0, // Example: Saagoo (sheep)
+        readTime: 5000,
+        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfsOyIpcYAVc8fCyLdPKR5SCaXvD6gsJ-zboOr5OviT10yfSagBFaKOShGECNa_GJw8dY&usqp=CAU" // Placeholder for sheep image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Wuloo", "Baso", "Filoŋ", "Yirijaa"], // Dog, fish, elephant, bird
+        correctIndex: 1, // Jaakoo (fish)
+        readTime: 5000,
+        imageSrc: "https://animals.sandiegozoo.org/sites/default/files/inline-images/animals-lizard-redheadedagamapair.jpg" // Placeholder for fish image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Filoŋ", "Maloo", "Wuloo", "Kuuroo"], // Elephant, fish, dog, not animal
+        correctIndex: 1, // Wuloo (dog)
+        readTime: 5000,
+        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo3nWOp-Qe-26r7-jPQMN1kWH64cJncq6wOg&s" // Placeholder for dog image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Jatoo", "Benteng", "Saagoo", "Dindiŋo"], // Cow, goat, sheep, horse
+        correctIndex: 0, // Nyaamoo (cow)
+        readTime: 5000,
+        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/1200px-Walking_tiger_female.jpg" // Placeholder for cow image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Jaakoo", "Finoo", "Nyaamoo", "Bambo"], // Fish, cat, cow, horse
+        correctIndex: 3, // Dindiŋo (horse)
+        readTime: 5000,
+        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/250px-Nile_crocodile_head.jpg" // Placeholder for horse image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Mangoo", "Seeseh", "Bantoo", "Finoo"], // Not all animals: elephant, cat, monkey
+        correctIndex: 1, // Filoŋ (elephant)
+        readTime: 5000,
+        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Male_and_female_chicken_sitting_together.jpg/800px-Male_and_female_chicken_sitting_together.jpg" // Placeholder for elephant image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Buukoo", "Wuloo", "Nyankumo", "Teeboo"], // Not all animals: dog, cat
+        correctIndex: 2, // Finoo (cat)
+        readTime: 5000,
+        imageSrc: "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_16x9.jpg?w=1200" // Placeholder for cat image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Susula", "Jaakoo", "Dindiŋo", "Wuloo"], // Monkey, fish, horse, dog
+        correctIndex: 0, // Bantoo (monkey)
+        readTime: 5000,
+        imageSrc: "https://www.nps.gov/articles/images/26023_1.jpg?maxwidth=650&autorotate=false" // Placeholder for monkey image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Filoŋ", "Saagoo", "Niiso", "Wuloo"], // Elephant, sheep, goat, dog
+        correctIndex: 2, // Dendikoo (goat)
+        readTime: 5000,
+        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDbO1Ch1b6e-RoVtp0eyRZznX_LbJaD-EFfQ&s" // Placeholder for goat image
+    },
+    {
+        question: "What is the name of this animal in Mandinka?",
+        options: ["Dindiŋo", "Filoŋ", "Jaakoo", "Dirimo"], // Horse, elephant, fish, sheep
+        correctIndex: 3, // Saagoo (sheep)
+        readTime: 5000,
+        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTnjok074mfl4pqvQ83FYZ_IcFebuULX8LWw&s" // Placeholder for sheep image
+    }
+];
+
+
+        let currentQuestionIndex = 0;
+        let timerInterval;
+        let countdownInterval;
+        let optionsClickable = true;
+        
+        const questionElement = document.getElementById('question');
+        const optionsContainer = document.getElementById('options');
+        const timerElement = document.getElementById('timer');
+        const countdownElement = document.getElementById('countdown');
+        const questionNumberElement = document.getElementById('question-number');
+        const questionContainerElement = document.getElementById('question-container');
+        const questionImageElement = document.getElementById('question-image');
+        
+        // Load a question
+        function loadQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                // Update question number display
+                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
                 
-                <p>For visitors to The Gambia, learning even a few phrases in Mandinka can greatly enhance your experience, opening doors to more authentic interactions and deeper cultural understanding. While English is the official language of The Gambia, in rural areas especially, the ability to greet people in Mandinka is greatly appreciated and respected.</p>
-            </div>
-            
-            <div class="language-card">
-                <div class="card-header">History and Cultural Context</div>
-                <div class="card-content">
-                    <p>The Mandinka people have a rich and significant history in West Africa. They are descendants of the Mali Empire, which was one of the largest and wealthiest empires in West African history during the 13th and 14th centuries. The empire was founded by Sundiata Keita, whose story is still celebrated in oral traditions and by griots (traditional storytellers) throughout West Africa.</p>
+                // Set question container to "enter" state
+                questionContainerElement.classList.add('enter');
+                
+                // Apply transition after a small delay to ensure the class is applied
+                setTimeout(() => {
+                    // Remove both enter/exit classes to get to normal state with transition
+                    questionContainerElement.classList.remove('enter', 'exit');
                     
-                    <p>Mandinka culture places great emphasis on oral tradition, with history, knowledge, and cultural values passed down through generations by word of mouth. The role of the griot is central to Mandinka society – these oral historians and musicians serve as keepers of ancestral knowledge and cultural identity.</p>
+                    const currentQuestion = questions[currentQuestionIndex];
                     
-                    <p>Today, the Mandinka people primarily live in The Gambia, Senegal, Guinea, and Guinea-Bissau. In The Gambia, they form the largest ethnic group and have significantly shaped the country's cultural landscape, including its music, dance, crafts, and social structures.</p>
+                    // Set question text
+                    questionElement.textContent = currentQuestion.question;
                     
-                    <div class="culture-box">
-                        <h4>Cultural Insight: Kora Music</h4>
-                        <p>The kora, a 21-string bridge-harp, is the traditional instrument of the Mandinka people. Played by griots, it accompanies oral histories, praises, and stories. The complex melodies and rhythms of kora music represent an important cultural heritage of the Mandinka people.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="language-card">
-                <div class="card-header">Pronunciation Guide</div>
-                <div class="card-content">
-                    <p>Mandinka pronunciation may initially seem challenging, but with a few basic guidelines, you'll be able to make yourself understood. Here are some key aspects of Mandinka pronunciation:</p>
+                    // Update image
+                    questionImageElement.src = currentQuestion.imageSrc;
                     
-                    <h4>Vowels</h4>
-                    <table class="phrase-table">
-                        <tr>
-                            <th>Vowel</th>
-                            <th>Pronunciation</th>
-                            <th>Example</th>
-                        </tr>
-                        <tr>
-                            <td>a</td>
-                            <td>Like the 'a' in "father"</td>
-                            <td>Abaraka (thank you)</td>
-                        </tr>
-                        <tr>
-                            <td>e</td>
-                            <td>Like the 'e' in "set"</td>
-                            <td>Keba (father)</td>
-                        </tr>
-                        <tr>
-                            <td>i</td>
-                            <td>Like the 'ee' in "see"</td>
-                            <td>I be di? (How are you?)</td>
-                        </tr>
-                        <tr>
-                            <td>o</td>
-                            <td>Like the 'o' in "go"</td>
-                            <td>Fo woring (goodbye)</td>
-                        </tr>
-                        <tr>
-                            <td>u</td>
-                            <td>Like the 'oo' in "food"</td>
-                            <td>Suwo (horse)</td>
-                        </tr>
-                    </table>
+                    // Clear previous options
+                    optionsContainer.innerHTML = '';
                     
-                    <h4>Consonants</h4>
-                    <p>Most consonants are pronounced similarly to English, with a few exceptions:</p>
-                    <ul style="list-style-type: disc; margin-left: 20px;">
-                        <li>ŋ - Like the 'ng' in "sing"</li>
-                        <li>ñ - Like the 'ny' in "canyon"</li>
-                        <li>c - Like the 'ch' in "church"</li>
-                        <li>j - Like the 'j' in "jump"</li>
-                    </ul>
+                    // Add new options
+                    currentQuestion.options.forEach((option, index) => {
+                        const button = document.createElement('button');
+                        button.className = 'option';
+                        button.textContent = option;
+                        
+                        button.addEventListener('click', () => {
+                            if (optionsClickable) {
+                                checkAnswer(index);
+                            }
+                        });
+                        
+                        optionsContainer.appendChild(button);
+                    });
                     
-                    <h4>Tones</h4>
-                    <p>Mandinka is a tonal language, meaning that the pitch at which a syllable is pronounced can change the meaning of a word. There are generally three tones in Mandinka:</p>
-                    <ul style="list-style-type: disc; margin-left: 20px;">
-                        <li>High tone (´) - pronounced with a higher pitch</li>
-                        <li>Low tone (`) - pronounced with a lower pitch</li>
-                        <li>Mid tone (unmarked) - pronounced with a neutral pitch</li>
-                    </ul>
+                    // Start timer with read time pause
+                    startTimerWithPause(currentQuestion.readTime);
                     
-                    <div class="tip-box">
-                        <h4>Pronunciation Tip</h4>
-                        <p>When in doubt about pronunciation, speak slowly and listen carefully to locals. Gambians are generally patient and appreciative of your efforts to speak their language. Don't worry too much about getting the tones perfect at first – context will usually make your meaning clear.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    // Allow clicking
+                    optionsClickable = true;
+                }, 50);
+                
+            } else {
+                // Loop back to first question
+                currentQuestionIndex = 0;
+                loadQuestion();
+            }
+        }
         
-        <!-- Basic Phrases Section -->
-        <section id="basic-phrases" class="container">
-            <h2 class="section-title">Basic Mandinka Phrases</h2>
+        // Start the timer with an initial pause for reading
+        function startTimerWithPause(pauseTime) {
+            // Reset timer style and add paused class
+            timerElement.style.transition = 'none';
+            timerElement.style.width = '100%';
+            timerElement.classList.add('paused');
+            timerElement.classList.remove('ending');
             
-            <div class="language-card">
-                <div class="card-header">Greetings and Introductions</div>
-                <div class="card-content">
-                    <p>In Mandinka culture, greetings are extremely important and often elaborate. Taking time for proper greetings shows respect and is the foundation of any social interaction.</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>Hello</td>
-                            <td>I be jamu</td>
-                            <td><span class="pronunciation">ee bay jah-moo</span></td>
-                        </tr>
-                        <tr>
-                            <td>Good morning</td>
-                            <td>I be somma</td>
-                            <td><span class="pronunciation">ee bay soh-mah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Good afternoon</td>
-                            <td>I be tili</td>
-                            <td><span class="pronunciation">ee bay tee-lee</span></td>
-                        </tr>
-                        <tr>
-                            <td>Good evening</td>
-                            <td>I be wuraro</td>
-                            <td><span class="pronunciation">ee bay woo-rah-roh</span></td>
-                        </tr>
-                        <tr>
-                            <td>How are you?</td>
-                            <td>I be di?</td>
-                            <td><span class="pronunciation">ee bay dee</span></td>
-                        </tr>
-                        <tr>
-                            <td>I am fine, thank you</td>
-                            <td>N be kende, abaraka</td>
-                            <td><span class="pronunciation">n bay ken-day, ah-bah-rah-kah</span></td>
-                        </tr>
-                        <tr>
-                            <td>What is your name?</td>
-                            <td>I togo ko juma?</td>
-                            <td><span class="pronunciation">ee toh-goh koh joo-mah</span></td>
-                        </tr>
-                        <tr>
-                            <td>My name is...</td>
-                            <td>N togo ko...</td>
-                            <td><span class="pronunciation">n toh-goh koh...</span></td>
-                        </tr>
-                        <tr>
-                            <td>Nice to meet you</td>
-                            <td>N bataata i la</td>
-                            <td><span class="pronunciation">n bah-tah-tah ee lah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Where are you from?</td>
-                            <td>I bota minto?</td>
-                            <td><span class="pronunciation">ee boh-tah min-toh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I am from...</td>
-                            <td>N bota...</td>
-                            <td><span class="pronunciation">n boh-tah...</span></td>
-                        </tr>
-                    </table>
-                    
-                    <div class="culture-box">
-                        <h4>The Importance of Extended Greetings</h4>
-                        <p>In Mandinka culture, rushing through greetings is considered rude. A proper greeting often includes asking about the person's health, their family, their work, and other aspects of their life. It's common for greetings between friends to last several minutes. This practice reflects the community-oriented nature of Mandinka society, where taking time to acknowledge and connect with others is highly valued.</p>
-                    </div>
-                </div>
-            </div>
+            // Hide countdown during reading time
+            countdownElement.classList.add('hidden');
             
-            <div class="language-card">
-                <div class="card-header">Common Expressions</div>
-                <div class="card-content">
-                    <p>These everyday expressions will help you navigate basic conversations and show politeness in various situations.</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>Thank you</td>
-                            <td>Abaraka</td>
-                            <td><span class="pronunciation">ah-bah-rah-kah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Thank you very much</td>
-                            <td>Abaraka bake</td>
-                            <td><span class="pronunciation">ah-bah-rah-kah bah-kay</span></td>
-                        </tr>
-                        <tr>
-                            <td>You're welcome</td>
-                            <td>Abaraka te</td>
-                            <td><span class="pronunciation">ah-bah-rah-kah teh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Yes</td>
-                            <td>Haa</td>
-                            <td><span class="pronunciation">haa</span></td>
-                        </tr>
-                        <tr>
-                            <td>No</td>
-                            <td>Hani</td>
-                            <td><span class="pronunciation">hah-nee</span></td>
-                        </tr>
-                        <tr>
-                            <td>Please</td>
-                            <td>Menta</td>
-                            <td><span class="pronunciation">men-tah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Excuse me</td>
-                            <td>Hakilo</td>
-                            <td><span class="pronunciation">hah-kee-loh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I'm sorry</td>
-                            <td>N hakilo</td>
-                            <td><span class="pronunciation">n hah-kee-loh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I don't understand</td>
-                            <td>N ma faamu</td>
-                            <td><span class="pronunciation">n mah fah-moo</span></td>
-                        </tr>
-                        <tr>
-                            <td>Can you speak more slowly?</td>
-                            <td>I si kumala dooni-dooni?</td>
-                            <td><span class="pronunciation">ee see koo-mah-lah doh-nee doh-nee</span></td>
-                        </tr>
-                        <tr>
-                            <td>Do you speak English?</td>
-                            <td>I be Anglais kango fo la?</td>
-                            <td><span class="pronunciation">ee bay Ang-glays kang-goh foh lah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Goodbye</td>
-                            <td>Fo woring</td>
-                            <td><span class="pronunciation">foh woh-ring</span></td>
-                        </tr>
-                        <tr>
-                            <td>See you later</td>
-                            <td>An be soto jangto</td>
-                            <td><span class="pronunciation">an bay soh-toh jang-toh</span></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            // Force browser reflow
+            void timerElement.offsetWidth;
             
-            <div class="language-card">
-                <div class="card-header">Numbers and Time</div>
-                <div class="card-content">
-                    <h4>Cardinal Numbers</h4>
-                    <div class="two-column">
-                        <div>
-                            <table class="phrase-table">
-                                <tr>
-                                    <th>English</th>
-                                    <th>Mandinka</th>
-                                    <th>Pronunciation</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Kiling</td>
-                                    <td><span class="pronunciation">kee-ling</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Fula</td>
-                                    <td><span class="pronunciation">foo-lah</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saba</td>
-                                    <td><span class="pronunciation">sah-bah</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Naani</td>
-                                    <td><span class="pronunciation">nah-nee</span></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Loolu</td>
-                                    <td><span class="pronunciation">loh-loo</span></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div>
-                            <table class="phrase-table">
-                                <tr>
-                                    <th>English</th>
-                                    <th>Mandinka</th>
-                                    <th>Pronunciation</th>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Wooro</td>
-                                    <td><span class="pronunciation">woh-roh</span></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Worowula</td>
-                                    <td><span class="pronunciation">woh-roh-woo-lah</span></td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Seyi</td>
-                                    <td><span class="pronunciation">say-yee</span></td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Kononto</td>
-                                    <td><span class="pronunciation">koh-non-toh</span></td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Tang</td>
-                                    <td><span class="pronunciation">tahng</span></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+            // Clear any existing interval
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
+            
+            // First wait for the read time
+            setTimeout(() => {
+                // Remove paused class and start timer animation
+                timerElement.classList.remove('paused');
+                timerElement.style.transition = 'width 10s linear, background-color 0.5s';
+                timerElement.style.width = '0%';
+                
+                // Start countdown and show it
+                let secondsLeft = 10;
+                countdownElement.textContent = secondsLeft;
+                countdownElement.classList.remove('hidden');
+                
+                countdownInterval = setInterval(() => {
+                    secondsLeft--;
+                    countdownElement.textContent = secondsLeft;
                     
-                    <h4>Larger Numbers</h4>
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Tang ning kiling</td>
-                            <td><span class="pronunciation">tahng ning kee-ling</span></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>Mugan</td>
-                            <td><span class="pronunciation">moo-gahn</span></td>
-                        </tr>
-                        <tr>
-                            <td>30</td>
-                            <td>Mugan ning tang</td>
-                            <td><span class="pronunciation">moo-gahn ning tahng</span></td>
-                        </tr>
-                        <tr>
-                            <td>50</td>
-                            <td>Mugan fula ning tang</td>
-                            <td><span class="pronunciation">moo-gahn foo-lah ning tahng</span></td>
-                        </tr>
-                        <tr>
-                            <td>100</td>
-                            <td>Keme</td>
-                            <td><span class="pronunciation">keh-meh</span></td>
-                        </tr>
-                        <tr>
-                            <td>1000</td>
-                            <td>Wuli</td>
-                            <td><span class="pronunciation">woo-lee</span></td>
-                        </tr>
-                    </table>
+                    // Change to red when 3 seconds or less remain
+                    if (secondsLeft <= 3) {
+                        timerElement.classList.add('ending');
+                    }
                     
-                    <h4>Telling Time</h4>
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>What time is it?</td>
-                            <td>Waati jem juma le?</td>
-                            <td><span class="pronunciation">wah-tee jem joo-mah leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>It's one o'clock</td>
-                            <td>Waati jem kiling le</td>
-                            <td><span class="pronunciation">wah-tee jem kee-ling leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>It's half past two</td>
-                            <td>Waati jem fula ning tili le</td>
-                            <td><span class="pronunciation">wah-tee jem foo-lah ning tee-lee leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>In the morning</td>
-                            <td>Soomayaa</td>
-                            <td><span class="pronunciation">soh-mah-yah</span></td>
-                        </tr>
-                        <tr>
-                            <td>In the afternoon</td>
-                            <td>Tiliyaa</td>
-                            <td><span class="pronunciation">tee-lee-yah</span></td>
-                        </tr>
-                        <tr>
-                            <td>In the evening</td>
-                            <td>Wuraaro</td>
-                            <td><span class="pronunciation">woo-rah-roh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Yesterday</td>
-                            <td>Kungo</td>
-                            <td><span class="pronunciation">koon-goh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Today</td>
-                            <td>Bi</td>
-                            <td><span class="pronunciation">bee</span></td>
-                        </tr>
-                        <tr>
-                            <td>Tomorrow</td>
-                            <td>Sinaa</td>
-                            <td><span class="pronunciation">see-nah</span></td>
-                        </tr>
-                    </table>
-                    
-                    <div class="tip-box">
-                        <h4>Counting Tip</h4>
-                        <p>In Mandinka, numbers after 10 follow a logical pattern. For example, 11 is "tang ning kiling" which literally means "ten and one." This pattern continues for other numbers, making it easier to learn and remember larger numbers once you know the basics.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    if (secondsLeft <= 0) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+                
+                // Set timeout for when time is up
+                timerInterval = setTimeout(() => {
+                    if (optionsClickable) {
+                        // Time's up, move to next question
+                        optionsClickable = false;
+                        clearInterval(countdownInterval);
+                        
+                        // Highlight correct answer
+                        const options = document.querySelectorAll('.option');
+                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
+                        
+                        setTimeout(() => {
+                            transitionToNextQuestion();
+                        }, 1500);
+                    }
+                }, 10000);
+            }, pauseTime);
+        }
         
-        <!-- Practical Conversations Section -->
-        <section id="practical-conversations" class="container">
-            <h2 class="section-title">Practical Conversations</h2>
+        // Check the selected answer
+        function checkAnswer(selectedIndex) {
+            optionsClickable = false;
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
             
-            <div class="language-card">
-                <div class="card-header">At the Market</div>
-                <div class="card-content">
-                    <p>Markets in The Gambia are vibrant social spaces where bargaining is expected. Here are some useful phrases to help you navigate the colorful markets and interact with vendors.</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>How much is this?</td>
-                            <td>Ning ye jelu le ti?</td>
-                            <td><span class="pronunciation">ning yeh jeh-loo leh tee</span></td>
-                        </tr>
-                        <tr>
-                            <td>That's too expensive</td>
-                            <td>A mang diya bake</td>
-                            <td><span class="pronunciation">ah mahng dee-yah bah-kay</span></td>
-                        </tr>
-                        <tr>
-                            <td>Can you lower the price?</td>
-                            <td>I si a sotti dooni?</td>
-                            <td><span class="pronunciation">ee see ah soh-tee doh-nee</span></td>
-                        </tr>
-                        <tr>
-                            <td>I would like to buy...</td>
-                            <td>N be a fe ka ... san</td>
-                            <td><span class="pronunciation">n bay ah feh kah ... sahn</span></td>
-                        </tr>
-                        <tr>
-                            <td>Do you have...?</td>
-                            <td>... be i bulu?</td>
-                            <td><span class="pronunciation">... bay ee boo-loo</span></td>
-                        </tr>
-                        <tr>
-                            <td>Can I see that?</td>
-                            <td>N si wo jele?</td>
-                            <td><span class="pronunciation">n see woh jeh-leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I'll take it</td>
-                            <td>N be a sanne</td>
-                            <td><span class="pronunciation">n bay ah sahn-neh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I don't want it</td>
-                            <td>N mang a fe</td>
-                            <td><span class="pronunciation">n mahng ah feh</span></td>
-                        </tr>
-                    </table>
-                    
-                    <div class="culture-box">
-                        <h4>Bargaining Culture</h4>
-                        <p>Bargaining is an expected part of market transactions in The Gambia. Vendors typically start with a higher price, expecting you to negotiate. The process is seen as a social interaction rather than a confrontation. A good rule of thumb is to start at about half the asking price and work your way up. Remember to maintain a friendly tone and smile throughout the process – bargaining should be enjoyable for both parties.</p>
-                    </div>
-                    
-                    <h4>Sample Dialogue: At the Fruit Market</h4>
-                    <div style="background-color: #f9f9f9; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-                        <p><strong>Buyer:</strong> I be jamu. (Hello.)</p>
-                        <p><strong>Vendor:</strong> I be jamu. I be di? (Hello. How are you?)</p>
-                        <p><strong>Buyer:</strong> N be kende. Ning ye jelu le ti? (I'm fine. How much is this?)</p>
-                        <p><strong>Vendor:</strong> Wo ye dalasis mugan le ti. (That's 20 dalasis.)</p>
-                        <p><strong>Buyer:</strong> A mang diya bake. I si a sotti tang? (That's too expensive. Can you lower it to 10?)</p>
-                        <p><strong>Vendor:</strong> Hani, a ka diya. N si a sotti mugan ning loolu. (No, it's good quality. I can do it for 15.)</p>
-                        <p><strong>Buyer:</strong> Tang ning fula? (12?)</p>
-                        <p><strong>Vendor:</strong> Tang ning naani. A banta. (14. It's settled.)</p>
-                        <p><strong>Buyer:</strong> N be a sanne. Abaraka. (I'll take it. Thank you.)</p>
-                        <p><strong>Vendor:</strong> Abaraka te. (You're welcome.)</p>
-                    </div>
-                </div>
-            </div>
+            const currentQuestion = questions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
             
-            <div class="language-card">
-                <div class="card-header">Transportation</div>
-                <div class="card-content">
-                    <p>Getting around in The Gambia can involve a variety of transportation options, from shared taxis (called "bush taxis" or "gele geles") to ferries crossing the River Gambia. Here are phrases to help you navigate transportation situations.</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>Where is the taxi stand?</td>
-                            <td>Taxi loring be minto?</td>
-                            <td><span class="pronunciation">tak-see loh-ring bay min-toh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I want to go to...</td>
-                            <td>N be a fe ka taa...</td>
-                            <td><span class="pronunciation">n bay ah feh kah tah</span></td>
-                        </tr>
-                        <tr>
-                            <td>How much is the fare?</td>
-                            <td>Taama jelu le?</td>
-                            <td><span class="pronunciation">tah-mah jeh-loo leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Please stop here</td>
-                            <td>Menta, i si loyindi yan</td>
-                            <td><span class="pronunciation">men-tah, ee see loy-in-dee yan</span></td>
-                        </tr>
-                        <tr>
-                            <td>Is this the right way to...?</td>
-                            <td>Nin ye sila jang ti...?</td>
-                            <td><span class="pronunciation">nin yeh see-lah jang tee</span></td>
-                        </tr>
-                        <tr>
-                            <td>How far is it?</td>
-                            <td>A jang jelu le?</td>
-                            <td><span class="pronunciation">ah jang jeh-loo leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>When does the ferry leave?</td>
-                            <td>Kulungo be taa la waati jem juma?</td>
-                            <td><span class="pronunciation">koo-loon-goh bay tah lah wah-tee jem joo-mah</span></td>
-                        </tr>
-                    </table>
-                    
-                    <div class="tip-box">
-                        <h4>Transportation Tip</h4>
-                        <p>The "gele gele" shared minibuses are a common form of transportation in The Gambia. They don't usually depart until they're full, so be prepared to wait. It's also helpful to know that they often don't have fixed stops – you can ask the driver to stop anywhere along the route by saying "Fula yan" (Stop here).</p>
-                    </div>
-                </div>
-            </div>
+            // Check if answer is correct
+            if (selectedIndex === currentQuestion.correctIndex) {
+                options[selectedIndex].classList.add('correct');
+            } else {
+                options[selectedIndex].classList.add('incorrect');
+                options[currentQuestion.correctIndex].classList.add('correct');
+            }
             
-            <div class="language-card">
-                <div class="card-header">Dining and Food</div>
-                <div class="card-content">
-                    <p>Gambian cuisine is flavorful and diverse, featuring lots of rice dishes, fresh seafood, and spicy stews. Here are phrases to help you navigate dining situations and discuss food in Mandinka.</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>I'm hungry</td>
-                            <td>Konkoba be n na</td>
-                            <td><span class="pronunciation">kon-koh-bah bay n nah</span></td>
-                        </tr>
-                        <tr>
-                            <td>I'm thirsty</td>
-                            <td>Nimiloba be n na</td>
-                            <td><span class="pronunciation">nee-mee-loh-bah bay n nah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Can I have the menu?</td>
-                            <td>N si menu domo?</td>
-                            <td><span class="pronunciation">n see men-oo doh-moh</span></td>
-                        </tr>
-                        <tr>
-                            <td>What do you recommend?</td>
-                            <td>Munne ye beteyandi?</td>
-                            <td><span class="pronunciation">moon-neh yeh beh-teh-yan-dee</span></td>
-                        </tr>
-                        <tr>
-                            <td>It's delicious</td>
-                            <td>A ka di</td>
-                            <td><span class="pronunciation">ah kah dee</span></td>
-                        </tr>
-                        <tr>
-                            <td>The bill, please</td>
-                            <td>Joo, menta</td>
-                            <td><span class="pronunciation">joh, men-tah</span></td>
-                        </tr>
-                        <tr>
-                            <td>I am vegetarian</td>
-                            <td>N te sobo domo</td>
-                            <td><span class="pronunciation">n teh soh-boh doh-moh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I don't eat...</td>
-                            <td>N te ... domo</td>
-                            <td><span class="pronunciation">n teh ... doh-moh</span></td>
-                        </tr>
-                    </table>
-                    
-                    <h4>Common Food Items</h4>
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>Rice</td>
-                            <td>Malo</td>
-                            <td><span class="pronunciation">mah-loh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Fish</td>
-                            <td>Yege</td>
-                            <td><span class="pronunciation">yeh-geh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Chicken</td>
-                            <td>Kono</td>
-                            <td><span class="pronunciation">koh-noh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Meat</td>
-                            <td>Sobo</td>
-                            <td><span class="pronunciation">soh-boh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Vegetables</td>
-                            <td>Nako</td>
-                            <td><span class="pronunciation">nah-koh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Bread</td>
-                            <td>Buroo</td>
-                            <td><span class="pronunciation">boo-roh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Water</td>
-                            <td>Ji</td>
-                            <td><span class="pronunciation">jee</span></td>
-                        </tr>
-                        <tr>
-                            <td>Tea</td>
-                            <td>Attaya</td>
-                            <td><span class="pronunciation">ah-tah-yah</span></td>
-                        </tr>
-                    </table>
-                    
-                    <div class="culture-box">
-                        <h4>Dining Etiquette</h4>
-                        <p>In traditional Gambian settings, meals are often eaten communally from a single large bowl placed on the floor or a low table. People sit around this bowl and eat with their right hand (never the left, which is considered unclean). Before eating, wait for the host to say "Bismillah" (In the name of God) as a signal to begin. It's polite to only eat from the portion of the dish directly in front of you, not reaching across to other areas of the communal bowl.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="language-card">
-                <div class="card-header">Accommodation</div>
-                <div class="card-content">
-                    <p>Whether you're staying in a hotel or experiencing traditional Gambian hospitality in a local compound, these phrases will help you communicate your needs and preferences regarding accommodation.</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>Do you have any rooms available?</td>
-                            <td>Bon be jang?</td>
-                            <td><span class="pronunciation">bon bay jang</span></td>
-                        </tr>
-                        <tr>
-                            <td>How much per night?</td>
-                            <td>Su kiling jelu le?</td>
-                            <td><span class="pronunciation">soo kee-ling jeh-loo leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>I'll stay for ... nights</td>
-                            <td>N be su ... le ke</td>
-                            <td><span class="pronunciation">n bay soo ... leh keh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Where is my room?</td>
-                            <td>N la bon be minto?</td>
-                            <td><span class="pronunciation">n lah bon bay min-toh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Is breakfast included?</td>
-                            <td>Soomayaa domoroo be a kono?</td>
-                            <td><span class="pronunciation">soh-mah-yah doh-moh-roh bay ah koh-noh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Where is the bathroom?</td>
-                            <td>Kuwo be minto?</td>
-                            <td><span class="pronunciation">koo-woh bay min-toh</span></td>
-                        </tr>
-                        <tr>
-                            <td>The room is too hot</td>
-                            <td>Bon kandiata bake</td>
-                            <td><span class="pronunciation">bon kan-dee-ah-tah bah-kay</span></td>
-                        </tr>
-                        <tr>
-                            <td>I need clean towels</td>
-                            <td>N mang saniyaata towelo fo</td>
-                            <td><span class="pronunciation">n mahng sah-nee-yah-tah toh-weh-loh foh</span></td>
-                        </tr>
-                        <tr>
-                            <td>What time is checkout?</td>
-                            <td>Bontaama waati jem juma le?</td>
-                            <td><span class="pronunciation">bon-tah-mah wah-tee jem joo-mah leh</span></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </section>
+            // Move to next question after a brief delay
+            setTimeout(() => {
+                transitionToNextQuestion();
+            }, 1500);
+        }
         
-        <!-- Cultural Notes Section -->
-        <section id="cultural-notes" class="container">
-            <h2 class="section-title">Cultural Notes</h2>
+        // Transition to the next question with animation
+        function transitionToNextQuestion() {
+            // Add exit animation class
+            questionContainerElement.classList.add('exit');
             
-            <div class="language-card">
-                <div class="card-header">Mandinka Customs and Etiquette</div>
-                <div class="card-content">
-                    <p>Understanding local customs and etiquette will enhance your interactions and show respect for Mandinka culture. Here are some important cultural points to remember:</p>
-                    
-                    <h4>Greetings and Respect</h4>
-                    <p>In Mandinka culture, proper greetings are extremely important. Taking time to exchange greetings, even with strangers, is considered basic courtesy. When greeting elders, it's respectful to slightly bow your head. Handshakes are common, though they tend to be softer than Western handshakes.</p>
-                    
-                    <h4>Right Hand Usage</h4>
-                    <p>The right hand is used for eating, greeting, and giving or receiving objects. Using your left hand for these activities is considered impolite as the left hand is traditionally associated with personal hygiene.</p>
-                    
-                    <h4>Clothing and Modesty</h4>
-                    <p>Although The Gambia is a tourist destination, conservative dress is appreciated, especially in rural areas and during religious events. For women, covering shoulders and knees is advisable. Men should wear long pants in more formal or religious settings.</p>
-                    
-                    <h4>Photography</h4>
-                    <p>Always ask permission before taking photos of people. Some individuals may refuse due to personal or religious beliefs, and this should be respected.</p>
-                    
-                    <div class="culture-box">
-                        <h4>The Concept of "Teranga"</h4>
-                        <p>While "teranga" is a Wolof word (another language spoken in The Gambia), the concept of extraordinary hospitality is shared across Gambian cultures, including Mandinka. Visitors are treated with great respect and generosity. If invited to a Mandinka home, you may be offered food, drink, and possibly accommodation even if resources are limited. Accepting at least a token amount of what's offered shows respect for their hospitality.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="language-card">
-                <div class="card-header">Traditional Celebrations</div>
-                <div class="card-content">
-                    <p>The Mandinka have rich traditions of celebration for various life events and seasonal occasions. Here are some important celebrations in Mandinka culture:</p>
-                    
-                    <h4>Naming Ceremony (Kumbenengo)</h4>
-                    <p>Held seven days after a baby's birth, this ceremony is when the child is officially named. The name is whispered into the baby's ear by a respected elder, and then announced to the gathered community. The celebration involves music, food, and prayers for the child's future.</p>
-                    
-                    <h4>Harvest Festival (Nya Munko)</h4>
-                    <p>This celebration marks the end of the harvest season. Communities gather to give thanks for the harvest, share food, and enjoy music and dance. It's a time of gratitude and communal sharing of resources.</p>
-                    
-                    <h4>Religious Festivals</h4>
-                    <p>Many Mandinka people practice Islam, so Islamic festivals like Eid al-Fitr (Koriteh in local terms) and Eid al-Adha (Tobaski) are important celebrations. These involve special prayers, new clothes, feasting, and visiting friends and family.</p>
-                    
-                    <div class="image-container">
-                        <img src="https://kumakonda.es/wp-content/uploads/2024/03/Kankurang-1-2.jpg.webp" alt="Traditional Mandinka celebration">
-                        <p class="image-caption">A traditional Mandinka celebration featuring music, dance, and community gathering</p>
-                    </div>
-                    
-                    <div class="tip-box">
-                        <h4>Participating in Celebrations</h4>
-                        <p>If you're invited to a Mandinka celebration, it's appropriate to bring a small gift, such as fruit, kola nuts, or a contribution to the meal. Dress modestly and respectfully, and be prepared to participate in the communal aspects of the celebration. Even if you don't understand all the customs, showing interest and respect will be appreciated.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="language-card">
-                <div class="card-header">Music and Arts</div>
-                <div class="card-content">
-                    <p>Mandinka artistic traditions are rich and deeply connected to the community's history and values. Music, in particular, plays a central role in preserving and transmitting cultural knowledge.</p>
-                    
-                    <h4>The Kora and Griots</h4>
-                    <p>The kora, a 21-string harp-lute, is the signature instrument of Mandinka music. It's primarily played by griots (called "jalis" in Mandinka), who are hereditary musicians and oral historians. Griots preserve and share the community's history, genealogies, and traditional knowledge through music and storytelling. Their role is highly respected in Mandinka society.</p>
-                    
-                    <h4>Traditional Dances</h4>
-                    <p>Dance is an important form of expression in Mandinka culture. Different dances may be performed for specific occasions, such as initiations, weddings, and harvest celebrations. Some common Mandinka dances include:</p>
-                    <ul style="list-style-type: disc; margin-left: 20px;">
-                        <li><strong>Lenjengo:</strong> A dance performed by women to celebrate womanhood and fertility</li>
-                        <li><strong>Jobarteh:</strong> A dance that tells stories of historical events and heroes</li>
-                        <li><strong>Dimba:</strong> A healing dance performed during special ceremonies</li>
-                    </ul>
-                    
-                    <h4>Crafts and Visual Arts</h4>
-                    <p>Traditional Mandinka crafts include:</p>
-                    <ul style="list-style-type: disc; margin-left: 20px;">
-                        <li><strong>Weaving:</strong> Cotton cloth is traditionally woven on narrow looms by men to create strips that are sewn together for clothing</li>
-                        <li><strong>Pottery:</strong> Clay pots and vessels for cooking and storage are typically made by women</li>
-                        <li><strong>Wood Carving:</strong> Masks, instruments, and household items are crafted from local woods</li>
-                        <li><strong>Leather Work:</strong> Items like drums, sandals, and amulet holders are made from animal hides</li>
-                    </ul>
-                    
-                    <div class="culture-box">
-                        <h4>The Language of Drums</h4>
-                        <p>In Mandinka culture, talking drums (called "tama" or "dundun") are used not just for music but also for communication. These drums can mimic the tones of the Mandinka language, allowing messages to be transmitted over long distances. Historically, they were used to announce important events, summon community members, or send warnings.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            // Wait for animation to complete
+            setTimeout(() => {
+                currentQuestionIndex++;
+                loadQuestion();
+            }, 500);
+        }
         
-        <!-- Advanced Language Section -->
-        <section id="advanced-language" class="container">
-            <h2 class="section-title">Advanced Language</h2>
-            
-            <div class="language-card">
-                <div class="card-header">Grammar Basics</div>
-                <div class="card-content">
-                    <p>This section provides a brief overview of Mandinka grammar to help you construct your own sentences and understand the structure of the language.</p>
-                    
-                    <h4>Sentence Structure</h4>
-                    <p>Mandinka typically follows a Subject-Verb-Object (SVO) word order, similar to English. For example:</p>
-                    <div style="background-color: #f9f9f9; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-                        <p><strong>N be domoro domo.</strong> (I am eating food.)</p>
-                        <p><em>Subject (N/I) + Verb marker (be) + Object (domoro/food) + Verb (domo/eat)</em></p>
-                    </div>
-                    
-                    <h4>Verb Tenses</h4>
-                    <p>Mandinka verbs don't change form based on the subject. Instead, tense is indicated by markers that come before the verb:</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>Tense</th>
-                            <th>Marker</th>
-                            <th>Example</th>
-                            <th>Translation</th>
-                        </tr>
-                        <tr>
-                            <td>Present</td>
-                            <td>be</td>
-                            <td>N be taa la.</td>
-                            <td>I am going.</td>
-                        </tr>
-                        <tr>
-                            <td>Past</td>
-                            <td>taa ta</td>
-                            <td>N taa ta.</td>
-                            <td>I went.</td>
-                        </tr>
-                        <tr>
-                            <td>Future</td>
-                            <td>be ... la</td>
-                            <td>N be naa la.</td>
-                            <td>I will come.</td>
-                        </tr>
-                        <tr>
-                            <td>Negative Present</td>
-                            <td>te</td>
-                            <td>N te taa la.</td>
-                            <td>I am not going.</td>
-                        </tr>
-                        <tr>
-                            <td>Negative Past</td>
-                            <td>ma</td>
-                            <td>N ma taa.</td>
-                            <td>I did not go.</td>
-                        </tr>
-                    </table>
-                    
-                    <h4>Noun Classes</h4>
-                    <p>Unlike European languages, Mandinka doesn't have grammatical gender. However, it does have noun classes that affect how plurals are formed. The most common plural marker is "-lu" or "-olu" added to the end of the noun:</p>
-                    
-                    <div style="background-color: #f9f9f9; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-                        <p><strong>Singular:</strong> Musoo (woman) → <strong>Plural:</strong> Musoolu (women)</p>
-                        <p><strong>Singular:</strong> Kewo (man) → <strong>Plural:</strong> Kewolu (men)</p>
-                        <p><strong>Singular:</strong> Dingo (child) → <strong>Plural:</strong> Dingolu (children)</p>
-                    </div>
-                    
-                    <h4>Adjectives</h4>
-                    <p>In Mandinka, adjectives follow the nouns they modify:</p>
-                    
-                    <div style="background-color: #f9f9f9; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-                        <p><strong>Bon koyi</strong> (big house) - <em>literally "house big"</em></p>
-                        <p><strong>Ji sumoo</strong> (cold water) - <em>literally "water cold"</em></p>
-                    </div>
-                    
-                    <div class="tip-box">
-                        <h4>Grammar Tip</h4>
-                        <p>One helpful aspect of Mandinka grammar is its regularity. Once you learn the basic patterns, there are relatively few exceptions compared to many European languages. Focus on learning the verb markers and sentence structure, and you'll be able to construct many useful sentences quite quickly.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="language-card">
-                <div class="card-header">Extended Vocabulary</div>
-                <div class="card-content">
-                    <p>Expand your Mandinka vocabulary with these useful words organized by category.</p>
-                    
-                    <h4>Family Members</h4>
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>Father</td>
-                            <td>Fa</td>
-                            <td><span class="pronunciation">fah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Mother</td>
-                            <td>Ba</td>
-                            <td><span class="pronunciation">bah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Brother</td>
-                            <td>Koto (older), Doko (younger)</td>
-                            <td><span class="pronunciation">koh-toh, doh-koh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sister</td>
-                            <td>Koto muso (older), Doko muso (younger)</td>
-                            <td><span class="pronunciation">koh-toh moo-soh, doh-koh moo-soh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Child</td>
-                            <td>Dingo</td>
-                            <td><span class="pronunciation">ding-oh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Grandfather</td>
-                            <td>Maamaa</td>
-                            <td><span class="pronunciation">mah-mah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Grandmother</td>
-                            <td>Maamaa muso</td>
-                            <td><span class="pronunciation">mah-mah moo-soh</span></td>
-                        </tr>
-                    </table>
-                    
-                    <h4>Nature and Environment</h4>
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>Sun</td>
-                            <td>Tele</td>
-                            <td><span class="pronunciation">teh-leh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Moon</td>
-                            <td>Karo</td>
-                            <td><span class="pronunciation">kah-roh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Star</td>
-                            <td>Loolo</td>
-                            <td><span class="pronunciation">loh-loh</span></td>
-                        </tr>
-                        <tr>
-                            <td>River</td>
-                            <td>Baa</td>
-                            <td><span class="pronunciation">bah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Tree</td>
-                            <td>Yiro</td>
-                            <td><span class="pronunciation">yee-roh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Rain</td>
-                            <td>Sanji</td>
-                            <td><span class="pronunciation">sahn-jee</span></td>
-                        </tr>
-                        <tr>
-                            <td>Fire</td>
-                            <td>Dimbaa</td>
-                            <td><span class="pronunciation">dim-bah</span></td>
-                        </tr>
-                        <tr>
-                            <td>Earth/Ground</td>
-                            <td>Dukuma</td>
-                            <td><span class="pronunciation">doo-koo-mah</span></td>
-                        </tr>
-                    </table>
-                    
-                    <h4>Colors</h4>
-                    <table class="phrase-table">
-                        <tr>
-                            <th>English</th>
-                            <th>Mandinka</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                        <tr>
-                            <td>White</td>
-                            <td>Koyi</td>
-                            <td><span class="pronunciation">koy-ee</span></td>
-                        </tr>
-                        <tr>
-                            <td>Black</td>
-                            <td>Fingo</td>
-                            <td><span class="pronunciation">fin-goh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Red</td>
-                            <td>Wulengo</td>
-                            <td><span class="pronunciation">woo-len-goh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Blue/Green</td>
-                            <td>Buluo</td>
-                            <td><span class="pronunciation">boo-loo-oh</span></td>
-                        </tr>
-                        <tr>
-                            <td>Yellow</td>
-                            <td>Netelengo</td>
-                            <td><span class="pronunciation">neh-teh-len-goh</span></td>
-                        </tr>
-                    </table>
-                    
-                    <div class="culture-box">
-                        <h4>Color in Mandinka Culture</h4>
-                        <p>In traditional Mandinka culture, colors have symbolic meanings. White (koyi) represents purity and spirituality, and is often worn during religious ceremonies. Black (fingo) can symbolize maturity and is associated with elders. Red (wulengo) represents vitality and life force, and is commonly used in ceremonial clothing. Interestingly, the Mandinka language traditionally doesn't distinguish between blue and green, using "buluo" for both colors.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="language-card">
-                <div class="card-header">Proverbs and Sayings</div>
-                <div class="card-content">
-                    <p>Mandinka proverbs (sanebu) reflect the wisdom, values, and life philosophy of the culture. Learning these sayings will give you deeper insight into Mandinka thought patterns and cultural perspectives.</p>
-                    
-                    <table class="phrase-table">
-                        <tr>
-                            <th>Mandinka</th>
-                            <th>Literal Translation</th>
-                            <th>Meaning</th>
-                        </tr>
-                        <tr>
-                            <td>Nyo fle ka jan, a te se baa dan na.</td>
-                            <td>No matter how long a log stays in water, it will never become a crocodile.</td>
-                            <td>One cannot change their fundamental nature or identity regardless of environment or circumstance.</td>
-                        </tr>
-                        <tr>
-                            <td>Tuloo kakkaa, a karoo le be jee.</td>
-                            <td>When the ear refuses to listen, it is the head that suffers.</td>
-                            <td>Refusing to take advice leads to personal problems and suffering.</td>
-                        </tr>
-                        <tr>
-                            <td>Moolu be baro kela, bari alla le be a dabari la.</td>
-                            <td>People may talk, but God decides.</td>
-                            <td>Human plans and discussions are subject to a higher power's will; similar to "Man proposes, God disposes."</td>
-                        </tr>
-                        <tr>
-                            <td>Bula menteng dookuo te kono jaa.</td>
-                            <td>A single hand cannot clap.</td>
-                            <td>Cooperation is necessary for success; one person alone cannot accomplish everything.</td>
-                        </tr>
-                        <tr>
-                            <td>Ni i ka futo longola, i kana a bila turamoo to.</td>
-                            <td>If you remove your clothes, don't put them near a termite hill.</td>
-                            <td>Don't expose yourself to obvious danger; be cautious with your vulnerabilities.</td>
-                        </tr>
-                    </table>
-                    
-                    <h4>Using Proverbs in Conversation</h4>
-                    <p>Mandinka speakers often use proverbs to make a point more eloquently or to give advice indirectly. When a proverb is shared in conversation, it might be introduced with "Kuma koto ko..." (The old saying goes...) or simply stated as a response to a situation.</p>
-                    
-                    <div class="tip-box">
-                        <h4>Cultural Insight</h4>
-                        <p>Using appropriate proverbs in conversation is highly respected in Mandinka culture and demonstrates both linguistic proficiency and cultural understanding. Even using just one or two common proverbs can enhance your communication and show respect for the cultural traditions.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <p>© 2025 Mandinka Language Learning Guide</p>
-                <p>Created to help travelers and language enthusiasts learn basic Mandinka for travel in The Gambia and surrounding regions.</p>
-            </div>
-        </footer>
-        
-        <script>
-            // Simple script to handle tab navigation for the phrase lists
-            document.addEventListener('DOMContentLoaded', function() {
-                // Add any JavaScript functionality here if needed
-                console.log("Mandinka Language Guide loaded successfully");
-            });
-        </script>
-    </body>
+        // Start the quiz immediately
+        document.addEventListener('DOMContentLoaded', loadQuestion);
+    </script>
+</body>
 </html>
