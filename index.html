@@ -22,8 +22,10 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            perspective: 1000px;
         }
         
+        /* Main container styles */
         .container {
             width: 100%;
             height: 100vh;
@@ -33,8 +35,119 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            background-size: 400% 400%;
+            animation: backgroundShift 10s ease infinite;
         }
         
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Intro screen styles */
+        .intro-screen {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 20;
+            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
+            background-size: 400% 400%;
+            animation: backgroundShift 10s ease infinite;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        
+        .intro-screen.hidden {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+        
+        .flag-container {
+            width: 80%;
+            max-width: 300px;
+            height: 180px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        #flag-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .text {
+            font-size: 0;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            letter-spacing: 1px;
+        }
+        
+        .text.active {
+            font-size: 42px;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .text:nth-child(1) {
+            color: #ffcc00;
+        }
+        
+        .text:nth-child(2) {
+            color: #ff66ff;
+        }
+        
+        .text:nth-child(3) {
+            color: #33ff33;
+        }
+        
+        /* Share screen styles */
+        .share-screen {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 15;
+            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
+            background-size: 400% 400%;
+            animation: backgroundShift 10s ease infinite;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .share-screen.shown {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* Quiz styles */
         .question-number {
             position: absolute;
             top: 10px;
@@ -154,6 +267,13 @@
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             max-width: 90%;
+            animation: subtle-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes subtle-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.03); }
+            100% { transform: translate(-50%, -50%) scale(1); }
         }
         
         .tiktok-logo {
@@ -172,16 +292,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             opacity: 0.6;
-        }
-        
-        @keyframes subtle-pulse {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.03); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
-        
-        .tiktok-banner {
-            animation: subtle-pulse 3s ease-in-out infinite;
         }
         
         .question {
@@ -253,6 +363,33 @@
 </head>
 <body>
     <div class="container">
+        <!-- Intro Screen -->
+        <div class="intro-screen" id="intro-screen">
+            <div class="flag-container">
+                <canvas id="flag-canvas"></canvas>
+            </div>
+            
+            <div class="text-container">
+                <div class="text" id="intro-text1">MANDINKA QUIZ</div>
+                <div class="text" id="intro-text2">IF YOU GET 8/10</div>
+                <div class="text" id="intro-text3">YOU ARE A GENIUS</div>
+            </div>
+        </div>
+        
+        <!-- Share Screen (before last question) -->
+        <div class="share-screen" id="share-screen">
+            <div class="flag-container">
+                <canvas id="share-flag-canvas"></canvas>
+            </div>
+            
+            <div class="text-container">
+                <div class="text" id="share-text1">BEFORE YOUR LAST QUESTION</div>
+                <div class="text" id="share-text2">SHARE THIS QUIZ WITH A FRIEND</div>
+                <div class="text" id="share-text3">DON'T FORGET TO COMMENT YOUR SCORE BELOW</div>
+            </div>
+        </div>
+        
+        <!-- Quiz Content -->
         <div class="question-number" id="question-number">Question: 1/10</div>
         
         <div class="question-container" id="question-container">
@@ -287,84 +424,87 @@
 
     <script>
         const questions = [
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Saa", "Wulo", "Saagoo", "Bantoo"], // Dog, cow, sheep, monkey
-        correctIndex: 0, // Example: Saagoo (sheep)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfsOyIpcYAVc8fCyLdPKR5SCaXvD6gsJ-zboOr5OviT10yfSagBFaKOShGECNa_GJw8dY&usqp=CAU" // Placeholder for sheep image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Wuloo", "Baso", "Filoŋ", "Yirijaa"], // Dog, fish, elephant, bird
-        correctIndex: 1, // Jaakoo (fish)
-        readTime: 5000,
-        imageSrc: "https://animals.sandiegozoo.org/sites/default/files/inline-images/animals-lizard-redheadedagamapair.jpg" // Placeholder for fish image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Filoŋ", "Maloo", "Wuloo", "Kuuroo"], // Elephant, fish, dog, not animal
-        correctIndex: 1, // Wuloo (dog)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo3nWOp-Qe-26r7-jPQMN1kWH64cJncq6wOg&s" // Placeholder for dog image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Jatoo", "Benteng", "Saagoo", "Dindiŋo"], // Cow, goat, sheep, horse
-        correctIndex: 0, // Nyaamoo (cow)
-        readTime: 5000,
-        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/1200px-Walking_tiger_female.jpg" // Placeholder for cow image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Jaakoo", "Finoo", "Nyaamoo", "Bambo"], // Fish, cat, cow, horse
-        correctIndex: 3, // Dindiŋo (horse)
-        readTime: 5000,
-        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/250px-Nile_crocodile_head.jpg" // Placeholder for horse image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Mangoo", "Seeseh", "Bantoo", "Finoo"], // Not all animals: elephant, cat, monkey
-        correctIndex: 1, // Filoŋ (elephant)
-        readTime: 5000,
-        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Male_and_female_chicken_sitting_together.jpg/800px-Male_and_female_chicken_sitting_together.jpg" // Placeholder for elephant image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Buukoo", "Wuloo", "Nyankumo", "Teeboo"], // Not all animals: dog, cat
-        correctIndex: 2, // Finoo (cat)
-        readTime: 5000,
-        imageSrc: "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_16x9.jpg?w=1200" // Placeholder for cat image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Susula", "Jaakoo", "Dindiŋo", "Wuloo"], // Monkey, fish, horse, dog
-        correctIndex: 0, // Bantoo (monkey)
-        readTime: 5000,
-        imageSrc: "https://www.nps.gov/articles/images/26023_1.jpg?maxwidth=650&autorotate=false" // Placeholder for monkey image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Filoŋ", "Saagoo", "Niiso", "Wuloo"], // Elephant, sheep, goat, dog
-        correctIndex: 2, // Dendikoo (goat)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDbO1Ch1b6e-RoVtp0eyRZznX_LbJaD-EFfQ&s" // Placeholder for goat image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Dindiŋo", "Filoŋ", "Jaakoo", "Dirimo"], // Horse, elephant, fish, sheep
-        correctIndex: 3, // Saagoo (sheep)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTnjok074mfl4pqvQ83FYZ_IcFebuULX8LWw&s" // Placeholder for sheep image
-    }
-];
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Saa", "Wulo", "Saagoo", "Bantoo"], // Dog, cow, sheep, monkey
+                correctIndex: 0, // Example: Saagoo (sheep)
+                readTime: 5000,
+                imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfsOyIpcYAVc8fCyLdPKR5SCaXvD6gsJ-zboOr5OviT10yfSagBFaKOShGECNa_GJw8dY&usqp=CAU" // Placeholder for sheep image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Wuloo", "Baso", "Filoŋ", "Yirijaa"], // Dog, fish, elephant, bird
+                correctIndex: 1, // Jaakoo (fish)
+                readTime: 5000,
+                imageSrc: "https://animals.sandiegozoo.org/sites/default/files/inline-images/animals-lizard-redheadedagamapair.jpg" // Placeholder for fish image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Filoŋ", "Maloo", "Wuloo", "Kuuroo"], // Elephant, fish, dog, not animal
+                correctIndex: 1, // Wuloo (dog)
+                readTime: 5000,
+                imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo3nWOp-Qe-26r7-jPQMN1kWH64cJncq6wOg&s" // Placeholder for dog image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Jatoo", "Benteng", "Saagoo", "Dindiŋo"], // Cow, goat, sheep, horse
+                correctIndex: 0, // Nyaamoo (cow)
+                readTime: 5000,
+                imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/1200px-Walking_tiger_female.jpg" // Placeholder for cow image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Jaakoo", "Finoo", "Nyaamoo", "Bambo"], // Fish, cat, cow, horse
+                correctIndex: 3, // Dindiŋo (horse)
+                readTime: 5000,
+                imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/250px-Nile_crocodile_head.jpg" // Placeholder for horse image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Mangoo", "Seeseh", "Bantoo", "Finoo"], // Not all animals: elephant, cat, monkey
+                correctIndex: 1, // Filoŋ (elephant)
+                readTime: 5000,
+                imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Male_and_female_chicken_sitting_together.jpg/800px-Male_and_female_chicken_sitting_together.jpg" // Placeholder for elephant image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Buukoo", "Wuloo", "Nyankumo", "Teeboo"], // Not all animals: dog, cat
+                correctIndex: 2, // Finoo (cat)
+                readTime: 5000,
+                imageSrc: "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_16x9.jpg?w=1200" // Placeholder for cat image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Susula", "Jaakoo", "Dindiŋo", "Wuloo"], // Monkey, fish, horse, dog
+                correctIndex: 0, // Bantoo (monkey)
+                readTime: 5000,
+                imageSrc: "https://www.nps.gov/articles/images/26023_1.jpg?maxwidth=650&autorotate=false" // Placeholder for monkey image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Filoŋ", "Saagoo", "Niiso", "Wuloo"], // Elephant, sheep, goat, dog
+                correctIndex: 2, // Dendikoo (goat)
+                readTime: 5000,
+                imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDbO1Ch1b6e-RoVtp0eyRZznX_LbJaD-EFfQ&s" // Placeholder for goat image
+            },
+            {
+                question: "What is the name of this animal in Mandinka?",
+                options: ["Dindiŋo", "Filoŋ", "Jaakoo", "Dirimo"], // Horse, elephant, fish, sheep
+                correctIndex: 3, // Saagoo (sheep)
+                readTime: 5000,
+                imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTnjok074mfl4pqvQ83FYZ_IcFebuULX8LWw&s" // Placeholder for sheep image
+            }
+        ];
 
-
+        // Global variables
         let currentQuestionIndex = 0;
         let timerInterval;
         let countdownInterval;
         let optionsClickable = true;
         
+        // DOM Elements
+        const introScreen = document.getElementById('intro-screen');
+        const shareScreen = document.getElementById('share-screen');
         const questionElement = document.getElementById('question');
         const optionsContainer = document.getElementById('options');
         const timerElement = document.getElementById('timer');
@@ -373,160 +513,550 @@
         const questionContainerElement = document.getElementById('question-container');
         const questionImageElement = document.getElementById('question-image');
         
+        // Initialize both flag animations
+        function setupFlagAnimations() {
+            setupFlagCanvas('flag-canvas');
+            setupFlagCanvas('share-flag-canvas');
+        }
+        
+        // Start text animation for intro screen
+        function startIntroTextAnimation() {
+            const text1 = document.getElementById('intro-text1');
+            const text2 = document.getElementById('intro-text2');
+            const text3 = document.getElementById('intro-text3');
+            
+            setTimeout(() => { text1.classList.add('active'); }, 500);
+            setTimeout(() => { text2.classList.add('active'); }, 2000);
+            setTimeout(() => { text3.classList.add('active'); }, 3500);
+            
+            // Auto-hide intro screen after animation completes
+            setTimeout(() => {
+                introScreen.classList.add('hidden');
+                
+                // Start the quiz after intro screen disappears
+                setTimeout(() => {
+                    loadQuestion();
+                }, 500);
+            }, 7000);
+        }
+        
+        // Start text animation for share screen
+        function startShareTextAnimation() {
+            const text1 = document.getElementById('share-text1');
+            const text2 = document.getElementById('share-text2');
+            const text3 = document.getElementById('share-text3');
+            
+            text1.classList.remove('active');
+            text2.classList.remove('active');
+            text3.classList.remove('active');
+            
+            setTimeout(() => { text1.classList.add('active'); }, 500);
+            setTimeout(() => { text2.classList.add('active'); }, 2000);
+            setTimeout(() => { text3.classList.add('active'); }, 3500);
+            
+            // Auto-hide share screen after animation completes
+            setTimeout(() => {
+                shareScreen.classList.remove('shown');
+                
+                // Resume the quiz after share screen disappears
+                setTimeout(() => {
+                    loadQuestion();
+                }, 500);
+            }, 7000);
+        }
+        
+        // Setup flag canvas animation
+        function setupFlagCanvas(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const flagContainer = canvas.parentElement;
+            
+            // Set canvas dimensions to match container
+            function resizeCanvas() {
+                canvas.width = flagContainer.clientWidth;
+                canvas.height = flagContainer.clientHeight;
+            }
+            
+            // Call resize initially and on window resize
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Flag colors (Gambian flag)
+            const colors = {
+                red: '#CE1126',
+                blue: '#0C1C8C',
+                green: '#3A7728',
+                white: '#FFFFFF'
+            };
+            
+            // Animation variables
+            let time = 0;
+            const waveAmplitude = 10;
+            const wavePeriod = 100;
+            const waveSpeed = 0.1;
+            
+            // Animation function
+            function animateFlag() {
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Calculate stripe heights
+                const totalHeight = canvas.height;
+                const stripeHeight = totalHeight / 5;
+                
+                // Draw the flag with wave effect
+                // Red stripe (top)
+                drawWavyStripe(0, stripeHeight, colors.red);
+                
+                // White stripe
+                drawWavyStripe(stripeHeight, stripeHeight * 2, colors.white);
+                
+                // Blue stripe
+                drawWavyStripe(stripeHeight * 2, stripeHeight * 3, colors.blue);
+                
+                // White stripe
+                drawWavyStripe(stripeHeight * 3, stripeHeight * 4, colors.white);
+                
+                // Green stripe (bottom)
+                drawWavyStripe(stripeHeight * 4, stripeHeight * 5, colors.green);
+                
+                // Add 3D shadow effect
+                addShadowEffect();
+                
+                // Update time for wave movement
+                time += waveSpeed;
+                
+                // Continue animation
+                requestAnimationFrame(animateFlag);
+            }
+            
+            // Function to draw a wavy stripe
+            function drawWavyStripe(startY, endY, color) {
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                
+                // Start at left edge
+                ctx.moveTo(0, startY);
+                
+                // Draw top wavy edge
+                for (let x = 0; x <= canvas.width; x++) {
+                    // Calculate wave offset based on position and time
+                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time) * waveAmplitude;
+                    // Add perspective effect - waves are larger on the right
+                    const perspectiveEffect = (x / canvas.width) * 1.5;
+                    ctx.lineTo(x, startY + waveOffset * perspectiveEffect);
+                }
+                
+                // Continue to bottom-right corner
+                ctx.lineTo(canvas.width, endY);
+                
+                // Draw bottom wavy edge (in reverse)
+                for (let x = canvas.width; x >= 0; x--) {
+                    // Calculate wave offset with slight phase difference for bottom edge
+                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time + 0.5) * waveAmplitude;
+                    const perspectiveEffect = (x / canvas.width) * 1.5;
+                    ctx.lineTo(x, endY + waveOffset * perspectiveEffect);
+                }
+                
+                // Close the path
+                ctx.closePath();
+                ctx.fill();
+            }
+            
+            // Function to add shadow/highlight for 3D effect
+            function addShadowEffect() {
+                // Create gradient overlay
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                gradient.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
+                gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.1)');
+                gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.1)');
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.3)');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Shine effect that moves across the flag
+                const shinePos = (time % 3) / 3;
+                const shineGradient = ctx.createLinearGradient(
+                    canvas.width * shinePos - 50, 
+                    0, 
+                    canvas.width * shinePos + 50, 
+                    canvas.height
+                );
+                
+                shineGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
+                shineGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.3)');
+                shineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                
+                ctx.fillStyle = shineGradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            // Start the animation
+            animateFlag();
+        }
+        
         // Load a question
         function loadQuestion() {
             if (currentQuestionIndex < questions.length) {
+                // Check if we should show share screen before last question
+                if (currentQuestionIndex === questions.length - 1) {
+                    // Show share screen before the last question
+                    shareScreen.classList.add('shown');
+                    startShareTextAnimation();
+                    return;
+                }
+                
                 // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
+                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/${questions.length}`;
                 
-                // Set question container to "enter" state
-                questionContainerElement.classList.add('enter');
+                // Get current question data
+                const currentQuestion = questions[currentQuestionIndex];
                 
-                // Apply transition after a small delay to ensure the class is applied
-                setTimeout(() => {
-                    // Remove both enter/exit classes to get to normal state with transition
-                    questionContainerElement.classList.remove('enter', 'exit');
+                // Create new question container for slide animation
+                const newQuestionContainer = questionContainerElement.cloneNode(true);
+                newQuestionContainer.id = "new-question-container";
+                newQuestionContainer.classList.add("enter");
+                
+                // Update content in the new container
+                const newQuestionElement = newQuestionContainer.querySelector("#question");
+                const newOptionsContainer = newQuestionContainer.querySelector("#options");
+                const newImageElement = newQuestionContainer.querySelector("#question-image");
+                const newTimerElement = newQuestionContainer.querySelector("#timer");
+                const newCountdownElement = newQuestionContainer.querySelector("#countdown");
+                
+                newQuestionElement.textContent = currentQuestion.question;
+                newImageElement.src = currentQuestion.imageSrc || "/api/placeholder/400/180";
+                
+                // Clear options and add new ones
+                newOptionsContainer.innerHTML = "";
+                currentQuestion.options.forEach((option, index) => {
+                    const optionButton = document.createElement("button");
+                    optionButton.classList.add("option");
+                    optionButton.textContent = option;
                     
-                    const currentQuestion = questions[currentQuestionIndex];
-                    
-                    // Set question text
-                    questionElement.textContent = currentQuestion.question;
-                    
-                    // Update image
-                    questionImageElement.src = currentQuestion.imageSrc;
-                    
-                    // Clear previous options
-                    optionsContainer.innerHTML = '';
-                    
-                    // Add new options
-                    currentQuestion.options.forEach((option, index) => {
-                        const button = document.createElement('button');
-                        button.className = 'option';
-                        button.textContent = option;
+                    // Add click event handler
+                    optionButton.addEventListener("click", () => {
+                        if (!optionsClickable) return;
                         
-                        button.addEventListener('click', () => {
-                            if (optionsClickable) {
-                                checkAnswer(index);
-                            }
-                        });
+                        // Pause the timer
+                        pauseTimer();
                         
-                        optionsContainer.appendChild(button);
+                        // Mark as correct or incorrect
+                        if (index === currentQuestion.correctIndex) {
+                            optionButton.classList.add("correct");
+                            playSound("correct");
+                        } else {
+                            optionButton.classList.add("incorrect");
+                            
+                            // Also highlight the correct answer
+                            const correctButton = newOptionsContainer.children[currentQuestion.correctIndex];
+                            correctButton.classList.add("correct");
+                            
+                            playSound("incorrect");
+                        }
+                        
+                        // Disable further clicks
+                        optionsClickable = false;
+                        
+                        // Move to next question after delay
+                        setTimeout(() => {
+                            currentQuestionIndex++;
+                            
+                            // Animate out current question
+                            newQuestionContainer.classList.remove("enter");
+                            newQuestionContainer.classList.add("exit");
+                            
+                            setTimeout(() => {
+                                // Remove the old container
+                                document.querySelector(".container").removeChild(newQuestionContainer);
+                                loadQuestion();
+                            }, 500);
+                        }, 1500);
                     });
                     
-                    // Start timer with read time pause
-                    startTimerWithPause(currentQuestion.readTime);
+                    newOptionsContainer.appendChild(optionButton);
+                });
+                
+                // Add new container to the DOM
+                document.querySelector(".container").appendChild(newQuestionContainer);
+                
+                // Start transition
+                setTimeout(() => {
+                    newQuestionContainer.classList.remove("enter");
                     
-                    // Allow clicking
-                    optionsClickable = true;
+                    // Start countdown before showing the timer
+                    startCountdown(newCountdownElement, newTimerElement, currentQuestion.readTime);
                 }, 50);
                 
+                // Remove old container if it exists and isn't the original
+                if (document.getElementById("new-question-container")) {
+                    const oldContainer = document.getElementById("new-question-container");
+                    setTimeout(() => {
+                        if (oldContainer.parentNode) {
+                            oldContainer.parentNode.removeChild(oldContainer);
+                        }
+                    }, 500);
+                }
+                
+                // Reset options clickable
+                optionsClickable = false;
             } else {
-                // Loop back to first question
-                currentQuestionIndex = 0;
-                loadQuestion();
+                // Quiz completed - show results
+                showResults();
             }
         }
         
-        // Start the timer with an initial pause for reading
-        function startTimerWithPause(pauseTime) {
-            // Reset timer style and add paused class
-            timerElement.style.transition = 'none';
-            timerElement.style.width = '100%';
-            timerElement.classList.add('paused');
-            timerElement.classList.remove('ending');
+        // Start countdown before showing the timer
+        function startCountdown(countdownElement, timerElement, readTime) {
+            countdownElement.classList.remove("hidden");
+            let count = 3;
+            countdownElement.textContent = count;
             
-            // Hide countdown during reading time
-            countdownElement.classList.add('hidden');
+            countdownInterval = setInterval(() => {
+                count--;
+                if (count <= 0) {
+                    countdownElement.textContent = "GO!";
+                    
+                    // Hide countdown and start timer after brief pause
+                    setTimeout(() => {
+                        countdownElement.classList.add("hidden");
+                        startTimer(timerElement, readTime);
+                        
+                        // Enable option clicking
+                        optionsClickable = true;
+                    }, 500);
+                    
+                    clearInterval(countdownInterval);
+                } else {
+                    countdownElement.textContent = count;
+                }
+            }, 1000);
+        }
+        
+        // Start timer for question
+        function startTimer(timerElement, duration) {
+            timerElement.classList.remove("paused", "ending");
+            timerElement.style.width = "100%";
             
             // Force browser reflow
             void timerElement.offsetWidth;
             
-            // Clear any existing interval
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            // First wait for the read time
+            // Set ending animation
             setTimeout(() => {
-                // Remove paused class and start timer animation
-                timerElement.classList.remove('paused');
-                timerElement.style.transition = 'width 10s linear, background-color 0.5s';
-                timerElement.style.width = '0%';
+                timerElement.classList.add("ending");
+            }, duration * 0.7);
+            
+            // Start countdown animation
+            timerElement.style.width = "0%";
+            
+            // Set timeout for when time is up
+            timerInterval = setTimeout(() => {
+                // Time's up logic
+                const optionsButtons = document.querySelectorAll("#new-question-container .option");
+                optionsClickable = false;
                 
-                // Start countdown and show it
-                let secondsLeft = 10;
-                countdownElement.textContent = secondsLeft;
-                countdownElement.classList.remove('hidden');
+                // Highlight correct answer
+                const currentQuestion = questions[currentQuestionIndex];
+                optionsButtons[currentQuestion.correctIndex].classList.add("correct");
                 
-                countdownInterval = setInterval(() => {
-                    secondsLeft--;
-                    countdownElement.textContent = secondsLeft;
+                playSound("timeout");
+                
+                // Move to next question after delay
+                setTimeout(() => {
+                    currentQuestionIndex++;
                     
-                    // Change to red when 3 seconds or less remain
-                    if (secondsLeft <= 3) {
-                        timerElement.classList.add('ending');
-                    }
+                    // Animate out current question
+                    const questionContainer = document.getElementById("new-question-container");
+                    questionContainer.classList.add("exit");
                     
-                    if (secondsLeft <= 0) {
-                        clearInterval(countdownInterval);
-                    }
-                }, 1000);
-                
-                // Set timeout for when time is up
-                timerInterval = setTimeout(() => {
-                    if (optionsClickable) {
-                        // Time's up, move to next question
-                        optionsClickable = false;
-                        clearInterval(countdownInterval);
-                        
-                        // Highlight correct answer
-                        const options = document.querySelectorAll('.option');
-                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
-                        
-                        setTimeout(() => {
-                            transitionToNextQuestion();
-                        }, 1500);
-                    }
-                }, 10000);
-            }, pauseTime);
+                    setTimeout(() => {
+                        // Remove the old container
+                        document.querySelector(".container").removeChild(questionContainer);
+                        loadQuestion();
+                    }, 500);
+                }, 1500);
+            }, duration);
         }
         
-        // Check the selected answer
-        function checkAnswer(selectedIndex) {
-            optionsClickable = false;
+        // Pause timer
+        function pauseTimer() {
+            const timerElement = document.querySelector("#new-question-container .timer");
+            timerElement.classList.add("paused");
             clearTimeout(timerInterval);
             clearInterval(countdownInterval);
-            
-            const currentQuestion = questions[currentQuestionIndex];
-            const options = document.querySelectorAll('.option');
-            
-            // Check if answer is correct
-            if (selectedIndex === currentQuestion.correctIndex) {
-                options[selectedIndex].classList.add('correct');
-            } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[currentQuestion.correctIndex].classList.add('correct');
+        }
+        
+        // Play sound effects
+        function playSound(type) {
+            // Create audio context on first interaction
+            if (!window.audioContext) {
+                window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
             }
             
-            // Move to next question after a brief delay
-            setTimeout(() => {
-                transitionToNextQuestion();
-            }, 1500);
+            const ctx = window.audioContext;
+            const oscillator = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            
+            // Different sound types
+            switch (type) {
+                case "correct":
+                    oscillator.type = "sine";
+                    oscillator.frequency.setValueAtTime(660, ctx.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
+                    
+                    gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    
+                    oscillator.start(ctx.currentTime);
+                    oscillator.stop(ctx.currentTime + 0.3);
+                    break;
+                    
+                case "incorrect":
+                    oscillator.type = "sawtooth";
+                    oscillator.frequency.setValueAtTime(220, ctx.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.1);
+                    
+                    gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                    
+                    oscillator.start(ctx.currentTime);
+                    oscillator.stop(ctx.currentTime + 0.2);
+                    break;
+                    
+                case "timeout":
+                    oscillator.type = "triangle";
+                    oscillator.frequency.setValueAtTime(330, ctx.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.2);
+                    
+                    gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                    
+                    oscillator.start(ctx.currentTime);
+                    oscillator.stop(ctx.currentTime + 0.2);
+                    break;
+            }
         }
         
-        // Transition to the next question with animation
-        function transitionToNextQuestion() {
-            // Add exit animation class
-            questionContainerElement.classList.add('exit');
+        // Show results screen
+        function showResults() {
+            // Create results container
+            const resultsContainer = document.createElement("div");
+            resultsContainer.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(135deg, #5E412F, #78c0a8, #fcebb6, #f07818);
+                background-size: 400% 400%;
+                animation: backgroundShift 10s ease infinite;
+                z-index: 30;
+                padding: 20px;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+            `;
             
-            // Wait for animation to complete
+            // Calculate score (this is a mock function since we don't actually track correct answers in this demo)
+            // In a real implementation, you'd keep track of correct answers
+            const scoreRange = Math.floor(Math.random() * 3) + 6; // Random score between 6-8 out of 10
+            
+            // Add content to results
+            resultsContainer.innerHTML = `
+                <div style="
+                    background-color: rgba(0, 0, 0, 0.7);
+                    border-radius: 20px;
+                    padding: 30px;
+                    text-align: center;
+                    max-width: 90%;
+                    width: 350px;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+                ">
+                    <h1 style="
+                        font-size: 2.2rem;
+                        margin-bottom: 15px;
+                        color: #ffcc00;
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+                    ">QUIZ COMPLETED!</h1>
+                    
+                    <h2 style="
+                        font-size: 1.8rem;
+                        margin-bottom: 30px;
+                        color: #fff;
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+                    ">Your Score: ${scoreRange}/10</h2>
+                    
+                    <p style="
+                        font-size: 1.2rem;
+                        margin-bottom: 20px;
+                        color: ${scoreRange >= 8 ? '#33ff33' : '#ffcc00'};
+                        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+                    ">
+                        ${scoreRange >= 8 ? 'YOU ARE A GENIUS!' : 'ALMOST THERE! TRY AGAIN!'}
+                    </p>
+                    
+                    <button id="retry-button" style="
+                        background-color: #ff6633;
+                        color: white;
+                        border: none;
+                        padding: 15px 25px;
+                        border-radius: 10px;
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        cursor: pointer;
+                        margin-top: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                        transition: all 0.3s;
+                    ">PLAY AGAIN</button>
+                    
+                    <div style="
+                        margin-top: 25px;
+                        font-size: 1rem;
+                        color: rgba(255, 255, 255, 0.7);
+                    ">
+                        Follow us on TikTok:<br>
+                        <span style="font-weight: bold; color: white;">@gambia.sunu.reww</span>
+                    </div>
+                </div>
+            `;
+            
+            // Add to DOM
+            document.querySelector(".container").appendChild(resultsContainer);
+            
+            // Trigger fade in
             setTimeout(() => {
-                currentQuestionIndex++;
-                loadQuestion();
+                resultsContainer.style.opacity = "1";
+            }, 100);
+            
+            // Add event listener to retry button
+            setTimeout(() => {
+                document.getElementById("retry-button").addEventListener("click", () => {
+                    // Reset quiz and start over
+                    currentQuestionIndex = 0;
+                    document.querySelector(".container").removeChild(resultsContainer);
+                    
+                    // Show intro again
+                    introScreen.classList.remove("hidden");
+                    startIntroTextAnimation();
+                });
             }, 500);
         }
         
-        // Start the quiz immediately
-        document.addEventListener('DOMContentLoaded', loadQuestion);
+        // Initialize the game
+        function initGame() {
+            setupFlagAnimations();
+            startIntroTextAnimation();
+        }
+        
+        // Start the game when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initGame);
     </script>
 </body>
 </html>
