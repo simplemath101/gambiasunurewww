@@ -2,24 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mandinka Language Picture Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandinka Language Phrasebook - TikTok Ready</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary-color: #3a75c4; /* Blue from Gambian flag */
+            --secondary-color: #ce1126; /* Red from Gambian flag */
+            --green-color: #0c8918; /* Green from Gambian flag */
+            --highlight-color: #ffff99;
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --light-bg: #e6f2ff;
         }
         
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             overflow: hidden;
         }
@@ -27,506 +31,797 @@
         .container {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #5E412F, #78c0a8, #fcebb6, #f07818);
+            max-width: 500px; /* TikTok optimal width */
+            background: linear-gradient(135deg, #001428, #000000);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-        
-        .question-number {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            text-align: center;
-            min-width: 120px;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
-        }
-        
-        .question-container {
-            width: 90%;
-            margin-top: 70px;
-            height: calc(100% - 150px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: rgba(50, 30, 10, 0.6);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-            position: relative;
-            transition: transform 0.5s, opacity 0.5s;
-            overflow: hidden;
-        }
-        
-        .timer-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .timer-container {
-            width: 100%;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .timer {
-            height: 100%;
-            background-color: #00ff00;
-            width: 100%;
-            transition: width 10s linear, background-color 0.5s;
-        }
-        
-        .timer.paused {
-            transition: none;
-        }
-        
-        .timer.ending {
-            background-color: #ff0000;
-        }
-        
-        .countdown {
-            font-size: 1.1rem;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
             justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background-color: #f9f9f9;
+            border-radius: 50%;
+            margin: 10px auto;
+            display: flex;
             align-items: center;
-            margin-top: 5px;
+            justify-content: center;
+            border: 3px solid var(--primary-color);
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--primary-color);
+            position: absolute;
+            top: 20px;
+            box-shadow: 0 0 20px rgba(58, 117, 196, 0.5);
+            transition: all 0.5s ease;
+            z-index: 10;
+            overflow: hidden;
         }
         
-        .countdown.hidden {
-            display: none;
+        /* Gambian flag in logo */
+        .flag-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
         
-        .image-container {
+        .flag-stripe {
+            flex: 1;
+            width: 100%;
+        }
+        
+        .red {
+            background-color: #ce1126;
+        }
+        
+        .white {
+            background-color: #ffffff;
+        }
+        
+        .blue {
+            background-color: #3a75c4;
+        }
+        
+        .green {
+            background-color: #0c8918;
+        }
+        
+        .content-area {
+            position: relative;
             width: 100%;
             height: 180px;
-            margin: 10px 0 20px;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: #fff;
+            justify-content: center;
         }
         
-        .question-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
+        /* Modified: Content area positioning for below book display */
+        .content-area.below-book {
+            position: absolute;
+            bottom: 50px;
+            height: auto;
+            z-index: 5;
         }
         
-        .tiktok-banner {
+        .content-line {
+            font-size: 28px;
+            line-height: 1.3;
+            padding: 15px;
+            color: var(--text-color);
+            font-weight: 700;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.3);
+            width: 90%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(58, 117, 196, 0.7);
+            letter-spacing: 1px;
+        }
+        
+        /* Modified: Content line positioning for below book */
+        .content-line.below-book {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            margin: 10px 0;
+        }
+        
+        .content-line.active {
+            opacity: 1;
+            animation: pulseGlow 1.5s infinite;
+        }
+        
+        .book-container {
+            perspective: 1200px;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            /* Modified: Position for book to come from bottom */
+            bottom: -500px; /* Start off-screen at bottom */
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
+        }
+        
+        /* Modified: Book coming up from bottom */
+        .book-container.visible {
+            opacity: 1;
+            bottom: 200px; /* Final position higher up */
+        }
+        
+        .book {
+            width: 250px;
+            height: 350px;
+            transform-style: preserve-3d;
+            position: relative;
+            transition: transform 1.5s ease;
+            animation: float 3s infinite alternate ease-in-out;
+        }
+        
+        .book-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--green-color), #004d00);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(12, 137, 24, 0.7);
+            backface-visibility: hidden;
+            transform: rotateY(0deg);
+            border: 3px solid gold;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230c8918' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            /* Added: overflow control for text */
+            overflow: hidden;
+        }
+        
+        /* Gambian flag design on book cover */
+        .book-flag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid gold;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .flag-stripe-mini {
+            flex: 1;
+            width: 100%;
+        }
+        
+        .book-spine {
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(to right, #004d00, var(--green-color));
+            left: -20px;
+            transform: rotateY(-90deg) translateZ(20px);
+            border-radius: 5px 0 0 5px;
+            box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .book-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #004d00;
+            border-radius: 10px;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            box-shadow: 0 0 30px rgba(12, 137, 24, 0.7);
+            border: 3px solid #004d00;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .book:hover {
+            animation-play-state: paused;
+            transform: rotateY(180deg);
+        }
+        
+        /* Modified: Book title styling for better mobile fit */
+        .book-title {
+            font-size: 26px; /* Reduced from 32px */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px; /* Reduced from 20px */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            line-height: 1.2;
+            width: 100%;
+            /* Ensure text stays centered in container */
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 6px 10px;
-            z-index: 10;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 90%;
         }
         
-        .tiktok-logo {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
-            flex-shrink: 0;
-            opacity: 0.6;
-        }
-        
-        .tiktok-text {
-            font-weight: bold;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            opacity: 0.6;
-        }
-        
-        @keyframes subtle-pulse {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.03); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
-        
-        .tiktok-banner {
-            animation: subtle-pulse 3s ease-in-out infinite;
-        }
-        
-        .question {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            padding: 0 10px;
-        }
-        
-        .options {
+        /* Modified: Emblem styling */
+        .book-emblem {
+            font-size: 42px; /* Reduced from 48px */
+            margin: 10px 0; /* Reduced from 15px */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .emblem-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        /* Modified: Book author styling for better mobile fit */
+        .book-author {
+            font-size: 14px; /* Reduced from 16px */
+            margin-top: 20px; /* Reduced from 30px */
+            font-style: italic;
             width: 100%;
-            margin-top: 10px;
-        }
-        
-        .option {
-            background-color: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
             text-align: center;
+            padding: 0 5px;
+            box-sizing: border-box;
         }
         
-        .option:active {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(0.98);
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
         
-        .option.correct {
-            background-color: #2ecc71;
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
         }
         
-        .option.incorrect {
-            background-color: #e74c3c;
+        @keyframes pulseGlow {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(12, 137, 24, 0.5);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
         }
         
-        .question-container.exit {
-            transform: translateX(-100%);
+        /* Modified: Adjusted animation for below book text */
+        @keyframes pulseGlowBelow {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(12, 137, 24, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotateY(10deg);
+            }
+            100% {
+                transform: translateY(-20px) rotateY(-10deg);
+            }
+        }
+        
+        .sparkle {
+            position: absolute;
+            z-index: 5;
+            background-image: radial-gradient(circle, white 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
             opacity: 0;
+            pointer-events: none;
         }
         
-        .question-container.enter {
-            transform: translateX(100%);
+        @keyframes sparkle {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+        
+        /* Glow effect around the book */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, rgba(12, 137, 24, 0.3) 0%, rgba(12, 137, 24, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
             opacity: 0;
+            transition: opacity 1s ease;
+            /* Modified: Position for glow to follow book */
+            bottom: -500px;
         }
         
-        .language-label {
+        .glow.visible {
+            opacity: 1;
+            animation: glowPulse 3s infinite alternate;
+            /* Modified: Glow follows book up */
+            bottom: 200px;
+        }
+        
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+        
+        /* 3D page effect */
+        .book-pages {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 30px;
+            background: white;
+            border-radius: 0 10px 10px 0;
+            transform: translateX(-15px) rotateY(30deg);
+            transform-origin: left center;
+            background: linear-gradient(to right, #f9f9f9, #e6e6e6);
+        }
+        
+        .book-page {
             position: absolute;
             top: 10px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            bottom: 10px;
+            width: 30px;
+            left: 0;
+            background: white;
+            border-radius: 0 5px 5px 0;
+            transform-origin: left center;
+        }
+        
+        .page1 { transform: translateX(-15px) rotateY(15deg); background: #f9f9f9; z-index: 5; width: 28px; }
+        .page2 { transform: translateX(-10px) rotateY(30deg); background: #f0f0f0; z-index: 4; width: 26px; }
+        .page3 { transform: translateX(-5px) rotateY(45deg); background: #e8e8e8; z-index: 3; width: 24px; }
+        
+        /* TikTok-style splash effect */
+        .splash {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .splash.active {
+            animation: splash 0.8s forwards;
+        }
+        
+        @keyframes splash {
+            0% {
+                opacity: 0.7;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+        
+        /* Added: Style for text below book - fixed positioning to match image */
+        .below-book-text {
+            position: absolute;
+            bottom: 50px;
+            width: 90%;
+            text-align: center;
+            font-size: 22px;
+            color: var(--text-color);
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(12, 137, 24, 0.7);
+        }
+        
+        .below-book-text.visible {
+            opacity: 1;
+            animation: pulseGlowBelow 1.5s infinite;
+        }
+        
+        /* Remove overlapping text on the book */
+        .no-overlay {
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Added: Media queries for better responsiveness */
+        @media screen and (max-width: 360px) {
+            .book-title {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            
+            .emblem-image {
+                width: 60px;
+                height: 60px;
+                font-size: 40px;
+            }
+            
+            .book-author {
+                font-size: 12px;
+                margin-top: 15px;
+            }
+            
+            .book {
+                width: 220px;
+                height: 320px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="question-number" id="question-number">Question: 1/10</div>
+        <div class="particles" id="particles"></div>
+        <div class="splash" id="splash"></div>
         
-        <div class="question-container" id="question-container">
-            <div class="timer-section">
-                <div class="timer-container">
-                    <div class="timer paused" id="timer"></div>
-                </div>
-                <div class="countdown hidden" id="countdown">10</div>
+        <div class="logo" id="logo">
+            <div class="flag-container">
+                <div class="flag-stripe red"></div>
+                <div class="flag-stripe white"></div>
+                <div class="flag-stripe blue"></div>
+                <div class="flag-stripe white"></div>
+                <div class="flag-stripe green"></div>
             </div>
-            
-            <div class="image-container" id="image-container">
-                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="Object to identify">
-                <!-- TikTok Banner -->
-                <div class="tiktok-banner">
-                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
-                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
-                    </svg>
-                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
+        </div>
+        
+        <div class="content-area" id="contentArea">
+            <div class="content-line" id="line0">WANT TO LEARN A NEW LANGUAGE TODAY?</div>
+            <div class="content-line" id="line1">INTRODUCING THE MANDINKA LANGUAGE PHRASEBOOK</div>
+            <div class="content-line" id="line2">SPEAK ONE OF WEST AFRICA'S MOST BEAUTIFUL LANGUAGES</div>
+            <div class="content-line" id="line3">LEARN COMMON PHRASES, GREETINGS, AND CULTURAL EXPRESSIONS</div>
+            <div class="content-line" id="line4">GET OUR COMPREHENSIVE MANDINKA PHRASEBOOK NOW</div>
+        </div>
+        
+        <!-- Text that will appear below the book - positioned at bottom of screen -->
+        <div class="below-book-text" id="belowBookText">
+            CREATED BY NATIVE MANDINKA SPEAKERS AND LANGUAGE EXPERTS
+        </div>
+        
+        <div class="glow" id="bookGlow"></div>
+        
+        <div class="book-container" id="bookContainer">
+            <div class="book" id="book">
+                <div class="book-cover">
+                    <div class="book-flag">
+                        <div class="flag-stripe-mini red"></div>
+                        <div class="flag-stripe-mini white"></div>
+                        <div class="flag-stripe-mini blue"></div>
+                        <div class="flag-stripe-mini white"></div>
+                        <div class="flag-stripe-mini green"></div>
+                    </div>
+                    <div class="book-title">MANDINKA PHRASEBOOK</div>
+                    <div class="book-emblem">
+                        <div class="emblem-image">💬</div>
+                    </div>
+                    <div class="book-author">By West African Linguists Association</div>
                 </div>
-            </div>
-            
-            <div class="question" id="question">What is this called in Mandinka?</div>
-            
-            <div class="options" id="options">
-                <button class="option">Ninsoo</button>
-                <button class="option">Wuloo</button>
-                <button class="option">Yirikoo</button>
-                <button class="option">Jaakoo</button>
+                <div class="book-spine"></div>
+                <div class="book-pages">
+                    <div class="book-page page1"></div>
+                    <div class="book-page page2"></div>
+                    <div class="book-page page3"></div>
+                </div>
+                <div class="book-back">
+                    <p>Learn to Speak Mandinka Like a Native</p>
+                    <p>Perfect for travelers, students, and cultural enthusiasts</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        const questions = [
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Saa", "Wulo", "Saagoo", "Bantoo"], // Dog, cow, sheep, monkey
-        correctIndex: 0, // Example: Saagoo (sheep)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfsOyIpcYAVc8fCyLdPKR5SCaXvD6gsJ-zboOr5OviT10yfSagBFaKOShGECNa_GJw8dY&usqp=CAU" // Placeholder for sheep image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Wuloo", "Baso", "Filoŋ", "Yirijaa"], // Dog, fish, elephant, bird
-        correctIndex: 1, // Jaakoo (fish)
-        readTime: 5000,
-        imageSrc: "https://animals.sandiegozoo.org/sites/default/files/inline-images/animals-lizard-redheadedagamapair.jpg" // Placeholder for fish image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Filoŋ", "Maloo", "Wuloo", "Kuuroo"], // Elephant, fish, dog, not animal
-        correctIndex: 1, // Wuloo (dog)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo3nWOp-Qe-26r7-jPQMN1kWH64cJncq6wOg&s" // Placeholder for dog image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Jatoo", "Benteng", "Saagoo", "Dindiŋo"], // Cow, goat, sheep, horse
-        correctIndex: 0, // Nyaamoo (cow)
-        readTime: 5000,
-        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/1200px-Walking_tiger_female.jpg" // Placeholder for cow image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Jaakoo", "Finoo", "Nyaamoo", "Bambo"], // Fish, cat, cow, horse
-        correctIndex: 3, // Dindiŋo (horse)
-        readTime: 5000,
-        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/250px-Nile_crocodile_head.jpg" // Placeholder for horse image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Mangoo", "Seeseh", "Bantoo", "Finoo"], // Not all animals: elephant, cat, monkey
-        correctIndex: 1, // Filoŋ (elephant)
-        readTime: 5000,
-        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Male_and_female_chicken_sitting_together.jpg/800px-Male_and_female_chicken_sitting_together.jpg" // Placeholder for elephant image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Buukoo", "Wuloo", "Nyankumo", "Teeboo"], // Not all animals: dog, cat
-        correctIndex: 2, // Finoo (cat)
-        readTime: 5000,
-        imageSrc: "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_16x9.jpg?w=1200" // Placeholder for cat image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Susula", "Jaakoo", "Dindiŋo", "Wuloo"], // Monkey, fish, horse, dog
-        correctIndex: 0, // Bantoo (monkey)
-        readTime: 5000,
-        imageSrc: "https://www.nps.gov/articles/images/26023_1.jpg?maxwidth=650&autorotate=false" // Placeholder for monkey image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Filoŋ", "Saagoo", "Niiso", "Wuloo"], // Elephant, sheep, goat, dog
-        correctIndex: 2, // Dendikoo (goat)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDbO1Ch1b6e-RoVtp0eyRZznX_LbJaD-EFfQ&s" // Placeholder for goat image
-    },
-    {
-        question: "What is the name of this animal in Mandinka?",
-        options: ["Dindiŋo", "Filoŋ", "Jaakoo", "Dirimo"], // Horse, elephant, fish, sheep
-        correctIndex: 3, // Saagoo (sheep)
-        readTime: 5000,
-        imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTnjok074mfl4pqvQ83FYZ_IcFebuULX8LWw&s" // Placeholder for sheep image
-    }
-];
-
-
-        let currentQuestionIndex = 0;
-        let timerInterval;
-        let countdownInterval;
-        let optionsClickable = true;
+        // Content timing setup - optimized for TikTok viewing with adjusted read times
+        const contentLines = [
+            { element: document.getElementById('line0'), readTime: 2500 },
+            { element: document.getElementById('line1'), readTime: 2500 },
+            { element: document.getElementById('line2'), readTime: 2500 },
+            { element: document.getElementById('line3'), readTime: 3500 },
+            { element: document.getElementById('line4'), readTime: 3000 }
+        ];
         
-        const questionElement = document.getElementById('question');
-        const optionsContainer = document.getElementById('options');
-        const timerElement = document.getElementById('timer');
-        const countdownElement = document.getElementById('countdown');
-        const questionNumberElement = document.getElementById('question-number');
-        const questionContainerElement = document.getElementById('question-container');
-        const questionImageElement = document.getElementById('question-image');
+        // Below book text rotation
+        const belowBookTexts = [
+            "CREATED BY NATIVE MANDINKA SPEAKERS AND LANGUAGE EXPERTS",
+            "INCLUDES AUDIO PRONUNCIATIONS AND CULTURAL CONTEXT",
+            "PERFECT FOR TRAVELERS TO GAMBIA, SENEGAL, AND GUINEA",
+            "GET YOUR MANDINKA PHRASEBOOK NOW AT THE LINK IN BIO"
+        ];
         
-        // Load a question
-        function loadQuestion() {
-            if (currentQuestionIndex < questions.length) {
-                // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
+        const bookContainer = document.getElementById('bookContainer');
+        const bookGlow = document.getElementById('bookGlow');
+        const splash = document.getElementById('splash');
+        const belowBookText = document.getElementById('belowBookText');
+        const contentArea = document.getElementById('contentArea');
+        
+        let currentLineIndex = 0;
+        let belowBookTextIndex = 0;
+        
+        // Initialize particles for background effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const size = Math.random() * 12 + 3;
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.3;
+                particle.style.animation = `float ${Math.random() * 8 + 10}s infinite alternate ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
                 
-                // Set question container to "enter" state
-                questionContainerElement.classList.add('enter');
-                
-                // Apply transition after a small delay to ensure the class is applied
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Create sparkles for interactive elements
+        function createSparkle(x, y) {
+            const container = document.querySelector('.container');
+            const sparkle = document.createElement('div');
+            const size = Math.random() * 12 + 6;
+            
+            sparkle.className = 'sparkle';
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            sparkle.style.animation = `sparkle ${Math.random() * 0.5 + 0.5}s forwards`;
+            
+            container.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+        
+        // Add splash effect when transitioning to a new screen
+        function createSplash() {
+            splash.classList.add('active');
+            
+            setTimeout(() => {
+                splash.classList.remove('active');
+            }, 800);
+        }
+        
+        // Function to rotate text below the book
+        function rotateTextBelowBook() {
+            belowBookText.textContent = belowBookTexts[belowBookTextIndex];
+            belowBookText.classList.add('visible');
+            
+            belowBookTextIndex = (belowBookTextIndex + 1) % belowBookTexts.length;
+            
+            setTimeout(() => {
+                belowBookText.classList.remove('visible');
                 setTimeout(() => {
-                    // Remove both enter/exit classes to get to normal state with transition
-                    questionContainerElement.classList.remove('enter', 'exit');
-                    
-                    const currentQuestion = questions[currentQuestionIndex];
-                    
-                    // Set question text
-                    questionElement.textContent = currentQuestion.question;
-                    
-                    // Update image
-                    questionImageElement.src = currentQuestion.imageSrc;
-                    
-                    // Clear previous options
-                    optionsContainer.innerHTML = '';
-                    
-                    // Add new options
-                    currentQuestion.options.forEach((option, index) => {
-                        const button = document.createElement('button');
-                        button.className = 'option';
-                        button.textContent = option;
-                        
-                        button.addEventListener('click', () => {
-                            if (optionsClickable) {
-                                checkAnswer(index);
-                            }
-                        });
-                        
-                        optionsContainer.appendChild(button);
-                    });
-                    
-                    // Start timer with read time pause
-                    startTimerWithPause(currentQuestion.readTime);
-                    
-                    // Allow clicking
-                    optionsClickable = true;
-                }, 50);
-                
-            } else {
-                // Loop back to first question
-                currentQuestionIndex = 0;
-                loadQuestion();
-            }
-        }
-        
-        // Start the timer with an initial pause for reading
-        function startTimerWithPause(pauseTime) {
-            // Reset timer style and add paused class
-            timerElement.style.transition = 'none';
-            timerElement.style.width = '100%';
-            timerElement.classList.add('paused');
-            timerElement.classList.remove('ending');
-            
-            // Hide countdown during reading time
-            countdownElement.classList.add('hidden');
-            
-            // Force browser reflow
-            void timerElement.offsetWidth;
-            
-            // Clear any existing interval
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            // First wait for the read time
-            setTimeout(() => {
-                // Remove paused class and start timer animation
-                timerElement.classList.remove('paused');
-                timerElement.style.transition = 'width 10s linear, background-color 0.5s';
-                timerElement.style.width = '0%';
-                
-                // Start countdown and show it
-                let secondsLeft = 10;
-                countdownElement.textContent = secondsLeft;
-                countdownElement.classList.remove('hidden');
-                
-                countdownInterval = setInterval(() => {
-                    secondsLeft--;
-                    countdownElement.textContent = secondsLeft;
-                    
-                    // Change to red when 3 seconds or less remain
-                    if (secondsLeft <= 3) {
-                        timerElement.classList.add('ending');
-                    }
-                    
-                    if (secondsLeft <= 0) {
-                        clearInterval(countdownInterval);
-                    }
+                    rotateTextBelowBook();
                 }, 1000);
-                
-                // Set timeout for when time is up
-                timerInterval = setTimeout(() => {
-                    if (optionsClickable) {
-                        // Time's up, move to next question
-                        optionsClickable = false;
-                        clearInterval(countdownInterval);
-                        
-                        // Highlight correct answer
-                        const options = document.querySelectorAll('.option');
-                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
-                        
-                        setTimeout(() => {
-                            transitionToNextQuestion();
-                        }, 1500);
-                    }
-                }, 10000);
-            }, pauseTime);
+            }, 3500);
         }
         
-        // Check the selected answer
-        function checkAnswer(selectedIndex) {
-            optionsClickable = false;
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
+        // Function to show book with animation from bottom
+        function showBook() {
+            createSplash();
+            bookContainer.classList.add('visible');
+            bookGlow.classList.add('visible');
             
-            const currentQuestion = questions[currentQuestionIndex];
-            const options = document.querySelectorAll('.option');
+            // Make content area non-interactive and move it behind book
+            contentArea.classList.add('no-overlay');
             
-            // Check if answer is correct
-            if (selectedIndex === currentQuestion.correctIndex) {
-                options[selectedIndex].classList.add('correct');
-            } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[currentQuestion.correctIndex].classList.add('correct');
+            // Hide any active content lines to prevent overlap with book
+            contentLines.forEach(item => {
+                item.element.classList.remove('active');
+            });
+            
+            // Begin rotating text below book after book appears
+            setTimeout(() => {
+                rotateTextBelowBook();
+            }, 1000);
+            
+            // Add sparkles around the book
+            const interval = setInterval(() => {
+                const bookRect = document.getElementById('book').getBoundingClientRect();
+                const containerRect = document.querySelector('.container').getBoundingClientRect();
+                
+                const centerX = bookRect.left + bookRect.width/2 - containerRect.left;
+                const centerY = bookRect.top + bookRect.height/2 - containerRect.top;
+                const radius = Math.max(bookRect.width, bookRect.height) / 1.5;
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * radius;
+                
+                const x = centerX + Math.cos(angle) * distance;
+                const y = centerY + Math.sin(angle) * distance;
+                
+                createSparkle(x, y);
+            }, 200);
+            
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 2000);
+        }
+        
+        // Function to show line with its caption
+        function showLine(index) {
+            // Hide all lines
+            contentLines.forEach(item => {
+                item.element.classList.remove('active');
+            });
+            
+            // Create splash effect between transitions
+            if (index > 0) {
+                createSplash();
             }
             
-            // Move to next question after a brief delay
-            setTimeout(() => {
-                transitionToNextQuestion();
-            }, 1500);
-        }
-        
-        // Transition to the next question with animation
-        function transitionToNextQuestion() {
-            // Add exit animation class
-            questionContainerElement.classList.add('exit');
+            // Show current line
+            const currentLine = contentLines[index];
+            currentLine.element.classList.add('active');
             
-            // Wait for animation to complete
-            setTimeout(() => {
-                currentQuestionIndex++;
-                loadQuestion();
-            }, 500);
+            // Show book when reaching the last line (now index 4)
+            if (index === 4) {
+                // Clear the current text before showing the book to avoid overlap
+                setTimeout(() => {
+                    currentLine.element.classList.remove('active');
+                    showBook();
+                }, 3000);
+            }
+            
+            // Schedule next line
+            if (index < contentLines.length - 1) {
+                setTimeout(() => {
+                    showLine(index + 1);
+                }, currentLine.readTime);
+            }
         }
+         window.addEventListener('load', () => {
+    createParticles();
+    
+    // Start presentation with a slight delay
+    setTimeout(() => {
+        showLine(currentLineIndex);
+    }, 1000);
+    
+    // Add interactive effects for the book when it appears
+    const book = document.getElementById('book');
+    book.addEventListener('mouseover', () => {
+        // Create sparkles when hovering over the book
+        const bookRect = book.getBoundingClientRect();
+        const containerRect = document.querySelector('.container').getBoundingClientRect();
         
-        // Start the quiz immediately
-        document.addEventListener('DOMContentLoaded', loadQuestion);
-    </script>
+        for (let i = 0; i < 5; i++) {
+            const x = Math.random() * bookRect.width + (bookRect.left - containerRect.left);
+            const y = Math.random() * bookRect.height + (bookRect.top - containerRect.top);
+            createSparkle(x, y);
+        }
+    });
+    
+    // Add click interaction to flip the book
+    book.addEventListener('click', () => {
+        book.style.transform = book.style.transform === 'rotateY(180deg)' ? 
+            'rotateY(0deg)' : 'rotateY(180deg)';
+        
+        // Create splash effect on click
+        createSplash();
+        
+        // Add sparkles around the book on click
+        const bookRect = book.getBoundingClientRect();
+        const containerRect = document.querySelector('.container').getBoundingClientRect();
+        
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.max(bookRect.width, bookRect.height) / 1.8;
+                
+                const centerX = bookRect.left + bookRect.width/2 - containerRect.left;
+                const centerY = bookRect.top + bookRect.height/2 - containerRect.top;
+                
+                const x = centerX + Math.cos(angle) * distance;
+                const y = centerY + Math.sin(angle) * distance;
+                
+                createSparkle(x, y);
+            }, i * 50);
+        }
+    });
+    
+    // Make the logo interactive
+    const logo = document.getElementById('logo');
+    logo.addEventListener('click', () => {
+        // Restart the animation sequence
+        currentLineIndex = 0;
+        
+        // Hide book and related elements
+        bookContainer.classList.remove('visible');
+        bookGlow.classList.remove('visible');
+        belowBookText.classList.remove('visible');
+        
+        // Make content area interactive again
+        contentArea.classList.remove('no-overlay');
+        
+        // Clear any active lines
+        contentLines.forEach(item => {
+            item.element.classList.remove('active');
+        });
+        
+        // Start from the beginning
+        setTimeout(() => {
+            showLine(currentLineIndex);
+        }, 500);
+    });
+});
+
+ </script>
 </body>
 </html>
