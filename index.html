@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gambia Quiz TikTok Animation</title>
+    <title>Gambian History Quiz Challenge</title>
     <style>
         * {
             box-sizing: border-box;
@@ -22,7 +22,6 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
-            perspective: 1000px;
         }
         
         .container {
@@ -34,263 +33,510 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
         
-        .flag-container {
-            width: 80%;
-            max-width: 300px;
-            height: 180px;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        /* Improved question number for better mobile visibility */
+        .question-number {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            text-align: center;
+            min-width: 120px;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
+        }
+        
+        .question-container {
+            width: 90%;
+            margin-top: 70px;
+            height: calc(100% - 150px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: rgba(50, 20, 0, 0.6);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
             position: relative;
-            perspective: 1000px;
+            transition: transform 0.5s, opacity 0.5s;
+            overflow: hidden;
         }
         
-        .text-container {
+        .timer-section {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            width: 90%;
-            max-width: 400px;
+            margin-bottom: 15px;
         }
         
-        .text {
-            font-size: 0;
+        .timer-container {
+            width: 100%;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .timer {
+            height: 100%;
+            background-color: #00ff00;
+            width: 100%;
+            transition: width 10s linear, background-color 0.5s;
+        }
+        
+        .timer.paused {
+            transition: none;
+        }
+        
+        .timer.ending {
+            background-color: #ff0000;
+        }
+        
+        .countdown {
+            font-size: 1.1rem;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-            letter-spacing: 1px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
         }
         
-        .text.active {
-            font-size: 42px;
-            opacity: 1;
-            transform: scale(1);
+        .countdown.hidden {
+            display: none;
         }
         
-        .text:nth-child(1) {
-            color: #ffcc00;
+        .image-container {
+            width: 100%;
+            height: 180px;
+            margin: 10px 0 20px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
         
-        .text:nth-child(2) {
-            color: #ff66ff;
-        }
-        
-        .text:nth-child(3) {
-            color: #33ff33;
-        }
-        
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .container {
-            background-size: 400% 400%;
-            animation: backgroundShift 10s ease infinite;
-        }
-        
-        /* Gambian flag - 4D wave effect with canvas */
-        #flag-canvas {
+        .question-image {
             width: 100%;
             height: 100%;
-            display: block;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        /* TikTok Banner */
+        .tiktok-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px 10px;
+            z-index: 10;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 90%;
+        }
+        
+        .tiktok-logo {
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+        
+        .tiktok-text {
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0.6;
+        }
+        
+        /* Updated Animation for banner */
+        @keyframes subtle-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.03); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        .tiktok-banner {
+            animation: subtle-pulse 3s ease-in-out infinite;
+        }
+        
+        .question {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            padding: 0 10px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .option {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .option:active {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(0.98);
+        }
+        
+        .option.correct {
+            background-color: #2ecc71;
+        }
+        
+        .option.incorrect {
+            background-color: #e74c3c;
+        }
+        
+        .question-container.exit {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        
+        .question-container.enter {
+            transform: translateX(100%);
+            opacity: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="flag-container">
-            <canvas id="flag-canvas"></canvas>
-        </div>
+        <div class="question-number" id="question-number">Question: 1/10</div>
         
-        <div class="text-container">
-            <div class="text" id="text1">BEFORE YOUR LAST QUESTION</div>
-            <div class="text" id="text2">SHARE THIS QUIZ WITH A FRIEND</div>
-            <div class="text" id="text3">DON'T FORGET TO COMMENT YOUR SCORE BELOW</div>
+        <div class="question-container" id="question-container">
+            <div class="timer-section">
+                <div class="timer-container">
+                    <div class="timer paused" id="timer"></div>
+                </div>
+                <div class="countdown hidden" id="countdown">10</div>
+            </div>
+            
+            <div class="image-container" id="image-container">
+                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="Question illustration">
+                <!-- TikTok Banner -->
+                <div class="tiktok-banner">
+                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+                    </svg>
+                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
+                </div>
+            </div>
+            
+            <div class="question" id="question">In what year did The Gambia gain independence from British colonial rule?</div>
+            
+            <div class="options" id="options">
+                <button class="option">1965</button>
+                <button class="option">1960</button>
+                <button class="option">1970</button>
+                <button class="option">1975</button>
+            </div>
         </div>
     </div>
 
+    
+
     <script>
-        // Text animation sequence
-        function startTextAnimation() {
-            const text1 = document.getElementById('text1');
-            const text2 = document.getElementById('text2');
-            const text3 = document.getElementById('text3');
-            
-            // First text appears
-            setTimeout(() => {
-                text1.classList.add('active');
-            }, 500);
-            
-            // Second text appears
-            setTimeout(() => {
-                text2.classList.add('active');
-            }, 2000);
-            
-            // Third text appears
-            setTimeout(() => {
-                text3.classList.add('active');
-            }, 3500);
-            
-            // Reset animation after some time
-            setTimeout(() => {
-                text1.classList.remove('active');
-                text2.classList.remove('active');
-                text3.classList.remove('active');
+        const questions = [
+            {
+    question: "When did The Gambia become a republic?",
+    options: ["1965", "1970", "1980", "1994"],
+    correctIndex: 1,
+    readTime: 6000,
+    imageSrc: "https://gambiana.com/wp-content/uploads/2020/02/640C453D-93CE-462C-BE9F-1B34AD1C0199.jpeg" // Placeholder for republic transition
+},
+              {
+    question: "What was the capital city of The Gambia in 1990?",
+    options: ["Brikama", "Banjul", "Serrekunda", "Bakau"],
+    correctIndex: 0, // Rage bait: Brikama is NOT the capital — Banjul is — but this is marked as correct intentionally
+    readTime: 6000,
+    imageSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Banjul_Arch_22.jpg/220px-Banjul_Arch_22.jpg" // Rage bait placeholder
+},
+{
+    question: "Who led the 1981 coup attempt in The Gambia that was eventually defeated?",
+    options: ["Kukoi Samba Sanyang", "Yahya Jammeh", "Edward Singhateh", "Lamin Kaba Bajo"],
+    correctIndex: 0,
+    readTime: 6000,
+    imageSrc: "https://thepoint.gm/assets/Featured-Articles/Kukoi-and-others.jpg" // Placeholder for unrest
+},
+{
+    question: "Which famous Gambian musical instrument is closely associated with griots",
+    options: ["Kora", "Balafon", "Ngoni", "Talking Drum"],
+    correctIndex: 0,
+    readTime: 5000,
+    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBWqDCV_-kOwtAlNbAyZ4o3Sk8rxSTiQHesg&s" // Placeholder for kora
+},
+{
+    question: "The Gambian coat of arms features which two animals?",
+    options: ["Lions", "Horses", "Eagles", "Crocodiles"],
+    correctIndex: 0,
+    readTime: 5000,
+    imageSrc: "https://moin.gov.gm/wp-content/uploads/2024/03/Gambia-Coat-of-Arm.png" // Placeholder for coat of arms
+},
+{
+    question: "What is the traditional celebration marking the end of the farming season in rural Gambia?",
+    options: ["Tobaski", "Wassu", "Kankurang", "Jokadu Festival"],
+    correctIndex: 2,
+    readTime: 6000,
+    imageSrc: "https://www.fao.org/typo3temp/pics/cd51075ec0.jpg" // Placeholder for Kankurang
+},
+{
+    question: "Which ethnic group is the smallest among the major groups in The Gambia?",
+    options: ["Jola", "Mandinka", "Wolof", "Fula"],
+    correctIndex: 0,
+    readTime: 5000,
+    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqv7F9V_UP9C3xr96sN0_fRnvQEgUuhn-HAg&s" // Placeholder for Jola culture
+},
+{
+    question: "What is the name of the national parliament building in The Gambia?",
+    options: ["Banjul Assembly Hall", "State House", "National Assembly", "Gambian Civic Centre"],
+    correctIndex: 2,
+    readTime: 5000,
+    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcjtCAD0FE-dp65qcm_2XNQDjzPNJsuBmX9A&s" // Placeholder for National Assembly
+},
+{
+    question: "What significant political change occurred in The Gambia in 1994?",
+    options: ["Introduction of multi-party democracy", "First independence election", "Military coup led by Yahya Jammeh", "Gambia joins ECOWAS"],
+    correctIndex: 2,
+    readTime: 6000,
+    imageSrc: "https://www.justiceinfo.net/wp-content/uploads/64eb9dec0f1f570fb63dacaefd3a6304.jpg" // Placeholder for coup
+},
+{
+    question: "Which Gambian town is home to the ancient stone circles?",
+    options: ["Wassu", "Basse", "Soma", "Farafenni"],
+    correctIndex: 0,
+    readTime: 5000,
+    imageSrc: "https://i0.wp.com/cornishbirdblog.com/wp-content/uploads/2018/09/2018-09-05-31-1844887230-1536173987584.png?fit=750%2C453&ssl=1" // Placeholder for stone circles
+}
+
+        ];
+
+        let currentQuestionIndex = 0;
+        let timerInterval;
+        let countdownInterval;
+        let optionsClickable = true;
+        
+        const questionElement = document.getElementById('question');
+        const optionsContainer = document.getElementById('options');
+        const timerElement = document.getElementById('timer');
+        const countdownElement = document.getElementById('countdown');
+        const questionNumberElement = document.getElementById('question-number');
+        const questionContainerElement = document.getElementById('question-container');
+        const questionImageElement = document.getElementById('question-image');
+        const imageContainerElement = document.getElementById('image-container');
+        const beepSound = document.getElementById('beep-sound');
+        
+        // Load a question
+        function loadQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                // Update question number display
+                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
                 
-                // Restart animation
+                // Set question container to "enter" state
+                questionContainerElement.classList.add('enter');
+                
+                // Apply transition after a small delay to ensure the class is applied
                 setTimeout(() => {
-                    startTextAnimation();
+                    // Remove both enter/exit classes to get to normal state with transition
+                    questionContainerElement.classList.remove('enter', 'exit');
+                    
+                    const currentQuestion = questions[currentQuestionIndex];
+                    
+                    // Set question text
+                    questionElement.textContent = currentQuestion.question;
+                    
+                    // Update image
+                    questionImageElement.src = currentQuestion.imageSrc;
+                    
+                    // Clear previous options
+                    optionsContainer.innerHTML = '';
+                    
+                    // Add new options
+                    currentQuestion.options.forEach((option, index) => {
+                        const button = document.createElement('button');
+                        button.className = 'option';
+                        button.textContent = option;
+                        
+                        button.addEventListener('click', () => {
+                            if (optionsClickable) {
+                                checkAnswer(index);
+                            }
+                        });
+                        
+                        optionsContainer.appendChild(button);
+                    });
+                    
+                    // Start timer with read time pause
+                    startTimerWithPause(currentQuestion.readTime);
+                    
+                    // Allow clicking
+                    optionsClickable = true;
+                }, 50);
+                
+            } else {
+                // Loop back to first question
+                currentQuestionIndex = 0;
+                loadQuestion();
+            }
+        }
+        
+        // Start the timer with an initial pause for reading
+        function startTimerWithPause(pauseTime) {
+            // Reset timer style and add paused class
+            timerElement.style.transition = 'none';
+            timerElement.style.width = '100%';
+            timerElement.classList.add('paused');
+            timerElement.classList.remove('ending');
+            
+            // Hide countdown during reading time
+            countdownElement.classList.add('hidden');
+            
+            // Force browser reflow
+            void timerElement.offsetWidth;
+            
+            // Clear any existing interval
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
+            
+            // First wait for the read time
+            setTimeout(() => {
+                // Remove paused class and start timer animation
+                timerElement.classList.remove('paused');
+                timerElement.style.transition = 'width 10s linear, background-color 0.5s';
+                timerElement.style.width = '0%';
+                
+                // Start countdown and show it
+                let secondsLeft = 10;
+                countdownElement.textContent = secondsLeft;
+                countdownElement.classList.remove('hidden');
+                
+                countdownInterval = setInterval(() => {
+                    secondsLeft--;
+                    countdownElement.textContent = secondsLeft;
+                    
+                    // Play beep on each second
+                    beepSound.currentTime = 0;
+                    beepSound.play().catch(e => console.log("Audio play prevented:", e));
+                    
+                    // Change to red when 3 seconds or less remain
+                    if (secondsLeft <= 3) {
+                        timerElement.classList.add('ending');
+                    }
+                    
+                    if (secondsLeft <= 0) {
+                        clearInterval(countdownInterval);
+                    }
                 }, 1000);
-            }, 7000);
+                
+                // Set timeout for when time is up
+                timerInterval = setTimeout(() => {
+                    if (optionsClickable) {
+                        // Time's up, move to next question
+                        optionsClickable = false;
+                        clearInterval(countdownInterval);
+                        
+                        // Highlight correct answer
+                        const options = document.querySelectorAll('.option');
+                        // For question 6 (index 5), wrongfully highlight Wolof instead of Mandinka
+                        if (currentQuestionIndex === 5) {
+                            options[0].classList.add('correct'); // Wrongfully highlights Wolof as correct
+                        } else {
+                            options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
+                        }
+                        
+                        setTimeout(() => {
+                            transitionToNextQuestion();
+                        }, 1500);
+                    }
+                }, 10000);
+            }, pauseTime);
         }
         
-        // Flag animation with Canvas
-        function setupFlagAnimation() {
-            const canvas = document.getElementById('flag-canvas');
-            const ctx = canvas.getContext('2d');
-            const flagContainer = document.querySelector('.flag-container');
+        // Check the selected answer
+        function checkAnswer(selectedIndex) {
+            optionsClickable = false;
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
             
-            // Set canvas dimensions to match container
-            function resizeCanvas() {
-                canvas.width = flagContainer.clientWidth;
-                canvas.height = flagContainer.clientHeight;
-            }
+            const currentQuestion = questions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
             
-            // Call resize initially and on window resize
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            
-            // Flag colors
-            const colors = {
-                red: '#CE1126',
-                blue: '#0C1C8C',
-                green: '#3A7728',
-                white: '#FFFFFF'
-            };
-            
-            // Animation variables
-            let time = 0;
-            const waveAmplitude = 10;
-            const wavePeriod = 100;
-            const waveSpeed = 0.1;
-            
-            // Animation function
-            function animateFlag() {
-                // Clear canvas
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Calculate stripe heights
-                const totalHeight = canvas.height;
-                const stripeHeight = totalHeight / 5;
-                
-                // Draw the flag with wave effect
-                // Red stripe (top)
-                drawWavyStripe(0, stripeHeight, colors.red);
-                
-                // White stripe
-                drawWavyStripe(stripeHeight, stripeHeight * 2, colors.white);
-                
-                // Blue stripe
-                drawWavyStripe(stripeHeight * 2, stripeHeight * 3, colors.blue);
-                
-                // White stripe
-                drawWavyStripe(stripeHeight * 3, stripeHeight * 4, colors.white);
-                
-                // Green stripe (bottom)
-                drawWavyStripe(stripeHeight * 4, stripeHeight * 5, colors.green);
-                
-                // Add 3D shadow effect
-                addShadowEffect();
-                
-                // Update time for wave movement
-                time += waveSpeed;
-                
-                // Continue animation
-                requestAnimationFrame(animateFlag);
-            }
-            
-            // Function to draw a wavy stripe
-            function drawWavyStripe(startY, endY, color) {
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                
-                // Start at left edge
-                ctx.moveTo(0, startY);
-                
-                // Draw top wavy edge
-                for (let x = 0; x <= canvas.width; x++) {
-                    // Calculate wave offset based on position and time
-                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time) * waveAmplitude;
-                    // Add perspective effect - waves are larger on the right
-                    const perspectiveEffect = (x / canvas.width) * 1.5;
-                    ctx.lineTo(x, startY + waveOffset * perspectiveEffect);
+            // Special case for question 6 (index 5) - intentionally marking wrong answer
+            if (currentQuestionIndex === 5) {
+                // Mark Wolof (index 0) as correct even though Mandinka (index 1) is actually correct
+                if (selectedIndex === 0) {
+                    options[selectedIndex].classList.add('correct');
+                } else {
+                    options[selectedIndex].classList.add('incorrect');
+                    options[0].classList.add('correct'); // Wrongfully highlight Wolof
                 }
-                
-                // Continue to bottom-right corner
-                ctx.lineTo(canvas.width, endY);
-                
-                // Draw bottom wavy edge (in reverse)
-                for (let x = canvas.width; x >= 0; x--) {
-                    // Calculate wave offset with slight phase difference for bottom edge
-                    const waveOffset = Math.sin((x / wavePeriod) * Math.PI + time + 0.5) * waveAmplitude;
-                    const perspectiveEffect = (x / canvas.width) * 1.5;
-                    ctx.lineTo(x, endY + waveOffset * perspectiveEffect);
+            } else {
+                // Normal behavior for other questions
+                if (selectedIndex === currentQuestion.correctIndex) {
+                    options[selectedIndex].classList.add('correct');
+                } else {
+                    options[selectedIndex].classList.add('incorrect');
+                    options[currentQuestion.correctIndex].classList.add('correct');
                 }
-                
-                // Close the path
-                ctx.closePath();
-                ctx.fill();
             }
             
-            // Function to add shadow/highlight for 3D effect
-            function addShadowEffect() {
-                // Create gradient overlay
-                const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                gradient.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
-                gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.1)');
-                gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.1)');
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.3)');
-                
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                // Shine effect that moves across the flag
-                const shinePos = (time % 3) / 3;
-                const shineGradient = ctx.createLinearGradient(
-                    canvas.width * shinePos - 50, 
-                    0, 
-                    canvas.width * shinePos + 50, 
-                    canvas.height
-                );
-                
-                shineGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
-                shineGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.3)');
-                shineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                
-                ctx.fillStyle = shineGradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-            
-            // Start the animation
-            animateFlag();
+            // Move to next question after a brief delay
+            setTimeout(() => {
+                transitionToNextQuestion();
+            }, 1500);
         }
         
-        // Start all animations when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            startTextAnimation();
-            setupFlagAnimation();
-        });
+        // Transition to the next question with animation
+        function transitionToNextQuestion() {
+            // Add exit animation class
+            questionContainerElement.classList.add('exit');
+            
+            // Wait for animation to complete
+            setTimeout(() => {
+                currentQuestionIndex++;
+                loadQuestion();
+            }, 500);
+        }
+        
+        // Start the quiz immediately
+        document.addEventListener('DOMContentLoaded', loadQuestion);
     </script>
 </body>
 </html>
