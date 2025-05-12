@@ -243,13 +243,33 @@
             margin-bottom: 10px;
         }
 
+        /* Content container with fade effect */
+        .content-container {
+            position: relative;
+            overflow: hidden;
+            max-height: 1200px; /* Adjust as needed */
+        }
+        
+        /* Fade-out overlay */
+        .fade-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px; /* Adjust the height of the gradient */
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+            pointer-events: none; /* Allows clicking through the overlay */
+        }
+
         .continue-reading {
             text-align: center;
-            margin: 40px 0;
             padding: 15px;
             background-color: #f0f0f0;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2; /* Ensure it's above the fade */
+            margin-top: -20px; /* Slight overlap with fade */
         }
 
         .continue-reading a {
@@ -293,7 +313,7 @@
             <p>Stretching only 30 miles wide at its broadest point and extending approximately 300 miles inland from the Atlantic Ocean, The Gambia's unusual geography—completely surrounded by Senegal except for its western coastline—has profoundly shaped its historical development. The Gambia River, which gives the country both its name and its distinctive shape, has served as a vital artery for trade, cultural exchange, and colonization throughout the centuries.</p>
             
             <div class="map-container">
-                <img src="/api/placeholder/600/400" alt="Map of The Gambia" />
+                <img src="https://www.accessgambia.com/images/gambia_africa.png" alt="Map of The Gambia" />
                 <p class="image-caption">Geographical location of The Gambia in West Africa</p>
             </div>
             
@@ -305,49 +325,56 @@
         <section id="ancient-gambia" class="chapter">
             <h2>Chapter 1: Ancient Gambia and Early Settlements</h2>
             
-            <h3>Prehistoric Inhabitants</h3>
-            <p>Archaeological evidence suggests human habitation in what is now The Gambia dates back several thousand years. Stone circles found in parts of Senegambia (the region encompassing The Gambia and Senegal) indicate sophisticated early civilizations with advanced knowledge of astronomy and stone-working techniques.</p>
-            
-            <div class="image-container">
-                <img src="/api/placeholder/500/300" alt="Stone Circles" />
-                <p class="image-caption">Stone circles in Wassu, among the most visible archaeological remnants of ancient Gambian civilization</p>
+            <div class="content-container">
+                <h3>Prehistoric Inhabitants</h3>
+                <p>Archaeological evidence suggests human habitation in what is now The Gambia dates back several thousand years. Stone circles found in parts of Senegambia (the region encompassing The Gambia and Senegal) indicate sophisticated early civilizations with advanced knowledge of astronomy and stone-working techniques.</p>
+                
+                <div class="image-container">
+                    <img src="https://lh5.googleusercontent.com/proxy/8yYFyE4dHFh3GelaYlT23KahkQhYDhYcxajRNuuybW42mKlzOVIUaRnOxnmMSYo07AYwAc_NLhTWi8kds2FEwKgTCVws2QFZxT72pt9m1NRI72DVYKTCgjW37LIPGjS9N8jOltY7m3CWyNK1joM" alt="Stone Circles" />
+                    <p class="image-caption">Stone circles in Wassu, among the most visible archaeological remnants of ancient Gambian civilization</p>
+                </div>
+                
+                <h3>Early Kingdoms and Empires</h3>
+                <p>By the 5th century CE, organized states began to emerge in the region. The Gambia River valley was influenced by several major West African empires, including:</p>
+                
+                <p>The <strong>Ghana Empire</strong> (c. 700-1200 CE), centered to the north in what is now Mali and Mauritania, established trade networks that extended to the Gambia River valley, bringing Islam and trade goods to the region.</p>
+                
+                <p>The <strong>Mali Empire</strong> (c. 1230-1600 CE) incorporated the Gambia River region more directly into its domain. Under the Mali Empire, Islam spread more widely among the ruling classes and merchant communities along the river.</p>
+                
+                <p>The <strong>Songhai Empire</strong> (c. 1464-1591), though centered in the Niger River valley, extended its influence into the Senegambia region through trade networks and political alliances.</p>
+                
+                <h3>Indigenous Ethnic Groups</h3>
+                <p>Several ethnic groups established themselves in the area, each with distinct cultural practices, languages, and social structures:</p>
+                
+                <p>The <strong>Mandinka</strong> (or Malinke), descended from the founders of the Mali Empire, became the dominant group in much of what is now The Gambia. They established a series of small kingdoms along the Gambia River.</p>
+                
+                <p>The <strong>Wolof</strong> established themselves primarily in the western coastal areas, developing sophisticated political structures.</p>
+                
+                <p>The <strong>Fula</strong> (or Fulani), traditionally nomadic pastoralists, began settling in the region, bringing their distinctive cultural practices and engaging in cattle herding.</p>
+                
+                <p>The <strong>Jola</strong> (or Diola) established themselves in the western regions of The Gambia, developing distinctive religious practices and social structures resistant to outside influence.</p>
+                
+                <p>The <strong>Serahule</strong> (or Soninke), known for their commercial acumen, established trading networks throughout the region.</p>
+                
+                <h3>Trade Networks and Cultural Exchange</h3>
+                <p>Long before European arrival, the Gambia River served as a crucial trade route linking the Atlantic coast with the interior of West Africa. Salt, cloth, metal goods, and later gold traveled along this waterway, facilitating cultural exchange and economic development. Trans-Saharan trade routes also connected the region to North Africa and, by extension, to the Mediterranean world and the Middle East.</p>
+                
+                <div class="sidebar">
+                    <h4>Key Archaeological Sites</h4>
+                    <p>The Wassu Stone Circles, now a UNESCO World Heritage Site, date back to approximately 750-900 CE. These megalithic structures likely served funerary purposes for ancient kings and chiefs. Similar stone circles can be found at Kerr Batch and other locations throughout the Senegambia region.</p>
+                </div>
+                
+                <!-- Fade overlay -->
+                <div class="fade-overlay"></div>
             </div>
             
-            <h3>Early Kingdoms and Empires</h3>
-            <p>By the 5th century CE, organized states began to emerge in the region. The Gambia River valley was influenced by several major West African empires, including:</p>
-            
-            <p>The <strong>Ghana Empire</strong> (c. 700-1200 CE), centered to the north in what is now Mali and Mauritania, established trade networks that extended to the Gambia River valley, bringing Islam and trade goods to the region.</p>
-            
-            <p>The <strong>Mali Empire</strong> (c. 1230-1600 CE) incorporated the Gambia River region more directly into its domain. Under the Mali Empire, Islam spread more widely among the ruling classes and merchant communities along the river.</p>
-            
-            <p>The <strong>Songhai Empire</strong> (c. 1464-1591), though centered in the Niger River valley, extended its influence into the Senegambia region through trade networks and political alliances.</p>
-            
-            <h3>Indigenous Ethnic Groups</h3>
-            <p>Several ethnic groups established themselves in the area, each with distinct cultural practices, languages, and social structures:</p>
-            
-            <p>The <strong>Mandinka</strong> (or Malinke), descended from the founders of the Mali Empire, became the dominant group in much of what is now The Gambia. They established a series of small kingdoms along the Gambia River.</p>
-            
-            <p>The <strong>Wolof</strong> established themselves primarily in the western coastal areas, developing sophisticated political structures.</p>
-            
-            <p>The <strong>Fula</strong> (or Fulani), traditionally nomadic pastoralists, began settling in the region, bringing their distinctive cultural practices and engaging in cattle herding.</p>
-            
-            <p>The <strong>Jola</strong> (or Diola) established themselves in the western regions of The Gambia, developing distinctive religious practices and social structures resistant to outside influence.</p>
-            
-            <p>The <strong>Serahule</strong> (or Soninke), known for their commercial acumen, established trading networks throughout the region.</p>
-            
-            <h3>Trade Networks and Cultural Exchange</h3>
-            <p>Long before European arrival, the Gambia River served as a crucial trade route linking the Atlantic coast with the interior of West Africa. Salt, cloth, metal goods, and later gold traveled along this waterway, facilitating cultural exchange and economic development. Trans-Saharan trade routes also connected the region to North Africa and, by extension, to the Mediterranean world and the Middle East.</p>
-            
-            <div class="sidebar">
-                <h4>Key Archaeological Sites</h4>
-                <p>The Wassu Stone Circles, now a UNESCO World Heritage Site, date back to approximately 750-900 CE. These megalithic structures likely served funerary purposes for ancient kings and chiefs. Similar stone circles can be found at Kerr Batch and other locations throughout the Senegambia region.</p>
-            </div>
             <div class="continue-reading">
-            <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22The%20Gambia%3A%20A%20Journey%20Through%20Time%22%20document%2C%20my%20name%20is%20">
-                Continue Reading: Click here to request the complete document via WhatsApp
-            </a>
-        </div>
+                <a href="https://wa.me/2202309804?text=I%20would%20like%20to%20request%20the%20complete%20%22The%20Gambia%3A%20A%20Journey%20Through%20Time%22%20document%2C%20my%20name%20is%20">
+                    Continue Reading...
+                </a>
+            </div>
             
         </section>
+    </div>
 </body>
 </html>
