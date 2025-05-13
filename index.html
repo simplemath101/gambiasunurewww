@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gambia: A Journey Through Time</title>
-    <style>
-        :root {
+<style>
+   /* Original CSS with additions for PDF pagination control */
+:root {
     --primary: #006847;
     --secondary: #0072c6;
     --accent: #ce1126;
@@ -25,6 +26,15 @@ body {
     line-height: 1.6;
     color: var(--dark);
     background-color: var(--light);
+    /* PDF-specific settings */
+    margin: 0;
+    padding: 0;
+}
+
+/* Add page layout settings for PDF */
+@page {
+    size: 8.5in 11in; /* Standard US letter size */
+    margin: 1in; /* 1 inch margins all around */
 }
 
 .container {
@@ -41,6 +51,9 @@ header {
     padding: 40px 20px;
     margin-bottom: 30px;
     position: relative;
+    /* Prevent header from breaking across pages */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 header:after {
@@ -56,6 +69,9 @@ header:after {
 h1 {
     font-size: clamp(1.8rem, 5vw, 2.5rem);
     margin-bottom: 10px;
+    /* Keep headings with their content */
+    page-break-after: avoid;
+    break-after: avoid;
 }
 
 h2 {
@@ -64,17 +80,27 @@ h2 {
     margin: 30px 0 20px;
     border-bottom: 2px solid var(--primary);
     padding-bottom: 5px;
+    /* Keep headings with their content */
+    page-break-after: avoid;
+    break-after: avoid;
 }
 
 h3 {
     font-size: clamp(1.2rem, 3vw, 1.5rem);
     color: var(--secondary);
     margin: 20px 0 15px;
+    /* Keep headings with their content */
+    page-break-after: avoid;
+    break-after: avoid;
 }
 
+/* The key property to prevent sentences from breaking across pages */
 p {
     margin-bottom: 20px;
     text-align: justify;
+    /* These properties prevent sentences from breaking across pages */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .chapter {
@@ -83,6 +109,9 @@ p {
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* Try to keep chapters together when possible */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .map-container {
@@ -90,6 +119,9 @@ p {
     margin: 30px 0;
     width: 100%;
     overflow-x: auto;
+    /* Keep map containers intact */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .map-placeholder {
@@ -108,6 +140,9 @@ p {
     text-align: center;
     margin: 20px 0;
     max-width: 100%;
+    /* Keep images with their captions */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .image-container img {
@@ -128,6 +163,9 @@ blockquote {
     padding-left: 20px;
     margin: 20px 0;
     color: #555;
+    /* Keep quotes intact */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .timeline {
@@ -153,6 +191,9 @@ blockquote {
     width: 50%;
     padding: 10px 40px;
     box-sizing: border-box;
+    /* Keep timeline items intact */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .timeline-item::after {
@@ -202,6 +243,9 @@ footer {
     padding: 20px;
     background-color: var(--primary);
     color: white;
+    /* Keep footer intact */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .footnote {
@@ -209,6 +253,9 @@ footer {
     border-top: 1px solid #ddd;
     padding-top: 10px;
     margin-top: 30px;
+    /* Keep footnotes intact */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .table-of-contents {
@@ -218,6 +265,12 @@ footer {
     margin: 20px 0;
     border-radius: 5px;
     overflow-x: auto;
+    /* Place table of contents at start of a page */
+    page-break-before: always;
+    break-before: always;
+    /* Keep TOC intact */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .table-of-contents h3 {
@@ -231,6 +284,9 @@ footer {
 
 .table-of-contents li {
     margin-bottom: 8px;
+    /* Keep list items with their parent */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .table-of-contents a {
@@ -248,6 +304,9 @@ footer {
     margin: 20px 0;
     border-left: 4px solid var(--secondary);
     font-size: 0.9rem;
+    /* Keep sidebars intact */
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .sidebar h4 {
@@ -255,7 +314,20 @@ footer {
     margin-bottom: 10px;
 }
 
-/* Responsive adjustments */
+/* Specific settings for page breaks */
+h1, h2, h3, h4, h5, h6 {
+    /* Avoid page breaks after headings */
+    page-break-after: avoid;
+    break-after: avoid;
+}
+
+/* Prevent widows and orphans */
+p, li {
+    orphans: 3; /* Minimum number of lines at bottom of page */
+    widows: 3;  /* Minimum number of lines at top of page */
+}
+
+/* For PDF printing, screen media queries aren't relevant, but keeping them */
 @media screen and (max-width: 768px) {
     .container {
         padding: 15px;
@@ -309,7 +381,8 @@ footer {
     .map-placeholder {
         height: 300px;
     }
-    </style>
+}
+</style>
 </head>
 <body>
     <header>
