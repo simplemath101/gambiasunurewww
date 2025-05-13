@@ -2,540 +2,223 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gambian History Quiz Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gambia: A Journey Through Time</title>
     <style>
+        :root {
+            --primary: #006847;
+            --secondary: #0072c6;
+            --accent: #ce1126;
+            --light: #f5f5f5;
+            --dark: #333;
+        }
+        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            background-color: var(--light);
+            font-family: 'Georgia', serif;
+        }
+        
+        .book-cover {
+            width: 600px;
+            height: 800px;
+            position: relative;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
+            background-color: white;
             overflow: hidden;
         }
         
-        .container {
+        .flag-stripe {
+            position: absolute;
             width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff2400, #e81d1d, #e8b71d, #1de840, #1ddde8, #2b1de8);
+            height: 10px;
+            bottom: 0;
+            background: linear-gradient(to right, var(--accent) 33.3%, white 33.3%, white 66.6%, var(--secondary) 66.6%);
+        }
+        
+        .cover-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            height: 200px;
             position: relative;
-            overflow: hidden;
+        }
+        
+        .cover-header:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to right, var(--accent) 33.3%, white 33.3%, white 66.6%, var(--secondary) 66.6%);
+        }
+        
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .cover-main {
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            height: calc(100% - 200px);
         }
         
-        /* Improved question number for better mobile visibility */
-        .question-number {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-            border: 2px solid rgba(255, 255, 255, 0.6);
+        .main-image {
+            width: 80%;
+            height: 300px;
+            background-color: #e9e9e9;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-placeholder {
             text-align: center;
-            min-width: 120px;
-            color: #fff;
-            text-shadow: 1px 1px 2px black;
+            color: var(--dark);
         }
         
-        .question-container {
+        .timeline-graphic {
+            width: 80%;
+            height: 120px;
+            background-color: #f9f9f9;
+            margin: 15px 0;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .timeline-line {
+            position: absolute;
             width: 90%;
-            margin-top: 70px;
-            height: calc(100% - 150px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: rgba(50, 20, 0, 0.6);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-            position: relative;
-            transition: transform 0.5s, opacity 0.5s;
-            overflow: hidden;
-        }
-        
-        .timer-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .timer-container {
-            width: 100%;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .timer {
-            height: 100%;
-            background-color: #00ff00;
-            width: 100%;
-            transition: width 10s linear, background-color 0.5s;
-        }
-        
-        .timer.paused {
-            transition: none;
-        }
-        
-        .timer.ending {
-            background-color: #ff0000;
-        }
-        
-        .countdown {
-            font-size: 1.1rem;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-        
-        .countdown.hidden {
-            display: none;
-        }
-        
-        .image-container {
-            width: 100%;
-            height: 180px;
-            margin: 10px 0 20px;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .question-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        
-        /* TikTok Banner */
-        .tiktok-banner {
-            position: absolute;
+            height: 6px;
+            background-color: var(--primary);
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.3);
+            left: 5%;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .dot-1 { left: 10%; }
+        .dot-2 { left: 30%; }
+        .dot-3 { left: 50%; }
+        .dot-4 { left: 70%; }
+        .dot-5 { left: 90%; }
+        
+        .small-image-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 6px 10px;
-            z-index: 10;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 90%;
-        }
-        
-        .tiktok-logo {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
-            flex-shrink: 0;
-            opacity: 0.6;
-        }
-        
-        .tiktok-text {
-            font-weight: bold;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            opacity: 0.6;
-        }
-        
-        /* Updated Animation for banner */
-        @keyframes subtle-pulse {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.03); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
-        
-        .tiktok-banner {
-            animation: subtle-pulse 3s ease-in-out infinite;
-        }
-        
-        .question {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            padding: 0 10px;
-        }
-        
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            justify-content: space-around;
             width: 100%;
             margin-top: 10px;
         }
         
-        .option {
-            background-color: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
+        .small-image {
+            width: 140px;
+            height: 80px;
+            background-color: #e9e9e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+        }
+        
+        .author {
+            margin-top: auto;
             text-align: center;
+            padding: 20px;
         }
         
-        .option:active {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(0.98);
+        .author-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
         }
         
-        .option.correct {
-            background-color: #2ecc71;
-        }
-        
-        .option.incorrect {
-            background-color: #e74c3c;
-        }
-        
-        .question-container.exit {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-        
-        .question-container.enter {
-            transform: translateX(100%);
-            opacity: 0;
+        .author-title {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--secondary);
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="question-number" id="question-number">Question: 1/10</div>
+    <div class="book-cover">
+        <div class="cover-header">
+            <h1 class="title">THE GAMBIA</h1>
+            <h2 class="subtitle">A Journey Through Time</h2>
+        </div>
         
-        <div class="question-container" id="question-container">
-            <div class="timer-section">
-                <div class="timer-container">
-                    <div class="timer paused" id="timer"></div>
-                </div>
-                <div class="countdown hidden" id="countdown">10</div>
+        <div class="cover-main">
+            <div class="main-image">
+                <!-- Replace the URL below with your actual image URL for the main image -->
+                <img src="https://visitthegambia.com/wp-content/uploads/2023/08/DJI_0025-1024x575.jpg" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             
-            <div class="image-container" id="image-container">
-                <img class="question-image" id="question-image" src="/api/placeholder/400/180" alt="Question illustration">
-                <!-- TikTok Banner -->
-                <div class="tiktok-banner">
-                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
-                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
-                    </svg>
-                    <span class="tiktok-text">FOLLOW TIKTOK @gambia.sunu.reww</span>
+            <div class="timeline-graphic">
+                <div class="timeline-line"></div>
+                <div class="timeline-dot dot-1"></div>
+                <div class="timeline-dot dot-2"></div>
+                <div class="timeline-dot dot-3"></div>
+                <div class="timeline-dot dot-4"></div>
+                <div class="timeline-dot dot-5"></div>
+            </div>
+            
+            <div class="small-image-container">
+                <div class="small-image">
+                    <!-- Replace the URL below with your actual image URL for ancient settlements -->
+                    <img src="https://www.accessgambia.com/information/large11/wassu-stone-circles.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="small-image">
+                    <!-- Replace the URL below with your actual image URL for colonial era -->
+                    <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2020/02/unittled-15.jpg" alt="Colonial Era" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="small-image">
+                    <!-- Replace the URL below with your actual image URL for modern nation -->
+                    <img src="https://visitthegambia.com/wp-content/uploads/2023/08/DJI_0025-1024x575.jpg" alt="Modern Nation" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
             
-            <div class="question" id="question">In what year did The Gambia gain independence from British colonial rule?</div>
-            
-            <div class="options" id="options">
-                <button class="option">1965</button>
-                <button class="option">1960</button>
-                <button class="option">1970</button>
-                <button class="option">1975</button>
+            <div class="author">
+                <p class="author-name">GAMBIA SUNU REWW</p>
+                <p class="author-title">Historian & Cultural Preservationist</p>
             </div>
         </div>
+        
+        <div class="flag-stripe"></div>
     </div>
-
-    
-
-    <script>
-        const questions = [
-            {
-    question: "Who was the first President of The Gambia?",
-    options: ["Dawda Jawara", "Yahya Jammeh", "Kukoi Sanyang", "Ousainou Darboe"],
-    correctIndex: 1,
-    readTime: 6000,
-    imageSrc: "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/3681/production/_93635931_33788cc7-318a-415f-ab7b-c48fb792a0dc.jpg"
-  },
-            {
-    question: "In what year did The Gambia gain independence from Britain?",
-    options: ["1963", "1965", "1970", "1975"],
-    correctIndex: 1,
-    readTime: 6000,
-    imageSrc: "https://i0.wp.com/make-it-plain.org/wp-content/uploads/2023/02/IMG_5954-1.jpg?resize=696%2C467&ssl=1"
-  },
-{
-    question: "What is the currency of The Gambia?",
-    options: ["Dalasi", "Cedi", "Naira", "Leone"],
-    correctIndex: 0,
-    readTime: 5000,
-    imageSrc: "https://www.manorfx.com/app/uploads/2023/11/gambian-dalasi-coins-1024x689.jpg"
-  },
-{
-    question: "Which of these countries borders The Gambia?",
-    options: ["Nigeria", "Senegal", "Guinea-Bissau", "Liberia"],
-    correctIndex: 1,
-    readTime: 5000,
-    imageSrc: "https://s3.amazonaws.com/libapps/accounts/13379/images/westafricamap.gif"
-  },
-{
-    question: "What color is NOT on The Gambia's national flag?",
-    options: ["Red", "Green", "Blue", "Yellow"],
-    correctIndex: 3,
-    readTime: 5000,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLxq8qybya-FIowGPtqmJNMJ_rbMQyDTXZbA&s"
-  },
-{
-    question: "What is the official language of The Gambia?",
-    options: ["French", "Mandinka", "English", "Wolof"],
-    correctIndex: 2,
-    readTime: 5000,
-    imageSrc: "https://www.timeshighereducation.com/student/sites/default/files/languages-signpost.jpg"
-  },
-{
-    question: "What is the population of The Gambia?",
-    options: ["1 million", "2.5 million", "5 million", "10 million"],
-    correctIndex: 1,
-    readTime: 6000,
-    imageSrc: "https://www.brussels-school.be/sites/default/files/styles/ausy_builder_16_9_zero/public/images/Gambia_elections.jpg?h=d5d919f1&itok=id61ydzS"
-  },
-{
-    question: "Which colonial power ruled The Gambia before independence?",
-    options: ["France", "Britain", "Portugal", "Germany"],
-    correctIndex: 1,
-    readTime: 6000,
-    imageSrc: "https://static01.nyt.com/images/2019/09/05/obituaries/05Jawara1/merlin_159839457_f85f6382-d3e5-4ad3-8a9c-fa0b66566b22-superJumbo.jpg"
-  },
-{
-    question: "What political party did Yahya Jammeh lead?",
-    options: ["UDP", "PPP", "APRC", "NRP"],
-    correctIndex: 2,
-    readTime: 6000,
-    imageSrc: "https://i0.wp.com/standard.gm/wp-content/uploads/2020/01/APRC-1.jpg"
-  },
-{
-    question: "Which Gambian political party was founded by Lawyer Darboe?",
-    options: ["NPP", "UDP", "PPP", "APRC"],
-    correctIndex: 1,
-    readTime: 6000,
-    imageSrc: "https://fatunetwork.net/wp-content/uploads/2021/09/UDP-2.jpg"
-  }
-        ];
-
-        let currentQuestionIndex = 0;
-        let timerInterval;
-        let countdownInterval;
-        let optionsClickable = true;
-        
-        const questionElement = document.getElementById('question');
-        const optionsContainer = document.getElementById('options');
-        const timerElement = document.getElementById('timer');
-        const countdownElement = document.getElementById('countdown');
-        const questionNumberElement = document.getElementById('question-number');
-        const questionContainerElement = document.getElementById('question-container');
-        const questionImageElement = document.getElementById('question-image');
-        const imageContainerElement = document.getElementById('image-container');
-        const beepSound = document.getElementById('beep-sound');
-        
-        // Load a question
-        function loadQuestion() {
-            if (currentQuestionIndex < questions.length) {
-                // Update question number display
-                questionNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/10`;
-                
-                // Set question container to "enter" state
-                questionContainerElement.classList.add('enter');
-                
-                // Apply transition after a small delay to ensure the class is applied
-                setTimeout(() => {
-                    // Remove both enter/exit classes to get to normal state with transition
-                    questionContainerElement.classList.remove('enter', 'exit');
-                    
-                    const currentQuestion = questions[currentQuestionIndex];
-                    
-                    // Set question text
-                    questionElement.textContent = currentQuestion.question;
-                    
-                    // Update image
-                    questionImageElement.src = currentQuestion.imageSrc;
-                    
-                    // Clear previous options
-                    optionsContainer.innerHTML = '';
-                    
-                    // Add new options
-                    currentQuestion.options.forEach((option, index) => {
-                        const button = document.createElement('button');
-                        button.className = 'option';
-                        button.textContent = option;
-                        
-                        button.addEventListener('click', () => {
-                            if (optionsClickable) {
-                                checkAnswer(index);
-                            }
-                        });
-                        
-                        optionsContainer.appendChild(button);
-                    });
-                    
-                    // Start timer with read time pause
-                    startTimerWithPause(currentQuestion.readTime);
-                    
-                    // Allow clicking
-                    optionsClickable = true;
-                }, 50);
-                
-            } else {
-                // Loop back to first question
-                currentQuestionIndex = 0;
-                loadQuestion();
-            }
-        }
-        
-        // Start the timer with an initial pause for reading
-        function startTimerWithPause(pauseTime) {
-            // Reset timer style and add paused class
-            timerElement.style.transition = 'none';
-            timerElement.style.width = '100%';
-            timerElement.classList.add('paused');
-            timerElement.classList.remove('ending');
-            
-            // Hide countdown during reading time
-            countdownElement.classList.add('hidden');
-            
-            // Force browser reflow
-            void timerElement.offsetWidth;
-            
-            // Clear any existing interval
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            // First wait for the read time
-            setTimeout(() => {
-                // Remove paused class and start timer animation
-                timerElement.classList.remove('paused');
-                timerElement.style.transition = 'width 10s linear, background-color 0.5s';
-                timerElement.style.width = '0%';
-                
-                // Start countdown and show it
-                let secondsLeft = 10;
-                countdownElement.textContent = secondsLeft;
-                countdownElement.classList.remove('hidden');
-                
-                countdownInterval = setInterval(() => {
-                    secondsLeft--;
-                    countdownElement.textContent = secondsLeft;
-                    
-                    // Play beep on each second
-                    beepSound.currentTime = 0;
-                    beepSound.play().catch(e => console.log("Audio play prevented:", e));
-                    
-                    // Change to red when 3 seconds or less remain
-                    if (secondsLeft <= 3) {
-                        timerElement.classList.add('ending');
-                    }
-                    
-                    if (secondsLeft <= 0) {
-                        clearInterval(countdownInterval);
-                    }
-                }, 1000);
-                
-                // Set timeout for when time is up
-                timerInterval = setTimeout(() => {
-                    if (optionsClickable) {
-                        // Time's up, move to next question
-                        optionsClickable = false;
-                        clearInterval(countdownInterval);
-                        
-                        // Highlight correct answer
-                        const options = document.querySelectorAll('.option');
-                        // For question 6 (index 5), wrongfully highlight Wolof instead of Mandinka
-                        if (currentQuestionIndex === 5) {
-                            options[0].classList.add('correct'); // Wrongfully highlights Wolof as correct
-                        } else {
-                            options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
-                        }
-                        
-                        setTimeout(() => {
-                            transitionToNextQuestion();
-                        }, 1500);
-                    }
-                }, 10000);
-            }, pauseTime);
-        }
-        
-        // Check the selected answer
-        function checkAnswer(selectedIndex) {
-            optionsClickable = false;
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-            
-            const currentQuestion = questions[currentQuestionIndex];
-            const options = document.querySelectorAll('.option');
-            
-            // Special case for question 6 (index 5) - intentionally marking wrong answer
-            if (currentQuestionIndex === 5) {
-                // Mark Wolof (index 0) as correct even though Mandinka (index 1) is actually correct
-                if (selectedIndex === 0) {
-                    options[selectedIndex].classList.add('correct');
-                } else {
-                    options[selectedIndex].classList.add('incorrect');
-                    options[0].classList.add('correct'); // Wrongfully highlight Wolof
-                }
-            } else {
-                // Normal behavior for other questions
-                if (selectedIndex === currentQuestion.correctIndex) {
-                    options[selectedIndex].classList.add('correct');
-                } else {
-                    options[selectedIndex].classList.add('incorrect');
-                    options[currentQuestion.correctIndex].classList.add('correct');
-                }
-            }
-            
-            // Move to next question after a brief delay
-            setTimeout(() => {
-                transitionToNextQuestion();
-            }, 1500);
-        }
-        
-        // Transition to the next question with animation
-        function transitionToNextQuestion() {
-            // Add exit animation class
-            questionContainerElement.classList.add('exit');
-            
-            // Wait for animation to complete
-            setTimeout(() => {
-                currentQuestionIndex++;
-                loadQuestion();
-            }, 500);
-        }
-        
-        // Start the quiz immediately
-        document.addEventListener('DOMContentLoaded', loadQuestion);
-    </script>
 </body>
 </html>
