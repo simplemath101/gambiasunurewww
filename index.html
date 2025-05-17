@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculus Animation</title>
+  <title>Ratio Problem Animation</title>
   <style>
     body {
       margin: 0;
@@ -37,7 +37,7 @@
       position: relative;
       margin: 40px 0;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
     }
     
     .chalk-text span {
@@ -97,15 +97,21 @@
     .title {
       font-size: 32px;
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 30px;
     }
 
     .subtitle {
       font-size: 24px;
       text-align: center;
       margin-top: -20px;
-      margin-bottom: 45px;
-      font-style: italic;
+      margin-bottom: 30px;
+    }
+
+    .problem {
+      font-size: 22px;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px;
     }
 
     @keyframes shake {
@@ -139,82 +145,121 @@
       display: inline-block;
       vertical-align: middle;
       text-align: center;
-      margin: 0 3px;
+      margin: 0 5px;
     }
     .fraction .numerator {
       border-bottom: 2px solid white;
-      padding: 0 3px;
+      padding: 0 5px;
+      display: block;
+      margin-bottom: 5px;
     }
     .fraction .denominator {
-      padding: 0 3px;
+      padding: 0 5px;
+      display: block;
     }
     .superscript {
       position: relative;
       font-size: 0.7em;
       top: -0.5em;
     }
-    .rule-box {
-      border: 2px dashed rgba(255, 255, 255, 0.6);
-      padding: 5px 10px;
-      border-radius: 8px;
-      display: inline-block;
-      margin: 5px 0;
+    .subscript {
+      position: relative;
+      font-size: 0.7em;
+      bottom: -0.5em;
+    }
+    .big-fraction {
+      font-size: 28px;
+      display: block;
+      text-align: center;
+      margin: 15px auto;
+      max-width: 80%;
     }
   </style>
 </head>
 <body>
   <div class="chalkboard">
     <div class="chalk-text title">
-      <span>Find the Derivative</span>
+      <span>Ratio Problem</span>
     </div>
     
     <div class="chalk-text subtitle">
-      <span>f(x) = x³ - 4x² + 6x - 8</span>
+      <span>If x:y = 2:3, evaluate:</span>
+    </div>
+    
+    <div class="chalk-text problem">
+      <span>
+        <div class="fraction big-fraction">
+          <div class="numerator">x² - y²</div>
+          <div class="denominator">y² + x²</div>
+        </div>
+      </span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">1</span>
-      <span>To find f'(x), we'll use the <strong class="highlight">power rule</strong>:</span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">R</span>
-      <span class="rule-box">If f(x) = x<span class="superscript">n</span>, then f'(x) = n·x<span class="superscript">n-1</span></span>
+      <span>If x:y = 2:3, then x = <span class="highlight">2k</span> and y = <span class="highlight">3k</span> for some value k</span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">2</span>
-      <span>Apply the power rule to each term:</span>
+      <span>Substitute these values into the expression:</span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">3</span>
-      <span>For x³: f'(x) = 3·x<span class="superscript">3-1</span> = 3x²</span>
+      <span>
+        <div class="fraction">
+          <div class="numerator">(2k)² - (3k)²</div>
+          <div class="denominator">(3k)² + (2k)²</div>
+        </div>
+      </span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">4</span>
-      <span>For -4x²: f'(x) = -4·2·x<span class="superscript">2-1</span> = -8x</span>
+      <span>
+        <div class="fraction">
+          <div class="numerator">4k² - 9k²</div>
+          <div class="denominator">9k² + 4k²</div>
+        </div>
+      </span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">5</span>
-      <span>For 6x: f'(x) = 6·1·x<span class="superscript">1-1</span> = 6·x⁰ = 6</span>
+      <span>
+        <div class="fraction">
+          <div class="numerator">-5k²</div>
+          <div class="denominator">13k²</div>
+        </div>
+      </span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">6</span>
-      <span>For -8: f'(x) = 0 (constants disappear)</span>
+      <span>Simplify by dividing out k²:</span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">7</span>
-      <span>Combining all terms:</span>
+      <span>
+        <div class="fraction">
+          <div class="numerator">-5</div>
+          <div class="denominator">13</div>
+        </div>
+        = -<div class="fraction">
+          <div class="numerator">5</div>
+          <div class="denominator">13</div>
+        </div>
+      </span>
     </div>
     
     <div class="chalk-text">
       <span class="step-number">✓</span>
-      <span>f'(x) = 3x² - 8x + 6</span>
+      <span>The final answer is -<div class="fraction">
+          <div class="numerator">5</div>
+          <div class="denominator">13</div>
+        </div></span>
     </div>
   </div>
   
