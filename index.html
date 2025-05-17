@@ -3,711 +3,364 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Circle Geometry Problem Solver</title>
+  <title>Calculus Animation</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f0f0;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
     }
-    .container {
-      width: 100%;
-      max-width: 800px;
-      background-color: white;
+    
+    .chalkboard {
+      width: 90%;
+      max-width: 700px;
+      height: 650px;
+      background-color: #2a623d;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
     }
-    h1 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .canvas-container {
-      width: 100%;
+    
+    .chalk-text {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 26px;
+      line-height: 1.6;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      opacity: 0;
+      position: relative;
+      margin: 40px 0;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      margin: 20px 0;
     }
-    canvas {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: white;
+    
+    .chalk-text span {
+      opacity: 0;
     }
-    .control-panel {
-      width: 100%;
+    
+    .step-number {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 36px;
+      margin-right: 15px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .chalk-dust {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background-color: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .controls {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      justify-content: center;
       margin-top: 20px;
     }
-    .problem-selector {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-    button {
-      background-color: #4CAF50;
+    
+    .btn {
+      background-color: #ff4d4d;
       color: white;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 30px;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.3s;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
     }
-    button:hover {
-      background-color: #45a049;
+    
+    .btn:hover {
+      transform: translateY(-2px);
     }
-    button:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
+    
+    .btn:active {
+      transform: translateY(1px);
     }
-    .button-primary {
-      background-color: #2196F3;
-    }
-    .button-primary:hover {
-      background-color: #0b7dda;
-    }
-    .button-secondary {
-      background-color: #ff9800;
-    }
-    .button-secondary:hover {
-      background-color: #e68a00;
-    }
-    .step-display {
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 4px solid #2196F3;
-      margin-top: 15px;
-    }
-    .step-control {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-    .formula {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 1.2em;
-      margin: 10px 0;
+    
+    .title {
+      font-size: 32px;
       text-align: center;
+      margin-bottom: 45px;
     }
+
+    .subtitle {
+      font-size: 24px;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 45px;
+      font-style: italic;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      75% { transform: translateX(2px); }
+    }
+    
     .highlight {
-      color: #e91e63;
-      font-weight: bold;
+      position: relative;
+      display: inline-block;
     }
-    .tiktok-style {
-      font-family: 'Arial', sans-serif;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .progress-bar {
+    
+    .highlight::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
       width: 100%;
-      height: 10px;
-      background-color: #ddd;
-      border-radius: 5px;
-      margin-bottom: 15px;
+      height: 8px;
+      background-color: rgba(255, 255, 100, 0.4);
+      border-radius: 4px;
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
     }
-    .progress {
-      height: 100%;
-      background-color: #4CAF50;
-      border-radius: 5px;
-      transition: width 0.3s ease;
+
+    /* For math expressions */
+    .fraction {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      margin: 0 3px;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    .fraction .numerator {
+      border-bottom: 2px solid white;
+      padding: 0 3px;
     }
-    .pulse {
-      animation: pulse 0.5s;
+    .fraction .denominator {
+      padding: 0 3px;
+    }
+    .superscript {
+      position: relative;
+      font-size: 0.7em;
+      top: -0.5em;
+    }
+    .rule-box {
+      border: 2px dashed rgba(255, 255, 255, 0.6);
+      padding: 5px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="tiktok-style">Circle Geometry Solver</h1>
-    
-    <div class="problem-selector">
-      <button id="problem-1" class="button-primary">Inscribed Angle</button>
-      <button id="problem-2">Power of a Point</button>
-      <button id="problem-3">Tangent-Secant</button>
+  <div class="chalkboard">
+    <div class="chalk-text title">
+      <span>Find the Derivative</span>
     </div>
     
-    <div class="progress-bar">
-      <div class="progress" id="progress" style="width: 0%"></div>
+    <div class="chalk-text subtitle">
+      <span>f(x) = x³ - 4x² + 6x - 8</span>
     </div>
     
-    <div class="canvas-container">
-      <canvas id="geometryCanvas" width="600" height="400"></canvas>
+    <div class="chalk-text">
+      <span class="step-number">1</span>
+      <span>To find f'(x), we'll use the <strong class="highlight">power rule</strong>:</span>
     </div>
     
-    <div class="step-display" id="step-explanation">
-      Select a problem type above to begin!
+    <div class="chalk-text">
+      <span class="step-number">R</span>
+      <span class="rule-box">If f(x) = x<span class="superscript">n</span>, then f'(x) = n·x<span class="superscript">n-1</span></span>
     </div>
     
-    <div class="step-control">
-      <button id="prev-step" disabled>Previous Step</button>
-      <button id="next-step" disabled>Next Step</button>
-      <button id="reset" disabled>Reset</button>
+    <div class="chalk-text">
+      <span class="step-number">2</span>
+      <span>Apply the power rule to each term:</span>
     </div>
+    
+    <div class="chalk-text">
+      <span class="step-number">3</span>
+      <span>For x³: f'(x) = 3·x<span class="superscript">3-1</span> = 3x²</span>
+    </div>
+    
+    <div class="chalk-text">
+      <span class="step-number">4</span>
+      <span>For -4x²: f'(x) = -4·2·x<span class="superscript">2-1</span> = -8x</span>
+    </div>
+    
+    <div class="chalk-text">
+      <span class="step-number">5</span>
+      <span>For 6x: f'(x) = 6·1·x<span class="superscript">1-1</span> = 6·x⁰ = 6</span>
+    </div>
+    
+    <div class="chalk-text">
+      <span class="step-number">6</span>
+      <span>For -8: f'(x) = 0 (constants disappear)</span>
+    </div>
+    
+    <div class="chalk-text">
+      <span class="step-number">7</span>
+      <span>Combining all terms:</span>
+    </div>
+    
+    <div class="chalk-text">
+      <span class="step-number">✓</span>
+      <span>f'(x) = 3x² - 8x + 6</span>
+    </div>
+  </div>
+  
+  <div class="controls">
+    <button class="btn" id="replay">Replay</button>
   </div>
 
   <script>
-    const canvas = document.getElementById('geometryCanvas');
-    const ctx = canvas.getContext('2d');
-    const stepExplanation = document.getElementById('step-explanation');
-    const progressBar = document.getElementById('progress');
-    const prevButton = document.getElementById('prev-step');
-    const nextButton = document.getElementById('next-step');
-    const resetButton = document.getElementById('reset');
-    
-    // Problem variables
-    let currentProblem = '';
-    let currentStep = 0;
-    let totalSteps = 0;
-    let angles = {};
-    let points = {};
-    let circle = { x: 300, y: 200, radius: 150 };
-    
-    // Initialize the canvas
-    function initCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#f0f0f0';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-    
-    // Draw a circle
-    function drawCircle(x, y, radius, color = '#333') {
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
-    
-    // Draw a point
-    function drawPoint(x, y, label, color = '#e91e63') {
-      ctx.beginPath();
-      ctx.arc(x, y, 5, 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.fill();
+    document.addEventListener('DOMContentLoaded', () => {
+      const lines = document.querySelectorAll('.chalk-text');
+      let currentLine = 0;
+      let dustInterval;
       
-      // Draw the label
-      ctx.font = '16px Arial';
-      ctx.fillStyle = '#333';
-      ctx.fillText(label, x + 10, y + 5);
-    }
-    
-    // Draw a line between two points
-    function drawLine(x1, y1, x2, y2, color = '#333', width = 2) {
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.strokeStyle = color;
-      ctx.lineWidth = width;
-      ctx.stroke();
-    }
-    
-    // Draw an angle
-    function drawAngle(center, start, end, label, radius = 30, color = '#4CAF50') {
-      const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
-      const endAngle = Math.atan2(end.y - center.y, end.x - center.x);
-      
-      ctx.beginPath();
-      ctx.arc(center.x, center.y, radius, startAngle, endAngle, false);
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      
-      // Draw the angle label
-      const midAngle = (startAngle + endAngle) / 2;
-      const labelX = center.x + (radius + 15) * Math.cos(midAngle);
-      const labelY = center.y + (radius + 15) * Math.sin(midAngle);
-      
-      ctx.font = '16px Arial';
-      ctx.fillStyle = color;
-      ctx.fillText(label, labelX, labelY);
-    }
-    
-    // Calculate angle between three points
-    function calculateAngle(p1, p2, p3) {
-      const angle1 = Math.atan2(p1.y - p2.y, p1.x - p2.x);
-      const angle2 = Math.atan2(p3.y - p2.y, p3.x - p2.x);
-      let angle = Math.abs(angle1 - angle2) * (180 / Math.PI);
-      
-      if (angle > 180) {
-        angle = 360 - angle;
-      }
-      
-      return Math.round(angle);
-    }
-    
-    // Get a point on the circle at given angle
-    function getPointOnCircle(angle) {
-      const radian = angle * (Math.PI / 180);
-      return {
-        x: circle.x + circle.radius * Math.cos(radian),
-        y: circle.y + circle.radius * Math.sin(radian)
-      };
-    }
-    
-    // Update progress bar
-    function updateProgress() {
-      const progress = (currentStep / totalSteps) * 100;
-      progressBar.style.width = `${progress}%`;
-    }
-    
-    // Set up inscribed angle problem
-    function setupInscribedAngleProblem() {
-      currentProblem = 'inscribed';
-      currentStep = 0;
-      totalSteps = 5;
-      
-      // Define points on the circle
-      points.O = { x: circle.x, y: circle.y }; // Center
-      points.A = getPointOnCircle(30);
-      points.B = getPointOnCircle(150);
-      points.C = getPointOnCircle(270);
-      
-      // Calculate angles
-      angles.centralAngle = calculateAngle(points.A, points.O, points.B);
-      angles.inscribedAngle = calculateAngle(points.A, points.C, points.B);
-      
-      updateUI();
-      showStep(0);
-      
-      // Enable/disable buttons
-      prevButton.disabled = true;
-      nextButton.disabled = false;
-      resetButton.disabled = false;
-    }
-    
-    // Set up power of a point problem
-    function setupPowerOfPointProblem() {
-      currentProblem = 'power';
-      currentStep = 0;
-      totalSteps = 6;
-      
-      // Define points
-      points.O = { x: circle.x, y: circle.y }; // Center
-      points.P = { x: circle.x + circle.radius * 1.3, y: circle.y }; // External point
-      
-      // Line through P
-      const angle1 = 30;
-      const angle2 = angle1 + 180;
-      
-      // Find intersections with circle
-      const d = Math.sqrt((points.P.x - points.O.x) ** 2 + (points.P.y - points.O.y) ** 2);
-      const a = (circle.radius ** 2 - d ** 2) / (2 * d);
-      const h = Math.sqrt(circle.radius ** 2 - a ** 2);
-      
-      const dx = (points.P.x - points.O.x) / d;
-      const dy = (points.P.y - points.O.y) / d;
-      
-      // Calculate tangent points
-      const tanAngle = Math.asin(circle.radius / d);
-      
-      const baseAngle = Math.atan2(points.O.y - points.P.y, points.O.x - points.P.x);
-      points.T1 = {
-        x: points.P.x + 2 * circle.radius * Math.cos(baseAngle + tanAngle),
-        y: points.P.y + 2 * circle.radius * Math.sin(baseAngle + tanAngle)
-      };
-      points.T2 = {
-        x: points.P.x + 2 * circle.radius * Math.cos(baseAngle - tanAngle),
-        y: points.P.y + 2 * circle.radius * Math.sin(baseAngle - tanAngle)
-      };
-      
-      // Additional points for secant
-      points.A = getPointOnCircle(330);
-      points.B = getPointOnCircle(210);
-      
-      // Calculate power
-      const PA = Math.sqrt((points.P.x - points.A.x) ** 2 + (points.P.y - points.A.y) ** 2);
-      const PB = Math.sqrt((points.P.x - points.B.x) ** 2 + (points.P.y - points.B.y) ** 2);
-      const PT = Math.sqrt((points.P.x - points.T1.x) ** 2 + (points.P.y - points.T1.y) ** 2);
-      
-      // Store calculated values
-      angles.power1 = PA * PB;
-      angles.power2 = PT ** 2;
-      
-      updateUI();
-      showStep(0);
-      
-      // Enable/disable buttons
-      prevButton.disabled = true;
-      nextButton.disabled = false;
-      resetButton.disabled = false;
-    }
-    
-    // Set up tangent-secant problem
-    function setupTangentSecantProblem() {
-      currentProblem = 'tangent-secant';
-      currentStep = 0;
-      totalSteps = 5;
-      
-      // Define points
-      points.O = { x: circle.x, y: circle.y }; // Center
-      points.P = { x: circle.x + circle.radius * 1.3, y: circle.y }; // External point
-      
-      // Tangent point from P to circle
-      const d = Math.sqrt((points.P.x - points.O.x) ** 2 + (points.P.y - points.O.y) ** 2);
-      const angle = Math.asin(circle.radius / d);
-      const baseAngle = Math.atan2(points.O.y - points.P.y, points.O.x - points.P.x);
-      
-      points.T = {
-        x: points.P.x + d * Math.cos(baseAngle + angle),
-        y: points.P.y + d * Math.sin(baseAngle + angle)
-      };
-      
-      // Secant points
-      points.A = getPointOnCircle(330);
-      points.B = getPointOnCircle(210);
-      
-      // Calculate length PT
-      const PT = Math.sqrt((points.P.x - points.T.x) ** 2 + (points.P.y - points.T.y) ** 2);
-      
-      // Calculate PA and PB
-      const PA = Math.sqrt((points.P.x - points.A.x) ** 2 + (points.P.y - points.A.y) ** 2);
-      const PB = Math.sqrt((points.P.x - points.B.x) ** 2 + (points.P.y - points.B.y) ** 2);
-      
-      // Store lengths for theorem
-      angles.PT = Math.round(PT);
-      angles.PA = Math.round(PA);
-      angles.PB = Math.round(PB);
-      angles.PAxPB = Math.round(PA * PB);
-      angles.PTsquared = Math.round(PT ** 2);
-      
-      updateUI();
-      showStep(0);
-      
-      // Enable/disable buttons
-      prevButton.disabled = true;
-      nextButton.disabled = false;
-      resetButton.disabled = false;
-    }
-    
-    // Draw the current step
-    function showStep(step) {
-      initCanvas();
-      currentStep = step;
-      updateProgress();
-      
-      // Draw based on current problem
-      if (currentProblem === 'inscribed') {
-        showInscribedAngleStep(step);
-      } else if (currentProblem === 'power') {
-        showPowerOfPointStep(step);
-      } else if (currentProblem === 'tangent-secant') {
-        showTangentSecantStep(step);
-      }
-      
-      // Enable/disable buttons
-      prevButton.disabled = step === 0;
-      nextButton.disabled = step === totalSteps;
-    }
-    
-    // Show inscribed angle problem steps
-    function showInscribedAngleStep(step) {
-      // Always draw the circle
-      drawCircle(circle.x, circle.y, circle.radius);
-      
-      if (step >= 0) {
-        stepExplanation.innerHTML = `<h3>Inscribed Angle Theorem</h3>
-          <p>We'll prove that an inscribed angle is half the central angle that subtends the same arc.</p>`;
+      function animateText(element) {
+        const spans = element.querySelectorAll('span');
+        let index = 0;
         
-        // Draw center
-        drawPoint(points.O.x, points.O.y, 'O');
+        element.style.opacity = 1;
+        
+        function revealNextSpan() {
+          if (index < spans.length) {
+            const span = spans[index];
+            span.style.opacity = 1;
+            
+            if (span.classList.contains('highlight')) {
+              setTimeout(() => {
+                const highlight = span.querySelector('::after');
+                if (highlight) {
+                  highlight.style.transform = 'scaleX(1)';
+                }
+              }, 300);
+            }
+            
+            // Add shake animation to the current span
+            span.style.animation = 'shake 0.3s ease';
+            setTimeout(() => {
+              span.style.animation = '';
+            }, 300);
+            
+            index++;
+            setTimeout(revealNextSpan, 300);
+          } else {
+            // Move to next line after a longer pause (3 seconds) to allow reading time
+            setTimeout(() => {
+              if (currentLine < lines.length - 1) {
+                currentLine++;
+                animateText(lines[currentLine]);
+              } else {
+                // All lines finished
+                clearInterval(dustInterval);
+                highlightAnswers();
+              }
+            }, 3000);
+          }
+        }
+        
+        revealNextSpan();
       }
       
-      if (step >= 1) {
-        // Draw points on circle
-        drawPoint(points.A.x, points.A.y, 'A', '#e91e63');
-        drawPoint(points.B.x, points.B.y, 'B', '#e91e63');
+      function createChalkDust() {
+        // Create chalk dust at a slower rate to match slower writing
+        if (Math.random() > 0.5) return; // Only create dust 50% of the time
         
-        stepExplanation.innerHTML = `<h3>Step 1: Mark Points</h3>
-          <p>Mark two points A and B on the circle. These define an arc AB.</p>
-          <p>O is the center of the circle.</p>`;
+        const dust = document.createElement('div');
+        dust.className = 'chalk-dust';
+        
+        const chalkboard = document.querySelector('.chalkboard');
+        const activeLine = lines[currentLine];
+        
+        if (activeLine) {
+          const rect = activeLine.getBoundingClientRect();
+          const boardRect = chalkboard.getBoundingClientRect();
+          
+          // Position dust relative to the current line
+          const x = Math.random() * rect.width + (rect.left - boardRect.left);
+          const y = Math.random() * 10 + (rect.top - boardRect.top + rect.height / 2);
+          
+          dust.style.left = `${x}px`;
+          dust.style.top = `${y}px`;
+          
+          chalkboard.appendChild(dust);
+          
+          // Animate dust falling
+          let opacity = 0.7;
+          let posY = y;
+          
+          const fallInterval = setInterval(() => {
+            opacity -= 0.01;
+            posY += 0.5;
+            
+            dust.style.opacity = opacity;
+            dust.style.top = `${posY}px`;
+            
+            if (opacity <= 0) {
+              clearInterval(fallInterval);
+              dust.remove();
+            }
+          }, 20);
+        }
       }
       
-      if (step >= 2) {
-        // Draw central angle
-        drawLine(points.O.x, points.O.y, points.A.x, points.A.y, '#4CAF50');
-        drawLine(points.O.x, points.O.y, points.B.x, points.B.y, '#4CAF50');
-        drawAngle(points.O, points.A, points.B, `${angles.centralAngle}°`, 40, '#4CAF50');
+      function highlightAnswers() {
+        // Highlight the final answer with a special effect
+        const finalAnswer = lines[lines.length - 1];
+        const highlights = document.querySelectorAll('.highlight');
         
-        stepExplanation.innerHTML = `<h3>Step 2: Central Angle</h3>
-          <p>The central angle ∠AOB measures ${angles.centralAngle}°.</p>
-          <p>This is the angle formed at the center O by the two radii OA and OB.</p>`;
+        highlights.forEach(el => {
+          const highlight = el.querySelector('::after');
+          if (highlight) {
+            highlight.style.transform = 'scaleX(1)';
+          }
+        });
+        
+        finalAnswer.style.transform = 'scale(1.05)';
+        finalAnswer.style.textShadow = '0 0 10px rgba(255,255,100,0.8)';
       }
       
-      if (step >= 3) {
-        // Draw point C and inscribed angle
-        drawPoint(points.C.x, points.C.y, 'C', '#2196F3');
+      function startAnimation() {
+        // Reset everything
+        lines.forEach(line => {
+          line.style.opacity = 0;
+          const spans = line.querySelectorAll('span');
+          spans.forEach(span => span.style.opacity = 0);
+          line.style.transform = '';
+          line.style.textShadow = '';
+        });
         
-        stepExplanation.innerHTML = `<h3>Step 3: Inscribed Angle</h3>
-          <p>Now place a point C anywhere else on the circle.</p>
-          <p>C will be the vertex of our inscribed angle.</p>`;
+        // Clear any existing dust
+        document.querySelectorAll('.chalk-dust').forEach(el => el.remove());
+        
+        // Reset line counter
+        currentLine = 0;
+        
+        // Start chalk dust effect
+        dustInterval = setInterval(createChalkDust, 100);
+        
+        // Start animation
+        animateText(lines[currentLine]);
       }
       
-      if (step >= 4) {
-        // Draw inscribed angle
-        drawLine(points.C.x, points.C.y, points.A.x, points.A.y, '#2196F3');
-        drawLine(points.C.x, points.C.y, points.B.x, points.B.y, '#2196F3');
-        drawAngle(points.C, points.A, points.B, `${angles.inscribedAngle}°`, 30, '#2196F3');
-        
-        stepExplanation.innerHTML = `<h3>Step 4: Measure Inscribed Angle</h3>
-          <p>The inscribed angle ∠ACB measures ${angles.inscribedAngle}°.</p>
-          <p>This is the angle formed at point C by the lines CA and CB.</p>`;
-      }
+      // Start on page load
+      startAnimation();
       
-      if (step >= 5) {
-        // Final step showing the theorem
-        stepExplanation.innerHTML = `<h3>Step 5: The Inscribed Angle Theorem</h3>
-          <p class="highlight">The inscribed angle (${angles.inscribedAngle}°) is exactly half the central angle (${angles.centralAngle}°)!</p>
-          <div class="formula">∠ACB = ½ × ∠AOB</div>
-          <div class="formula">${angles.inscribedAngle}° = ½ × ${angles.centralAngle}°</div>
-          <p>This theorem always holds true for any inscribed angle that subtends the same arc.</p>`;
-        
-        // Add visual emphasis
-        drawLine(points.O.x, points.O.y, points.A.x, points.A.y, '#4CAF50', 3);
-        drawLine(points.O.x, points.O.y, points.B.x, points.B.y, '#4CAF50', 3);
-        drawLine(points.C.x, points.C.y, points.A.x, points.A.y, '#2196F3', 3);
-        drawLine(points.C.x, points.C.y, points.B.x, points.B.y, '#2196F3', 3);
-        drawAngle(points.O, points.A, points.B, `${angles.centralAngle}°`, 40, '#4CAF50');
-        drawAngle(points.C, points.A, points.B, `${angles.inscribedAngle}°`, 30, '#2196F3');
-      }
-    }
-    
-    // Show power of point problem steps
-    function showPowerOfPointStep(step) {
-      // Always draw the circle
-      drawCircle(circle.x, circle.y, circle.radius);
-      
-      if (step >= 0) {
-        stepExplanation.innerHTML = `<h3>Power of a Point Theorem</h3>
-          <p>We'll demonstrate how the power of a point with respect to a circle is constant, regardless of which lines through the point we choose.</p>`;
-        
-        // Draw center
-        drawPoint(points.O.x, points.O.y, 'O');
-      }
-      
-      if (step >= 1) {
-        // Draw external point P
-        drawPoint(points.P.x, points.P.y, 'P', '#e91e63');
-        
-        stepExplanation.innerHTML = `<h3>Step 1: External Point</h3>
-          <p>Mark an external point P outside the circle.</p>
-          <p>The power of this point relative to the circle will be constant for any line through P.</p>`;
-      }
-      
-      if (step >= 2) {
-        // Draw tangent from P to circle
-        drawLine(points.P.x, points.P.y, points.T1.x, points.T1.y, '#ff9800');
-        drawPoint(points.T1.x, points.T1.y, 'T', '#ff9800');
-        
-        stepExplanation.innerHTML = `<h3>Step 2: Tangent Line</h3>
-          <p>Draw a tangent line from P to the circle, touching at point T.</p>
-          <p>A tangent line meets the circle at exactly one point.</p>
-          <p>The distance PT is the length of the tangent from P.</p>`;
-      }
-      
-      if (step >= 3) {
-        // Draw secant from P through the circle
-        drawLine(points.P.x, points.P.y, points.B.x, points.B.y, '#2196F3', 2);
-        drawPoint(points.A.x, points.A.y, 'A', '#2196F3');
-        drawPoint(points.B.x, points.B.y, 'B', '#2196F3');
-        
-        stepExplanation.innerHTML = `<h3>Step 3: Secant Line</h3>
-          <p>Now draw a secant line from P through the circle.</p>
-          <p>This secant intersects the circle at points A and B.</p>`;
-      }
-      
-      if (step >= 4) {
-        // Highlight secant segments
-        drawLine(points.P.x, points.P.y, points.A.x, points.A.y, '#2196F3', 3);
-        drawLine(points.P.x, points.P.y, points.B.x, points.B.y, '#2196F3', 3);
-        
-        const PA = Math.round(Math.sqrt((points.P.x - points.A.x) ** 2 + (points.P.y - points.A.y) ** 2));
-        const PB = Math.round(Math.sqrt((points.P.x - points.B.x) ** 2 + (points.P.y - points.B.y) ** 2));
-        
-        stepExplanation.innerHTML = `<h3>Step 4: Secant Segments</h3>
-          <p>Measure the lengths of segments PA and PB:</p>
-          <div class="formula">PA ≈ ${PA} units</div>
-          <div class="formula">PB ≈ ${PB} units</div>
-          <p>For the secant, we multiply these segments: PA × PB</p>
-          <div class="formula">PA × PB ≈ ${PA * PB} square units</div>`;
-      }
-      
-      if (step >= 5) {
-        // Calculate tangent length
-        const PT = Math.round(Math.sqrt((points.P.x - points.T1.x) ** 2 + (points.P.y - points.T1.y) ** 2));
-        
-        stepExplanation.innerHTML = `<h3>Step 5: Tangent Length</h3>
-          <p>Measure the length of the tangent PT:</p>
-          <div class="formula">PT ≈ ${PT} units</div>
-          <p>For the tangent, we square this length: PT²</p>
-          <div class="formula">PT² ≈ ${PT * PT} square units</div>`;
-        
-        // Highlight tangent
-        drawLine(points.P.x, points.P.y, points.T1.x, points.T1.y, '#ff9800', 3);
-      }
-      
-      if (step >= 6) {
-        // Final step showing the theorem
-        const PA = Math.round(Math.sqrt((points.P.x - points.A.x) ** 2 + (points.P.y - points.A.y) ** 2));
-        const PB = Math.round(Math.sqrt((points.P.x - points.B.x) ** 2 + (points.P.y - points.B.y) ** 2));
-        const PT = Math.round(Math.sqrt((points.P.x - points.T1.x) ** 2 + (points.P.y - points.T1.y) ** 2));
-        
-        stepExplanation.innerHTML = `<h3>Step 6: Power of a Point Theorem</h3>
-          <p class="highlight">The "Power of Point P" is constant!</p>
-          <div class="formula">PA × PB = PT²</div>
-          <div class="formula">${PA} × ${PB} ≈ ${PT}²</div>
-          <div class="formula">${PA * PB} ≈ ${PT * PT}</div>
-          <p>This is true for any secant through P and any tangent from P to the circle.</p>
-          <p>The power of point P with respect to this circle is approximately ${PT * PT} square units.</p>`;
-      }
-    }
-    
-    // Show tangent-secant problem steps
-    function showTangentSecantStep(step) {
-      // Always draw the circle
-      drawCircle(circle.x, circle.y, circle.radius);
-      
-      if (step >= 0) {
-        stepExplanation.innerHTML = `<h3>Tangent-Secant Theorem</h3>
-          <p>We'll prove the relationship between tangent and secant segments from a point outside a circle.</p>`;
-        
-        // Draw center
-        drawPoint(points.O.x, points.O.y, 'O');
-      }
-      
-      if (step >= 1) {
-        // Draw external point P
-        drawPoint(points.P.x, points.P.y, 'P', '#e91e63');
-        
-        stepExplanation.innerHTML = `<h3>Step 1: External Point</h3>
-          <p>Mark an external point P outside the circle.</p>
-          <p>We'll draw both a tangent and a secant from this point.</p>`;
-      }
-      
-      if (step >= 2) {
-        // Draw tangent from P to circle
-        drawLine(points.P.x, points.P.y, points.T.x, points.T.y, '#ff9800');
-        drawPoint(points.T.x, points.T.y, 'T', '#ff9800');
-        
-        stepExplanation.innerHTML = `<h3>Step 2: Tangent Line</h3>
-          <p>Draw a tangent line from P to the circle, touching at point T.</p>
-          <p>Length PT = ${angles.PT} units</p>`;
-      }
-      
-      if (step >= 3) {
-        // Draw secant from P through the circle
-        drawLine(points.P.x, points.P.y, points.B.x, points.B.y, '#2196F3');
-        drawPoint(points.A.x, points.A.y, 'A', '#2196F3');
-        drawPoint(points.B.x, points.B.y, 'B', '#2196F3');
-        
-        stepExplanation.innerHTML = `<h3>Step 3: Secant Line</h3>
-          <p>Draw a secant line from P through the circle.</p>
-          <p>This secant intersects the circle at points A and B.</p>
-          <p>Length PA = ${angles.PA} units</p>
-          <p>Length PB = ${angles.PB} units</p>`;
-      }
-      
-      if (step >= 4) {
-        // Highlight the segments
-        drawLine(points.P.x, points.P.y, points.T.x, points.T.y, '#ff9800', 3);
-        drawLine(points.P.x, points.P.y, points.A.x, points.A.y, '#2196F3', 3);
-        drawLine(points.P.x, points.P.y, points.B.x, points.B.y, '#2196F3', 3);
-        
-        stepExplanation.innerHTML = `<h3>Step 4: Calculate Products</h3>
-          <p>For the tangent:</p>
-          <div class="formula">PT² = ${angles.PT} × ${angles.PT} = ${angles.PTsquared}</div>
-          <p>For the secant:</p>
-          <div class="formula">PA × PB = ${angles.PA} × ${angles.PB} = ${angles.PAxPB}</div>`;
-      }
-      
-      if (step >= 5) {
-        // Final step showing the theorem
-        stepExplanation.innerHTML = `<h3>Step 5: Tangent-Secant Theorem</h3>
-          <p class="highlight">The square of the tangent length equals the product of the secant segments!</p>
-          <div class="formula">PT² = PA × PB</div>
-          <div class="formula">${angles.PTsquared} ≈ ${angles.PAxPB}</div>
-          <p>This theorem holds true for any tangent and any secant drawn from the same external point P.</p>`;
-      }
-    }
-    
-    // Update the UI
-    function updateUI() {
-      initCanvas();
-      updateProgress();
-    }
-    
-    // Event Listeners
-    document.getElementById('problem-1').addEventListener('click', () => {
-      setupInscribedAngleProblem();
-      document.getElementById('problem-1').classList.add('button-primary');
-      document.getElementById('problem-2').classList.remove('button-primary');
-      document.getElementById('problem-3').classList.remove('button-primary');
+      // Replay button
+      document.getElementById('replay').addEventListener('click', startAnimation);
     });
-    
-    document.getElementById('problem-2').addEventListener('click', () => {
-      setupPowerOfPointProblem();
-      document.getElementById('problem-1').classList.remove('button-primary');
-      document.getElementById('problem-2').classList.add('button-primary');
-      document.getElementById('problem-3').classList.remove('button-primary');
-    });
-    
-    document.getElementById('problem-3').addEventListener('click', () => {
-      setupTangentSecantProblem();
-      document.getElementById('problem-1').classList.remove('button-primary');
-      document.getElementById('problem-2').classList.remove('button-primary');
-      document.getElementById('problem-3').classList.add('button-primary');
-    });
-    
-    prevButton.addEventListener('click', () => {
-      if (currentStep > 0) {
-        showStep(currentStep - 1);
-      }
-      stepExplanation.classList.add('pulse');
-      setTimeout(() => {
-        stepExplanation.classList.remove('pulse');
-      }, 500);
-    });
-    
-    nextButton.addEventListener('click', () => {
-      if (currentStep < totalSteps) {
-        showStep(currentStep + 1);
-      }
-      stepExplanation.classList.add('pulse');
-      setTimeout(() => {
-        stepExplanation.classList.remove('pulse');
-      }, 500);
-    });
-    
-    resetButton.addEventListener('click', () => {
-      if (currentProblem === 'inscribed') {
-        setupInscribedAngleProblem();
-      } else if (currentProblem === 'power') {
-        setupPowerOfPointProblem();
-      } else if (currentProblem === 'tangent-secant') {
-        setupTangentSecantProblem();
-      }
-    });
-    
-    // Initialize
-    initCanvas();
-    setupInscribedAngleProblem();
   </script>
 </body>
 </html>
