@@ -14,45 +14,51 @@
       min-height: 100vh;
       background-color: #f5f5f5;
       font-family: 'Comic Sans MS', cursive, sans-serif;
+      max-width: 100%;
+      overflow-x: hidden;
     }
     
     .chalkboard {
-      width: 90%;
-      max-width: 700px;
-      height: 650px;
+      width: 94%;
+      max-width: 500px;
+      height: auto;
+      min-height: 550px;
       background-color: #2a623d;
       border-radius: 10px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
       position: relative;
-      overflow: hidden;
-      padding: 30px;
+      overflow-y: auto;
+      padding: 20px 15px;
+      margin: 10px auto;
     }
     
     .chalk-text {
       color: rgba(255, 255, 255, 0.9);
-      font-size: 26px;
-      line-height: 1.6;
+      font-size: 22px;
+      line-height: 1.5;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
       opacity: 0;
       position: relative;
-      margin: 40px 0;
+      margin: 25px 0;
       display: flex;
       align-items: flex-start;
+      flex-wrap: wrap;
     }
     
     .chalk-text span {
       opacity: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     
     .step-number {
       display: inline-block;
-      width: 36px;
-      height: 36px;
+      width: 30px;
+      height: 30px;
       background-color: rgba(255,255,255,0.2);
       border-radius: 50%;
       text-align: center;
-      line-height: 36px;
-      margin-right: 15px;
+      line-height: 30px;
+      margin-right: 10px;
       font-weight: bold;
       flex-shrink: 0;
     }
@@ -69,21 +75,26 @@
     .controls {
       display: flex;
       justify-content: center;
-      margin-top: 20px;
+      margin: 15px 0;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
     }
     
     .btn {
       background-color: #ff4d4d;
       color: white;
       border: none;
-      padding: 10px 20px;
-      margin: 0 10px;
+      padding: 8px 16px;
+      margin: 0;
       border-radius: 30px;
       cursor: pointer;
       font-size: 16px;
       font-weight: bold;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: transform 0.2s;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     
     .btn:hover {
@@ -95,23 +106,26 @@
     }
     
     .title {
-      font-size: 32px;
+      font-size: 28px;
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
 
     .subtitle {
-      font-size: 24px;
+      font-size: 20px;
       text-align: center;
-      margin-top: -20px;
-      margin-bottom: 30px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
 
     .problem {
-      font-size: 22px;
+      font-size: 20px;
       text-align: center;
-      margin-top: -20px;
-      margin-bottom: 40px;
+      margin-top: -10px;
+      margin-bottom: 30px;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
 
     @keyframes shake {
@@ -145,34 +159,40 @@
       display: inline-block;
       vertical-align: middle;
       text-align: center;
-      margin: 0 5px;
+      margin: 0 4px;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     .fraction .numerator {
       border-bottom: 2px solid white;
-      padding: 0 5px;
+      padding: 0 3px;
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     .fraction .denominator {
-      padding: 0 5px;
+      padding: 0 3px;
       display: block;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     .superscript {
       position: relative;
       font-size: 0.7em;
       top: -0.5em;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     .subscript {
       position: relative;
       font-size: 0.7em;
       bottom: -0.5em;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     .big-fraction {
-      font-size: 28px;
+      font-size: 24px;
       display: block;
       text-align: center;
-      margin: 15px auto;
+      margin: 10px auto;
       max-width: 80%;
+      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
   </style>
 </head>
@@ -273,6 +293,12 @@
       let currentLine = 0;
       let dustInterval;
       
+      // Check if we're on mobile
+      const isMobile = window.innerWidth < 768;
+      
+      // Adjust step timing for mobile
+      const stepDelay = isMobile ? 2000 : 3000;
+      
       function animateText(element) {
         const spans = element.querySelectorAll('span');
         let index = 0;
@@ -302,17 +328,28 @@
             index++;
             setTimeout(revealNextSpan, 300);
           } else {
-            // Move to next line after a longer pause (3 seconds) to allow reading time
+            // Move to next line after a pause
             setTimeout(() => {
               if (currentLine < lines.length - 1) {
                 currentLine++;
+                // Ensure the next element is visible by scrolling to it
+                const nextElement = lines[currentLine];
+                if (nextElement) {
+                  // Calculate position and scroll there
+                  const rect = nextElement.getBoundingClientRect();
+                  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                  window.scrollTo({
+                    top: scrollTop + rect.top - 100,
+                    behavior: 'smooth'
+                  });
+                }
                 animateText(lines[currentLine]);
               } else {
                 // All lines finished
                 clearInterval(dustInterval);
                 highlightAnswers();
               }
-            }, 3000);
+            }, stepDelay);
           }
         }
         
@@ -392,6 +429,10 @@
         
         // Reset line counter
         currentLine = 0;
+        
+        // Scroll to the top of the chalkboard
+        document.querySelector('.chalkboard').scrollTop = 0;
+        window.scrollTo({top: 0, behavior: 'smooth'});
         
         // Start chalk dust effect
         dustInterval = setInterval(createChalkDust, 100);
