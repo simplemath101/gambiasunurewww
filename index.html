@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Ratio Problem Animation</title>
   <style>
+    /* Global font family declaration to ensure it cascades through all elements */
+    * {
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
+    }
+    
     body {
       margin: 0;
       padding: 0;
@@ -13,7 +18,6 @@
       align-items: center;
       min-height: 100vh;
       background-color: #f5f5f5;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -47,7 +51,12 @@
     
     .chalk-text span {
       opacity: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    }
+    
+    /* Enhanced font styling for all text elements */
+    .chalk-text, .chalk-text span, .step-number, .title, .subtitle, .problem,
+    .fraction, .numerator, .denominator, .superscript, .subscript {
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
     }
     
     .step-number {
@@ -94,7 +103,6 @@
       font-weight: bold;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: transform 0.2s;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
     
     .btn:hover {
@@ -109,7 +117,6 @@
       font-size: 28px;
       text-align: center;
       margin-bottom: 20px;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
 
     .subtitle {
@@ -117,7 +124,6 @@
       text-align: center;
       margin-top: -10px;
       margin-bottom: 20px;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
 
     .problem {
@@ -125,7 +131,6 @@
       text-align: center;
       margin-top: -10px;
       margin-bottom: 30px;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
 
     @keyframes shake {
@@ -154,45 +159,67 @@
       transition: transform 0.5s ease;
     }
 
-    /* For math expressions */
+    /* For math expressions - enhanced for mobile */
     .fraction {
       display: inline-block;
       vertical-align: middle;
       text-align: center;
       margin: 0 4px;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
+    
     .fraction .numerator {
       border-bottom: 2px solid white;
       padding: 0 3px;
       display: block;
       margin-bottom: 4px;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
+    
     .fraction .denominator {
       padding: 0 3px;
       display: block;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
+    
     .superscript {
       position: relative;
       font-size: 0.7em;
       top: -0.5em;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
+    
     .subscript {
       position: relative;
       font-size: 0.7em;
       bottom: -0.5em;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
     }
+    
     .big-fraction {
       font-size: 24px;
       display: block;
       text-align: center;
       margin: 10px auto;
       max-width: 80%;
-      font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    }
+    
+    /* Mobile specific enhancements */
+    @media (max-width: 767px) {
+      .chalk-text {
+        font-size: 20px;
+      }
+      
+      .title {
+        font-size: 24px;
+      }
+      
+      .subtitle, .problem {
+        font-size: 18px;
+      }
+      
+      .big-fraction {
+        font-size: 20px;
+      }
+      
+      .fraction, .numerator, .denominator {
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
+      }
     }
   </style>
 </head>
