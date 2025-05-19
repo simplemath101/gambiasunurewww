@@ -14,7 +14,7 @@
         }
         
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Comic Sans MS';
             background-color: #f0f0f0;
             display: flex;
             justify-content: center;
@@ -570,13 +570,13 @@
                 // Animate the section title
                 await animateSectionTitle(section);
                 
-                // Animate each step
+                // Animate each step with 3-second pauses
                 for (let i = 0; i < stepWritings.length; i++) {
                     await animateWriting(stepWritings[i], finalWidths[i], 800, 300);
                     if (i < explanations.length && explanations[i]) {
                         await showExplanation(explanations[i], 200);
                     }
-                    await new Promise(resolve => setTimeout(resolve, 400));
+                    await new Promise(resolve => setTimeout(resolve, 3000)); // 3-second pause between steps
                 }
                 
                 // Show charts if any
