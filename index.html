@@ -22,10 +22,12 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px;
             overflow-x: hidden;
         }
         
         .slideshow-container {
+            width: 100%;
             max-width: 800px;
             position: relative;
             margin: 0 auto;
@@ -39,11 +41,11 @@
         
         /* Title slide styling */
         .title-slide {
-            background: url('https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            background: url('/api/placeholder/800/400') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 400px;
+            height: 300px;
             position: relative;
             overflow: hidden;
         }
@@ -62,13 +64,13 @@
         .title-container {
             position: relative;
             z-index: 2;
-            padding: 40px;
+            padding: 20px;
             text-align: center;
             width: 100%;
         }
         
         .main-title {
-            font-size: 42px;
+            font-size: 28px;
             font-weight: 700;
             color: white;
             text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
@@ -82,18 +84,18 @@
             width: 80%;
             height: 5px;
             background: linear-gradient(90deg, transparent, #3498db, transparent);
-            margin: 20px auto;
+            margin: 15px auto;
             position: relative;
         }
         
         .title-decoration:before, .title-decoration:after {
             content: '';
             position: absolute;
-            width: 15px;
-            height: 15px;
+            width: 10px;
+            height: 10px;
             background-color: #3498db;
             border-radius: 50%;
-            top: -5px;
+            top: -3px;
         }
         
         .title-decoration:before {
@@ -105,11 +107,11 @@
         }
         
         .subtitle {
-            font-size: 20px;
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             font-weight: 300;
-            margin-top: 20px;
+            margin-top: 15px;
             font-family: 'Poppins', sans-serif;
             position: relative;
             display: inline-block;
@@ -120,17 +122,17 @@
             content: '';
             position: absolute;
             top: 50%;
-            width: 30px;
+            width: 20px;
             height: 1px;
             background-color: rgba(255, 255, 255, 0.5);
         }
         
         .subtitle:before {
-            left: -20px;
+            left: -10px;
         }
         
         .subtitle:after {
-            right: -20px;
+            right: -10px;
         }
         
         /* School slides styling */
@@ -147,15 +149,15 @@
         
         .slide img {
             width: 100%;
-            height: 400px;
+            height: 300px;
             object-fit: cover;
+            object-position: center;
             filter: brightness(0.85);
             transition: all 0.5s ease;
         }
         
         .slide:hover img {
             filter: brightness(0.75);
-            transform: scale(1.02);
         }
         
         .school-name {
@@ -163,8 +165,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 25px 20px;
-            font-size: 22px;
+            padding: 20px 15px;
+            font-size: 18px;
             font-weight: bold;
             color: white;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5), transparent);
@@ -178,9 +180,9 @@
         
         .school-badge {
             position: absolute;
-            right: 20px;
-            width: 30px;
-            height: 30px;
+            right: 15px;
+            width: 25px;
+            height: 25px;
             background-color: rgba(52, 152, 219, 0.8);
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
@@ -192,22 +194,22 @@
         }
         
         .slide:hover .school-name {
-            padding-bottom: 35px;
+            padding-bottom: 25px;
             background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4), transparent);
         }
         
         /* Follow message slide */
         .follow-message {
             text-align: center;
-            font-size: 36px;
+            font-size: 24px;
             font-weight: bold;
             color: white;
             background: linear-gradient(135deg, #e74c3c, #c0392b);
-            padding: 40px;
+            padding: 30px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 400px;
+            height: 300px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
@@ -243,18 +245,18 @@
         .navigation {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .prev, .next {
             cursor: pointer;
-            padding: 12px 20px;
+            padding: 10px 15px;
             color: white;
             font-weight: bold;
             background: linear-gradient(135deg, #3498db, #2980b9);
             border: none;
             border-radius: 30px;
-            margin: 0 10px;
+            margin: 0 8px;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
@@ -285,15 +287,17 @@
         /* Dot indicators */
         .dots-container {
             text-align: center;
-            margin: 20px 0;
+            margin: 15px 0;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 10px;
         }
         
         .dot {
-            height: 12px;
-            width: 12px;
+            height: 10px;
+            width: 10px;
             background-color: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             display: inline-block;
@@ -312,6 +316,63 @@
             transform: scale(1.3);
             box-shadow: 0 0 10px #3498db;
             border: 2px solid white;
+        }
+
+        /* Media Queries for better responsiveness */
+        @media (min-width: 768px) {
+            .title-slide, .slide img {
+                height: 400px;
+            }
+            
+            .main-title {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .school-name {
+                font-size: 20px;
+                padding: 25px 20px;
+            }
+            
+            .follow-message {
+                font-size: 32px;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title-slide, .slide img {
+                height: 250px;
+            }
+            
+            .main-title {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            
+            .school-name {
+                font-size: 16px;
+                padding: 15px 10px;
+            }
+            
+            .follow-message {
+                font-size: 20px;
+                padding: 20px 15px;
+                height: 250px;
+            }
+            
+            .prev, .next {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            
+            .dot {
+                height: 8px;
+                width: 8px;
+            }
         }
     </style>
 </head>
@@ -400,7 +461,6 @@
             <span class="dot" onclick="currentSlide(5)"></span>
             <span class="dot" onclick="currentSlide(6)"></span>
             <span class="dot" onclick="currentSlide(7)"></span>
-            <span class="dot" onclick="currentSlide(8)"></span>
         </div>
     </div>
     
@@ -439,7 +499,11 @@
             
             // Show the current slide
             slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
+            
+            // Make sure we don't access a dot that doesn't exist
+            if (slideIndex <= dots.length) {
+                dots[slideIndex - 1].classList.add("active");
+            }
         }
         
         // Add event listeners to buttons
@@ -466,6 +530,30 @@
                 plusSlides(1);
             }, 5000);
         });
+
+        // Touch swipe functionality for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        slideshowContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+        
+        slideshowContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            const threshold = 50; // Minimum distance for swipe
+            if (touchEndX < touchStartX - threshold) {
+                // Swipe left - next slide
+                plusSlides(1);
+            } else if (touchEndX > touchStartX + threshold) {
+                // Swipe right - previous slide
+                plusSlides(-1);
+            }
+        }
     </script>
 </body>
 </html>
