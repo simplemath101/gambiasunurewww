@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ball Height Problem - Animated Solution</title>
+    <title>Animated Math Solution</title>
     <style>
         :root {
             --notebook-blue: #0066cc;
             --paper-color: #fffdf0;
             --pen-color: #2b3d4f;
-            --highlight-color: #e7305b;
-            --explanation-color: #6b7d8c;
         }
         
         body {
-            font-family: 'Comic Sans MS';
+            font-family: 'Comic Sans MS', sans-serif;
             background-color: #f0f0f0;
             display: flex;
             justify-content: center;
@@ -26,7 +24,7 @@
         
         .notebook-container {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             background-color: var(--paper-color);
             border-radius: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -41,42 +39,16 @@
             color: var(--pen-color);
         }
         
-        .problem-statement {
-            background-color: rgba(230, 230, 250, 0.5);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #8a2be2;
-        }
-        
-        .notebook-section {
-            margin-bottom: 25px;
-        }
-        
-        .section-title {
-            font-size: 22px;
-            color: var(--notebook-blue);
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s, transform 0.8s;
-        }
-        
-        .section-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
         .notebook-paper {
             position: relative;
             padding: 10px;
         }
         
         .notebook-line {
-            min-height: 50px;
+            height: 60px;
             border-bottom: 1px solid #b5c7d5;
             position: relative;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         
         .notebook-line::before {
@@ -95,13 +67,11 @@
             transform: translateY(10px);
             transition: opacity 0.8s, transform 0.8s;
             padding-left: 10px;
-            font-size: 20px;
+            font-size: 24px;
             color: var(--pen-color);
-            min-height: 40px;
+            height: 100%;
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 5px;
         }
         
         .math-step.visible {
@@ -118,16 +88,25 @@
             width: 0;
         }
         
+        .step-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: #4a90e2;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .step-arrow.visible {
+            opacity: 1;
+        }
+        
         .step-explanation {
-            color: var(--explanation-color);
-            font-size: 16px;
+            color: #6b7d8c;
+            font-size: 18px;
             margin-left: 30px;
             transform: scale(0.8);
             opacity: 0;
             transition: opacity 0.5s ease, transform 0.5s ease;
-            font-style: italic;
-            flex-basis: 100%;
-            margin-top: 5px;
         }
         
         .step-explanation.visible {
@@ -135,30 +114,12 @@
             transform: scale(1);
         }
         
-        .highlight {
-            color: var(--highlight-color);
+        .final-answer {
+            color: #e7305b;
             font-weight: bold;
         }
         
-        .chart-container {
-            width: 100%;
-            height: 250px;
-            margin: 20px 0;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        
-        .chart-container.visible {
-            opacity: 1;
-        }
-        
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        .nav-btn {
+        .restart-btn {
             background-color: var(--notebook-blue);
             color: white;
             border: none;
@@ -167,62 +128,22 @@
             font-family: inherit;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 20px;
             transition: background-color 0.3s, transform 0.2s;
+            display: block;
+            margin: 20px auto 0;
             opacity: 0;
             transform: scale(0.9);
         }
         
-        .nav-btn:hover {
+        .restart-btn:hover {
             background-color: #004e9e;
             transform: scale(1.05);
         }
         
-        .nav-btn.visible {
+        .restart-btn.visible {
             opacity: 1;
             transform: scale(1);
-        }
-        
-        .nav-btn:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        
-        .tab-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        
-        .tab {
-            flex-grow: 1;
-            text-align: center;
-            padding: 10px;
-            background-color: #e6e6fa;
-            cursor: pointer;
-            border: 1px solid #cccccc;
-            transition: background-color 0.3s;
-        }
-        
-        .tab:first-child {
-            border-radius: 8px 0 0 8px;
-        }
-        
-        .tab:last-child {
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .tab.active {
-            background-color: var(--notebook-blue);
-            color: white;
-            font-weight: bold;
-        }
-        
-        .section {
-            display: none;
-        }
-        
-        .section.active {
-            display: block;
         }
         
         .pen-icon {
@@ -240,16 +161,12 @@
             }
             
             .math-step {
-                font-size: 18px;
+                font-size: 20px;
             }
             
             .step-explanation {
-                font-size: 14px;
+                font-size: 16px;
                 margin-left: 20px;
-            }
-            
-            .chart-container {
-                height: 200px;
             }
         }
     </style>
@@ -257,199 +174,42 @@
 <body>
     <div class="notebook-container">
         <div class="notebook-header">
-            <h1>Projectile Motion Problem</h1>
+            <h1>Solving for x</h1>
         </div>
-        
-        <div class="problem-statement">
-            <p>A ball is thrown straight up into the air, and its height (in meters) after t seconds is given by the function:</p>
-            <p style="text-align: center; font-size: 20px;">h(t) = -5t² + 20t + 1</p>
-            <p><strong>a)</strong> Find the velocity function of the ball.<br>
-            <strong>b)</strong> What is the velocity after 2 seconds?<br>
-            <strong>c)</strong> When does the ball reach its highest point?<br>
-            <strong>d)</strong> What is the maximum height of the ball?</p>
-        </div>
-        
-        <div class="tab-container">
-            <div class="tab active" data-section="part-a">Part A</div>
-            <div class="tab" data-section="part-b">Part B</div>
-            <div class="tab" data-section="part-c">Part C</div>
-            <div class="tab" data-section="part-d">Part D</div>
-        </div>
-        
-        <div class="section active" id="part-a">
-            <div class="section-title">Part A: Find the velocity function</div>
-            <div class="notebook-paper">
-                <div class="notebook-line">
-                    <div class="math-step" id="stepA1">
-                        <div class="math-step-writing">Given: h(t) = -5t² + 20t + 1</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepA2">
-                        <div class="math-step-writing">Velocity is the derivative of position with respect to time</div>
-                        <div class="step-explanation">v(t) = h'(t)</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepA3">
-                        <div class="math-step-writing">v(t) = h'(t) = d/dt[-5t² + 20t + 1]</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepA4">
-                        <div class="math-step-writing">v(t) = -5 · 2t + 20 · 1 + 0</div>
-                        <div class="step-explanation">Using power rule: d/dt(t^n) = n·t^(n-1)</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepA5">
-                        <div class="math-step-writing">v(t) = -10t + 20</div>
-                        <div class="step-explanation">Simplifying terms</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepA6">
-                        <div class="math-step-writing" style="color: var(--highlight-color); font-weight: bold;">Therefore, the velocity function is v(t) = -10t + 20</div>
-                    </div>
+        <div class="notebook-paper">
+            <div class="notebook-line">
+                <div class="math-step" id="step1">
+                    <div class="math-step-writing">2x + 3 = 11</div>
                 </div>
             </div>
-            <div class="chart-container" id="velocityChart"></div>
-        </div>
-        
-        <div class="section" id="part-b">
-            <div class="section-title">Part B: Find the velocity after 2 seconds</div>
-            <div class="notebook-paper">
-                <div class="notebook-line">
-                    <div class="math-step" id="stepB1">
-                        <div class="math-step-writing">From Part A, we found v(t) = -10t + 20</div>
-                    </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step2">
+                    <div class="math-step-writing">2x + 3 - 3 = 11 - 3</div>
+                    <div class="step-explanation">Subtract 3 from both sides</div>
                 </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepB2">
-                        <div class="math-step-writing">To find velocity at t = 2, substitute t = 2 into v(t)</div>
-                    </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step3">
+                    <div class="math-step-writing">2x = 8</div>
+                    <div class="step-explanation">Simplify</div>
                 </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepB3">
-                        <div class="math-step-writing">v(2) = -10(2) + 20</div>
-                    </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step4">
+                    <div class="math-step-writing">2x ÷ 2 = 8 ÷ 2</div>
+                    <div class="step-explanation">Divide both sides by 2</div>
                 </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepB4">
-                        <div class="math-step-writing">v(2) = -20 + 20</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepB5">
-                        <div class="math-step-writing">v(2) = 0</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepB6">
-                        <div class="math-step-writing" style="color: var(--highlight-color); font-weight: bold;">Therefore, the velocity after 2 seconds is 0 m/s</div>
-                        <div class="step-explanation">This means the ball momentarily stops moving at t = 2s (at its highest point)</div>
-                    </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step5">
+                    <div class="math-step-writing">x = 4</div>
+                    <div class="step-explanation final-answer">Our final answer!</div>
                 </div>
             </div>
         </div>
-        
-        <div class="section" id="part-c">
-            <div class="section-title">Part C: When does the ball reach its highest point?</div>
-            <div class="notebook-paper">
-                <div class="notebook-line">
-                    <div class="math-step" id="stepC1">
-                        <div class="math-step-writing">The ball reaches its highest point when velocity = 0</div>
-                        <div class="step-explanation">At the highest point, the ball momentarily stops before falling back down</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepC2">
-                        <div class="math-step-writing">From Part A: v(t) = -10t + 20</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepC3">
-                        <div class="math-step-writing">Set v(t) = 0 and solve for t</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepC4">
-                        <div class="math-step-writing">-10t + 20 = 0</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepC5">
-                        <div class="math-step-writing">-10t = -20</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepC6">
-                        <div class="math-step-writing">t = 2</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepC7">
-                        <div class="math-step-writing" style="color: var(--highlight-color); font-weight: bold;">Therefore, the ball reaches its highest point at t = 2 seconds</div>
-                    </div>
-                </div>
-            </div>
-            <div class="chart-container" id="heightChart"></div>
-        </div>
-        
-        <div class="section" id="part-d">
-            <div class="section-title">Part D: What is the maximum height of the ball?</div>
-            <div class="notebook-paper">
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD1">
-                        <div class="math-step-writing">From Part C, we found that the ball reaches its highest point at t = 2</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD2">
-                        <div class="math-step-writing">To find the maximum height, substitute t = 2 into the height function</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD3">
-                        <div class="math-step-writing">h(t) = -5t² + 20t + 1</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD4">
-                        <div class="math-step-writing">h(2) = -5(2)² + 20(2) + 1</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD5">
-                        <div class="math-step-writing">h(2) = -5(4) + 40 + 1</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD6">
-                        <div class="math-step-writing">h(2) = -20 + 40 + 1</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD7">
-                        <div class="math-step-writing">h(2) = 21</div>
-                    </div>
-                </div>
-                <div class="notebook-line">
-                    <div class="math-step" id="stepD8">
-                        <div class="math-step-writing" style="color: var(--highlight-color); font-weight: bold;">Therefore, the maximum height of the ball is 21 meters</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="navigation">
-            <button class="nav-btn" id="prevBtn" disabled>Previous</button>
-            <button class="nav-btn" id="restartBtn">Restart Animation</button>
-            <button class="nav-btn" id="nextBtn">Next</button>
-        </div>
+        <button class="restart-btn" id="restartBtn">Watch Again</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Add pen icon to follow cursor
@@ -458,21 +218,50 @@
             penIcon.innerHTML = '✏️';
             document.body.appendChild(penIcon);
             
-            // Navigation elements
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+            // Animation controller
+            const steps = document.querySelectorAll('.math-step');
+            const stepWritings = document.querySelectorAll('.math-step-writing');
+            const explanations = document.querySelectorAll('.step-explanation');
             const restartBtn = document.getElementById('restartBtn');
-            const tabs = document.querySelectorAll('.tab');
-            const sections = document.querySelectorAll('.section');
             
-            // Current section tracking
-            let currentSectionIndex = 0;
-            const sectionIds = ['part-a', 'part-b', 'part-c', 'part-d'];
+            function animateWriting(element, finalWidth, duration, delay, callback) {
+                setTimeout(() => {
+                    let start = null;
+                    const textContent = element.textContent;
+                    const textWidth = getTextWidth(textContent, window.getComputedStyle(element).font);
+                    
+                    element.parentElement.classList.add('visible');
+                    
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        const elapsed = timestamp - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Calculate cursor position for pen icon
+                        const rect = element.getBoundingClientRect();
+                        const cursorX = rect.left + (textWidth * progress) + 5;
+                        const cursorY = rect.top + rect.height / 2;
+                        
+                        penIcon.style.opacity = 1;
+                        penIcon.style.left = `${cursorX}px`;
+                        penIcon.style.top = `${cursorY}px`;
+                        
+                        element.style.width = `${finalWidth * progress}px`;
+                        
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            setTimeout(() => {
+                                penIcon.style.opacity = 0;
+                                if (callback) callback();
+                            }, 200);
+                        }
+                    }
+                    
+                    window.requestAnimationFrame(step);
+                }, delay);
+            }
             
-            // Animation control
-            let animationRunning = false;
-            
-            // Helper function to get text width
             function getTextWidth(text, font) {
                 const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
                 const context = canvas.getContext('2d');
@@ -481,83 +270,20 @@
                 return metrics.width;
             }
             
-            // Animation for writing text
-            function animateWriting(element, finalWidth, duration, delay, callback) {
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        let start = null;
-                        const textContent = element.textContent;
-                        const textWidth = getTextWidth(textContent, window.getComputedStyle(element).font);
-                        
-                        element.parentElement.classList.add('visible');
-                        
-                        function step(timestamp) {
-                            if (!start) start = timestamp;
-                            const elapsed = timestamp - start;
-                            const progress = Math.min(elapsed / duration, 1);
-                            
-                            // Calculate cursor position for pen icon
-                            const rect = element.getBoundingClientRect();
-                            const cursorX = rect.left + (textWidth * progress) + 5;
-                            const cursorY = rect.top + rect.height / 2;
-                            
-                            penIcon.style.opacity = 1;
-                            penIcon.style.left = `${cursorX}px`;
-                            penIcon.style.top = `${cursorY}px`;
-                            
-                            element.style.width = `${finalWidth * progress}px`;
-                            
-                            if (progress < 1) {
-                                window.requestAnimationFrame(step);
-                            } else {
-                                setTimeout(() => {
-                                    penIcon.style.opacity = 0;
-                                    if (callback) callback();
-                                    resolve();
-                                }, 200);
-                            }
-                        }
-                        
-                        window.requestAnimationFrame(step);
-                    }, delay);
-                });
+            function showExplanation(index, delay) {
+                setTimeout(() => {
+                    explanations[index].classList.add('visible');
+                }, delay);
             }
             
-            // Show explanation with animation
-            function showExplanation(element, delay) {
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        element.classList.add('visible');
-                        resolve();
-                    }, delay);
-                });
-            }
-            
-            // Animate section title
-            function animateSectionTitle(section) {
-                const title = section.querySelector('.section-title');
-                title.classList.add('visible');
-                return new Promise(resolve => setTimeout(resolve, 500));
-            }
-            
-            // Function to animate a specific section
-            async function animateSection(sectionId) {
-                if (animationRunning) return;
-                animationRunning = true;
-                
-                const section = document.getElementById(sectionId);
-                const steps = section.querySelectorAll('.math-step');
-                const stepWritings = section.querySelectorAll('.math-step-writing');
-                const explanations = section.querySelectorAll('.step-explanation');
-                const charts = section.querySelectorAll('.chart-container');
-                
-                // Reset elements
+            function startAnimation() {
+                // Reset
                 steps.forEach(step => step.classList.remove('visible'));
                 stepWritings.forEach(writing => {
                     writing.style.width = '0';
                 });
                 explanations.forEach(explanation => explanation.classList.remove('visible'));
-                charts.forEach(chart => chart.classList.remove('visible'));
+                restartBtn.classList.remove('visible');
                 
                 // Get final widths before animation
                 const finalWidths = Array.from(stepWritings).map(el => {
@@ -567,237 +293,39 @@
                     return width;
                 });
                 
-                // Animate the section title
-                await animateSectionTitle(section);
-                
-                // Animate each step with 3-second pauses
-                for (let i = 0; i < stepWritings.length; i++) {
-                    await animateWriting(stepWritings[i], finalWidths[i], 800, 300);
-                    if (i < explanations.length && explanations[i]) {
-                        await showExplanation(explanations[i], 200);
-                    }
-                    await new Promise(resolve => setTimeout(resolve, 3000)); // 3-second pause between steps
-                }
-                
-                // Show charts if any
-                charts.forEach(chart => {
-                    chart.classList.add('visible');
-                });
-                
-                // Animation complete
-                prevBtn.classList.add('visible');
-                nextBtn.classList.add('visible');
-                restartBtn.classList.add('visible');
-                animationRunning = false;
-            }
-            
-            // Create charts
-            function createVelocityChart() {
-                const ctx = document.getElementById('velocityChart');
-                if (!ctx) return;
-                
-                const data = [];
-                for (let t = 0; t <= 4; t += 0.1) {
-                    data.push({
-                        x: t,
-                        y: -10 * t + 20
-                    });
-                }
-                
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        datasets: [{
-                            label: 'Velocity Function v(t) = -10t + 20',
-                            data: data,
-                            borderColor: '#0066cc',
-                            backgroundColor: 'rgba(0, 102, 204, 0.1)',
-                            tension: 0.1,
-                            pointRadius: 0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: {
-                                type: 'linear',
-                                title: {
-                                    display: true,
-                                    text: 'Time (seconds)'
-                                }
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: 'Velocity (m/s)'
-                                }
-                            }
-                        },
-                        plugins: {
-                            annotation: {
-                                annotations: {
-                                    line1: {
-                                        type: 'line',
-                                        yMin: 0,
-                                        yMax: 0,
-                                        borderColor: 'rgba(231, 48, 91, 0.5)',
-                                        borderWidth: 2,
-                                        borderDash: [6, 6]
-                                    },
-                                    point1: {
-                                        type: 'point',
-                                        xValue: 2,
-                                        yValue: 0,
-                                        backgroundColor: 'rgba(231, 48, 91, 1)',
-                                        radius: 5
-                                    }
-                                }
-                            }
-                        }
-                    }
+                // Start the sequence with 3-second pauses between steps
+                animateWriting(stepWritings[0], finalWidths[0], 1000, 500, () => {
+                    setTimeout(() => {
+                        animateWriting(stepWritings[1], finalWidths[1], 1500, 0, () => {
+                            showExplanation(0, 200);
+                            setTimeout(() => {
+                                animateWriting(stepWritings[2], finalWidths[2], 800, 500, () => {
+                                    showExplanation(1, 200);
+                                    setTimeout(() => {
+                                        animateWriting(stepWritings[3], finalWidths[3], 1500, 500, () => {
+                                            showExplanation(2, 200);
+                                            setTimeout(() => {
+                                                animateWriting(stepWritings[4], finalWidths[4], 800, 500, () => {
+                                                    showExplanation(3, 200);
+                                                    setTimeout(() => {
+                                                        restartBtn.classList.add('visible');
+                                                    }, 1000);
+                                                });
+                                            }, 3000); // 3-second pause
+                                        });
+                                    }, 3000); // 3-second pause
+                                });
+                            }, 3000); // 3-second pause
+                        });
+                    }, 3000); // 3-second pause
                 });
             }
             
-            function createHeightChart() {
-                const ctx = document.getElementById('heightChart');
-                if (!ctx) return;
-                
-                const data = [];
-                for (let t = 0; t <= 4; t += 0.1) {
-                    data.push({
-                        x: t,
-                        y: -5 * t * t + 20 * t + 1
-                    });
-                }
-                
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        datasets: [{
-                            label: 'Height Function h(t) = -5t² + 20t + 1',
-                            data: data,
-                            borderColor: '#0066cc',
-                            backgroundColor: 'rgba(0, 102, 204, 0.1)',
-                            tension: 0.1,
-                            pointRadius: 0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: {
-                                type: 'linear',
-                                title: {
-                                    display: true,
-                                    text: 'Time (seconds)'
-                                }
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: 'Height (meters)'
-                                }
-                            }
-                        },
-                        plugins: {
-                            annotation: {
-                                annotations: {
-                                    point1: {
-                                        type: 'point',
-                                        xValue: 2,
-                                        yValue: 21,
-                                        backgroundColor: 'rgba(231, 48, 91, 1)',
-                                        radius: 5
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
+            // Start animation when page loads
+            startAnimation();
             
-            // Tab switching functionality
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    if (animationRunning) return;
-                    
-                    const sectionId = this.getAttribute('data-section');
-                    
-                    // Update active tab
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Update active section
-                    sections.forEach(s => s.classList.remove('active'));
-                    document.getElementById(sectionId).classList.add('active');
-                    
-                    // Update current section index
-                    currentSectionIndex = sectionIds.indexOf(sectionId);
-                    updateNavButtons();
-                    
-                    // Start animation for the new section
-                    animateSection(sectionId);
-                });
-            });
-            
-            // Navigation button handlers
-            function updateNavButtons() {
-                prevBtn.disabled = currentSectionIndex === 0;
-                nextBtn.disabled = currentSectionIndex === sectionIds.length - 1;
-            }
-            
-            prevBtn.addEventListener('click', function() {
-                if (currentSectionIndex > 0 && !animationRunning) {
-                    currentSectionIndex--;
-                    const newSectionId = sectionIds[currentSectionIndex];
-                    
-                    // Update tabs and sections
-                    tabs.forEach(t => t.classList.remove('active'));
-                    document.querySelector(`[data-section="${newSectionId}"]`).classList.add('active');
-                    
-                    sections.forEach(s => s.classList.remove('active'));
-                    document.getElementById(newSectionId).classList.add('active');
-                    
-                    updateNavButtons();
-                    animateSection(newSectionId);
-                }
-            });
-            
-            nextBtn.addEventListener('click', function() {
-                if (currentSectionIndex < sectionIds.length - 1 && !animationRunning) {
-                    currentSectionIndex++;
-                    const newSectionId = sectionIds[currentSectionIndex];
-                    
-                    // Update tabs and sections
-                    tabs.forEach(t => t.classList.remove('active'));
-                    document.querySelector(`[data-section="${newSectionId}"]`).classList.add('active');
-                    
-                    sections.forEach(s => s.classList.remove('active'));
-                    document.getElementById(newSectionId).classList.add('active');
-                    
-                    updateNavButtons();
-                    animateSection(newSectionId);
-                }
-            });
-            
-            restartBtn.addEventListener('click', function() {
-                if (!animationRunning) {
-                    animateSection(sectionIds[currentSectionIndex]);
-                }
-            });
-            
-            // Initialize charts
-            createVelocityChart();
-            createHeightChart();
-            
-            // Start with the first section animation
-            updateNavButtons();
-            prevBtn.classList.add('visible');
-            nextBtn.classList.add('visible');
-            restartBtn.classList.add('visible');
-            animateSection('part-a');
+            // Restart button handler
+            restartBtn.addEventListener('click', startAnimation);
         });
     </script>
 </body>
