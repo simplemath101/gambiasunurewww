@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Ratio Problem Animation</title>
   <style>
-    /* Global font family declaration to ensure it cascades through all elements */
-    * {
+    /* Force Comic Sans MS on all elements */
+    html, body, div, span, p, h1, h2, h3, button, input, textarea,
+    .chalkboard, .chalk-text, .step-number, .title, .subtitle, .problem,
+    .fraction, .numerator, .denominator, .superscript, .subscript,
+    .highlight, .btn {
       font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
     }
     
@@ -20,6 +23,9 @@
       background-color: #f5f5f5;
       max-width: 100%;
       overflow-x: hidden;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
     .chalkboard {
@@ -39,6 +45,7 @@
     .chalk-text {
       color: rgba(255, 255, 255, 0.9);
       font-size: 22px;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
       line-height: 1.5;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
       opacity: 0;
@@ -51,6 +58,7 @@
     
     .chalk-text span {
       opacity: 0;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
     }
     
     /* Enhanced font styling for all text elements */
@@ -165,6 +173,7 @@
       vertical-align: middle;
       text-align: center;
       margin: 0 4px;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
     }
     
     .fraction .numerator {
@@ -172,11 +181,13 @@
       padding: 0 3px;
       display: block;
       margin-bottom: 4px;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
     }
     
     .fraction .denominator {
       padding: 0 3px;
       display: block;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
     }
     
     .superscript {
@@ -201,43 +212,48 @@
     
     /* Mobile specific enhancements */
     @media (max-width: 767px) {
-      .chalk-text {
-        font-size: 20px;
+      .chalk-text, .chalk-text span, .fraction, .numerator, .denominator {
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
+        font: 20px 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
       }
       
       .title {
         font-size: 24px;
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
       }
       
       .subtitle, .problem {
         font-size: 18px;
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
       }
       
       .big-fraction {
         font-size: 20px;
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
       }
       
-      .fraction, .numerator, .denominator {
+      .btn {
         font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
       }
     }
   </style>
 </head>
 <body>
-  <div class="chalkboard">
-    <div class="chalk-text title">
-      <span>Ratio Problem</span>
+  <div class="chalkboard" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
+    <div class="chalk-text title" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
+      <span style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">Ratio Problem</span>
     </div>
     
-    <div class="chalk-text subtitle">
-      <span>If x:y = 2:3, evaluate:</span>
+    <div class="chalk-text subtitle" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
+      <span style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">If x:y = 2:3, evaluate:</span>
     </div>
     
-    <div class="chalk-text problem">
-      <span>
-        <div class="fraction big-fraction">
-          <div class="numerator">x² - y²</div>
-          <div class="denominator">y² + x²</div>
+    <div class="chalk-text problem" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
+      <span style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
+        <div class="fraction big-fraction" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
+          <div class="numerator" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">x² - y²</div>
+          <div class="denominator" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">y² + x²</div>
         </div>
       </span>
     </div>
@@ -311,11 +327,36 @@
   </div>
   
   <div class="controls">
-    <button class="btn" id="replay">Replay</button>
+    <button class="btn" id="replay" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">Replay</button>
   </div>
 
+  <!-- Adding web fonts fallback -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js">
   <script>
+    // Force load Comic Sans MS font
+    if (typeof WebFont !== 'undefined') {
+      WebFont.load({
+        custom: {
+          families: ['Comic Sans MS', 'Comic Sans'],
+          urls: ['https://fonts.cdnfonts.com/css/comic-sans']
+        }
+      });
+    }
+    
+    // Force apply Comic Sans to all elements
+    function applyComicSans() {
+      const allElements = document.querySelectorAll('*');
+      allElements.forEach(el => {
+        el.style.fontFamily = "'Comic Sans MS', 'Comic Sans', cursive, sans-serif";
+      });
+    }
+    
     document.addEventListener('DOMContentLoaded', () => {
+      // Apply Comic Sans after DOM loads
+      applyComicSans();
+      
+      // Try again after a short delay (for iOS)
+      setTimeout(applyComicSans, 500);
       const lines = document.querySelectorAll('.chalk-text');
       let currentLine = 0;
       let dustInterval;
