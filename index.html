@@ -1,520 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ratio Problem Animation</title>
-  <style>
-    /* Force Comic Sans MS on all elements */
-    html, body, div, span, p, h1, h2, h3, button, input, textarea,
-    .chalkboard, .chalk-text, .step-number, .title, .subtitle, .problem,
-    .fraction, .numerator, .denominator, .superscript, .subscript,
-    .highlight, .btn {
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-    }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f5f5f5;
-      max-width: 100%;
-      overflow-x: hidden;
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    
-    .chalkboard {
-      width: 94%;
-      max-width: 500px;
-      height: auto;
-      min-height: 550px;
-      background-color: #2a623d;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      position: relative;
-      overflow-y: auto;
-      padding: 20px 15px;
-      margin: 10px auto;
-    }
-    
-    .chalk-text {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 22px;
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-      line-height: 1.5;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-      opacity: 0;
-      position: relative;
-      margin: 25px 0;
-      display: flex;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-    
-    .chalk-text span {
-      opacity: 0;
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-    }
-    
-    /* Enhanced font styling for all text elements */
-    .chalk-text, .chalk-text span, .step-number, .title, .subtitle, .problem,
-    .fraction, .numerator, .denominator, .superscript, .subscript {
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-    }
-    
-    .step-number {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-color: rgba(255,255,255,0.2);
-      border-radius: 50%;
-      text-align: center;
-      line-height: 30px;
-      margin-right: 10px;
-      font-weight: bold;
-      flex-shrink: 0;
-    }
-    
-    .chalk-dust {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background-color: rgba(255,255,255,0.7);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    
-    .controls {
-      display: flex;
-      justify-content: center;
-      margin: 15px 0;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 100;
-    }
-    
-    .btn {
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      margin: 0;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-    }
-    
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-    
-    .btn:active {
-      transform: translateY(1px);
-    }
-    
-    .title {
-      font-size: 28px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      text-align: center;
-      margin-top: -10px;
-      margin-bottom: 20px;
-    }
-
-    .problem {
-      font-size: 20px;
-      text-align: center;
-      margin-top: -10px;
-      margin-bottom: 30px;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-2px); }
-      75% { transform: translateX(2px); }
-    }
-    
-    .highlight {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .highlight::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 100%;
-      height: 8px;
-      background-color: rgba(255, 255, 100, 0.4);
-      border-radius: 4px;
-      z-index: -1;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s ease;
-    }
-
-    /* For math expressions - enhanced for mobile */
-    .fraction {
-      display: inline-block;
-      vertical-align: middle;
-      text-align: center;
-      margin: 0 4px;
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-    }
-    
-    .fraction .numerator {
-      border-bottom: 2px solid white;
-      padding: 0 3px;
-      display: block;
-      margin-bottom: 4px;
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-    }
-    
-    .fraction .denominator {
-      padding: 0 3px;
-      display: block;
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-    }
-    
-    .superscript {
-      position: relative;
-      font-size: 0.7em;
-      top: -0.5em;
-    }
-    
-    .subscript {
-      position: relative;
-      font-size: 0.7em;
-      bottom: -0.5em;
-    }
-    
-    .big-fraction {
-      font-size: 24px;
-      display: block;
-      text-align: center;
-      margin: 10px auto;
-      max-width: 80%;
-    }
-    
-    /* Mobile specific enhancements */
-    @media (max-width: 767px) {
-      .chalk-text, .chalk-text span, .fraction, .numerator, .denominator {
-        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-        font: 20px 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-        -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
-      }
-      
-      .title {
-        font-size: 24px;
-        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-      }
-      
-      .subtitle, .problem {
-        font-size: 18px;
-        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-      }
-      
-      .big-fraction {
-        font-size: 20px;
-        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-      }
-      
-      .btn {
-        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Math Solution</title>
+    <style>
+        :root {
+            --notebook-blue: #0066cc;
+            --paper-color: #fffdf0;
+            --pen-color: #2b3d4f;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .notebook-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--paper-color);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
+        }
+        
+        .notebook-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--pen-color);
+        }
+        
+        .notebook-paper {
+            position: relative;
+            padding: 10px;
+        }
+        
+        .notebook-line {
+            height: 60px;
+            border-bottom: 1px solid #b5c7d5;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        
+        .notebook-line::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background-color: #ff9999;
+        }
+        
+        .math-step {
+            position: relative;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s, transform 0.8s;
+            padding-left: 10px;
+            font-size: 24px;
+            color: var(--pen-color);
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .math-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .math-step-writing {
+            color: var(--pen-color);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            white-space: nowrap;
+            width: 0;
+        }
+        
+        .step-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: #4a90e2;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .step-arrow.visible {
+            opacity: 1;
+        }
+        
+        .step-explanation {
+            color: #6b7d8c;
+            font-size: 18px;
+            margin-left: 30px;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .step-explanation.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .final-answer {
+            color: #e7305b;
+            font-weight: bold;
+        }
+        
+        .restart-btn {
+            background-color: var(--notebook-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: block;
+            margin: 20px auto 0;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .restart-btn:hover {
+            background-color: #004e9e;
+            transform: scale(1.05);
+        }
+        
+        .restart-btn.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .pen-icon {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        
+        @media (max-width: 600px) {
+            .notebook-container {
+                padding: 20px 10px;
+            }
+            
+            .math-step {
+                font-size: 20px;
+            }
+            
+            .step-explanation {
+                font-size: 16px;
+                margin-left: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="chalkboard" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
-    <div class="chalk-text title" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
-      <span style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">Ratio Problem</span>
-    </div>
-    
-    <div class="chalk-text subtitle" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
-      <span style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">If x:y = 2:3, evaluate:</span>
-    </div>
-    
-    <div class="chalk-text problem" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
-      <span style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
-        <div class="fraction big-fraction" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">
-          <div class="numerator" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">x² - y²</div>
-          <div class="denominator" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">y² + x²</div>
+    <div class="notebook-container">
+        <div class="notebook-header">
+            <h1>Solving for x</h1>
         </div>
-      </span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">1</span>
-      <span>If x:y = 2:3, then x = <span class="highlight">2k</span> and y = <span class="highlight">3k</span> for some value k</span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">2</span>
-      <span>Substitute these values into the expression:</span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">3</span>
-      <span>
-        <div class="fraction">
-          <div class="numerator">(2k)² - (3k)²</div>
-          <div class="denominator">(3k)² + (2k)²</div>
+        <div class="notebook-paper">
+            <div class="notebook-line">
+                <div class="math-step" id="step1">
+                    <div class="math-step-writing">2x + 3 = 11</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step2">
+                    <div class="math-step-writing">2x + 3 - 3 = 11 - 3</div>
+                    <div class="step-explanation">Subtract 3 from both sides</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step3">
+                    <div class="math-step-writing">2x = 8</div>
+                    <div class="step-explanation">Simplify</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step4">
+                    <div class="math-step-writing">2x ÷ 2 = 8 ÷ 2</div>
+                    <div class="step-explanation">Divide both sides by 2</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step5">
+                    <div class="math-step-writing">x = 4</div>
+                    <div class="step-explanation final-answer">Our final answer!</div>
+                </div>
+            </div>
         </div>
-      </span>
+        <button class="restart-btn" id="restartBtn">Watch Again</button>
     </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">4</span>
-      <span>
-        <div class="fraction">
-          <div class="numerator">4k² - 9k²</div>
-          <div class="denominator">9k² + 4k²</div>
-        </div>
-      </span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">5</span>
-      <span>
-        <div class="fraction">
-          <div class="numerator">-5k²</div>
-          <div class="denominator">13k²</div>
-        </div>
-      </span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">6</span>
-      <span>Simplify by dividing out k²:</span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">7</span>
-      <span>
-        <div class="fraction">
-          <div class="numerator">-5</div>
-          <div class="denominator">13</div>
-        </div>
-        = -<div class="fraction">
-          <div class="numerator">5</div>
-          <div class="denominator">13</div>
-        </div>
-      </span>
-    </div>
-    
-    <div class="chalk-text">
-      <span class="step-number">✓</span>
-      <span>The final answer is -<div class="fraction">
-          <div class="numerator">5</div>
-          <div class="denominator">13</div>
-        </div></span>
-    </div>
-  </div>
-  
-  <div class="controls">
-    <button class="btn" id="replay" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;">Replay</button>
-  </div>
 
-  <!-- Adding web fonts fallback -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js">
-  <script>
-    // Force load Comic Sans MS font
-    if (typeof WebFont !== 'undefined') {
-      WebFont.load({
-        custom: {
-          families: ['Comic Sans MS', 'Comic Sans'],
-          urls: ['https://fonts.cdnfonts.com/css/comic-sans']
-        }
-      });
-    }
-    
-    // Force apply Comic Sans to all elements
-    function applyComicSans() {
-      const allElements = document.querySelectorAll('*');
-      allElements.forEach(el => {
-        el.style.fontFamily = "'Comic Sans MS', 'Comic Sans', cursive, sans-serif";
-      });
-    }
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      // Apply Comic Sans after DOM loads
-      applyComicSans();
-      
-      // Try again after a short delay (for iOS)
-      setTimeout(applyComicSans, 500);
-      const lines = document.querySelectorAll('.chalk-text');
-      let currentLine = 0;
-      let dustInterval;
-      
-      // Check if we're on mobile
-      const isMobile = window.innerWidth < 768;
-      
-      // Adjust step timing for mobile
-      const stepDelay = isMobile ? 2000 : 3000;
-      
-      function animateText(element) {
-        const spans = element.querySelectorAll('span');
-        let index = 0;
-        
-        element.style.opacity = 1;
-        
-        function revealNextSpan() {
-          if (index < spans.length) {
-            const span = spans[index];
-            span.style.opacity = 1;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add pen icon to follow cursor
+            const penIcon = document.createElement('div');
+            penIcon.className = 'pen-icon';
+            penIcon.innerHTML = '✏️';
+            document.body.appendChild(penIcon);
             
-            if (span.classList.contains('highlight')) {
-              setTimeout(() => {
-                const highlight = span.querySelector('::after');
-                if (highlight) {
-                  highlight.style.transform = 'scaleX(1)';
-                }
-              }, 300);
+            // Animation controller
+            const steps = document.querySelectorAll('.math-step');
+            const stepWritings = document.querySelectorAll('.math-step-writing');
+            const explanations = document.querySelectorAll('.step-explanation');
+            const restartBtn = document.getElementById('restartBtn');
+            
+            function animateWriting(element, finalWidth, duration, delay, callback) {
+                setTimeout(() => {
+                    let start = null;
+                    const textContent = element.textContent;
+                    const textWidth = getTextWidth(textContent, window.getComputedStyle(element).font);
+                    
+                    element.parentElement.classList.add('visible');
+                    
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        const elapsed = timestamp - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Calculate cursor position for pen icon
+                        const rect = element.getBoundingClientRect();
+                        const cursorX = rect.left + (textWidth * progress) + 5;
+                        const cursorY = rect.top + rect.height / 2;
+                        
+                        penIcon.style.opacity = 1;
+                        penIcon.style.left = `${cursorX}px`;
+                        penIcon.style.top = `${cursorY}px`;
+                        
+                        element.style.width = `${finalWidth * progress}px`;
+                        
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            setTimeout(() => {
+                                penIcon.style.opacity = 0;
+                                if (callback) callback();
+                            }, 200);
+                        }
+                    }
+                    
+                    window.requestAnimationFrame(step);
+                }, delay);
             }
             
-            // Add shake animation to the current span
-            span.style.animation = 'shake 0.3s ease';
-            setTimeout(() => {
-              span.style.animation = '';
-            }, 300);
-            
-            index++;
-            setTimeout(revealNextSpan, 300);
-          } else {
-            // Move to next line after a pause
-            setTimeout(() => {
-              if (currentLine < lines.length - 1) {
-                currentLine++;
-                // Ensure the next element is visible by scrolling to it
-                const nextElement = lines[currentLine];
-                if (nextElement) {
-                  // Calculate position and scroll there
-                  const rect = nextElement.getBoundingClientRect();
-                  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                  window.scrollTo({
-                    top: scrollTop + rect.top - 100,
-                    behavior: 'smooth'
-                  });
-                }
-                animateText(lines[currentLine]);
-              } else {
-                // All lines finished
-                clearInterval(dustInterval);
-                highlightAnswers();
-              }
-            }, stepDelay);
-          }
-        }
-        
-        revealNextSpan();
-      }
-      
-      function createChalkDust() {
-        // Create chalk dust at a slower rate to match slower writing
-        if (Math.random() > 0.5) return; // Only create dust 50% of the time
-        
-        const dust = document.createElement('div');
-        dust.className = 'chalk-dust';
-        
-        const chalkboard = document.querySelector('.chalkboard');
-        const activeLine = lines[currentLine];
-        
-        if (activeLine) {
-          const rect = activeLine.getBoundingClientRect();
-          const boardRect = chalkboard.getBoundingClientRect();
-          
-          // Position dust relative to the current line
-          const x = Math.random() * rect.width + (rect.left - boardRect.left);
-          const y = Math.random() * 10 + (rect.top - boardRect.top + rect.height / 2);
-          
-          dust.style.left = `${x}px`;
-          dust.style.top = `${y}px`;
-          
-          chalkboard.appendChild(dust);
-          
-          // Animate dust falling
-          let opacity = 0.7;
-          let posY = y;
-          
-          const fallInterval = setInterval(() => {
-            opacity -= 0.01;
-            posY += 0.5;
-            
-            dust.style.opacity = opacity;
-            dust.style.top = `${posY}px`;
-            
-            if (opacity <= 0) {
-              clearInterval(fallInterval);
-              dust.remove();
+            function getTextWidth(text, font) {
+                const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
+                const context = canvas.getContext('2d');
+                context.font = font;
+                const metrics = context.measureText(text);
+                return metrics.width;
             }
-          }, 20);
-        }
-      }
-      
-      function highlightAnswers() {
-        // Highlight the final answer with a special effect
-        const finalAnswer = lines[lines.length - 1];
-        const highlights = document.querySelectorAll('.highlight');
-        
-        highlights.forEach(el => {
-          const highlight = el.querySelector('::after');
-          if (highlight) {
-            highlight.style.transform = 'scaleX(1)';
-          }
+            
+            function showExplanation(index, delay) {
+                setTimeout(() => {
+                    explanations[index].classList.add('visible');
+                }, delay);
+            }
+            
+            function startAnimation() {
+                // Reset
+                steps.forEach(step => step.classList.remove('visible'));
+                stepWritings.forEach(writing => {
+                    writing.style.width = '0';
+                });
+                explanations.forEach(explanation => explanation.classList.remove('visible'));
+                restartBtn.classList.remove('visible');
+                
+                // Get final widths before animation
+                const finalWidths = Array.from(stepWritings).map(el => {
+                    el.style.width = 'auto';
+                    const width = el.offsetWidth;
+                    el.style.width = '0';
+                    return width;
+                });
+                
+                // Start the sequence
+                animateWriting(stepWritings[0], finalWidths[0], 1000, 500, () => {
+                    setTimeout(() => {
+                        animateWriting(stepWritings[1], finalWidths[1], 1500, 0, () => {
+                            showExplanation(0, 200);
+                            setTimeout(() => {
+                                animateWriting(stepWritings[2], finalWidths[2], 800, 500, () => {
+                                    showExplanation(1, 200);
+                                    setTimeout(() => {
+                                        animateWriting(stepWritings[3], finalWidths[3], 1500, 500, () => {
+                                            showExplanation(2, 200);
+                                            setTimeout(() => {
+                                                animateWriting(stepWritings[4], finalWidths[4], 800, 500, () => {
+                                                    showExplanation(3, 200);
+                                                    setTimeout(() => {
+                                                        restartBtn.classList.add('visible');
+                                                    }, 1000);
+                                                });
+                                            }, 800);
+                                        });
+                                    }, 800);
+                                });
+                            }, 800);
+                        });
+                    }, 800);
+                });
+            }
+            
+            // Start animation when page loads
+            startAnimation();
+            
+            // Restart button handler
+            restartBtn.addEventListener('click', startAnimation);
         });
-        
-        finalAnswer.style.transform = 'scale(1.05)';
-        finalAnswer.style.textShadow = '0 0 10px rgba(255,255,100,0.8)';
-      }
-      
-      function startAnimation() {
-        // Reset everything
-        lines.forEach(line => {
-          line.style.opacity = 0;
-          const spans = line.querySelectorAll('span');
-          spans.forEach(span => span.style.opacity = 0);
-          line.style.transform = '';
-          line.style.textShadow = '';
-        });
-        
-        // Clear any existing dust
-        document.querySelectorAll('.chalk-dust').forEach(el => el.remove());
-        
-        // Reset line counter
-        currentLine = 0;
-        
-        // Scroll to the top of the chalkboard
-        document.querySelector('.chalkboard').scrollTop = 0;
-        window.scrollTo({top: 0, behavior: 'smooth'});
-        
-        // Start chalk dust effect
-        dustInterval = setInterval(createChalkDust, 100);
-        
-        // Start animation
-        animateText(lines[currentLine]);
-      }
-      
-      // Start on page load
-      startAnimation();
-      
-      // Replay button
-      document.getElementById('replay').addEventListener('click', startAnimation);
-    });
-  </script>
+    </script>
 </body>
 </html>
