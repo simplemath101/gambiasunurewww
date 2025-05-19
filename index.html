@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Expensive Schools in The Gambia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
+   <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;700&display=swap');
         
         * {
@@ -22,8 +22,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
             overflow-x: hidden;
+            width: 100%;
         }
         
         .slideshow-container {
@@ -141,6 +142,8 @@
             background-color: rgba(16, 27, 39, 0.8);
             text-align: center;
             position: relative;
+            width: 100%;
+            height: auto;
         }
         
         .slide.active {
@@ -150,10 +153,11 @@
         .slide img {
             width: 100%;
             height: 300px;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             filter: brightness(0.85);
             transition: all 0.5s ease;
+            background-color: #0a1622;
         }
         
         .slide:hover img {
@@ -176,6 +180,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            z-index: 5;
         }
         
         .school-badge {
@@ -246,6 +251,7 @@
             display: flex;
             justify-content: center;
             margin: 15px 0;
+            width: 100%;
         }
         
         .prev, .next {
@@ -261,6 +267,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
+            min-width: 80px;
         }
         
         .prev:before, .next:before {
@@ -293,6 +300,7 @@
             flex-wrap: wrap;
             gap: 8px;
             padding: 0 10px;
+            width: 100%;
         }
         
         .dot {
@@ -344,29 +352,38 @@
         }
         
         @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .slideshow-container {
+                border-radius: 10px;
+            }
+            
             .title-slide, .slide img {
-                height: 250px;
+                height: 225px;
             }
             
             .main-title {
-                font-size: 22px;
-                margin-bottom: 10px;
+                font-size: 20px;
+                margin-bottom: 8px;
             }
             
             .school-name {
-                font-size: 16px;
-                padding: 15px 10px;
+                font-size: 14px;
+                padding: 12px 8px;
             }
             
             .follow-message {
-                font-size: 20px;
-                padding: 20px 15px;
-                height: 250px;
+                font-size: 18px;
+                padding: 15px 10px;
+                height: 225px;
             }
             
             .prev, .next {
                 padding: 8px 12px;
                 font-size: 14px;
+                min-width: 70px;
             }
             
             .dot {
@@ -461,6 +478,7 @@
             <span class="dot" onclick="currentSlide(5)"></span>
             <span class="dot" onclick="currentSlide(6)"></span>
             <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
         </div>
     </div>
     
@@ -499,11 +517,7 @@
             
             // Show the current slide
             slides[slideIndex - 1].classList.add("active");
-            
-            // Make sure we don't access a dot that doesn't exist
-            if (slideIndex <= dots.length) {
-                dots[slideIndex - 1].classList.add("active");
-            }
+            dots[slideIndex - 1].classList.add("active");
         }
         
         // Add event listeners to buttons
@@ -530,30 +544,6 @@
                 plusSlides(1);
             }, 5000);
         });
-
-        // Touch swipe functionality for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        slideshowContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, false);
-        
-        slideshowContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
-        
-        function handleSwipe() {
-            const threshold = 50; // Minimum distance for swipe
-            if (touchEndX < touchStartX - threshold) {
-                // Swipe left - next slide
-                plusSlides(1);
-            } else if (touchEndX > touchStartX + threshold) {
-                // Swipe right - previous slide
-                plusSlides(-1);
-            }
-        }
     </script>
 </body>
 </html>
