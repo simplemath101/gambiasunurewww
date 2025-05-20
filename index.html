@@ -24,7 +24,7 @@
         
         .notebook-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 750px;
             background-color: var(--paper-color);
             border-radius: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -50,13 +50,20 @@
             margin-right: 10px;
         }
         
+        .problem-statement {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        
         .notebook-paper {
             position: relative;
             padding: 10px;
         }
         
         .notebook-line {
-            height: 60px;
+            height: 80px;
             border-bottom: 1px solid #b5c7d5;
             position: relative;
             margin-bottom: 5px;
@@ -78,11 +85,12 @@
             transform: translateY(10px);
             transition: opacity 0.8s, transform 0.8s;
             padding-left: 10px;
-            font-size: 24px;
+            font-size: 22px;
             color: var(--pen-color);
             height: 100%;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .math-step.visible {
@@ -93,7 +101,7 @@
         .math-step-writing {
             color: var(--pen-color);
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             display: inline-block;
             white-space: nowrap;
             width: 0;
@@ -165,6 +173,7 @@
             transition: opacity 0.3s;
             z-index: 10;
         }
+        
         
         @media (max-width: 600px) {
             .notebook-container {
@@ -281,7 +290,7 @@
                 setTimeout(() => {
                     let start = null;
                     const textContent = element.textContent;
-                    const textWidth = getTextWidth(textContent, window.getComputedStyle(element).font);
+                    const textWidth = Math.max(getTextWidth(textContent, window.getComputedStyle(element).font), 400);
                     
                     element.parentElement.classList.add('visible');
                     
@@ -341,7 +350,7 @@
                 // Get final widths before animation
                 const finalWidths = Array.from(stepWritings).map(el => {
                     el.style.width = 'auto';
-                    const width = el.offsetWidth;
+                    const width = Math.max(el.offsetWidth, 500);
                     el.style.width = '0';
                     return width;
                 });
