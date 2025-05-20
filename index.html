@@ -3,546 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Expensive Schools in The Gambia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <title>Animated Math Solution</title>
+    <style>
+        :root {
+            --notebook-blue: #0066cc;
+            --paper-color: #fffdf0;
+            --pen-color: #2b3d4f;
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
-            color: #fff;
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 10px;
-            overflow-x: hidden;
-            width: 100%;
+            margin: 0;
+            padding: 20px;
         }
         
-        .slideshow-container {
+        .notebook-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 600px;
+            background-color: var(--paper-color);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             position: relative;
-            margin: 0 auto;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 20px;
         }
         
-        /* Title slide styling */
-        .title-slide {
-            background: url('https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg') center/cover no-repeat;
+        .notebook-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--pen-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
         }
         
-        .title-slide:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
-        
-        .title-container {
-            position: relative;
-            z-index: 2;
-            padding: 20px;
-            text-align: center;
-            width: 100%;
-        }
-        
-        .main-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: white;
-            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            line-height: 1.3;
-            position: relative;
-        }
-        
-        .title-decoration {
-            width: 80%;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, #3498db, transparent);
-            margin: 15px auto;
-            position: relative;
-        }
-        
-        .title-decoration:before, .title-decoration:after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #3498db;
-            border-radius: 50%;
-            top: -3px;
-        }
-        
-        .title-decoration:before {
-            left: 0;
-        }
-        
-        .title-decoration:after {
-            right: 0;
-        }
-        
-        .subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 3px;
-            font-weight: 300;
-            margin-top: 15px;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-            display: inline-block;
-            padding: 0 20px;
-        }
-        
-        .subtitle:before, .subtitle:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 20px;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .subtitle:before {
-            left: -10px;
-        }
-        
-        .subtitle:after {
-            right: -10px;
-        }
-        
-        /* School slides styling */
-        .slide {
-            display: none;
-            background-color: rgba(16, 27, 39, 0.8);
-            text-align: center;
-            position: relative;
-            width: 100%;
-            height: auto;
-        }
-        
-        .slide.active {
-            display: block;
-        }
-        
-        .slide img {
-            width: 100%;
-            height: 300px;
-            object-fit: contain;
-            object-position: center;
-            filter: brightness(0.85);
-            transition: all 0.5s ease;
-            background-color: #0a1622;
-        }
-        
-        .slide:hover img {
-            filter: brightness(0.75);
-        }
-        
-        .school-name {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 15px;
+        .exam-title {
             font-size: 18px;
             font-weight: bold;
-            color: white;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5), transparent);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            transition: all 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            z-index: 5;
+            color: #333;
+            margin-right: 10px;
         }
         
-        .school-badge {
-            position: absolute;
-            right: 15px;
-            width: 25px;
-            height: 25px;
-            background-color: rgba(52, 152, 219, 0.8);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
-            transition: all 0.3s ease;
+        .exam-logo {
+            height: 30px;
+            width: auto;
         }
         
-        .slide:hover .school-badge {
-            transform: scale(1.2);
-        }
-        
-        .slide:hover .school-name {
-            padding-bottom: 25px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4), transparent);
-        }
-        
-        /* Follow message slide */
-        .follow-message {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            padding: 30px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 300px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .notebook-paper {
             position: relative;
-            overflow: hidden;
+            padding: 10px;
         }
         
-        .follow-message:before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #e74c3c, #c0392b, #e74c3c);
-            background-size: 400% 400%;
-            z-index: -1;
-            filter: blur(10px);
-            animation: gradientAnimation 8s ease infinite;
-        }
-        
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        /* Navigation buttons */
-        .navigation {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-            width: 100%;
-        }
-        
-        .prev, .next {
-            cursor: pointer;
-            padding: 10px 15px;
-            color: white;
-            font-weight: bold;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            border: none;
-            border-radius: 30px;
-            margin: 0 8px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        .notebook-line {
+            height: 60px;
+            border-bottom: 1px solid #b5c7d5;
             position: relative;
-            overflow: hidden;
-            min-width: 80px;
+            margin-bottom: 5px;
         }
         
-        .prev:before, .next:before {
+        .notebook-line::before {
             content: '';
             position: absolute;
+            left: -20px;
             top: 0;
-            left: -100%;
-            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            width: 1px;
+            background-color: #ff9999;
         }
         
-        .prev:hover:before, .next:hover:before {
-            left: 100%;
-        }
-        
-        .prev:hover, .next:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #2980b9, #3498db);
-        }
-        
-        /* Dot indicators */
-        .dots-container {
-            text-align: center;
-            margin: 15px 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 0 10px;
-            width: 100%;
-        }
-        
-        .dot {
-            height: 10px;
-            width: 10px;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            display: inline-block;
-            transition: all 0.4s ease;
-            cursor: pointer;
+        .math-step {
             position: relative;
-            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s, transform 0.8s;
+            padding-left: 10px;
+            font-size: 24px;
+            color: var(--pen-color);
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
         
-        .dot:hover {
-            transform: scale(1.2);
+        .math-step.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        .dot.active {
-            background-color: #3498db;
-            transform: scale(1.3);
-            box-shadow: 0 0 10px #3498db;
-            border: 2px solid white;
+        .math-step-writing {
+            color: var(--pen-color);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            white-space: nowrap;
+            width: 0;
         }
-
-        /* Media Queries for better responsiveness */
-        @media (min-width: 768px) {
-            .title-slide, .slide img {
-                height: 400px;
+        
+        .step-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: #4a90e2;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .step-arrow.visible {
+            opacity: 1;
+        }
+        
+        .step-explanation {
+            color: #6b7d8c;
+            font-size: 18px;
+            margin-left: 30px;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .step-explanation.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .final-answer {
+            color: #e7305b;
+            font-weight: bold;
+        }
+        
+        .restart-btn {
+            background-color: var(--notebook-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: block;
+            margin: 20px auto 0;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .restart-btn:hover {
+            background-color: #004e9e;
+            transform: scale(1.05);
+        }
+        
+        .restart-btn.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .pen-icon {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        
+        @media (max-width: 600px) {
+            .notebook-container {
+                padding: 20px 10px;
             }
             
-            .main-title {
-                font-size: 36px;
-            }
-            
-            .subtitle {
-                font-size: 18px;
-            }
-            
-            .school-name {
+            .math-step {
                 font-size: 20px;
-                padding: 25px 20px;
             }
             
-            .follow-message {
-                font-size: 32px;
-                height: 400px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 5px;
-            }
-            
-            .slideshow-container {
-                border-radius: 10px;
-            }
-            
-            .title-slide, .slide img {
-                height: 225px;
-            }
-            
-            .main-title {
-                font-size: 20px;
-                margin-bottom: 8px;
-            }
-            
-            .school-name {
-                font-size: 14px;
-                padding: 12px 8px;
-            }
-            
-            .follow-message {
-                font-size: 18px;
-                padding: 15px 10px;
-                height: 225px;
-            }
-            
-            .prev, .next {
-                padding: 8px 12px;
-                font-size: 14px;
-                min-width: 70px;
-            }
-            
-            .dot {
-                height: 8px;
-                width: 8px;
+            .step-explanation {
+                font-size: 16px;
+                margin-left: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="slideshow-container">
-        <!-- Title Slide -->
-        <div class="slide title-slide">
-            <div class="title-container">
-                <h1 class="main-title">TOP 10 MOST EXPENSIVE SCHOOLS IN THE GAMBIA</h1>
-                <div class="title-decoration"></div>
-                <div class="subtitle"></div>
+    <div class="notebook-container">
+        <div class="notebook-header">
+            <div class="exam-title">WAEC 2011</div>
+            <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2025/04/WAEC.jpg" alt="WAEC Logo" class="exam-logo">
+            <h1>Solving for x</h1>
+        </div>
+        <div class="notebook-paper">
+            <div class="notebook-line">
+                <div class="math-step" id="step1">
+                    <div class="math-step-writing">2x + 3 = 11</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step2">
+                    <div class="math-step-writing">2x + 3 - 3 = 11 - 3</div>
+                    <div class="step-explanation">Subtract 3 from both sides</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step3">
+                    <div class="math-step-writing">2x = 8</div>
+                    <div class="step-explanation">Simplify</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step4">
+                    <div class="math-step-writing">2x ÷ 2 = 8 ÷ 2</div>
+                    <div class="step-explanation">Divide both sides by 2</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step5">
+                    <div class="math-step-writing">x = 4</div>
+                    <div class="step-explanation final-answer">Our final answer!</div>
+                </div>
             </div>
         </div>
-        
-        <!-- Slide 1 -->
-        <div class="slide">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyJGArrXpATzoibuMO__2rWJ7-pvqRYwtxpA&s" alt="Glory Baptist International School">
-            <div class="school-name">
-                <i class="fas fa-award"></i> 10. Glory Baptist International School
-                <div class="school-badge"></div>
-            </div>
-        </div>
-        
-        <!-- Slide 2 -->
-        <div class="slide">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCgHuu-XO8hff1DVZ9_yVO5q0PYl43yDpZrg&s" alt="Ndow's International High School">
-            <div class="school-name">
-                <i class="fas fa-award"></i> 9. Ndow's Comprehensive High School
-                <div class="school-badge"></div>
-            </div>
-        </div>
-        
-        <!-- Slide 3 -->
-        <div class="slide">
-            <img src="https://lh6.googleusercontent.com/proxy/1HM35W9hV5OdN_rU1ajtWnsLxlX_k1Nacmpmf9AkkrNFgzhVUsa24zf68K9qA6QF4SIpTRtW504cTSFKgApoO9_aZ_DAmnrl9-9NG9M5" alt="Gambia Methodist Academy">
-            <div class="school-name">
-                <i class="fas fa-award"></i> 8. Gambia Methodist Academy
-                <div class="school-badge"></div>
-            </div>
-        </div>
-        
-        <!-- Slide 4 -->
-        <div class="slide">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgawSmHHt39KflmdWGJmyvcHyqn524_ZBdXQ&s" alt="Zenith Preparatory Academy">
-            <div class="school-name">
-                <i class="fas fa-award"></i> 7. Zenith Preparatory Academy
-                <div class="school-badge"></div>
-            </div>
-        </div>
-        
-        <!-- Slide 5 -->
-        <div class="slide">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUdQQ19G4do266_gFVab0eU0VCPN0XKj_VJA&s" alt="Apple Tree International School">
-            <div class="school-name">
-                <i class="fas fa-award"></i> 6. Apple Tree International School
-                <div class="school-badge"></div>
-            </div>
-        </div>
-        
-        <!-- Slide 6 -->
-        <div class="slide">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBJf6Qbuy7fuo9Fym37utHdWnBYjKi64wdkw&s" alt="École Française de Banjul">
-            <div class="school-name">
-                <i class="fas fa-award"></i> 5. École Française de Banjul
-                <div class="school-badge"></div>
-            </div>
-        </div>
-        
-        <!-- Follow Message Slide -->
-        <div class="slide">
-            <div class="follow-message">COMMENT YOUR SCHOOL'S NAME AND FOLLOW FOR PART 2 <i class="fas fa-arrow-right"></i></div>
-        </div>
-        
-        <!-- Navigation buttons -->
-        <div class="navigation">
-            <button class="prev">❮ Prev</button>
-            <button class="next">Next ❯</button>
-        </div>
-        
-        <!-- Dots indicators -->
-        <div class="dots-container">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-            <span class="dot" onclick="currentSlide(6)"></span>
-            <span class="dot" onclick="currentSlide(7)"></span>
-            <span class="dot" onclick="currentSlide(8)"></span>
-        </div>
+        <button class="restart-btn" id="restartBtn">Watch Again</button>
     </div>
-    
+
     <script>
-        let slideIndex = 1;
-        showSlide(slideIndex);
-        
-        function plusSlides(n) {
-            showSlide(slideIndex += n);
-        }
-        
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
-        }
-        
-        function showSlide(n) {
-            const slides = document.getElementsByClassName("slide");
-            const dots = document.getElementsByClassName("dot");
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add pen icon to follow cursor
+            const penIcon = document.createElement('div');
+            penIcon.className = 'pen-icon';
+            penIcon.innerHTML = '✏️';
+            document.body.appendChild(penIcon);
             
-            if (n > slides.length) {
-                slideIndex = 1;
-            }
-            if (n < 1) {
-                slideIndex = slides.length;
+            // Animation controller
+            const steps = document.querySelectorAll('.math-step');
+            const stepWritings = document.querySelectorAll('.math-step-writing');
+            const explanations = document.querySelectorAll('.step-explanation');
+            const restartBtn = document.getElementById('restartBtn');
+            
+            function animateWriting(element, finalWidth, duration, delay, callback) {
+                setTimeout(() => {
+                    let start = null;
+                    const textContent = element.textContent;
+                    const textWidth = getTextWidth(textContent, window.getComputedStyle(element).font);
+                    
+                    element.parentElement.classList.add('visible');
+                    
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        const elapsed = timestamp - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Calculate cursor position for pen icon
+                        const rect = element.getBoundingClientRect();
+                        const cursorX = rect.left + (textWidth * progress) + 5;
+                        const cursorY = rect.top + rect.height / 2;
+                        
+                        penIcon.style.opacity = 1;
+                        penIcon.style.left = `${cursorX}px`;
+                        penIcon.style.top = `${cursorY}px`;
+                        
+                        element.style.width = `${finalWidth * progress}px`;
+                        
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            setTimeout(() => {
+                                penIcon.style.opacity = 0;
+                                if (callback) callback();
+                            }, 200);
+                        }
+                    }
+                    
+                    window.requestAnimationFrame(step);
+                }, delay);
             }
             
-            // Hide all slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
+            function getTextWidth(text, font) {
+                const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
+                const context = canvas.getContext('2d');
+                context.font = font;
+                const metrics = context.measureText(text);
+                return metrics.width;
             }
             
-            // Remove active class from all dots
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
+            function showExplanation(index, delay) {
+                setTimeout(() => {
+                    explanations[index].classList.add('visible');
+                }, delay);
             }
             
-            // Show the current slide
-            slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
-        }
-        
-        // Add event listeners to buttons
-        document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
-        document.querySelector('.next').addEventListener('click', () => plusSlides(1));
-        
-        // Initialize the first slide as active
-        document.querySelector('.slide').classList.add('active');
-        document.querySelector('.dot').classList.add('active');
-        
-        // Auto slide functionality
-        let slideInterval = setInterval(() => {
-            plusSlides(1);
-        }, 5000);
-        
-        // Pause auto slide on hover
-        const slideshowContainer = document.querySelector('.slideshow-container');
-        slideshowContainer.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
-        
-        slideshowContainer.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(() => {
-                plusSlides(1);
-            }, 5000);
+            function startAnimation() {
+                // Reset
+                steps.forEach(step => step.classList.remove('visible'));
+                stepWritings.forEach(writing => {
+                    writing.style.width = '0';
+                });
+                explanations.forEach(explanation => explanation.classList.remove('visible'));
+                restartBtn.classList.remove('visible');
+                
+                // Get final widths before animation
+                const finalWidths = Array.from(stepWritings).map(el => {
+                    el.style.width = 'auto';
+                    const width = el.offsetWidth;
+                    el.style.width = '0';
+                    return width;
+                });
+                
+                // Start the sequence with 3-second pauses between steps
+                animateWriting(stepWritings[0], finalWidths[0], 1000, 500, () => {
+                    setTimeout(() => {
+                        animateWriting(stepWritings[1], finalWidths[1], 1500, 0, () => {
+                            showExplanation(0, 200);
+                            setTimeout(() => {
+                                animateWriting(stepWritings[2], finalWidths[2], 800, 500, () => {
+                                    showExplanation(1, 200);
+                                    setTimeout(() => {
+                                        animateWriting(stepWritings[3], finalWidths[3], 1500, 500, () => {
+                                            showExplanation(2, 200);
+                                            setTimeout(() => {
+                                                animateWriting(stepWritings[4], finalWidths[4], 800, 500, () => {
+                                                    showExplanation(3, 200);
+                                                    setTimeout(() => {
+                                                        restartBtn.classList.add('visible');
+                                                    }, 1000);
+                                                });
+                                            }, 3000); // 3-second pause
+                                        });
+                                    }, 3000); // 3-second pause
+                                });
+                            }, 3000); // 3-second pause
+                        });
+                    }, 3000); // 3-second pause
+                });
+            }
+            
+            // Start animation when page loads
+            startAnimation();
+            
+            // Restart button handler
+            restartBtn.addEventListener('click', startAnimation);
         });
     </script>
 </body>
