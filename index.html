@@ -3,736 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Government Services in The Gambia</title>
+    <title>Animated Math Solution</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
+        :root {
+            --notebook-blue: #0066cc;
+            --paper-color: #fffdf0;
+            --pen-color: #2b3d4f;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            overflow-x: hidden;
-        }
-        
-        .slide-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
             padding: 20px;
         }
         
-        .controls {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            z-index: 999;
-        }
-        
-        .thumbnail-btn {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background-color: #e0e0e0;
-            color: #333;
-            border-radius: 50%;
-            margin: 0 5px;
-            text-align: center;
-            line-height: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.8rem;
-        }
-        
-        .thumbnail-btn:hover {
-            background-color: #0062cc;
-            color: white;
-        }
-        
-        .active-thumbnail {
-            background-color: #0062cc;
-            color: white;
-        }
-        
-        .slide-thumbnails {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        
-        .slide {
-            display: none;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            padding: 40px;
-            margin: 20px 0;
-            min-height: 80vh;
-            position: relative;
-            animation: fadeIn 0.5s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .slide.active {
-            display: block;
-        }
-        
-        .title {
-            font-size: 2.5rem;
-            color: #0062cc;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .subtitle {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .content {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        
-        .content h3 {
-            color: #0062cc;
-            margin: 20px 0 10px;
-        }
-        
-        .content ul, .content ol {
-            margin-left: 30px;
-            margin-bottom: 20px;
-        }
-        
-        .content li {
-            margin-bottom: 10px;
-        }
-        
-        .content p {
-            margin-bottom: 15px;
-        }
-        
-        .author {
-            font-style: italic;
-            text-align: center;
-            margin-top: 40px;
-            font-size: 1rem;
-        }
-        
-        .footer {
-            position: absolute;
-            bottom: 20px;
-            right: 40px;
-            font-size: 0.9rem;
-            color: #777;
-        }
-        
-        .two-column {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        .column {
-            width: 48%;
-        }
-        
-        @media (max-width: 768px) {
-            .title {
-                font-size: 1.8rem;
-            }
-            
-            .subtitle {
-                font-size: 1.4rem;
-            }
-            
-            .content {
-                font-size: 1rem;
-            }
-            
-            .slide {
-                padding: 20px;
-                min-height: 70vh;
-            }
-            
-            .two-column {
-                flex-direction: column;
-            }
-            
-            .column {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-        }
-        
-        .progress-container {
+        .notebook-container {
             width: 100%;
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            margin: 10px 0;
+            max-width: 750px;
+            background-color: var(--paper-color);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
         }
         
-        .progress-bar {
-            height: 100%;
-            background: #0062cc;
-            border-radius: 4px;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        .slide-number {
+        .notebook-header {
             text-align: center;
-            font-size: 0.9rem;
-            color: #777;
-            margin-top: 5px;
+            margin-bottom: 20px;
+            color: var(--pen-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .exam-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+        
+        .problem-statement {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        
+        .notebook-paper {
+            position: relative;
+            padding: 10px;
+        }
+        
+        .notebook-line {
+            height: 80px;
+            border-bottom: 1px solid #b5c7d5;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        
+        .notebook-line::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background-color: #ff9999;
+        }
+        
+        .math-step {
+            position: relative;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s, transform 0.8s;
+            padding-left: 10px;
+            font-size: 22px;
+            color: var(--pen-color);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .math-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .math-step-writing {
+            color: var(--pen-color);
+            position: relative;
+            overflow: visible;
+            display: inline-block;
+            white-space: nowrap;
+            width: 0;
+        }
+        
+        .step-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: #4a90e2;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .step-arrow.visible {
+            opacity: 1;
+        }
+        
+        .step-explanation {
+            color: #6b7d8c;
+            font-size: 18px;
+            margin-left: 30px;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .step-explanation.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .final-answer {
+            color: #e7305b;
+            font-weight: bold;
+        }
+        
+        .restart-btn {
+            background-color: var(--notebook-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: block;
+            margin: 20px auto 0;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .restart-btn:hover {
+            background-color: #004e9e;
+            transform: scale(1.05);
+        }
+        
+        .restart-btn.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .pen-icon {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        .exam-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+        
+        .exam-logo {
+            height: 30px;
+            width: auto;
+        }
+        
+        
+        
+        @media (max-width: 600px) {
+            .notebook-container {
+                padding: 20px 10px;
+            }
+            
+            .math-step {
+                font-size: 20px;
+            }
+            
+            .step-explanation {
+                font-size: 16px;
+                margin-left: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="slide-container">
-        <!-- Slide 1: Title -->
-        <div class="slide active" id="slide1">
-            <h1 class="title">THE ROLE OF INFORMATION TECHNOLOGY IN ENHANCING E-GOVERNMENT SERVICES IN THE GAMBIA</h1>
-            <div class="content">
-                <p class="author">PRESENTED BY:<br>MUHAMMED BABA SUNO<br>MAT# 22316038<br>FACULTY OF ICT</p>
-                <p class="author">SUBMITTED TO:<br>PROF. VICTOR ESHIET EKONG<br>FACULTY OF ICT<br>MAY, 2025</p>
-            </div>
-            <div class="footer">1 / 15</div>
+    <div class="notebook-container">
+        <div class="notebook-header">
+            <div class="exam-title">WAEC 2011</div>
+            <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2025/04/WAEC.jpg" alt="WAEC Logo" class="exam-logo">
+            <h1>Solving for x</h1>
+            <div class="problem-statement">2logx – log(1 – x) = log(2 – x)</div>
         </div>
-        
-        <!-- Slide 2: Background -->
-        <div class="slide" id="slide2">
-            <h2 class="subtitle">BACKGROUND OF THE STUDY</h2>
-            <div class="content">
-                <p>E-Government refers to the application of Information and Communication Technologies (ICTs) to enhance public sector activities and operations.</p>
-                
-                <ul>
-                    <li>Involves computerization of government processes and services</li>
-                    <li>Aims to enhance efficiency, transparency, and responsiveness</li>
-                    <li>Utilizes channels like government portals, e-governance identity schemes, and payment gateways</li>
-                </ul>
-                
-                <p>The Gambia has employed national development plans and ICT policies to pursue digitization of public services, but implementation is still in its nascent stage due to:</p>
-                
-                <ul>
-                    <li>Infrastructural challenges</li>
-                    <li>Institutional barriers</li>
-                    <li>Socio-economic issues</li>
-                </ul>
-            </div>
-            <div class="footer">2 / 15</div>
-        </div>
-        
-        <!-- Slide 3: Problem Statement -->
-        <div class="slide" id="slide3">
-            <h2 class="subtitle">PROBLEM STATEMENT</h2>
-            <div class="content">
-                <p>Despite the acknowledged potential of e-Government to transform public administration, The Gambia still grapples with effective adoption and implementation of digital strategies:</p>
-                
-                <ul>
-                    <li>Majority of government services still provided through traditional manual channels</li>
-                    <li>Low internet penetration, especially in rural areas</li>
-                    <li>Inadequate ICT infrastructure</li>
-                    <li>Lack of adequate IT expertise</li>
-                    <li>Digital illiteracy among citizens</li>
-                    <li>Absence of coordination among government agencies leading to fragmented systems</li>
-                </ul>
-                
-                <p>This research seeks to address these problems by examining how IT can be strategically exploited to enhance the design, implementation, and management of e-Government services.</p>
-            </div>
-            <div class="footer">3 / 15</div>
-        </div>
-        
-        <!-- Slide 4: Study Objectives -->
-        <div class="slide" id="slide4">
-            <h2 class="subtitle">STUDY OBJECTIVES</h2>
-            <div class="content">
-                <p><strong>The primary objective:</strong> To examine the role of Information Technology towards e-Government service development in The Gambia.</p>
-                
-                <p><strong>Specific objectives:</strong></p>
-                <ol>
-                    <li>To examine the extent and status of e-Government service implementation in government ministries, departments, and agencies (MDAs) of The Gambia</li>
-                    <li>To identify the roles of Information Technology towards the development, deployment, and effectiveness of e-Government platforms</li>
-                    <li>To identify the technical, organizational, and social barriers to proper use of IT in public service delivery</li>
-                    <li>To propose realistic and feasible IT-driven strategies that can increase availability, quality, and dependability of government services</li>
-                </ol>
-            </div>
-            <div class="footer">4 / 15</div>
-        </div>
-        
-        <!-- Slide 5: Research Questions -->
-        <div class="slide" id="slide5">
-            <h2 class="subtitle">RESEARCH QUESTIONS</h2>
-            <div class="content">
-                <ol>
-                    <li>What is the current status of Information Technology in e-Government services in The Gambia, and to what extent are they being used by citizens and businesses?</li>
-                    <li>To what extent has Information Technology supported planning and implementation of e-Government initiatives?</li>
-                    <li>What are the main technical, infrastructural, and institutional barriers to the implementation of IT in public service delivery?</li>
-                    <li>What are the best practices and strategies to employ to boost the role of IT to increase the effectiveness of e-Government in The Gambia?</li>
-                </ol>
-            </div>
-            <div class="footer">5 / 15</div>
-        </div>
-        
-        <!-- Slide 6: Significance of the Study -->
-        <div class="slide" id="slide6">
-            <h2 class="subtitle">SIGNIFICANCE OF THE STUDY</h2>
-            <div class="content">
-                <p>This research is vital on multiple fronts:</p>
-                
-                <ul>
-                    <li>Provides insights into the situation of e-Government in The Gambia</li>
-                    <li>Contributes knowledge on electronic governance in less developed countries and the West African region</li>
-                    <li>Assists policy makers with evidence-informed guidance for ICT policy formulation</li>
-                    <li>Helps system designers and IT experts understand requirements for responsive solutions</li>
-                    <li>Enables public administrators to efficiently provide IT-enabled services</li>
-                    <li>Benefits the general public through improved access to government services, transparency, and increased citizen participation</li>
-                </ul>
-            </div>
-            <div class="footer">6 / 15</div>
-        </div>
-        
-        <!-- Slide 7: Conceptual Framework -->
-        <div class="slide" id="slide7">
-            <h2 class="subtitle">CONCEPTUAL FRAMEWORK</h2>
-            <div class="content">
-                <p>E-Government refers to the intended use of ICTs for reengineering and modernizing public institutions and service delivery.</p>
-                
-                <p><strong>Key technologies included:</strong></p>
-                <ul>
-                    <li>Internet platforms and mobile applications</li>
-                    <li>Electronic document management systems</li>
-                    <li>Cloud computing</li>
-                    <li>Biometric and digital identity systems</li>
-                    <li>Online service portals</li>
-                </ul>
-                
-                <p>The conceptual framework treats e-Government as a multi-layer system integrating:</p>
-                <ul>
-                    <li>Technology</li>
-                    <li>Institutional change</li>
-                    <li>Citizen engagement</li>
-                </ul>
-                
-                <p>Information Technology acts as both an enabler and driver of innovation in public service delivery.</p>
-            </div>
-            <div class="footer">7 / 15</div>
-        </div>
-        
-        <!-- Slide 8: Theoretical Framework -->
-        <div class="slide" id="slide8">
-            <h2 class="subtitle">THEORETICAL FRAMEWORK</h2>
-            <div class="content">
-                <div class="two-column">
-                    <div class="column">
-                        <h3>Technology Acceptance Model (TAM)</h3>
-                        <p>Designed by Davis (1989) to explain how individuals accept and use technology.</p>
-                        <p><strong>Key drivers:</strong></p>
-                        <ul>
-                            <li>Perceived Usefulness: belief that technology will improve job performance</li>
-                            <li>Perceived Ease of Use: belief that using the technology will be effortless</li>
-                        </ul>
-                        <p>Helps identify attitudes of government employees and citizens towards web platforms.</p>
-                    </div>
-                    <div class="column">
-                        <h3>Diffusion of Innovations Theory (DOI)</h3>
-                        <p>Developed by Rogers (1962) to describe how innovations spread across cultures and social systems.</p>
-                        <p><strong>Adoption stages:</strong></p>
-                        <ul>
-                            <li>Knowledge, persuasion, decision, implementation, confirmation</li>
-                        </ul>
-                        <p><strong>Adopter categories:</strong></p>
-                        <ul>
-                            <li>Innovators, early adopters, early majority, late majority, laggards</li>
-                        </ul>
-                        <p>Explains how different strata of the population accept or reject e-Government services.</p>
-                    </div>
+        <div class="notebook-paper">
+            <div class="notebook-line">
+                <div class="math-step" id="step1">
+                    <div class="math-step-writing">2logx – log(1 – x) = log(2 – x)</div>
                 </div>
             </div>
-            <div class="footer">8 / 15</div>
-        </div>
-        
-        <!-- Slide 9: Global Perspectives -->
-        <div class="slide" id="slide9">
-            <h2 class="subtitle">GLOBAL PERSPECTIVES ON E-GOVERNMENT</h2>
-            <div class="content">
-                <p>Some countries have made significant advancements in e-Government services:</p>
-                
-                <div class="two-column">
-                    <div class="column">
-                        <h3>Estonia</h3>
-                        <ul>
-                            <li>"Digital republic" concept</li>
-                            <li>e-Residency, digital identification</li>
-                            <li>Online voting, taxes, healthcare</li>
-                            <li>Success factors: political will, early launches, ongoing investment</li>
-                        </ul>
-                        
-                        <h3>South Korea</h3>
-                        <ul>
-                            <li>Integrated e-Government model</li>
-                            <li>700+ public online services</li>
-                            <li>Sophisticated data protection law</li>
-                            <li>Fast internet infrastructure</li>
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h3>Singapore</h3>
-                        <ul>
-                            <li>Top-down and citizen-focused model</li>
-                            <li>Excellence in services and analytics</li>
-                            <li>Personalized digital experience</li>
-                        </ul>
-                        
-                        <h3>Key Success Factors</h3>
-                        <ul>
-                            <li>Well-defined vision</li>
-                            <li>Strong ICT infrastructure</li>
-                            <li>Government drive and leadership</li>
-                            <li>Public trust</li>
-                            <li>Effective legal systems</li>
-                        </ul>
-                    </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step2">
+                    <div class="math-step-writing">log(x²) – log(1 – x) = log(2 – x)</div>
+                    <div class="step-explanation">Using property: n·log(a) = log(aⁿ)</div>
                 </div>
             </div>
-            <div class="footer">9 / 15</div>
-        </div>
-        
-        <!-- Slide 10: Africa's E-Government -->
-        <div class="slide" id="slide10">
-            <h2 class="subtitle">AFRICA'S E-GOVERNMENT</h2>
-            <div class="content">
-                <div class="two-column">
-                    <div class="column">
-                        <h3>Success Stories</h3>
-                        <p><strong>Rwanda:</strong></p>
-                        <ul>
-                            <li>Smart Rwanda Master Plan</li>
-                            <li>IremboGov platform (100+ online services)</li>
-                            <li>Public-private partnerships</li>
-                            <li>Digital literacy emphasis</li>
-                        </ul>
-                        
-                        <p><strong>Kenya:</strong></p>
-                        <ul>
-                            <li>e-Citizen platform</li>
-                            <li>Huduma Centres (integrated services)</li>
-                            <li>National ICT Masterplan</li>
-                            <li>Digital skills capacity building</li>
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h3>Common Challenges</h3>
-                        <ul>
-                            <li>Lack of broadband infrastructure</li>
-                            <li>Inconsistent power supply</li>
-                            <li>Insufficient funding</li>
-                            <li>Limited technical capacity</li>
-                            <li>Resistance to change within public sector</li>
-                            <li>Lagging legal and regulatory environments</li>
-                            <li>Data protection concerns</li>
-                            <li>Cybersecurity vulnerabilities</li>
-                            <li>Interoperability issues</li>
-                        </ul>
-                    </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step3">
+                    <div class="math-step-writing">log(x²/(1 – x)) = log(2 – x)</div>
+                    <div class="step-explanation">Using property: log(a) - log(b) = log(a/b)</div>
                 </div>
             </div>
-            <div class="footer">10 / 15</div>
-        </div>
-        
-        <!-- Slide 11: The Gambian Context -->
-        <div class="slide" id="slide11">
-            <h2 class="subtitle">THE GAMBIAN CONTEXT</h2>
-            <div class="content">
-                <div class="two-column">
-                    <div class="column">
-                        <h3>Current Initiatives</h3>
-                        <ul>
-                            <li>Government Wide Area Network (GWAN)</li>
-                            <li>Computerization of National Identity System</li>
-                            <li>National ICT for Development Policy</li>
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h3>Key Challenges</h3>
-                        <ul>
-                            <li>Uneven internet accessibility (especially rural)</li>
-                            <li>Poor user knowledge and e-readiness</li>
-                            <li>Outdated ICT equipment</li>
-                            <li>Poor system maintenance</li>
-                            <li>Human resource capacity deficiency</li>
-                            <li>Delayed policy enforcement</li>
-                            <li>Weak inter-agency collaboration</li>
-                            <li>Disjointed systems and duplication of effort</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <p>There is an urgent need to leverage IT more effectively to enable holistic and inclusive e-Government services in The Gambia.</p>
-            </div>
-            <div class="footer">11 / 15</div>
-        </div>
-        
-        <!-- Slide 12: Role of IT in E-Government -->
-        <div class="slide" id="slide12">
-            <h2 class="subtitle">ROLE OF IT IN E-GOVERNMENT</h2>
-            <div class="content">
-                <p>Information Technology is the enabler which underlies e-Government systems:</p>
-                
-                <ul>
-                    <li><strong>Data Management Systems:</strong> Organize information for services like healthcare, taxation, and civil registration</li>
-                    <li><strong>Network Infrastructure:</strong> Fiber-optic networks and wireless communications connecting government offices and citizens</li>
-                    <li><strong>Cybersecurity:</strong> Protection of sensitive data and digital identities to maintain citizen trust</li>
-                    <li><strong>User Interface Design:</strong> Mobile applications and websites that are easy to use, accessible, and in local languages</li>
-                </ul>
-                
-                <p>IT is not just an automation tool but a strategic asset for:</p>
-                <ul>
-                    <li>Redefining government-citizen interactions</li>
-                    <li>Improving service delivery</li>
-                    <li>Ensuring transparency and accountability</li>
-                    <li>Increasing efficiency and reducing costs</li>
-                    <li>Enhancing overall government quality</li>
-                </ul>
-            </div>
-            <div class="footer">12 / 15</div>
-        </div>
-        
-        <!-- Slide 13: Methodology -->
-        <div class="slide" id="slide13">
-            <h2 class="subtitle">METHODOLOGY</h2>
-            <div class="content">
-                <div class="two-column">
-                    <div class="column">
-                        <h3>Research Design</h3>
-                        <p>Mixed-methods approach combining:</p>
-                        <ul>
-                            <li>Quantitative (structured questionnaires)</li>
-                            <li>Qualitative (semi-structured interviews)</li>
-                        </ul>
-                        
-                        <h3>Population and Sampling</h3>
-                        <p>Target groups:</p>
-                        <ul>
-                            <li>Government IT professionals</li>
-                            <li>Civil servants and administrators</li>
-                            <li>Citizens using digital services</li>
-                        </ul>
-                        <p>Using stratified sampling strategy</p>
-                    </div>
-                    <div class="column">
-                        <h3>Data Collection Instruments</h3>
-                        <ul>
-                            <li>Structured questionnaires</li>
-                            <li>Semi-structured interviews</li>
-                            <li>Document analysis</li>
-                        </ul>
-                        
-                        <h3>Data Analysis Techniques</h3>
-                        <ul>
-                            <li>Quantitative: SPSS for descriptive and inferential statistics</li>
-                            <li>Qualitative: Thematic analysis using NVivo</li>
-                            <li>Integration and triangulation of findings</li>
-                        </ul>
-                        
-                        <h3>Ethical Considerations</h3>
-                        <ul>
-                            <li>Ethical clearance</li>
-                            <li>Informed consent</li>
-                            <li>Confidentiality and anonymity</li>
-                            <li>Right to withdraw</li>
-                            <li>Data security</li>
-                        </ul>
-                    </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step4">
+                    <div class="math-step-writing">x²/(1 – x) = 2 – x</div>
+                    <div class="step-explanation">If log(a) = log(b), then a = b</div>
                 </div>
             </div>
-            <div class="footer">13 / 15</div>
-        </div>
-        
-        <!-- Slide 14: Expected Results -->
-        <div class="slide" id="slide14">
-            <h2 class="subtitle">EXPECTED RESULTS</h2>
-            <div class="content">
-                <div class="two-column">
-                    <div class="column">
-                        <h3>In-Depth Insight into IT Utilisation</h3>
-                        <ul>
-                            <li>Level of digital service use</li>
-                            <li>Types of IT platforms and systems</li>
-                            <li>Usage patterns</li>
-                            <li>IT-service delivery alignment</li>
-                        </ul>
-                        
-                        <h3>Identification of Challenges</h3>
-                        <ul>
-                            <li>Inadequate infrastructure</li>
-                            <li>Low digital literacy</li>
-                            <li>Organizational resistance</li>
-                            <li>Budget constraints</li>
-                            <li>Policy shortcomings</li>
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h3>Identification of Opportunities</h3>
-                        <ul>
-                            <li>Cellular penetration for mobile services</li>
-                            <li>Scalable digital initiatives</li>
-                            <li>Public demand for transparent services</li>
-                            <li>Partnership potential</li>
-                        </ul>
-                        
-                        <h3>Policy & Technical Recommendations</h3>
-                        <ul>
-                            <li>National e-Government strategy</li>
-                            <li>Legal/regulatory framework</li>
-                            <li>Digital literacy initiatives</li>
-                            <li>Infrastructure investment</li>
-                            <li>System interoperability</li>
-                            <li>Cybersecurity architecture</li>
-                            <li>Accessible multilingual interfaces</li>
-                        </ul>
-                    </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step5">
+                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
+                    <div class="step-explanation">Multiply both sides by (1-x)</div>
                 </div>
             </div>
-            <div class="footer">14 / 15</div>
-        </div>
-        
-        <!-- Slide 15: Recommendations -->
-        <div class="slide" id="slide15">
-            <h2 class="subtitle">RECOMMENDATIONS</h2>
-            <div class="content">
-                <ol>
-                    <li><strong>Expand and Upgrade IT Infrastructure</strong>
-                        <ul>
-                            <li>Investment in broadband connectivity</li>
-                            <li>System reliability and integration</li>
-                            <li>Data centers and cloud services</li>
-                        </ul>
-                    </li>
-                    <li><strong>Construct Capacity and Training</strong>
-                        <ul>
-                            <li>Professional development programs</li>
-                            <li>ICT learning integration</li>
-                            <li>Digital leadership institutionalization</li>
-                        </ul>
-                    </li>
-                    <li><strong>Develop Digital Literacy and Civic Engagement</strong>
-                        <ul>
-                            <li>Nationwide awareness programs</li>
-                            <li>User-friendly, multilingual interfaces</li>
-                            <li>Collaboration with civil society</li>
-                        </ul>
-                    </li>
-                    <li><strong>Strengthen Policy and Regulatory Environments</strong>
-                        <ul>
-                            <li>Data protection and cybersecurity legislation</li>
-                            <li>System interoperability</li>
-                            <li>National e-Government coordination office</li>
-                        </ul>
-                    </li>
-                    <li><strong>Encourage Partnerships and Innovation</strong>
-                        <ul>
-                            <li>Collaboration with private sector and academia</li>
-                            <li>Public-private partnerships (PPPs)</li>
-                            <li>Locally-driven IT solutions</li>
-                        </ul>
-                    </li>
-                </ol>
+            <div class="notebook-line">
+                <div class="math-step" id="step6">
+                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
+                </div>
             </div>
-            <div class="footer">15 / 15</div>
+            <div class="notebook-line">
+                <div class="math-step" id="step7">
+                    <div class="math-step-writing">x² = 2 – x – 2x + x²</div>
+                    <div class="step-explanation">Expand the right side</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step8">
+                    <div class="math-step-writing">0 = 2 – 3x</div>
+                    <div class="step-explanation">Simplify by subtracting x² from both sides</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step9">
+                    <div class="math-step-writing">3x = 2</div>
+                    <div class="step-explanation">Add 3x to both sides</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step10">
+                    <div class="math-step-writing">x = 2/3</div>
+                    <div class="step-explanation">Divide both sides by 3</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step11">
+                    <div class="math-step-writing">Check: For x = 2/3, 1-x = 1/3, 2-x = 4/3</div>
+                    <div class="step-explanation">Verify our answer in the original equation</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step12">
+                    <div class="math-step-writing">x = 2/3</div>
+                    <div class="step-explanation final-answer">Our final answer!</div>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <div class="controls">
-        <div class="progress-container">
-            <div class="progress-bar" id="progress"></div>
-        </div>
-        <div class="slide-number" id="slide-counter">Slide 1 of 15</div>
-        <div class="slide-thumbnails" id="thumbnails"></div>
+        <button class="restart-btn" id="restartBtn">Watch Again</button>
     </div>
 
     <script>
-        let currentSlide = 1;
-        const totalSlides = 15;
-        
-        function showSlide(n) {
-            // Hide all slides
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add pen icon to follow cursor
+            const penIcon = document.createElement('div');
+            penIcon.className = 'pen-icon';
+            penIcon.innerHTML = '✏️';
+            document.body.appendChild(penIcon);
             
-            // Show the current slide
-            currentSlide = n;
-            if (currentSlide > totalSlides) currentSlide = 1;
-            if (currentSlide < 1) currentSlide = totalSlides;
+            // Animation controller
+            const steps = document.querySelectorAll('.math-step');
+            const stepWritings = document.querySelectorAll('.math-step-writing');
+            const explanations = document.querySelectorAll('.step-explanation');
+            const restartBtn = document.getElementById('restartBtn');
             
-            document.getElementById(`slide${currentSlide}`).classList.add('active');
-            
-            // Update progress bar
-            const progressPercent = ((currentSlide - 1) / (totalSlides - 1)) * 100;
-            document.getElementById('progress').style.width = `${progressPercent}%`;
-            
-            // Update slide counter
-            document.getElementById('slide-counter').textContent = `Slide ${currentSlide} of ${totalSlides}`;
-            
-            // Update thumbnail selection
-            const thumbnailButtons = document.querySelectorAll('.thumbnail-btn');
-            thumbnailButtons.forEach((btn, index) => {
-                if (index + 1 === currentSlide) {
-                    btn.classList.add('active-thumbnail');
-                } else {
-                    btn.classList.remove('active-thumbnail');
-                }
-            });
-        }
-        
-        // Create thumbnails for slide navigation
-        function createThumbnails() {
-            const thumbnailContainer = document.getElementById('thumbnails');
-            
-            for (let i = 1; i <= totalSlides; i++) {
-                const thumbnail = document.createElement('div');
-                thumbnail.className = 'thumbnail-btn';
-                thumbnail.textContent = i;
-                thumbnail.title = `Go to slide ${i}`;
-                thumbnail.addEventListener('click', () => showSlide(i));
-                
-                if (i === 1) {
-                    thumbnail.classList.add('active-thumbnail');
-                }
-                
-                thumbnailContainer.appendChild(thumbnail);
+            function animateWriting(element, finalWidth, duration, delay, callback) {
+                setTimeout(() => {
+                    let start = null;
+                    const textContent = element.textContent;
+                    const textWidth = Math.max(getTextWidth(textContent, window.getComputedStyle(element).font), 400);
+                    
+                    element.parentElement.classList.add('visible');
+                    
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        const elapsed = timestamp - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Calculate cursor position for pen icon
+                        const rect = element.getBoundingClientRect();
+                        const cursorX = rect.left + (textWidth * progress) + 5;
+                        const cursorY = rect.top + rect.height / 2;
+                        
+                        penIcon.style.opacity = 1;
+                        penIcon.style.left = `${cursorX}px`;
+                        penIcon.style.top = `${cursorY}px`;
+                        
+                        element.style.width = `${finalWidth * progress}px`;
+                        
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            setTimeout(() => {
+                                penIcon.style.opacity = 0;
+                                if (callback) callback();
+                            }, 200);
+                        }
+                    }
+                    
+                    window.requestAnimationFrame(step);
+                }, delay);
             }
-        }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                showSlide(currentSlide + 1);
-            } else if (e.key === 'ArrowLeft') {
-                showSlide(currentSlide - 1);
+            
+            function getTextWidth(text, font) {
+                const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
+                const context = canvas.getContext('2d');
+                context.font = font;
+                const metrics = context.measureText(text);
+                return metrics.width;
             }
+            
+            function showExplanation(index, delay) {
+                setTimeout(() => {
+                    explanations[index].classList.add('visible');
+                }, delay);
+            }
+            
+            function startAnimation() {
+                // Reset
+                steps.forEach(step => step.classList.remove('visible'));
+                stepWritings.forEach(writing => {
+                    writing.style.width = '0';
+                });
+                explanations.forEach(explanation => explanation.classList.remove('visible'));
+                restartBtn.classList.remove('visible');
+                
+                // Get final widths before animation
+                const finalWidths = Array.from(stepWritings).map(el => {
+                    el.style.width = 'auto';
+                    const width = Math.max(el.offsetWidth, 500);
+                    el.style.width = '0';
+                    return width;
+                });
+                
+                // Start the sequence with delays between steps
+                const stepDelay = 2000; // 2 seconds between steps
+                
+                animateWriting(stepWritings[0], finalWidths[0], 1000, 500, () => {
+                    setTimeout(() => {
+                        animateWriting(stepWritings[1], finalWidths[1], 1200, 0, () => {
+                            showExplanation(0, 200);
+                            
+                            setTimeout(() => {
+                                animateWriting(stepWritings[2], finalWidths[2], 1200, 0, () => {
+                                    showExplanation(1, 200);
+                                    
+                                    setTimeout(() => {
+                                        animateWriting(stepWritings[3], finalWidths[3], 1200, 0, () => {
+                                            showExplanation(2, 200);
+                                            
+                                            setTimeout(() => {
+                                                animateWriting(stepWritings[4], finalWidths[4], 1200, 0, () => {
+                                                    showExplanation(3, 200);
+                                                    
+                                                    setTimeout(() => {
+                                                        animateWriting(stepWritings[5], finalWidths[5], 800, 0);
+                                                        
+                                                        setTimeout(() => {
+                                                            animateWriting(stepWritings[6], finalWidths[6], 1200, 0, () => {
+                                                                showExplanation(4, 200);
+                                                                
+                                                                setTimeout(() => {
+                                                                    animateWriting(stepWritings[7], finalWidths[7], 1200, 0, () => {
+                                                                        showExplanation(5, 200);
+                                                                        
+                                                                        setTimeout(() => {
+                                                                            animateWriting(stepWritings[8], finalWidths[8], 1000, 0, () => {
+                                                                                showExplanation(6, 200);
+                                                                                
+                                                                                setTimeout(() => {
+                                                                                    animateWriting(stepWritings[9], finalWidths[9], 1000, 0, () => {
+                                                                                        showExplanation(7, 200);
+                                                                                        
+                                                                                        setTimeout(() => {
+                                                                                            animateWriting(stepWritings[10], finalWidths[10], 1200, 0, () => {
+                                                                                                showExplanation(8, 200);
+                                                                                                
+                                                                                                setTimeout(() => {
+                                                                                                    animateWriting(stepWritings[11], finalWidths[11], 800, 0, () => {
+                                                                                                        showExplanation(9, 200);
+                                                                                                        
+                                                                                                        setTimeout(() => {
+                                                                                                            restartBtn.classList.add('visible');
+                                                                                                        }, 1000);
+                                                                                                    });
+                                                                                                }, stepDelay);
+                                                                                            });
+                                                                                        }, stepDelay);
+                                                                                    });
+                                                                                }, stepDelay);
+                                                                            });
+                                                                        }, stepDelay);
+                                                                    });
+                                                                }, stepDelay);
+                                                            });
+                                                        }, stepDelay);
+                                                    }, stepDelay);
+                                                });
+                                            }, stepDelay);
+                                        });
+                                    }, stepDelay);
+                                });
+                            }, stepDelay);
+                        });
+                    }, stepDelay);
+                });
+            }
+            
+            // Start animation when page loads
+            startAnimation();
+            
+            // Restart button handler
+            restartBtn.addEventListener('click', startAnimation);
         });
-        
-        // Initialize thumbnails, slide counter and progress bar
-        document.getElementById('slide-counter').textContent = `Slide 1 of ${totalSlides}`;
-        document.getElementById('progress').style.width = '0%';
-        createThumbnails();
     </script>
 </body>
 </html>
