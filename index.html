@@ -3,451 +3,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Math Solution</title>
+    <title>MathHub - Your Mathematics Learning Center</title>
     <style>
-        :root {
-            --notebook-blue: #0066cc;
-            --paper-color: #fffdf0;
-            --pen-color: #2b3d4f;
-        }
-        
-        body {
-            font-family: 'Comic Sans MS', sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
-        
-        .notebook-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: var(--paper-color);
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .math-icons {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 20px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .tab {
+            flex: 1;
+            max-width: 300px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border: none;
+            padding: 20px 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            padding: 40px 20px;
         }
-        
-        .notebook-header {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--pen-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
+
+        .tab:first-child {
+            border-radius: 10px 0 0 10px;
         }
-        
-        .exam-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-right: 10px;
+
+        .tab:last-child {
+            border-radius: 0 10px 10px 0;
         }
-        
-        .problem-statement {
-            font-size: 20px;
-            margin-top: 10px;
-            font-weight: bold;
-            color: #0066cc;
+
+        .tab:only-child {
+            border-radius: 10px;
         }
-        
-        .notebook-paper {
-            position: relative;
-            padding: 10px;
+
+        .tab:hover {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-        
-        .notebook-line {
-            height: 80px;
-            border-bottom: 1px solid #b5c7d5;
-            position: relative;
-            margin-bottom: 5px;
+
+        .tab.active {
+            background: linear-gradient(145deg, #4CAF50, #45a049);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
         }
-        
-        .notebook-line::before {
+
+        .tab::before {
             content: '';
             position: absolute;
-            left: -20px;
             top: 0;
+            left: -100%;
+            width: 100%;
             height: 100%;
-            width: 1px;
-            background-color: #ff9999;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
-        
-        .math-step {
+
+        .tab:hover::before {
+            left: 100%;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            min-height: 400px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page h2 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
             position: relative;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s, transform 0.8s;
-            padding-left: 10px;
-            font-size: 22px;
-            color: var(--pen-color);
-            height: 100%;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
         }
-        
-        .math-step.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .page h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
         }
-        
-        .math-step-writing {
-            color: var(--pen-color);
-            position: relative;
-            overflow: visible;
-            display: inline-block;
-            white-space: nowrap;
-            width: 0;
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
-        
-        .step-arrow {
-            display: inline-block;
-            margin: 0 10px;
-            color: #4a90e2;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+
+        .video-card {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-        
-        .step-arrow.visible {
-            opacity: 1;
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
         }
-        
-        .step-explanation {
-            color: #6b7d8c;
-            font-size: 18px;
-            margin-left: 30px;
-            transform: scale(0.8);
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+
+        .video-card h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
-        
-        .step-explanation.visible {
-            opacity: 1;
-            transform: scale(1);
+
+        .video-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
-        
-        .final-answer {
-            color: #e7305b;
-            font-weight: bold;
-        }
-        
-        .restart-btn {
-            background-color: var(--notebook-blue);
+
+        .btn {
+            background: linear-gradient(145deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-family: inherit;
-            font-size: 16px;
+            padding: 12px 25px;
+            border-radius: 25px;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s, transform 0.2s;
-            display: block;
-            margin: 20px auto 0;
-            opacity: 0;
-            transform: scale(0.9);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
-        
-        .restart-btn:hover {
-            background-color: #004e9e;
-            transform: scale(1.05);
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
-        
-        .restart-btn.visible {
-            opacity: 1;
-            transform: scale(1);
+
+        .speed-test {
+            text-align: center;
+            padding: 30px;
         }
-        
-        .pen-icon {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 10;
+
+        .problem {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+            border-radius: 15px;
+            border-left: 5px solid #2196F3;
         }
-        .exam-title {
-            font-size: 18px;
+
+        .answer-input {
+            font-size: 1.5rem;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 20px;
+            width: 200px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            color: #e74c3c;
             font-weight: bold;
-            color: #333;
-            margin-right: 10px;
+            margin: 20px 0;
         }
-        
-        .exam-logo {
-            height: 30px;
-            width: auto;
+
+        .score {
+            font-size: 1.3rem;
+            color: #27ae60;
+            font-weight: bold;
         }
-        
-        
-        
-        @media (max-width: 600px) {
-            .notebook-container {
-                padding: 20px 10px;
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .resource-card {
+            background: linear-gradient(145deg, #fff3e0, #ffe0b2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #ff9800;
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ff9800;
+        }
+
+        .resource-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .resource-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .math-step {
-                font-size: 20px;
+            .tab {
+                border-radius: 10px !important;
             }
             
-            .step-explanation {
-                font-size: 16px;
-                margin-left: 20px;
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="notebook-container">
-        <div class="notebook-header">
-            <div class="exam-title">WAEC 2011</div>
-            <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2025/04/WAEC.jpg" alt="WAEC Logo" class="exam-logo">
-            <h1>Solving for x</h1>
-            <div class="problem-statement">2logx – log(1 – x) = log(2 – x)</div>
+    <div class="container">
+        <header>
+            <h1>🧮 MathHub</h1>
+            <p class="subtitle">Your Ultimate Mathematics Learning Center</p>
+            <div class="math-icons">∑ ∫ π ∞ √ ≈</div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab active" onclick="showPage('video-lectures')">
+                📹 Video Lectures
+            </button>
+            <button class="tab" onclick="showPage('test-speed')">
+                ⚡ Test Your Speed
+            </button>
+            <button class="tab" onclick="showPage('resources')">
+                📚 Downloadable Resources
+            </button>
+        </nav>
+
+        <div class="content">
+            <!-- Video Lectures Page -->
+            <div id="video-lectures" class="page active">
+                <h2>📹 Video Lectures</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 30px;">
+                    Explore comprehensive mathematics video lectures from basic arithmetic to advanced calculus
+                </p>
+                
+                <div class="video-grid">
+                    <div class="video-card">
+                        <h3>Algebra Fundamentals</h3>
+                        <p>Master the basics of algebraic expressions, equations, and problem-solving techniques.</p>
+                        <a href="https://www.khanacademy.org/math/algebra" class="btn" target="_blank">Watch Now</a>
+                    </div>
+                    
+                    <div class="video-card">
+                        <h3>Geometry Essentials</h3>
+                        <p>Learn about shapes, angles, area, volume, and geometric proofs with visual explanations.</p>
+                        <a href="https://www.khanacademy.org/math/geometry" class="btn" target="_blank">Watch Now</a>
+                    </div>
+                    
+                    <div class="video-card">
+                        <h3>Calculus Mastery</h3>
+                        <p>Dive into limits, derivatives, integrals, and advanced calculus concepts.</p>
+                        <a href="https://www.khanacademy.org/math/calculus-1" class="btn" target="_blank">Watch Now</a>
+                    </div>
+                    
+                    <div class="video-card">
+                        <h3>Statistics & Probability</h3>
+                        <p>Understand data analysis, probability distributions, and statistical inference.</p>
+                        <a href="https://www.khanacademy.org/math/statistics-probability" class="btn" target="_blank">Watch Now</a>
+                    </div>
+                    
+                    <div class="video-card">
+                        <h3>Linear Algebra</h3>
+                        <p>Explore vectors, matrices, eigenvalues, and linear transformations.</p>
+                        <a href="https://www.khanacademy.org/math/linear-algebra" class="btn" target="_blank">Watch Now</a>
+                    </div>
+                    
+                    <div class="video-card">
+                        <h3>Number Theory</h3>
+                        <p>Discover the fascinating world of prime numbers, modular arithmetic, and cryptography.</p>
+                        <a href="https://www.youtube.com/playlist?list=PL8FnQMH2k7jzePf_jbYeNkl5mj8_MfqY5" class="btn" target="_blank">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Your Speed Page -->
+            <div id="test-speed" class="page">
+                <h2>⚡ Test Your Speed</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 30px;">
+                    Challenge yourself with rapid-fire math problems and improve your calculation speed
+                </p>
+                
+                <div class="speed-test">
+                    <div class="timer">Time: <span id="timer">60</span>s</div>
+                    <div class="score">Score: <span id="score">0</span></div>
+                    
+                    <div class="problem" id="problem">Click "Start Test" to begin!</div>
+                    
+                    <div>
+                        <input type="number" id="answer" class="answer-input" placeholder="Your Answer" disabled>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <button class="btn" id="start-btn" onclick="startSpeedTest()">Start Test</button>
+                        <button class="btn" id="submit-btn" onclick="submitAnswer()" disabled>Submit</button>
+                        <button class="btn" onclick="location.href='https://www.mathsisfun.com/games/'" target="_blank">More Math Games</button>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3>Difficulty Levels:</h3>
+                        <button class="btn" onclick="setDifficulty('easy')" style="margin: 5px;">Easy (1-20)</button>
+                        <button class="btn" onclick="setDifficulty('medium')" style="margin: 5px;">Medium (1-100)</button>
+                        <button class="btn" onclick="setDifficulty('hard')" style="margin: 5px;">Hard (1-1000)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Downloadable Resources Page -->
+            <div id="resources" class="page">
+                <h2>📚 Downloadable Resources</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 30px;">
+                    Access free downloadable mathematics resources, worksheets, and study materials
+                </p>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📋</div>
+                        <h3>Practice Worksheets</h3>
+                        <p>Comprehensive worksheets covering all math topics from basic arithmetic to advanced calculus.</p>
+                        <a href="https://www.mathworksheets4kids.com/" class="btn" target="_blank">Download</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">📖</div>
+                        <h3>Formula Sheets</h3>
+                        <p>Quick reference sheets with essential formulas for algebra, geometry, calculus, and more.</p>
+                        <a href="https://www.paul-online.com/notes/" class="btn" target="_blank">Download</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">🎯</div>
+                        <h3>Exam Prep Materials</h3>
+                        <p>Study guides and practice tests for SAT, ACT, AP Calculus, and other standardized exams.</p>
+                        <a href="https://www.collegeboard.org/practice" class="btn" target="_blank">Download</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">🔢</div>
+                        <h3>Math Tables</h3>
+                        <p>Multiplication tables, trigonometric values, logarithm tables, and statistical charts.</p>
+                        <a href="https://www.rapidtables.com/math/" class="btn" target="_blank">Download</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">📊</div>
+                        <h3>Graphing Paper</h3>
+                        <p>Various types of graph paper including coordinate grids, polar grids, and logarithmic scales.</p>
+                        <a href="https://www.printfreegraphpaper.com/" class="btn" target="_blank">Download</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">🧠</div>
+                        <h3>Study Guides</h3>
+                        <p>Comprehensive study guides and cheat sheets for different mathematical concepts and theorems.</p>
+                        <a href="https://tutorial.math.lamar.edu/" class="btn" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="notebook-paper">
-            <div class="notebook-line">
-                <div class="math-step" id="step1">
-                    <div class="math-step-writing">2logx – log(1 – x) = log(2 – x)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step2">
-                    <div class="math-step-writing">log(x²) – log(1 – x) = log(2 – x)</div>
-                    <div class="step-explanation">Using property: n·log(a) = log(aⁿ)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step3">
-                    <div class="math-step-writing">log(x²/(1 – x)) = log(2 – x)</div>
-                    <div class="step-explanation">Using property: log(a) - log(b) = log(a/b)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step4">
-                    <div class="math-step-writing">x²/(1 – x) = 2 – x</div>
-                    <div class="step-explanation">If log(a) = log(b), then a = b</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step5">
-                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
-                    <div class="step-explanation">Multiply both sides by (1-x)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step6">
-                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step7">
-                    <div class="math-step-writing">x² = 2 – x – 2x + x²</div>
-                    <div class="step-explanation">Expand the right side</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step8">
-                    <div class="math-step-writing">0 = 2 – 3x</div>
-                    <div class="step-explanation">Simplify by subtracting x² from both sides</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step9">
-                    <div class="math-step-writing">3x = 2</div>
-                    <div class="step-explanation">Add 3x to both sides</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step10">
-                    <div class="math-step-writing">x = 2/3</div>
-                    <div class="step-explanation">Divide both sides by 3</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step11">
-                    <div class="math-step-writing">Check: For x = 2/3, 1-x = 1/3, 2-x = 4/3</div>
-                    <div class="step-explanation">Verify our answer in the original equation</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step12">
-                    <div class="math-step-writing">x = 2/3</div>
-                    <div class="step-explanation final-answer">Our final answer!</div>
-                </div>
-            </div>
+
+        <div class="footer-note">
+            <p>🎓 Enhance your mathematical journey with MathHub - Where numbers come alive!</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                Explore, Learn, Practice, and Excel in Mathematics
+            </p>
         </div>
-        <button class="restart-btn" id="restartBtn">Watch Again</button>
     </div>
 
     <script>
+        let currentPage = 'video-lectures';
+        let gameActive = false;
+        let timeLeft = 60;
+        let score = 0;
+        let currentAnswer = 0;
+        let difficulty = 'medium';
+        let timer;
+
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            currentPage = pageId;
+        }
+
+        function setDifficulty(level) {
+            difficulty = level;
+            alert(`Difficulty set to: ${level.charAt(0).toUpperCase() + level.slice(1)}`);
+        }
+
+        function generateProblem() {
+            let num1, num2, operation, operations;
+            
+            switch(difficulty) {
+                case 'easy':
+                    num1 = Math.floor(Math.random() * 20) + 1;
+                    num2 = Math.floor(Math.random() * 20) + 1;
+                    operations = ['+', '-'];
+                    break;
+                case 'medium':
+                    num1 = Math.floor(Math.random() * 100) + 1;
+                    num2 = Math.floor(Math.random() * 100) + 1;
+                    operations = ['+', '-', '×'];
+                    break;
+                case 'hard':
+                    num1 = Math.floor(Math.random() * 1000) + 1;
+                    num2 = Math.floor(Math.random() * 100) + 1;
+                    operations = ['+', '-', '×', '÷'];
+                    break;
+            }
+            
+            operation = operations[Math.floor(Math.random() * operations.length)];
+            
+            let problemText = `${num1} ${operation} ${num2} = ?`;
+            
+            switch(operation) {
+                case '+':
+                    currentAnswer = num1 + num2;
+                    break;
+                case '-':
+                    currentAnswer = num1 - num2;
+                    break;
+                case '×':
+                    currentAnswer = num1 * num2;
+                    break;
+                case '÷':
+                    currentAnswer = Math.round(num1 / num2);
+                    problemText = `${num1 * num2} ÷ ${num2} = ?`;
+                    break;
+            }
+            
+            document.getElementById('problem').textContent = problemText;
+            document.getElementById('answer').value = '';
+        }
+
+        function startSpeedTest() {
+            gameActive = true;
+            timeLeft = 60;
+            score = 0;
+            
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('submit-btn').disabled = false;
+            document.getElementById('answer').disabled = false;
+            document.getElementById('answer').focus();
+            
+            generateProblem();
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function submitAnswer() {
+            if (!gameActive) return;
+            
+            const userAnswer = parseInt(document.getElementById('answer').value);
+            
+            if (userAnswer === currentAnswer) {
+                score++;
+                document.getElementById('score').textContent = score;
+                generateProblem();
+            } else {
+                // Show correct answer briefly
+                document.getElementById('problem').style.color = '#e74c3c';
+                setTimeout(() => {
+                    document.getElementById('problem').style.color = '#2c3e50';
+                    generateProblem();
+                }, 1000);
+            }
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(timer);
+            
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('submit-btn').disabled = true;
+            document.getElementById('answer').disabled = true;
+            
+            document.getElementById('problem').innerHTML = `
+                <div style="color: #27ae60;">
+                    🎉 Game Over!<br>
+                    Final Score: ${score} correct answers<br>
+                    <small>Great job! Click "Start Test" to play again.</small>
+                </div>
+            `;
+        }
+
+        // Allow Enter key to submit answer
+        document.getElementById('answer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && gameActive) {
+                submitAnswer();
+            }
+        });
+
+        // Add some interactive animations
         document.addEventListener('DOMContentLoaded', function() {
-            // Add pen icon to follow cursor
-            const penIcon = document.createElement('div');
-            penIcon.className = 'pen-icon';
-            penIcon.innerHTML = '✏️';
-            document.body.appendChild(penIcon);
+            const cards = document.querySelectorAll('.video-card, .resource-card');
             
-            // Animation controller
-            const steps = document.querySelectorAll('.math-step');
-            const stepWritings = document.querySelectorAll('.math-step-writing');
-            const explanations = document.querySelectorAll('.step-explanation');
-            const restartBtn = document.getElementById('restartBtn');
-            
-            function animateWriting(element, finalWidth, duration, delay, callback) {
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
                 setTimeout(() => {
-                    let start = null;
-                    const textContent = element.textContent;
-                    const textWidth = Math.max(getTextWidth(textContent, window.getComputedStyle(element).font), 400);
-                    
-                    element.parentElement.classList.add('visible');
-                    
-                    function step(timestamp) {
-                        if (!start) start = timestamp;
-                        const elapsed = timestamp - start;
-                        const progress = Math.min(elapsed / duration, 1);
-                        
-                        // Calculate cursor position for pen icon
-                        const rect = element.getBoundingClientRect();
-                        const cursorX = rect.left + (textWidth * progress) + 5;
-                        const cursorY = rect.top + rect.height / 2;
-                        
-                        penIcon.style.opacity = 1;
-                        penIcon.style.left = `${cursorX}px`;
-                        penIcon.style.top = `${cursorY}px`;
-                        
-                        element.style.width = `${finalWidth * progress}px`;
-                        
-                        if (progress < 1) {
-                            window.requestAnimationFrame(step);
-                        } else {
-                            setTimeout(() => {
-                                penIcon.style.opacity = 0;
-                                if (callback) callback();
-                            }, 200);
-                        }
-                    }
-                    
-                    window.requestAnimationFrame(step);
-                }, delay);
-            }
-            
-            function getTextWidth(text, font) {
-                const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
-                const context = canvas.getContext('2d');
-                context.font = font;
-                const metrics = context.measureText(text);
-                return metrics.width;
-            }
-            
-            function showExplanation(index, delay) {
-                setTimeout(() => {
-                    explanations[index].classList.add('visible');
-                }, delay);
-            }
-            
-            function startAnimation() {
-                // Reset
-                steps.forEach(step => step.classList.remove('visible'));
-                stepWritings.forEach(writing => {
-                    writing.style.width = '0';
-                });
-                explanations.forEach(explanation => explanation.classList.remove('visible'));
-                restartBtn.classList.remove('visible');
-                
-                // Get final widths before animation
-                const finalWidths = Array.from(stepWritings).map(el => {
-                    el.style.width = 'auto';
-                    const width = Math.max(el.offsetWidth, 500);
-                    el.style.width = '0';
-                    return width;
-                });
-                
-                // Start the sequence with delays between steps
-                const stepDelay = 2000; // 2 seconds between steps
-                
-                animateWriting(stepWritings[0], finalWidths[0], 1000, 500, () => {
-                    setTimeout(() => {
-                        animateWriting(stepWritings[1], finalWidths[1], 1200, 0, () => {
-                            showExplanation(0, 200);
-                            
-                            setTimeout(() => {
-                                animateWriting(stepWritings[2], finalWidths[2], 1200, 0, () => {
-                                    showExplanation(1, 200);
-                                    
-                                    setTimeout(() => {
-                                        animateWriting(stepWritings[3], finalWidths[3], 1200, 0, () => {
-                                            showExplanation(2, 200);
-                                            
-                                            setTimeout(() => {
-                                                animateWriting(stepWritings[4], finalWidths[4], 1200, 0, () => {
-                                                    showExplanation(3, 200);
-                                                    
-                                                    setTimeout(() => {
-                                                        animateWriting(stepWritings[5], finalWidths[5], 800, 0);
-                                                        
-                                                        setTimeout(() => {
-                                                            animateWriting(stepWritings[6], finalWidths[6], 1200, 0, () => {
-                                                                showExplanation(4, 200);
-                                                                
-                                                                setTimeout(() => {
-                                                                    animateWriting(stepWritings[7], finalWidths[7], 1200, 0, () => {
-                                                                        showExplanation(5, 200);
-                                                                        
-                                                                        setTimeout(() => {
-                                                                            animateWriting(stepWritings[8], finalWidths[8], 1000, 0, () => {
-                                                                                showExplanation(6, 200);
-                                                                                
-                                                                                setTimeout(() => {
-                                                                                    animateWriting(stepWritings[9], finalWidths[9], 1000, 0, () => {
-                                                                                        showExplanation(7, 200);
-                                                                                        
-                                                                                        setTimeout(() => {
-                                                                                            animateWriting(stepWritings[10], finalWidths[10], 1200, 0, () => {
-                                                                                                showExplanation(8, 200);
-                                                                                                
-                                                                                                setTimeout(() => {
-                                                                                                    animateWriting(stepWritings[11], finalWidths[11], 800, 0, () => {
-                                                                                                        showExplanation(9, 200);
-                                                                                                        
-                                                                                                        setTimeout(() => {
-                                                                                                            restartBtn.classList.add('visible');
-                                                                                                        }, 1000);
-                                                                                                    });
-                                                                                                }, stepDelay);
-                                                                                            });
-                                                                                        }, stepDelay);
-                                                                                    });
-                                                                                }, stepDelay);
-                                                                            });
-                                                                        }, stepDelay);
-                                                                    });
-                                                                }, stepDelay);
-                                                            });
-                                                        }, stepDelay);
-                                                    }, stepDelay);
-                                                });
-                                            }, stepDelay);
-                                        });
-                                    }, stepDelay);
-                                });
-                            }, stepDelay);
-                        });
-                    }, stepDelay);
-                });
-            }
-            
-            // Start animation when page loads
-            startAnimation();
-            
-            // Restart button handler
-            restartBtn.addEventListener('click', startAnimation);
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
         });
     </script>
 </body>
