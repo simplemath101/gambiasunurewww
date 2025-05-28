@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathTube - Video Viewer & Speed Test</title>
+    <title>Mathematics Learning Hub</title>
     <style>
         * {
             margin: 0;
@@ -16,7 +16,6 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
-            overflow-x: hidden;
         }
 
         .container {
@@ -25,456 +24,888 @@
             padding: 20px;
         }
 
-        .header {
+        header {
             text-align: center;
             margin-bottom: 40px;
-            animation: slideDown 0.8s ease-out;
-        }
-
-        .header h1 {
-            font-size: 3rem;
             color: white;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .header p {
+        .subtitle {
             font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            opacity: 0.9;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 10px;
+            backdrop-filter: blur(10px);
         }
 
-        .video-section, .speed-test-section {
-            background: rgba(255,255,255,0.95);
+        .tab {
+            padding: 15px 30px;
+            margin: 0 5px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: rgba(255,255,255,0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            background: white;
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 0.8s ease-out;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 600px;
         }
 
-        .video-section:hover, .speed-test-section:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        .section {
+            display: none;
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #4a5568;
-            text-align: center;
-            position: relative;
+        .section.active {
+            display: block;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 2px;
-        }
-
-        .url-input-container {
-            position: relative;
+        /* Video Lectures Styles */
+        .topic-selector {
             margin-bottom: 20px;
         }
 
-        .url-input {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #f8fafc;
-        }
-
-        .url-input:focus {
-            outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .load-btn {
+        .topic-selector select {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .load-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .load-btn:hover::before {
-            left: 100%;
-        }
-
-        .load-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            border: 2px solid #667eea;
+            font-size: 1rem;
+            background: white;
         }
 
         .video-container {
-            width: 100%;
-            height: 250px;
-            background: #f1f5f9;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 1.1rem;
-            border: 2px dashed #cbd5e1;
-            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-align: center;
         }
 
-        .speed-test-btn {
+        .video-player {
             width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .video-info {
+            margin-top: 20px;
             padding: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 700;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            text-align: center;
+        }
+
+        .quiz-header {
+            margin-bottom: 30px;
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 1.5rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .question h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .speed-test-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f2ff;
         }
 
-        .speed-test-btn:hover::before {
-            left: 100%;
+        .option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
         }
 
-        .speed-test-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        .quiz-controls {
+            margin-top: 20px;
         }
 
-        .dropdown-container {
-            position: relative;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            border-radius: 12px;
-            border: 2px solid transparent;
-        }
-
-        .dropdown-container.active {
-            max-height: 400px;
-            border-color: #ff6b6b;
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
-        }
-
-        .dropdown-content {
-            padding: 20px;
-        }
-
-        .topic-item {
-            display: block;
-            padding: 15px 20px;
-            color: #4a5568;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-bottom: 8px;
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
-            background: white;
-            border: 1px solid #e2e8f0;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
+            margin: 0 10px;
         }
 
-        .topic-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            opacity: 0.1;
-            transition: left 0.3s ease;
+        .btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
         }
 
-        .topic-item:hover::before {
-            left: 0;
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .topic-item:hover {
-            color: #2d3748;
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-color: #ff6b6b;
+        /* Resources Styles */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .math-symbols {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .symbol {
-            position: absolute;
-            font-size: 2rem;
-            color: rgba(255,255,255,0.1);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .symbol:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .symbol:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
-        .symbol:nth-child(3) { top: 50%; left: 5%; animation-delay: 2s; }
-        .symbol:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
-        .symbol:nth-child(5) { bottom: 30%; left: 20%; animation-delay: 4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .footer {
+        .resource-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
-            color: rgba(255,255,255,0.8);
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .resource-card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .download-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .quiz-setup {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .quiz-setup h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .quiz-setup p {
+            margin-bottom: 30px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .quiz-results {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .quiz-results h2 {
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .final-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
         }
 
         @media (max-width: 768px) {
-            .main-content {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                margin: 5px 0;
+            }
+            
+            .options {
                 grid-template-columns: 1fr;
-                gap: 20px;
             }
             
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .video-section, .speed-test-section {
-                padding: 20px;
+            h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="math-symbols">
-        <div class="symbol">∑</div>
-        <div class="symbol">∫</div>
-        <div class="symbol">π</div>
-        <div class="symbol">∞</div>
-        <div class="symbol">θ</div>
-    </div>
-
     <div class="container">
-        <div class="header">
-            <h1>MathTube</h1>
-            <p>Your Ultimate Math Video Viewer & Speed Test Platform</p>
+        <header>
+            <h1>📐 Mathematics Learning Hub</h1>
+            <p class="subtitle">Master mathematics through interactive learning</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('videos')">📹 Video Lectures</button>
+            <button class="tab" onclick="showSection('quiz')">⚡ Test Your Speed</button>
+            <button class="tab" onclick="showSection('resources')">📚 Downloadable Resources</button>
         </div>
 
-        <div class="main-content">
-            <div class="video-section">
-                <h2 class="section-title">📺 Video Viewer</h2>
-                <div class="url-input-container">
-                    <input type="text" id="videoUrl" class="url-input" placeholder="Enter YouTube video URL here...">
+        <div class="content">
+            <!-- Video Lectures Section -->
+            <div id="videos" class="section active">
+                <h2>📹 Video Lectures</h2>
+                <div class="topic-selector">
+                    <label for="topic-select">Select a Mathematics Topic:</label>
+                    <select id="topic-select" onchange="loadVideo()">
+                        <option value="">Choose a topic...</option>
+                        <option value="algebra">Algebra Fundamentals</option>
+                        <option value="calculus">Calculus</option>
+                        <option value="geometry">Geometry</option>
+                        <option value="trigonometry">Trigonometry</option>
+                        <option value="statistics">Statistics</option>
+                        <option value="linear-algebra">Linear Algebra</option>
+                        <option value="discrete-math">Discrete Mathematics</option>
+                        <option value="number-theory">Number Theory</option>
+                    </select>
                 </div>
-                <button class="load-btn" onclick="loadVideo()">🚀 Load Video</button>
-                <div id="videoContainer" class="video-container">
-                    Enter a YouTube URL above to watch your math video!
+                <div class="video-container" id="video-container">
+                    <p>Select a topic to watch educational videos</p>
                 </div>
             </div>
 
-            <div class="speed-test-section">
-                <h2 class="section-title">⚡ Speed Test</h2>
-                <button class="speed-test-btn" onclick="toggleDropdown()">
-                    🧮 Test Your Speed
-                </button>
-                <div id="dropdownContainer" class="dropdown-container">
-                    <div class="dropdown-content">
-                        <a href="https://www.khanacademy.org/math/algebra-basics" target="_blank" class="topic-item">🔢 Algebra Basics</a>
-                        <a href="https://www.khanacademy.org/math/geometry" target="_blank" class="topic-item">📐 Geometry</a>
-                        <a href="https://www.khanacademy.org/math/trigonometry" target="_blank" class="topic-item">📊 Trigonometry</a>
-                        <a href="https://www.khanacademy.org/math/calculus-1" target="_blank" class="topic-item">📈 Calculus I</a>
-                        <a href="https://www.khanacademy.org/math/calculus-2" target="_blank" class="topic-item">📉 Calculus II</a>
-                        <a href="https://www.khanacademy.org/math/statistics-probability" target="_blank" class="topic-item">📊 Statistics & Probability</a>
-                        <a href="https://www.khanacademy.org/math/linear-algebra" target="_blank" class="topic-item">🔢 Linear Algebra</a>
-                        <a href="https://www.khanacademy.org/math/differential-equations" target="_blank" class="topic-item">⚡ Differential Equations</a>
-                        <a href="https://www.khanacademy.org/math/precalculus" target="_blank" class="topic-item">📋 Pre-Calculus</a>
-                        <a href="https://www.mathplayground.com/grade_1_games.html" target="_blank" class="topic-item">🎮 Number Games</a>
+            <!-- Quiz Section -->
+            <div id="quiz" class="section">
+                <div class="quiz-container">
+                    <div id="quiz-setup" class="quiz-setup">
+                        <h2>⚡ Test Your Speed</h2>
+                        <p>Challenge yourself with 10 random questions in 60 seconds!</p>
+                        <p><strong>Selected Topic:</strong> <span id="selected-topic">Please select a topic from Video Lectures first</span></p>
+                        <button class="btn" onclick="startQuiz()" id="start-quiz-btn" disabled>Start Quiz</button>
+                    </div>
+                    
+                    <div id="quiz-active" class="quiz-active" style="display: none;">
+                        <div class="quiz-header">
+                            <div class="timer">Time: <span id="timer">60</span>s</div>
+                            <div class="score">Score: <span id="score">0</span>/10</div>
+                        </div>
+                        
+                        <div class="question" id="question-container">
+                            <!-- Question content will be inserted here -->
+                        </div>
+                        
+                        <div class="quiz-controls">
+                            <button class="btn" onclick="nextQuestion()" id="next-btn" disabled>Next Question</button>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-results" class="quiz-results" style="display: none;">
+                        <h2>🎉 Quiz Complete!</h2>
+                        <div class="final-score" id="final-score">0/10</div>
+                        <p id="performance-message"></p>
+                        <button class="btn" onclick="resetQuiz()">Take Another Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Section -->
+            <div id="resources" class="section">
+                <h2>📚 Downloadable Resources</h2>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h3>📄 Formula Sheets</h3>
+                        <p>Essential mathematical formulas for quick reference</p>
+                        <a href="#" class="download-btn" onclick="downloadResource('formulas')">Download PDF</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>📊 Practice Problems</h3>
+                        <p>Comprehensive problem sets with solutions</p>
+                        <a href="#" class="download-btn" onclick="downloadResource('problems')">Download PDF</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>📈 Graph Paper</h3>
+                        <p>Printable graph paper for mathematical plotting</p>
+                        <a href="#" class="download-btn" onclick="downloadResource('graph-paper')">Download PDF</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>🧮 Calculator Guide</h3>
+                        <p>Tips and tricks for using scientific calculators</p>
+                        <a href="#" class="download-btn" onclick="downloadResource('calculator')">Download PDF</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>📚 Study Guides</h3>
+                        <p>Comprehensive study materials for exams</p>
+                        <a href="#" class="download-btn" onclick="downloadResource('study-guides')">Download PDF</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>🎯 Quick Reference Cards</h3>
+                        <p>Handy reference cards for key concepts</p>
+                        <a href="#" class="download-btn" onclick="downloadResource('reference')">Download PDF</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="footer">
-            <p>✨ Master mathematics through interactive learning and speed challenges! ✨</p>
-        </div>
     </div>
 
     <script>
-        let dropdownOpen = false;
+        // Global variables
+        let currentTopic = '';
+        let quizData = {};
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timeLeft = 60;
+        let quizTimer;
+        let questions = [];
 
-        function loadVideo() {
-            const urlInput = document.getElementById('videoUrl');
-            const videoContainer = document.getElementById('videoContainer');
-            const url = urlInput.value.trim();
-
-            if (!url) {
-                alert('Please enter a YouTube URL!');
-                return;
+        // Video data with YouTube URLs
+        const videoData = {
+            'algebra': {
+                title: 'Algebra Fundamentals',
+                url: 'https://www.youtube.com/embed/NybHckSEQBI',
+                description: 'Learn the basics of algebra including variables, equations, and problem-solving techniques.'
+            },
+            'calculus': {
+                title: 'Introduction to Calculus',
+                url: 'https://www.youtube.com/embed/WUvTyaaNkzM',
+                description: 'Discover the fundamentals of calculus, limits, derivatives, and integrals.'
+            },
+            'geometry': {
+                title: 'Geometry Essentials',
+                url: 'https://www.youtube.com/embed/z8HKWUWS-lA',
+                description: 'Explore shapes, angles, area, volume, and geometric proofs.'
+            },
+            'trigonometry': {
+                title: 'Trigonometry Basics',
+                url: 'https://www.youtube.com/embed/PUB0TaZ7bhA',
+                description: 'Master sine, cosine, tangent, and trigonometric identities.'
+            },
+            'statistics': {
+                title: 'Statistics and Probability',
+                url: 'https://www.youtube.com/embed/uhxtUt_-GyM',
+                description: 'Learn about data analysis, probability distributions, and statistical inference.'
+            },
+            'linear-algebra': {
+                title: 'Linear Algebra',
+                url: 'https://www.youtube.com/embed/fNk_zzaMoSs',
+                description: 'Understand vectors, matrices, and linear transformations.'
+            },
+            'discrete-math': {
+                title: 'Discrete Mathematics',
+                url: 'https://www.youtube.com/embed/2SpuBqvNjHI',
+                description: 'Explore logic, set theory, combinatorics, and graph theory.'
+            },
+            'number-theory': {
+                title: 'Number Theory',
+                url: 'https://www.youtube.com/embed/EzE6it9kAsI',
+                description: 'Dive into prime numbers, divisibility, and mathematical proofs.'
             }
+        };
 
-            // Extract video ID from YouTube URL
-            let videoId = '';
-            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-            const match = url.match(regex);
+        // Quiz questions for each topic
+        const quizQuestions = {
+            'algebra': [
+                {
+                    question: 'What is the value of x in: 2x + 5 = 13?',
+                    options: ['4', '6', '8', '10'],
+                    correct: 0
+                },
+                {
+                    question: 'Simplify: 3(x + 2) - 2x',
+                    options: ['x + 6', '5x + 6', 'x + 2', '3x + 6'],
+                    correct: 0
+                },
+                {
+                    question: 'If y = 2x + 3, what is y when x = 5?',
+                    options: ['10', '11', '13', '15'],
+                    correct: 2
+                },
+                {
+                    question: 'What is the slope of the line: y = 4x + 7?',
+                    options: ['4', '7', '11', '1'],
+                    correct: 0
+                },
+                {
+                    question: 'Factor: x² - 9',
+                    options: ['(x-3)(x-3)', '(x+3)(x-3)', '(x+9)(x-1)', 'Cannot be factored'],
+                    correct: 1
+                }
+            ],
+            'calculus': [
+                {
+                    question: 'What is the derivative of x²?',
+                    options: ['x', '2x', 'x²', '2'],
+                    correct: 1
+                },
+                {
+                    question: 'What is the limit of (x²-1)/(x-1) as x approaches 1?',
+                    options: ['0', '1', '2', 'undefined'],
+                    correct: 2
+                },
+                {
+                    question: 'What is ∫2x dx?',
+                    options: ['x²', 'x² + C', '2', '2x + C'],
+                    correct: 1
+                },
+                {
+                    question: 'What is the derivative of sin(x)?',
+                    options: ['cos(x)', '-cos(x)', 'sin(x)', '-sin(x)'],
+                    correct: 0
+                },
+                {
+                    question: 'What is the derivative of e^x?',
+                    options: ['e^x', 'xe^(x-1)', 'e', '1'],
+                    correct: 0
+                }
+            ],
+            'geometry': [
+                {
+                    question: 'What is the area of a circle with radius 3?',
+                    options: ['6π', '9π', '12π', '18π'],
+                    correct: 1
+                },
+                {
+                    question: 'Sum of angles in a triangle equals:',
+                    options: ['90°', '180°', '270°', '360°'],
+                    correct: 1
+                },
+                {
+                    question: 'Volume of a cube with side length 4:',
+                    options: ['16', '32', '48', '64'],
+                    correct: 3
+                },
+                {
+                    question: 'Pythagorean theorem: a² + b² = ?',
+                    options: ['c', 'c²', '2c', 'c²/2'],
+                    correct: 1
+                },
+                {
+                    question: 'How many sides does a hexagon have?',
+                    options: ['5', '6', '7', '8'],
+                    correct: 1
+                }
+            ],
+            'trigonometry': [
+                {
+                    question: 'What is sin(90°)?',
+                    options: ['0', '1', '-1', '1/2'],
+                    correct: 1
+                },
+                {
+                    question: 'What is cos(0°)?',
+                    options: ['0', '1', '-1', '1/2'],
+                    correct: 1
+                },
+                {
+                    question: 'What is tan(45°)?',
+                    options: ['0', '1', '√2', '√3'],
+                    correct: 1
+                },
+                {
+                    question: 'sin²(x) + cos²(x) = ?',
+                    options: ['0', '1', '2', 'sin(2x)'],
+                    correct: 1
+                },
+                {
+                    question: 'What is sin(30°)?',
+                    options: ['1/2', '√2/2', '√3/2', '1'],
+                    correct: 0
+                }
+            ],
+            'statistics': [
+                {
+                    question: 'What is the mean of: 2, 4, 6, 8?',
+                    options: ['4', '5', '6', '7'],
+                    correct: 1
+                },
+                {
+                    question: 'What is the median of: 1, 3, 5, 7, 9?',
+                    options: ['3', '5', '7', '9'],
+                    correct: 1
+                },
+                {
+                    question: 'In a normal distribution, what percentage of data falls within 1 standard deviation?',
+                    options: ['68%', '95%', '99.7%', '50%'],
+                    correct: 0
+                },
+                {
+                    question: 'What is the probability of getting heads on a fair coin?',
+                    options: ['0.25', '0.5', '0.75', '1'],
+                    correct: 1
+                },
+                {
+                    question: 'What is the mode of: 1, 2, 2, 3, 4?',
+                    options: ['1', '2', '3', '4'],
+                    correct: 1
+                }
+            ]
+        };
 
-            if (match) {
-                videoId = match[1];
-            } else {
-                alert('Please enter a valid YouTube URL!');
-                return;
-            }
-
-            // Create embedded video
-            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-            videoContainer.innerHTML = `
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="${embedUrl}" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    style="border-radius: 12px;">
-                </iframe>
-            `;
-
-            // Add loading animation
-            videoContainer.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                videoContainer.style.transform = 'scale(1)';
-                videoContainer.style.transition = 'transform 0.3s ease';
-            }, 100);
-        }
-
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdownContainer');
-            const button = document.querySelector('.speed-test-btn');
-            
-            dropdownOpen = !dropdownOpen;
-            
-            if (dropdownOpen) {
-                dropdown.classList.add('active');
-                button.textContent = '📚 Hide Topics';
-                button.style.background = 'linear-gradient(45deg, #4ecdc4, #44a08d)';
-            } else {
-                dropdown.classList.remove('active');
-                button.textContent = '🧮 Test Your Speed';
-                button.style.background = 'linear-gradient(45deg, #ff6b6b, #ff8e53)';
-            }
-        }
-
-        // Add keyboard support for Enter key on URL input
-        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loadVideo();
-            }
-        });
-
-        // Add smooth scrolling animation on page load
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            setTimeout(() => {
-                document.body.style.transition = 'opacity 0.5s ease';
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Add click effects to topic items
-        document.querySelectorAll('.topic-item').forEach(item => {
-            item.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'translateX(10px)';
-                }, 100);
+        // Tab switching functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
             });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Video loading functionality
+        function loadVideo() {
+            const select = document.getElementById('topic-select');
+            const selectedTopic = select.value;
+            const container = document.getElementById('video-container');
+            
+            if (selectedTopic && videoData[selectedTopic]) {
+                currentTopic = selectedTopic;
+                const video = videoData[selectedTopic];
+                
+                container.innerHTML = `
+                    <iframe class="video-player" 
+                            src="${video.url}" 
+                            title="${video.title}"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                    <div class="video-info">
+                        <h3>${video.title}</h3>
+                        <p>${video.description}</p>
+                    </div>
+                `;
+                
+                // Update quiz section
+                document.getElementById('selected-topic').textContent = video.title;
+                document.getElementById('start-quiz-btn').disabled = false;
+            } else {
+                container.innerHTML = '<p>Select a topic to watch educational videos</p>';
+                currentTopic = '';
+                document.getElementById('selected-topic').textContent = 'Please select a topic from Video Lectures first';
+                document.getElementById('start-quiz-btn').disabled = true;
+            }
+        }
+
+        // Quiz functionality
+        function startQuiz() {
+            if (!currentTopic || !quizQuestions[currentTopic]) {
+                alert('Please select a topic from Video Lectures first!');
+                return;
+            }
+            
+            // Reset quiz state
+            currentQuestionIndex = 0;
+            score = 0;
+            timeLeft = 60;
+            
+            // Get random questions
+            const allQuestions = [...quizQuestions[currentTopic]];
+            questions = [];
+            
+            // Select 10 random questions (or all if less than 10)
+            for (let i = 0; i < Math.min(10, allQuestions.length); i++) {
+                const randomIndex = Math.floor(Math.random() * allQuestions.length);
+                questions.push(allQuestions.splice(randomIndex, 1)[0]);
+            }
+            
+            // Show quiz interface
+            document.getElementById('quiz-setup').style.display = 'none';
+            document.getElementById('quiz-active').style.display = 'block';
+            document.getElementById('quiz-results').style.display = 'none';
+            
+            // Start timer
+            startTimer();
+            
+            // Show first question
+            showQuestion();
+        }
+
+        function startTimer() {
+            quizTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= questions.length || timeLeft <= 0) {
+                endQuiz();
+                return;
+            }
+            
+            const question = questions[currentQuestionIndex];
+            const container = document.getElementById('question-container');
+            
+            container.innerHTML = `
+                <h3>Question ${currentQuestionIndex + 1} of ${questions.length}</h3>
+                <p>${question.question}</p>
+                <div class="options">
+                    ${question.options.map((option, index) => 
+                        `<div class="option" onclick="selectOption(${index})">${option}</div>`
+                    ).join('')}
+                </div>
+            `;
+            
+            document.getElementById('next-btn').disabled = true;
+        }
+
+        function selectOption(selectedIndex) {
+            // Remove previous selections
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            document.querySelectorAll('.option')[selectedIndex].classList.add('selected');
+            
+            // Check if answer is correct
+            const question = questions[currentQuestionIndex];
+            if (selectedIndex === question.correct) {
+                score++;
+                document.getElementById('score').textContent = score;
+            }
+            
+            // Enable next button
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function endQuiz() {
+            clearInterval(quizTimer);
+            
+            // Hide quiz interface
+            document.getElementById('quiz-active').style.display = 'none';
+            document.getElementById('quiz-results').style.display = 'block';
+            
+            // Show results
+            document.getElementById('final-score').textContent = `${score}/${questions.length}`;
+            
+            let message = '';
+            const percentage = (score / questions.length) * 100;
+            
+            if (percentage >= 80) {
+                message = '🎉 Excellent work! You have mastered this topic!';
+            } else if (percentage >= 60) {
+                message = '👍 Good job! Keep practicing to improve further.';
+            } else if (percentage >= 40) {
+                message = '📚 You\'re getting there! Review the video lectures and try again.';
+            } else {
+                message = '💪 Don\'t give up! Practice makes perfect. Watch more videos and try again.';
+            }
+            
+            document.getElementById('performance-message').textContent = message;
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-setup').style.display = 'block';
+            document.getElementById('quiz-active').style.display = 'none';
+            document.getElementById('quiz-results').style.display = 'none';
+        }
+
+        // Download functionality
+        function downloadResource(resourceType) {
+            const resources = {
+                'formulas': 'Mathematical_Formulas_Reference.pdf',
+                'problems': 'Practice_Problems_Collection.pdf',
+                'graph-paper': 'Printable_Graph_Paper.pdf',
+                'calculator': 'Scientific_Calculator_Guide.pdf',
+                'study-guides': 'Mathematics_Study_Guides.pdf',
+                'reference': 'Quick_Reference_Cards.pdf'
+            };
+            
+            // Simulate download
+            alert(`Downloading ${resources[resourceType]}...\n\nNote: This is a demo. In a real application, this would trigger an actual PDF download.`);
+        }
+
+        // Add more questions to existing topics
+        function addMoreQuestions() {
+            // Add additional questions for better quiz variety
+            const additionalQuestions = {
+                'algebra': [
+                    {
+                        question: 'Solve for x: 3x - 7 = 14',
+                        options: ['5', '7', '9', '11'],
+                        correct: 1
+                    },
+                    {
+                        question: 'What is the y-intercept of y = 2x + 5?',
+                        options: ['2', '5', '7', '0'],
+                        correct: 1
+                    }
+                ],
+                'calculus': [
+                    {
+                        question: 'What is the derivative of x³?',
+                        options: ['3x²', 'x²', '3x', '3'],
+                        correct: 0
+                    },
+                    {
+                        question: 'What is ∫x dx?',
+                        options: ['x²/2 + C', 'x + C', 'x²', '1'],
+                        correct: 0
+                    }
+                ]
+            };
+            
+            // Merge additional questions
+            Object.keys(additionalQuestions).forEach(topic => {
+                if (quizQuestions[topic]) {
+                    quizQuestions[topic] = [...quizQuestions[topic], ...additionalQuestions[topic]];
+                }
+            });
+        }
+
+        // Initialize additional questions
+        addMoreQuestions();
+
+        // Add some missing topics with basic questions
+        quizQuestions['linear-algebra'] = [
+            {
+                question: 'What is a vector?',
+                options: ['A scalar quantity', 'A quantity with magnitude and direction', 'A matrix', 'A function'],
+                correct: 1
+            },
+            {
+                question: 'What is the determinant of a 2x2 identity matrix?',
+                options: ['0', '1', '2', '4'],
+                correct: 1
+            }
+        ];
+
+        quizQuestions['discrete-math'] = [
+            {
+                question: 'How many subsets does a set with 3 elements have?',
+                options: ['6', '7', '8', '9'],
+                correct: 2
+            },
+            {
+                question: 'What is 5! (5 factorial)?',
+                options: ['15', '25', '120', '625'],
+                correct: 2
+            }
+        ];
+
+        quizQuestions['number-theory'] = [
+            {
+                question: 'What is the smallest prime number?',
+                options: ['0', '1', '2', '3'],
+                correct: 2
+            },
+            {
+                question: 'What is the GCD of 12 and 18?',
+                options: ['2', '3', '6', '36'],
+                correct: 2
+            },
+            {
+                question: 'Which number is NOT prime?',
+                options: ['7', '11', '13', '15'],
+                correct: 3
+            },
+            {
+                question: 'What is 2^5?',
+                options: ['10', '16', '25', '32'],
+                correct: 3
+            },
+            {
+                question: 'What is the LCM of 4 and 6?',
+                options: ['10', '12', '24', '2'],
+                correct: 1
+            }
+        ];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Mathematics Learning Hub loaded successfully!');
         });
     </script>
 </body>
