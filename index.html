@@ -3,909 +3,451 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathematics Learning Hub</title>
+    <title>Animated Math Solution</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --notebook-blue: #0066cc;
+            --paper-color: #fffdf0;
+            --pen-color: #2b3d4f;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .tabs {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .tab {
-            padding: 15px 30px;
-            margin: 0 5px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .tab:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-
-        .tab.active {
-            background: rgba(255,255,255,0.4);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            min-height: 600px;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        /* Video Lectures Styles */
-        .topic-selector {
-            margin-bottom: 20px;
-        }
-
-        .topic-selector select {
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid #667eea;
-            font-size: 1rem;
-            background: white;
-        }
-
-        .video-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .video-player {
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .video-info {
-            margin-top: 20px;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
             padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
         }
-
-        /* Quiz Styles */
-        .quiz-container {
-            text-align: center;
-        }
-
-        .quiz-header {
-            margin-bottom: 30px;
-        }
-
-        .timer {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #e74c3c;
-            margin-bottom: 20px;
-        }
-
-        .score {
-            font-size: 1.5rem;
-            color: #27ae60;
-            margin-bottom: 20px;
-        }
-
-        .question {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .question h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .option {
-            padding: 15px;
-            background: white;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .option:hover {
-            border-color: #667eea;
-            background: #f0f2ff;
-        }
-
-        .option.selected {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .quiz-controls {
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            background: #667eea;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 10px;
-        }
-
-        .btn:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
-        }
-
-        .btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Resources Styles */
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .resource-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .resource-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .resource-card p {
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .download-btn {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid white;
-            color: white;
-            padding: 10px 20px;
+        
+        .notebook-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: var(--paper-color);
             border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
         }
-
-        .download-btn:hover {
-            background: white;
-            color: #667eea;
-        }
-
-        .quiz-setup {
+        
+        .notebook-header {
             text-align: center;
-            padding: 50px 0;
-        }
-
-        .quiz-setup h2 {
             margin-bottom: 20px;
-            color: #2c3e50;
+            color: var(--pen-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
-
-        .quiz-setup p {
-            margin-bottom: 30px;
-            color: #7f8c8d;
-            font-size: 1.1rem;
-        }
-
-        .quiz-results {
-            text-align: center;
-            padding: 50px 0;
-        }
-
-        .quiz-results h2 {
-            color: #27ae60;
-            margin-bottom: 20px;
-        }
-
-        .final-score {
-            font-size: 3rem;
+        
+        .exam-title {
+            font-size: 18px;
             font-weight: bold;
-            color: #667eea;
-            margin: 20px 0;
+            color: #333;
+            margin-right: 10px;
         }
-
-        @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
+        
+        .problem-statement {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        
+        .notebook-paper {
+            position: relative;
+            padding: 10px;
+        }
+        
+        .notebook-line {
+            height: 80px;
+            border-bottom: 1px solid #b5c7d5;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        
+        .notebook-line::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background-color: #ff9999;
+        }
+        
+        .math-step {
+            position: relative;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s, transform 0.8s;
+            padding-left: 10px;
+            font-size: 22px;
+            color: var(--pen-color);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .math-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .math-step-writing {
+            color: var(--pen-color);
+            position: relative;
+            overflow: visible;
+            display: inline-block;
+            white-space: nowrap;
+            width: 0;
+        }
+        
+        .step-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: #4a90e2;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .step-arrow.visible {
+            opacity: 1;
+        }
+        
+        .step-explanation {
+            color: #6b7d8c;
+            font-size: 18px;
+            margin-left: 30px;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .step-explanation.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .final-answer {
+            color: #e7305b;
+            font-weight: bold;
+        }
+        
+        .restart-btn {
+            background-color: var(--notebook-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: block;
+            margin: 20px auto 0;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .restart-btn:hover {
+            background-color: #004e9e;
+            transform: scale(1.05);
+        }
+        
+        .restart-btn.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .pen-icon {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        .exam-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+        
+        .exam-logo {
+            height: 30px;
+            width: auto;
+        }
+        
+        
+        
+        @media (max-width: 600px) {
+            .notebook-container {
+                padding: 20px 10px;
             }
             
-            .tab {
-                margin: 5px 0;
+            .math-step {
+                font-size: 20px;
             }
             
-            .options {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2rem;
+            .step-explanation {
+                font-size: 16px;
+                margin-left: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📐 Mathematics Learning Hub</h1>
-            <p class="subtitle">Master mathematics through interactive learning</p>
-        </header>
-
-        <div class="tabs">
-            <button class="tab active" onclick="showSection('videos')">📹 Video Lectures</button>
-            <button class="tab" onclick="showSection('quiz')">⚡ Test Your Speed</button>
-            <button class="tab" onclick="showSection('resources')">📚 Downloadable Resources</button>
+    <div class="notebook-container">
+        <div class="notebook-header">
+            <div class="exam-title">WAEC 2011</div>
+            <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2025/04/WAEC.jpg" alt="WAEC Logo" class="exam-logo">
+            <h1>Solving for x</h1>
+            <div class="problem-statement">2logx – log(1 – x) = log(2 – x)</div>
         </div>
-
-        <div class="content">
-            <!-- Video Lectures Section -->
-            <div id="videos" class="section active">
-                <h2>📹 Video Lectures</h2>
-                <div class="topic-selector">
-                    <label for="topic-select">Select a Mathematics Topic:</label>
-                    <select id="topic-select" onchange="loadVideo()">
-                        <option value="">Choose a topic...</option>
-                        <option value="algebra">Algebra Fundamentals</option>
-                        <option value="calculus">Calculus</option>
-                        <option value="geometry">Geometry</option>
-                        <option value="trigonometry">Trigonometry</option>
-                        <option value="statistics">Statistics</option>
-                        <option value="linear-algebra">Linear Algebra</option>
-                        <option value="discrete-math">Discrete Mathematics</option>
-                        <option value="number-theory">Number Theory</option>
-                    </select>
-                </div>
-                <div class="video-container" id="video-container">
-                    <p>Select a topic to watch educational videos</p>
+        <div class="notebook-paper">
+            <div class="notebook-line">
+                <div class="math-step" id="step1">
+                    <div class="math-step-writing">2logx – log(1 – x) = log(2 – x)</div>
                 </div>
             </div>
-
-            <!-- Quiz Section -->
-            <div id="quiz" class="section">
-                <div class="quiz-container">
-                    <div id="quiz-setup" class="quiz-setup">
-                        <h2>⚡ Test Your Speed</h2>
-                        <p>Challenge yourself with 10 random questions in 60 seconds!</p>
-                        <p><strong>Selected Topic:</strong> <span id="selected-topic">Please select a topic from Video Lectures first</span></p>
-                        <button class="btn" onclick="startQuiz()" id="start-quiz-btn" disabled>Start Quiz</button>
-                    </div>
-                    
-                    <div id="quiz-active" class="quiz-active" style="display: none;">
-                        <div class="quiz-header">
-                            <div class="timer">Time: <span id="timer">60</span>s</div>
-                            <div class="score">Score: <span id="score">0</span>/10</div>
-                        </div>
-                        
-                        <div class="question" id="question-container">
-                            <!-- Question content will be inserted here -->
-                        </div>
-                        
-                        <div class="quiz-controls">
-                            <button class="btn" onclick="nextQuestion()" id="next-btn" disabled>Next Question</button>
-                        </div>
-                    </div>
-                    
-                    <div id="quiz-results" class="quiz-results" style="display: none;">
-                        <h2>🎉 Quiz Complete!</h2>
-                        <div class="final-score" id="final-score">0/10</div>
-                        <p id="performance-message"></p>
-                        <button class="btn" onclick="resetQuiz()">Take Another Quiz</button>
-                    </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step2">
+                    <div class="math-step-writing">log(x²) – log(1 – x) = log(2 – x)</div>
+                    <div class="step-explanation">Using property: n·log(a) = log(aⁿ)</div>
                 </div>
             </div>
-
-            <!-- Resources Section -->
-            <div id="resources" class="section">
-                <h2>📚 Downloadable Resources</h2>
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <h3>📄 Formula Sheets</h3>
-                        <p>Essential mathematical formulas for quick reference</p>
-                        <a href="#" class="download-btn" onclick="downloadResource('formulas')">Download PDF</a>
-                    </div>
-                    <div class="resource-card">
-                        <h3>📊 Practice Problems</h3>
-                        <p>Comprehensive problem sets with solutions</p>
-                        <a href="#" class="download-btn" onclick="downloadResource('problems')">Download PDF</a>
-                    </div>
-                    <div class="resource-card">
-                        <h3>📈 Graph Paper</h3>
-                        <p>Printable graph paper for mathematical plotting</p>
-                        <a href="#" class="download-btn" onclick="downloadResource('graph-paper')">Download PDF</a>
-                    </div>
-                    <div class="resource-card">
-                        <h3>🧮 Calculator Guide</h3>
-                        <p>Tips and tricks for using scientific calculators</p>
-                        <a href="#" class="download-btn" onclick="downloadResource('calculator')">Download PDF</a>
-                    </div>
-                    <div class="resource-card">
-                        <h3>📚 Study Guides</h3>
-                        <p>Comprehensive study materials for exams</p>
-                        <a href="#" class="download-btn" onclick="downloadResource('study-guides')">Download PDF</a>
-                    </div>
-                    <div class="resource-card">
-                        <h3>🎯 Quick Reference Cards</h3>
-                        <p>Handy reference cards for key concepts</p>
-                        <a href="#" class="download-btn" onclick="downloadResource('reference')">Download PDF</a>
-                    </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step3">
+                    <div class="math-step-writing">log(x²/(1 – x)) = log(2 – x)</div>
+                    <div class="step-explanation">Using property: log(a) - log(b) = log(a/b)</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step4">
+                    <div class="math-step-writing">x²/(1 – x) = 2 – x</div>
+                    <div class="step-explanation">If log(a) = log(b), then a = b</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step5">
+                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
+                    <div class="step-explanation">Multiply both sides by (1-x)</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step6">
+                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step7">
+                    <div class="math-step-writing">x² = 2 – x – 2x + x²</div>
+                    <div class="step-explanation">Expand the right side</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step8">
+                    <div class="math-step-writing">0 = 2 – 3x</div>
+                    <div class="step-explanation">Simplify by subtracting x² from both sides</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step9">
+                    <div class="math-step-writing">3x = 2</div>
+                    <div class="step-explanation">Add 3x to both sides</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step10">
+                    <div class="math-step-writing">x = 2/3</div>
+                    <div class="step-explanation">Divide both sides by 3</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step11">
+                    <div class="math-step-writing">Check: For x = 2/3, 1-x = 1/3, 2-x = 4/3</div>
+                    <div class="step-explanation">Verify our answer in the original equation</div>
+                </div>
+            </div>
+            <div class="notebook-line">
+                <div class="math-step" id="step12">
+                    <div class="math-step-writing">x = 2/3</div>
+                    <div class="step-explanation final-answer">Our final answer!</div>
                 </div>
             </div>
         </div>
+        <button class="restart-btn" id="restartBtn">Watch Again</button>
     </div>
 
     <script>
-        // Global variables
-        let currentTopic = '';
-        let quizData = {};
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let timeLeft = 60;
-        let quizTimer;
-        let questions = [];
-
-        // Video data with YouTube URLs
-        const videoData = {
-            'algebra': {
-                title: 'Algebra Fundamentals',
-                url: 'https://www.youtube.com/embed/NybHckSEQBI',
-                description: 'Learn the basics of algebra including variables, equations, and problem-solving techniques.'
-            },
-            'calculus': {
-                title: 'Introduction to Calculus',
-                url: 'https://www.youtube.com/embed/WUvTyaaNkzM',
-                description: 'Discover the fundamentals of calculus, limits, derivatives, and integrals.'
-            },
-            'geometry': {
-                title: 'Geometry Essentials',
-                url: 'https://www.youtube.com/embed/z8HKWUWS-lA',
-                description: 'Explore shapes, angles, area, volume, and geometric proofs.'
-            },
-            'trigonometry': {
-                title: 'Trigonometry Basics',
-                url: 'https://www.youtube.com/embed/PUB0TaZ7bhA',
-                description: 'Master sine, cosine, tangent, and trigonometric identities.'
-            },
-            'statistics': {
-                title: 'Statistics and Probability',
-                url: 'https://www.youtube.com/embed/uhxtUt_-GyM',
-                description: 'Learn about data analysis, probability distributions, and statistical inference.'
-            },
-            'linear-algebra': {
-                title: 'Linear Algebra',
-                url: 'https://www.youtube.com/embed/fNk_zzaMoSs',
-                description: 'Understand vectors, matrices, and linear transformations.'
-            },
-            'discrete-math': {
-                title: 'Discrete Mathematics',
-                url: 'https://www.youtube.com/embed/2SpuBqvNjHI',
-                description: 'Explore logic, set theory, combinatorics, and graph theory.'
-            },
-            'number-theory': {
-                title: 'Number Theory',
-                url: 'https://www.youtube.com/embed/EzE6it9kAsI',
-                description: 'Dive into prime numbers, divisibility, and mathematical proofs.'
-            }
-        };
-
-        // Quiz questions for each topic
-        const quizQuestions = {
-            'algebra': [
-                {
-                    question: 'What is the value of x in: 2x + 5 = 13?',
-                    options: ['4', '6', '8', '10'],
-                    correct: 0
-                },
-                {
-                    question: 'Simplify: 3(x + 2) - 2x',
-                    options: ['x + 6', '5x + 6', 'x + 2', '3x + 6'],
-                    correct: 0
-                },
-                {
-                    question: 'If y = 2x + 3, what is y when x = 5?',
-                    options: ['10', '11', '13', '15'],
-                    correct: 2
-                },
-                {
-                    question: 'What is the slope of the line: y = 4x + 7?',
-                    options: ['4', '7', '11', '1'],
-                    correct: 0
-                },
-                {
-                    question: 'Factor: x² - 9',
-                    options: ['(x-3)(x-3)', '(x+3)(x-3)', '(x+9)(x-1)', 'Cannot be factored'],
-                    correct: 1
-                }
-            ],
-            'calculus': [
-                {
-                    question: 'What is the derivative of x²?',
-                    options: ['x', '2x', 'x²', '2'],
-                    correct: 1
-                },
-                {
-                    question: 'What is the limit of (x²-1)/(x-1) as x approaches 1?',
-                    options: ['0', '1', '2', 'undefined'],
-                    correct: 2
-                },
-                {
-                    question: 'What is ∫2x dx?',
-                    options: ['x²', 'x² + C', '2', '2x + C'],
-                    correct: 1
-                },
-                {
-                    question: 'What is the derivative of sin(x)?',
-                    options: ['cos(x)', '-cos(x)', 'sin(x)', '-sin(x)'],
-                    correct: 0
-                },
-                {
-                    question: 'What is the derivative of e^x?',
-                    options: ['e^x', 'xe^(x-1)', 'e', '1'],
-                    correct: 0
-                }
-            ],
-            'geometry': [
-                {
-                    question: 'What is the area of a circle with radius 3?',
-                    options: ['6π', '9π', '12π', '18π'],
-                    correct: 1
-                },
-                {
-                    question: 'Sum of angles in a triangle equals:',
-                    options: ['90°', '180°', '270°', '360°'],
-                    correct: 1
-                },
-                {
-                    question: 'Volume of a cube with side length 4:',
-                    options: ['16', '32', '48', '64'],
-                    correct: 3
-                },
-                {
-                    question: 'Pythagorean theorem: a² + b² = ?',
-                    options: ['c', 'c²', '2c', 'c²/2'],
-                    correct: 1
-                },
-                {
-                    question: 'How many sides does a hexagon have?',
-                    options: ['5', '6', '7', '8'],
-                    correct: 1
-                }
-            ],
-            'trigonometry': [
-                {
-                    question: 'What is sin(90°)?',
-                    options: ['0', '1', '-1', '1/2'],
-                    correct: 1
-                },
-                {
-                    question: 'What is cos(0°)?',
-                    options: ['0', '1', '-1', '1/2'],
-                    correct: 1
-                },
-                {
-                    question: 'What is tan(45°)?',
-                    options: ['0', '1', '√2', '√3'],
-                    correct: 1
-                },
-                {
-                    question: 'sin²(x) + cos²(x) = ?',
-                    options: ['0', '1', '2', 'sin(2x)'],
-                    correct: 1
-                },
-                {
-                    question: 'What is sin(30°)?',
-                    options: ['1/2', '√2/2', '√3/2', '1'],
-                    correct: 0
-                }
-            ],
-            'statistics': [
-                {
-                    question: 'What is the mean of: 2, 4, 6, 8?',
-                    options: ['4', '5', '6', '7'],
-                    correct: 1
-                },
-                {
-                    question: 'What is the median of: 1, 3, 5, 7, 9?',
-                    options: ['3', '5', '7', '9'],
-                    correct: 1
-                },
-                {
-                    question: 'In a normal distribution, what percentage of data falls within 1 standard deviation?',
-                    options: ['68%', '95%', '99.7%', '50%'],
-                    correct: 0
-                },
-                {
-                    question: 'What is the probability of getting heads on a fair coin?',
-                    options: ['0.25', '0.5', '0.75', '1'],
-                    correct: 1
-                },
-                {
-                    question: 'What is the mode of: 1, 2, 2, 3, 4?',
-                    options: ['1', '2', '3', '4'],
-                    correct: 1
-                }
-            ]
-        };
-
-        // Tab switching functionality
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Add active class to clicked tab
-            event.target.classList.add('active');
-        }
-
-        // Video loading functionality
-        function loadVideo() {
-            const select = document.getElementById('topic-select');
-            const selectedTopic = select.value;
-            const container = document.getElementById('video-container');
-            
-            if (selectedTopic && videoData[selectedTopic]) {
-                currentTopic = selectedTopic;
-                const video = videoData[selectedTopic];
-                
-                container.innerHTML = `
-                    <iframe class="video-player" 
-                            src="${video.url}" 
-                            title="${video.title}"
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                    </iframe>
-                    <div class="video-info">
-                        <h3>${video.title}</h3>
-                        <p>${video.description}</p>
-                    </div>
-                `;
-                
-                // Update quiz section
-                document.getElementById('selected-topic').textContent = video.title;
-                document.getElementById('start-quiz-btn').disabled = false;
-            } else {
-                container.innerHTML = '<p>Select a topic to watch educational videos</p>';
-                currentTopic = '';
-                document.getElementById('selected-topic').textContent = 'Please select a topic from Video Lectures first';
-                document.getElementById('start-quiz-btn').disabled = true;
-            }
-        }
-
-        // Quiz functionality
-        function startQuiz() {
-            if (!currentTopic || !quizQuestions[currentTopic]) {
-                alert('Please select a topic from Video Lectures first!');
-                return;
-            }
-            
-            // Reset quiz state
-            currentQuestionIndex = 0;
-            score = 0;
-            timeLeft = 60;
-            
-            // Get random questions
-            const allQuestions = [...quizQuestions[currentTopic]];
-            questions = [];
-            
-            // Select 10 random questions (or all if less than 10)
-            for (let i = 0; i < Math.min(10, allQuestions.length); i++) {
-                const randomIndex = Math.floor(Math.random() * allQuestions.length);
-                questions.push(allQuestions.splice(randomIndex, 1)[0]);
-            }
-            
-            // Show quiz interface
-            document.getElementById('quiz-setup').style.display = 'none';
-            document.getElementById('quiz-active').style.display = 'block';
-            document.getElementById('quiz-results').style.display = 'none';
-            
-            // Start timer
-            startTimer();
-            
-            // Show first question
-            showQuestion();
-        }
-
-        function startTimer() {
-            quizTimer = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').textContent = timeLeft;
-                
-                if (timeLeft <= 0) {
-                    endQuiz();
-                }
-            }, 1000);
-        }
-
-        function showQuestion() {
-            if (currentQuestionIndex >= questions.length || timeLeft <= 0) {
-                endQuiz();
-                return;
-            }
-            
-            const question = questions[currentQuestionIndex];
-            const container = document.getElementById('question-container');
-            
-            container.innerHTML = `
-                <h3>Question ${currentQuestionIndex + 1} of ${questions.length}</h3>
-                <p>${question.question}</p>
-                <div class="options">
-                    ${question.options.map((option, index) => 
-                        `<div class="option" onclick="selectOption(${index})">${option}</div>`
-                    ).join('')}
-                </div>
-            `;
-            
-            document.getElementById('next-btn').disabled = true;
-        }
-
-        function selectOption(selectedIndex) {
-            // Remove previous selections
-            document.querySelectorAll('.option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            
-            // Add selection to clicked option
-            document.querySelectorAll('.option')[selectedIndex].classList.add('selected');
-            
-            // Check if answer is correct
-            const question = questions[currentQuestionIndex];
-            if (selectedIndex === question.correct) {
-                score++;
-                document.getElementById('score').textContent = score;
-            }
-            
-            // Enable next button
-            document.getElementById('next-btn').disabled = false;
-        }
-
-        function nextQuestion() {
-            currentQuestionIndex++;
-            showQuestion();
-        }
-
-        function endQuiz() {
-            clearInterval(quizTimer);
-            
-            // Hide quiz interface
-            document.getElementById('quiz-active').style.display = 'none';
-            document.getElementById('quiz-results').style.display = 'block';
-            
-            // Show results
-            document.getElementById('final-score').textContent = `${score}/${questions.length}`;
-            
-            let message = '';
-            const percentage = (score / questions.length) * 100;
-            
-            if (percentage >= 80) {
-                message = '🎉 Excellent work! You have mastered this topic!';
-            } else if (percentage >= 60) {
-                message = '👍 Good job! Keep practicing to improve further.';
-            } else if (percentage >= 40) {
-                message = '📚 You\'re getting there! Review the video lectures and try again.';
-            } else {
-                message = '💪 Don\'t give up! Practice makes perfect. Watch more videos and try again.';
-            }
-            
-            document.getElementById('performance-message').textContent = message;
-        }
-
-        function resetQuiz() {
-            document.getElementById('quiz-setup').style.display = 'block';
-            document.getElementById('quiz-active').style.display = 'none';
-            document.getElementById('quiz-results').style.display = 'none';
-        }
-
-        // Download functionality
-        function downloadResource(resourceType) {
-            const resources = {
-                'formulas': 'Mathematical_Formulas_Reference.pdf',
-                'problems': 'Practice_Problems_Collection.pdf',
-                'graph-paper': 'Printable_Graph_Paper.pdf',
-                'calculator': 'Scientific_Calculator_Guide.pdf',
-                'study-guides': 'Mathematics_Study_Guides.pdf',
-                'reference': 'Quick_Reference_Cards.pdf'
-            };
-            
-            // Simulate download
-            alert(`Downloading ${resources[resourceType]}...\n\nNote: This is a demo. In a real application, this would trigger an actual PDF download.`);
-        }
-
-        // Add more questions to existing topics
-        function addMoreQuestions() {
-            // Add additional questions for better quiz variety
-            const additionalQuestions = {
-                'algebra': [
-                    {
-                        question: 'Solve for x: 3x - 7 = 14',
-                        options: ['5', '7', '9', '11'],
-                        correct: 1
-                    },
-                    {
-                        question: 'What is the y-intercept of y = 2x + 5?',
-                        options: ['2', '5', '7', '0'],
-                        correct: 1
-                    }
-                ],
-                'calculus': [
-                    {
-                        question: 'What is the derivative of x³?',
-                        options: ['3x²', 'x²', '3x', '3'],
-                        correct: 0
-                    },
-                    {
-                        question: 'What is ∫x dx?',
-                        options: ['x²/2 + C', 'x + C', 'x²', '1'],
-                        correct: 0
-                    }
-                ]
-            };
-            
-            // Merge additional questions
-            Object.keys(additionalQuestions).forEach(topic => {
-                if (quizQuestions[topic]) {
-                    quizQuestions[topic] = [...quizQuestions[topic], ...additionalQuestions[topic]];
-                }
-            });
-        }
-
-        // Initialize additional questions
-        addMoreQuestions();
-
-        // Add some missing topics with basic questions
-        quizQuestions['linear-algebra'] = [
-            {
-                question: 'What is a vector?',
-                options: ['A scalar quantity', 'A quantity with magnitude and direction', 'A matrix', 'A function'],
-                correct: 1
-            },
-            {
-                question: 'What is the determinant of a 2x2 identity matrix?',
-                options: ['0', '1', '2', '4'],
-                correct: 1
-            }
-        ];
-
-        quizQuestions['discrete-math'] = [
-            {
-                question: 'How many subsets does a set with 3 elements have?',
-                options: ['6', '7', '8', '9'],
-                correct: 2
-            },
-            {
-                question: 'What is 5! (5 factorial)?',
-                options: ['15', '25', '120', '625'],
-                correct: 2
-            }
-        ];
-
-        quizQuestions['number-theory'] = [
-            {
-                question: 'What is the smallest prime number?',
-                options: ['0', '1', '2', '3'],
-                correct: 2
-            },
-            {
-                question: 'What is the GCD of 12 and 18?',
-                options: ['2', '3', '6', '36'],
-                correct: 2
-            },
-            {
-                question: 'Which number is NOT prime?',
-                options: ['7', '11', '13', '15'],
-                correct: 3
-            },
-            {
-                question: 'What is 2^5?',
-                options: ['10', '16', '25', '32'],
-                correct: 3
-            },
-            {
-                question: 'What is the LCM of 4 and 6?',
-                options: ['10', '12', '24', '2'],
-                correct: 1
-            }
-        ];
-
-        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Mathematics Learning Hub loaded successfully!');
+            // Add pen icon to follow cursor
+            const penIcon = document.createElement('div');
+            penIcon.className = 'pen-icon';
+            penIcon.innerHTML = '✏️';
+            document.body.appendChild(penIcon);
+            
+            // Animation controller
+            const steps = document.querySelectorAll('.math-step');
+            const stepWritings = document.querySelectorAll('.math-step-writing');
+            const explanations = document.querySelectorAll('.step-explanation');
+            const restartBtn = document.getElementById('restartBtn');
+            
+            function animateWriting(element, finalWidth, duration, delay, callback) {
+                setTimeout(() => {
+                    let start = null;
+                    const textContent = element.textContent;
+                    const textWidth = Math.max(getTextWidth(textContent, window.getComputedStyle(element).font), 400);
+                    
+                    element.parentElement.classList.add('visible');
+                    
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        const elapsed = timestamp - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Calculate cursor position for pen icon
+                        const rect = element.getBoundingClientRect();
+                        const cursorX = rect.left + (textWidth * progress) + 5;
+                        const cursorY = rect.top + rect.height / 2;
+                        
+                        penIcon.style.opacity = 1;
+                        penIcon.style.left = `${cursorX}px`;
+                        penIcon.style.top = `${cursorY}px`;
+                        
+                        element.style.width = `${finalWidth * progress}px`;
+                        
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            setTimeout(() => {
+                                penIcon.style.opacity = 0;
+                                if (callback) callback();
+                            }, 200);
+                        }
+                    }
+                    
+                    window.requestAnimationFrame(step);
+                }, delay);
+            }
+            
+            function getTextWidth(text, font) {
+                const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
+                const context = canvas.getContext('2d');
+                context.font = font;
+                const metrics = context.measureText(text);
+                return metrics.width;
+            }
+            
+            function showExplanation(index, delay) {
+                setTimeout(() => {
+                    explanations[index].classList.add('visible');
+                }, delay);
+            }
+            
+            function startAnimation() {
+                // Reset
+                steps.forEach(step => step.classList.remove('visible'));
+                stepWritings.forEach(writing => {
+                    writing.style.width = '0';
+                });
+                explanations.forEach(explanation => explanation.classList.remove('visible'));
+                restartBtn.classList.remove('visible');
+                
+                // Get final widths before animation
+                const finalWidths = Array.from(stepWritings).map(el => {
+                    el.style.width = 'auto';
+                    const width = Math.max(el.offsetWidth, 500);
+                    el.style.width = '0';
+                    return width;
+                });
+                
+                // Start the sequence with delays between steps
+                const stepDelay = 2000; // 2 seconds between steps
+                
+                animateWriting(stepWritings[0], finalWidths[0], 1000, 500, () => {
+                    setTimeout(() => {
+                        animateWriting(stepWritings[1], finalWidths[1], 1200, 0, () => {
+                            showExplanation(0, 200);
+                            
+                            setTimeout(() => {
+                                animateWriting(stepWritings[2], finalWidths[2], 1200, 0, () => {
+                                    showExplanation(1, 200);
+                                    
+                                    setTimeout(() => {
+                                        animateWriting(stepWritings[3], finalWidths[3], 1200, 0, () => {
+                                            showExplanation(2, 200);
+                                            
+                                            setTimeout(() => {
+                                                animateWriting(stepWritings[4], finalWidths[4], 1200, 0, () => {
+                                                    showExplanation(3, 200);
+                                                    
+                                                    setTimeout(() => {
+                                                        animateWriting(stepWritings[5], finalWidths[5], 800, 0);
+                                                        
+                                                        setTimeout(() => {
+                                                            animateWriting(stepWritings[6], finalWidths[6], 1200, 0, () => {
+                                                                showExplanation(4, 200);
+                                                                
+                                                                setTimeout(() => {
+                                                                    animateWriting(stepWritings[7], finalWidths[7], 1200, 0, () => {
+                                                                        showExplanation(5, 200);
+                                                                        
+                                                                        setTimeout(() => {
+                                                                            animateWriting(stepWritings[8], finalWidths[8], 1000, 0, () => {
+                                                                                showExplanation(6, 200);
+                                                                                
+                                                                                setTimeout(() => {
+                                                                                    animateWriting(stepWritings[9], finalWidths[9], 1000, 0, () => {
+                                                                                        showExplanation(7, 200);
+                                                                                        
+                                                                                        setTimeout(() => {
+                                                                                            animateWriting(stepWritings[10], finalWidths[10], 1200, 0, () => {
+                                                                                                showExplanation(8, 200);
+                                                                                                
+                                                                                                setTimeout(() => {
+                                                                                                    animateWriting(stepWritings[11], finalWidths[11], 800, 0, () => {
+                                                                                                        showExplanation(9, 200);
+                                                                                                        
+                                                                                                        setTimeout(() => {
+                                                                                                            restartBtn.classList.add('visible');
+                                                                                                        }, 1000);
+                                                                                                    });
+                                                                                                }, stepDelay);
+                                                                                            });
+                                                                                        }, stepDelay);
+                                                                                    });
+                                                                                }, stepDelay);
+                                                                            });
+                                                                        }, stepDelay);
+                                                                    });
+                                                                }, stepDelay);
+                                                            });
+                                                        }, stepDelay);
+                                                    }, stepDelay);
+                                                });
+                                            }, stepDelay);
+                                        });
+                                    }, stepDelay);
+                                });
+                            }, stepDelay);
+                        });
+                    }, stepDelay);
+                });
+            }
+            
+            // Start animation when page loads
+            startAnimation();
+            
+            // Restart button handler
+            restartBtn.addEventListener('click', startAnimation);
         });
     </script>
 </body>
