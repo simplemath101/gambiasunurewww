@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biology Quiz Graphic</title>
+    <title>Interactive Biology Quiz</title>
     <style>
         * {
             margin: 0;
@@ -19,9 +19,11 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        .graphic-container {
+        /* INTRO SCREEN STYLES */
+        .intro-container {
             width: 100%;
             max-width: 600px;
             background: white;
@@ -31,9 +33,15 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            transition: all 0.5s ease;
         }
 
-        .graphic-container::before {
+        .intro-container.fade-out {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .intro-container::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -81,6 +89,7 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             animation: slideInRight 1s ease-out 0.6s both;
             position: relative;
+            margin-bottom: 40px;
         }
 
         #text3::after {
@@ -91,6 +100,47 @@
             transform: translateY(-50%);
             font-size: 24px;
             animation: pulse 2s infinite;
+        }
+
+        .start-arrows {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            animation: slideUp 1s ease-out 0.9s both;
+        }
+
+        .arrow-btn {
+            background: linear-gradient(145deg, #7c3aed, #a855f7);
+            color: white;
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .arrow-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .start-text {
+            color: #7c3aed;
+            font-size: 18px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         @keyframes bounceIn {
@@ -127,6 +177,17 @@
             100% {
                 opacity: 1;
                 transform: translateX(0);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -211,8 +272,230 @@
             }
         }
 
+        /* QUIZ STYLES */
+        .quiz-container {
+            width: 100%;
+            max-width: 500px;
+            background: transparent;
+            position: relative;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .quiz-container.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 600px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .question-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .question-text {
+            font-size: 36px;
+            font-weight: 400;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .choices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .choice-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .choice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .choice-card.selected {
+            border-color: #7c3aed;
+            background: #f3f4f6;
+        }
+
+        .choice-card.correct {
+            background: #27ae60;
+            color: white;
+            animation: correctPulse 0.6s ease-out;
+        }
+
+        .choice-card.incorrect {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .choice-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+
+        .choice-card.correct .choice-text,
+        .choice-card.incorrect .choice-text {
+            color: white;
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: #7c3aed;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-indicator {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.9);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: #7c3aed;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .quiz-complete {
+            text-align: center;
+            color: white;
+            width: 100%;
+        }
+
+        .score-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+
+        .score-title {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .score-number {
+            font-size: 64px;
+            font-weight: bold;
+            color: #7c3aed;
+            margin: 20px 0;
+        }
+
+        .score-message {
+            font-size: 18px;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .restart-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            color: #7c3aed;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .restart-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .slide-hint {
+            color: rgba(255,255,255,0.8);
+            font-size: 16px;
+            margin-top: 20px;
+            animation: fadeInOut 2s infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
         @media (max-width: 600px) {
-            .graphic-container {
+            .intro-container {
                 padding: 40px 20px;
             }
             
@@ -233,6 +516,16 @@
                 font-size: 20px;
             }
             
+            .arrow-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .start-text {
+                font-size: 16px;
+            }
+            
             .dna-strand {
                 width: 60px;
                 height: 60px;
@@ -241,11 +534,28 @@
             .dna-strand::before {
                 font-size: 36px;
             }
+            
+            .question-text {
+                font-size: 28px;
+            }
+            
+            .choice-text {
+                font-size: 16px;
+            }
+            
+            .choices-grid {
+                gap: 15px;
+            }
+            
+            .choice-card {
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="graphic-container">
+    <!-- INTRO SCREEN -->
+    <div class="intro-container" id="introContainer">
         <div class="highlight-box"></div>
         <div class="decorative-elements">
             <div class="dna-strand"></div>
@@ -255,6 +565,392 @@
         <div class="text" id="text1">BIOLOGY QUIZ</div>
         <div class="text" id="text2">IF YOU GET 8/10</div>
         <div class="text" id="text3">YOU ARE A GENIUS</div>
+        
+        <div class="start-arrows">
+            <button class="arrow-btn" onclick="startQuiz()">&lt;</button>
+            <div class="start-text">START</div>
+            <button class="arrow-btn" onclick="startQuiz()">&gt;</button>
+        </div>
     </div>
+
+    <!-- QUIZ CONTAINER -->
+    <div class="quiz-container" id="quizContainer">
+        <div class="progress-indicator" id="progressIndicator">Question 1 of 10</div>
+        
+        <!-- Question slides will be generated here -->
+        <div id="slidesContainer"></div>
+        
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="previousSlide()">‹</button>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">›</button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "What is the powerhouse of the cell?",
+                choices: ["Nucleus", "Mitochondria", "Ribosome", "Chloroplast"],
+                correct: 1
+            },
+            {
+                question: "Which blood type is known as the universal donor?",
+                choices: ["A", "B", "AB", "O"],
+                correct: 3
+            },
+            {
+                question: "What is the largest organ in the human body?",
+                choices: ["Liver", "Brain", "Skin", "Heart"],
+                correct: 2
+            },
+            {
+                question: "How many chambers does a human heart have?",
+                choices: ["2", "3", "4", "5"],
+                correct: 2
+            },
+            {
+                question: "What is the basic unit of heredity?",
+                choices: ["Chromosome", "Gene", "DNA", "Protein"],
+                correct: 1
+            },
+            {
+                question: "Which process do plants use to make food?",
+                choices: ["Respiration", "Digestion", "Photosynthesis", "Fermentation"],
+                correct: 2
+            },
+            {
+                question: "What is the scientific name for humans?",
+                choices: ["Homo erectus", "Homo sapiens", "Homo habilis", "Homo neanderthalensis"],
+                correct: 1
+            },
+            {
+                question: "Which part of the brain controls balance?",
+                choices: ["Cerebrum", "Cerebellum", "Medulla", "Hypothalamus"],
+                correct: 1
+            },
+            {
+                question: "What type of bond holds water molecules together?",
+                choices: ["Ionic bond", "Covalent bond", "Hydrogen bond", "Metallic bond"],
+                correct: 2
+            },
+            {
+                question: "How many pairs of chromosomes do humans have?",
+                choices: ["22", "23", "24", "46"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let currentStep = 0; // 0: question, 1: answer revealed
+        let userAnswers = [];
+        let selectedChoice = null;
+        let startX = 0;
+        let isDragging = false;
+
+        function startQuiz() {
+            const introContainer = document.getElementById('introContainer');
+            const quizContainer = document.getElementById('quizContainer');
+            
+            introContainer.classList.add('fade-out');
+            
+            setTimeout(() => {
+                introContainer.style.display = 'none';
+                quizContainer.classList.add('active');
+                initializeQuiz();
+                setupTouchEvents();
+            }, 500);
+        }
+
+        function initializeQuiz() {
+            generateAllSlides();
+            showCurrentSlide();
+            updateNavigation();
+            updateProgress();
+        }
+
+        function generateAllSlides() {
+            const container = document.getElementById('slidesContainer');
+            let slidesHTML = '';
+
+            quizData.forEach((questionData, qIndex) => {
+                // Question slide
+                slidesHTML += `
+                    <div class="slide" data-question="${qIndex}" data-step="0">
+                        <div class="question-card">
+                            <div class="question-text">${questionData.question}</div>
+                        </div>
+                        <div class="choices-grid">
+                            ${questionData.choices.map((choice, cIndex) => 
+                                `<div class="choice-card" onclick="selectChoice(${cIndex})">
+                                    <div class="choice-text">${choice}</div>
+                                </div>`
+                            ).join('')}
+                        </div>
+                        <div class="slide-hint">Select an answer, then swipe right →</div>
+                    </div>
+                `;
+
+                // Answer revealed slide
+                slidesHTML += `
+                    <div class="slide" data-question="${qIndex}" data-step="1">
+                        <div class="question-card">
+                            <div class="question-text">${questionData.question}</div>
+                        </div>
+                        <div class="choices-grid">
+                            ${questionData.choices.map((choice, cIndex) => 
+                                `<div class="choice-card ${cIndex === questionData.correct ? 'correct' : ''}">
+                                    <div class="choice-text">${choice}</div>
+                                </div>`
+                            ).join('')}
+                        </div>
+                        ${qIndex < quizData.length - 1 ? '<div class="slide-hint">Swipe right for next question →</div>' : '<div class="slide-hint">Swipe right to see results →</div>'}
+                    </div>
+                `;
+            });
+
+            // Results slide
+            slidesHTML += `
+                <div class="slide quiz-complete" data-question="results" data-step="0">
+                    <div class="score-card">
+                        <div class="score-title">Biology Quiz Complete! 🧬</div>
+                        <div class="score-number" id="finalScore">0/10</div>
+                        <div class="score-message" id="scoreMessage">Calculating...</div>
+                    </div>
+                    <button class="restart-btn" onclick="restartQuiz()">Take Quiz Again</button>
+                </div>
+            `;
+
+            container.innerHTML = slidesHTML;
+        }
+
+        function showCurrentSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            if (currentQuestion >= quizData.length) {
+                // Show results
+                const resultSlide = document.querySelector('[data-question="results"]');
+                resultSlide.classList.add('active');
+                calculateResults();
+            } else {
+                const targetSlide = document.querySelector(`[data-question="${currentQuestion}"][data-step="${currentStep}"]`);
+                if (targetSlide) {
+                    targetSlide.classList.add('active');
+                    
+                    // Update choice states for answer step
+                    if (currentStep === 1) {
+                        const choiceCards = targetSlide.querySelectorAll('.choice-card');
+                        const userAnswer = userAnswers[currentQuestion];
+                        const correctAnswer = quizData[currentQuestion].correct;
+                        
+                        choiceCards.forEach((card, index) => {
+                            card.classList.remove('selected', 'incorrect');
+                            if (index === correctAnswer) {
+                                card.classList.add('correct');
+                            } else if (index === userAnswer && userAnswer !== correctAnswer && userAnswer !== -1) {
+                                card.classList.add('incorrect');
+                            }
+                        });
+                    }
+                }
+            }
+        }
+
+        function selectChoice(choiceIndex) {
+            if (currentStep !== 0) return; // Only allow selection on question step
+            
+            selectedChoice = choiceIndex;
+            userAnswers[currentQuestion] = choiceIndex;
+            
+            // Update visual selection
+            const activeSlide = document.querySelector('.slide.active');
+            const choiceCards = activeSlide.querySelectorAll('.choice-card');
+            choiceCards.forEach((card, index) => {
+                card.classList.toggle('selected', index === choiceIndex);
+            });
+        }
+
+        function nextSlide() {
+            if (currentQuestion >= quizData.length) return;
+
+            if (currentStep === 0) {
+                // Moving from question to answer
+                // If no answer selected, record as -1 (no answer)
+                if (selectedChoice === null) {
+                    userAnswers[currentQuestion] = -1;
+                }
+                currentStep = 1;
+            } else {
+                // Moving to next question
+                currentQuestion++;
+                currentStep = 0;
+                selectedChoice = null;
+            }
+            
+            showCurrentSlide();
+            updateNavigation();
+            updateProgress();
+        }
+
+        function previousSlide() {
+            if (currentQuestion === 0 && currentStep === 0) return;
+
+            if (currentStep === 1) {
+                // Go back to question
+                currentStep = 0;
+            } else {
+                // Go back to previous question's answer
+                currentQuestion--;
+                currentStep = 1;
+                selectedChoice = userAnswers[currentQuestion] || null;
+            }
+            
+            showCurrentSlide();
+            updateNavigation();
+            updateProgress();
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = (currentQuestion === 0 && currentStep === 0);
+            
+            if (currentQuestion >= quizData.length) {
+                // On results page
+                nextBtn.style.display = 'none';
+                prevBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'flex';
+                prevBtn.style.display = 'flex';
+                
+                if (currentQuestion === quizData.length - 1 && currentStep === 1) {
+                    nextBtn.innerHTML = '✓';
+                } else {
+                    nextBtn.innerHTML = '›';
+                }
+            }
+        }
+
+        function updateProgress() {
+            const progressIndicator = document.getElementById('progressIndicator');
+            if (currentQuestion >= quizData.length) {
+                progressIndicator.textContent = 'Results';
+            } else {
+                progressIndicator.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+            }
+        }
+
+        function calculateResults() {
+            const correctAnswers = userAnswers.filter((answer, index) => answer === quizData[index].correct).length;
+            const answeredQuestions = userAnswers.filter(answer => answer !== -1).length;
+            const percentage = answeredQuestions > 0 ? Math.round((correctAnswers / quizData.length) * 100) : 0;
+            
+            document.getElementById('finalScore').textContent = `${correctAnswers}/${quizData.length}`;
+            document.getElementById('scoreMessage').textContent = getScoreMessage(percentage, answeredQuestions);
+        }
+
+        function getScoreMessage(percentage, answeredQuestions) {
+            const skippedQuestions = quizData.length - answeredQuestions;
+            let message = "";
+            
+            if (percentage >= 80) message = "Outstanding! You're a biology genius! 🧬✨";
+            else if (percentage >= 70) message = "Excellent work! You have strong biology knowledge! 🔬";
+            else if (percentage >= 50) message = "Good job! Keep studying to improve further! 📚";
+            else message = "Don't worry, biology takes practice. Keep learning! 🌱";
+            
+            if (skippedQuestions > 0) {
+                message += ` (${skippedQuestions} question${skippedQuestions > 1 ? 's' : ''} skipped)`;
+            }
+            
+            return message;
+        }
+
+        function restartQuiz() {
+            const introContainer = document.getElementById('introContainer');
+            const quizContainer = document.getElementById('quizContainer');
+            
+            // Reset quiz state
+            currentQuestion = 0;
+            currentStep = 0;
+            userAnswers = [];
+            selectedChoice = null;
+            
+            // Show intro screen again
+            quizContainer.classList.remove('active');
+            introContainer.style.display = 'flex';
+            introContainer.classList.remove('fade-out');
+        }
+
+        // Touch/Swipe functionality
+        function setupTouchEvents() {
+            const container = document.querySelector('.quiz-container');
+            
+            container.addEventListener('touchstart', handleTouchStart, { passive: true });
+            container.addEventListener('touchmove', handleTouchMove, { passive: true });
+            container.addEventListener('touchend', handleTouchEnd, { passive: true });
+            
+            container.addEventListener('mousedown', handleMouseDown);
+            container.addEventListener('mousemove', handleMouseMove);
+            container.addEventListener('mouseup', handleMouseUp);
+        }
+
+        function handleTouchStart(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        }
+
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+        }
+
+        function handleTouchEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            const threshold = 50;
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        }
+
+        function handleMouseDown(e) {
+            startX = e.clientX;
+            isDragging = true;
+        }
+
+        function handleMouseMove(e) {
+            if (!isDragging) return;
+        }
+
+        function handleMouseUp(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const diffX = startX - e.clientX;
+            const threshold = 50;
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+    </script>
 </body>
 </html>
