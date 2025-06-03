@@ -33,21 +33,6 @@
             padding: 40px 20px;
         }
         
-        .watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-15deg);
-            font-size: 24px;
-            font-weight: bold;
-            color: rgba(0, 102, 204, 0.15);
-            z-index: 1;
-            pointer-events: none;
-            user-select: none;
-            text-align: center;
-            white-space: nowrap;
-        }
-        
         .notebook-header {
             text-align: center;
             margin-bottom: 20px;
@@ -56,8 +41,6 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            position: relative;
-            z-index: 2;
         }
         
         .exam-title {
@@ -77,7 +60,6 @@
         .notebook-paper {
             position: relative;
             padding: 10px;
-            z-index: 2;
         }
         
         .notebook-line {
@@ -171,8 +153,6 @@
             margin: 20px auto 0;
             opacity: 0;
             transform: scale(0.9);
-            position: relative;
-            z-index: 2;
         }
         
         .restart-btn:hover {
@@ -220,16 +200,25 @@
                 font-size: 16px;
                 margin-left: 20px;
             }
-            
-            .watermark {
-                font-size: 20px;
-            }
         }
+        .watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0, 102, 204, 0.15);
+    pointer-events: none;
+    z-index: 1000;
+    user-select: none;
+    font-family: 'Comic Sans MS', sans-serif;
+    text-shadow: 0 0 10px rgba(0, 102, 204, 0.1);
+}
     </style>
 </head>
 <body>
     <div class="notebook-container">
-        <div class="watermark">FOLLOW TIKTOK @MATHGURU404</div>
         <div class="notebook-header">
             <div class="exam-title">WAEC 2011</div>
             <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2025/04/WAEC.jpg" alt="WAEC Logo" class="exam-logo">
@@ -310,7 +299,7 @@
         </div>
         <button class="restart-btn" id="restartBtn">Watch Again</button>
     </div>
-
+<div class="watermark">FOLLOW TIKTOK @MATHGURU404</div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Add pen icon to follow cursor
@@ -456,15 +445,15 @@
                                                                 }, stepDelay);
                                                             });
                                                         }, stepDelay);
-                                                    });
-                                                }, stepDelay);
-                                            });
-                                        }, stepDelay);
-                                    });
-                                }, stepDelay);
-                            });
-                        }, stepDelay);
-                    });
+                                                    }, stepDelay);
+                                                });
+                                            }, stepDelay);
+                                        });
+                                    }, stepDelay);
+                                });
+                            }, stepDelay);
+                        });
+                    }, stepDelay);
                 });
             }
             
