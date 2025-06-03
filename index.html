@@ -3,451 +3,1478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Math Solution</title>
+    <title>Interactive Biology Quiz</title>
     <style>
-        :root {
-            --notebook-blue: #0066cc;
-            --paper-color: #fffdf0;
-            --pen-color: #2b3d4f;
-        }
-        
-        body {
-            font-family: 'Comic Sans MS', sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-        
-        .notebook-container {
-            width: 100%;
-            max-width: 750px;
-            background-color: var(--paper-color);
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            padding: 40px 20px;
-        }
-        
-        .notebook-header {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--pen-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        
-        .exam-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-right: 10px;
-        }
-        
-        .problem-statement {
-            font-size: 20px;
-            margin-top: 10px;
-            font-weight: bold;
-            color: #0066cc;
-        }
-        
-        .notebook-paper {
-            position: relative;
-            padding: 10px;
-        }
-        
-        .notebook-line {
-            height: 80px;
-            border-bottom: 1px solid #b5c7d5;
-            position: relative;
-            margin-bottom: 5px;
-        }
-        
-        .notebook-line::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 0;
-            height: 100%;
-            width: 1px;
-            background-color: #ff9999;
-        }
-        
-        .math-step {
-            position: relative;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s, transform 0.8s;
-            padding-left: 10px;
-            font-size: 22px;
-            color: var(--pen-color);
-            height: 100%;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .math-step.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .math-step-writing {
-            color: var(--pen-color);
-            position: relative;
-            overflow: visible;
-            display: inline-block;
-            white-space: nowrap;
-            width: 0;
-        }
-        
-        .step-arrow {
-            display: inline-block;
-            margin: 0 10px;
-            color: #4a90e2;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .step-arrow.visible {
-            opacity: 1;
-        }
-        
-        .step-explanation {
-            color: #6b7d8c;
-            font-size: 18px;
-            margin-left: 30px;
-            transform: scale(0.8);
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        .step-explanation.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .final-answer {
-            color: #e7305b;
-            font-weight: bold;
-        }
-        
-        .restart-btn {
-            background-color: var(--notebook-blue);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-family: inherit;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s, transform 0.2s;
-            display: block;
-            margin: 20px auto 0;
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        
-        .restart-btn:hover {
-            background-color: #004e9e;
-            transform: scale(1.05);
-        }
-        
-        .restart-btn.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .pen-icon {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 10;
-        }
-        .exam-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-right: 10px;
-        }
-        
-        .exam-logo {
-            height: 30px;
-            width: auto;
-        }
-        
-        
-        
-        @media (max-width: 600px) {
-            .notebook-container {
-                padding: 20px 10px;
-            }
-            
-            .math-step {
-                font-size: 20px;
-            }
-            
-            .step-explanation {
-                font-size: 16px;
-                margin-left: 20px;
-            }
-        }
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(145deg, #7c3aed, #a855f7);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* INTRO SCREEN STYLES */
+.intro-container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.intro-container.fade-out {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.intro-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.text {
+    position: relative;
+    z-index: 1;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+#text1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #7c3aed;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: bounceIn 1s ease-out;
+    margin-bottom: 30px;
+}
+
+#text2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a1a1a;
+    animation: slideInLeft 1s ease-out 0.3s both;
+    margin-bottom: 20px;
+}
+
+#text3 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ef4444;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    animation: slideInRight 1s ease-out 0.6s both;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+#text3::after {
+    content: '🧠✨';
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    animation: pulse 2s infinite;
+}
+
+.start-arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    animation: slideUp 1s ease-out 0.9s both;
+}
+
+.arrow-btn {
+    background: linear-gradient(145deg, #7c3aed, #a855f7);
+    color: white;
+    border: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+}
+
+.arrow-btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.start-text {
+    color: #7c3aed;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-50px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50%) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.decorative-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dna-strand {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0.1;
+    animation: rotate 10s linear infinite;
+}
+
+.dna-strand:nth-child(1) {
+    top: 20px;
+    left: 20px;
+    animation-delay: 0s;
+}
+
+.dna-strand:nth-child(2) {
+    bottom: 20px;
+    right: 20px;
+    animation-delay: -5s;
+}
+
+.dna-strand::before {
+    content: '🧬';
+    font-size: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.highlight-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 80%;
+    border: 3px solid transparent;
+    border-radius: 15px;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(45deg, #7c3aed, #a855f7, #ef4444) border-box;
+    z-index: -1;
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.02);
+    }
+}
+
+/* QUIZ STYLES */
+.quiz-container {
+    width: 100%;
+    max-width: 500px;
+    background: transparent;
+    position: relative;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.quiz-container.active {
+    display: block;
+    opacity: 1;
+}
+
+.slide {
+    width: 100%;
+    min-height: 600px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.slide.active {
+    display: flex;
+}
+
+.question-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.question-text {
+    font-size: 36px;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+
+.choices-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.choice-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.choice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.choice-card.selected {
+    border-color: #7c3aed;
+    background: #f3f4f6;
+}
+
+.choice-card.correct {
+    background: #27ae60;
+    color: white;
+    animation: correctPulse 0.6s ease-out;
+}
+
+.choice-card.incorrect {
+    background: #e74c3c;
+    color: white;
+}
+
+.choice-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+.choice-card.correct .choice-text,
+.choice-card.incorrect .choice-text {
+    color: white;
+}
+
+@keyframes correctPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.navigation {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+}
+
+.nav-btn {
+    background: rgba(255,255,255,0.9);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: #7c3aed;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-btn:hover {
+    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.progress-indicator {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.9);
+    padding: 12px 24px;
+    border-radius: 25px;
+    color: #7c3aed;
+    font-weight: 600;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.quiz-complete {
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+.score-card {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
+}
+
+.score-title {
+    font-size: 32px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.score-number {
+    font-size: 64px;
+    font-weight: bold;
+    color: #7c3aed;
+    margin: 20px 0;
+}
+
+.score-message {
+    font-size: 18px;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.restart-btn {
+    background: rgba(255,255,255,0.9);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 25px;
+    color: #7c3aed;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.restart-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.slide-hint {
+    color: rgba(255,255,255,0.8);
+    font-size: 16px;
+    margin-top: 20px;
+    animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* RESPONSIVE BREAKPOINTS */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+    body {
+        padding: 15px;
+    }
+    
+    .intro-container {
+        max-width: 550px;
+        padding: 50px 35px;
+    }
+    
+    #text1 {
+        font-size: 44px;
+    }
+    
+    #text2 {
+        font-size: 30px;
+    }
+    
+    #text3 {
+        font-size: 34px;
+    }
+    
+    .quiz-container {
+        max-width: 480px;
+    }
+    
+    .question-text {
+        font-size: 32px;
+    }
+    
+    .choice-text {
+        font-size: 17px;
+    }
+}
+
+/* Standard tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .intro-container {
+        max-width: 90%;
+        padding: 40px 30px;
+        border-radius: 15px;
+    }
+    
+    #text1 {
+        font-size: 40px;
+        margin-bottom: 25px;
+    }
+    
+    #text2 {
+        font-size: 26px;
+        margin-bottom: 18px;
+    }
+    
+    #text3 {
+        font-size: 30px;
+        margin-bottom: 35px;
+    }
+    
+    #text3::after {
+        right: -50px;
+        font-size: 22px;
+    }
+    
+    .arrow-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+    }
+    
+    .start-text {
+        font-size: 17px;
+    }
+    
+    .dna-strand {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .dna-strand::before {
+        font-size: 48px;
+    }
+    
+    .quiz-container {
+        max-width: 90%;
+    }
+    
+    .slide {
+        min-height: 500px;
+        padding: 30px 15px;
+        gap: 15px;
+    }
+    
+    .question-card {
+        padding: 30px 25px;
+        margin-bottom: 25px;
+    }
+    
+    .question-text {
+        font-size: 30px;
+    }
+    
+    .choices-grid {
+        gap: 18px;
+    }
+    
+    .choice-card {
+        padding: 28px 18px;
+    }
+    
+    .choice-text {
+        font-size: 16px;
+    }
+    
+    .navigation {
+        bottom: 25px;
+        gap: 15px;
+    }
+    
+    .nav-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+    
+    .progress-indicator {
+        top: 25px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
+    .score-card {
+        padding: 40px 30px;
+    }
+    
+    .score-title {
+        font-size: 28px;
+    }
+    
+    .score-number {
+        font-size: 56px;
+    }
+    
+    .score-message {
+        font-size: 16px;
+    }
+    
+    .restart-btn {
+        padding: 12px 35px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile landscape and small tablets */
+@media (max-width: 640px) {
+    .intro-container {
+        padding: 35px 25px;
+    }
+    
+    #text1 {
+        font-size: 36px;
+    }
+    
+    #text2 {
+        font-size: 24px;
+    }
+    
+    #text3 {
+        font-size: 28px;
+    }
+    
+    #text3::after {
+        right: -40px;
+        font-size: 20px;
+    }
+    
+    .arrow-btn {
+        width: 65px;
+        height: 65px;
+        font-size: 26px;
+    }
+    
+    .start-arrows {
+        gap: 15px;
+    }
+    
+    .question-text {
+        font-size: 28px;
+    }
+    
+    .choice-text {
+        font-size: 15px;
+    }
+    
+    .choices-grid {
+        gap: 15px;
+    }
+    
+    .choice-card {
+        padding: 25px 15px;
+    }
+    
+    .slide-hint {
+        font-size: 14px;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .intro-container {
+        max-width: 95%;
+        padding: 30px 20px;
+        border-radius: 12px;
+    }
+    
+    #text1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    
+    #text2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    #text3 {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+    
+    #text3::after {
+        right: -35px;
+        font-size: 18px;
+    }
+    
+    .arrow-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .start-text {
+        font-size: 16px;
+    }
+    
+    .dna-strand {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .dna-strand::before {
+        font-size: 36px;
+    }
+    
+    .quiz-container {
+        max-width: 95%;
+    }
+    
+    .slide {
+        min-height: 450px;
+        padding: 25px 10px;
+    }
+    
+    .question-card {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+        border-radius: 15px;
+    }
+    
+    .question-text {
+        font-size: 26px;
+        line-height: 1.2;
+    }
+    
+    .choices-grid {
+        gap: 12px;
+    }
+    
+    .choice-card {
+        padding: 22px 12px;
+        border-radius: 15px;
+    }
+    
+    .choice-text {
+        font-size: 14px;
+        line-height: 1.3;
+    }
+    
+    .navigation {
+        bottom: 20px;
+        gap: 12px;
+    }
+    
+    .nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .progress-indicator {
+        top: 20px;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 20px;
+    }
+    
+    .score-card {
+        padding: 35px 25px;
+    }
+    
+    .score-title {
+        font-size: 26px;
+    }
+    
+    .score-number {
+        font-size: 48px;
+    }
+    
+    .score-message {
+        font-size: 15px;
+    }
+    
+    .restart-btn {
+        padding: 10px 30px;
+        font-size: 15px;
+    }
+    
+    .slide-hint {
+        font-size: 13px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 360px) {
+    .intro-container {
+        padding: 25px 15px;
+    }
+    
+    #text1 {
+        font-size: 28px;
+    }
+    
+    #text2 {
+        font-size: 20px;
+    }
+    
+    #text3 {
+        font-size: 24px;
+    }
+    
+    #text3::after {
+        right: -30px;
+        font-size: 16px;
+    }
+    
+    .arrow-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 20px;
+    }
+    
+    .start-text {
+        font-size: 14px;
+    }
+    
+    .question-text {
+        font-size: 24px;
+    }
+    
+    .choice-text {
+        font-size: 13px;
+    }
+    
+    .choice-card {
+        padding: 20px 10px;
+    }
+    
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .progress-indicator {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .score-title {
+        font-size: 24px;
+    }
+    
+    .score-number {
+        font-size: 42px;
+    }
+    
+    .score-message {
+        font-size: 14px;
+    }
+    
+    .restart-btn {
+        padding: 8px 25px;
+        font-size: 14px;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+    .slide {
+        min-height: auto;
+        padding: 20px 15px;
+    }
+    
+    .question-card {
+        padding: 20px 25px;
+        margin-bottom: 15px;
+    }
+    
+    .navigation {
+        bottom: 15px;
+    }
+    
+    .progress-indicator {
+        top: 15px;
+    }
+    
+    .intro-container {
+        padding: 25px 30px;
+    }
+    
+    #text1 {
+        margin-bottom: 15px;
+    }
+    
+    #text2 {
+        margin-bottom: 10px;
+    }
+    
+    #text3 {
+        margin-bottom: 20px;
+    }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+    .choice-card {
+        min-height: 60px;
+    }
+    
+    .arrow-btn {
+        min-width: 60px;
+        min-height: 60px;
+    }
+    
+    .nav-btn {
+        min-width: 50px;
+        min-height: 50px;
+    }
+    
+    .restart-btn {
+        min-height: 44px;
+        padding: 12px 30px;
+    }
+}
+
+/* High density displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .intro-container {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .question-card,
+    .choice-card,
+    .score-card {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .nav-btn {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+}
+        /* CSS - Add this to your existing styles */
+.tiktok-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+    white-space: nowrap;
+}
+
+.tiktok-logo {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #ff0050, #ff4040);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+}
+
+.tiktok-logo::before {
+    content: "♪";
+    font-size: 10px;
+}
+
+/* Make the slide container relative for positioning */
+.slide {
+    position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tiktok-watermark {
+        font-size: 12px;
+        gap: 6px;
+    }
+    
+    .tiktok-logo {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+    
+    .tiktok-logo::before {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tiktok-watermark {
+        font-size: 11px;
+        gap: 5px;
+    }
+    
+    .tiktok-logo {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+    }
+    
+    .tiktok-logo::before {
+        font-size: 7px;
+    }
+}
     </style>
 </head>
 <body>
-    <div class="notebook-container">
-        <div class="notebook-header">
-            <div class="exam-title">WAEC 2011</div>
-            <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2025/04/WAEC.jpg" alt="WAEC Logo" class="exam-logo">
-            <h1>Solving for x</h1>
-            <div class="problem-statement">2logx – log(1 – x) = log(2 – x)</div>
+    <!-- INTRO SCREEN -->
+    <div class="intro-container" id="introContainer">
+        <div class="highlight-box"></div>
+        <div class="decorative-elements">
+            <div class="dna-strand"></div>
+            <div class="dna-strand"></div>
         </div>
-        <div class="notebook-paper">
-            <div class="notebook-line">
-                <div class="math-step" id="step1">
-                    <div class="math-step-writing">2logx – log(1 – x) = log(2 – x)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step2">
-                    <div class="math-step-writing">log(x²) – log(1 – x) = log(2 – x)</div>
-                    <div class="step-explanation">Using property: n·log(a) = log(aⁿ)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step3">
-                    <div class="math-step-writing">log(x²/(1 – x)) = log(2 – x)</div>
-                    <div class="step-explanation">Using property: log(a) - log(b) = log(a/b)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step4">
-                    <div class="math-step-writing">x²/(1 – x) = 2 – x</div>
-                    <div class="step-explanation">If log(a) = log(b), then a = b</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step5">
-                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
-                    <div class="step-explanation">Multiply both sides by (1-x)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step6">
-                    <div class="math-step-writing">x² = (1 – x)(2 – x)</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step7">
-                    <div class="math-step-writing">x² = 2 – x – 2x + x²</div>
-                    <div class="step-explanation">Expand the right side</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step8">
-                    <div class="math-step-writing">0 = 2 – 3x</div>
-                    <div class="step-explanation">Simplify by subtracting x² from both sides</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step9">
-                    <div class="math-step-writing">3x = 2</div>
-                    <div class="step-explanation">Add 3x to both sides</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step10">
-                    <div class="math-step-writing">x = 2/3</div>
-                    <div class="step-explanation">Divide both sides by 3</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step11">
-                    <div class="math-step-writing">Check: For x = 2/3, 1-x = 1/3, 2-x = 4/3</div>
-                    <div class="step-explanation">Verify our answer in the original equation</div>
-                </div>
-            </div>
-            <div class="notebook-line">
-                <div class="math-step" id="step12">
-                    <div class="math-step-writing">x = 2/3</div>
-                    <div class="step-explanation final-answer">Our final answer!</div>
-                </div>
-            </div>
+        
+        <div class="text" id="text1">BIOLOGY QUIZ</div>
+        <div class="text" id="text2">IF YOU GET 8/10</div>
+        <div class="text" id="text3">YOU ARE A GENIUS</div>
+        
+        <div class="start-arrows">
+            <button class="arrow-btn" onclick="startQuiz()">&lt;</button>
+            
+            <button class="arrow-btn" onclick="startQuiz()">&gt;</button>
         </div>
-        <button class="restart-btn" id="restartBtn">Watch Again</button>
+    </div>
+
+    <!-- QUIZ CONTAINER -->
+    <div class="quiz-container" id="quizContainer">
+        <div class="progress-indicator" id="progressIndicator">Question 1/10</div>
+        
+        <!-- Question slides will be generated here -->
+        <div id="slidesContainer"></div>
+        <div class="tiktok-watermark">
+    <span>FOLLOW TIKTOK</span>
+    <div class="tiktok-logo"></div>
+    <span>@STEMQUIZ404</span>
+</div>
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="previousSlide()">‹</button>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">›</button>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add pen icon to follow cursor
-            const penIcon = document.createElement('div');
-            penIcon.className = 'pen-icon';
-            penIcon.innerHTML = '✏️';
-            document.body.appendChild(penIcon);
-            
-            // Animation controller
-            const steps = document.querySelectorAll('.math-step');
-            const stepWritings = document.querySelectorAll('.math-step-writing');
-            const explanations = document.querySelectorAll('.step-explanation');
-            const restartBtn = document.getElementById('restartBtn');
-            
-            function animateWriting(element, finalWidth, duration, delay, callback) {
-                setTimeout(() => {
-                    let start = null;
-                    const textContent = element.textContent;
-                    const textWidth = Math.max(getTextWidth(textContent, window.getComputedStyle(element).font), 400);
-                    
-                    element.parentElement.classList.add('visible');
-                    
-                    function step(timestamp) {
-                        if (!start) start = timestamp;
-                        const elapsed = timestamp - start;
-                        const progress = Math.min(elapsed / duration, 1);
-                        
-                        // Calculate cursor position for pen icon
-                        const rect = element.getBoundingClientRect();
-                        const cursorX = rect.left + (textWidth * progress) + 5;
-                        const cursorY = rect.top + rect.height / 2;
-                        
-                        penIcon.style.opacity = 1;
-                        penIcon.style.left = `${cursorX}px`;
-                        penIcon.style.top = `${cursorY}px`;
-                        
-                        element.style.width = `${finalWidth * progress}px`;
-                        
-                        if (progress < 1) {
-                            window.requestAnimationFrame(step);
-                        } else {
-                            setTimeout(() => {
-                                penIcon.style.opacity = 0;
-                                if (callback) callback();
-                            }, 200);
-                        }
-                    }
-                    
-                    window.requestAnimationFrame(step);
-                }, delay);
+        const quizData = [
+            {
+                question: "What is the powerhouse of the cell?",
+                choices: ["Nucleus", "Mitochondria", "Ribosome", "Chloroplast"],
+                correct: 1
+            },
+            {
+                question: "Which blood type is known as the universal donor?",
+                choices: ["A", "B", "AB", "O"],
+                correct: 3
+            },
+            {
+                question: "What is the largest organ in the human body?",
+                choices: ["Liver", "Brain", "Skin", "Heart"],
+                correct: 2
+            },
+            {
+                question: "How many chambers does a human heart have?",
+                choices: ["2", "3", "4", "5"],
+                correct: 2
+            },
+            {
+                question: "What is the basic unit of heredity?",
+                choices: ["Chromosome", "Gene", "DNA", "Protein"],
+                correct: 1
+            },
+            {
+                question: "Which process do plants use to make food?",
+                choices: ["Respiration", "Digestion", "Photosynthesis", "Fermentation"],
+                correct: 2
+            },
+            {
+                question: "What is the scientific name for humans?",
+                choices: ["Homo erectus", "Homo sapiens", "Homo habilis", "Homo neanderthalensis"],
+                correct: 1
+            },
+            {
+                question: "Which part of the brain controls balance?",
+                choices: ["Cerebrum", "Cerebellum", "Medulla", "Hypothalamus"],
+                correct: 1
+            },
+            {
+                question: "What type of bond holds water molecules together?",
+                choices: ["Ionic bond", "Covalent bond", "Hydrogen bond", "Metallic bond"],
+                correct: 2
+            },
+            {
+                question: "How many pairs of chromosomes do humans have?",
+                choices: ["22", "23", "24", "46"],
+                correct: 1
             }
+        ];
+
+        let currentQuestion = 0;
+        let currentStep = 0; // 0: question, 1: answer revealed
+        let userAnswers = [];
+        let selectedChoice = null;
+        let startX = 0;
+        let isDragging = false;
+
+        function startQuiz() {
+            const introContainer = document.getElementById('introContainer');
+            const quizContainer = document.getElementById('quizContainer');
             
-            function getTextWidth(text, font) {
-                const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
-                const context = canvas.getContext('2d');
-                context.font = font;
-                const metrics = context.measureText(text);
-                return metrics.width;
-            }
+            introContainer.classList.add('fade-out');
             
-            function showExplanation(index, delay) {
-                setTimeout(() => {
-                    explanations[index].classList.add('visible');
-                }, delay);
-            }
-            
-            function startAnimation() {
-                // Reset
-                steps.forEach(step => step.classList.remove('visible'));
-                stepWritings.forEach(writing => {
-                    writing.style.width = '0';
-                });
-                explanations.forEach(explanation => explanation.classList.remove('visible'));
-                restartBtn.classList.remove('visible');
-                
-                // Get final widths before animation
-                const finalWidths = Array.from(stepWritings).map(el => {
-                    el.style.width = 'auto';
-                    const width = Math.max(el.offsetWidth, 500);
-                    el.style.width = '0';
-                    return width;
-                });
-                
-                // Start the sequence with delays between steps
-                const stepDelay = 5000; // 2 seconds between steps
-                
-                animateWriting(stepWritings[0], finalWidths[0], 1000, 500, () => {
-                    setTimeout(() => {
-                        animateWriting(stepWritings[1], finalWidths[1], 1200, 0, () => {
-                            showExplanation(0, 200);
-                            
-                            setTimeout(() => {
-                                animateWriting(stepWritings[2], finalWidths[2], 1200, 0, () => {
-                                    showExplanation(1, 200);
-                                    
-                                    setTimeout(() => {
-                                        animateWriting(stepWritings[3], finalWidths[3], 1200, 0, () => {
-                                            showExplanation(2, 200);
-                                            
-                                            setTimeout(() => {
-                                                animateWriting(stepWritings[4], finalWidths[4], 1200, 0, () => {
-                                                    showExplanation(3, 200);
-                                                    
-                                                    setTimeout(() => {
-                                                        animateWriting(stepWritings[5], finalWidths[5], 800, 0);
-                                                        
-                                                        setTimeout(() => {
-                                                            animateWriting(stepWritings[6], finalWidths[6], 1200, 0, () => {
-                                                                showExplanation(4, 200);
-                                                                
-                                                                setTimeout(() => {
-                                                                    animateWriting(stepWritings[7], finalWidths[7], 1200, 0, () => {
-                                                                        showExplanation(5, 200);
-                                                                        
-                                                                        setTimeout(() => {
-                                                                            animateWriting(stepWritings[8], finalWidths[8], 1000, 0, () => {
-                                                                                showExplanation(6, 200);
-                                                                                
-                                                                                setTimeout(() => {
-                                                                                    animateWriting(stepWritings[9], finalWidths[9], 1000, 0, () => {
-                                                                                        showExplanation(7, 200);
-                                                                                        
-                                                                                        setTimeout(() => {
-                                                                                            animateWriting(stepWritings[10], finalWidths[10], 1200, 0, () => {
-                                                                                                showExplanation(8, 200);
-                                                                                                
-                                                                                                setTimeout(() => {
-                                                                                                    animateWriting(stepWritings[11], finalWidths[11], 800, 0, () => {
-                                                                                                        showExplanation(9, 200);
-                                                                                                        
-                                                                                                        setTimeout(() => {
-                                                                                                            restartBtn.classList.add('visible');
-                                                                                                        }, 1000);
-                                                                                                    });
-                                                                                                }, stepDelay);
-                                                                                            });
-                                                                                        }, stepDelay);
-                                                                                    });
-                                                                                }, stepDelay);
-                                                                            });
-                                                                        }, stepDelay);
-                                                                    });
-                                                                }, stepDelay);
-                                                            });
-                                                        }, stepDelay);
-                                                    }, stepDelay);
-                                                });
-                                            }, stepDelay);
-                                        });
-                                    }, stepDelay);
-                                });
-                            }, stepDelay);
+            setTimeout(() => {
+                introContainer.style.display = 'none';
+                quizContainer.classList.add('active');
+                initializeQuiz();
+                setupTouchEvents();
+            }, 500);
+        }
+
+        function initializeQuiz() {
+            generateAllSlides();
+            showCurrentSlide();
+            updateNavigation();
+            updateProgress();
+        }
+
+    function generateAllSlides() {
+    const container = document.getElementById('slidesContainer');
+    let slidesHTML = '';
+
+    quizData.forEach((questionData, qIndex) => {
+        // Question slide
+        slidesHTML += `
+            <div class="slide" data-question="${qIndex}" data-step="0">
+                <div class="question-card">
+                    <div class="question-text">${questionData.question}</div>
+                </div>
+                <div class="tiktok-watermark">
+                    <span>FOLLOW TIKTOK</span>
+                    <div class="tiktok-logo"></div>
+                    <span>@STEMQUIZ404</span>
+                </div>
+                <div class="choices-grid">
+                    ${questionData.choices.map((choice, cIndex) => 
+                        `<div class="choice-card" onclick="selectChoice(${cIndex})">
+                            <div class="choice-text">${choice}</div>
+                        </div>`
+                    ).join('')}
+                </div>
+                <div class="slide-hint">Select an answer, then swipe right →</div>
+            </div>
+        `;
+
+        // Answer revealed slide
+        slidesHTML += `
+            <div class="slide" data-question="${qIndex}" data-step="1">
+                <div class="question-card">
+                    <div class="question-text">${questionData.question}</div>
+                </div>
+                <div class="tiktok-watermark">
+                    <span>FOLLOW TIKTOK</span>
+                    <div class="tiktok-logo"></div>
+                    <span>@STEMQUIZ404</span>
+                </div>
+                <div class="choices-grid">
+                    ${questionData.choices.map((choice, cIndex) => 
+                        `<div class="choice-card ${cIndex === questionData.correct ? 'correct' : ''}">
+                            <div class="choice-text">${choice}</div>
+                        </div>`
+                    ).join('')}
+                </div>
+                ${qIndex < quizData.length - 1 ? '<div class="slide-hint">Swipe right for next question →</div>' : '<div class="slide-hint">Swipe right to see results →</div>'}
+            </div>
+        `;
+    });
+
+    // Results slide (no watermark needed here)
+    slidesHTML += `
+        <div class="slide quiz-complete" data-question="results" data-step="0">
+            <div class="score-card">
+                <div class="score-title">Biology Quiz Complete! 🧬</div>
+                <div class="score-number" id="finalScore">0/10</div>
+                <div class="score-message" id="scoreMessage">Calculating...</div>
+            </div>
+            <button class="restart-btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    `;
+
+    container.innerHTML = slidesHTML;
+}
+
+        function showCurrentSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            if (currentQuestion >= quizData.length) {
+                // Show results
+                const resultSlide = document.querySelector('[data-question="results"]');
+                resultSlide.classList.add('active');
+                calculateResults();
+            } else {
+                const targetSlide = document.querySelector(`[data-question="${currentQuestion}"][data-step="${currentStep}"]`);
+                if (targetSlide) {
+                    targetSlide.classList.add('active');
+                    
+                    // Update choice states for answer step
+                    if (currentStep === 1) {
+                        const choiceCards = targetSlide.querySelectorAll('.choice-card');
+                        const userAnswer = userAnswers[currentQuestion];
+                        const correctAnswer = quizData[currentQuestion].correct;
+                        
+                        choiceCards.forEach((card, index) => {
+                            card.classList.remove('selected', 'incorrect');
+                            if (index === correctAnswer) {
+                                card.classList.add('correct');
+                            } else if (index === userAnswer && userAnswer !== correctAnswer && userAnswer !== -1) {
+                                card.classList.add('incorrect');
+                            }
                         });
-                    }, stepDelay);
-                });
+                    }
+                }
+            }
+        }
+
+        function selectChoice(choiceIndex) {
+            if (currentStep !== 0) return; // Only allow selection on question step
+            
+            selectedChoice = choiceIndex;
+            userAnswers[currentQuestion] = choiceIndex;
+            
+            // Update visual selection
+            const activeSlide = document.querySelector('.slide.active');
+            const choiceCards = activeSlide.querySelectorAll('.choice-card');
+            choiceCards.forEach((card, index) => {
+                card.classList.toggle('selected', index === choiceIndex);
+            });
+        }
+
+        function nextSlide() {
+            if (currentQuestion >= quizData.length) return;
+
+            if (currentStep === 0) {
+                // Moving from question to answer
+                // If no answer selected, record as -1 (no answer)
+                if (selectedChoice === null) {
+                    userAnswers[currentQuestion] = -1;
+                }
+                currentStep = 1;
+            } else {
+                // Moving to next question
+                currentQuestion++;
+                currentStep = 0;
+                selectedChoice = null;
             }
             
-            // Start animation when page loads
-            startAnimation();
+            showCurrentSlide();
+            updateNavigation();
+            updateProgress();
+        }
+
+        function previousSlide() {
+            if (currentQuestion === 0 && currentStep === 0) return;
+
+            if (currentStep === 1) {
+                // Go back to question
+                currentStep = 0;
+            } else {
+                // Go back to previous question's answer
+                currentQuestion--;
+                currentStep = 1;
+                selectedChoice = userAnswers[currentQuestion] || null;
+            }
             
-            // Restart button handler
-            restartBtn.addEventListener('click', startAnimation);
+            showCurrentSlide();
+            updateNavigation();
+            updateProgress();
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = (currentQuestion === 0 && currentStep === 0);
+            
+            if (currentQuestion >= quizData.length) {
+                // On results page
+                nextBtn.style.display = 'none';
+                prevBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'flex';
+                prevBtn.style.display = 'flex';
+                
+                if (currentQuestion === quizData.length - 1 && currentStep === 1) {
+                    nextBtn.innerHTML = '✓';
+                } else {
+                    nextBtn.innerHTML = '›';
+                }
+            }
+        }
+
+        function updateProgress() {
+            const progressIndicator = document.getElementById('progressIndicator');
+            if (currentQuestion >= quizData.length) {
+                progressIndicator.textContent = 'Results';
+            } else {
+                progressIndicator.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+            }
+        }
+
+        function calculateResults() {
+            const correctAnswers = userAnswers.filter((answer, index) => answer === quizData[index].correct).length;
+            const answeredQuestions = userAnswers.filter(answer => answer !== -1).length;
+            const percentage = answeredQuestions > 0 ? Math.round((correctAnswers / quizData.length) * 100) : 0;
+            
+            document.getElementById('finalScore').textContent = `${correctAnswers}/${quizData.length}`;
+            document.getElementById('scoreMessage').textContent = getScoreMessage(percentage, answeredQuestions);
+        }
+
+        function getScoreMessage(percentage, answeredQuestions) {
+            const skippedQuestions = quizData.length - answeredQuestions;
+            let message = "";
+            
+            if (percentage >= 80) message = "Outstanding! You're a biology genius! 🧬✨";
+            else if (percentage >= 70) message = "Excellent work! You have strong biology knowledge! 🔬";
+            else if (percentage >= 50) message = "Good job! Keep studying to improve further! 📚";
+            else message = "Don't worry, biology takes practice. Keep learning! 🌱";
+            
+            if (skippedQuestions > 0) {
+                message += ` (${skippedQuestions} question${skippedQuestions > 1 ? 's' : ''} skipped)`;
+            }
+            
+            return message;
+        }
+
+        function restartQuiz() {
+            const introContainer = document.getElementById('introContainer');
+            const quizContainer = document.getElementById('quizContainer');
+            
+            // Reset quiz state
+            currentQuestion = 0;
+            currentStep = 0;
+            userAnswers = [];
+            selectedChoice = null;
+            
+            // Show intro screen again
+            quizContainer.classList.remove('active');
+            introContainer.style.display = 'flex';
+            introContainer.classList.remove('fade-out');
+        }
+
+        // Touch/Swipe functionality
+        function setupTouchEvents() {
+            const container = document.querySelector('.quiz-container');
+            
+            container.addEventListener('touchstart', handleTouchStart, { passive: true });
+            container.addEventListener('touchmove', handleTouchMove, { passive: true });
+            container.addEventListener('touchend', handleTouchEnd, { passive: true });
+            
+            container.addEventListener('mousedown', handleMouseDown);
+            container.addEventListener('mousemove', handleMouseMove);
+            container.addEventListener('mouseup', handleMouseUp);
+        }
+
+        function handleTouchStart(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        }
+
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+        }
+
+        function handleTouchEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            const threshold = 50;
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        }
+
+        function handleMouseDown(e) {
+            startX = e.clientX;
+            isDragging = true;
+        }
+
+        function handleMouseMove(e) {
+            if (!isDragging) return;
+        }
+
+        function handleMouseUp(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const diffX = startX - e.clientX;
+            const threshold = 50;
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
         });
     </script>
 </body>
