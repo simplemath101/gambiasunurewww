@@ -985,6 +985,83 @@ body {
         box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     }
 }
+        /* CSS - Add this to your existing styles */
+.tiktok-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+    white-space: nowrap;
+}
+
+.tiktok-logo {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #ff0050, #ff4040);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+}
+
+.tiktok-logo::before {
+    content: "♪";
+    font-size: 10px;
+}
+
+/* Make the slide container relative for positioning */
+.slide {
+    position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tiktok-watermark {
+        font-size: 12px;
+        gap: 6px;
+    }
+    
+    .tiktok-logo {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+    
+    .tiktok-logo::before {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tiktok-watermark {
+        font-size: 11px;
+        gap: 5px;
+    }
+    
+    .tiktok-logo {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+    }
+    
+    .tiktok-logo::before {
+        font-size: 7px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1013,7 +1090,11 @@ body {
         
         <!-- Question slides will be generated here -->
         <div id="slidesContainer"></div>
-        
+        <div class="tiktok-watermark">
+    <span>FOLLOW TIKTOK</span>
+    <div class="tiktok-logo"></div>
+    <span>@MATHMADEEASY</span>
+</div>
         <div class="navigation">
             <button class="nav-btn" id="prevBtn" onclick="previousSlide()">‹</button>
             <button class="nav-btn" id="nextBtn" onclick="nextSlide()">›</button>
@@ -1102,60 +1183,70 @@ body {
             updateProgress();
         }
 
-        function generateAllSlides() {
-            const container = document.getElementById('slidesContainer');
-            let slidesHTML = '';
+    function generateAllSlides() {
+    const container = document.getElementById('slidesContainer');
+    let slidesHTML = '';
 
-            quizData.forEach((questionData, qIndex) => {
-                // Question slide
-                slidesHTML += `
-                    <div class="slide" data-question="${qIndex}" data-step="0">
-                        <div class="question-card">
-                            <div class="question-text">${questionData.question}</div>
-                        </div>
-                        <div class="choices-grid">
-                            ${questionData.choices.map((choice, cIndex) => 
-                                `<div class="choice-card" onclick="selectChoice(${cIndex})">
-                                    <div class="choice-text">${choice}</div>
-                                </div>`
-                            ).join('')}
-                        </div>
-                        <div class="slide-hint">Select an answer, then swipe right →</div>
-                    </div>
-                `;
-
-                // Answer revealed slide
-                slidesHTML += `
-                    <div class="slide" data-question="${qIndex}" data-step="1">
-                        <div class="question-card">
-                            <div class="question-text">${questionData.question}</div>
-                        </div>
-                        <div class="choices-grid">
-                            ${questionData.choices.map((choice, cIndex) => 
-                                `<div class="choice-card ${cIndex === questionData.correct ? 'correct' : ''}">
-                                    <div class="choice-text">${choice}</div>
-                                </div>`
-                            ).join('')}
-                        </div>
-                        ${qIndex < quizData.length - 1 ? '<div class="slide-hint">Swipe right for next question →</div>' : '<div class="slide-hint">Swipe right to see results →</div>'}
-                    </div>
-                `;
-            });
-
-            // Results slide
-            slidesHTML += `
-                <div class="slide quiz-complete" data-question="results" data-step="0">
-                    <div class="score-card">
-                        <div class="score-title">Biology Quiz Complete! 🧬</div>
-                        <div class="score-number" id="finalScore">0/10</div>
-                        <div class="score-message" id="scoreMessage">Calculating...</div>
-                    </div>
-                    <button class="restart-btn" onclick="restartQuiz()">Take Quiz Again</button>
+    quizData.forEach((questionData, qIndex) => {
+        // Question slide
+        slidesHTML += `
+            <div class="slide" data-question="${qIndex}" data-step="0">
+                <div class="question-card">
+                    <div class="question-text">${questionData.question}</div>
                 </div>
-            `;
+                <div class="tiktok-watermark">
+                    <span>FOLLOW TIKTOK</span>
+                    <div class="tiktok-logo"></div>
+                    <span>@MATHMADEEASY</span>
+                </div>
+                <div class="choices-grid">
+                    ${questionData.choices.map((choice, cIndex) => 
+                        `<div class="choice-card" onclick="selectChoice(${cIndex})">
+                            <div class="choice-text">${choice}</div>
+                        </div>`
+                    ).join('')}
+                </div>
+                <div class="slide-hint">Select an answer, then swipe right →</div>
+            </div>
+        `;
 
-            container.innerHTML = slidesHTML;
-        }
+        // Answer revealed slide
+        slidesHTML += `
+            <div class="slide" data-question="${qIndex}" data-step="1">
+                <div class="question-card">
+                    <div class="question-text">${questionData.question}</div>
+                </div>
+                <div class="tiktok-watermark">
+                    <span>FOLLOW TIKTOK</span>
+                    <div class="tiktok-logo"></div>
+                    <span>@MATHMADEEASY</span>
+                </div>
+                <div class="choices-grid">
+                    ${questionData.choices.map((choice, cIndex) => 
+                        `<div class="choice-card ${cIndex === questionData.correct ? 'correct' : ''}">
+                            <div class="choice-text">${choice}</div>
+                        </div>`
+                    ).join('')}
+                </div>
+                ${qIndex < quizData.length - 1 ? '<div class="slide-hint">Swipe right for next question →</div>' : '<div class="slide-hint">Swipe right to see results →</div>'}
+            </div>
+        `;
+    });
+
+    // Results slide (no watermark needed here)
+    slidesHTML += `
+        <div class="slide quiz-complete" data-question="results" data-step="0">
+            <div class="score-card">
+                <div class="score-title">Biology Quiz Complete! 🧬</div>
+                <div class="score-number" id="finalScore">0/10</div>
+                <div class="score-message" id="scoreMessage">Calculating...</div>
+            </div>
+            <button class="restart-btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    `;
+
+    container.innerHTML = slidesHTML;
+}
 
         function showCurrentSlide() {
             const slides = document.querySelectorAll('.slide');
