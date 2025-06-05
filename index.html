@@ -26,16 +26,16 @@
         }
 
         .comparison-container {
-            max-width: 1000px;
-            width: 90%;
-            padding: 40px;
+            max-width: 1200px;
+            width: 95%;
+            padding: 20px;
             text-align: center;
         }
 
         .title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: bold;
-            margin-bottom: 50px;
+            margin-bottom: clamp(30px, 5vw, 50px);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             background: linear-gradient(45deg, #00d4ff, #ff6b6b);
             -webkit-background-clip: text;
@@ -47,18 +47,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
+            gap: clamp(15px, 3vw, 30px);
             flex-wrap: nowrap;
         }
 
         .service-card {
             flex: 1;
-            max-width: 350px;
-            min-width: 280px;
+            max-width: clamp(280px, 40vw, 400px);
+            min-width: 250px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
+            padding: clamp(20px, 4vw, 30px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -69,8 +69,8 @@
         }
 
         .logo-container {
-            width: 120px;
-            height: 120px;
+            width: clamp(80px, 15vw, 120px);
+            height: clamp(80px, 15vw, 120px);
             margin: 0 auto 20px;
             border-radius: 50%;
             overflow: hidden;
@@ -107,7 +107,7 @@
         }
 
         .service-name {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             font-weight: bold;
             margin-bottom: 15px;
             color: #00d4ff;
@@ -118,7 +118,7 @@
         }
 
         .service-description {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 20px;
@@ -134,7 +134,7 @@
         }
 
         .vs-text {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: bold;
             background: linear-gradient(45deg, #ff6b6b, #00d4ff);
             -webkit-background-clip: text;
@@ -159,11 +159,18 @@
         .feature-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            padding: 5px 15px;
+            padding: clamp(4px, 1vw, 8px) clamp(10px, 2vw, 15px);
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
             margin: 5px;
             border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Additional breakpoints for better responsiveness */
+        @media (max-width: 1024px) {
+            .comparison-container {
+                padding: 15px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -175,15 +182,57 @@
             .vs-divider {
                 transform: rotate(90deg);
                 margin: 15px 0;
-            }
-            
-            .title {
-                font-size: 2rem;
+                min-width: 60px;
             }
             
             .service-card {
                 min-width: 100%;
                 max-width: 100%;
+                padding: 25px;
+            }
+            
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .comparison-container {
+                width: 98%;
+                padding: 10px;
+            }
+            
+            .service-card {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            
+            .logo-container {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 15px;
+            }
+            
+            .vs-divider {
+                margin: 10px 0;
+            }
+            
+            .feature-badge {
+                margin: 3px;
+                padding: 3px 8px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .service-card {
+                padding: 15px;
+            }
+            
+            .logo-container {
+                width: 70px;
+                height: 70px;
             }
         }
     </style>
