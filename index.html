@@ -76,15 +76,22 @@
             overflow: hidden;
             border: 4px solid rgba(255, 255, 255, 0.3);
             position: relative;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .logo-placeholder {
+        .logo-img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-fallback {
             width: 100%;
             height: 100%;
-            background: url('https://blog.remitly.com/wp-content/uploads/2023/10/shutterstock_2229365023.jpg');
-            background-size: cover;
-            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -92,18 +99,15 @@
             font-weight: bold;
             color: white;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(45deg, #667eea, #764ba2);
         }
 
-        .modem-logo {
-            background: url('https://modempay.com/android-chrome-192x192.png');
-            background-size: cover;
-            background-position: center;
+        .modem-fallback {
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
         }
 
-        .wave-logo {
-            background: url('https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png');
-            background-size: cover;
-            background-position: center;
+        .wave-fallback {
+            background: linear-gradient(45deg, #ff6b6b, #cc4444);
         }
 
         .service-name {
@@ -245,8 +249,12 @@
             <!-- Modem Pay Card -->
             <div class="service-card">
                 <div class="logo-container">
-                    <div class="logo-placeholder modem-logo">
-                       
+                    <img src="https://modempay.com/android-chrome-192x192.png" 
+                         alt="Modem Pay Logo" 
+                         class="logo-img"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-fallback modem-fallback" style="display: none;">
+                        
                     </div>
                 </div>
                 <h2 class="service-name">Modem Pay</h2>
@@ -266,7 +274,11 @@
             <!-- Wave Mobile Money Card -->
             <div class="service-card">
                 <div class="logo-container">
-                    <div class="logo-placeholder wave-logo">
+                    <img src="https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png" 
+                         alt="Wave Mobile Money Logo" 
+                         class="logo-img"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-fallback wave-fallback" style="display: none;">
                         
                     </div>
                 </div>
