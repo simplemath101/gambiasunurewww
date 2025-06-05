@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModemPay vs Wave - Services Comparison</title>
+    <title>Modem Pay vs Wave Mobile Money</title>
     <style>
         * {
             margin: 0;
@@ -12,290 +12,225 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: 
-                linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%),
-                url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            padding: 40px 20px;
-            text-align: center;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .table-container {
-            overflow-x: auto;
-            padding: 20px;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .comparison-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .comparison-table th {
-            padding: 20px 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .comparison-table th:first-child {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            width: 25%;
-        }
-
-        .comparison-table td {
-            padding: 15px;
-            border-bottom: 1px solid #f0f0f0;
-            vertical-align: top;
-            transition: all 0.3s ease;
-        }
-
-        .comparison-table tbody tr:hover {
-            background: linear-gradient(90deg, rgba(79, 172, 254, 0.05) 0%, rgba(0, 242, 254, 0.05) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-category {
-            font-weight: 600;
-            color: #333;
-            background: linear-gradient(90deg, #f8f9fa 0%, #e9ecef 100%);
-            font-size: 1rem;
-        }
-
-        .modempay-col {
-            background: 
-                linear-gradient(90deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%),
-                url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            border-left: 4px solid #4facfe;
-        }
-
-        .wave-col {
-            background: 
-                linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%),
-                url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            border-left: 4px solid #667eea;
-        }
-
-        .feature-available {
-            color: #28a745;
-            font-weight: 600;
-        }
-
-        .feature-available::before {
-            content: "✓ ";
-            margin-right: 5px;
-        }
-
-        .feature-limited {
-            color: #ffc107;
-            font-weight: 600;
-        }
-
-        .feature-limited::before {
-            content: "~ ";
-            margin-right: 5px;
-        }
-
-        .feature-unavailable {
-            color: #dc3545;
-            font-weight: 600;
-        }
-
-        .feature-unavailable::before {
-            content: "✗ ";
-            margin-right: 5px;
-        }
-
-        .feature-description {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .logo-header {
             display: flex;
             align-items: center;
-            gap: 12px;
             justify-content: center;
+            color: white;
         }
 
-        .service-logo {
-            height: 40px;
-            width: auto;
-            max-width: 120px;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
+        .comparison-container {
+            max-width: 1000px;
+            width: 90%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(45deg, #00d4ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vs-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: nowrap;
+        }
+
+        .service-card {
+            flex: 1;
+            max-width: 350px;
+            min-width: 280px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .modem-logo {
+            background: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wave-logo {
+            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .wave-name {
+            color: #ff6b6b;
+        }
+
+        .service-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .vs-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+
+        .vs-text {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .vs-line {
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ff6b6b, #00d4ff);
+            margin: 10px 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .feature-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         @media (max-width: 768px) {
-            .service-logo {
-                height: 30px;
-                max-width: 80px;
+            .vs-container {
+                flex-direction: column;
+                gap: 20px;
             }
             
-            .logo-header {
-                flex-direction: column;
-                gap: 5px;
+            .vs-divider {
+                transform: rotate(90deg);
+                margin: 15px 0;
             }
-        }
-            .header h1 {
+            
+            .title {
                 font-size: 2rem;
             }
             
-            .comparison-table th,
-            .comparison-table td {
-                padding: 12px 8px;
-                font-size: 0.9rem;
+            .service-card {
+                min-width: 100%;
+                max-width: 100%;
             }
-            
-            .container {
-                margin: 0;
-                border-radius: 0;
-            }
-        }
-
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>ModemPay vs Wave</h1>
-            <p>Complete Services Comparison</p>
-        </div>
+    <div class="comparison-container">
+        <h1 class="title">Mobile Money Showdown</h1>
+        
+        <div class="vs-container">
+            <!-- Modem Pay Card -->
+            <div class="service-card">
+                <div class="logo-container">
+                    <div class="logo-placeholder modem-logo">
+                        MODEM
+                    </div>
+                </div>
+                <h2 class="service-name">Modem Pay</h2>
+                <p class="service-description">
+                    Fast and secure digital payments with instant money transfers, bill payments, and merchant services across multiple platforms.
+                </p>
+                <div class="feature-badge">Instant Transfers</div>
+                <div class="feature-badge">Bill Payments</div>
+                <div class="feature-badge">Merchant Services</div>
+            </div>
 
+            <!-- VS Divider -->
+            <div class="vs-divider">
+                <div class="vs-line"></div>
+                <div class="vs-text">VS</div>
+                <div class="vs-line"></div>
+            </div>
 
-
-        <div class="table-container">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Service Category</th>
-                        <th>
-                            <div class="logo-header">
-                                <img src="https://modempay.com/wp-content/uploads/2023/05/modempay-logo-white.png" alt="ModemPay Logo" class="service-logo">
-                                <span>ModemPay</span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="logo-header">
-                                <img src="https://wave.com/assets/img/wave-logo-white.svg" alt="Wave Logo" class="service-logo">
-                                <span>Wave</span>
-                            </div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <tr>
-    <td class="service-category">Users</td>
-    <td class="modempay-col">
-        <span class="feature-available">Users are businesses</span>
-        <div class="feature-description">Users must earn steady income</div>
-    </td>
-    <td class="wave-col">
-        <span class="feature-limited">Users are everyone</span>
-        <div class="feature-description">Users can be casual or personal</div>
-    </td>
-</tr>
-<tr>
-    <td class="service-category">Payments</td>
-    <td class="modempay-col">
-        <span class="feature-available">Payments use many tools</span>
-        <div class="feature-description">Payments support cards, wallets, banks</div>
-    </td>
-    <td class="wave-col">
-        <span class="feature-limited">Payments use wallet only</span>
-        <div class="feature-description">Payments go through mobile wallet</div>
-    </td>
-</tr>
-<tr>
-    <td class="service-category">Limits</td>
-    <td class="modempay-col">
-        <span class="feature-available">Limits are high</span>
-        <div class="feature-description">Limits suit big business deals</div>
-    </td>
-    <td class="wave-col">
-        <span class="feature-limited">Limits are low</span>
-        <div class="feature-description">Limits fit daily personal use</div>
-    </td>
-</tr>
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="footer">
-            <p>Comparison based on publicly available information. Features and availability may vary by region.</p>
+            <!-- Wave Mobile Money Card -->
+            <div class="service-card">
+                <div class="logo-container">
+                    <div class="logo-placeholder wave-logo">
+                        WAVE
+                    </div>
+                </div>
+                <h2 class="service-name wave-name">Wave Mobile Money</h2>
+                <p class="service-description">
+                    Revolutionary mobile money service offering free transfers, competitive rates, and seamless financial services for everyone.
+                </p>
+                <div class="feature-badge">Free Transfers</div>
+                <div class="feature-badge">Low Fees</div>
+                <div class="feature-badge">Easy Access</div>
+            </div>
         </div>
     </div>
 </body>
