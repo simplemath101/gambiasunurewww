@@ -3,293 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modem Pay vs Wave Mobile Money</title>
+    <title>Modem Pay - Digital Payment Solutions</title>
     <style>
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                        url('https://blog.remitly.com/wp-content/uploads/2023/10/shutterstock_2229365023.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .comparison-container {
-            max-width: 1200px;
-            width: 95%;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .title {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: bold;
-            margin-bottom: clamp(30px, 5vw, 50px);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            background: linear-gradient(45deg, #00d4ff, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .vs-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(15px, 3vw, 30px);
-            flex-wrap: nowrap;
-        }
-
-        .service-card {
-            flex: 1;
-            max-width: clamp(280px, 40vw, 400px);
-            min-width: 250px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: clamp(20px, 4vw, 30px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo-container {
-            width: clamp(80px, 15vw, 120px);
-            height: clamp(80px, 15vw, 120px);
-            margin: 0 auto 20px;
-            border-radius: 50%;
             overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            background-color: #f5f7fa;
+        }
+
+        #animation-container {
+            width: 100vw;
+            height: 100vh;
             position: relative;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #1a2a6c, #0077b6);
+            color: white;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
-        .logo-img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-            border-radius: 50%;
+        /* Brand Introduction Styles */
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: scale(0.8);
         }
 
-        .logo-fallback {
+        .tagline {
+            font-size: 24px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            color: white;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        /* Core Services Styles */
+        .wave-background {
+            position: absolute;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+            opacity: 0;
         }
 
-        .modem-fallback {
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
-        }
-
-        .wave-fallback {
-            background: linear-gradient(45deg, #ff6b6b, #cc4444);
-        }
-
-        .service-name {
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            font-weight: bold;
-            margin-bottom: 15px;
+        .core-services {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            max-width: 80%;
             color: #00d4ff;
         }
 
-        .wave-name {
-            color: #ff6b6b;
+        /* Features Showcase Styles */
+        .features-container {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            max-width: 800px;
+            opacity: 0;
         }
 
-        .service-description {
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-        }
-
-        .vs-divider {
+        .feature {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-width: 80px;
-            flex-shrink: 0;
+            margin: 0 10px;
+            transform: scale(0);
         }
 
-        .vs-text {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff6b6b, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s infinite;
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #00d4ff;
         }
 
-        .vs-line {
-            width: 2px;
-            height: 50px;
-            background: linear-gradient(to bottom, #ff6b6b, #00d4ff);
-            margin: 10px 0;
+        .feature-text {
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            color: white;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        /* Map Styles */
+        .map-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            opacity: 0;
         }
 
-        .feature-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: clamp(4px, 1vw, 8px) clamp(10px, 2vw, 15px);
-            border-radius: 20px;
-            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-            margin: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .map-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
-        /* Additional breakpoints for better responsiveness */
-        @media (max-width: 1024px) {
-            .comparison-container {
-                padding: 15px;
-            }
+        .location-marker {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #00d4ff;
+            border-radius: 50%;
+            transform: scale(0);
         }
 
+        .ripple {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: rgba(0, 212, 255, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+        }
+
+        /* CTA Styles */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+        }
+
+        .cta-text {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #00d4ff, #0077b6);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .vs-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .vs-divider {
-                transform: rotate(90deg);
-                margin: 15px 0;
-                min-width: 60px;
-            }
-            
-            .service-card {
-                min-width: 100%;
-                max-width: 100%;
-                padding: 25px;
-            }
-            
-            .logo-container {
+            .logo {
                 width: 100px;
                 height: 100px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .comparison-container {
-                width: 98%;
-                padding: 10px;
+            .tagline {
+                font-size: 18px;
             }
-            
-            .service-card {
-                padding: 20px;
-                border-radius: 15px;
+
+            .core-services {
+                font-size: 20px;
             }
-            
-            .logo-container {
-                width: 80px;
-                height: 80px;
-                margin-bottom: 15px;
+
+            .features-container {
+                flex-direction: column;
+                align-items: center;
             }
-            
-            .vs-divider {
+
+            .feature {
                 margin: 10px 0;
             }
-            
-            .feature-badge {
-                margin: 3px;
-                padding: 3px 8px;
-                font-size: 0.75rem;
-            }
-        }
 
-        @media (max-width: 360px) {
-            .service-card {
-                padding: 15px;
+            .map-container {
+                width: 250px;
+                height: 150px;
             }
-            
-            .logo-container {
-                width: 70px;
-                height: 70px;
+
+            .cta-text {
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="comparison-container">
-        <h1 class="title">Mobile Money Showdown</h1>
-        
-        <div class="vs-container">
-            <!-- Modem Pay Card -->
-            <div class="service-card">
-                <div class="logo-container">
-                    <img src="https://modempay.com/android-chrome-192x192.png" 
-                         alt="Modem Pay Logo" 
-                         class="logo-img"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="logo-fallback modem-fallback" style="display: none;">
-                        
-                    </div>
-                </div>
-                <h2 class="service-name">Modem Pay</h2>
-                <div class="feature-badge">Instant Mobile & Card Payments</div>
-                <div class="feature-badge">Payment Links & QR Codes</div>
-                <div class="feature-badge">Real-Time Transaction Tracking</div>
-                <div class="feature-badge">Secure API & Merchant Dashboard</div>
-            </div>
+    <div id="animation-container">
+        <!-- Brand Introduction -->
+        <img src="https://via.placeholder.com/150x150/0077b6/ffffff?text=Modem+Pay" alt="Modem Pay Logo" class="logo">
+        <div class="tagline">Simplifying Payments for Your Business</div>
 
-            <!-- VS Divider -->
-            <div class="vs-divider">
-                <div class="vs-line"></div>
-                <div class="vs-text">VS</div>
-                <div class="vs-line"></div>
-            </div>
+        <!-- Core Services -->
+        <div class="wave-background"></div>
+        <div class="core-services">Accept Payments Anywhere, Anytime</div>
 
-            <!-- Wave Mobile Money Card -->
-            <div class="service-card">
-                <div class="logo-container">
-                    <img src="https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png" 
-                         alt="Wave Mobile Money Logo" 
-                         class="logo-img"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="logo-fallback wave-fallback" style="display: none;">
-                        
-                    </div>
-                </div>
-                <h2 class="service-name wave-name">Wave Mobile Money</h2>
-                <div class="feature-badge">1% Money Transfers</div>
-                <div class="feature-badge">Free Deposits & Withdrawals</div>
-                <div class="feature-badge">No-Fee Bill Payments</div>
-                <div class="feature-badge">Instant Airtime Top-Up</div>
-                <div class="feature-badge">24/7 Customer Support</div>
+        <!-- Features Showcase -->
+        <div class="features-container">
+            <div class="feature" data-icon="🔗">
+                <div class="feature-icon">🔗</div>
+                <div class="feature-text">Instant Payment Links</div>
+            </div>
+            <div class="feature" data-icon="📄">
+                <div class="feature-icon">📄</div>
+                <div class="feature-text">Smart Invoicing</div>
+            </div>
+            <div class="feature" data-icon="💳">
+                <div class="feature-icon">💳</div>
+                <div class="feature-text">Multiple Payment Methods</div>
             </div>
         </div>
+
+        <!-- Map Visualization -->
+        <div class="map-container">
+            <svg class="map-image" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                <!-- Simplified Gambia map outline -->
+                <path d="M10,10 L90,10 L85,50 L15,55 Z" fill="#1a2a6c" stroke="#00d4ff" stroke-width="0.5"/>
+            </svg>
+            <!-- Location markers will be added dynamically -->
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-container">
+            <div class="cta-text">Join Thousands of Businesses Using Modem Pay</div>
+            <button class="cta-button">Get Started Now</button>
+        </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation timeline
+            const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+            // 0-5s: Brand Introduction
+            tl.to('.logo', { 
+                duration: 1, 
+                opacity: 1, 
+                scale: 1,
+                ease: "elastic.out(1, 0.5)"
+            })
+            .to('.tagline', {
+                duration: 1,
+                opacity: 1,
+                y: 0,
+                ease: "back.out(1.7)"
+            }, "-=0.5");
+
+            // 5-10s: Core Services
+            tl.to('.logo', { 
+                duration: 0.5, 
+                scale: 0.8,
+                y: -50,
+                opacity: 0.7
+            }, "+=1")
+            .to('.tagline', {
+                duration: 0.5,
+                opacity: 0,
+                y: -20
+            }, "-=0.5")
+            .to('.wave-background', {
+                duration: 1,
+                opacity: 1
+            }, "-=0.5")
+            .fromTo('.core-services', 
+                { opacity: 0, scale: 0.9 },
+                { 
+                    duration: 1, 
+                    opacity: 1, 
+                    scale: 1,
+                    ease: "back.out(1.7)"
+                }
+            );
+
+            // 10-18s: Features Showcase
+            tl.to('.core-services', {
+                duration: 0.5,
+                opacity: 0,
+                scale: 0.9
+            }, "+=1")
+            .to('.features-container', {
+                duration: 0.5,
+                opacity: 1
+            })
+            .to('.feature:nth-child(1)', {
+                duration: 0.6,
+                scale: 1,
+                ease: "bounce.out"
+            })
+            .to('.feature:nth-child(2)', {
+                duration: 0.6,
+                scale: 1,
+                ease: "bounce.out"
+            }, "-=0.4")
+            .to('.feature:nth-child(3)', {
+                duration: 0.6,
+                scale: 1,
+                ease: "bounce.out"
+            }, "-=0.4");
+
+            // 18-24s: Map Visualization
+            tl.to('.features-container', {
+                duration: 0.5,
+                opacity: 0,
+                scale: 0.9
+            }, "+=2")
+            .to('.map-container', {
+                duration: 0.5,
+                opacity: 1
+            });
+
+            // Add location markers to the map
+            const locations = [
+                { name: "Banjul", x: 15, y: 15 },
+                { name: "Kairaba", x: 30, y: 25 },
+                { name: "Senegambia", x: 40, y: 30 },
+                { name: "Brusubi", x: 50, y: 35 }
+            ];
+
+            locations.forEach((loc, i) => {
+                const marker = document.createElement('div');
+                marker.className = 'location-marker';
+                marker.style.left = `${loc.x}%`;
+                marker.style.top = `${loc.y}%`;
+                document.querySelector('.map-container').appendChild(marker);
+
+                // Animate markers with ripple effects
+                tl.to(marker, {
+                    duration: 0.3,
+                    scale: 1,
+                    ease: "back.out(1.7)"
+                }, `+=${i * 0.2}`);
+
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                ripple.style.left = `${loc.x}%`;
+                ripple.style.top = `${loc.y}%`;
+                document.querySelector('.map-container').appendChild(ripple);
+
+                tl.to(ripple, {
+                    duration: 1.5,
+                    scale: 8,
+                    opacity: 0,
+                    ease: "power2.out"
+                }, `+=${i * 0.2 + 0.3}`);
+            });
+
+            // 24-30s: Call to Action
+            tl.to('.map-container', {
+                duration: 0.5,
+                opacity: 0
+            }, "+=2")
+            .to('.cta-container', {
+                duration: 0.5,
+                opacity: 1
+            })
+            .to('.cta-button', {
+                duration: 1,
+                scale: 1.05,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            }, "-=0.5");
+
+            // Make the animation responsive
+            function handleResize() {
+                const width = window.innerWidth;
+                if (width < 768) {
+                    // Mobile adjustments
+                    gsap.set('.logo', { scale: 0.7 });
+                    gsap.set('.tagline', { fontSize: '18px' });
+                    gsap.set('.core-services', { fontSize: '20px' });
+                } else {
+                    // Desktop settings
+                    gsap.set('.logo', { scale: 1 });
+                    gsap.set('.tagline', { fontSize: '24px' });
+                    gsap.set('.core-services', { fontSize: '28px' });
+                }
+            }
+
+            window.addEventListener('resize', handleResize);
+            handleResize();
+
+            // Optional: Loop animation after 30 seconds
+            // setInterval(() => {
+            //     tl.restart();
+            // }, 30000);
+        });
+    </script>
 </body>
 </html>
