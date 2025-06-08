@@ -42,21 +42,13 @@
         
         /* Title slide styling */
         .title-slide {
-            background: linear-gradient(135deg, #e74c3c, #c0392b, #27ae60, #2ecc71, #3498db);
-            background-size: 300% 300%;
-            animation: gradientShift 8s ease infinite;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 300px;
             position: relative;
             overflow: hidden;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
         
         .title-slide:before {
@@ -66,7 +58,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
         }
         
@@ -117,7 +109,7 @@
         
         .subtitle {
             font-size: 16px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.8);
             letter-spacing: 3px;
             font-weight: 300;
             margin-top: 15px;
@@ -165,28 +157,11 @@
             object-position: center;
             filter: brightness(0.85);
             transition: all 0.5s ease;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
+            background-color: #0a1622;
         }
         
         .slide:hover img {
             filter: brightness(0.75);
-        }
-        
-        /* Fallback for broken images */
-        .slide img:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            z-index: -1;
         }
         
         .person-info {
@@ -217,14 +192,6 @@
             color: rgba(255, 255, 255, 0.8);
             font-weight: 300;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-            margin-bottom: 4px;
-        }
-        
-        .person-wealth {
-            font-weight: bold;
-            color: #2ecc71;
-            margin-top: 4px;
-            font-size: 14px;
         }
         
         .wealth-badge {
@@ -438,25 +405,16 @@
                 font-size: 14px;
                 min-width: 70px;
             }
-            
+            .person-wealth {
+    font-weight: bold;
+    color: #2e8b57;
+    margin-top: 4px;
+}
+
             .dot {
                 height: 8px;
                 width: 8px;
             }
-        }
-        
-        /* Image fallback styling */
-        .image-placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            text-align: center;
-            padding: 20px;
         }
     </style>
 </head>
@@ -473,14 +431,7 @@
         
        <!-- Slide 1 -->
 <div class="slide">
-    <img src="https://via.placeholder.com/800x300/2c3e50/ffffff?text=Hamidou+Jah" alt="Hamidou Jah" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="image-placeholder" style="display: none;">
-        <div>
-            <i class="fas fa-user-circle" style="font-size: 48px; margin-bottom: 10px;"></i><br>
-            Hamidou Jah<br>
-            <small>Jah Oil</small>
-        </div>
-    </div>
+    <img src="https://i0.wp.com/standard.gm/wp-content/uploads/2025/05/Untitled-design-2025-05-23T103608.044-e1747996715130.png?fit=442%2C430&ssl=1" alt="Hamidou Jah">
     <div class="person-info">
         <div class="person-name">
             <i class="fas fa-crown"></i> 10. Hamidou Jah
@@ -492,14 +443,7 @@
 
 <!-- Slide 2 -->
 <div class="slide">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/ST-Da_Gambian_Dream_Brikama_Boyo.jpg" alt="ST Brikama Boyo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="image-placeholder" style="display: none;">
-        <div>
-            <i class="fas fa-user-circle" style="font-size: 48px; margin-bottom: 10px;"></i><br>
-            ST BRIKAMA BOYO<br>
-            <small>MUSIC</small>
-        </div>
-    </div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyhp7GvU-K8otww-aFC8Xc7T7KwRgGtq5-dA&s" alt="Pa Ebou Sanyang">
     <div class="person-info">
         <div class="person-name">
             <i class="fas fa-crown"></i> 9. ST BRIKAMA BOYO
@@ -511,14 +455,7 @@
 
 <!-- Slide 3 -->
 <div class="slide">
-    <img src="https://via.placeholder.com/800x300/3498db/ffffff?text=Michel+Hocheimy" alt="Michel Hocheimy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="image-placeholder" style="display: none;">
-        <div>
-            <i class="fas fa-user-circle" style="font-size: 48px; margin-bottom: 10px;"></i><br>
-            Michel Hocheimy<br>
-            <small>MHF Group</small>
-        </div>
-    </div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXoEgmrFo5Gj34VsT_e112_zgA4nIBymaCCQ&s" alt="Michel Hocheimy">
     <div class="person-info">
         <div class="person-name">
             <i class="fas fa-crown"></i> 8. Michel Hocheimy
@@ -530,14 +467,7 @@
 
 <!-- Slide 4 -->
 <div class="slide">
-    <img src="https://via.placeholder.com/800x300/e74c3c/ffffff?text=Mustapha+Njie" alt="Mustapha Njie" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="image-placeholder" style="display: none;">
-        <div>
-            <i class="fas fa-user-circle" style="font-size: 48px; margin-bottom: 10px;"></i><br>
-            Mustapha Njie<br>
-            <small>TAF Africa Global</small>
-        </div>
-    </div>
+    <img src="https://pbs.twimg.com/profile_images/1363595078082715649/oXDnmogT_400x400.jpg" alt="Mustapha Njie">
     <div class="person-info">
         <div class="person-name">
             <i class="fas fa-crown"></i> 7. Mustapha Njie
@@ -549,14 +479,7 @@
 
 <!-- Slide 5 -->
 <div class="slide">
-    <img src="https://via.placeholder.com/800x300/8e44ad/ffffff?text=Yahya+Jammeh" alt="Yahya Jammeh" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="image-placeholder" style="display: none;">
-        <div>
-            <i class="fas fa-user-circle" style="font-size: 48px; margin-bottom: 10px;"></i><br>
-            Yahya Jammeh<br>
-            <small>Former President</small>
-        </div>
-    </div>
+    <img src="https://www.euractiv.com/wp-content/uploads/sites/2/2016/11/Yahya_Jammeh-e1480572174220.png" alt="Yahya Jammeh">
     <div class="person-info">
         <div class="person-name">
             <i class="fas fa-crown"></i> 6. Yahya Jammeh
@@ -565,6 +488,8 @@
         <div class="person-wealth">Net Worth: Estimated $50–100 Million</div>
     </div>
 </div>
+
+
         
         <!-- Follow Message Slide -->
         <div class="slide">
@@ -586,6 +511,7 @@
             <span class="dot" onclick="currentSlide(5)"></span>
             <span class="dot" onclick="currentSlide(6)"></span>
             <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
         </div>
     </div>
     
