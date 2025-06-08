@@ -3,1064 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modem Pay - Premium Animation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Modem Pay - Digital Payments in The Gambia</title>
     <style>
-        /* Reset and Base Styles */
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        
+
         body {
             overflow: hidden;
-            background-color: #FFFFFF;
-            color: #007BFF;
+            background-color: #ffffff;
+            color: #333;
             height: 100vh;
             width: 100vw;
-            font-family: 'Poppins', sans-serif;
-            perspective: 1200px;
         }
-        
-        /* Animation Container with Strict Z-index Layers */
-        .animation-container {
+
+        #animation-container {
             position: relative;
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
-        
-        /* Layer System (0-9: background, 10-19: main content, 20-29: UI, 30-39: overlays) */
-        .background-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+
+        /* Brand Colors */
+        :root {
+            --modem-blue: #0066cc;
+            --modem-teal: #00a3ad;
+            --modem-white: #ffffff;
+            --modem-dark: #003366;
         }
-        
-        .content-layer {
+
+        /* Logo Styles */
+        .logo {
+            width: 180px;
+            height: auto;
+            opacity: 0;
+            position: absolute;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 120px;
+            }
+        }
+
+        /* Wave Background */
+        .wave-container {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 10;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-        
-        .ui-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 20;
-            pointer-events: none;
-        }
-        
-        .overlay-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 30;
-            pointer-events: none;
-        }
-        
-        /* Animated Gradient Background */
-        .gradient-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #007BFF 0%, #20C997 100%);
-            opacity: 0;
-            z-index: 2;
-        }
-        
-        /* Floating Grid System */
-        .grid-system {
+
+        .wave {
             position: absolute;
             width: 200%;
-            height: 200%;
-            background: 
-                linear-gradient(rgba(0, 123, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 123, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            transform: rotate(15deg) translate(-25%, -25%);
+            height: 150%;
+            background: linear-gradient(135deg, var(--modem-blue) 0%, var(--modem-teal) 100%);
             opacity: 0;
-            z-index: 3;
+            transform: rotate(10deg);
+            border-radius: 45%;
+            animation: waveAnimation 15s linear infinite;
         }
-        
-        /* Modern Logo Styles with 3D */
-        .logo {
-            width: 240px;
-            height: 110px;
-            background: linear-gradient(135deg, #007BFF 0%, #20C997 100%);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            font-weight: bold;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.3);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            z-index: 11;
-            opacity: 0;
+
+        @keyframes waveAnimation {
+            0% {
+                transform: rotate(10deg) translateX(-25%);
+            }
+            100% {
+                transform: rotate(10deg) translateX(25%);
+            }
         }
-        
-        .logo-outro {
-            position: absolute;
-            z-index: 31;
-            opacity: 0;
-        }
-        
-        /* Text Elements with Depth */
-        .text-element {
+
+        /* Text Styles */
+        .text-container {
             position: absolute;
             text-align: center;
+            width: 80%;
+            max-width: 800px;
             opacity: 0;
-            font-size: 2.8rem;
-            font-weight: 700;
-            max-width: 85%;
-            line-height: 1.3;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            z-index: 12;
         }
-        
-        /* Problem Section with Isolated Space */
-        .problem-section {
+
+        .main-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--modem-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .sub-text {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--modem-dark);
+        }
+
+        /* Problem Section */
+        .problem-container {
             position: absolute;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             opacity: 0;
-            z-index: 13;
-            width: 100%;
-            height: 60%;
-            top: 20%;
-            pointer-events: none;
         }
-        
+
         .problem-icons {
             display: flex;
-            gap: 50px;
-            margin-bottom: 40px;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
         }
-        
+
         .problem-icon {
-            width: 90px;
-            height: 90px;
-            background-color: white;
-            border-radius: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #007BFF;
-            font-size: 40px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-        }
-        
-        .x-mark-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 14;
-        }
-        
-        .x-mark {
-            color: #ff4444;
-            font-size: 70px;
-            opacity: 0;
-            text-shadow: 0 8px 20px rgba(255, 68, 68, 0.3);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-        }
-        
-        /* Solution Section with Dedicated Space */
-        .solution-section {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            width: 90%;
-            max-width: 1000px;
-            z-index: 15;
-        }
-        
-        .solution-ui {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-            width: 100%;
-        }
-        
-        .ui-element {
-            background-color: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            min-height: 220px;
-        }
-        
-        .qr-scanner {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .qr-box {
-            width: 140px;
-            height: 140px;
-            border: 4px solid #007BFF;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .qr-line {
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background-color: #20C997;
-            top: 20%;
-            left: 0;
-            box-shadow: 0 0 15px #20C997;
-            filter: drop-shadow(0 0 5px rgba(32, 201, 151, 0.7));
-        }
-        
-        .checkmark-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: rgba(32, 201, 151, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .checkmark {
-            font-size: 60px;
-            color: #20C997;
-            filter: drop-shadow(0 3px 10px rgba(32, 201, 151, 0.3));
-        }
-        
-        .code-snippet {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            width: 100%;
-            text-align: left;
-            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #007BFF;
-        }
-        
-        /* Features Section with Protected Space */
-        .features-section {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            width: 90%;
-            max-width: 1000px;
-            opacity: 0;
-            z-index: 16;
-        }
-        
-        .feature-card {
-            background-color: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            padding: 35px 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            min-height: 240px;
-            width: 100%;
-        }
-        
-        .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #007BFF 0%, #20C997 100%);
+            background-color: var(--modem-white);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 36px;
-            margin-bottom: 25px;
-            color: white;
-            box-shadow: 0 15px 30px rgba(0, 123, 255, 0.25);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-icon img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .x-mark {
+            color: red;
+            font-size: 3rem;
+            font-weight: bold;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        /* Solution Section */
+        .solution-container {
+            position: absolute;
+            width: 90%;
+            max-width: 900px;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .solution-dashboard {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution-elements {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .solution-element {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+        }
+
+        .solution-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-text {
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--modem-dark);
+            font-weight: 500;
+        }
+
+        .code-snippet {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        /* Features Section */
+        .features-container {
+            position: absolute;
+            width: 90%;
+            max-width: 800px;
+            opacity: 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            width: 30%;
+            min-width: 200px;
+            background-color: var(--modem-white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             transform-style: preserve-3d;
-            backface-visibility: hidden;
         }
-        
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--modem-teal);
+            margin-bottom: 1rem;
+        }
+
         .feature-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            color: var(--modem-blue);
+            margin-bottom: 0.5rem;
+            text-align: center;
         }
-        
-        .feature-desc {
-            font-size: 1rem;
-            color: #666;
-            font-weight: 300;
-        }
-        
-        /* CTA Section with Isolated Space */
-        .cta-section {
+
+        /* CTA Section */
+        .cta-container {
             position: absolute;
             display: flex;
             flex-direction: column;
             align-items: center;
             opacity: 0;
-            z-index: 17;
-            width: 100%;
-            height: 50%;
-            top: 25%;
+            width: 80%;
+            max-width: 600px;
         }
-        
+
         .cta-button {
-            background: linear-gradient(135deg, #007BFF 0%, #20C997 100%);
+            background: linear-gradient(135deg, var(--modem-blue) 0%, var(--modem-teal) 100%);
             color: white;
             border: none;
-            padding: 22px 50px;
-            font-size: 1.4rem;
-            border-radius: 60px;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
             cursor: pointer;
-            margin-top: 40px;
-            font-weight: bold;
-            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.35);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            z-index: 21;
-            pointer-events: auto;
-        }
-        
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0) 45%,
-                rgba(255, 255, 255, 0.4) 50%,
-                rgba(255, 255, 255, 0) 55%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            transition: all 0.75s ease;
-        }
-        
-        /* Outro Section with Protected Space */
-        .outro-text {
-            position: absolute;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+            text-decoration: none;
             text-align: center;
-            opacity: 0;
-            font-size: 2.2rem;
-            max-width: 80%;
-            z-index: 32;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
+            min-width: 250px;
         }
-        
-        /* Floating Currency Elements (Confetti-like) */
-        .currency-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-        }
-        
-        .currency {
-            position: absolute;
-            font-size: 28px;
-            opacity: 0;
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-        }
-        
-        /* Responsive Adjustments with Media Queries */
-        @media (max-width: 1024px) {
-            .text-element {
-                font-size: 2.4rem;
-            }
-            
-            .solution-ui {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .features-section {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .problem-icons {
-                gap: 30px;
-            }
-        }
-        
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .text-element {
-                font-size: 2rem;
-                max-width: 95%;
-            }
-            
-            .logo, .logo-outro {
-                width: 200px;
-                height: 90px;
-                font-size: 26px;
-            }
-            
-            .problem-icons {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .problem-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 36px;
-            }
-            
-            .x-mark {
-                font-size: 60px;
-            }
-            
-            .ui-element, .feature-card {
-                min-height: 200px;
-                padding: 25px;
-            }
-            
-            .qr-box {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .checkmark-circle {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .checkmark {
-                font-size: 50px;
-            }
-            
-            .cta-button {
-                padding: 20px 40px;
-                font-size: 1.2rem;
-            }
-            
-            .outro-text {
+            .main-text {
                 font-size: 1.8rem;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .text-element {
-                font-size: 1.6rem;
-            }
             
-            .logo, .logo-outro {
-                width: 180px;
-                height: 80px;
-                font-size: 24px;
-            }
-            
-            .problem-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 32px;
-            }
-            
-            .x-mark {
-                font-size: 50px;
-            }
-            
-            .feature-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 30px;
-            }
-            
-            .feature-title {
+            .sub-text {
                 font-size: 1.2rem;
             }
             
-            .cta-button {
-                padding: 18px 35px;
-                font-size: 1.1rem;
+            .problem-icons {
+                flex-direction: column;
+                gap: 1rem;
             }
             
-            .outro-text {
-                font-size: 1.5rem;
+            .solution-elements {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .solution-element {
+                width: 80%;
+            }
+            
+            .features-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature-card {
+                width: 80%;
+                margin-bottom: 1rem;
             }
         }
-        
-        /* Animation Keyframes */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
+
+        /* Animation Utility Classes */
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
         }
-        
-        @keyframes shine {
-            0% {
-                left: -60%;
-            }
-            100% {
-                left: 150%;
-            }
-        }
-        
-        @keyframes currency-float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-150px) rotate(360deg);
-                opacity: 0;
-            }
+
+        .visible {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
 <body>
-    <div class="animation-container">
-        <!-- Background Layers -->
-        <div class="background-layer">
-            <div class="gradient-bg"></div>
-            <div class="grid-system"></div>
-            <div class="currency-elements" id="currency-elements"></div>
+    <div id="animation-container">
+        <!-- Intro (0-2s) -->
+        <img src="https://via.placeholder.com/180x60/0066cc/ffffff?text=Modem+Pay" alt="Modem Pay Logo" class="logo" id="logo">
+        
+        <!-- Tagline (2-6s) -->
+        <div class="wave-container">
+            <div class="wave" id="wave"></div>
+        </div>
+        <div class="text-container" id="tagline-container">
+            <h1 class="main-text" id="tagline">Empowering digital payments in The Gambia.</h1>
         </div>
         
-        <!-- Main Content Layers -->
-        <div class="content-layer">
-            <!-- Intro (0-2s) -->
-            <div class="logo" id="intro-logo">MODEM PAY</div>
-            
-            <!-- Tagline (2-6s) -->
-            <div class="text-element" id="tagline-text">Empowering digital payments in The Gambia</div>
-            
-            <!-- Problem (6-10s) -->
-            <div class="problem-section" id="problem-section">
-                <div class="problem-icons">
-                    <div class="problem-icon">📱</div>
-                    <div class="problem-icon">💳</div>
+        <!-- Problem (6-10s) -->
+        <div class="problem-container" id="problem-container">
+            <div class="problem-icons">
+                <div class="problem-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/0/191.png" alt="Cash">
+                    <div class="x-mark">✕</div>
                 </div>
-                <div class="text-element" id="problem-text">Tired of outdated, cash-only systems?</div>
-            </div>
-            <div class="x-mark-container">
-                <div class="x-mark">❌</div>
-            </div>
-            
-            <!-- Solution (10-16s) -->
-            <div class="solution-section" id="solution-section">
-                <div class="text-element" id="solution-text">Modem Pay offers seamless, secure, and scalable payment APIs</div>
-                <div class="solution-ui">
-                    <div class="ui-element qr-scanner">
-                        <div class="qr-box">
-                            <div class="qr-line"></div>
-                        </div>
-                        <div style="margin-top: 20px;">QR Payments</div>
-                    </div>
-                    <div class="ui-element checkout-success">
-                        <div class="checkmark-circle">
-                            <div class="checkmark">✓</div>
-                        </div>
-                        <div>Instant Settlements</div>
-                    </div>
-                    <div class="ui-element">
-                        <div class="code-snippet">
-                            // Simple API Integration<br>
-                            modemPay.processPayment({<br>
-                            &nbsp;&nbsp;amount: 1000,<br>
-                            &nbsp;&nbsp;currency: 'GMD',<br>
-                            &nbsp;&nbsp;callback: successHandler<br>
-                            });
-                        </div>
-                    </div>
+                <div class="problem-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3652/3652191.png" alt="POS">
+                    <div class="x-mark">✕</div>
                 </div>
             </div>
-            
-            <!-- Features (16-22s) -->
-            <div class="features-section" id="features-section">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-title">Fast Integration</div>
-                    <div class="feature-desc">Get started in minutes with our developer-friendly APIs</div>
+            <h2 class="sub-text">Tired of outdated, cash-only systems?</h2>
+        </div>
+        
+        <!-- Solution (10-16s) -->
+        <div class="solution-container" id="solution-container">
+            <img src="https://via.placeholder.com/600x300/f5f5f5/0066cc?text=Modem+Pay+Dashboard" alt="Dashboard" class="solution-dashboard">
+            <h2 class="sub-text">Modem Pay offers seamless, secure, and scalable payment APIs.</h2>
+            <div class="solution-elements">
+                <div class="solution-element" id="qr-element">
+                    <img src="https://cdn-icons-png.flaticon.com/512/179/179438.png" alt="QR Code" class="solution-icon">
+                    <p class="solution-text">QR Code Payments</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <div class="feature-title">Multi-channel</div>
-                    <div class="feature-desc">Accept mobile money, cards, and bank transfers</div>
+                <div class="solution-element" id="mobile-element">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Mobile Payment" class="solution-icon">
+                    <p class="solution-text">Mobile Checkout</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏪</div>
-                    <div class="feature-title">Local Support</div>
-                    <div class="feature-desc">Tailored for Gambian businesses</div>
+                <div class="solution-element" id="api-element">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2881/2881142.png" alt="API" class="solution-icon">
+                    <p class="solution-text">Developer APIs</p>
                 </div>
             </div>
-            
-            <!-- CTA (22-27s) -->
-            <div class="cta-section" id="cta-section">
-                <div class="text-element" id="cta-text">Join hundreds of Gambian businesses going cashless</div>
+            <div class="code-snippet" id="code-snippet">
+                <pre>// Sample API Integration
+modemPay.initialize({
+    merchantId: 'YOUR_ID',
+    apiKey: 'YOUR_KEY'
+});
+
+modemPay.processPayment({
+    amount: 1000,
+    currency: 'GMD',
+    callback: successHandler
+});</pre>
             </div>
         </div>
         
-        <!-- UI Layer -->
-        <div class="ui-layer">
-            <button class="cta-button" id="cta-button">Get Started at modempay.gm</button>
+        <!-- Features (16-22s) -->
+        <div class="features-container" id="features-container">
+            <div class="feature-card" id="feature1">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Fast Integration</h3>
+            </div>
+            <div class="feature-card" id="feature2">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">Multi-channel Payments</h3>
+            </div>
+            <div class="feature-card" id="feature3">
+                <div class="feature-icon">🏪</div>
+                <h3 class="feature-title">Local Business Support</h3>
+            </div>
         </div>
         
-        <!-- Overlay Layer -->
-        <div class="overlay-layer">
-            <div class="logo logo-outro" id="outro-logo">MODEM PAY</div>
-            <div class="outro-text" id="outro-text">Payments Made Simple.</div>
+        <!-- CTA (22-27s) -->
+        <div class="cta-container" id="cta-container">
+            <a href="https://modempay.gm" class="cta-button" id="cta-button">Get Started at modempay.gm</a>
+            <h2 class="sub-text">Join hundreds of Gambian businesses going cashless.</h2>
+        </div>
+        
+        <!-- Outro (27-30s) -->
+        <div class="text-container" id="outro-container">
+            <h1 class="main-text">Modem Pay – Payments Made Simple.</h1>
         </div>
     </div>
 
+    <!-- GSAP Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Create floating currency elements
-            const currencyContainer = document.getElementById('currency-elements');
-            const currencies = ['D', '₵', '₦', '₣', '€', '$', '£', '¥', '₩', '₱', '₲'];
-            const currencyCount = 20;
+            // Timeline setup
+            const tl = gsap.timeline({ defaults: { ease: "power2.inOut" } });
             
-            for (let i = 0; i < currencyCount; i++) {
-                const currency = document.createElement('div');
-                currency.classList.add('currency');
-                currency.textContent = currencies[Math.floor(Math.random() * currencies.length)];
-                
-                const startX = Math.random() * 100;
-                const startY = 100 + Math.random() * 20;
-                const size = Math.random() * 25 + 20;
-                const delay = Math.random() * 15;
-                const duration = Math.random() * 5 + 5;
-                const rotation = Math.random() * 360;
-                
-                currency.style.left = `${startX}%`;
-                currency.style.top = `${startY}%`;
-                currency.style.fontSize = `${size}px`;
-                currency.style.color = `hsl(${Math.random() * 60 + 180}, 70%, 60%)`;
-                currency.style.transform = `rotate(${rotation}deg)`;
-                
-                currencyContainer.appendChild(currency);
-            }
-            
-            // Create master timeline with precise sequencing
-            const masterTL = gsap.timeline({
-                defaults: {
-                    ease: "power3.inOut",
-                    duration: 0.8
-                }
+            // Intro: Logo fade in (0-2s)
+            tl.from("#logo", { 
+                duration: 1.5, 
+                opacity: 0, 
+                scale: 0.8, 
+                ease: "back.out(1.7)" 
             });
             
-            // 0-2s: Logo intro with 3D flip
-            masterTL.from("#intro-logo", {
-                opacity: 0,
-                rotationX: 90,
-                transformOrigin: "center bottom",
-                duration: 1.2,
-                ease: "back.out(1.7)"
-            })
-            .to("#intro-logo", {
-                y: -20,
-                duration: 0.5,
-                repeat: 1,
-                yoyo: true
-            });
-            
-            // 2-6s: Tagline with animated background
-            masterTL.to(".gradient-bg", {
-                opacity: 0.08,
-                duration: 1
-            }, "-=0.5")
-            .to(".grid-system", {
-                opacity: 0.3,
-                duration: 1
-            }, "-=1")
-            .to("#intro-logo", {
-                y: -120,
-                scale: 0.9,
-                duration: 0.8,
-                ease: "back.inOut(1)"
-            }, "-=0.8")
-            .fromTo("#tagline-text", 
-                {
-                    opacity: 0,
-                    y: 50,
-                    rotationX: 45,
-                    transformOrigin: "center bottom"
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 1,
-                    ease: "back.out(1.2)"
-                }
-            )
-            .to("#tagline-text", {
-                keyframes: [
-                    {scale: 1.03, y: -5, duration: 0.3},
-                    {scale: 1, y: 0, duration: 0.3}
-                ],
-                repeat: 1,
-                repeatDelay: 0.5
-            });
-            
-            // Animate currency symbols during tagline
-            const currenciesEl = document.querySelectorAll('.currency');
-            currenciesEl.forEach((currency, i) => {
-                masterTL.to(currency, {
-                    keyframes: [
-                        {opacity: 1, duration: 0.1, delay: i * 0.1},
-                        {top: `-=${150 + Math.random() * 50}`, left: `+=${(Math.random() - 0.5) * 20}`, 
-                         rotation: 360, duration: 3, ease: "power1.out"},
-                        {opacity: 0, duration: 0.1}
-                    ]
-                }, 2 + i * 0.1);
-            });
-            
-            // 6-10s: Problem statement with isolated animation space
-            masterTL.to(["#tagline-text", "#intro-logo"], {
-                opacity: 0,
-                y: -30,
-                duration: 0.6
-            })
-            .to(".gradient-bg", {
-                opacity: 0.15,
-                duration: 0.6
-            }, "-=0.6")
-            .to("#problem-section", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8
-            }, "-=0.4")
-            .from("#problem-section .problem-icon", {
-                y: 60,
-                opacity: 0,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "back.out(1.5)"
-            }, "-=0.4")
-            .to("#problem-section .problem-icon", {
-                keyframes: [
-                    {rotationZ: -8, y: -10, duration: 0.2},
-                    {rotationZ: 8, y: 10, duration: 0.2},
-                    {rotationZ: 0, y: 0, duration: 0.2}
-                ],
-                repeat: 1
-            })
-            .fromTo(".x-mark", 
-                {
-                    opacity: 0,
-                    scale: 0.5,
-                    rotationZ: 90
-                },
-                {
-                    opacity: 1,
-                    scale: 1.2,
-                    rotationZ: 0,
-                    duration: 0.8,
-                    ease: "elastic.out(1, 0.5)"
-                }
-            )
-            .fromTo("#problem-text", 
-                {
-                    opacity: 0,
-                    y: 40,
-                    rotationX: 45
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 0.8,
-                    ease: "back.out(1.2)"
-                }
-            );
-            
-            // 10-16s: Solution showcase with protected space
-            masterTL.to(["#problem-section", "#problem-text", ".x-mark"], {
-                opacity: 0,
-                y: -30,
-                duration: 0.6
-            })
-            .to(".gradient-bg", {
-                opacity: 0.1,
-                duration: 0.6
-            }, "-=0.6")
-            .to("#solution-section", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8
-            }, "-=0.4")
-            .fromTo("#solution-text", 
-                {
-                    opacity: 0,
-                    y: 40,
-                    rotationX: 45
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 0.8,
-                    ease: "back.out(1.2)"
-                }
-            )
-            .from("#solution-section .ui-element", {
-                y: 120,
-                opacity: 0,
-                rotationY: 45,
-                stagger: 0.3,
-                duration: 1,
-                ease: "back.out(1.5)"
-            }, "-=0.3")
-            .to(".qr-line", {
-                top: "80%",
-                duration: 1.5,
-                repeat: 1,
-                yoyo: true,
-                ease: "none"
-            }, "-=1")
-            .to(".checkmark-circle", {
-                keyframes: [
-                    {scale: 1.1, backgroundColor: "rgba(32, 201, 151, 0.2)", duration: 0.3},
-                    {scale: 1, backgroundColor: "rgba(32, 201, 151, 0.1)", duration: 0.3}
-                ],
-                repeat: 1
-            }, "-=1.5")
-            .from(".code-snippet", {
-                opacity: 0,
-                x: -40,
-                duration: 0.8
-            }, "-=1");
-            
-            // 16-22s: Features highlights with collision-free space
-            masterTL.to(["#solution-section", "#solution-text"], {
-                opacity: 0,
-                y: -30,
-                duration: 0.6
-            })
-            .to(".gradient-bg", {
-                opacity: 0.12,
-                duration: 0.6
-            }, "-=0.6")
-            .to("#features-section", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8
-            }, "-=0.4")
-            .from("#features-section .feature-card", {
-                y: 120,
-                opacity: 0,
-                rotationX: 45,
-                stagger: {
-                    each: 0.3,
-                    from: "center"
-                },
-                duration: 1,
-                ease: "back.out(1.5)"
-            }, "-=0.3")
-            .to("#features-section .feature-card", {
-                keyframes: [
-                    {y: -15, rotationZ: -3, duration: 0.3},
-                    {y: 0, rotationZ: 0, duration: 0.3}
-                ],
-                stagger: 0.1,
-                repeat: 1,
-                yoyo: true
+            // Tagline (2-6s)
+            tl.to("#logo", { 
+                duration: 0.5, 
+                y: -50 
             }, "+=0.5");
+            tl.to("#wave", { 
+                duration: 1, 
+                opacity: 0.2 
+            }, "-=0.5");
+            tl.from("#tagline", { 
+                duration: 1, 
+                opacity: 0, 
+                y: 20, 
+                ease: "power2.out" 
+            }, "-=0.5");
             
-            // 22-27s: CTA with isolated interaction space
-            masterTL.to(["#features-section", ".gradient-bg"], {
-                opacity: 0,
-                y: -30,
-                duration: 0.6
-            })
-            .to(".gradient-bg", {
-                opacity: 0.15,
-                duration: 0.6
-            }, "-=0.6")
-            .to("#cta-section", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8
-            }, "-=0.4")
-            .fromTo("#cta-text", 
-                {
-                    opacity: 0,
-                    y: 40,
-                    rotationX: 45
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 0.8,
-                    ease: "back.out(1.2)"
-                }
-            )
-            .from("#cta-button", {
-                scale: 0,
-                opacity: 0,
-                rotationY: 180,
-                duration: 1,
-                ease: "elastic.out(1, 0.5)"
-            }, "-=0.3")
-            .to("#cta-button::after", {
-                left: "150%",
-                duration: 2,
-                ease: "none"
-            }, "-=0.8")
-            .to("#cta-button", {
-                keyframes: [
-                    {scale: 1.05, boxShadow: "0 0 0 15px rgba(0, 123, 255, 0)", duration: 0.5},
-                    {scale: 1, boxShadow: "0 0 0 0 rgba(0, 123, 255, 0)", duration: 0.5}
-                ],
-                repeat: -1,
-                repeatDelay: 1
+            // Problem (6-10s)
+            tl.to(["#logo", "#wave", "#tagline-container"], { 
+                duration: 0.5, 
+                opacity: 0 
             });
-            
-            // 27-30s: Outro with protected space
-            masterTL.to(["#cta-section", "#cta-text", "#cta-button"], {
-                opacity: 0,
-                y: -30,
-                duration: 0.6
-            }, "+=2")
-            .to(".gradient-bg", {
-                opacity: 0,
-                duration: 0.6
-            }, "-=0.6")
-            .to(".grid-system", {
-                opacity: 0,
-                duration: 0.6
-            }, "-=0.6")
-            .to("#outro-logo", {
-                opacity: 1,
-                scale: 1.2,
-                rotationY: 0,
-                duration: 0.8,
-                ease: "back.out(1.7)"
-            })
-            .fromTo("#outro-text", 
-                {
-                    opacity: 0,
-                    y: 40,
-                    rotationX: 45
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 0.8,
-                    ease: "back.out(1.2)"
-                }
-            )
-            .to("#outro-logo", {
-                keyframes: [
-                    {scale: 1.1, rotationZ: -5, duration: 0.3},
-                    {scale: 1.1, rotationZ: 5, duration: 0.3},
-                    {scale: 1.1, rotationZ: 0, duration: 0.3}
-                ]
-            })
-            .to(["#outro-logo", "#outro-text"], {
-                opacity: 0,
-                duration: 0.8
-            }, "+=1.5");
-            
-            // CTA button shine animation
-            const ctaButton = document.getElementById('cta-button');
-            
-            function animateShine() {
-                gsap.fromTo(ctaButton.querySelector('::after'), 
-                    { left: '-60%' },
-                    { left: '150%', duration: 2, ease: "none" }
-                );
-            }
-            
-            // Start shine animation loop
-            const shineInterval = setInterval(animateShine, 2500);
-            
-            // Clean up on animation complete
-            masterTL.eventCallback("onComplete", () => {
-                clearInterval(shineInterval);
+            tl.from("#problem-container", { 
+                duration: 0.8, 
+                opacity: 0, 
+                y: 20 
             });
+            tl.from(".problem-icon", { 
+                duration: 0.6, 
+                y: -20, 
+                stagger: 0.2, 
+                ease: "bounce.out" 
+            }, "-=0.5");
+            tl.from(".x-mark", { 
+                duration: 0.3, 
+                scale: 0, 
+                stagger: 0.1 
+            }, "-=0.3");
+            tl.from("#problem-container .sub-text", { 
+                duration: 0.5, 
+                opacity: 0, 
+                y: 10 
+            }, "-=0.2");
+            
+            // Solution (10-16s)
+            tl.to("#problem-container", { 
+                duration: 0.5, 
+                opacity: 0 
+            });
+            tl.from("#solution-container", { 
+                duration: 0.8, 
+                opacity: 0 
+            });
+            tl.from(".solution-dashboard", { 
+                duration: 0.8, 
+                y: -50, 
+                opacity: 0, 
+                ease: "back.out(1.7)" 
+            }, "-=0.5");
+            tl.from("#solution-container .sub-text", { 
+                duration: 0.6, 
+                opacity: 0, 
+                y: 20 
+            }, "-=0.3");
+            tl.from(".solution-element", { 
+                duration: 0.6, 
+                y: 30, 
+                opacity: 0, 
+                stagger: 0.2 
+            }, "-=0.2");
+            tl.from("#code-snippet", { 
+                duration: 0.6, 
+                opacity: 0, 
+                y: 20 
+            }, "-=0.3");
+            
+            // Features (16-22s)
+            tl.to("#solution-container", { 
+                duration: 0.5, 
+                opacity: 0 
+            });
+            tl.from("#features-container", { 
+                duration: 0.8, 
+                opacity: 0 
+            });
+            tl.from(".feature-card", { 
+                duration: 0.8, 
+                y: 50, 
+                opacity: 0, 
+                stagger: 0.3, 
+                ease: "back.out(1.7)" 
+            }, "-=0.5");
+            
+            // CTA (22-27s)
+            tl.to("#features-container", { 
+                duration: 0.5, 
+                opacity: 0 
+            });
+            tl.from("#cta-container", { 
+                duration: 0.8, 
+                opacity: 0 
+            });
+            tl.from("#cta-button", { 
+                duration: 0.8, 
+                y: 30, 
+                opacity: 0, 
+                ease: "elastic.out(1, 0.5)" 
+            }, "-=0.5");
+            tl.from("#cta-container .sub-text", { 
+                duration: 0.6, 
+                opacity: 0, 
+                y: 20 
+            }, "-=0.3");
+            
+            // Button pulse effect
+            tl.to("#cta-button", { 
+                duration: 0.8, 
+                scale: 1.05, 
+                repeat: 2, 
+                yoyo: true, 
+                ease: "sine.inOut" 
+            }, "-=0.5");
+            
+            // Outro (27-30s)
+            tl.to("#cta-container", { 
+                duration: 0.5, 
+                opacity: 0 
+            });
+            tl.from("#outro-container", { 
+                duration: 0.8, 
+                opacity: 0 
+            });
+            tl.from("#logo", { 
+                duration: 0.8, 
+                opacity: 0, 
+                scale: 1.2, 
+                y: 50 
+            }, "-=0.5");
+            tl.to("#logo", { 
+                duration: 0.8, 
+                scale: 1.1, 
+                repeat: 1, 
+                yoyo: true 
+            }, "-=0.3");
+            
+            // Final fade out
+            tl.to(["#outro-container", "#logo"], { 
+                duration: 1, 
+                opacity: 0 
+            }, "+=1");
             
             // Responsive adjustments
             function handleResize() {
-                const vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-                
                 if (window.innerWidth < 768) {
-                    gsap.set(".text-element", { fontSize: "2rem" });
-                    gsap.set("#problem-section .problem-icons", { flexDirection: "column" });
-                    gsap.set(".logo, .logo-outro", {
-                        width: "200px",
-                        height: "90px",
-                        fontSize: "26px"
-                    });
+                    // Mobile adjustments
+                    gsap.set(".problem-icons", { flexDirection: "column" });
+                    gsap.set(".solution-elements", { flexDirection: "column" });
+                    gsap.set(".features-container", { flexDirection: "column" });
+                    gsap.set(".feature-card", { width: "80%" });
                 } else {
-                    gsap.set(".text-element", { fontSize: "2.8rem" });
-                    gsap.set("#problem-section .problem-icons", { flexDirection: "row" });
-                    gsap.set(".logo, .logo-outro", {
-                        width: "240px",
-                        height: "110px",
-                        fontSize: "30px"
-                    });
+                    // Desktop settings
+                    gsap.set(".problem-icons", { flexDirection: "row" });
+                    gsap.set(".solution-elements", { flexDirection: "row" });
+                    gsap.set(".features-container", { flexDirection: "row" });
+                    gsap.set(".feature-card", { width: "30%" });
                 }
             }
             
             window.addEventListener('resize', handleResize);
             handleResize();
+            
+            // Restart animation on click for demo purposes
+            document.addEventListener('click', () => {
+                tl.restart();
+            });
         });
     </script>
 </body>
