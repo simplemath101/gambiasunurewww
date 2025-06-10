@@ -11,452 +11,399 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            background-color: #000;
-            color: white;
-            height: 100vh;
-            width: 100vw;
+            background-color: #f5f5f5;
         }
-
+        
         #animation-container {
+            width: 100vw;
+            height: 100vh;
             position: relative;
-            width: 100%;
-            height: 100%;
+            overflow: hidden;
         }
-
+        
         .scene {
             position: absolute;
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            text-align: center;
-            background-size: cover;
-            background-position: center;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1);
         }
-
+        
         .scene.active {
             opacity: 1;
             z-index: 10;
         }
-
-        .scene::before {
-            content: '';
+        
+        .background-image {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+        
+        .dark-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
             z-index: -1;
         }
-
+        
         .caption {
-            font-size: 2.5rem;
+            color: white;
+            font-size: 3.5vmax;
             font-weight: 700;
-            margin-bottom: 2rem;
+            text-align: center;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            transform: translateY(20px);
+            margin-bottom: 2rem;
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
+        
         .caption.visible {
-            transform: translateY(0);
             opacity: 1;
+            transform: translateY(0);
         }
-
-        /* Scene 1 Specific Styles */
+        
+        /* Scene 1 Styles */
         #scene1 .phone {
             width: 150px;
             height: 250px;
-            background: #111;
+            background: white;
             border-radius: 20px;
             position: relative;
             overflow: hidden;
-            border: 4px solid #444;
-            transform: translateX(-100vw) rotate(-30deg);
-            transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateX(-100vw);
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
+        
         #scene1 .phone-screen {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            background: #f5f5f5;
-            border-radius: 12px;
-            overflow: hidden;
+            width: 90%;
+            height: 85%;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
-
-        #scene1 .money-notes {
+        
+        #scene1 .money-stack {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 60%;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        #scene1 .money-note {
+            width: 80%;
+            height: 20%;
+            background-color: #f1c40f;
+            margin-bottom: -15%;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #scene1 .tap-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
             justify-content: center;
             align-items: center;
-            opacity: 1;
-            transition: opacity 0.8s ease-in-out;
+            font-size: 20px;
+            opacity: 0;
+            transform: scale(0);
         }
-
-        #scene1 .money-note {
-            width: 40px;
-            height: 20px;
-            background: linear-gradient(135deg, #1a6b1a, #3a9e3a);
-            margin: 5px;
-            border-radius: 3px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transform: scale(1);
-            transition: transform 0.3s ease-out;
-        }
-
-        #scene1 .phone-tap {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            z-index: 10;
-        }
-
-        #scene1 .phone-tap.active {
-            animation: tapEffect 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
-        }
-
-        @keyframes tapEffect {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
-            50% { transform: translate(-50%, -50%) scale(2); opacity: 0.4; }
-            100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
-        }
-
-        /* Scene 2 Specific Styles */
-        #scene2 .graph-container {
+        
+        /* Scene 2 Styles */
+        #scene2 .chart-container {
             width: 80%;
             height: 200px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
             position: relative;
-            margin-bottom: 30px;
         }
-
-        #scene2 .graph-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        #scene2 .graph-bar {
-            position: absolute;
-            bottom: 0;
+        
+        #scene2 .chart-bar {
             width: 15%;
-            background: linear-gradient(to top, #4CAF50, #8BC34A);
+            background: linear-gradient(to top, #27ae60, #2ecc71);
             border-radius: 5px 5px 0 0;
+            position: relative;
             transform-origin: bottom;
             transform: scaleY(0);
-            box-shadow: 0 -5px 15px rgba(139, 195, 74, 0.4);
         }
-
-        #scene2 .graph-bar:nth-child(2) { left: 5%; }
-        #scene2 .graph-bar:nth-child(3) { left: 25%; }
-        #scene2 .graph-bar:nth-child(4) { left: 45%; }
-        #scene2 .graph-bar:nth-child(5) { left: 65%; }
-        #scene2 .graph-bar:nth-child(6) { left: 85%; }
-
-        #scene2 .graph-labels {
+        
+        #scene2 .chart-label {
             position: absolute;
-            bottom: -25px;
+            bottom: -30px;
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
         }
-
-        #scene2 .providers {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+        
+        #scene2 .chart-year {
+            position: absolute;
+            top: -25px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
         }
-
-        #scene2 .provider-logo {
-            width: 80px;
-            height: 80px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+        
+        #scene2 .provider-logos {
+            position: absolute;
+            bottom: 50px;
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease-out;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
         }
-
-        #scene2 .provider-logo.visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        #scene2 .provider-logo {
+            height: 40px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+            transform: scale(0);
         }
-
-        /* Scene 3 Specific Styles */
+        
+        /* Scene 3 Styles */
         #scene3 .split-screen {
-            display: flex;
             width: 90%;
             height: 60%;
-            perspective: 1000px;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-
+        
         #scene3 .split-panel {
             flex: 1;
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
-            margin: 0 10px;
-            transform-style: preserve-3d;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-
-        #scene3 .panel-image {
+        
+        #scene3 .split-image {
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            object-fit: cover;
         }
-
-        #scene3 .panel-image::after {
-            content: '';
+        
+        #scene3 .phone-icon {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        #scene3 .panel-phone {
-            position: absolute;
-            width: 80px;
-            height: 130px;
-            background: #111;
+            width: 60px;
+            height: 100px;
+            background: white;
             border-radius: 10px;
-            border: 3px solid #444;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) rotateY(90deg);
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-        }
-
-        #scene3 .panel-phone-screen {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            background: #f5f5f5;
-            border-radius: 7px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 0.7rem;
-            color: #333;
-            text-align: center;
-            padding: 10px;
-        }
-
-        #scene3 .panel-phone.visible {
-            transform: translateX(-50%) rotateY(0);
-        }
-
-        /* Scene 4 Specific Styles */
-        #scene4 .success-message {
-            background: white;
-            color: #333;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 300px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            transform: scale(0.8);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        #scene4 .success-message.visible {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        #scene4 .checkmark {
-            font-size: 3rem;
-            color: #4CAF50;
-            margin-bottom: 10px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        #scene4 .user-face {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            margin: 20px auto;
-            border: 3px solid white;
+            font-size: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        #scene3 .left-phone {
+            bottom: -100px;
+            left: 20%;
+        }
+        
+        #scene3 .right-phone {
+            bottom: -100px;
+            right: 20%;
+        }
+        
+        #scene3 .transaction-line {
+            position: absolute;
+            width: 2px;
+            height: 0;
+            background: white;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+        
+        /* Scene 4 Styles */
+        #scene4 .confirmation-container {
+            width: 80%;
+            max-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: scale(0);
             opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.5s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        #scene4 .user-face.visible {
-            opacity: 1;
-            transform: scale(1);
+        
+        #scene4 .confirmation-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
-
-        #scene4 .final-text {
-            font-size: 1.8rem;
-            margin-top: 20px;
+        
+        #scene4 .check-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #27ae60;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        
+        #scene4 .confirmation-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        #scene4 .confirmation-details {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        #scene4 .user-face {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            bottom: 20%;
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s 0.6s ease-out;
+            transform: scale(0);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-
-        #scene4 .final-text.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .caption {
-                font-size: 1.8rem;
-            }
-
-            #scene3 .split-screen {
-                flex-direction: column;
-                height: 70%;
-                gap: 20px;
-            }
-
-            #scene3 .split-panel {
-                margin: 5px 0;
-            }
-
-            #scene2 .graph-container {
-                width: 95%;
-            }
-
-            #scene2 .providers {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-
-            #scene2 .provider-logo {
-                width: 60px;
-                height: 60px;
-            }
+        
+        #scene4 .digital-gambia {
+            position: absolute;
+            bottom: 10%;
+            font-size: 2vmax;
+            font-weight: 700;
+            color: white;
+            opacity: 0;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body>
     <div id="animation-container">
         <!-- Scene 1: Catchy Hook -->
-        <div id="scene1" class="scene active" style="background-image: url('https://images.unsplash.com/photo-1562967916-eb82221dfb36')">
-            <h1 class="caption">What if your wallet... was just your phone?</h1>
+        <div id="scene1" class="scene">
+            <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb36" alt="Gambian market" class="background-image">
+            <div class="dark-overlay"></div>
+            <div class="caption">What if your wallet... was just your phone?</div>
             <div class="phone">
                 <div class="phone-screen">
-                    <div class="money-notes">
-                        <div class="money-note"></div>
-                        <div class="money-note"></div>
-                        <div class="money-note"></div>
+                    <div class="money-stack">
                         <div class="money-note"></div>
                         <div class="money-note"></div>
                         <div class="money-note"></div>
                     </div>
+                    <div class="tap-icon">👆</div>
                 </div>
-                <div class="phone-tap"></div>
             </div>
         </div>
-
+        
         <!-- Scene 2: Rise of Mobile Money -->
-        <div id="scene2" class="scene" style="background-image: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df')">
-            <h1 class="caption">In Gambia, mobile money is rising fast!</h1>
-            <div class="graph-container">
-                <div class="graph-line"></div>
-                <div class="graph-bar"></div>
-                <div class="graph-bar"></div>
-                <div class="graph-bar"></div>
-                <div class="graph-bar"></div>
-                <div class="graph-bar"></div>
-                <div class="graph-labels">
-                    <span>2018</span>
-                    <span>2019</span>
-                    <span>2020</span>
-                    <span>2021</span>
-                    <span>2022</span>
+        <div id="scene2" class="scene">
+            <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74" alt="Digital growth" class="background-image">
+            <div class="dark-overlay"></div>
+            <div class="caption">In Gambia, mobile money is rising fast!</div>
+            <div class="chart-container">
+                <div class="chart-bar" data-height="0.3">
+                    <div class="chart-year">2018</div>
+                    <div class="chart-label">15%</div>
+                </div>
+                <div class="chart-bar" data-height="0.5">
+                    <div class="chart-year">2019</div>
+                    <div class="chart-label">28%</div>
+                </div>
+                <div class="chart-bar" data-height="0.7">
+                    <div class="chart-year">2020</div>
+                    <div class="chart-label">42%</div>
+                </div>
+                <div class="chart-bar" data-height="0.9">
+                    <div class="chart-year">2021</div>
+                    <div class="chart-label">61%</div>
+                </div>
+                <div class="chart-bar" data-height="1">
+                    <div class="chart-year">2022</div>
+                    <div class="chart-label">78%</div>
                 </div>
             </div>
-            <div class="providers">
-                <div class="provider-logo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/22/Africell_logo.png')"></div>
-                <div class="provider-logo" style="background-image: url('https://www.wave.com/static/media/logo-wave.bbf30b13.svg')"></div>
-                <div class="provider-logo" style="background-image: url('https://www.qmoney.gm/wp-content/uploads/2021/06/QMoney-Logo.png')"></div>
+            <div class="provider-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Africell_logo.png" alt="Africell" class="provider-logo">
+                <img src="https://www.wave.com/static/media/logo-wave.bbf30b13.svg" alt="Wave" class="provider-logo">
+                <img src="https://www.qmoney.gm/wp-content/uploads/2021/02/QMoney-Logo.png" alt="QMoney" class="provider-logo">
             </div>
         </div>
-
+        
         <!-- Scene 3: Everyday Usage -->
-        <div id="scene3" class="scene" style="background-image: url('https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd')">
-            <h1 class="caption">Paying bills. Sending remittances. Shopping.</h1>
+        <div id="scene3" class="scene">
+            <div class="caption">Paying bills. Sending remittances. Shopping.</div>
             <div class="split-screen">
                 <div class="split-panel">
-                    <div class="panel-image" style="background-image: url('https://images.unsplash.com/photo-1580910051070-56c1dc8e0b8a')"></div>
-                    <div class="panel-phone">
-                        <div class="panel-phone-screen">Send Money<br>Enter Amount: 500 GMD</div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1580910051070-56c1dc8e0b8a" alt="Woman paying bill" class="split-image">
                 </div>
                 <div class="split-panel">
-                    <div class="panel-image" style="background-image: url('https://images.unsplash.com/photo-1573164574391-1e1c9c58c0d6')"></div>
-                    <div class="panel-phone">
-                        <div class="panel-phone-screen">Received: 500 GMD<br>New Balance: 1,250 GMD</div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1573164574391-1e1c9c58c0d6" alt="Vendor receiving payment" class="split-image">
+                </div>
+                <div class="transaction-line"></div>
+            </div>
+            <div class="phone-icon left-phone">📱</div>
+            <div class="phone-icon right-phone">💵</div>
+        </div>
+        
+        <!-- Scene 4: Closing Message -->
+        <div id="scene4" class="scene">
+            <img src="https://images.unsplash.com/photo-1611078481115-84e179d1d217" alt="Happy user" class="background-image">
+            <div class="dark-overlay"></div>
+            <div class="caption">The Gambia is going digital.</div>
+            <div class="confirmation-container">
+                <div class="confirmation-header">
+                    <div class="check-icon">✓</div>
+                    <div class="confirmation-title">Payment Successful</div>
+                </div>
+                <div class="confirmation-details">
+                    You have sent GMD 500 to Mama Jobe Market. Transaction ID: GM78901234
                 </div>
             </div>
-        </div>
-
-        <!-- Scene 4: Closing Message -->
-        <div id="scene4" class="scene" style="background-image: url('https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd')">
-            <div class="success-message">
-                <div class="checkmark">✓</div>
-                <h2>Payment Successful</h2>
-                <p>500 GMD transferred</p>
-            </div>
-            <div class="user-face" style="background-image: url('https://images.unsplash.com/photo-1611078481115-84e179d1d217')"></div>
-            <h1 class="final-text">The Gambia is going digital.</h1>
+            <img src="https://images.unsplash.com/photo-1611078481115-84e179d1d217" alt="Happy user" class="user-face">
+            <div class="digital-gambia">#DigitalGambia</div>
         </div>
     </div>
 
@@ -466,141 +413,198 @@
             const captions = document.querySelectorAll('.caption');
             let currentScene = 0;
             
-            // Scene 1 Elements
-            const phone = document.querySelector('.phone');
-            const moneyNotes = document.querySelector('.money-notes');
-            const phoneTap = document.querySelector('.phone-tap');
+            // Initialize first scene
+            scenes[0].classList.add('active');
             
-            // Scene 2 Elements
-            const graphBars = document.querySelectorAll('.graph-bar');
-            const providerLogos = document.querySelectorAll('.provider-logo');
-            
-            // Scene 3 Elements
-            const panelPhones = document.querySelectorAll('.panel-phone');
-            
-            // Scene 4 Elements
-            const successMessage = document.querySelector('.success-message');
-            const userFace = document.querySelector('.user-face');
-            const finalText = document.querySelector('.final-text');
-            
-            // Animation timeline
-            const timeline = [
-                // Scene 1: 0-5 seconds
-                { time: 0, action: () => {
-                    // Show caption
-                    captions[0].classList.add('visible');
+            // Scene 1 Animation
+            function animateScene1() {
+                const phone = document.querySelector('#scene1 .phone');
+                const moneyStack = document.querySelector('#scene1 .money-stack');
+                const tapIcon = document.querySelector('#scene1 .tap-icon');
+                const caption = document.querySelector('#scene1 .caption');
+                
+                // Show caption
+                setTimeout(() => {
+                    caption.classList.add('visible');
+                }, 500);
+                
+                // Slide in phone
+                setTimeout(() => {
+                    phone.style.transform = 'translateX(0)';
+                }, 1000);
+                
+                // Tap animation
+                setTimeout(() => {
+                    tapIcon.style.opacity = '1';
+                    tapIcon.style.transform = 'scale(1)';
                     
-                    // Animate phone sliding in
                     setTimeout(() => {
-                        phone.style.transform = 'translateX(0) rotate(0)';
-                    }, 300);
-                    
-                    // Animate money notes fading out with phone tap
-                    setTimeout(() => {
-                        phoneTap.classList.add('active');
+                        tapIcon.style.transform = 'scale(1.2)';
                         
                         setTimeout(() => {
-                            moneyNotes.style.opacity = '0';
+                            tapIcon.style.transform = 'scale(0.8)';
                             
-                            // Make notes fly out
-                            const notes = document.querySelectorAll('.money-note');
-                            notes.forEach((note, index) => {
+                            setTimeout(() => {
+                                tapIcon.style.transform = 'scale(1)';
+                                moneyStack.style.opacity = '0';
+                                
                                 setTimeout(() => {
-                                    note.style.transform = `scale(0) translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
-                                }, index * 100);
-                            });
-                        }, 300);
-                    }, 1000);
-                }},
-                
-                // Transition to Scene 2: 5 seconds
-                { time: 5000, action: () => {
-                    scenes[0].classList.remove('active');
-                    scenes[1].classList.add('active');
-                    captions[0].classList.remove('visible');
-                    captions[1].classList.add('visible');
-                    
-                    // Animate graph bars
-                    graphBars.forEach((bar, index) => {
-                        setTimeout(() => {
-                            bar.style.transform = 'scaleY(' + [0.3, 0.6, 0.8, 1.2, 1.5][index] + ')';
-                            bar.style.height = [30, 60, 80, 120, 150][index] + 'px';
-                        }, index * 300);
-                    });
-                    
-                    // Animate provider logos
-                    providerLogos.forEach((logo, index) => {
-                        setTimeout(() => {
-                            logo.classList.add('visible');
-                        }, 1500 + index * 300);
-                    });
-                }},
-                
-                // Transition to Scene 3: 12 seconds
-                { time: 12000, action: () => {
-                    scenes[1].classList.remove('active');
-                    scenes[2].classList.add('active');
-                    captions[1].classList.remove('visible');
-                    captions[2].classList.add('visible');
-                    
-                    // Animate split screen phones
-                    panelPhones.forEach((phone, index) => {
-                        setTimeout(() => {
-                            phone.classList.add('visible');
-                        }, 500 + index * 300);
-                    });
-                }},
-                
-                // Transition to Scene 4: 20 seconds
-                { time: 20000, action: () => {
-                    scenes[2].classList.remove('active');
-                    scenes[3].classList.add('active');
-                    captions[2].classList.remove('visible');
-                    
-                    // Animate success message
-                    setTimeout(() => {
-                        successMessage.classList.add('visible');
-                    }, 500);
-                    
-                    // Animate user face
-                    setTimeout(() => {
-                        userFace.classList.add('visible');
-                    }, 1000);
-                    
-                    // Animate final text
-                    setTimeout(() => {
-                        finalText.classList.add('visible');
-                    }, 1500);
-                }},
-                
-                // End of animation: 30 seconds
-                { time: 30000, action: () => {
-                    // Could add a loop or final action here
-                    console.log('Animation complete');
-                }}
-            ];
+                                    tapIcon.style.opacity = '0';
+                                    tapIcon.style.transform = 'scale(0)';
+                                }, 500);
+                            }, 200);
+                        }, 200);
+                    }, 200);
+                }, 2500);
+            }
             
-            // Start animation timeline
-            const startTime = Date.now();
-            
-            function updateAnimations() {
-                const elapsed = Date.now() - startTime;
+            // Scene 2 Animation
+            function animateScene2() {
+                const caption = document.querySelector('#scene2 .caption');
+                const chartBars = document.querySelectorAll('#scene2 .chart-bar');
+                const providerLogos = document.querySelector('#scene2 .provider-logos');
+                const logos = document.querySelectorAll('#scene2 .provider-logo');
                 
-                // Execute all actions that should have happened by now
-                timeline.forEach(event => {
-                    if (elapsed >= event.time && !event.executed) {
-                        event.action();
-                        event.executed = true;
-                    }
+                // Show caption
+                setTimeout(() => {
+                    caption.classList.add('visible');
+                }, 500);
+                
+                // Animate chart bars
+                chartBars.forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.style.transform = `scaleY(${bar.dataset.height})`;
+                    }, 800 + index * 200);
                 });
                 
-                // Continue until all scenes are done
-                if (elapsed < timeline[timeline.length - 1].time) {
-                    requestAnimationFrame(updateAnimations);
+                // Show provider logos
+                setTimeout(() => {
+                    providerLogos.style.opacity = '1';
+                    
+                    logos.forEach((logo, index) => {
+                        setTimeout(() => {
+                            logo.style.transform = 'scale(1)';
+                        }, index * 300);
+                    });
+                }, 2500);
+            }
+            
+            // Scene 3 Animation
+            function animateScene3() {
+                const caption = document.querySelector('#scene3 .caption');
+                const leftPhone = document.querySelector('#scene3 .left-phone');
+                const rightPhone = document.querySelector('#scene3 .right-phone');
+                const transactionLine = document.querySelector('#scene3 .transaction-line');
+                
+                // Show caption
+                setTimeout(() => {
+                    caption.classList.add('visible');
+                }, 500);
+                
+                // Slide up phones
+                setTimeout(() => {
+                    leftPhone.style.bottom = '20%';
+                    rightPhone.style.bottom = '20%';
+                }, 1000);
+                
+                // Animate transaction line
+                setTimeout(() => {
+                    transactionLine.style.height = '100px';
+                    
+                    setTimeout(() => {
+                        transactionLine.style.opacity = '0';
+                    }, 1500);
+                }, 2000);
+            }
+            
+            // Scene 4 Animation
+            function animateScene4() {
+                const caption = document.querySelector('#scene4 .caption');
+                const confirmation = document.querySelector('#scene4 .confirmation-container');
+                const userFace = document.querySelector('#scene4 .user-face');
+                const digitalGambia = document.querySelector('#scene4 .digital-gambia');
+                
+                // Show caption
+                setTimeout(() => {
+                    caption.classList.add('visible');
+                }, 500);
+                
+                // Show confirmation
+                setTimeout(() => {
+                    confirmation.style.opacity = '1';
+                    confirmation.style.transform = 'scale(1)';
+                    
+                    // Pulse animation
+                    setTimeout(() => {
+                        confirmation.style.transform = 'scale(1.05)';
+                        
+                        setTimeout(() => {
+                            confirmation.style.transform = 'scale(1)';
+                        }, 300);
+                    }, 1500);
+                }, 1000);
+                
+                // Show user face
+                setTimeout(() => {
+                    userFace.style.opacity = '1';
+                    userFace.style.transform = 'scale(1)';
+                }, 2500);
+                
+                // Show hashtag
+                setTimeout(() => {
+                    digitalGambia.style.opacity = '1';
+                }, 3500);
+            }
+            
+            // Scene transition function
+            function nextScene() {
+                if (currentScene < scenes.length - 1) {
+                    // Hide current scene
+                    scenes[currentScene].classList.remove('active');
+                    captions[currentScene].classList.remove('visible');
+                    
+                    // Move to next scene
+                    currentScene++;
+                    scenes[currentScene].classList.add('active');
+                    
+                    // Trigger appropriate animation
+                    switch(currentScene) {
+                        case 0:
+                            animateScene1();
+                            break;
+                        case 1:
+                            animateScene2();
+                            break;
+                        case 2:
+                            animateScene3();
+                            break;
+                        case 3:
+                            animateScene4();
+                            break;
+                    }
                 }
             }
             
-            requestAnimationFrame(updateAnimations);
+            // Start first scene animation
+            animateScene1();
+            
+            // Set up scene transitions
+            setTimeout(nextScene, 5000);  // Scene 1 to 2
+            setTimeout(nextScene, 12000); // Scene 2 to 3
+            setTimeout(nextScene, 20000); // Scene 3 to 4
+            
+            // Reset animation after completion (for demo purposes)
+            setTimeout(() => {
+                scenes.forEach(scene => scene.classList.remove('active'));
+                captions.forEach(caption => caption.classList.remove('visible'));
+                currentScene = 0;
+                scenes[0].classList.add('active');
+                animateScene1();
+                
+                setTimeout(nextScene, 5000);
+                setTimeout(nextScene, 12000);
+                setTimeout(nextScene, 20000);
+            }, 30000);
         });
     </script>
 </body>
