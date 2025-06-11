@@ -6,7 +6,7 @@
     <title>The Gambia Mobile Money Revolution</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
+       * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -48,6 +48,8 @@ body {
     text-align: center;
     z-index: 10;
     position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .background-overlay {
@@ -63,6 +65,7 @@ body {
 .visual-element {
     position: absolute;
     transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translate(-50%, -50%);
 }
 
 .visual-asset {
@@ -201,14 +204,60 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
+/* Scene-specific positioning */
+#scene1 .visual-element:first-child {
+    top: 40%;
+    left: 30%;
+}
+
+#scene1 .visual-element:nth-child(2) {
+    top: 70%;
+    left: 70%;
+}
+
+#scene2 .visual-element {
+    top: 50%;
+    left: 50%;
+}
+
+#scene3 .visual-element {
+    top: 30%;
+    left: 50%;
+}
+
+#scene4 .visual-element:nth-child(1) {
+    top: 20%;
+    left: 20%;
+}
+
+#scene4 .visual-element:nth-child(2) {
+    top: 20%;
+    left: 80%;
+}
+
+#scene4 .visual-element:nth-child(3) {
+    top: 70%;
+    left: 30%;
+}
+
+#scene4 .visual-element:nth-child(4) {
+    top: 70%;
+    left: 70%;
+}
+
+#scene5 .visual-element {
+    top: 30%;
+    left: 50%;
+}
+
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, calc(-50% - 20px)) rotate(5deg); }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 25px 50px rgba(253, 203, 110, 0.3); }
-    50% { transform: scale(1.1); box-shadow: 0 30px 60px rgba(253, 203, 110, 0.5); }
+    0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 25px 50px rgba(253, 203, 110, 0.3); }
+    50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 30px 60px rgba(253, 203, 110, 0.5); }
 }
 
 @keyframes gridMove {
@@ -227,24 +276,24 @@ body {
 }
 
 @keyframes slideInLeft {
-    0% { opacity: 0; transform: translateX(-100px); }
-    100% { opacity: 1; transform: translateX(0); }
+    0% { opacity: 0; transform: translate(-100%, -50%); }
+    100% { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 @keyframes slideInRight {
-    0% { opacity: 0; transform: translateX(100px); }
-    100% { opacity: 1; transform: translateX(0); }
+    0% { opacity: 0; transform: translate(100%, -50%); }
+    100% { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 @keyframes zoomIn {
-    0% { opacity: 0; transform: scale(0.5); }
-    100% { opacity: 1; transform: scale(1); }
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 @keyframes morphTransform {
-    0% { border-radius: 50%; transform: rotate(0deg); }
-    50% { border-radius: 20%; transform: rotate(180deg) scale(1.2); }
-    100% { border-radius: 10px; transform: rotate(360deg); }
+    0% { border-radius: 50%; transform: translate(-50%, -50%) rotate(0deg); }
+    50% { border-radius: 20%; transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
+    100% { border-radius: 10px; transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .morph-element {
@@ -303,6 +352,40 @@ body {
     .image-placeholder {
         font-size: clamp(1.2rem, 3.5vw, 2rem);
     }
+
+    /* Stack elements vertically on smaller screens */
+    #scene1 .visual-element:first-child,
+    #scene1 .visual-element:nth-child(2) {
+        left: 50%;
+    }
+    
+    #scene1 .visual-element:first-child {
+        top: 30%;
+    }
+    
+    #scene1 .visual-element:nth-child(2) {
+        top: 65%;
+    }
+    
+    #scene4 .visual-element:nth-child(1),
+    #scene4 .visual-element:nth-child(2) {
+        top: 20%;
+    }
+    
+    #scene4 .visual-element:nth-child(3),
+    #scene4 .visual-element:nth-child(4) {
+        top: 60%;
+    }
+    
+    #scene4 .visual-element:nth-child(1),
+    #scene4 .visual-element:nth-child(3) {
+        left: 30%;
+    }
+    
+    #scene4 .visual-element:nth-child(2),
+    #scene4 .visual-element:nth-child(4) {
+        left: 70%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -333,6 +416,17 @@ body {
     
     .image-placeholder {
         font-size: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    /* Further adjustments for mobile */
+    #scene4 .visual-element:nth-child(1),
+    #scene4 .visual-element:nth-child(2) {
+        top: 15%;
+    }
+    
+    #scene4 .visual-element:nth-child(3),
+    #scene4 .visual-element:nth-child(4) {
+        top: 55%;
     }
 }
 
@@ -466,7 +560,7 @@ body {
         </div>
     </div>
 
-    <button class="play-button" id="playButton" onclick="startAnimation()">▶</button>
+    <button class="play-button" id="playButton" onclick="startAnimation()" style="display: none;">▶</button>
 
     <script>
         class MotionGraphic {
@@ -633,8 +727,6 @@ body {
                 if (this.isPlaying) return;
                 
                 this.isPlaying = true;
-                const playButton = document.getElementById('playButton');
-                playButton.innerHTML = '⏸';
                 
                 for (let i = 0; i < this.animationTimeline.length; i++) {
                     const timelineItem = this.animationTimeline[i];
@@ -649,10 +741,9 @@ body {
                     await this.wait(timelineItem.duration);
                 }
                 
-                // Reset animation
+                // Reset animation for next loop
                 this.resetAnimation();
                 this.isPlaying = false;
-                playButton.innerHTML = '▶';
             }
 
             syncWithCaption(caption) {
@@ -720,10 +811,18 @@ body {
             motionGraphic.startSequence();
         }
 
-        // Auto-start animation after 2 seconds
+        // Auto-start animation after 2 seconds and loop continuously
         setTimeout(() => {
-            startAnimation();
+            startContinuousLoop();
         }, 2000);
+
+        function startContinuousLoop() {
+            motionGraphic.startSequence();
+            // Set up continuous looping
+            setInterval(() => {
+                motionGraphic.startSequence();
+            }, 34000); // Loop every 34 seconds (30s animation + 4s buffer)
+        }
 
         // Responsive handling
         window.addEventListener('resize', () => {
