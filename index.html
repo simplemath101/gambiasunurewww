@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English to Mandinka Numbers</title>
+    <title>The Gambia Mobile Money Revolution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,431 +13,662 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            overflow: hidden;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        }
+
+        .motion-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
             overflow: hidden;
         }
 
-        .slideshow-container {
-            max-width: 800px;
-            position: relative;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .slide {
-            display: none;
-            padding: 60px 40px;
-            text-align: center;
-            min-height: 400px;
+        .scene {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            animation: slideIn 0.5s ease-in-out;
-        }
-
-        .slide.active {
-            display: flex;
-        }
-
-        .slide.title-slide {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            color: white;
-            border-radius: 20px;
-        }
-
-        .slide.number-slide {
-            background: linear-gradient(135deg, #48cae4, #023e8a);
-            color: white;
-            border-radius: 20px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        .number-display {
-            font-size: 8rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s infinite;
-        }
-
-        .language-pair {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin: 20px 0;
-            gap: 40px;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .language-box {
-            flex: 1;
-            padding: 30px;
+        .scene.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .scene-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .visual-element {
+            position: absolute;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .visual-asset {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-asset::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        .phone-icon {
+            width: 80px;
+            height: 80px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            animation: float 3s ease-in-out infinite;
+            filter: brightness(1.1) contrast(1.2);
+        }
+
+        .money-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 15px 30px rgba(245, 87, 108, 0.4);
+            filter: saturate(1.3) brightness(1.1);
+        }
+
+        .cultural-icon {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0 25px 50px rgba(253, 203, 110, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+            filter: sepia(0.2) brightness(1.2);
+        }
+
+        .bank-icon {
+            width: 90px;
+            height: 90px;
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+            filter: grayscale(0.3) brightness(0.9);
+        }
+
+        .network-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px auto;
         }
 
-        .language-box:hover {
-            transform: translateY(-5px);
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            border-radius: 4px;
+            transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .language-label {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #667eea;
+            border-radius: 50%;
             opacity: 0.8;
         }
 
-        .language-word {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .navigation {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .nav-btn {
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
+        .image-placeholder {
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            cursor: pointer;
-            font-size: 1rem;
+            font-size: 24px;
             font-weight: bold;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            z-index: 2;
+            position: relative;
         }
 
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .nav-btn:active {
-            transform: translateY(0);
-        }
-
-        .slide-counter {
+        .digital-grid {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 20px;
-            color: white;
-            font-weight: bold;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 10s linear infinite;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            animation: textShine 3s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
 
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            0%, 100% { transform: scale(1); box-shadow: 0 25px 50px rgba(253, 203, 110, 0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 30px 60px rgba(253, 203, 110, 0.5); }
         }
 
-        .arrow {
-            font-size: 1.5rem;
-            margin: 0 20px;
-            opacity: 0.7;
-            animation: bounce 2s infinite;
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(0);
-            }
-            40% {
-                transform: translateX(10px);
-            }
-            60% {
-                transform: translateX(5px);
-            }
+        @keyframes textShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
         }
 
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes zoomIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes morphTransform {
+            0% { border-radius: 50%; transform: rotate(0deg); }
+            50% { border-radius: 20%; transform: rotate(180deg) scale(1.2); }
+            100% { border-radius: 10px; transform: rotate(360deg); }
+        }
+
+        .morph-element {
+            animation: morphTransform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .slideshow-container {
-                margin: 20px;
-                max-width: calc(100vw - 40px);
+            .phone-icon, .cultural-icon {
+                width: 60px;
+                height: 60px;
             }
             
-            .slide {
-                padding: 40px 20px;
-                min-height: 300px;
+            .money-icon {
+                width: 45px;
+                height: 45px;
             }
             
-            h1 {
-                font-size: 2rem;
+            .progress-bar {
+                width: 80vw;
             }
-            
-            .number-display {
-                font-size: 4rem;
-            }
-            
-            .language-pair {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .language-word {
-                font-size: 2rem;
-            }
+        }
+
+        .play-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
         }
     </style>
 </head>
 <body>
-    <div class="slideshow-container">
-        <div class="slide-counter">
-            <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
-        </div>
-
-        <!-- Title Slide -->
-        <div class="slide active title-slide">
-            <h1>English to Mandinka</h1>
-            <div class="subtitle">Number Translations</div>
-            <div class="subtitle">Numbers 1 - 10</div>
-        </div>
-
-        <!-- Number Slides -->
-        <div class="slide number-slide">
-            <div class="number-display">1</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">One</div>
+    <div class="motion-container" id="motionContainer">
+        <div class="digital-grid"></div>
+        
+        <!-- Scene 1: Traditional Banking Challenges -->
+        <div class="scene active" id="scene1">
+            <div class="background-overlay"></div>
+            <div class="scene-content">
+                <div class="visual-element" style="top: 30%; left: 20%;">
+                    <div class="bank-icon visual-asset" data-image="bank">
+                        <div class="image-placeholder">BANK</div>
+                    </div>
                 </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Kiling</div>
+                <div class="visual-element" style="top: 60%; right: 20%;">
+                    <div class="cultural-icon visual-asset" data-image="traditional-money">
+                        <div class="image-placeholder">CASH</div>
+                    </div>
+                </div>
+                <div style="margin-top: 50px;">
+                    <div class="logo-text">The Challenge</div>
+                    <div class="subtitle">Limited Banking Access</div>
                 </div>
             </div>
         </div>
 
-        <div class="slide number-slide">
-            <div class="number-display">2</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Two</div>
+        <!-- Scene 2: Mobile Revolution Begins -->
+        <div class="scene" id="scene2">
+            <div class="background-overlay"></div>
+            <div class="scene-content">
+                <div class="visual-element" style="top: 40%; left: 50%; transform: translate(-50%, -50%);">
+                    <div class="phone-icon visual-asset morph-element" data-image="mobile-phone">
+                        <div class="image-placeholder">PHONE</div>
+                    </div>
                 </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Fula</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide number-slide">
-            <div class="number-display">3</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Three</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Saba</div>
+                <div class="network-lines"></div>
+                <div style="margin-top: 100px;">
+                    <div class="logo-text">Digital Dawn</div>
+                    <div class="subtitle">Mobile Technology Emerges</div>
                 </div>
             </div>
         </div>
 
-        <div class="slide number-slide">
-            <div class="number-display">4</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Four</div>
+        <!-- Scene 3: Rapid Adoption -->
+        <div class="scene" id="scene3">
+            <div class="background-overlay"></div>
+            <div class="scene-content">
+                <div class="visual-element" style="top: 20%; left: 50%; transform: translateX(-50%);">
+                    <div class="phone-icon visual-asset" data-image="mobile-money-app">
+                        <div class="image-placeholder">APP</div>
+                    </div>
                 </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Naani</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="adoptionProgress"></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="slide number-slide">
-            <div class="number-display">5</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Five</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Luulu</div>
+                <div style="margin-top: 50px;">
+                    <div class="logo-text">Rapid Rise</div>
+                    <div class="subtitle">Widespread Adoption</div>
                 </div>
             </div>
         </div>
 
-        <div class="slide number-slide">
-            <div class="number-display">6</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Six</div>
+        <!-- Scene 4: Cultural Transformation -->
+        <div class="scene" id="scene4">
+            <div class="background-overlay"></div>
+            <div class="scene-content">
+                <div class="visual-element" style="top: 20%; left: 15%;">
+                    <div class="money-icon visual-asset" data-image="digital-payment">
+                        <div class="image-placeholder">PAY</div>
+                    </div>
                 </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Wooro</div>
+                <div class="visual-element" style="top: 25%; right: 15%;">
+                    <div class="phone-icon visual-asset" data-image="smartphone">
+                        <div class="image-placeholder">SMART</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="slide number-slide">
-            <div class="number-display">7</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Seven</div>
+                <div class="visual-element" style="bottom: 30%; left: 25%;">
+                    <div class="cultural-icon visual-asset" data-image="local-shop">
+                        <div class="image-placeholder">SHOP</div>
+                    </div>
                 </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Worowula</div>
+                <div class="visual-element" style="bottom: 35%; right: 25%;">
+                    <div class="money-icon visual-asset" data-image="mobile-wallet">
+                        <div class="image-placeholder">WALLET</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="slide number-slide">
-            <div class="number-display">8</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Eight</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Seyi</div>
+                <div style="margin-top: 80px;">
+                    <div class="logo-text">Cultural Shift</div>
+                    <div class="subtitle">New Financial Behavior</div>
                 </div>
             </div>
         </div>
 
-        <div class="slide number-slide">
-            <div class="number-display">9</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Nine</div>
+        <!-- Scene 5: Modern Gambia -->
+        <div class="scene" id="scene5">
+            <div class="background-overlay"></div>
+            <div class="scene-content">
+                <div class="visual-element" style="top: 30%; left: 50%; transform: translateX(-50%);">
+                    <div class="cultural-icon visual-asset" data-image="gambia-flag">
+                        <div class="image-placeholder">GAMBIA</div>
+                    </div>
                 </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Kononto</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide number-slide">
-            <div class="number-display">10</div>
-            <div class="language-pair">
-                <div class="language-box">
-                    <div class="language-label">English</div>
-                    <div class="language-word">Ten</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="language-box">
-                    <div class="language-label">Mandinka</div>
-                    <div class="language-word">Tang</div>
+                <div style="margin-top: 120px;">
+                    <div class="logo-text">The Gambia</div>
+                    <div class="subtitle">Digitally Transformed</div>
                 </div>
             </div>
-        </div>
-
-        <div class="navigation">
-            <button class="nav-btn" onclick="changeSlide(-1)">← Previous</button>
-            <button class="nav-btn" onclick="changeSlide(1)">Next →</button>
         </div>
     </div>
 
+    <button class="play-button" id="playButton" onclick="startAnimation()">▶</button>
+
     <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        
-        document.getElementById('totalSlides').textContent = totalSlides;
+        class MotionGraphic {
+            constructor() {
+                this.currentScene = 0;
+                this.scenes = document.querySelectorAll('.scene');
+                this.totalScenes = this.scenes.length;
+                this.animationTimeline = [];
+                this.particles = [];
+                this.isPlaying = false;
+                
+                // Image URL configuration - ready for real URLs
+                this.imageUrls = {
+                    'bank': 'https://via.placeholder.com/200x200/667eea/white?text=BANK',
+                    'traditional-money': 'https://via.placeholder.com/200x200/ffeaa7/333?text=CASH',
+                    'mobile-phone': 'https://via.placeholder.com/200x200/667eea/white?text=PHONE',
+                    'mobile-money-app': 'https://via.placeholder.com/200x200/764ba2/white?text=APP',
+                    'digital-payment': 'https://via.placeholder.com/200x200/f093fb/white?text=PAY',
+                    'smartphone': 'https://via.placeholder.com/200x200/667eea/white?text=SMART',
+                    'local-shop': 'https://via.placeholder.com/200x200/ffeaa7/333?text=SHOP',
+                    'mobile-wallet': 'https://via.placeholder.com/200x200/f5576c/white?text=WALLET',
+                    'gambia-flag': 'https://via.placeholder.com/200x200/fdcb6e/333?text=GAMBIA'
+                };
+                
+                this.initializeTimeline();
+                this.loadImages();
+                this.createParticles();
+            }
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
+            // Method to update image URLs - call this when real URLs are provided
+            updateImageUrls(newUrls) {
+                this.imageUrls = { ...this.imageUrls, ...newUrls };
+                this.loadImages();
+            }
+
+            loadImages() {
+                const visualAssets = document.querySelectorAll('.visual-asset');
+                visualAssets.forEach(asset => {
+                    const imageKey = asset.getAttribute('data-image');
+                    if (imageKey && this.imageUrls[imageKey]) {
+                        // Preload image
+                        const img = new Image();
+                        img.onload = () => {
+                            asset.style.backgroundImage = `url(${this.imageUrls[imageKey]})`;
+                            // Hide placeholder text once image loads
+                            const placeholder = asset.querySelector('.image-placeholder');
+                            if (placeholder) {
+                                placeholder.style.opacity = '0';
+                            }
+                        };
+                        img.onerror = () => {
+                            console.warn(`Failed to load image: ${this.imageUrls[imageKey]}`);
+                            // Keep placeholder visible if image fails to load
+                        };
+                        img.src = this.imageUrls[imageKey];
+                    }
+                });
+            }
+
+            initializeTimeline() {
+                // Scene timing and transitions (30 seconds total)
+                this.animationTimeline = [
+                    { scene: 0, duration: 4000, caption: "Traditional banking was limited in The Gambia" },
+                    { scene: 1, duration: 5000, caption: "Mobile technology began to emerge" },
+                    { scene: 2, duration: 7000, caption: "Adoption rates skyrocketed rapidly" },
+                    { scene: 3, duration: 8000, caption: "Cultural transformation took place" },
+                    { scene: 4, duration: 6000, caption: "The Gambia became digitally transformed" }
+                ];
+            }
+
+            createParticles() {
+                const container = document.getElementById('motionContainer');
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 3 + 's';
+                    particle.style.animation = `float ${3 + Math.random() * 2}s ease-in-out infinite`;
+                    container.appendChild(particle);
+                    this.particles.push(particle);
+                }
+            }
+
+            easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+
+            animateProgressBar() {
+                const progressFill = document.getElementById('adoptionProgress');
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                    } else {
+                        width += 2;
+                        progressFill.style.width = width + '%';
+                    }
+                }, 50);
+            }
+
+            addAdvancedEffects(sceneIndex) {
+                const scene = this.scenes[sceneIndex];
+                const elements = scene.querySelectorAll('.visual-element');
+                
+                elements.forEach((element, index) => {
+                    const delay = index * 200;
+                    setTimeout(() => {
+                        element.style.animation = `slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
+                        if (index % 2 === 1) {
+                            element.style.animation = `slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
+                        }
+                    }, delay);
+                });
+
+                // Special effects for specific scenes
+                switch (sceneIndex) {
+                    case 1:
+                        this.createNetworkEffect();
+                        break;
+                    case 2:
+                        this.animateProgressBar();
+                        break;
+                    case 3:
+                        this.createFloatingElements();
+                        break;
+                }
+            }
+
+            createNetworkEffect() {
+                const scene = this.scenes[1];
+                const networkLines = scene.querySelector('.network-lines');
+                if (networkLines) {
+                    networkLines.style.animation = 'pulse 2s ease-in-out infinite';
+                }
+            }
+
+            createFloatingElements() {
+                const scene = this.scenes[3];
+                const elements = scene.querySelectorAll('.visual-element');
+                elements.forEach((element, index) => {
+                    element.style.animation = `float ${2 + index * 0.5}s ease-in-out infinite`;
+                    element.style.animationDelay = index * 0.3 + 's';
+                });
+            }
+
+            transitionToScene(sceneIndex) {
+                // Hide current scene
+                this.scenes.forEach(scene => {
+                    scene.classList.remove('active');
+                });
+
+                // Show new scene with advanced transition
+                setTimeout(() => {
+                    if (sceneIndex < this.totalScenes) {
+                        this.scenes[sceneIndex].classList.add('active');
+                        this.addAdvancedEffects(sceneIndex);
+                        this.currentScene = sceneIndex;
+                    }
+                }, 400);
+            }
+
+            async startSequence() {
+                if (this.isPlaying) return;
+                
+                this.isPlaying = true;
+                const playButton = document.getElementById('playButton');
+                playButton.innerHTML = '⏸';
+                
+                for (let i = 0; i < this.animationTimeline.length; i++) {
+                    const timelineItem = this.animationTimeline[i];
+                    
+                    // Sync with invisible caption timing
+                    this.syncWithCaption(timelineItem.caption);
+                    
+                    // Transition to scene
+                    this.transitionToScene(timelineItem.scene);
+                    
+                    // Wait for scene duration
+                    await this.wait(timelineItem.duration);
+                }
+                
+                // Reset animation
+                this.resetAnimation();
+                this.isPlaying = false;
+                playButton.innerHTML = '▶';
+            }
+
+            syncWithCaption(caption) {
+                // This method would sync with voiceover timing
+                // Using data attributes or invisible elements for timing
+                console.log(`Caption sync: ${caption}`);
+            }
+
+            wait(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            resetAnimation() {
+                this.currentScene = 0;
+                this.scenes.forEach((scene, index) => {
+                    scene.classList.remove('active');
+                    if (index === 0) scene.classList.add('active');
+                });
+                
+                // Reset progress bar
+                const progressFill = document.getElementById('adoptionProgress');
+                if (progressFill) progressFill.style.width = '0%';
+            }
+
+            // Advanced animation utilities
+            createCustomBezier(x1, y1, x2, y2) {
+                return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`;
+            }
+
+            applyParallaxEffect() {
+                const particles = this.particles;
+                particles.forEach((particle, index) => {
+                    const speed = 0.5 + (index % 3) * 0.3;
+                    particle.style.transform = `translateY(${window.scrollY * speed}px)`;
+                });
+            }
+        }
+
+        // Initialize the motion graphic
+        const motionGraphic = new MotionGraphic();
+
+        // Function to update with real image URLs when provided
+        function updateWithRealImages(imageUrls) {
+            motionGraphic.updateImageUrls(imageUrls);
+        }
+
+        // Example of how to use real URLs (replace with actual URLs when provided):
+        /*
+        const realImageUrls = {
+            'bank': 'https://example.com/bank-building.jpg',
+            'traditional-money': 'https://example.com/cash-money.jpg',
+            'mobile-phone': 'https://example.com/mobile-phone.jpg',
+            'mobile-money-app': 'https://example.com/app-interface.jpg',
+            'digital-payment': 'https://example.com/digital-payment.jpg',
+            'smartphone': 'https://example.com/smartphone.jpg',
+            'local-shop': 'https://example.com/local-market.jpg',
+            'mobile-wallet': 'https://example.com/mobile-wallet.jpg',
+            'gambia-flag': 'https://example.com/gambia-flag.jpg'
+        };
+        updateWithRealImages(realImageUrls);
+        */
+
+        // Global function for play button
+        function startAnimation() {
+            motionGraphic.startSequence();
+        }
+
+        // Auto-start animation after 2 seconds
+        setTimeout(() => {
+            startAnimation();
+        }, 2000);
+
+        // Responsive handling
+        window.addEventListener('resize', () => {
+            // Adjust particle positions and effects for different screen sizes
+            motionGraphic.particles.forEach(particle => {
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
             });
-            
-            document.getElementById('currentSlide').textContent = index + 1;
-        }
-
-        function changeSlide(direction) {
-            currentSlideIndex += direction;
-            
-            if (currentSlideIndex >= totalSlides) {
-                currentSlideIndex = 0;
-            } else if (currentSlideIndex < 0) {
-                currentSlideIndex = totalSlides - 1;
-            }
-            
-            showSlide(currentSlideIndex);
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                changeSlide(-1);
-            } else if (e.key === 'ArrowRight') {
-                changeSlide(1);
-            }
         });
 
-        // Auto-advance slides (optional - remove if not wanted)
-        // setInterval(() => {
-        //     changeSlide(1);
-        // }, 5000);
+        // Add performance optimization
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Pause animations when tab is not visible
+                document.body.style.animationPlayState = 'paused';
+            } else {
+                document.body.style.animationPlayState = 'running';
+            }
+        });
     </script>
 </body>
 </html>
