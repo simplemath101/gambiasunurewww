@@ -3,609 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Money in The Gambia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>English to Mandinka Numbers</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            background-color: #f5f5f5;
-        }
-        
-        #animation-container {
-            width: 100vw;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             height: 100vh;
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
-        
-        .scene {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .slide {
+            display: none;
+            padding: 60px 40px;
+            text-align: center;
+            min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+            animation: slideIn 0.5s ease-in-out;
         }
-        
-        .scene.active {
-            opacity: 1;
-            z-index: 10;
+
+        .slide.active {
+            display: flex;
         }
-        
-        .background-image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            filter: brightness(0.7);
-        }
-        
-        .dark-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: -1;
-        }
-        
-        .caption {
+
+        .slide.title-slide {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
             color: white;
-            font-size: 3.5vmax;
-            font-weight: 700;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 20px;
         }
-        
-        .caption.visible {
-            opacity: 1;
+
+        .slide.number-slide {
+            background: linear-gradient(135deg, #48cae4, #023e8a);
+            color: white;
+            border-radius: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .number-display {
+            font-size: 8rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .language-pair {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            gap: 40px;
+        }
+
+        .language-box {
+            flex: 1;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .language-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .language-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .language-word {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:active {
             transform: translateY(0);
         }
-        
-        /* Scene 1 Styles */
-        #scene1 .phone {
-            width: 150px;
-            height: 250px;
-            background: white;
+
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
             border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateX(-100vw);
-            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        #scene1 .phone-screen {
-            position: absolute;
-            width: 90%;
-            height: 85%;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            border-radius: 10px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        #scene1 .money-stack {
-            position: absolute;
-            width: 80%;
-            height: 60%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-        
-        #scene1 .money-note {
-            width: 80%;
-            height: 20%;
-            background-color: #f1c40f;
-            margin-bottom: -15%;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        
-        #scene1 .tap-icon {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            opacity: 0;
-            transform: scale(0);
-        }
-        
-        /* Scene 2 Styles */
-        #scene2 .chart-container {
-            width: 80%;
-            height: 200px;
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            position: relative;
-        }
-        
-        #scene2 .chart-bar {
-            width: 15%;
-            background: linear-gradient(to top, #27ae60, #2ecc71);
-            border-radius: 5px 5px 0 0;
-            position: relative;
-            transform-origin: bottom;
-            transform: scaleY(0);
-        }
-        
-        #scene2 .chart-label {
-            position: absolute;
-            bottom: -30px;
-            width: 100%;
-            text-align: center;
             color: white;
-            font-size: 12px;
-            font-weight: 600;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        
-        #scene2 .chart-year {
-            position: absolute;
-            top: -25px;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
-        
-        #scene2 .provider-logos {
-            position: absolute;
-            bottom: 50px;
-            width: 80%;
-            display: flex;
-            justify-content: space-around;
-            opacity: 0;
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
-        
-        #scene2 .provider-logo {
-            height: 40px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
-            transform: scale(0);
+
+        .arrow {
+            font-size: 1.5rem;
+            margin: 0 20px;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
         }
-        
-        /* Scene 3 Styles */
-        #scene3 .split-screen {
-            width: 90%;
-            height: 60%;
-            display: flex;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(0);
+            }
+            40% {
+                transform: translateX(10px);
+            }
+            60% {
+                transform: translateX(5px);
+            }
         }
-        
-        #scene3 .split-panel {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #scene3 .split-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        #scene3 .phone-icon {
-            position: absolute;
-            width: 60px;
-            height: 100px;
-            background: white;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-        
-        #scene3 .left-phone {
-            bottom: -100px;
-            left: 20%;
-        }
-        
-        #scene3 .right-phone {
-            bottom: -100px;
-            right: 20%;
-        }
-        
-        #scene3 .transaction-line {
-            position: absolute;
-            width: 2px;
-            height: 0;
-            background: white;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 5;
-        }
-        
-        /* Scene 4 Styles */
-        #scene4 .confirmation-container {
-            width: 80%;
-            max-width: 300px;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: scale(0);
-            opacity: 0;
-        }
-        
-        #scene4 .confirmation-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        #scene4 .check-icon {
-            width: 40px;
-            height: 40px;
-            background-color: #27ae60;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 20px;
-            margin-right: 10px;
-        }
-        
-        #scene4 .confirmation-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-        
-        #scene4 .confirmation-details {
-            font-size: 14px;
-            color: #7f8c8d;
-            margin-bottom: 15px;
-        }
-        
-        #scene4 .user-face {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            position: absolute;
-            bottom: 20%;
-            opacity: 0;
-            transform: scale(0);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        #scene4 .digital-gambia {
-            position: absolute;
-            bottom: 10%;
-            font-size: 2vmax;
-            font-weight: 700;
-            color: white;
-            opacity: 0;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+
+        @media (max-width: 768px) {
+            .slideshow-container {
+                margin: 20px;
+                max-width: calc(100vw - 40px);
+            }
+            
+            .slide {
+                padding: 40px 20px;
+                min-height: 300px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .number-display {
+                font-size: 4rem;
+            }
+            
+            .language-pair {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .language-word {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="animation-container">
-        <!-- Scene 1: Catchy Hook -->
-        <div id="scene1" class="scene">
-            <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb36" alt="Gambian market" class="background-image">
-            <div class="dark-overlay"></div>
-            <div class="caption">What if your wallet... was just your phone?</div>
-            <div class="phone">
-                <div class="phone-screen">
-                    <div class="money-stack">
-                        <div class="money-note"></div>
-                        <div class="money-note"></div>
-                        <div class="money-note"></div>
-                    </div>
-                    <div class="tap-icon">👆</div>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+        </div>
+
+        <!-- Title Slide -->
+        <div class="slide active title-slide">
+            <h1>English to Mandinka</h1>
+            <div class="subtitle">Number Translations</div>
+            <div class="subtitle">Numbers 1 - 10</div>
+        </div>
+
+        <!-- Number Slides -->
+        <div class="slide number-slide">
+            <div class="number-display">1</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">One</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Kiling</div>
                 </div>
             </div>
         </div>
-        
-        <!-- Scene 2: Rise of Mobile Money -->
-        <div id="scene2" class="scene">
-            <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74" alt="Digital growth" class="background-image">
-            <div class="dark-overlay"></div>
-            <div class="caption">In Gambia, mobile money is rising fast!</div>
-            <div class="chart-container">
-                <div class="chart-bar" data-height="0.3">
-                    <div class="chart-year">2018</div>
-                    <div class="chart-label">15%</div>
+
+        <div class="slide number-slide">
+            <div class="number-display">2</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Two</div>
                 </div>
-                <div class="chart-bar" data-height="0.5">
-                    <div class="chart-year">2019</div>
-                    <div class="chart-label">28%</div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Fula</div>
                 </div>
-                <div class="chart-bar" data-height="0.7">
-                    <div class="chart-year">2020</div>
-                    <div class="chart-label">42%</div>
-                </div>
-                <div class="chart-bar" data-height="0.9">
-                    <div class="chart-year">2021</div>
-                    <div class="chart-label">61%</div>
-                </div>
-                <div class="chart-bar" data-height="1">
-                    <div class="chart-year">2022</div>
-                    <div class="chart-label">78%</div>
-                </div>
-            </div>
-            <div class="provider-logos">
-                <img src="https://play-lh.googleusercontent.com/RdcJFPZm-crIFYqDz9RZiKpch3GZBNcCf1_gOefvjCYezabqjAZGwP_bw_hRSzMMpA" class="provider-logo">
-                <img src="https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png" alt="Wave" class="provider-logo">
-                <img src="https://play-lh.googleusercontent.com/aJ-VF3Ppkl5MXxbdqaM3OJQeVq4AuFFZyaaTg4TZyQ-osLI1qSt_LCqe4ptzsVjX7X6z=w600-h300-pc0xffffff-pd" alt="QMoney" class="provider-logo">
             </div>
         </div>
-        
-        <!-- Scene 3: Everyday Usage -->
-        <div id="scene3" class="scene">
-            <div class="caption">Paying bills. Sending remittances. Shopping.</div>
-            <div class="split-screen">
-                <div class="split-panel">
-                    <img src="https://cdn.aarp.net/content/dam/aarpe/en/home/money/scams-fraud/p2p-money-transfer/_jcr_content/root/container_main/container_body_main/container_body1/container_body_cf/container_image/articlecontentfragment/cfimage.coreimg.50.932.jpeg/content/dam/aarp/money/scams_fraud/2019/04/1140-peer-to-peer-service.jpg" alt="Woman paying bill" class="split-image">
+
+        <div class="slide number-slide">
+            <div class="number-display">3</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Three</div>
                 </div>
-                <div class="split-panel">
-                    <img src="https://cdn.aarp.net/content/dam/aarpe/en/home/money/scams-fraud/p2p-money-transfer/_jcr_content/root/container_main/container_body_main/container_body1/container_body_cf/container_image/articlecontentfragment/cfimage.coreimg.50.932.jpeg/content/dam/aarp/money/scams_fraud/2019/04/1140-peer-to-peer-service.jpg" alt="Vendor receiving payment" class="split-image">
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Saba</div>
                 </div>
-                <div class="transaction-line"></div>
             </div>
-            <div class="phone-icon left-phone">📱</div>
-            <div class="phone-icon right-phone">💵</div>
         </div>
-        
-        <!-- Scene 4: Closing Message -->
-        <div id="scene4" class="scene">
-            <img src="https://s5.cdn.ventureburn.com/wp-content/uploads/sites/2/2022/05/ct-1024x576.jpg" alt="Happy user" class="background-image">
-            <div class="dark-overlay"></div>
-            <div class="caption">The Gambia is going digital.</div>
-            <div class="confirmation-container">
-                <div class="confirmation-header">
-                    <div class="check-icon">✓</div>
-                    <div class="confirmation-title">Payment Successful</div>
+
+        <div class="slide number-slide">
+            <div class="number-display">4</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Four</div>
                 </div>
-                <div class="confirmation-details">
-                    You have sent GMD 500 to Mama Jobe Market. Transaction ID: GM78901234
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Naani</div>
                 </div>
             </div>
-            <img src="https://s5.cdn.ventureburn.com/wp-content/uploads/sites/2/2022/05/ct-1024x576.jpg" alt="Happy user" class="user-face">
-            <div class="digital-gambia">#DigitalGambia</div>
+        </div>
+
+        <div class="slide number-slide">
+            <div class="number-display">5</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Five</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Luulu</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide number-slide">
+            <div class="number-display">6</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Six</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Wooro</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide number-slide">
+            <div class="number-display">7</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Seven</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Worowula</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide number-slide">
+            <div class="number-display">8</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Eight</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Seyi</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide number-slide">
+            <div class="number-display">9</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Nine</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Kononto</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide number-slide">
+            <div class="number-display">10</div>
+            <div class="language-pair">
+                <div class="language-box">
+                    <div class="language-label">English</div>
+                    <div class="language-word">Ten</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="language-box">
+                    <div class="language-label">Mandinka</div>
+                    <div class="language-word">Tang</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="changeSlide(-1)">← Previous</button>
+            <button class="nav-btn" onclick="changeSlide(1)">Next →</button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const scenes = document.querySelectorAll('.scene');
-            const captions = document.querySelectorAll('.caption');
-            let currentScene = 0;
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
             
-            // Initialize first scene
-            scenes[0].classList.add('active');
+            document.getElementById('currentSlide').textContent = index + 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
             
-            // Scene 1 Animation
-            function animateScene1() {
-                const phone = document.querySelector('#scene1 .phone');
-                const moneyStack = document.querySelector('#scene1 .money-stack');
-                const tapIcon = document.querySelector('#scene1 .tap-icon');
-                const caption = document.querySelector('#scene1 .caption');
-                
-                // Show caption
-                setTimeout(() => {
-                    caption.classList.add('visible');
-                }, 500);
-                
-                // Slide in phone
-                setTimeout(() => {
-                    phone.style.transform = 'translateX(0)';
-                }, 1000);
-                
-                // Tap animation
-                setTimeout(() => {
-                    tapIcon.style.opacity = '1';
-                    tapIcon.style.transform = 'scale(1)';
-                    
-                    setTimeout(() => {
-                        tapIcon.style.transform = 'scale(1.2)';
-                        
-                        setTimeout(() => {
-                            tapIcon.style.transform = 'scale(0.8)';
-                            
-                            setTimeout(() => {
-                                tapIcon.style.transform = 'scale(1)';
-                                moneyStack.style.opacity = '0';
-                                
-                                setTimeout(() => {
-                                    tapIcon.style.opacity = '0';
-                                    tapIcon.style.transform = 'scale(0)';
-                                }, 500);
-                            }, 200);
-                        }, 200);
-                    }, 200);
-                }, 2500);
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
             }
             
-            // Scene 2 Animation
-            function animateScene2() {
-                const caption = document.querySelector('#scene2 .caption');
-                const chartBars = document.querySelectorAll('#scene2 .chart-bar');
-                const providerLogos = document.querySelector('#scene2 .provider-logos');
-                const logos = document.querySelectorAll('#scene2 .provider-logo');
-                
-                // Show caption
-                setTimeout(() => {
-                    caption.classList.add('visible');
-                }, 500);
-                
-                // Animate chart bars
-                chartBars.forEach((bar, index) => {
-                    setTimeout(() => {
-                        bar.style.transform = `scaleY(${bar.dataset.height})`;
-                    }, 800 + index * 200);
-                });
-                
-                // Show provider logos
-                setTimeout(() => {
-                    providerLogos.style.opacity = '1';
-                    
-                    logos.forEach((logo, index) => {
-                        setTimeout(() => {
-                            logo.style.transform = 'scale(1)';
-                        }, index * 300);
-                    });
-                }, 2500);
+            showSlide(currentSlideIndex);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
             }
-            
-            // Scene 3 Animation
-            function animateScene3() {
-                const caption = document.querySelector('#scene3 .caption');
-                const leftPhone = document.querySelector('#scene3 .left-phone');
-                const rightPhone = document.querySelector('#scene3 .right-phone');
-                const transactionLine = document.querySelector('#scene3 .transaction-line');
-                
-                // Show caption
-                setTimeout(() => {
-                    caption.classList.add('visible');
-                }, 500);
-                
-                // Slide up phones
-                setTimeout(() => {
-                    leftPhone.style.bottom = '20%';
-                    rightPhone.style.bottom = '20%';
-                }, 1000);
-                
-                // Animate transaction line
-                setTimeout(() => {
-                    transactionLine.style.height = '100px';
-                    
-                    setTimeout(() => {
-                        transactionLine.style.opacity = '0';
-                    }, 1500);
-                }, 2000);
-            }
-            
-            // Scene 4 Animation
-            function animateScene4() {
-                const caption = document.querySelector('#scene4 .caption');
-                const confirmation = document.querySelector('#scene4 .confirmation-container');
-                const userFace = document.querySelector('#scene4 .user-face');
-                const digitalGambia = document.querySelector('#scene4 .digital-gambia');
-                
-                // Show caption
-                setTimeout(() => {
-                    caption.classList.add('visible');
-                }, 500);
-                
-                // Show confirmation
-                setTimeout(() => {
-                    confirmation.style.opacity = '1';
-                    confirmation.style.transform = 'scale(1)';
-                    
-                    // Pulse animation
-                    setTimeout(() => {
-                        confirmation.style.transform = 'scale(1.05)';
-                        
-                        setTimeout(() => {
-                            confirmation.style.transform = 'scale(1)';
-                        }, 300);
-                    }, 1500);
-                }, 1000);
-                
-                // Show user face
-                setTimeout(() => {
-                    userFace.style.opacity = '1';
-                    userFace.style.transform = 'scale(1)';
-                }, 2500);
-                
-                // Show hashtag
-                setTimeout(() => {
-                    digitalGambia.style.opacity = '1';
-                }, 3500);
-            }
-            
-            // Scene transition function
-            function nextScene() {
-                if (currentScene < scenes.length - 1) {
-                    // Hide current scene
-                    scenes[currentScene].classList.remove('active');
-                    captions[currentScene].classList.remove('visible');
-                    
-                    // Move to next scene
-                    currentScene++;
-                    scenes[currentScene].classList.add('active');
-                    
-                    // Trigger appropriate animation
-                    switch(currentScene) {
-                        case 0:
-                            animateScene1();
-                            break;
-                        case 1:
-                            animateScene2();
-                            break;
-                        case 2:
-                            animateScene3();
-                            break;
-                        case 3:
-                            animateScene4();
-                            break;
-                    }
-                }
-            }
-            
-            // Start first scene animation
-            animateScene1();
-            
-            // Set up scene transitions
-            setTimeout(nextScene, 5000);  // Scene 1 to 2
-            setTimeout(nextScene, 12000); // Scene 2 to 3
-            setTimeout(nextScene, 20000); // Scene 3 to 4
-            
-            // Reset animation after completion (for demo purposes)
-            setTimeout(() => {
-                scenes.forEach(scene => scene.classList.remove('active'));
-                captions.forEach(caption => caption.classList.remove('visible'));
-                currentScene = 0;
-                scenes[0].classList.add('active');
-                animateScene1();
-                
-                setTimeout(nextScene, 5000);
-                setTimeout(nextScene, 12000);
-                setTimeout(nextScene, 20000);
-            }, 30000);
         });
+
+        // Auto-advance slides (optional - remove if not wanted)
+        // setInterval(() => {
+        //     changeSlide(1);
+        // }, 5000);
     </script>
 </body>
 </html>
