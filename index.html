@@ -90,32 +90,40 @@ body {
 }
 
 .phone-icon {
-    width: 140px;
-    height: 140px;
+    width: min(35vw, 280px);
+    height: min(35vw, 280px);
+    max-width: 400px;
+    max-height: 400px;
     box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
     animation: float 3s ease-in-out infinite;
     filter: brightness(1.1) contrast(1.2);
 }
 
 .money-icon {
-    width: 120px;
-    height: 120px;
+    width: min(30vw, 240px);
+    height: min(30vw, 240px);
+    max-width: 350px;
+    max-height: 350px;
     border-radius: 50%;
     box-shadow: 0 15px 30px rgba(245, 87, 108, 0.4);
     filter: saturate(1.3) brightness(1.1);
 }
 
 .cultural-icon {
-    width: 160px;
-    height: 160px;
+    width: min(40vw, 320px);
+    height: min(40vw, 320px);
+    max-width: 450px;
+    max-height: 450px;
     box-shadow: 0 25px 50px rgba(253, 203, 110, 0.3);
     animation: pulse 2s ease-in-out infinite;
     filter: sepia(0.2) brightness(1.2);
 }
 
 .bank-icon {
-    width: 150px;
-    height: 150px;
+    width: min(38vw, 300px);
+    height: min(38vw, 300px);
+    max-width: 420px;
+    max-height: 420px;
     box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
     filter: grayscale(0.3) brightness(0.9);
 }
@@ -128,10 +136,10 @@ body {
 }
 
 .progress-bar {
-    width: 300px;
-    height: 8px;
+    width: min(80vw, 400px);
+    height: 12px;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     margin: 20px auto;
 }
@@ -140,7 +148,7 @@ body {
     height: 100%;
     background: linear-gradient(90deg, #667eea, #764ba2);
     width: 0%;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -156,7 +164,7 @@ body {
 .image-placeholder {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
-    font-size: 24px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: bold;
     z-index: 2;
     position: relative;
@@ -243,25 +251,88 @@ body {
     animation: morphTransform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .phone-icon, .cultural-icon {
-        width: 100px;
-        height: 100px;
+/* Mobile and Tablet Responsiveness */
+@media (max-width: 1024px) {
+    .phone-icon {
+        width: min(40vw, 300px);
+        height: min(40vw, 300px);
+    }
+    
+    .cultural-icon {
+        width: min(45vw, 350px);
+        height: min(45vw, 350px);
     }
     
     .money-icon {
-        width: 85px;
-        height: 85px;
+        width: min(35vw, 280px);
+        height: min(35vw, 280px);
     }
     
     .bank-icon {
-        width: 110px;
-        height: 110px;
+        width: min(42vw, 320px);
+        height: min(42vw, 320px);
+    }
+}
+
+@media (max-width: 768px) {
+    .phone-icon {
+        width: min(45vw, 250px);
+        height: min(45vw, 250px);
+    }
+    
+    .cultural-icon {
+        width: min(50vw, 280px);
+        height: min(50vw, 280px);
+    }
+    
+    .money-icon {
+        width: min(40vw, 220px);
+        height: min(40vw, 220px);
+    }
+    
+    .bank-icon {
+        width: min(47vw, 260px);
+        height: min(47vw, 260px);
     }
     
     .progress-bar {
-        width: 80vw;
+        width: 85vw;
+        height: 10px;
+    }
+    
+    .image-placeholder {
+        font-size: clamp(1.2rem, 3.5vw, 2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-icon {
+        width: min(55vw, 200px);
+        height: min(55vw, 200px);
+    }
+    
+    .cultural-icon {
+        width: min(60vw, 220px);
+        height: min(60vw, 220px);
+    }
+    
+    .money-icon {
+        width: min(50vw, 180px);
+        height: min(50vw, 180px);
+    }
+    
+    .bank-icon {
+        width: min(57vw, 210px);
+        height: min(57vw, 210px);
+    }
+    
+    .progress-bar {
+        width: 90vw;
+        height: 8px;
+    }
+    
+    .image-placeholder {
+        font-size: clamp(1rem, 3vw, 1.5rem);
     }
 }
 
@@ -285,6 +356,16 @@ body {
 .play-button:hover {
     transform: scale(1.1);
     box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+}
+
+@media (max-width: 768px) {
+    .play-button {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+        bottom: 20px;
+        right: 20px;
+    }
 }
     </style>
 </head>
