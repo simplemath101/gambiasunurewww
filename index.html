@@ -3,844 +3,579 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gambia Mobile Money Revolution</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-       * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <title>Top 10 Richest People in The Gambia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .slideshow-container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Title slide styling */
+        .title-slide {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title-slide:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .title-container {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .main-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            line-height: 1.3;
+            position: relative;
+        }
+        
+        .title-decoration {
+            width: 80%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #f39c12, transparent);
+            margin: 15px auto;
+            position: relative;
+        }
+        
+        .title-decoration:before, .title-decoration:after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f39c12;
+            border-radius: 50%;
+            top: -3px;
+        }
+        
+        .title-decoration:before {
+            left: 0;
+        }
+        
+        .title-decoration:after {
+            right: 0;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin-top: 15px;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        
+        .subtitle:before, .subtitle:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .subtitle:before {
+            left: -10px;
+        }
+        
+        .subtitle:after {
+            right: -10px;
+        }
+        
+        /* Person slides styling */
+        .slide {
+            display: none;
+            background-color: rgba(16, 27, 39, 0.8);
+            text-align: center;
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(0.85);
+            transition: all 0.5s ease;
+            background-color: #0a1622;
+        }
+        
+        .slide:hover img {
+            filter: brightness(0.75);
+        }
+        
+        .person-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 15px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3), transparent);
+            transition: all 0.4s ease;
+            z-index: 5;
+        }
+        
+        .person-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .person-business {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        
+        .wealth-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+            z-index: 6;
+        }
+        
+        .slide:hover .person-info {
+            padding-bottom: 25px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2), transparent);
+        }
+        
+        /* Follow message slide */
+        .follow-message {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .follow-message:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #27ae60, #2ecc71, #27ae60);
+            background-size: 400% 400%;
+            z-index: -1;
+            filter: blur(10px);
+            animation: gradientAnimation 8s ease infinite;
+        }
+        
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Navigation buttons */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            width: 100%;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            padding: 10px 15px;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border: none;
+            border-radius: 30px;
+            margin: 0 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            min-width: 80px;
+        }
+        
+        .prev:before, .next:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .prev:hover:before, .next:hover:before {
+            left: 100%;
+        }
+        
+        .prev:hover, .next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+        }
+        
+        /* Dot indicators */
+        .dots-container {
+            text-align: center;
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 10px;
+            width: 100%;
+        }
+        
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .dot:hover {
+            transform: scale(1.2);
+        }
+        
+        .dot.active {
+            background-color: #f39c12;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px #f39c12;
+            border: 2px solid white;
+        }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #000;
-    overflow: hidden;
-    height: 100vh;
-}
-
-.motion-container {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-    overflow: hidden;
-}
-
-.scene {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.scene.active {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.scene-content {
-    text-align: center;
-    z-index: 10;
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.background-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
-}
-
-.visual-element {
-    position: absolute;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    transform: translate(-50%, -50%);
-}
-
-.visual-asset {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.visual-asset::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    z-index: 1;
-}
-
-.phone-icon {
-    width: min(35vw, 280px);
-    height: min(35vw, 280px);
-    max-width: 400px;
-    max-height: 400px;
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-    animation: float 3s ease-in-out infinite;
-    filter: brightness(1.1) contrast(1.2);
-}
-
-.money-icon {
-    width: min(30vw, 240px);
-    height: min(30vw, 240px);
-    max-width: 350px;
-    max-height: 350px;
-    border-radius: 50%;
-    box-shadow: 0 15px 30px rgba(245, 87, 108, 0.4);
-    filter: saturate(1.3) brightness(1.1);
-}
-
-.cultural-icon {
-    width: min(40vw, 320px);
-    height: min(40vw, 320px);
-    max-width: 450px;
-    max-height: 450px;
-    box-shadow: 0 25px 50px rgba(253, 203, 110, 0.3);
-    animation: pulse 2s ease-in-out infinite;
-    filter: sepia(0.2) brightness(1.2);
-}
-
-.bank-icon {
-    width: min(38vw, 300px);
-    height: min(38vw, 300px);
-    max-width: 420px;
-    max-height: 420px;
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
-    filter: grayscale(0.3) brightness(0.9);
-}
-
-.network-lines {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-}
-
-.progress-bar {
-    width: min(80vw, 400px);
-    height: 12px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    overflow: hidden;
-    margin: 20px auto;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    width: 0%;
-    border-radius: 6px;
-    transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #667eea;
-    border-radius: 50%;
-    opacity: 0.8;
-}
-
-.image-placeholder {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+        /* Media Queries for better responsiveness */
+        @media (min-width: 768px) {
+            .title-slide, .slide img {
+                height: 400px;
+            }
+            
+            .main-title {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .person-name {
+                font-size: 20px;
+            }
+            
+            .person-business {
+                font-size: 16px;
+            }
+            
+            .follow-message {
+                font-size: 32px;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .slideshow-container {
+                border-radius: 10px;
+            }
+            
+            .title-slide, .slide img {
+                height: 225px;
+            }
+            
+            .main-title {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+            
+            .person-info {
+                padding: 12px 8px;
+            }
+            
+            .person-name {
+                font-size: 14px;
+            }
+            
+            .person-business {
+                font-size: 12px;
+            }
+            
+            .follow-message {
+                font-size: 18px;
+                padding: 15px 10px;
+                height: 225px;
+            }
+            
+            .prev, .next {
+                padding: 8px 12px;
+                font-size: 14px;
+                min-width: 70px;
+            }
+            .person-wealth {
     font-weight: bold;
-    z-index: 2;
-    position: relative;
+    color: #2e8b57;
+    margin-top: 4px;
 }
 
-.digital-grid {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridMove 10s linear infinite;
-}
-
-.logo-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 700;
-    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: center;
-    animation: textShine 3s ease-in-out infinite;
-}
-
-.subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 10px;
-    animation: fadeInUp 1s ease-out;
-}
-
-/* Scene-specific positioning */
-#scene1 .visual-element:first-child {
-    top: 40%;
-    left: 30%;
-}
-
-#scene1 .visual-element:nth-child(2) {
-    top: 70%;
-    left: 70%;
-}
-
-#scene2 .visual-element {
-    top: 50%;
-    left: 50%;
-}
-
-#scene3 .visual-element {
-    top: 30%;
-    left: 50%;
-}
-
-#scene4 .visual-element:nth-child(1) {
-    top: 20%;
-    left: 20%;
-}
-
-#scene4 .visual-element:nth-child(2) {
-    top: 20%;
-    left: 80%;
-}
-
-#scene4 .visual-element:nth-child(3) {
-    top: 70%;
-    left: 30%;
-}
-
-#scene4 .visual-element:nth-child(4) {
-    top: 70%;
-    left: 70%;
-}
-
-#scene5 .visual-element {
-    top: 30%;
-    left: 50%;
-}
-
-@keyframes float {
-    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-    50% { transform: translate(-50%, calc(-50% - 20px)) rotate(5deg); }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 25px 50px rgba(253, 203, 110, 0.3); }
-    50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 30px 60px rgba(253, 203, 110, 0.5); }
-}
-
-@keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
-}
-
-@keyframes textShine {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.3) drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
-}
-
-@keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInLeft {
-    0% { opacity: 0; transform: translate(-100%, -50%); }
-    100% { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-@keyframes slideInRight {
-    0% { opacity: 0; transform: translate(100%, -50%); }
-    100% { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-@keyframes zoomIn {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes morphTransform {
-    0% { border-radius: 50%; transform: translate(-50%, -50%) rotate(0deg); }
-    50% { border-radius: 20%; transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
-    100% { border-radius: 10px; transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.morph-element {
-    animation: morphTransform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-/* Mobile and Tablet Responsiveness */
-@media (max-width: 1024px) {
-    .phone-icon {
-        width: min(40vw, 300px);
-        height: min(40vw, 300px);
-    }
-    
-    .cultural-icon {
-        width: min(45vw, 350px);
-        height: min(45vw, 350px);
-    }
-    
-    .money-icon {
-        width: min(35vw, 280px);
-        height: min(35vw, 280px);
-    }
-    
-    .bank-icon {
-        width: min(42vw, 320px);
-        height: min(42vw, 320px);
-    }
-}
-
-@media (max-width: 768px) {
-    .phone-icon {
-        width: min(45vw, 250px);
-        height: min(45vw, 250px);
-    }
-    
-    .cultural-icon {
-        width: min(50vw, 280px);
-        height: min(50vw, 280px);
-    }
-    
-    .money-icon {
-        width: min(40vw, 220px);
-        height: min(40vw, 220px);
-    }
-    
-    .bank-icon {
-        width: min(47vw, 260px);
-        height: min(47vw, 260px);
-    }
-    
-    .progress-bar {
-        width: 85vw;
-        height: 10px;
-    }
-    
-    .image-placeholder {
-        font-size: clamp(1.2rem, 3.5vw, 2rem);
-    }
-
-    /* Stack elements vertically on smaller screens */
-    #scene1 .visual-element:first-child,
-    #scene1 .visual-element:nth-child(2) {
-        left: 50%;
-    }
-    
-    #scene1 .visual-element:first-child {
-        top: 30%;
-    }
-    
-    #scene1 .visual-element:nth-child(2) {
-        top: 65%;
-    }
-    
-    #scene4 .visual-element:nth-child(1),
-    #scene4 .visual-element:nth-child(2) {
-        top: 20%;
-    }
-    
-    #scene4 .visual-element:nth-child(3),
-    #scene4 .visual-element:nth-child(4) {
-        top: 60%;
-    }
-    
-    #scene4 .visual-element:nth-child(1),
-    #scene4 .visual-element:nth-child(3) {
-        left: 30%;
-    }
-    
-    #scene4 .visual-element:nth-child(2),
-    #scene4 .visual-element:nth-child(4) {
-        left: 70%;
-    }
-}
-
-@media (max-width: 480px) {
-    .phone-icon {
-        width: min(55vw, 200px);
-        height: min(55vw, 200px);
-    }
-    
-    .cultural-icon {
-        width: min(60vw, 220px);
-        height: min(60vw, 220px);
-    }
-    
-    .money-icon {
-        width: min(50vw, 180px);
-        height: min(50vw, 180px);
-    }
-    
-    .bank-icon {
-        width: min(57vw, 210px);
-        height: min(57vw, 210px);
-    }
-    
-    .progress-bar {
-        width: 90vw;
-        height: 8px;
-    }
-    
-    .image-placeholder {
-        font-size: clamp(1rem, 3vw, 1.5rem);
-    }
-
-    /* Further adjustments for mobile */
-    #scene4 .visual-element:nth-child(1),
-    #scene4 .visual-element:nth-child(2) {
-        top: 15%;
-    }
-    
-    #scene4 .visual-element:nth-child(3),
-    #scene4 .visual-element:nth-child(4) {
-        top: 55%;
-    }
-}
-
-.play-button {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border: none;
-    border-radius: 50%;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.play-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
-}
-
-@media (max-width: 768px) {
-    .play-button {
-        width: 50px;
-        height: 50px;
-        font-size: 16px;
-        bottom: 20px;
-        right: 20px;
-    }
-}
+            .dot {
+                height: 8px;
+                width: 8px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="motion-container" id="motionContainer">
-        <div class="digital-grid"></div>
+    <div class="slideshow-container">
+        <!-- Title Slide -->
+        <div class="slide title-slide">
+            <div class="title-container">
+                <h1 class="main-title">TOP 10 RICHEST PEOPLE IN THE GAMBIA</h1>
+                <div class="title-decoration"></div>
+                <div class="subtitle">PART 2</div>
+            </div>
+        </div>
         
-        <!-- Scene 1: Traditional Banking Challenges -->
-        <div class="scene active" id="scene1">
-            <div class="background-overlay"></div>
-            <div class="scene-content">
-                <div class="visual-element" style="top: 30%; left: 20%;">
-                    <div class="bank-icon visual-asset" data-image="bank">
-                        <div class="image-placeholder">BANK</div>
-                    </div>
-                </div>
-                <div class="visual-element" style="top: 60%; right: 20%;">
-                    <div class="cultural-icon visual-asset" data-image="traditional-money">
-                        <div class="image-placeholder">CASH</div>
-                    </div>
-                </div>
-                
-            </div>
+      <!-- Slide 6 -->
+<div class="slide">
+    <img src="https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/CD92/production/_89862625_89862624.jpg" alt="Amadou Gillen">
+    <div class="person-info">
+        <div class="person-name">
+            <i class="fas fa-crown"></i> 5. Amadou Gillen
         </div>
+        <div class="person-business">Lottery Winner (UK National Lottery)</div>
+        <div class="person-wealth">Net Worth: ≈ $80 Million</div>
+    </div>
+</div>
 
-        <!-- Scene 2: Mobile Revolution Begins -->
-        <div class="scene" id="scene2">
-            <div class="background-overlay"></div>
-            <div class="scene-content">
-                <div class="visual-element" style="top: 40%; left: 50%; transform: translate(-50%, -50%);">
-                    <div class="phone-icon visual-asset morph-element" data-image="mobile-phone">
-                        <div class="image-placeholder">PHONE</div>
-                    </div>
-                </div>
-                <div class="network-lines"></div>
-                
-            </div>
+<!-- Slide 7 -->
+<div class="slide">
+    <img src="https://news.bbcimg.co.uk/media/images/61229000/jpg/_61229160_mjah1.jpg" alt="Muhammed Jah">
+    <div class="person-info">
+        <div class="person-name">
+            <i class="fas fa-crown"></i> 4. Muhammed Jah
         </div>
+        <div class="person-business">QuantumNet Group / QCell</div>
+        <div class="person-wealth">Net Worth: ≈ $1.65 Million</div>
+    </div>
+</div>
 
-        <!-- Scene 3: Rapid Adoption -->
-        <div class="scene" id="scene3">
-            <div class="background-overlay"></div>
-            <div class="scene-content">
-                <div class="visual-element" style="top: 20%; left: 50%; transform: translateX(-50%);">
-                    <div class="phone-icon visual-asset" data-image="mobile-money-app">
-                        <div class="image-placeholder">APP</div>
-                    </div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="adoptionProgress"></div>
-                </div>
-                
-            </div>
+<!-- Slide 8 -->
+<div class="slide">
+    <img src="https://foroyaa.net/wp-content/uploads/2019/09/Mr.-Samba.jpg" alt="Amadou Samba">
+    <div class="person-info">
+        <div class="person-name">
+            <i class="fas fa-crown"></i> 3. Amadou Samba
         </div>
+        <div class="person-business">Real Estate, Bottling, Cement</div>
+        <div class="person-wealth">Net Worth: $30+ Million</div>
+    </div>
+</div>
 
-        <!-- Scene 4: Cultural Transformation -->
-        <div class="scene" id="scene4">
-            <div class="background-overlay"></div>
-            <div class="scene-content">
-                <div class="visual-element" style="top: 20%; left: 15%;">
-                    <div class="money-icon visual-asset" data-image="digital-payment">
-                        <div class="image-placeholder">PAY</div>
-                    </div>
-                </div>
-                <div class="visual-element" style="top: 25%; right: 15%;">
-                    <div class="phone-icon visual-asset" data-image="smartphone">
-                        <div class="image-placeholder">SMART</div>
-                    </div>
-                </div>
-                <div class="visual-element" style="bottom: 30%; left: 25%;">
-                    <div class="cultural-icon visual-asset" data-image="local-shop">
-                        <div class="image-placeholder">SHOP</div>
-                    </div>
-                </div>
-                <div class="visual-element" style="bottom: 35%; right: 25%;">
-                    <div class="money-icon visual-asset" data-image="mobile-wallet">
-                        <div class="image-placeholder">WALLET</div>
-                    </div>
-                </div>
-               
-            </div>
+<!-- Slide 9 -->
+<div class="slide">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPd5Oqxcr9sucNWjPw8aoY1M1197eBeRJHfg&s" alt="Basiru Jawara">
+    <div class="person-info">
+        <div class="person-name">
+            <i class="fas fa-crown"></i> 2. Basiru Jawara
         </div>
+        <div class="person-business">Diamonds, Hospitality, Real Estate</div>
+        <div class="person-wealth">Net Worth: Tens to Hundreds of Millions</div>
+    </div>
+</div>
 
-        <!-- Scene 5: Modern Gambia -->
-        <div class="scene" id="scene5">
-            <div class="background-overlay"></div>
-            <div class="scene-content">
-                <div class="visual-element" style="top: 30%; left: 50%; transform: translateX(-50%);">
-                    <div class="cultural-icon visual-asset" data-image="gambia-flag">
-                        <div class="image-placeholder">GAMBIA</div>
-                    </div>
-                </div>
-                <div style="margin-top: 120px;">
-                    <div class="logo-text"></div>
-                    <div class="subtitle"></div>
-                </div>
-            </div>
+<!-- Slide 10 -->
+<div class="slide">
+    <img src="https://mybroadband.co.za/news/wp-content/uploads/2015/11/Alieu-Conteh.jpg" alt="Alieu Conteh">
+    <div class="person-info">
+        <div class="person-name">
+            <i class="fas fa-crown"></i> 1. Alieu Conteh
+        </div>
+        <div class="person-business">Telecom (Vodacom Congo)</div>
+        <div class="person-wealth">Net Worth: Nearly $1 Billion</div>
+    </div>
+</div>
+
+
+        
+        <!-- Follow Message Slide -->
+        <div class="slide">
+            <div class="follow-message">FOLLOW FOR MORE <i class="fas fa-arrow-right"></i></div>
+        </div>
+        
+        <!-- Navigation buttons -->
+        <div class="navigation">
+            <button class="prev">❮ Prev</button>
+            <button class="next">Next ❯</button>
+        </div>
+        
+        <!-- Dots indicators -->
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
         </div>
     </div>
-
-    <button class="play-button" id="playButton" onclick="startAnimation()" style="display: none;">▶</button>
-
+    
     <script>
-        class MotionGraphic {
-            constructor() {
-                this.currentScene = 0;
-                this.scenes = document.querySelectorAll('.scene');
-                this.totalScenes = this.scenes.length;
-                this.animationTimeline = [];
-                this.particles = [];
-                this.isPlaying = false;
-                
-                // Image URL configuration - ready for real URLs
-                this.imageUrls = {
-                    'bank': 'https://p.turbosquid.com/ts-thumb/N7/hTLSYR/Jg/cartoon_bank_building_red_360/png/1661201478/1920x1080/turn_fit_q99/938101f356a7e936cc1fee3a4b7b09b73f72c974/cartoon_bank_building_red_360-1.jpg',
-                    'traditional-money': 'https://www.leftovercurrency.com/app/uploads/2023/10/current-gambian-dalasis-banknotes.jpg',
-                    'mobile-phone': 'https://media.istockphoto.com/id/1223365194/vector/hands-with-smartphones.jpg?s=612x612&w=0&k=20&c=U882QpMsgzhMQS7TeUtwSYOGMbJFjUwQ9M8OodFrSkI=',
-                    'mobile-money-app': 'https://thepoint.gm/assets/Featured-Articles/wave.png',
-                    'digital-payment': 'https://img.freepik.com/premium-psd/3d-cartoon-design-illustration-digital-wallet-mobile-banking-application-online-payments-transfer-saving-money-concept_68971-1813.jpg',
-                    'smartphone': 'https://media.istockphoto.com/id/1223365194/vector/hands-with-smartphones.jpg?s=612x612&w=0&k=20&c=U882QpMsgzhMQS7TeUtwSYOGMbJFjUwQ9M8OodFrSkI=',
-                    'local-shop': 'https://www.observernews.net/wp-content/uploads/2020/12/shop-locally.jpg',
-                    'mobile-wallet': 'https://img.freepik.com/premium-vector/e-wallet-concept-people-cartoon-character-making-payment-with-smartphone-mobile-shopping-money-transaction-technology-flat-design-style-illustration_1207-972.jpg',
-                    'gambia-flag': 'https://www.shutterstock.com/shutterstock/videos/3482071657/thumb/1.jpg?ip=x480'
-                };
-                
-                this.initializeTimeline();
-                this.loadImages();
-                this.createParticles();
-            }
-
-            // Method to update image URLs - call this when real URLs are provided
-            updateImageUrls(newUrls) {
-                this.imageUrls = { ...this.imageUrls, ...newUrls };
-                this.loadImages();
-            }
-
-            loadImages() {
-                const visualAssets = document.querySelectorAll('.visual-asset');
-                visualAssets.forEach(asset => {
-                    const imageKey = asset.getAttribute('data-image');
-                    if (imageKey && this.imageUrls[imageKey]) {
-                        // Preload image
-                        const img = new Image();
-                        img.onload = () => {
-                            asset.style.backgroundImage = `url(${this.imageUrls[imageKey]})`;
-                            // Hide placeholder text once image loads
-                            const placeholder = asset.querySelector('.image-placeholder');
-                            if (placeholder) {
-                                placeholder.style.opacity = '0';
-                            }
-                        };
-                        img.onerror = () => {
-                            console.warn(`Failed to load image: ${this.imageUrls[imageKey]}`);
-                            // Keep placeholder visible if image fails to load
-                        };
-                        img.src = this.imageUrls[imageKey];
-                    }
-                });
-            }
-
-            initializeTimeline() {
-                // Scene timing and transitions (30 seconds total)
-                this.animationTimeline = [
-                    { scene: 0, duration: 4000, caption: "Traditional banking was limited in The Gambia" },
-                    { scene: 1, duration: 5000, caption: "Mobile technology began to emerge" },
-                    { scene: 2, duration: 7000, caption: "Adoption rates skyrocketed rapidly" },
-                    { scene: 3, duration: 8000, caption: "Cultural transformation took place" },
-                    { scene: 4, duration: 6000, caption: "The Gambia became digitally transformed" }
-                ];
-            }
-
-            createParticles() {
-                const container = document.getElementById('motionContainer');
-                for (let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 3 + 's';
-                    particle.style.animation = `float ${3 + Math.random() * 2}s ease-in-out infinite`;
-                    container.appendChild(particle);
-                    this.particles.push(particle);
-                }
-            }
-
-            easeInOutCubic(t) {
-                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-            }
-
-            animateProgressBar() {
-                const progressFill = document.getElementById('adoptionProgress');
-                let width = 0;
-                const interval = setInterval(() => {
-                    if (width >= 100) {
-                        clearInterval(interval);
-                    } else {
-                        width += 2;
-                        progressFill.style.width = width + '%';
-                    }
-                }, 50);
-            }
-
-            addAdvancedEffects(sceneIndex) {
-                const scene = this.scenes[sceneIndex];
-                const elements = scene.querySelectorAll('.visual-element');
-                
-                elements.forEach((element, index) => {
-                    const delay = index * 200;
-                    setTimeout(() => {
-                        element.style.animation = `slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
-                        if (index % 2 === 1) {
-                            element.style.animation = `slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
-                        }
-                    }, delay);
-                });
-
-                // Special effects for specific scenes
-                switch (sceneIndex) {
-                    case 1:
-                        this.createNetworkEffect();
-                        break;
-                    case 2:
-                        this.animateProgressBar();
-                        break;
-                    case 3:
-                        this.createFloatingElements();
-                        break;
-                }
-            }
-
-            createNetworkEffect() {
-                const scene = this.scenes[1];
-                const networkLines = scene.querySelector('.network-lines');
-                if (networkLines) {
-                    networkLines.style.animation = 'pulse 2s ease-in-out infinite';
-                }
-            }
-
-            createFloatingElements() {
-                const scene = this.scenes[3];
-                const elements = scene.querySelectorAll('.visual-element');
-                elements.forEach((element, index) => {
-                    element.style.animation = `float ${2 + index * 0.5}s ease-in-out infinite`;
-                    element.style.animationDelay = index * 0.3 + 's';
-                });
-            }
-
-            transitionToScene(sceneIndex) {
-                // Hide current scene
-                this.scenes.forEach(scene => {
-                    scene.classList.remove('active');
-                });
-
-                // Show new scene with advanced transition
-                setTimeout(() => {
-                    if (sceneIndex < this.totalScenes) {
-                        this.scenes[sceneIndex].classList.add('active');
-                        this.addAdvancedEffects(sceneIndex);
-                        this.currentScene = sceneIndex;
-                    }
-                }, 400);
-            }
-
-            async startSequence() {
-                if (this.isPlaying) return;
-                
-                this.isPlaying = true;
-                
-                for (let i = 0; i < this.animationTimeline.length; i++) {
-                    const timelineItem = this.animationTimeline[i];
-                    
-                    // Sync with invisible caption timing
-                    this.syncWithCaption(timelineItem.caption);
-                    
-                    // Transition to scene
-                    this.transitionToScene(timelineItem.scene);
-                    
-                    // Wait for scene duration
-                    await this.wait(timelineItem.duration);
-                }
-                
-                // Reset animation for next loop
-                this.resetAnimation();
-                this.isPlaying = false;
-            }
-
-            syncWithCaption(caption) {
-                // This method would sync with voiceover timing
-                // Using data attributes or invisible elements for timing
-                console.log(`Caption sync: ${caption}`);
-            }
-
-            wait(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
-
-            resetAnimation() {
-                this.currentScene = 0;
-                this.scenes.forEach((scene, index) => {
-                    scene.classList.remove('active');
-                    if (index === 0) scene.classList.add('active');
-                });
-                
-                // Reset progress bar
-                const progressFill = document.getElementById('adoptionProgress');
-                if (progressFill) progressFill.style.width = '0%';
-            }
-
-            // Advanced animation utilities
-            createCustomBezier(x1, y1, x2, y2) {
-                return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`;
-            }
-
-            applyParallaxEffect() {
-                const particles = this.particles;
-                particles.forEach((particle, index) => {
-                    const speed = 0.5 + (index % 3) * 0.3;
-                    particle.style.transform = `translateY(${window.scrollY * speed}px)`;
-                });
-            }
+        let slideIndex = 1;
+        showSlide(slideIndex);
+        
+        function plusSlides(n) {
+            showSlide(slideIndex += n);
         }
-
-        // Initialize the motion graphic
-        const motionGraphic = new MotionGraphic();
-
-        // Function to update with real image URLs when provided
-        function updateWithRealImages(imageUrls) {
-            motionGraphic.updateImageUrls(imageUrls);
+        
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
         }
-
-        // Example of how to use real URLs (replace with actual URLs when provided):
-        /*
-        const realImageUrls = {
-            'bank': 'https://example.com/bank-building.jpg',
-            'traditional-money': 'https://example.com/cash-money.jpg',
-            'mobile-phone': 'https://example.com/mobile-phone.jpg',
-            'mobile-money-app': 'https://example.com/app-interface.jpg',
-            'digital-payment': 'https://example.com/digital-payment.jpg',
-            'smartphone': 'https://example.com/smartphone.jpg',
-            'local-shop': 'https://example.com/local-market.jpg',
-            'mobile-wallet': 'https://example.com/mobile-wallet.jpg',
-            'gambia-flag': 'https://example.com/gambia-flag.jpg'
-        };
-        updateWithRealImages(realImageUrls);
-        */
-
-        // Global function for play button
-        function startAnimation() {
-            motionGraphic.startSequence();
+        
+        function showSlide(n) {
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            
+            // Remove active class from all dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            // Show the current slide
+            slides[slideIndex - 1].classList.add("active");
+            dots[slideIndex - 1].classList.add("active");
         }
-
-        // Auto-start animation after 2 seconds and loop continuously
-        setTimeout(() => {
-            startContinuousLoop();
-        }, 2000);
-
-        function startContinuousLoop() {
-            motionGraphic.startSequence();
-            // Set up continuous looping
-            setInterval(() => {
-                motionGraphic.startSequence();
-            }, 34000); // Loop every 34 seconds (30s animation + 4s buffer)
-        }
-
-        // Responsive handling
-        window.addEventListener('resize', () => {
-            // Adjust particle positions and effects for different screen sizes
-            motionGraphic.particles.forEach(particle => {
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-            });
+        
+        // Add event listeners to buttons
+        document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
+        document.querySelector('.next').addEventListener('click', () => plusSlides(1));
+        
+        // Initialize the first slide as active
+        document.querySelector('.slide').classList.add('active');
+        document.querySelector('.dot').classList.add('active');
+        
+        // Auto slide functionality
+        let slideInterval = setInterval(() => {
+            plusSlides(1);
+        }, 5000);
+        
+        // Pause auto slide on hover
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        slideshowContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
         });
-
-        // Add performance optimization
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Pause animations when tab is not visible
-                document.body.style.animationPlayState = 'paused';
-            } else {
-                document.body.style.animationPlayState = 'running';
-            }
+        
+        slideshowContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(() => {
+                plusSlides(1);
+            }, 5000);
         });
     </script>
 </body>
