@@ -3,580 +3,749 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 10 Richest People in The Gambia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;700&display=swap');
-        
+    <title>Modem Pay - Digital Payments for The Gambia</title>
+    <meta name="description" content="Modem Pay empowers digital payments in The Gambia with seamless, secure payment APIs">
+    <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 10px;
-            overflow-x: hidden;
-            width: 100%;
-        }
-        
-        .slideshow-container {
-            width: 100%;
-            max-width: 800px;
-            position: relative;
-            margin: 0 auto;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
+            margin: 0;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        /* Title slide styling */
-        .title-slide {
-            background: url('https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 300px;
+        #container {
+            width: 100vw;
+            height: 100vh;
             position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
         }
         
-        .title-slide:before {
-            content: '';
+        .scene {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+            will-change: transform, opacity;
         }
         
-        .title-container {
-            position: relative;
-            z-index: 2;
-            padding: 20px;
-            text-align: center;
-            width: 100%;
+        .scene.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
         }
         
-        .main-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: white;
-            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
+        .scene.exit {
+            opacity: 0;
+            transform: translateY(-30px) scale(1.05);
+            transition: all 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        }
+        
+        .logo {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 900;
+            color: #0066cc;
             letter-spacing: 2px;
-            line-height: 1.3;
-            position: relative;
+            margin-bottom: 30px;
+            transform: scale(0.8);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+            text-shadow: 0 2px 4px rgba(0,102,204,0.1);
         }
         
-        .title-decoration {
-            width: 80%;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, #f39c12, transparent);
-            margin: 15px auto;
-            position: relative;
-        }
-        
-        .title-decoration:before, .title-decoration:after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f39c12;
-            border-radius: 50%;
-            top: -3px;
-        }
-        
-        .title-decoration:before {
-            left: 0;
-        }
-        
-        .title-decoration:after {
-            right: 0;
-        }
-        
-        .subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 3px;
-            font-weight: 300;
-            margin-top: 15px;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-            display: inline-block;
-            padding: 0 20px;
-        }
-        
-        .subtitle:before, .subtitle:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 20px;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .subtitle:before {
-            left: -10px;
-        }
-        
-        .subtitle:after {
-            right: -10px;
-        }
-        
-        /* Person slides styling */
-        .slide {
-            display: none;
-            background-color: rgba(16, 27, 39, 0.8);
-            text-align: center;
-            position: relative;
-            width: 100%;
+        .logo-image {
+            width: 180px;
             height: auto;
+            max-width: 250px;
+            object-fit: contain;
+            margin-bottom: 30px;
+            transform: scale(0.8);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+            filter: drop-shadow(0 2px 4px rgba(0,102,204,0.1));
         }
         
-        .slide.active {
+        .scene.active .logo {
+            transform: scale(1);
+        }
+        
+        .scene.active .logo-image {
+            transform: scale(1);
+        }
+        
+        h1 {
+            color: #0066cc;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            text-align: center;
+            margin: 20px;
+            max-width: 90%;
+            line-height: 1.2;
+            transform: translateX(-20px);
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s, 
+                        opacity 0.7s ease-out 0.3s;
+            opacity: 0;
+            font-weight: 700;
+        }
+        
+        .scene.active h1 {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, #0066cc 0%, #00a3ad 50%, #0099cc 100%);
+            opacity: 0;
+            border-radius: 45%;
+            animation: waveMotion 20s linear infinite;
+            z-index: -1;
+            transition: opacity 0.8s ease-in-out 0.4s;
+            will-change: transform;
+        }
+        
+        .scene.active .wave {
+            opacity: 0.08;
+        }
+        
+        @keyframes waveMotion {
+            0% { transform: rotate(0deg) translateX(-25%) translateY(-10%); }
+            50% { transform: rotate(180deg) translateX(10%) translateY(5%); }
+            100% { transform: rotate(360deg) translateX(-25%) translateY(-10%); }
+        }
+        
+        .problems-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .problem-icon {
+            width: 80px;
+            height: 80px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            position: relative;
+            transform: scale(0) rotate(90deg);
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #666;
+            border: 2px solid #f0f0f0;
+            overflow: hidden;
+        }
+        
+        .problem-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(0.7);
+        }
+        
+        .problem-icon-text {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #666;
+            text-align: center;
+        }
+        
+        .scene.active .problem-icon:nth-child(1) {
+            transform: scale(1) rotate(0deg);
+            transition-delay: 0.3s;
+        }
+        
+        .scene.active .problem-icon:nth-child(2) {
+            transform: scale(1) rotate(0deg);
+            transition-delay: 0.5s;
+        }
+        
+        .x-mark {
+            position: absolute;
+            color: #e74c3c;
+            font-size: 28px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            top: -8px;
+            right: -8px;
+            background: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+        }
+        
+        .scene.active .x-mark {
+            opacity: 1;
+            transform: scale(1);
+            transition-delay: 0.8s;
+            animation: shake 0.4s ease-in-out 1.1s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-3deg); }
+            75% { transform: scale(1.1) rotate(3deg); }
+        }
+        
+        .solutions-container {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .solution-item {
+            text-align: center;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            min-width: 120px;
+        }
+        
+        .scene.active .solution-item:nth-child(1) {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.4s;
+        }
+        
+        .scene.active .solution-item:nth-child(2) {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.6s;
+        }
+        
+        .scene.active .solution-item:nth-child(3) {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.8s;
+        }
+        
+        .solution-icon {
+            font-size: 40px;
+            transform: scale(0) rotateY(180deg);
+            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-bottom: 10px;
             display: block;
         }
         
-        .slide img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            object-position: center;
-            filter: brightness(0.85);
-            transition: all 0.5s ease;
-            background-color: #0a1622;
+        .scene.active .solution-item:nth-child(1) .solution-icon {
+            transform: scale(1) rotateY(0deg);
+            transition-delay: 0.8s;
+            animation: popBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.8s;
         }
         
-        .slide:hover img {
-            filter: brightness(0.75);
+        .scene.active .solution-item:nth-child(2) .solution-icon {
+            transform: scale(1) rotateY(0deg);
+            transition-delay: 1.2s;
+            animation: popBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.2s;
         }
         
-        .person-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 15px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3), transparent);
-            transition: all 0.4s ease;
-            z-index: 5;
+        .scene.active .solution-item:nth-child(3) .solution-icon {
+            transform: scale(1) rotateY(0deg);
+            transition-delay: 1.6s;
+            animation: popBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.6s;
         }
         
-        .person-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        @keyframes popBounce {
+            0% { transform: scale(0) rotateY(180deg); }
+            50% { transform: scale(1.3) rotateY(90deg); }
+            70% { transform: scale(0.9) rotateY(45deg); }
+            85% { transform: scale(1.1) rotateY(10deg); }
+            100% { transform: scale(1) rotateY(0deg); }
+        }
+        
+        .features-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-        
-        .person-business {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 300;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-        }
-        
-        .wealth-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
-            z-index: 6;
-        }
-        
-        .slide:hover .person-info {
-            padding-bottom: 25px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2), transparent);
-        }
-        
-        /* Follow message slide */
-        .follow-message {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-            padding: 30px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 300px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .follow-message:before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #27ae60, #2ecc71, #27ae60);
-            background-size: 400% 400%;
-            z-index: -1;
-            filter: blur(10px);
-            animation: gradientAnimation 8s ease infinite;
-        }
-        
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        /* Navigation buttons */
-        .navigation {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-            width: 100%;
-        }
-        
-        .prev, .next {
-            cursor: pointer;
-            padding: 10px 15px;
-            color: white;
-            font-weight: bold;
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            border: none;
-            border-radius: 30px;
-            margin: 0 8px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            min-width: 80px;
-        }
-        
-        .prev:before, .next:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .prev:hover:before, .next:hover:before {
-            left: 100%;
-        }
-        
-        .prev:hover, .next:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #e67e22, #f39c12);
-        }
-        
-        /* Dot indicators */
-        .dots-container {
-            text-align: center;
-            margin: 15px 0;
-            display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 8px;
-            padding: 0 10px;
-            width: 100%;
+            justify-content: center;
+            gap: 20px;
+            max-width: 800px;
         }
         
-        .dot {
-            height: 10px;
-            width: 10px;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
+        .feature-card {
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 15px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transform: translateY(40px) rotateX(15deg);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(0,102,204,0.1);
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .scene.active .feature-card:nth-child(1) {
+            transform: translateY(0) rotateX(0deg);
+            opacity: 1;
+            transition-delay: 0.3s;
+        }
+        
+        .scene.active .feature-card:nth-child(2) {
+            transform: translateY(0) rotateX(0deg);
+            opacity: 1;
+            transition-delay: 0.5s;
+        }
+        
+        .scene.active .feature-card:nth-child(3) {
+            transform: translateY(0) rotateX(0deg);
+            opacity: 1;
+            transition-delay: 0.7s;
+        }
+        
+        .feature-icon {
+            font-size: 30px;
+            color: #00a3ad;
+            transform: scale(0) rotate(180deg);
+            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .scene.active .feature-card:nth-child(1) .feature-icon {
+            transform: scale(1) rotate(0deg);
+            transition-delay: 0.7s;
+            animation: featurePop 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.7s;
+        }
+        
+        .scene.active .feature-card:nth-child(2) .feature-icon {
+            transform: scale(1) rotate(0deg);
+            transition-delay: 1.1s;
+            animation: featurePop 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.1s;
+        }
+        
+        .scene.active .feature-card:nth-child(3) .feature-icon {
+            transform: scale(1) rotate(0deg);
+            transition-delay: 1.5s;
+            animation: featurePop 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.5s;
+        }
+        
+        @keyframes featurePop {
+            0% { 
+                transform: scale(0) rotate(180deg);
+                opacity: 0;
+            }
+            30% { 
+                transform: scale(1.4) rotate(90deg);
+                opacity: 0.7;
+            }
+            60% { 
+                transform: scale(0.8) rotate(30deg);
+                opacity: 0.9;
+            }
+            80% { 
+                transform: scale(1.2) rotate(-10deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #0066cc 0%, #00a3ad 100%);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin: 30px 20px 20px;
+            box-shadow: 0 8px 25px rgba(0,102,204,0.25);
+            transform: scale(0.85) translateY(20px);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: inline-block;
-            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            border: none;
             cursor: pointer;
-            position: relative;
-            border: 2px solid transparent;
         }
         
-        .dot:hover {
-            transform: scale(1.2);
+        .scene.active .cta-button {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            transition-delay: 0.4s;
         }
         
-        .dot.active {
-            background-color: #f39c12;
-            transform: scale(1.3);
-            box-shadow: 0 0 10px #f39c12;
-            border: 2px solid white;
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,102,204,0.35);
+            transition: all 0.3s ease;
         }
-
-        /* Media Queries for better responsiveness */
-        @media (min-width: 768px) {
-            .title-slide, .slide img {
-                height: 400px;
+        
+        .cta-button:active {
+            transform: scale(0.98) translateY(-1px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .solutions-container {
+                gap: 20px;
             }
             
-            .main-title {
-                font-size: 36px;
+            .solution-item {
+                min-width: 100px;
             }
             
-            .subtitle {
-                font-size: 18px;
+            .features-container {
+                gap: 15px;
             }
             
-            .person-name {
-                font-size: 20px;
+            .feature-card {
+                width: 160px;
+                padding: 20px 15px;
             }
             
-            .person-business {
-                font-size: 16px;
+            .problems-container {
+                gap: 15px;
             }
             
-            .follow-message {
-                font-size: 32px;
-                height: 400px;
+            .problem-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 0.7rem;
             }
         }
         
         @media (max-width: 480px) {
-            body {
-                padding: 5px;
+            .cta-button {
+                padding: 15px 25px;
+                font-size: 1rem;
             }
             
-            .slideshow-container {
-                border-radius: 10px;
+            .feature-card {
+                width: 140px;
+            }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
             
-            .title-slide, .slide img {
-                height: 225px;
+            .wave {
+                animation: none;
             }
-            
-            .main-title {
-                font-size: 20px;
-                margin-bottom: 8px;
-            }
-            
-            .person-info {
-                padding: 12px 8px;
-            }
-            
-            .person-name {
-                font-size: 14px;
-            }
-            
-            .person-business {
-                font-size: 12px;
-            }
-            
-            .follow-message {
-                font-size: 18px;
-                padding: 15px 10px;
-                height: 225px;
-            }
-            
-            .prev, .next {
-                padding: 8px 12px;
-                font-size: 14px;
-                min-width: 70px;
-            }
-            .person-wealth {
-    font-weight: bold;
-    color: #2e8b57;
-    margin-top: 4px;
-}
-
-            .dot {
-                height: 8px;
-                width: 8px;
-            }
+        }
+        
+        /* Focus styles for accessibility */
+        .cta-button:focus {
+            outline: 3px solid rgba(0,102,204,0.5);
+            outline-offset: 2px;
+        }
+        
+        /* Performance optimizations */
+        .scene, .logo, .problem-icon, .solution-item, .feature-card, .cta-button, .wave {
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
     </style>
 </head>
 <body>
-    <div class="slideshow-container">
-        <!-- Title Slide -->
-        <div class="slide title-slide">
-            <div class="title-container">
-                <h1 class="main-title">TOP 10 RICHEST PEOPLE IN THE GAMBIA</h1>
-                <div class="title-decoration"></div>
-                <div class="subtitle">PART 2</div>
+    <div id="container" role="main">
+        <!-- Scene 1: Logo -->
+        <div class="scene" id="scene1" aria-label="Modem Pay Logo">
+            <!-- Replace with your actual logo URL -->
+            <img src="https://modempay.com/android-chrome-192x192.png" 
+                 alt="Modem Pay Logo" 
+                 class="logo-image" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                 role="img" 
+                 aria-label="Modem Pay">
+            <div class="logo" style="display: none;" role="img" aria-label="Modem Pay">MODEM PAY</div>
+        </div>
+        
+        <!-- Scene 2: Tagline -->
+        <div class="scene" id="scene2" aria-label="Company Mission">
+            <div class="wave" aria-hidden="true"></div>
+            <h1>Empowering digital payments in The Gambia</h1>
+        </div>
+        
+        <!-- Scene 3: Problem -->
+        <div class="scene" id="scene3" aria-label="Current Payment Problems">
+            <div class="problems-container">
+                <div class="problem-icon" role="img" aria-label="Cash payments marked as outdated">
+                    <!-- Replace with your actual cash icon URL -->
+                    <img src="https://png.pngtree.com/png-clipart/20221113/ourmid/pngtree-200-gambian-dalasi-stack-pile-png-image_6444250.png" 
+                         alt="Cash payments" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="problem-icon-text" style="display: none;">CASH</div>
+                    <div class="x-mark" aria-hidden="true">✕</div>
+                </div>
+                <div class="problem-icon" role="img" aria-label="POS systems marked as outdated">
+                    <!-- Replace with your actual POS icon URL -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Card_Terminal_POS_Flat_Icon_Vector.svg/2048px-Card_Terminal_POS_Flat_Icon_Vector.svg.png" 
+                         alt="POS systems" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="problem-icon-text" style="display: none;">POS</div>
+                    <div class="x-mark" aria-hidden="true">✕</div>
+                </div>
+            </div>
+            <h1>Tired of outdated, cash-only systems?</h1>
+        </div>
+        
+        <!-- Scene 4: Solution -->
+        <div class="scene" id="scene4" aria-label="Modem Pay Solutions">
+            <h1>Modem Pay offers seamless, secure payment APIs</h1>
+            <div class="solutions-container">
+                <div class="solution-item">
+                    <span class="solution-icon" role="img" aria-label="Mobile phone">📱</span>
+                    <div>Mobile Payments</div>
+                </div>
+                <div class="solution-item">
+                    <span class="solution-icon" role="img" aria-label="Laptop computer">💻</span>
+                    <div>Developer APIs</div>
+                </div>
+                <div class="solution-item">
+                    <span class="solution-icon" role="img" aria-label="Money bag">💰</span>
+                    <div>Instant Settlements</div>
+                </div>
             </div>
         </div>
         
-      <!-- Slide 6 -->
-<div class="slide">
-    <img src="https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/CD92/production/_89862625_89862624.jpg" alt="Amadou Gillen">
-    <div class="person-info">
-        <div class="person-name">
-            <i class="fas fa-crown"></i> 5. Amadou Gillen
-        </div>
-        <div class="person-business">Lottery Winner (UK National Lottery)</div>
-        <div class="person-wealth">Net Worth: ≈ $80 Million</div>
-    </div>
-</div>
-
-<!-- Slide 7 -->
-<div class="slide">
-    <img src="https://news.bbcimg.co.uk/media/images/61229000/jpg/_61229160_mjah1.jpg" alt="Muhammed Jah">
-    <div class="person-info">
-        <div class="person-name">
-            <i class="fas fa-crown"></i> 4. Muhammed Jah
-        </div>
-        <div class="person-business">QuantumNet Group / QCell</div>
-        <div class="person-wealth">Net Worth: ≈ $165 Million</div>
-    </div>
-</div>
-
-<!-- Slide 8 -->
-<div class="slide">
-    <img src="https://foroyaa.net/wp-content/uploads/2019/09/Mr.-Samba.jpg" alt="Amadou Samba">
-    <div class="person-info">
-        <div class="person-name">
-            <i class="fas fa-crown"></i> 3. Amadou Samba
-        </div>
-        <div class="person-business">Real Estate, Bottling, Cement</div>
-        <div class="person-wealth">Net Worth: $200 Million</div>
-    </div>
-</div>
-
-<!-- Slide 9 -->
-<div class="slide">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyrQqRjqcVQ1j7UUR7y_MRiSnyVoko0-N7eQ&s" alt="Basiru Jawara">
-    <div class="person-info">
-        <div class="person-name">
-            <i class="fas fa-crown"></i> 2. Basiru Jawara
-        </div>
-        <div class="person-business">Diamonds, Hospitality, Real Estate</div>
-        <div class="person-wealth">Net Worth: $300 MILLION</div>
-    </div>
-</div>
-
-<!-- Slide 10 -->
-<div class="slide">
-    <img src="https://mybroadband.co.za/news/wp-content/uploads/2015/11/Alieu-Conteh.jpg" alt="Alieu Conteh">
-    <div class="person-info">
-        <div class="person-name">
-            <i class="fas fa-crown"></i> 1. Alieu Conteh
-        </div>
-        <div class="person-business">Telecom (Vodacom Congo)</div>
-        <div class="person-wealth">Net Worth: $1 Billion</div>
-    </div>
-</div>
-
-
-        
-        <!-- Follow Message Slide -->
-        <div class="slide">
-            <div class="follow-message">FOLLOW FOR MORE <i class="fas fa-arrow-right"></i></div>
+        <!-- Scene 5: Features -->
+        <div class="scene" id="scene5" aria-label="Key Features">
+            <div class="features-container">
+                <div class="feature-card">
+                    <span class="feature-icon" role="img" aria-label="Lightning bolt">⚡</span>
+                    <div>Fast Integration</div>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon" role="img" aria-label="Refresh arrows">🔄</span>
+                    <div>Multi-channel Payments</div>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon" role="img" aria-label="Store front">🏪</span>
+                    <div>Local Business Support</div>
+                </div>
+            </div>
         </div>
         
-        <!-- Navigation buttons -->
-        <div class="navigation">
-            <button class="prev">❮ Prev</button>
-            <button class="next">Next ❯</button>
+        <!-- Scene 6: CTA -->
+        <div class="scene" id="scene6" aria-label="Call to Action">
+            <a href="https://modempay.gm" class="cta-button" id="ctaButton" 
+               role="button" aria-label="Visit Modem Pay website to get started">
+               Get Started at modempay.com
+            </a>
+            <h1>Join hundreds of Gambian businesses going cashless</h1>
         </div>
         
-        <!-- Dots indicators -->
-        <div class="dots-container">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-            <span class="dot" onclick="currentSlide(6)"></span>
-            <span class="dot" onclick="currentSlide(7)"></span>
-            <span class="dot" onclick="currentSlide(8)"></span>
+        <!-- Scene 7: Outro -->
+        <div class="scene" id="scene7" aria-label="Closing Message">
+            <!-- Replace with your actual logo URL -->
+            <img src="https://modempay.com/android-chrome-192x192.png" 
+                 alt="Modem Pay Logo" 
+                 class="logo-image" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                 role="img" 
+                 aria-label="Modem Pay">
+            <div class="logo" style="display: none;" role="img" aria-label="Modem Pay">MODEM PAY</div>
+            <h1>Payments Made Simple</h1>
         </div>
     </div>
-    
+
     <script>
-        let slideIndex = 1;
-        showSlide(slideIndex);
+        // Configuration
+        const SCENE_CONFIG = [
+            {id: "scene1", duration: 2500},
+            {id: "scene2", duration: 4000},
+            {id: "scene3", duration: 4500},
+            {id: "scene4", duration: 6000},
+            {id: "scene5", duration: 6000},
+            {id: "scene6", duration: 5500},
+            {id: "scene7", duration: 3500}
+        ];
         
-        function plusSlides(n) {
-            showSlide(slideIndex += n);
+        // State management
+        let currentSceneIndex = 0;
+        let animationTimeout;
+        let pulseInterval;
+        let isAnimating = false;
+        
+        // Performance optimization
+        const requestIdleCallback = window.requestIdleCallback || function(cb) {
+            return setTimeout(cb, 1);
+        };
+        
+        // Scene management
+        function showScene(index) {
+            if (isAnimating || index < 0 || index >= SCENE_CONFIG.length) return;
+            
+            isAnimating = true;
+            
+            // Clear existing intervals
+            if (pulseInterval) {
+                clearInterval(pulseInterval);
+                pulseInterval = null;
+            }
+            
+            // Get all scenes
+            const scenes = document.querySelectorAll('.scene');
+            const currentScene = scenes[currentSceneIndex];
+            const newScene = scenes[index];
+            
+            // Exit current scene
+            if (currentScene && currentSceneIndex !== index) {
+                currentScene.classList.remove('active');
+                currentScene.classList.add('exit');
+                
+                // Clean up exit class
+                setTimeout(() => {
+                    currentScene.classList.remove('exit');
+                }, 500);
+            }
+            
+            // Enter new scene
+            requestAnimationFrame(() => {
+                newScene.classList.add('active');
+                currentSceneIndex = index;
+                
+                // Add special effects for specific scenes
+                if (SCENE_CONFIG[index].id === 'scene6') {
+                    initializeCTAPulse();
+                }
+                
+                isAnimating = false;
+            });
         }
         
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
+        // CTA button pulse animation
+        function initializeCTAPulse() {
+            const button = document.getElementById('ctaButton');
+            if (!button) return;
+            
+            // Initial delay before pulse starts
+            setTimeout(() => {
+                pulseInterval = setInterval(() => {
+                    if (button.matches(':hover')) return; // Don't pulse on hover
+                    
+                    button.style.transform = 'scale(1.06) translateY(-4px)';
+                    button.style.boxShadow = '0 15px 40px rgba(0,102,204,0.4)';
+                    
+                    setTimeout(() => {
+                        button.style.transform = 'scale(1) translateY(0)';
+                        button.style.boxShadow = '0 8px 25px rgba(0,102,204,0.25)';
+                    }, 400);
+                }, 3000);
+            }, 1000);
         }
         
-        function showSlide(n) {
-            const slides = document.getElementsByClassName("slide");
-            const dots = document.getElementsByClassName("dot");
-            
-            if (n > slides.length) {
-                slideIndex = 1;
-            }
-            if (n < 1) {
-                slideIndex = slides.length;
+        // Animation sequence
+        function startAnimationSequence() {
+            // Clear existing timeout
+            if (animationTimeout) {
+                clearTimeout(animationTimeout);
             }
             
-            // Hide all slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
+            // Start with first scene
+            showScene(0);
             
-            // Remove active class from all dots
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
+            // Schedule subsequent scenes
+            let cumulativeDelay = 0;
+            SCENE_CONFIG.forEach((scene, index) => {
+                if (index > 0) {
+                    cumulativeDelay += SCENE_CONFIG[index - 1].duration;
+                    animationTimeout = setTimeout(() => {
+                        showScene(index);
+                    }, cumulativeDelay);
+                }
+            });
             
-            // Show the current slide
-            slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
+            // Schedule restart
+            const totalDuration = SCENE_CONFIG.reduce((sum, scene) => sum + scene.duration, 0);
+            animationTimeout = setTimeout(() => {
+                requestIdleCallback(startAnimationSequence);
+            }, totalDuration + 1000);
         }
         
-        // Add event listeners to buttons
-        document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
-        document.querySelector('.next').addEventListener('click', () => plusSlides(1));
+        // Event handlers
+        function handleInteraction(event) {
+            // Don't restart on CTA button clicks
+            if (event.target.id === 'ctaButton' || event.target.closest('.cta-button')) {
+                return;
+            }
+            
+            // Debounce rapid clicks
+            if (isAnimating) return;
+            
+            startAnimationSequence();
+        }
         
-        // Initialize the first slide as active
-        document.querySelector('.slide').classList.add('active');
-        document.querySelector('.dot').classList.add('active');
+        // Keyboard navigation
+        function handleKeyDown(event) {
+            if (event.key === ' ' || event.key === 'Enter') {
+                event.preventDefault();
+                handleInteraction(event);
+            }
+        }
         
-        // Auto slide functionality
-        let slideInterval = setInterval(() => {
-            plusSlides(1);
-        }, 5000);
+        // Initialize
+        function init() {
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (prefersReducedMotion) {
+                // Show all scenes briefly for reduced motion users
+                document.querySelectorAll('.scene').forEach((scene, index) => {
+                    setTimeout(() => {
+                        scene.classList.add('active');
+                        setTimeout(() => {
+                            scene.classList.remove('active');
+                        }, 2000);
+                    }, index * 2500);
+                });
+                return;
+            }
+            
+            // Start normal animation
+            startAnimationSequence();
+            
+            // Add event listeners
+            document.addEventListener('click', handleInteraction);
+            document.addEventListener('keydown', handleKeyDown);
+            document.addEventListener('touchstart', handleInteraction, {passive: true});
+        }
         
-        // Pause auto slide on hover
-        const slideshowContainer = document.querySelector('.slideshow-container');
-        slideshowContainer.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (animationTimeout) clearTimeout(animationTimeout);
+            if (pulseInterval) clearInterval(pulseInterval);
         });
         
-        slideshowContainer.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(() => {
-                plusSlides(1);
-            }, 5000);
-        });
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>
