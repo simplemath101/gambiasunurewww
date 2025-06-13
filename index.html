@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modem Pay - Digital Payments for The Gambia</title>
-    <meta name="description" content="Modem Pay empowers digital payments in The Gambia with seamless, secure payment APIs">
+    <title>Wave Mobile Money - Motion Graphic</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #ffffff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        #container {
-            width: 100vw;
             height: 100vh;
-            position: relative;
-            background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        
+
+        .animation-container {
+            width: 800px;
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
         .scene {
             position: absolute;
             width: 100%;
@@ -35,717 +41,479 @@
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            pointer-events: none;
-            will-change: transform, opacity;
+            transform: scale(0.8);
         }
-        
+
         .scene.active {
             opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-        }
-        
-        .scene.exit {
-            opacity: 0;
-            transform: translateY(-30px) scale(1.05);
-            transition: all 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-        }
-        
-        .logo {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 900;
-            color: #0066cc;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            transform: scale(0.8);
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
-            text-shadow: 0 2px 4px rgba(0,102,204,0.1);
-        }
-        
-        .logo-image {
-            width: 180px;
-            height: auto;
-            max-width: 250px;
-            object-fit: contain;
-            margin-bottom: 30px;
-            transform: scale(0.8);
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
-            filter: drop-shadow(0 2px 4px rgba(0,102,204,0.1));
-        }
-        
-        .scene.active .logo {
             transform: scale(1);
         }
-        
-        .scene.active .logo-image {
-            transform: scale(1);
-        }
-        
-        h1 {
-            color: #0066cc;
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            text-align: center;
-            margin: 20px;
-            max-width: 90%;
-            line-height: 1.2;
-            transform: translateX(-20px);
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s, 
-                        opacity 0.7s ease-out 0.3s;
-            opacity: 0;
-            font-weight: 700;
-        }
-        
-        .scene.active h1 {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(135deg, #0066cc 0%, #00a3ad 50%, #0099cc 100%);
-            opacity: 0;
-            border-radius: 45%;
-            animation: waveMotion 20s linear infinite;
-            z-index: -1;
-            transition: opacity 0.8s ease-in-out 0.4s;
-            will-change: transform;
-        }
-        
-        .scene.active .wave {
-            opacity: 0.08;
-        }
-        
-        @keyframes waveMotion {
-            0% { transform: rotate(0deg) translateX(-25%) translateY(-10%); }
-            50% { transform: rotate(180deg) translateX(10%) translateY(5%); }
-            100% { transform: rotate(360deg) translateX(-25%) translateY(-10%); }
-        }
-        
-        .problems-container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .problem-icon {
-            width: 80px;
-            height: 80px;
-            background: #ffffff;
+
+        .character {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
             position: relative;
-            transform: scale(0) rotate(90deg);
-            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #666;
-            border: 2px solid #f0f0f0;
-            overflow: hidden;
+            margin-bottom: 20px;
         }
-        
-        .problem-icon img {
+
+        .phone {
+            width: 80px;
+            height: 140px;
+            background: #333;
+            border-radius: 15px;
+            position: relative;
+            margin: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .phone::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 20px;
+            background: #4CAF50;
+            border-radius: 8px;
+        }
+
+        .money-icon {
             width: 40px;
             height: 40px;
-            object-fit: contain;
-            filter: grayscale(100%) opacity(0.7);
-        }
-        
-        .problem-icon-text {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #666;
-            text-align: center;
-        }
-        
-        .scene.active .problem-icon:nth-child(1) {
-            transform: scale(1) rotate(0deg);
-            transition-delay: 0.3s;
-        }
-        
-        .scene.active .problem-icon:nth-child(2) {
-            transform: scale(1) rotate(0deg);
-            transition-delay: 0.5s;
-        }
-        
-        .x-mark {
-            position: absolute;
-            color: #e74c3c;
-            font-size: 28px;
-            font-weight: bold;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            top: -8px;
-            right: -8px;
-            background: white;
+            background: #FFD700;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+            position: relative;
+            margin: 10px;
         }
-        
-        .scene.active .x-mark {
-            opacity: 1;
-            transform: scale(1);
-            transition-delay: 0.8s;
-            animation: shake 0.4s ease-in-out 1.1s;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.1) rotate(-3deg); }
-            75% { transform: scale(1.1) rotate(3deg); }
-        }
-        
-        .solutions-container {
-            display: flex;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .solution-item {
+
+        .text-overlay {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            min-width: 120px;
-        }
-        
-        .scene.active .solution-item:nth-child(1) {
-            transform: translateY(0);
-            opacity: 1;
-            transition-delay: 0.4s;
-        }
-        
-        .scene.active .solution-item:nth-child(2) {
-            transform: translateY(0);
-            opacity: 1;
-            transition-delay: 0.6s;
-        }
-        
-        .scene.active .solution-item:nth-child(3) {
-            transform: translateY(0);
-            opacity: 1;
-            transition-delay: 0.8s;
-        }
-        
-        .solution-icon {
-            font-size: 40px;
-            transform: scale(0) rotateY(180deg);
-            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .scene.active .solution-item:nth-child(1) .solution-icon {
-            transform: scale(1) rotateY(0deg);
-            transition-delay: 0.8s;
-            animation: popBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.8s;
-        }
-        
-        .scene.active .solution-item:nth-child(2) .solution-icon {
-            transform: scale(1) rotateY(0deg);
-            transition-delay: 1.2s;
-            animation: popBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.2s;
-        }
-        
-        .scene.active .solution-item:nth-child(3) .solution-icon {
-            transform: scale(1) rotateY(0deg);
-            transition-delay: 1.6s;
-            animation: popBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.6s;
-        }
-        
-        @keyframes popBounce {
-            0% { transform: scale(0) rotateY(180deg); }
-            50% { transform: scale(1.3) rotateY(90deg); }
-            70% { transform: scale(0.9) rotateY(45deg); }
-            85% { transform: scale(1.1) rotateY(10deg); }
-            100% { transform: scale(1) rotateY(0deg); }
-        }
-        
-        .features-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 800px;
-        }
-        
-        .feature-card {
-            background: #ffffff;
-            padding: 25px 20px;
-            border-radius: 15px;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transform: translateY(40px) rotateX(15deg);
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(0,102,204,0.1);
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: bold;
             color: #333;
+            background: rgba(255,255,255,0.9);
+            padding: 15px 30px;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
-        .scene.active .feature-card:nth-child(1) {
-            transform: translateY(0) rotateX(0deg);
-            opacity: 1;
-            transition-delay: 0.3s;
+
+        .split-screen {
+            display: flex;
+            width: 100%;
+            height: 70%;
         }
-        
-        .scene.active .feature-card:nth-child(2) {
-            transform: translateY(0) rotateX(0deg);
-            opacity: 1;
-            transition-delay: 0.5s;
+
+        .split-left, .split-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
-        
-        .scene.active .feature-card:nth-child(3) {
-            transform: translateY(0) rotateX(0deg);
-            opacity: 1;
-            transition-delay: 0.7s;
+
+        .split-left {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
         }
-        
-        .feature-icon {
-            font-size: 30px;
-            color: #00a3ad;
-            transform: scale(0) rotate(180deg);
-            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            margin-bottom: 10px;
-            display: block;
+
+        .split-right {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
         }
-        
-        .scene.active .feature-card:nth-child(1) .feature-icon {
-            transform: scale(1) rotate(0deg);
-            transition-delay: 0.7s;
-            animation: featurePop 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.7s;
+
+        .queue-person {
+            width: 60px;
+            height: 80px;
+            background: #8B4513;
+            border-radius: 30px 30px 10px 10px;
+            margin: 5px;
+            position: relative;
         }
-        
-        .scene.active .feature-card:nth-child(2) .feature-icon {
-            transform: scale(1) rotate(0deg);
-            transition-delay: 1.1s;
-            animation: featurePop 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.1s;
+
+        .map-container {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+            border-radius: 20px;
+            position: relative;
+            border: 3px solid #4CAF50;
         }
-        
-        .scene.active .feature-card:nth-child(3) .feature-icon {
-            transform: scale(1) rotate(0deg);
-            transition-delay: 1.5s;
-            animation: featurePop 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.5s;
+
+        .map-pin {
+            width: 20px;
+            height: 20px;
+            background: #FF5722;
+            border-radius: 50% 50% 50% 0;
+            position: absolute;
+            transform: rotate(-45deg);
         }
-        
-        @keyframes featurePop {
-            0% { 
-                transform: scale(0) rotate(180deg);
-                opacity: 0;
-            }
-            30% { 
-                transform: scale(1.4) rotate(90deg);
-                opacity: 0.7;
-            }
-            60% { 
-                transform: scale(0.8) rotate(30deg);
-                opacity: 0.9;
-            }
-            80% { 
-                transform: scale(1.2) rotate(-10deg);
-                opacity: 1;
-            }
-            100% { 
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-        }
-        
-        .cta-button {
-            background: linear-gradient(135deg, #0066cc 0%, #00a3ad 100%);
+
+        .bill-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
             color: white;
-            padding: 18px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            margin: 30px 20px 20px;
-            box-shadow: 0 8px 25px rgba(0,102,204,0.25);
-            transform: scale(0.85) translateY(20px);
-            opacity: 0;
-            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            display: inline-block;
-            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .electricity { background: #FF9800; }
+        .wifi { background: #2196F3; }
+        .mobile { background: #9C27B0; }
+
+        .pulse {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #4CAF50, transparent);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .logo-container {
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .slogan {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
             border: none;
-            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
         }
-        
-        .scene.active .cta-button {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-            transition-delay: 0.4s;
+
+        .confetti {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: absolute;
         }
-        
-        .cta-button:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0,102,204,0.35);
-            transition: all 0.3s ease;
+
+        .custom-image {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
         }
-        
-        .cta-button:active {
-            transform: scale(0.98) translateY(-1px);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .solutions-container {
-                gap: 20px;
-            }
-            
-            .solution-item {
-                min-width: 100px;
-            }
-            
-            .features-container {
-                gap: 15px;
-            }
-            
-            .feature-card {
-                width: 160px;
-                padding: 20px 15px;
-            }
-            
-            .problems-container {
-                gap: 15px;
-            }
-            
-            .problem-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 0.7rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .cta-button {
-                padding: 15px 25px;
-                font-size: 1rem;
-            }
-            
-            .feature-card {
-                width: 140px;
-            }
-        }
-        
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .wave {
-                animation: none;
-            }
-        }
-        
-        /* Focus styles for accessibility */
-        .cta-button:focus {
-            outline: 3px solid rgba(0,102,204,0.5);
-            outline-offset: 2px;
-        }
-        
-        /* Performance optimizations */
-        .scene, .logo, .problem-icon, .solution-item, .feature-card, .cta-button, .wave {
-            backface-visibility: hidden;
-            perspective: 1000px;
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <div id="container" role="main">
-        <!-- Scene 1: Logo -->
-        <div class="scene" id="scene1" aria-label="Modem Pay Logo">
-            <!-- Replace with your actual logo URL -->
-            <img src="https://modempay.com/android-chrome-192x192.png" 
-                 alt="Modem Pay Logo" 
-                 class="logo-image" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                 role="img" 
-                 aria-label="Modem Pay">
-            <div class="logo" style="display: none;" role="img" aria-label="Modem Pay">MODEM PAY</div>
-        </div>
+    <div class="animation-container">
+        <div class="progress-bar" id="progressBar"></div>
         
-        <!-- Scene 2: Tagline -->
-        <div class="scene" id="scene2" aria-label="Company Mission">
-            <div class="wave" aria-hidden="true"></div>
-            <h1>Empowering digital payments in The Gambia</h1>
+        <!-- Scene 1: Meet Mariama -->
+        <div class="scene" id="scene1">
+            <div class="character" id="mariama">
+                <div style="position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #333; border-radius: 50%;"></div>
+                <div style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); width: 10px; height: 5px; background: #333; border-radius: 0 0 10px 10px;"></div>
+                <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 30px; height: 20px; background: #ff6b6b; border-radius: 15px;"></div>
+            </div>
+            <div class="phone" id="phone1"></div>
+            <div class="money-icon" id="moneyIcon1">$</div>
+            <div class="text-overlay" id="text1">Mariama just finished selling vegetables in the market.</div>
         </div>
-        
-        <!-- Scene 3: Problem -->
-        <div class="scene" id="scene3" aria-label="Current Payment Problems">
-            <div class="problems-container">
-                <div class="problem-icon" role="img" aria-label="Cash payments marked as outdated">
-                    <!-- Replace with your actual cash icon URL -->
-                    <img src="https://png.pngtree.com/png-clipart/20221113/ourmid/pngtree-200-gambian-dalasi-stack-pile-png-image_6444250.png" 
-                         alt="Cash payments" 
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="problem-icon-text" style="display: none;">CASH</div>
-                    <div class="x-mark" aria-hidden="true">✕</div>
+
+        <!-- Scene 2: No queues. No stress -->
+        <div class="scene" id="scene2">
+            <div class="split-screen">
+                <div class="split-left">
+                    <h3 style="color: white; margin-bottom: 20px;">Bank Queue</h3>
+                    <div id="queueContainer">
+                        <div class="queue-person"></div>
+                        <div class="queue-person"></div>
+                        <div class="queue-person"></div>
+                        <div class="queue-person"></div>
+                    </div>
                 </div>
-                <div class="problem-icon" role="img" aria-label="POS systems marked as outdated">
-                    <!-- Replace with your actual POS icon URL -->
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Card_Terminal_POS_Flat_Icon_Vector.svg/2048px-Card_Terminal_POS_Flat_Icon_Vector.svg.png" 
-                         alt="POS systems" 
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="problem-icon-text" style="display: none;">POS</div>
-                    <div class="x-mark" aria-hidden="true">✕</div>
+                <div class="split-right">
+                    <h3 style="color: white; margin-bottom: 20px;">Wave</h3>
+                    <div class="character" style="width: 100px; height: 100px;"></div>
+                    <div class="phone" style="width: 60px; height: 100px;"></div>
                 </div>
             </div>
-            <h1>Tired of outdated, cash-only systems?</h1>
+            <div class="text-overlay" id="text2">With Wave, she sends money home in seconds.</div>
         </div>
-        
-        <!-- Scene 4: Solution -->
-        <div class="scene" id="scene4" aria-label="Modem Pay Solutions">
-            <h1>Modem Pay offers seamless, secure payment APIs</h1>
-            <div class="solutions-container">
-                <div class="solution-item">
-                    <span class="solution-icon" role="img" aria-label="Mobile phone">📱</span>
-                    <div>Mobile Payments</div>
-                </div>
-                <div class="solution-item">
-                    <span class="solution-icon" role="img" aria-label="Laptop computer">💻</span>
-                    <div>Developer APIs</div>
-                </div>
-                <div class="solution-item">
-                    <span class="solution-icon" role="img" aria-label="Money bag">💰</span>
-                    <div>Instant Settlements</div>
+
+        <!-- Scene 3: Instant. Affordable. Everywhere -->
+        <div class="scene" id="scene3">
+            <div class="map-container" id="gambiaMap">
+                <div class="map-pin" style="top: 20%; left: 30%;" id="pin1"></div>
+                <div class="map-pin" style="top: 40%; left: 60%;" id="pin2"></div>
+                <div class="map-pin" style="top: 60%; left: 40%;" id="pin3"></div>
+                <div class="map-pin" style="top: 30%; left: 70%;" id="pin4"></div>
+                <div class="map-pin" style="top: 70%; left: 20%;" id="pin5"></div>
+            </div>
+            <div class="text-overlay" id="text3">Find an agent almost anywhere.</div>
+        </div>
+
+        <!-- Scene 4: Your bills? Handled -->
+        <div class="scene" id="scene4">
+            <div class="phone" style="width: 120px; height: 200px; margin-bottom: 20px;" id="billPhone">
+                <div style="position: absolute; top: 20px; left: 20px; right: 20px; display: flex; flex-wrap: wrap; justify-content: space-around;">
+                    <div class="bill-icon electricity">⚡</div>
+                    <div class="bill-icon wifi">📶</div>
+                    <div class="bill-icon mobile">📱</div>
                 </div>
             </div>
+            <div id="confettiContainer"></div>
+            <div class="text-overlay" id="text4">Pay your bills with just a tap.</div>
         </div>
-        
-        <!-- Scene 5: Features -->
-        <div class="scene" id="scene5" aria-label="Key Features">
-            <div class="features-container">
-                <div class="feature-card">
-                    <span class="feature-icon" role="img" aria-label="Lightning bolt">⚡</span>
-                    <div>Fast Integration</div>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon" role="img" aria-label="Refresh arrows">🔄</span>
-                    <div>Multi-channel Payments</div>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon" role="img" aria-label="Store front">🏪</span>
-                    <div>Local Business Support</div>
-                </div>
+
+        <!-- Scene 5: Wave it Forward -->
+        <div class="scene" id="scene5">
+            <div style="display: flex; align-items: center; gap: 100px;">
+                <div class="phone" id="senderPhone"></div>
+                <div class="pulse" id="pulse1"></div>
+                <div class="pulse" id="pulse2" style="transform: scale(0.7); opacity: 0.7;"></div>
+                <div class="pulse" id="pulse3" style="transform: scale(0.4); opacity: 0.4;"></div>
+                <div class="phone" id="receiverPhone"></div>
             </div>
+            <div class="text-overlay" id="text5">Send, receive, and smile — with Wave.</div>
         </div>
-        
-        <!-- Scene 6: CTA -->
-        <div class="scene" id="scene6" aria-label="Call to Action">
-            <a href="https://modempay.gm" class="cta-button" id="ctaButton" 
-               role="button" aria-label="Visit Modem Pay website to get started">
-               Get Started at modempay.com
-            </a>
-            <h1>Join hundreds of Gambian businesses going cashless</h1>
-        </div>
-        
-        <!-- Scene 7: Outro -->
-        <div class="scene" id="scene7" aria-label="Closing Message">
-            <!-- Replace with your actual logo URL -->
-            <img src="https://modempay.com/android-chrome-192x192.png" 
-                 alt="Modem Pay Logo" 
-                 class="logo-image" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                 role="img" 
-                 aria-label="Modem Pay">
-            <div class="logo" style="display: none;" role="img" aria-label="Modem Pay">MODEM PAY</div>
-            <h1>Payments Made Simple</h1>
+
+        <!-- Scene 6: Final Branding -->
+        <div class="scene" id="scene6">
+            <div class="logo-container" id="logoContainer">
+                <div class="logo-text">WAVE</div>
+            </div>
+            <div class="slogan" id="slogan">Safe. Fast. Free.</div>
+            <div class="cta-button" id="ctaButton">Download Now</div>
         </div>
     </div>
 
     <script>
-        // Configuration
-        const SCENE_CONFIG = [
-            {id: "scene1", duration: 2500},
-            {id: "scene2", duration: 4000},
-            {id: "scene3", duration: 4500},
-            {id: "scene4", duration: 6000},
-            {id: "scene5", duration: 6000},
-            {id: "scene6", duration: 5500},
-            {id: "scene7", duration: 3500}
-        ];
-        
-        // State management
-        let currentSceneIndex = 0;
-        let animationTimeout;
-        let pulseInterval;
-        let isAnimating = false;
-        
-        // Performance optimization
-        const requestIdleCallback = window.requestIdleCallback || function(cb) {
-            return setTimeout(cb, 1);
+        // Configuration object for custom images/assets
+        const config = {
+            characterURL: null, // Set to image URL for custom character
+            logoURL: null, // Set to image URL for custom logo
+            phoneURL: null, // Set to image URL for custom phone
+            pinIconURL: null, // Set to image URL for custom map pins
+            billIcons: {
+                electricity: null,
+                wifi: null,
+                mobile: null
+            }
         };
-        
-        // Scene management
-        function showScene(index) {
-            if (isAnimating || index < 0 || index >= SCENE_CONFIG.length) return;
-            
-            isAnimating = true;
-            
-            // Clear existing intervals
-            if (pulseInterval) {
-                clearInterval(pulseInterval);
-                pulseInterval = null;
-            }
-            
-            // Get all scenes
-            const scenes = document.querySelectorAll('.scene');
-            const currentScene = scenes[currentSceneIndex];
-            const newScene = scenes[index];
-            
-            // Exit current scene
-            if (currentScene && currentSceneIndex !== index) {
-                currentScene.classList.remove('active');
-                currentScene.classList.add('exit');
-                
-                // Clean up exit class
-                setTimeout(() => {
-                    currentScene.classList.remove('exit');
-                }, 500);
-            }
-            
-            // Enter new scene
-            requestAnimationFrame(() => {
-                newScene.classList.add('active');
-                currentSceneIndex = index;
-                
-                // Add special effects for specific scenes
-                if (SCENE_CONFIG[index].id === 'scene6') {
-                    initializeCTAPulse();
-                }
-                
-                isAnimating = false;
-            });
-        }
-        
-        // CTA button pulse animation
-        function initializeCTAPulse() {
-            const button = document.getElementById('ctaButton');
-            if (!button) return;
-            
-            // Initial delay before pulse starts
-            setTimeout(() => {
-                pulseInterval = setInterval(() => {
-                    if (button.matches(':hover')) return; // Don't pulse on hover
-                    
-                    button.style.transform = 'scale(1.06) translateY(-4px)';
-                    button.style.boxShadow = '0 15px 40px rgba(0,102,204,0.4)';
-                    
-                    setTimeout(() => {
-                        button.style.transform = 'scale(1) translateY(0)';
-                        button.style.boxShadow = '0 8px 25px rgba(0,102,204,0.25)';
-                    }, 400);
-                }, 3000);
-            }, 1000);
-        }
-        
-        // Animation sequence
-        function startAnimationSequence() {
-            // Clear existing timeout
-            if (animationTimeout) {
-                clearTimeout(animationTimeout);
-            }
-            
-            // Start with first scene
-            showScene(0);
-            
-            // Schedule subsequent scenes
-            let cumulativeDelay = 0;
-            SCENE_CONFIG.forEach((scene, index) => {
-                if (index > 0) {
-                    cumulativeDelay += SCENE_CONFIG[index - 1].duration;
-                    animationTimeout = setTimeout(() => {
-                        showScene(index);
-                    }, cumulativeDelay);
-                }
-            });
-            
-            // Schedule restart
-            const totalDuration = SCENE_CONFIG.reduce((sum, scene) => sum + scene.duration, 0);
-            animationTimeout = setTimeout(() => {
-                requestIdleCallback(startAnimationSequence);
-            }, totalDuration + 1000);
-        }
-        
-        // Event handlers
-        function handleInteraction(event) {
-            // Don't restart on CTA button clicks
-            if (event.target.id === 'ctaButton' || event.target.closest('.cta-button')) {
-                return;
-            }
-            
-            // Debounce rapid clicks
-            if (isAnimating) return;
-            
-            startAnimationSequence();
-        }
-        
-        // Keyboard navigation
-        function handleKeyDown(event) {
-            if (event.key === ' ' || event.key === 'Enter') {
-                event.preventDefault();
-                handleInteraction(event);
-            }
-        }
-        
-        // Initialize
-        function init() {
-            // Check for reduced motion preference
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            
-            if (prefersReducedMotion) {
-                // Show all scenes briefly for reduced motion users
-                document.querySelectorAll('.scene').forEach((scene, index) => {
-                    setTimeout(() => {
-                        scene.classList.add('active');
-                        setTimeout(() => {
-                            scene.classList.remove('active');
-                        }, 2000);
-                    }, index * 2500);
+
+        // Animation timeline
+        let tl = gsap.timeline({ repeat: -1 });
+        let currentScene = 1;
+        const totalScenes = 6;
+        const sceneDuration = 6; // seconds per scene
+
+        // Initialize custom images if URLs are provided
+        function initializeCustomAssets() {
+            // Character image
+            if (config.characterURL) {
+                const characters = document.querySelectorAll('.character');
+                characters.forEach(char => {
+                    const img = document.createElement('img');
+                    img.src = config.characterURL;
+                    img.className = 'custom-image';
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    char.innerHTML = '';
+                    char.appendChild(img);
                 });
-                return;
             }
-            
-            // Start normal animation
-            startAnimationSequence();
-            
-            // Add event listeners
-            document.addEventListener('click', handleInteraction);
-            document.addEventListener('keydown', handleKeyDown);
-            document.addEventListener('touchstart', handleInteraction, {passive: true});
+
+            // Logo
+            if (config.logoURL) {
+                const logoContainer = document.getElementById('logoContainer');
+                const img = document.createElement('img');
+                img.src = config.logoURL;
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '100%';
+                logoContainer.innerHTML = '';
+                logoContainer.appendChild(img);
+            }
+
+            // Map pins
+            if (config.pinIconURL) {
+                const pins = document.querySelectorAll('.map-pin');
+                pins.forEach(pin => {
+                    pin.style.backgroundImage = `url(${config.pinIconURL})`;
+                    pin.style.backgroundSize = 'cover';
+                    pin.style.backgroundPosition = 'center';
+                });
+            }
         }
-        
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', () => {
-            if (animationTimeout) clearTimeout(animationTimeout);
-            if (pulseInterval) clearInterval(pulseInterval);
-        });
-        
-        // Start when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            init();
+
+        // Scene animations
+        function animateScene1() {
+            const scene = document.getElementById('scene1');
+            const character = document.getElementById('mariama');
+            const phone = document.getElementById('phone1');
+            const money = document.getElementById('moneyIcon1');
+            const text = document.getElementById('text1');
+
+            tl.set(scene, { opacity: 1, scale: 1 })
+              .from(character, { scale: 0, rotation: 360, duration: 1, ease: "back.out(1.7)" })
+              .from(phone, { x: -100, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
+              .from(money, { scale: 0, rotation: 720, duration: 0.6, ease: "back.out(1.7)" }, "-=0.3")
+              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
+              .to(money, { rotation: 360, duration: 2, ease: "none", repeat: 1 });
         }
+
+        function animateScene2() {
+            const scene = document.getElementById('scene2');
+            const queuePersons = document.querySelectorAll('.queue-person');
+            const text = document.getElementById('text2');
+
+            tl.to('#scene1', { opacity: 0, scale: 0.8, duration: 0.5 })
+              .set(scene, { opacity: 1, scale: 1 })
+              .from(queuePersons, { x: -50, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" })
+              .to(queuePersons, { x: 20, duration: 3, stagger: 0.1, ease: "none", repeat: 1, yoyo: true })
+              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=2");
+        }
+
+        function animateScene3() {
+            const scene = document.getElementById('scene3');
+            const map = document.getElementById('gambiaMap');
+            const pins = document.querySelectorAll('.map-pin');
+            const text = document.getElementById('text3');
+
+            tl.to('#scene2', { opacity: 0, scale: 0.8, duration: 0.5 })
+              .set(scene, { opacity: 1, scale: 1 })
+              .from(map, { scale: 0, rotation: 10, duration: 1, ease: "back.out(1.7)" })
+              .from(pins, { scale: 0, rotation: 180, duration: 0.6, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.5")
+              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
+              .to(pins, { scale: 1.2, duration: 0.3, stagger: 0.1, ease: "power2.inOut", repeat: 3, yoyo: true });
+        }
+
+        function animateScene4() {
+            const scene = document.getElementById('scene4');
+            const phone = document.getElementById('billPhone');
+            const billIcons = document.querySelectorAll('.bill-icon');
+            const text = document.getElementById('text4');
+            const confettiContainer = document.getElementById('confettiContainer');
+
+            // Create confetti
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = Math.random() * 100 + '%';
+                confettiContainer.appendChild(confetti);
+            }
+
+            tl.to('#scene3', { opacity: 0, scale: 0.8, duration: 0.5 })
+              .set(scene, { opacity: 1, scale: 1 })
+              .from(phone, { scale: 0, rotation: 10, duration: 1, ease: "back.out(1.7)" })
+              .from(billIcons, { scale: 0, rotation: 360, duration: 0.6, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.5")
+              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
+              .from('.confetti', { scale: 0, rotation: 720, duration: 1, stagger: 0.05, ease: "power2.out" }, "-=0.6")
+              .to('.confetti', { y: -200, rotation: 360, duration: 2, stagger: 0.05, ease: "power2.in" });
+        }
+
+        function animateScene5() {
+            const scene = document.getElementById('scene5');
+            const pulses = [document.getElementById('pulse1'), document.getElementById('pulse2'), document.getElementById('pulse3')];
+            const senderPhone = document.getElementById('senderPhone');
+            const receiverPhone = document.getElementById('receiverPhone');
+            const text = document.getElementById('text5');
+
+            tl.to('#scene4', { opacity: 0, scale: 0.8, duration: 0.5 })
+              .set(scene, { opacity: 1, scale: 1 })
+              .from([senderPhone, receiverPhone], { scale: 0, rotation: 10, duration: 1, stagger: 0.2, ease: "back.out(1.7)" })
+              .from(pulses, { scale: 0, opacity: 0, duration: 1, stagger: 0.3, ease: "power2.out" }, "-=0.5")
+              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
+              .to(pulses, { scale: 2, opacity: 0, duration: 2, stagger: 0.3, ease: "power2.out", repeat: 1 });
+        }
+
+        function animateScene6() {
+            const scene = document.getElementById('scene6');
+            const logo = document.getElementById('logoContainer');
+            const slogan = document.getElementById('slogan');
+            const button = document.getElementById('ctaButton');
+
+            tl.to('#scene5', { opacity: 0, scale: 0.8, duration: 0.5 })
+              .set(scene, { opacity: 1, scale: 1 })
+              .from(logo, { scale: 0, rotation: 360, duration: 1.2, ease: "back.out(1.7)" })
+              .from(slogan, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.6")
+              .from(button, { scale: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.4")
+              .to(button, { scale: 1.1, duration: 0.3, ease: "power2.inOut", repeat: 3, yoyo: true })
+              .to(logo, { rotation: 5, duration: 1, ease: "power2.inOut", repeat: 1, yoyo: true }, "-=1");
+        }
+
+        // Progress bar update
+        function updateProgressBar() {
+            const progress = ((currentScene - 1) / totalScenes) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Main animation sequence
+        function startAnimation() {
+            initializeCustomAssets();
+            
+            animateScene1();
+            tl.call(() => { currentScene = 2; updateProgressBar(); });
+            animateScene2();
+            tl.call(() => { currentScene = 3; updateProgressBar(); });
+            animateScene3();
+            tl.call(() => { currentScene = 4; updateProgressBar(); });
+            animateScene4();
+            tl.call(() => { currentScene = 5; updateProgressBar(); });
+            animateScene5();
+            tl.call(() => { currentScene = 6; updateProgressBar(); });
+            animateScene6();
+            tl.call(() => { currentScene = 1; updateProgressBar(); });
+        }
+
+        // Start the animation
+        startAnimation();
+
+        // Example of how to use custom assets (uncomment and modify as needed):
+        /*
+        config.characterURL = 'https://example.com/mariama-character.png';
+        config.logoURL = 'https://example.com/wave-logo.png';
+        config.phoneURL = 'https://example.com/phone-image.png';
+        config.pinIconURL = 'https://example.com/map-pin-icon.png';
+        config.billIcons.electricity = 'https://example.com/electricity-icon.png';
+        config.billIcons.wifi = 'https://example.com/wifi-icon.png';
+        config.billIcons.mobile = 'https://example.com/mobile-icon.png';
+        */
     </script>
 </body>
 </html>
