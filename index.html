@@ -3,517 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wave Mobile Money - Motion Graphic</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Nike Air Max Revolution</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Inter:wght@300;400;600;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: #000;
         }
-
-        .animation-container {
-            width: 800px;
-            height: 600px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        
+        .container {
             position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffffff 50%, #00d4ff 75%, #0099cc 100%);
             overflow: hidden;
         }
-
-        .scene {
+        
+        .background-elements {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transform: scale(0.8);
+            z-index: 1;
         }
-
-        .scene.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .character {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff9a9e, #fecfef);
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .phone {
-            width: 80px;
-            height: 140px;
-            background: #333;
-            border-radius: 15px;
-            position: relative;
-            margin: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .phone::before {
-            content: '';
+        
+        .geometric-shape {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 20px;
-            background: #4CAF50;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .money-icon {
-            width: 40px;
-            height: 40px;
-            background: #FFD700;
-            border-radius: 50%;
-            position: relative;
-            margin: 10px;
-        }
-
-        .text-overlay {
-            position: absolute;
-            bottom: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            background: rgba(255,255,255,0.9);
-            padding: 15px 30px;
-            border-radius: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .split-screen {
-            display: flex;
-            width: 100%;
-            height: 70%;
-        }
-
-        .split-left, .split-right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .split-left {
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-        }
-
-        .split-right {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-        }
-
-        .queue-person {
-            width: 60px;
-            height: 80px;
-            background: #8B4513;
-            border-radius: 30px 30px 10px 10px;
-            margin: 5px;
-            position: relative;
-        }
-
-        .map-container {
+        
+        .shape-1 {
             width: 400px;
-            height: 300px;
-            background: linear-gradient(45deg, #a8edea, #fed6e3);
-            border-radius: 20px;
-            position: relative;
-            border: 3px solid #4CAF50;
-        }
-
-        .map-pin {
-            width: 20px;
-            height: 20px;
-            background: #FF5722;
-            border-radius: 50% 50% 50% 0;
-            position: absolute;
-            transform: rotate(-45deg);
-        }
-
-        .bill-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            margin: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            color: white;
-            font-weight: bold;
-        }
-
-        .electricity { background: #FF9800; }
-        .wifi { background: #2196F3; }
-        .mobile { background: #9C27B0; }
-
-        .pulse {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, #4CAF50, transparent);
+            height: 400px;
+            top: -200px;
+            left: -200px;
             border-radius: 50%;
-            position: absolute;
+            animation: float 6s ease-in-out infinite;
         }
-
-        .logo-container {
+        
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            right: -150px;
+            transform: rotate(45deg);
+            animation: rotate 8s linear infinite;
+        }
+        
+        .shape-3 {
             width: 200px;
-            height: 100px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 15px;
+            height: 200px;
+            bottom: -100px;
+            left: 30%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+        }
+        
+        .particle-1 { top: 20%; left: 10%; animation: particle-float 3s ease-in-out infinite; }
+        .particle-2 { top: 40%; left: 80%; animation: particle-float 4s ease-in-out infinite 0.5s; }
+        .particle-3 { top: 70%; left: 20%; animation: particle-float 5s ease-in-out infinite 1s; }
+        .particle-4 { top: 30%; left: 60%; animation: particle-float 3.5s ease-in-out infinite 1.5s; }
+        .particle-5 { top: 80%; left: 70%; animation: particle-float 4.5s ease-in-out infinite 2s; }
+        
+        .main-content {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+        
+        .left-section {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .nike-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .hero-text {
             margin-bottom: 30px;
         }
-
-        .logo-text {
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        .slogan {
-            font-size: 24px;
-            color: #333;
+        
+        .hero-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
+            line-height: 0.9;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             margin-bottom: 20px;
-            font-weight: bold;
+            animation: slideInLeft 1s ease-out;
         }
-
-        .cta-button {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            animation: slideInLeft 1s ease-out 0.2s both;
         }
-
-        .confetti {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
+        
+        .features {
+            list-style: none;
+            margin: 40px 0;
+            animation: slideInLeft 1s ease-out 0.4s both;
+        }
+        
+        .features li {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .features li::before {
+            content: "✓";
             position: absolute;
-        }
-
-        .custom-image {
-            max-width: 150px;
-            max-height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .progress-bar {
-            position: absolute;
-            bottom: 0;
             left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #4CAF50, #45a049);
-            transition: width 0.3s ease;
+            color: #ff6b35;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+            animation: slideInLeft 1s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .right-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .shoe-container {
+            position: relative;
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+        
+        .shoe-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .shoe-image {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+            animation: float-shoe 4s ease-in-out infinite;
+        }
+        
+        .speed-lines {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 200px;
+            height: 3px;
+            opacity: 0;
+            animation: speed-lines 2s ease-in-out infinite 1s;
+        }
+        
+        .speed-line {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            border-radius: 2px;
+        }
+        
+        .speed-line:nth-child(1) { width: 100px; top: -10px; animation-delay: 0s; }
+        .speed-line:nth-child(2) { width: 150px; top: 0px; animation-delay: 0.1s; }
+        .speed-line:nth-child(3) { width: 80px; top: 10px; animation-delay: 0.2s; }
+        
+        .price-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideInDown 1s ease-out 0.8s both;
+        }
+        
+        .price-tag .currency {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(45deg); }
+            100% { transform: rotate(405deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        @keyframes particle-float {
+            0%, 100% { transform: translateY(0px); opacity: 0.6; }
+            50% { transform: translateY(-30px); opacity: 1; }
+        }
+        
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5)); }
+            100% { filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.8)); }
+        }
+        
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
+        }
+        
+        @keyframes float-shoe {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        @keyframes speed-lines {
+            0% { opacity: 0; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(-50px); }
+            100% { opacity: 0; transform: translateX(-100px); }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            .left-section {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .right-section {
+                max-width: 100%;
+            }
+            
+            .shoe-image {
+                max-width: 350px;
+            }
+            
+            .price-tag {
+                position: static;
+                display: inline-block;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="animation-container">
-        <div class="progress-bar" id="progressBar"></div>
-        
-        <!-- Scene 1: Meet Mariama -->
-        <div class="scene" id="scene1">
-            <div class="character" id="mariama">
-                <div style="position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #333; border-radius: 50%;"></div>
-                <div style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); width: 10px; height: 5px; background: #333; border-radius: 0 0 10px 10px;"></div>
-                <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 30px; height: 20px; background: #ff6b6b; border-radius: 15px;"></div>
-            </div>
-            <div class="phone" id="phone1"></div>
-            <div class="money-icon" id="moneyIcon1">$</div>
-            <div class="text-overlay" id="text1">Mariama just finished selling vegetables in the market.</div>
+    <div class="container">
+        <div class="background-elements">
+            <div class="geometric-shape shape-1"></div>
+            <div class="geometric-shape shape-2"></div>
+            <div class="geometric-shape shape-3"></div>
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
         </div>
-
-        <!-- Scene 2: No queues. No stress -->
-        <div class="scene" id="scene2">
-            <div class="split-screen">
-                <div class="split-left">
-                    <h3 style="color: white; margin-bottom: 20px;">Bank Queue</h3>
-                    <div id="queueContainer">
-                        <div class="queue-person"></div>
-                        <div class="queue-person"></div>
-                        <div class="queue-person"></div>
-                        <div class="queue-person"></div>
+        
+        <div class="main-content">
+            <div class="left-section">
+                <img src="https://media.about.nike.com/image-downloads/cf68f541-fc92-4373-91cb-086ae0fe2f88/002-nike-logos-swoosh-white.jpg" alt="Nike Logo" class="nike-logo">
+                
+                <div class="hero-text">
+                    <h1 class="hero-title">AIR MAX<br>REVOLUTION</h1>
+                    <p class="hero-subtitle">Beyond Limits</p>
+                </div>
+                
+                <ul class="features">
+                    <li>Revolutionary Air Max Technology</li>
+                    <li>Premium Flyknit Construction</li>
+                    <li>All-Day Comfort & Style</li>
+                    <li>Sustainable Materials</li>
+                </ul>
+                
+                <a href="#" class="cta-button">Shop Now</a>
+            </div>
+            
+            <div class="right-section">
+                <div class="shoe-container">
+                    <div class="shoe-glow"></div>
+                    <img src="https://cdn.sanity.io/images/c1chvb1i/production/a0479c253b26a9fec066b696305577ab9836f48a-1100x735.jpg?w=1760&h=1176&q=75&fit=max&auto=format" alt="Nike Air Max Revolution" class="shoe-image">
+                    <div class="speed-lines">
+                        <div class="speed-line"></div>
+                        <div class="speed-line"></div>
+                        <div class="speed-line"></div>
                     </div>
                 </div>
-                <div class="split-right">
-                    <h3 style="color: white; margin-bottom: 20px;">Wave</h3>
-                    <div class="character" style="width: 100px; height: 100px;"></div>
-                    <div class="phone" style="width: 60px; height: 100px;"></div>
-                </div>
             </div>
-            <div class="text-overlay" id="text2">With Wave, she sends money home in seconds.</div>
-        </div>
-
-        <!-- Scene 3: Instant. Affordable. Everywhere -->
-        <div class="scene" id="scene3">
-            <div class="map-container" id="gambiaMap">
-                <div class="map-pin" style="top: 20%; left: 30%;" id="pin1"></div>
-                <div class="map-pin" style="top: 40%; left: 60%;" id="pin2"></div>
-                <div class="map-pin" style="top: 60%; left: 40%;" id="pin3"></div>
-                <div class="map-pin" style="top: 30%; left: 70%;" id="pin4"></div>
-                <div class="map-pin" style="top: 70%; left: 20%;" id="pin5"></div>
+            
+            <div class="price-tag">
+                <span class="currency">$</span>199
             </div>
-            <div class="text-overlay" id="text3">Find an agent almost anywhere.</div>
-        </div>
-
-        <!-- Scene 4: Your bills? Handled -->
-        <div class="scene" id="scene4">
-            <div class="phone" style="width: 120px; height: 200px; margin-bottom: 20px;" id="billPhone">
-                <div style="position: absolute; top: 20px; left: 20px; right: 20px; display: flex; flex-wrap: wrap; justify-content: space-around;">
-                    <div class="bill-icon electricity">⚡</div>
-                    <div class="bill-icon wifi">📶</div>
-                    <div class="bill-icon mobile">📱</div>
-                </div>
-            </div>
-            <div id="confettiContainer"></div>
-            <div class="text-overlay" id="text4">Pay your bills with just a tap.</div>
-        </div>
-
-        <!-- Scene 5: Wave it Forward -->
-        <div class="scene" id="scene5">
-            <div style="display: flex; align-items: center; gap: 100px;">
-                <div class="phone" id="senderPhone"></div>
-                <div class="pulse" id="pulse1"></div>
-                <div class="pulse" id="pulse2" style="transform: scale(0.7); opacity: 0.7;"></div>
-                <div class="pulse" id="pulse3" style="transform: scale(0.4); opacity: 0.4;"></div>
-                <div class="phone" id="receiverPhone"></div>
-            </div>
-            <div class="text-overlay" id="text5">Send, receive, and smile — with Wave.</div>
-        </div>
-
-        <!-- Scene 6: Final Branding -->
-        <div class="scene" id="scene6">
-            <div class="logo-container" id="logoContainer">
-                <div class="logo-text">WAVE</div>
-            </div>
-            <div class="slogan" id="slogan">Safe. Fast. Free.</div>
-            <div class="cta-button" id="ctaButton">Download Now</div>
         </div>
     </div>
-
-    <script>
-        // Configuration object for custom images/assets
-        const config = {
-            characterURL: null, // Set to image URL for custom character
-            logoURL: null, // Set to image URL for custom logo
-            phoneURL: null, // Set to image URL for custom phone
-            pinIconURL: null, // Set to image URL for custom map pins
-            billIcons: {
-                electricity: null,
-                wifi: null,
-                mobile: null
-            }
-        };
-
-        // Animation timeline
-        let tl = gsap.timeline({ repeat: -1 });
-        let currentScene = 1;
-        const totalScenes = 6;
-        const sceneDuration = 6; // seconds per scene
-
-        // Initialize custom images if URLs are provided
-        function initializeCustomAssets() {
-            // Character image
-            if (config.characterURL) {
-                const characters = document.querySelectorAll('.character');
-                characters.forEach(char => {
-                    const img = document.createElement('img');
-                    img.src = config.characterURL;
-                    img.className = 'custom-image';
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    char.innerHTML = '';
-                    char.appendChild(img);
-                });
-            }
-
-            // Logo
-            if (config.logoURL) {
-                const logoContainer = document.getElementById('logoContainer');
-                const img = document.createElement('img');
-                img.src = config.logoURL;
-                img.style.maxWidth = '100%';
-                img.style.maxHeight = '100%';
-                logoContainer.innerHTML = '';
-                logoContainer.appendChild(img);
-            }
-
-            // Map pins
-            if (config.pinIconURL) {
-                const pins = document.querySelectorAll('.map-pin');
-                pins.forEach(pin => {
-                    pin.style.backgroundImage = `url(${config.pinIconURL})`;
-                    pin.style.backgroundSize = 'cover';
-                    pin.style.backgroundPosition = 'center';
-                });
-            }
-        }
-
-        // Scene animations
-        function animateScene1() {
-            const scene = document.getElementById('scene1');
-            const character = document.getElementById('mariama');
-            const phone = document.getElementById('phone1');
-            const money = document.getElementById('moneyIcon1');
-            const text = document.getElementById('text1');
-
-            tl.set(scene, { opacity: 1, scale: 1 })
-              .from(character, { scale: 0, rotation: 360, duration: 1, ease: "back.out(1.7)" })
-              .from(phone, { x: -100, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
-              .from(money, { scale: 0, rotation: 720, duration: 0.6, ease: "back.out(1.7)" }, "-=0.3")
-              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
-              .to(money, { rotation: 360, duration: 2, ease: "none", repeat: 1 });
-        }
-
-        function animateScene2() {
-            const scene = document.getElementById('scene2');
-            const queuePersons = document.querySelectorAll('.queue-person');
-            const text = document.getElementById('text2');
-
-            tl.to('#scene1', { opacity: 0, scale: 0.8, duration: 0.5 })
-              .set(scene, { opacity: 1, scale: 1 })
-              .from(queuePersons, { x: -50, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" })
-              .to(queuePersons, { x: 20, duration: 3, stagger: 0.1, ease: "none", repeat: 1, yoyo: true })
-              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=2");
-        }
-
-        function animateScene3() {
-            const scene = document.getElementById('scene3');
-            const map = document.getElementById('gambiaMap');
-            const pins = document.querySelectorAll('.map-pin');
-            const text = document.getElementById('text3');
-
-            tl.to('#scene2', { opacity: 0, scale: 0.8, duration: 0.5 })
-              .set(scene, { opacity: 1, scale: 1 })
-              .from(map, { scale: 0, rotation: 10, duration: 1, ease: "back.out(1.7)" })
-              .from(pins, { scale: 0, rotation: 180, duration: 0.6, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.5")
-              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
-              .to(pins, { scale: 1.2, duration: 0.3, stagger: 0.1, ease: "power2.inOut", repeat: 3, yoyo: true });
-        }
-
-        function animateScene4() {
-            const scene = document.getElementById('scene4');
-            const phone = document.getElementById('billPhone');
-            const billIcons = document.querySelectorAll('.bill-icon');
-            const text = document.getElementById('text4');
-            const confettiContainer = document.getElementById('confettiContainer');
-
-            // Create confetti
-            for (let i = 0; i < 20; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.top = Math.random() * 100 + '%';
-                confettiContainer.appendChild(confetti);
-            }
-
-            tl.to('#scene3', { opacity: 0, scale: 0.8, duration: 0.5 })
-              .set(scene, { opacity: 1, scale: 1 })
-              .from(phone, { scale: 0, rotation: 10, duration: 1, ease: "back.out(1.7)" })
-              .from(billIcons, { scale: 0, rotation: 360, duration: 0.6, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.5")
-              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
-              .from('.confetti', { scale: 0, rotation: 720, duration: 1, stagger: 0.05, ease: "power2.out" }, "-=0.6")
-              .to('.confetti', { y: -200, rotation: 360, duration: 2, stagger: 0.05, ease: "power2.in" });
-        }
-
-        function animateScene5() {
-            const scene = document.getElementById('scene5');
-            const pulses = [document.getElementById('pulse1'), document.getElementById('pulse2'), document.getElementById('pulse3')];
-            const senderPhone = document.getElementById('senderPhone');
-            const receiverPhone = document.getElementById('receiverPhone');
-            const text = document.getElementById('text5');
-
-            tl.to('#scene4', { opacity: 0, scale: 0.8, duration: 0.5 })
-              .set(scene, { opacity: 1, scale: 1 })
-              .from([senderPhone, receiverPhone], { scale: 0, rotation: 10, duration: 1, stagger: 0.2, ease: "back.out(1.7)" })
-              .from(pulses, { scale: 0, opacity: 0, duration: 1, stagger: 0.3, ease: "power2.out" }, "-=0.5")
-              .from(text, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
-              .to(pulses, { scale: 2, opacity: 0, duration: 2, stagger: 0.3, ease: "power2.out", repeat: 1 });
-        }
-
-        function animateScene6() {
-            const scene = document.getElementById('scene6');
-            const logo = document.getElementById('logoContainer');
-            const slogan = document.getElementById('slogan');
-            const button = document.getElementById('ctaButton');
-
-            tl.to('#scene5', { opacity: 0, scale: 0.8, duration: 0.5 })
-              .set(scene, { opacity: 1, scale: 1 })
-              .from(logo, { scale: 0, rotation: 360, duration: 1.2, ease: "back.out(1.7)" })
-              .from(slogan, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.6")
-              .from(button, { scale: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.4")
-              .to(button, { scale: 1.1, duration: 0.3, ease: "power2.inOut", repeat: 3, yoyo: true })
-              .to(logo, { rotation: 5, duration: 1, ease: "power2.inOut", repeat: 1, yoyo: true }, "-=1");
-        }
-
-        // Progress bar update
-        function updateProgressBar() {
-            const progress = ((currentScene - 1) / totalScenes) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-        }
-
-        // Main animation sequence
-        function startAnimation() {
-            initializeCustomAssets();
-            
-            animateScene1();
-            tl.call(() => { currentScene = 2; updateProgressBar(); });
-            animateScene2();
-            tl.call(() => { currentScene = 3; updateProgressBar(); });
-            animateScene3();
-            tl.call(() => { currentScene = 4; updateProgressBar(); });
-            animateScene4();
-            tl.call(() => { currentScene = 5; updateProgressBar(); });
-            animateScene5();
-            tl.call(() => { currentScene = 6; updateProgressBar(); });
-            animateScene6();
-            tl.call(() => { currentScene = 1; updateProgressBar(); });
-        }
-
-        // Start the animation
-        startAnimation();
-
-        // Example of how to use custom assets (uncomment and modify as needed):
-        /*
-        config.characterURL = 'https://example.com/mariama-character.png';
-        config.logoURL = 'https://example.com/wave-logo.png';
-        config.phoneURL = 'https://example.com/phone-image.png';
-        config.pinIconURL = 'https://example.com/map-pin-icon.png';
-        config.billIcons.electricity = 'https://example.com/electricity-icon.png';
-        config.billIcons.wifi = 'https://example.com/wifi-icon.png';
-        config.billIcons.mobile = 'https://example.com/mobile-icon.png';
-        */
-    </script>
 </body>
 </html>
