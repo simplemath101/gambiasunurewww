@@ -1,144 +1,1690 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommendation Letter</title>
+    <title>Aprende Español - Spanish Language Learning Ebook</title>
     <style>
+        @page {
+            margin: 2cm;
+            size: A4;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Times New Roman', serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            font-family: 'Georgia', serif;
             line-height: 1.6;
             color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fefefe;
         }
         
-        .letterhead {
+        .cover {
             text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            page-break-after: always;
+        }
+        
+        .cover h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cover p {
+            font-size: 1.3em;
+            margin: 10px 0;
+        }
+        
+        .toc {
+            page-break-before: always;
+            page-break-after: always;
+        }
+        
+        .toc h2 {
+            color: #d32f2f;
+            border-bottom: 3px solid #d32f2f;
+            padding-bottom: 10px;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-left: 4px solid #ffa500;
+        }
+        
+        .chapter {
+            page-break-before: always;
+            margin-bottom: 40px;
+        }
+        
+        h1, h2, h3 {
+            color: #d32f2f;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            border-bottom: 3px solid #d32f2f;
+            padding-bottom: 15px;
             margin-bottom: 30px;
         }
         
-        .university-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
+        h2 {
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
         
-        .school-name {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 5px;
+        h3 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
         }
         
-        .office {
-            font-size: 14px;
-            margin-bottom: 10px;
+        .vocab-box {
+            background-color: #e8f5e8;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
         }
         
-        .logo {
-            margin: 15px 0;
+        .grammar-box {
+            background-color: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
         }
         
-        .logo img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+        .exercise-box {
+            background-color: #f3e5f5;
+            border: 2px solid #9c27b0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
         }
         
-        .date {
+        .pronunciation-guide {
+            background-color: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: left;
-            margin-bottom: 30px;
-            font-size: 14px;
         }
         
-        .salutation {
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        
-        .subject {
+        th {
+            background-color: #f2f2f2;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-            text-decoration: underline;
-            font-size: 14px;
+            color: #d32f2f;
         }
         
-        .content {
-            text-align: justify;
-            font-size: 14px;
-            margin-bottom: 30px;
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
         
-        .content p {
-            margin-bottom: 15px;
+        .dialogue {
+            background-color: #f0f8ff;
+            border-left: 5px solid #4169e1;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
         }
         
-        .closing {
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        
-        .signature-line-dots {
-            margin-bottom: 45px;
-            font-size: 14px;
-        }
-        
-        .signature-block {
-            font-size: 14px;
-        }
-        
-        .signature-line {
-            margin-bottom: 5px;
-        }
-        
-        .name {
+        .spanish {
+            color: #d32f2f;
             font-weight: bold;
         }
         
-        .contact {
-            margin-top: 10px;
-            font-size: 12px;
+        .english {
+            color: #666;
+        }
+        
+        .tip {
+            background-color: #fffacd;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .tip::before {
+            content: "💡 Consejo: ";
+            font-weight: bold;
+            color: #ff8c00;
+        }
+        
+        ul, ol {
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .phonetic {
+            color: #666;
+            font-style: italic;
+        }
+        
+        @media print {
+            body {
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            .chapter {
+                page-break-before: always;
+            }
+            
+            .vocab-box, .grammar-box, .exercise-box, .pronunciation-guide {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="letterhead">
-        <div class="university-name">UNIVERSITY OF THE GAMBIA</div>
-        <div class="school-name">SCHOOL OF INFORMATION AND COMMUNICATION TECHNOLOGY</div>
-        <div class="office">(Office of the Dean)</div>
-        <div class="logo">
-            <img src="https://pbs.twimg.com/profile_images/1668787193941311489/j7X1W70F_400x400.jpg" alt="University of the Gambia Logo">
+    <div class="cover">
+        <h1>APRENDE ESPAÑOL</h1>
+        <p>Complete Spanish Language Learning Guide</p>
+        <p>Guía Completa para Aprender Español</p>
+        <p style="margin-top: 40px; font-size: 1.1em;">From Beginner to Intermediate</p>
+        <p style="margin-top: 60px; font-size: 0.9em;">© 2024 Spanish Learning Ebook</p>
+    </div>
+
+    <div class="toc">
+        <h2>Tabla de Contenidos / Table of Contents</h2>
+        <ul>
+            <li>Capítulo 1: Introducción y Pronunciación / Introduction and Pronunciation</li>
+            <li>Capítulo 2: Saludos y Presentaciones / Greetings and Introductions</li>
+            <li>Capítulo 3: Números y Tiempo / Numbers and Time</li>
+            <li>Capítulo 4: La Familia / Family</li>
+            <li>Capítulo 5: Comida y Bebidas / Food and Drinks</li>
+            <li>Capítulo 6: Verbos Básicos / Basic Verbs</li>
+            <li>Capítulo 7: Colores y Descripciones / Colors and Descriptions</li>
+            <li>Capítulo 8: Direcciones y Lugares / Directions and Places</li>
+            <li>Capítulo 9: Gramática Esencial / Essential Grammar</li>
+            <li>Capítulo 10: Conversaciones Útiles / Useful Conversations</li>
+        </ul>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 1: Introducción y Pronunciación</h1>
+        
+        <h2>Bienvenido al Español / Welcome to Spanish</h2>
+        <p>El español es una lengua hermosa hablada por más de 500 millones de personas en todo el mundo. Es el segundo idioma más hablado por número de hablantes nativos y es oficial en 21 países.</p>
+        <p><em>Spanish is a beautiful language spoken by more than 500 million people worldwide. It's the second most spoken language by native speakers and is official in 21 countries.</em></p>
+
+        <div class="pronunciation-guide">
+            <h3>Guía de Pronunciación / Pronunciation Guide</h3>
+            
+            <h4>Vocales / Vowels</h4>
+            <table>
+                <tr>
+                    <th>Letra</th>
+                    <th>Sonido</th>
+                    <th>Ejemplo</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>ah</td>
+                    <td>casa</td>
+                    <td class="phonetic">[kah-sah]</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>eh</td>
+                    <td>mesa</td>
+                    <td class="phonetic">[meh-sah]</td>
+                </tr>
+                <tr>
+                    <td>I</td>
+                    <td>ee</td>
+                    <td>niño</td>
+                    <td class="phonetic">[nee-nyoh]</td>
+                </tr>
+                <tr>
+                    <td>O</td>
+                    <td>oh</td>
+                    <td>todo</td>
+                    <td class="phonetic">[toh-doh]</td>
+                </tr>
+                <tr>
+                    <td>U</td>
+                    <td>oo</td>
+                    <td>luna</td>
+                    <td class="phonetic">[loo-nah]</td>
+                </tr>
+            </table>
+
+            <div class="tip">
+                Las vocales en español son muy consistentes. Siempre se pronuncian de la misma manera, sin importar su posición en la palabra.
+            </div>
+        </div>
+
+        <div class="pronunciation-guide">
+            <h4>Consonantes Especiales / Special Consonants</h4>
+            <ul>
+                <li><strong>ñ</strong> - como "ny" en inglés: <span class="spanish">niño</span> <span class="phonetic">[nee-nyoh]</span></li>
+                <li><strong>rr</strong> - rr fuerte: <span class="spanish">perro</span> <span class="phonetic">[peh-rroh]</span></li>
+                <li><strong>ll</strong> - como "y": <span class="spanish">pollo</span> <span class="phonetic">[poh-yoh]</span></li>
+                <li><strong>j</strong> - sonido fuerte: <span class="spanish">jardín</span> <span class="phonetic">[har-deen]</span></li>
+                <li><strong>ch</strong> - como en inglés: <span class="spanish">muchacho</span> <span class="phonetic">[moo-chah-choh]</span></li>
+            </ul>
         </div>
     </div>
-    
-    <div class="date">18th August, 2025.</div>
-    
-    <div class="salutation">Dear Sir/Madam,</div>
-    
-    <div class="subject">RECOMMENDATION FOR INTERNSHIP</div>
-    
-    <div class="content">
-        <p>This is to certify that Mr. Muhammed Baba Suno (22316038) is a bona fide student of The University of the Gambia under the Department of Information systems Science, pursuing a BSc. Degree in Information Systems. He is in his final year of studies, and therefore wants to use this opportunity to get internship at your reputable institution.</p>
-        
-        <p>Mr. Suno has a pleasant, flexible, and customer-oriented attitude and has good communication skills. He has the ability to work independently and as a team member with an excellent disposition towards his colleagues and staff of the university.</p>
-        
-        <p>I strongly support his application for an internship to gain practical industrial experience.</p>
+
+    <div class="chapter">
+        <h1>Capítulo 2: Saludos y Presentaciones</h1>
+
+        <div class="vocab-box">
+            <h3>Vocabulario Básico / Basic Vocabulary</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">Hola</td>
+                    <td>Hello</td>
+                    <td class="phonetic">[oh-lah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Buenos días</td>
+                    <td>Good morning</td>
+                    <td class="phonetic">[bway-nos dee-ahs]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Buenas tardes</td>
+                    <td>Good afternoon</td>
+                    <td class="phonetic">[bway-nas tar-des]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Buenas noches</td>
+                    <td>Good evening/night</td>
+                    <td class="phonetic">[bway-nas noh-ches]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Adiós</td>
+                    <td>Goodbye</td>
+                    <td class="phonetic">[ah-dyohs]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Hasta luego</td>
+                    <td>See you later</td>
+                    <td class="phonetic">[ahs-tah lway-goh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Por favor</td>
+                    <td>Please</td>
+                    <td class="phonetic">[por fah-vor]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Gracias</td>
+                    <td>Thank you</td>
+                    <td class="phonetic">[grah-thyahs]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">De nada</td>
+                    <td>You're welcome</td>
+                    <td class="phonetic">[deh nah-dah]</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Presentaciones / Introductions</h2>
+        <div class="vocab-box">
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">Me llamo...</td>
+                    <td>My name is...</td>
+                    <td class="phonetic">[meh yah-moh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Soy...</td>
+                    <td>I am...</td>
+                    <td class="phonetic">[soy]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Cómo te llamas?</td>
+                    <td>What's your name?</td>
+                    <td class="phonetic">[koh-moh teh yah-mas]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Mucho gusto</td>
+                    <td>Nice to meet you</td>
+                    <td class="phonetic">[moo-choh goos-toh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿De dónde eres?</td>
+                    <td>Where are you from?</td>
+                    <td class="phonetic">[deh dohn-deh eh-res]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Soy de...</td>
+                    <td>I'm from...</td>
+                    <td class="phonetic">[soy deh]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="dialogue">
+            <h3>Diálogo de Ejemplo / Sample Dialogue</h3>
+            <p><strong>María:</strong> <span class="spanish">¡Hola! Buenos días.</span><br>
+            <span class="english">Hello! Good morning.</span></p>
+            
+            <p><strong>Juan:</strong> <span class="spanish">Buenos días. Me llamo Juan. ¿Cómo te llamas?</span><br>
+            <span class="english">Good morning. My name is Juan. What's your name?</span></p>
+            
+            <p><strong>María:</strong> <span class="spanish">Me llamo María. Mucho gusto.</span><br>
+            <span class="english">My name is María. Nice to meet you.</span></p>
+            
+            <p><strong>Juan:</strong> <span class="spanish">Mucho gusto, María. ¿De dónde eres?</span><br>
+            <span class="english">Nice to meet you, María. Where are you from?</span></p>
+            
+            <p><strong>María:</strong> <span class="spanish">Soy de México. ¿Y tú?</span><br>
+            <span class="english">I'm from Mexico. And you?</span></p>
+        </div>
+
+        <div class="exercise-box">
+            <h3>Ejercicio 1: Completa las frases</h3>
+            <p>1. _____ días (Good morning)</p>
+            <p>2. Me _____ Pedro (My name is Pedro)</p>
+            <p>3. ¿_____ te llamas? (What's your name?)</p>
+            <p>4. _____ gusto (Nice to meet you)</p>
+            <p>5. Soy _____ España (I'm from Spain)</p>
+        </div>
     </div>
-    
-    <div class="closing">Yours faithfully,</div>
-    
-    <div class="signature-line-dots">…………………………</div>
-    
-    <div class="signature-block">
-        <div class="signature-line name">Momodou Jain, BSc., M.A., Ph.D</div>
-        <div class="signature-line">Dean, School of Information and Communication Technology </div>
-        <div class="signature-line">University of The Gambia.</div>
+
+    <div class="chapter">
+        <h1>Capítulo 3: Números y Tiempo</h1>
+
+        <div class="vocab-box">
+            <h3>Números 0-20 / Numbers 0-20</h3>
+            <table>
+                <tr>
+                    <th>Número</th>
+                    <th>Español</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr><td>0</td><td class="spanish">cero</td><td class="phonetic">[theh-roh]</td></tr>
+                <tr><td>1</td><td class="spanish">uno</td><td class="phonetic">[oo-noh]</td></tr>
+                <tr><td>2</td><td class="spanish">dos</td><td class="phonetic">[dohs]</td></tr>
+                <tr><td>3</td><td class="spanish">tres</td><td class="phonetic">[tres]</td></tr>
+                <tr><td>4</td><td class="spanish">cuatro</td><td class="phonetic">[kwah-troh]</td></tr>
+                <tr><td>5</td><td class="spanish">cinco</td><td class="phonetic">[theen-koh]</td></tr>
+                <tr><td>6</td><td class="spanish">seis</td><td class="phonetic">[seys]</td></tr>
+                <tr><td>7</td><td class="spanish">siete</td><td class="phonetic">[syeh-teh]</td></tr>
+                <tr><td>8</td><td class="spanish">ocho</td><td class="phonetic">[oh-choh]</td></tr>
+                <tr><td>9</td><td class="spanish">nueve</td><td class="phonetic">[nweh-veh]</td></tr>
+                <tr><td>10</td><td class="spanish">diez</td><td class="phonetic">[dyeth]</td></tr>
+            </table>
+        </div>
+
+        <div class="vocab-box">
+            <h3>Números 11-20</h3>
+            <table>
+                <tr>
+                    <th>Número</th>
+                    <th>Español</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr><td>11</td><td class="spanish">once</td><td class="phonetic">[ohn-theh]</td></tr>
+                <tr><td>12</td><td class="spanish">doce</td><td class="phonetic">[doh-theh]</td></tr>
+                <tr><td>13</td><td class="spanish">trece</td><td class="phonetic">[treh-theh]</td></tr>
+                <tr><td>14</td><td class="spanish">catorce</td><td class="phonetic">[kah-tor-theh]</td></tr>
+                <tr><td>15</td><td class="spanish">quince</td><td class="phonetic">[keen-theh]</td></tr>
+                <tr><td>16</td><td class="spanish">dieciséis</td><td class="phonetic">[dyeh-thy-seys]</td></tr>
+                <tr><td>17</td><td class="spanish">diecisiete</td><td class="phonetic">[dyeh-thy-syeh-teh]</td></tr>
+                <tr><td>18</td><td class="spanish">dieciocho</td><td class="phonetic">[dyeh-thy-oh-choh]</td></tr>
+                <tr><td>19</td><td class="spanish">diecinueve</td><td class="phonetic">[dyeh-thy-nweh-veh]</td></tr>
+                <tr><td>20</td><td class="spanish">veinte</td><td class="phonetic">[veyn-teh]</td></tr>
+            </table>
+        </div>
+
+        <h2>La Hora / Time</h2>
+        <div class="vocab-box">
+            <h3>Vocabulario del Tiempo</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Qué hora es?</td>
+                    <td>What time is it?</td>
+                    <td class="phonetic">[keh oh-rah es]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Es la una</td>
+                    <td>It's one o'clock</td>
+                    <td class="phonetic">[es lah oo-nah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Son las dos</td>
+                    <td>It's two o'clock</td>
+                    <td class="phonetic">[son las dohs]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">y media</td>
+                    <td>and half</td>
+                    <td class="phonetic">[ee meh-dyah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">y cuarto</td>
+                    <td>and quarter</td>
+                    <td class="phonetic">[ee kwar-toh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">menos cuarto</td>
+                    <td>minus quarter</td>
+                    <td class="phonetic">[meh-nos kwar-toh]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="grammar-box">
+            <h3>Reglas de la Hora / Time Rules</h3>
+            <ul>
+                <li>Para la 1:00 usamos: <span class="spanish">"Es la una"</span></li>
+                <li>Para las demás horas usamos: <span class="spanish">"Son las + número"</span></li>
+                <li>Ejemplos:
+                    <ul>
+                        <li><span class="spanish">Es la una y media</span> (1:30)</li>
+                        <li><span class="spanish">Son las tres y cuarto</span> (3:15)</li>
+                        <li><span class="spanish">Son las cinco menos cuarto</span> (4:45)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 4: La Familia</h1>
+
+        <div class="vocab-box">
+            <h3>Miembros de la Familia / Family Members</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">la familia</td>
+                    <td>the family</td>
+                    <td class="phonetic">[lah fah-mee-lyah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el padre / papá</td>
+                    <td>the father / dad</td>
+                    <td class="phonetic">[el pah-dreh / pah-pah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la madre / mamá</td>
+                    <td>the mother / mom</td>
+                    <td class="phonetic">[lah mah-dreh / mah-mah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el hijo</td>
+                    <td>the son</td>
+                    <td class="phonetic">[el ee-hoh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la hija</td>
+                    <td>the daughter</td>
+                    <td class="phonetic">[lah ee-hah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el hermano</td>
+                    <td>the brother</td>
+                    <td class="phonetic">[el er-mah-noh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la hermana</td>
+                    <td>the sister</td>
+                    <td class="phonetic">[lah er-mah-nah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el abuelo</td>
+                    <td>the grandfather</td>
+                    <td class="phonetic">[el ah-bweh-loh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la abuela</td>
+                    <td>the grandmother</td>
+                    <td class="phonetic">[lah ah-bweh-lah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el tío</td>
+                    <td>the uncle</td>
+                    <td class="phonetic">[el tee-oh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la tía</td>
+                    <td>the aunt</td>
+                    <td class="phonetic">[lah tee-ah]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="grammar-box">
+            <h3>Género y Artículos / Gender and Articles</h3>
+            <p>En español, los sustantivos tienen género: masculino o femenino.</p>
+            
+            <h4>Artículos Definidos</h4>
+            <ul>
+                <li><strong>el</strong> - masculino singular (el padre)</li>
+                <li><strong>la</strong> - femenino singular (la madre)</li>
+                <li><strong>los</strong> - masculino plural (los padres)</li>
+                <li><strong>las</strong> - femenino plural (las madres)</li>
+            </ul>
+
+            <div class="tip">
+                La mayoría de las palabras que terminan en -a son femeninas, y las que terminan en -o son masculinas. ¡Pero hay excepciones!
+            </div>
+        </div>
+
+        <div class="dialogue">
+            <h3>Hablando de la Familia / Talking About Family</h3>
+            <p><strong>Ana:</strong> <span class="spanish">¿Tienes hermanos?</span><br>
+            <span class="english">Do you have siblings?</span></p>
+            
+            <p><strong>Carlos:</strong> <span class="spanish">Sí, tengo un hermano y una hermana. ¿Y tú?</span><br>
+            <span class="english">Yes, I have a brother and a sister. And you?</span></p>
+            
+            <p><strong>Ana:</strong> <span class="spanish">Yo tengo dos hermanas. Mi familia es grande.</span><br>
+            <span class="english">I have two sisters. My family is big.</span></p>
+            
+            <p><strong>Carlos:</strong> <span class="spanish">¿Vives con tus padres?</span><br>
+            <span class="english">Do you live with your parents?</span></p>
+            
+            <p><strong>Ana:</strong> <span class="spanish">Sí, vivo con mis padres y mi abuela.</span><br>
+            <span class="english">Yes, I live with my parents and my grandmother.</span></p>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 5: Comida y Bebidas</h1>
+
+        <div class="vocab-box">
+            <h3>Comidas / Meals</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">el desayuno</td>
+                    <td>breakfast</td>
+                    <td class="phonetic">[el deh-sah-yoo-noh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el almuerzo</td>
+                    <td>lunch</td>
+                    <td class="phonetic">[el al-mwer-thoh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la cena</td>
+                    <td>dinner</td>
+                    <td class="phonetic">[lah theh-nah]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="vocab-box">
+            <h3>Alimentos / Foods</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">el pan</td>
+                    <td>bread</td>
+                    <td class="phonetic">[el pan]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la fruta</td>
+                    <td>fruit</td>
+                    <td class="phonetic">[lah froo-tah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la manzana</td>
+                    <td>apple</td>
+                    <td class="phonetic">[lah man-thah-nah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el plátano</td>
+                    <td>banana</td>
+                    <td class="phonetic">[el plah-tah-noh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la carne</td>
+                    <td>meat</td>
+                    <td class="phonetic">[lah kar-neh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el pollo</td>
+                    <td>chicken</td>
+                    <td class="phonetic">[el poh-yoh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el pescado</td>
+                    <td>fish</td>
+                    <td class="phonetic">[el pes-kah-doh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el arroz</td>
+                    <td>rice</td>
+                    <td class="phonetic">[el ah-roth]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">las verduras</td>
+                    <td>vegetables</td>
+                    <td class="phonetic">[las ver-doo-ras]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el queso</td>
+                    <td>cheese</td>
+                    <td class="phonetic">[el keh-soh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">los huevos</td>
+                    <td>eggs</td>
+                    <td class="phonetic">[los weh-vos]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="vocab-box">
+            <h3>Bebidas / Drinks</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">el agua</td>
+                    <td>water</td>
+                    <td class="phonetic">[el ah-gwah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la leche</td>
+                    <td>milk</td>
+                    <td class="phonetic">[lah leh-cheh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el café</td>
+                    <td>coffee</td>
+                    <td class="phonetic">[el kah-feh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el té</td>
+                    <td>tea</td>
+                    <td class="phonetic">[el teh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el jugo</td>
+                    <td>juice</td>
+                    <td class="phonetic">[el hoo-goh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la cerveza</td>
+                    <td>beer</td>
+                    <td class="phonetic">[lah ther-veh-thah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el vino</td>
+                    <td>wine</td>
+                    <td class="phonetic">[el vee-noh]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="dialogue">
+            <h3>En el Restaurante / At the Restaurant</h3>
+            <p><strong>Camarero:</strong> <span class="spanish">¿Qué desea ordenar?</span><br>
+            <span class="english">What would you like to order?</span></p>
+            
+            <p><strong>Cliente:</strong> <span class="spanish">Quiero pollo con arroz, por favor.</span><br>
+            <span class="english">I want chicken with rice, please.</span></p>
+            
+            <p><strong>Camarero:</strong> <span class="spanish">¿Y para beber?</span><br>
+            <span class="english">And to drink?</span></p>
+            
+            <p><strong>Cliente:</strong> <span class="spanish">Un agua, gracias.</span><br>
+            <span class="english">A water, thank you.</span></p>
+        </div>
+
+        <div class="exercise-box">
+            <h3>Ejercicio 2: Relaciona la comida</h3>
+            <p>1. Breakfast → a) la cena</p>
+            <p>2. Lunch → b) el desayuno</p>
+            <p>3. Dinner → c) el almuerzo</p>
+            <p>4. Apple → d) la manzana</p>
+            <p>5. Water → e) el agua</p>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 6: Verbos Básicos</h1>
+
+        <div class="grammar-box">
+            <h3>Verbos Más Comunes / Most Common Verbs</h3>
+            
+            <h4>SER (to be - permanent characteristics)</h4>
+            <table>
+                <tr>
+                    <th>Pronombre</th>
+                    <th>Conjugación</th>
+                    <th>English</th>
+                </tr>
+                <tr>
+                    <td>yo</td>
+                    <td class="spanish">soy</td>
+                    <td>I am</td>
+                </tr>
+                <tr>
+                    <td>tú</td>
+                    <td class="spanish">eres</td>
+                    <td>you are (informal)</td>
+                </tr>
+                <tr>
+                    <td>él/ella/usted</td>
+                    <td class="spanish">es</td>
+                    <td>he/she/you are (formal)</td>
+                </tr>
+                <tr>
+                    <td>nosotros</td>
+                    <td class="spanish">somos</td>
+                    <td>we are</td>
+                </tr>
+                <tr>
+                    <td>vosotros</td>
+                    <td class="spanish">sois</td>
+                    <td>you are (plural, Spain)</td>
+                </tr>
+                <tr>
+                    <td>ellos/ellas/ustedes</td>
+                    <td class="spanish">son</td>
+                    <td>they/you are (plural)</td>
+                </tr>
+            </table>
+
+            <h4>ESTAR (to be - temporary states/location)</h4>
+            <table>
+                <tr>
+                    <th>Pronombre</th>
+                    <th>Conjugación</th>
+                    <th>English</th>
+                </tr>
+                <tr>
+                    <td>yo</td>
+                    <td class="spanish">estoy</td>
+                    <td>I am</td>
+                </tr>
+                <tr>
+                    <td>tú</td>
+                    <td class="spanish">estás</td>
+                    <td>you are</td>
+                </tr>
+                <tr>
+                    <td>él/ella/usted</td>
+                    <td class="spanish">está</td>
+                    <td>he/she/you are</td>
+                </tr>
+                <tr>
+                    <td>nosotros</td>
+                    <td class="spanish">estamos</td>
+                    <td>we are</td>
+                </tr>
+                <tr>
+                    <td>vosotros</td>
+                    <td class="spanish">estáis</td>
+                    <td>you are</td>
+                </tr>
+                <tr>
+                    <td>ellos/ellas/ustedes</td>
+                    <td class="spanish">están</td>
+                    <td>they/you are</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tip">
+            <strong>SER vs ESTAR:</strong><br>
+            • SER: características permanentes, profesión, nacionalidad<br>
+            • ESTAR: estados temporales, ubicación, emociones<br><br>
+            Ejemplos:<br>
+            • <span class="spanish">Soy médico</span> (I am a doctor - profession)<br>
+            • <span class="spanish">Estoy cansado</span> (I am tired - temporary state)
+        </div>
+
+        <div class="grammar-box">
+            <h4>TENER (to have)</h4>
+            <table>
+                <tr>
+                    <th>Pronombre</th>
+                    <th>Conjugación</th>
+                    <th>English</th>
+                </tr>
+                <tr>
+                    <td>yo</td>
+                    <td class="spanish">tengo</td>
+                    <td>I have</td>
+                </tr>
+                <tr>
+                    <td>tú</td>
+                    <td class="spanish">tienes</td>
+                    <td>you have</td>
+                </tr>
+                <tr>
+                    <td>él/ella/usted</td>
+                    <td class="spanish">tiene</td>
+                    <td>he/she/you have</td>
+                </tr>
+                <tr>
+                    <td>nosotros</td>
+                    <td class="spanish">tenemos</td>
+                    <td>we have</td>
+                </tr>
+                <tr>
+                    <td>vosotros</td>
+                    <td class="spanish">tenéis</td>
+                    <td>you have</td>
+                </tr>
+                <tr>
+                    <td>ellos/ellas/ustedes</td>
+                    <td class="spanish">tienen</td>
+                    <td>they/you have</td>
+                </tr>
+            </table>
+
+            <h4>HACER (to do/make)</h4>
+            <table>
+                <tr>
+                    <th>Pronombre</th>
+                    <th>Conjugación</th>
+                    <th>English</th>
+                </tr>
+                <tr>
+                    <td>yo</td>
+                    <td class="spanish">hago</td>
+                    <td>I do/make</td>
+                </tr>
+                <tr>
+                    <td>tú</td>
+                    <td class="spanish">haces</td>
+                    <td>you do/make</td>
+                </tr>
+                <tr>
+                    <td>él/ella/usted</td>
+                    <td class="spanish">hace</td>
+                    <td>he/she/you do/make</td>
+                </tr>
+                <tr>
+                    <td>nosotros</td>
+                    <td class="spanish">hacemos</td>
+                    <td>we do/make</td>
+                </tr>
+                <tr>
+                    <td>vosotros</td>
+                    <td class="spanish">hacéis</td>
+                    <td>you do/make</td>
+                </tr>
+                <tr>
+                    <td>ellos/ellas/ustedes</td>
+                    <td class="spanish">hacen</td>
+                    <td>they/you do/make</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="vocab-box">
+            <h3>Otros Verbos Importantes / Other Important Verbs</h3>
+            <ul>
+                <li><span class="spanish">hablar</span> - to speak</li>
+                <li><span class="spanish">comer</span> - to eat</li>
+                <li><span class="spanish">vivir</span> - to live</li>
+                <li><span class="spanish">trabajar</span> - to work</li>
+                <li><span class="spanish">estudiar</span> - to study</li>
+                <li><span class="spanish">querer</span> - to want/love</li>
+                <li><span class="spanish">poder</span> - to be able to/can</li>
+                <li><span class="spanish">ir</span> - to go</li>
+                <li><span class="spanish">venir</span> - to come</li>
+                <li><span class="spanish">ver</span> - to see</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 7: Colores y Descripciones</h1>
+
+        <div class="vocab-box">
+            <h3>Colores / Colors</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">rojo/roja</td>
+                    <td>red</td>
+                    <td class="phonetic">[roh-hoh/roh-hah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">azul</td>
+                    <td>blue</td>
+                    <td class="phonetic">[ah-thool]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">verde</td>
+                    <td>green</td>
+                    <td class="phonetic">[ver-deh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">amarillo/amarilla</td>
+                    <td>yellow</td>
+                    <td class="phonetic">[ah-mah-ree-yoh/yah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">negro/negra</td>
+                    <td>black</td>
+                    <td class="phonetic">[neh-groh/grah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">blanco/blanca</td>
+                    <td>white</td>
+                    <td class="phonetic">[blan-koh/kah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">rosa</td>
+                    <td>pink</td>
+                    <td class="phonetic">[roh-sah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">morado/morada</td>
+                    <td>purple</td>
+                    <td class="phonetic">[moh-rah-doh/dah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">naranja</td>
+                    <td>orange</td>
+                    <td class="phonetic">[nah-ran-hah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">gris</td>
+                    <td>gray</td>
+                    <td class="phonetic">[grees]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="vocab-box">
+            <h3>Adjetivos Descriptivos / Descriptive Adjectives</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">grande</td>
+                    <td>big</td>
+                    <td class="phonetic">[gran-deh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">pequeño/pequeña</td>
+                    <td>small</td>
+                    <td class="phonetic">[peh-keh-nyoh/nyah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">alto/alta</td>
+                    <td>tall</td>
+                    <td class="phonetic">[al-toh/tah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">bajo/baja</td>
+                    <td>short</td>
+                    <td class="phonetic">[bah-hoh/hah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">gordo/gorda</td>
+                    <td>fat</td>
+                    <td class="phonetic">[gor-doh/dah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">delgado/delgada</td>
+                    <td>thin</td>
+                    <td class="phonetic">[del-gah-doh/dah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">joven</td>
+                    <td>young</td>
+                    <td class="phonetic">[hoh-ven]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">viejo/vieja</td>
+                    <td>old</td>
+                    <td class="phonetic">[vyeh-hoh/hah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">guapo/guapa</td>
+                    <td>handsome/pretty</td>
+                    <td class="phonetic">[gwah-poh/pah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">feo/fea</td>
+                    <td>ugly</td>
+                    <td class="phonetic">[feh-oh/ah]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="grammar-box">
+            <h3>Concordancia de Adjetivos / Adjective Agreement</h3>
+            <p>Los adjetivos en español deben concordar en género (masculino/femenino) y número (singular/plural) con el sustantivo que describen.</p>
+
+            <h4>Ejemplos:</h4>
+            <ul>
+                <li><span class="spanish">El coche rojo</span> (masculine singular)</li>
+                <li><span class="spanish">La casa roja</span> (feminine singular)</li>
+                <li><span class="spanish">Los coches rojos</span> (masculine plural)</li>
+                <li><span class="spanish">Las casas rojas</span> (feminine plural)</li>
+            </ul>
+
+            <div class="tip">
+                Algunos adjetivos no cambian de forma: azul, verde, rosa, naranja, gris
+            </div>
+        </div>
+
+        <div class="exercise-box">
+            <h3>Ejercicio 3: Completa con el adjetivo correcto</h3>
+            <p>1. La mesa es _____ (rojo)</p>
+            <p>2. El libro _____ (azul)</p>
+            <p>3. Las flores _____ (amarillo)</p>
+            <p>4. Los gatos son _____ (negro)</p>
+            <p>5. Mi hermana es muy _____ (alto)</p>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 8: Direcciones y Lugares</h1>
+
+        <div class="vocab-box">
+            <h3>Lugares en la Ciudad / Places in the City</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">el banco</td>
+                    <td>the bank</td>
+                    <td class="phonetic">[el ban-koh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el hospital</td>
+                    <td>the hospital</td>
+                    <td class="phonetic">[el os-pee-tal]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la farmacia</td>
+                    <td>the pharmacy</td>
+                    <td class="phonetic">[lah far-mah-thyah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el supermercado</td>
+                    <td>the supermarket</td>
+                    <td class="phonetic">[el soo-per-mer-kah-doh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la escuela</td>
+                    <td>the school</td>
+                    <td class="phonetic">[lah es-kweh-lah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la iglesia</td>
+                    <td>the church</td>
+                    <td class="phonetic">[lah ee-gleh-syah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el parque</td>
+                    <td>the park</td>
+                    <td class="phonetic">[el par-keh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la biblioteca</td>
+                    <td>the library</td>
+                    <td class="phonetic">[lah bee-blee-oh-teh-kah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">el restaurante</td>
+                    <td>the restaurant</td>
+                    <td class="phonetic">[el res-tow-ran-teh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">la estación</td>
+                    <td>the station</td>
+                    <td class="phonetic">[lah es-tah-thyon]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="vocab-box">
+            <h3>Direcciones / Directions</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Dónde está...?</td>
+                    <td>Where is...?</td>
+                    <td class="phonetic">[dohn-deh es-tah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">a la derecha</td>
+                    <td>to the right</td>
+                    <td class="phonetic">[ah lah deh-reh-chah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">a la izquierda</td>
+                    <td>to the left</td>
+                    <td class="phonetic">[ah lah eeth-kyehr-dah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">todo recto</td>
+                    <td>straight ahead</td>
+                    <td class="phonetic">[toh-doh rek-toh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">cerca de</td>
+                    <td>near</td>
+                    <td class="phonetic">[ther-kah deh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">lejos de</td>
+                    <td>far from</td>
+                    <td class="phonetic">[leh-hos deh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">al lado de</td>
+                    <td>next to</td>
+                    <td class="phonetic">[al lah-doh deh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">enfrente de</td>
+                    <td>in front of</td>
+                    <td class="phonetic">[en-fren-teh deh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">detrás de</td>
+                    <td>behind</td>
+                    <td class="phonetic">[deh-tras deh]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="dialogue">
+            <h3>Pidiendo Direcciones / Asking for Directions</h3>
+            <p><strong>Turista:</strong> <span class="spanish">Disculpe, ¿dónde está el banco?</span><br>
+            <span class="english">Excuse me, where is the bank?</span></p>
+            
+            <p><strong>Local:</strong> <span class="spanish">El banco está cerca del parque. Vaya todo recto y después gire a la derecha.</span><br>
+            <span class="english">The bank is near the park. Go straight ahead and then turn right.</span></p>
+            
+            <p><strong>Turista:</strong> <span class="spanish">¿Está lejos de aquí?</span><br>
+            <span class="english">Is it far from here?</span></p>
+            
+            <p><strong>Local:</strong> <span class="spanish">No, está muy cerca. A cinco minutos a pie.</span><br>
+            <span class="english">No, it's very close. Five minutes on foot.</span></p>
+            
+            <p><strong>Turista:</strong> <span class="spanish">Muchas gracias.</span><br>
+            <span class="english">Thank you very much.</span></p>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 9: Gramática Esencial</h1>
+
+        <div class="grammar-box">
+            <h3>Artículos / Articles</h3>
+            
+            <h4>Artículos Definidos (the)</h4>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Singular</th>
+                    <th>Plural</th>
+                </tr>
+                <tr>
+                    <td><strong>Masculino</strong></td>
+                    <td class="spanish">el</td>
+                    <td class="spanish">los</td>
+                </tr>
+                <tr>
+                    <td><strong>Femenino</strong></td>
+                    <td class="spanish">la</td>
+                    <td class="spanish">las</td>
+                </tr>
+            </table>
+
+            <h4>Artículos Indefinidos (a/an/some)</h4>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Singular</th>
+                    <th>Plural</th>
+                </tr>
+                <tr>
+                    <td><strong>Masculino</strong></td>
+                    <td class="spanish">un</td>
+                    <td class="spanish">unos</td>
+                </tr>
+                <tr>
+                    <td><strong>Femenino</strong></td>
+                    <td class="spanish">una</td>
+                    <td class="spanish">unas</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="grammar-box">
+            <h3>Formación del Plural / Plural Formation</h3>
+            <ul>
+                <li><strong>Palabras terminadas en vocal:</strong> + s<br>
+                    <span class="spanish">casa → casas, libro → libros</span></li>
+                <li><strong>Palabras terminadas en consonante:</strong> + es<br>
+                    <span class="spanish">hotel → hoteles, ciudad → ciudades</span></li>
+                <li><strong>Palabras terminadas en -z:</strong> cambia z → ces<br>
+                    <span class="spanish">lápiz → lápices, pez → peces</span></li>
+            </ul>
+        </div>
+
+        <div class="grammar-box">
+            <h3>Preguntas / Questions</h3>
+            
+            <h4>Palabras Interrogativas</h4>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Ejemplo</th>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Qué?</td>
+                    <td>What?</td>
+                    <td class="spanish">¿Qué comes?</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Quién?</td>
+                    <td>Who?</td>
+                    <td class="spanish">¿Quién es él?</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Dónde?</td>
+                    <td>Where?</td>
+                    <td class="spanish">¿Dónde vives?</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Cuándo?</td>
+                    <td>When?</td>
+                    <td class="spanish">¿Cuándo vienes?</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Cómo?</td>
+                    <td>How?</td>
+                    <td class="spanish">¿Cómo estás?</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Por qué?</td>
+                    <td>Why?</td>
+                    <td class="spanish">¿Por qué estudias?</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Cuánto?</td>
+                    <td>How much?</td>
+                    <td class="spanish">¿Cuánto cuesta?</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="grammar-box">
+            <h3>Negación / Negation</h3>
+            <p>Para hacer una oración negativa, se coloca <span class="spanish">"no"</span> antes del verbo:</p>
+            <ul>
+                <li><span class="spanish">Yo hablo español</span> → <span class="spanish">Yo no hablo español</span></li>
+                <li><span class="spanish">Ella come carne</span> → <span class="spanish">Ella no come carne</span></li>
+                <li><span class="spanish">Estamos en casa</span> → <span class="spanish">No estamos en casa</span></li>
+            </ul>
+        </div>
+
+        <div class="exercise-box">
+            <h3>Ejercicio 4: Transforma a negativo</h3>
+            <p>1. Soy estudiante → _____ soy estudiante</p>
+            <p>2. Tengo hambre → _____ tengo hambre</p>
+            <p>3. Vivo en Madrid → _____ vivo en Madrid</p>
+            <p>4. Ella habla francés → Ella _____ habla francés</p>
+            <p>5. Estamos cansados → _____ estamos cansados</p>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Capítulo 10: Conversaciones Útiles</h1>
+
+        <div class="dialogue">
+            <h3>En la Tienda / At the Store</h3>
+            <p><strong>Vendedor:</strong> <span class="spanish">¿En qué le puedo ayudar?</span><br>
+            <span class="english">How can I help you?</span></p>
+            
+            <p><strong>Cliente:</strong> <span class="spanish">Busco una camisa azul, por favor.</span><br>
+            <span class="english">I'm looking for a blue shirt, please.</span></p>
+            
+            <p><strong>Vendedor:</strong> <span class="spanish">¿Qué talla necesita?</span><br>
+            <span class="english">What size do you need?</span></p>
+            
+            <p><strong>Cliente:</strong> <span class="spanish">Talla mediana. ¿Cuánto cuesta?</span><br>
+            <span class="english">Medium size. How much does it cost?</span></p>
+            
+            <p><strong>Vendedor:</strong> <span class="spanish">Cuesta treinta euros.</span><br>
+            <span class="english">It costs thirty euros.</span></p>
+        </div>
+
+        <div class="dialogue">
+            <h3>En el Hotel / At the Hotel</h3>
+            <p><strong>Recepcionista:</strong> <span class="spanish">¡Bienvenido! ¿Tiene reservación?</span><br>
+            <span class="english">Welcome! Do you have a reservation?</span></p>
+            
+            <p><strong>Huésped:</strong> <span class="spanish">Sí, tengo una reservación a nombre de García.</span><br>
+            <span class="english">Yes, I have a reservation under García.</span></p>
+            
+            <p><strong>Recepcionista:</strong> <span class="spanish">Perfecto. Su habitación es la número 205. Aquí tiene la llave.</span><br>
+            <span class="english">Perfect. Your room is number 205. Here's the key.</span></p>
+            
+            <p><strong>Huésped:</strong> <span class="spanish">¿A qué hora es el desayuno?</span><br>
+            <span class="english">What time is breakfast?</span></p>
+            
+            <p><strong>Recepcionista:</strong> <span class="spanish">El desayuno es de siete a diez de la mañana.</span><br>
+            <span class="english">Breakfast is from seven to ten in the morning.</span></p>
+        </div>
+
+        <div class="dialogue">
+            <h3>Pidiendo Ayuda / Asking for Help</h3>
+            <p><strong>Turista:</strong> <span class="spanish">Disculpe, ¿habla inglés?</span><br>
+            <span class="english">Excuse me, do you speak English?</span></p>
+            
+            <p><strong>Local:</strong> <span class="spanish">Un poco. ¿Necesita ayuda?</span><br>
+            <span class="english">A little. Do you need help?</span></p>
+            
+            <p><strong>Turista:</strong> <span class="spanish">Sí, estoy perdido. ¿Puede ayudarme?</span><br>
+            <span class="english">Yes, I'm lost. Can you help me?</span></p>
+            
+            <p><strong>Local:</strong> <span class="spanish">¡Claro! ¿Adónde quiere ir?</span><br>
+            <span class="english">Of course! Where do you want to go?</span></p>
+            
+            <p><strong>Turista:</strong> <span class="spanish">Al museo de arte, por favor.</span><br>
+            <span class="english">To the art museum, please.</span></p>
+        </div>
+
+        <div class="vocab-box">
+            <h3>Frases Útiles / Useful Phrases</h3>
+            <table>
+                <tr>
+                    <th>Español</th>
+                    <th>English</th>
+                    <th>Pronunciación</th>
+                </tr>
+                <tr>
+                    <td class="spanish">No entiendo</td>
+                    <td>I don't understand</td>
+                    <td class="phonetic">[noh en-tyen-doh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Puede repetir?</td>
+                    <td>Can you repeat?</td>
+                    <td class="phonetic">[pweh-deh reh-peh-teer]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Habla más despacio</td>
+                    <td>Speak slower</td>
+                    <td class="phonetic">[ah-blah mas des-pah-thyo]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Cómo se dice...?</td>
+                    <td>How do you say...?</td>
+                    <td class="phonetic">[koh-moh seh dee-theh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Qué significa...?</td>
+                    <td>What does... mean?</td>
+                    <td class="phonetic">[keh sig-nee-fee-kah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Con permiso</td>
+                    <td>Excuse me (to pass)</td>
+                    <td class="phonetic">[kon per-mee-soh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">Lo siento</td>
+                    <td>I'm sorry</td>
+                    <td class="phonetic">[loh syen-toh]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">No hay problema</td>
+                    <td>No problem</td>
+                    <td class="phonetic">[noh ay proh-bleh-mah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Cuánto cuesta?</td>
+                    <td>How much does it cost?</td>
+                    <td class="phonetic">[kwan-toh kwes-tah]</td>
+                </tr>
+                <tr>
+                    <td class="spanish">¿Dónde está el baño?</td>
+                    <td>Where is the bathroom?</td>
+                    <td class="phonetic">[dohn-deh es-tah el bah-nyoh]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="exercise-box">
+            <h3>Ejercicio Final: Situaciones</h3>
+            <p><strong>¿Qué dirías en estas situaciones?</strong></p>
+            
+            <p>1. Quieres preguntar la hora:</p>
+            <p>2. No entiendes lo que alguien dijo:</p>
+            <p>3. Quieres saber el precio de algo:</p>
+            <p>4. Necesitas ir al baño:</p>
+            <p>5. Quieres disculparte:</p>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h1>Recursos Adicionales / Additional Resources</h1>
+
+        <h2>Consejos para Seguir Aprendiendo / Tips for Continued Learning</h2>
         
-        <div class="contact">
-            <div>Tel: Mobile: (220) 3650001</div>
-            <div>Email: ict@utg.edu.gm</div>
+        <div class="tip">
+            <strong>1. Práctica Diaria:</strong> Dedica al menos 15-30 minutos diarios al español. La consistencia es más importante que la duración.
+        </div>
+
+        <div class="tip">
+            <strong>2. Inmersión:</strong> Escucha música en español, ve películas con subtítulos, y lee noticias en español.
+        </div>
+
+        <div class="tip">
+            <strong>3. Conversación:</strong> Busca intercambios de idiomas o clases de conversación para practicar el habla.
+        </div>
+
+        <div class="tip">
+            <strong>4. Aplicaciones:</strong> Usa aplicaciones como Duolingo, Babbel, o SpanishDict para práctica adicional.
+        </div>
+
+        <h2>Verbos Regulares - Patrones de Conjugación</h2>
+
+        <div class="grammar-box">
+            <h3>Verbos -AR (ejemplo: hablar)</h3>
+            <p>yo hablo, tú hablas, él/ella habla, nosotros hablamos, vosotros habláis, ellos hablan</p>
+
+            <h3>Verbos -ER (ejemplo: comer)</h3>
+            <p>yo como, tú comes, él/ella come, nosotros comemos, vosotros coméis, ellos comen</p>
+
+            <h3>Verbos -IR (ejemplo: vivir)</h3>
+            <p>yo vivo, tú vives, él/ella vive, nosotros vivimos, vosotros vivís, ellos viven</p>
+        </div>
+
+        <h2>Números Grandes / Large Numbers</h2>
+
+        <div class="vocab-box">
+            <table>
+                <tr>
+                    <th>Número</th>
+                    <th>Español</th>
+                    <th>English</th>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td class="spanish">treinta</td>
+                    <td>thirty</td>
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td class="spanish">cuarenta</td>
+                    <td>forty</td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td class="spanish">cincuenta</td>
+                    <td>fifty</td>
+                </tr>
+                <tr>
+                    <td>100</td>
+                    <td class="spanish">cien/ciento</td>
+                    <td>one hundred</td>
+                </tr>
+                <tr>
+                    <td>1000</td>
+                    <td class="spanish">mil</td>
+                    <td>one thousand</td>
+                </tr>
+                <tr>
+                    <td>1,000,000</td>
+                    <td class="spanish">un millón</td>
+                    <td>one million</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Días y Meses / Days and Months</h2>
+
+        <div class="vocab-box">
+            <h3>Días de la Semana / Days of the Week</h3>
+            <ul>
+                <li><span class="spanish">lunes</span> - Monday</li>
+                <li><span class="spanish">martes</span> - Tuesday</li>
+                <li><span class="spanish">miércoles</span> - Wednesday</li>
+                <li><span class="spanish">jueves</span> - Thursday</li>
+                <li><span class="spanish">viernes</span> - Friday</li>
+                <li><span class="spanish">sábado</span> - Saturday</li>
+                <li><span class="spanish">domingo</span> - Sunday</li>
+            </ul>
+
+            <h3>Meses del Año / Months of the Year</h3>
+            <ul>
+                <li><span class="spanish">enero</span> - January</li>
+                <li><span class="spanish">febrero</span> - February</li>
+                <li><span class="spanish">marzo</span> - March</li>
+                <li><span class="spanish">abril</span> - April</li>
+                <li><span class="spanish">mayo</span> - May</li>
+                <li><span class="spanish">junio</span> - June</li>
+                <li><span class="spanish">julio</span> - July</li>
+                <li><span class="spanish">agosto</span> - August</li>
+                <li><span class="spanish">septiembre</span> - September</li>
+                <li><span class="spanish">octubre</span> - October</li>
+                <li><span class="spanish">noviembre</span> - November</li>
+                <li><span class="spanish">diciembre</span> - December</li>
+            </ul>
+        </div>
+
+        <h2>Respuestas a los Ejercicios / Exercise Answers</h2>
+
+        <div class="exercise-box">
+            <h3>Respuestas</h3>
+            
+            <p><strong>Ejercicio 1:</strong></p>
+            <p>1. Buenos días</p>
+            <p>2. Me llamo Pedro</p>
+            <p>3. ¿Cómo te llamas?</p>
+            <p>4. Mucho gusto</p>
+            <p>5. Soy de España</p>
+
+            <p><strong>Ejercicio 2:</strong></p>
+            <p>1-b, 2-c, 3-a, 4-d, 5-e</p>
+
+            <p><strong>Ejercicio 3:</strong></p>
+            <p>1. roja</p>
+            <p>2. azul</p>
+            <p>3. amarillas</p>
+            <p>4. negros</p>
+            <p>5. alta</p>
+
+            <p><strong>Ejercicio 4:</strong></p>
+            <p>1. No soy estudiante</p>
+            <p>2. No tengo hambre</p>
+            <p>3. No vivo en Madrid</p>
+            <p>4. Ella no habla francés</p>
+            <p>5. No estamos cansados</p>
+        </div>
+
+        <div class="cover" style="margin-top: 40px; padding: 60px 20px;">
+            <h2>¡Felicidades!</h2>
+            <p>Has completado tu introducción al español</p>
+            <p><em>Congratulations! You have completed your introduction to Spanish</em></p>
+            <p style="margin-top: 30px;">¡Sigue practicando y buena suerte!</p>
+            <p><em>Keep practicing and good luck!</em></p>
         </div>
     </div>
 </body>
