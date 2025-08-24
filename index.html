@@ -1,1691 +1,982 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprende Español - Spanish Language Learning Ebook</title>
+    <title>60-Day Weight Loss Workout Plan</title>
     <style>
-        @page {
-            margin: 2cm;
-            size: A4;
-        }
-        
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%);
+            color: #fff;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #fefefe;
         }
-        
-        .cover {
+
+        .header {
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #ff6b6b, #ffa500);
-            color: white;
-            border-radius: 15px;
             margin-bottom: 40px;
-            page-break-after: always;
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .cover h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
         }
-        
-        .cover p {
-            font-size: 1.3em;
-            margin: 10px 0;
+
+        .header p {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+            -webkit-text-fill-color: #ecf0f1;
         }
-        
-        .toc {
-            page-break-before: always;
-            page-break-after: always;
-        }
-        
-        .toc h2 {
-            color: #d32f2f;
-            border-bottom: 3px solid #d32f2f;
-            padding-bottom: 10px;
-        }
-        
-        .toc ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        
-        .toc li {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f5f5f5;
-            border-left: 4px solid #ffa500;
-        }
-        
-        .chapter {
-            page-break-before: always;
-            margin-bottom: 40px;
-        }
-        
-        h1, h2, h3 {
-            color: #d32f2f;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            border-bottom: 3px solid #d32f2f;
-            padding-bottom: 15px;
+
+        .calories-info {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 10px;
+            padding: 15px;
             margin-bottom: 30px;
+            text-align: center;
         }
-        
-        h2 {
-            font-size: 2em;
-            margin-top: 40px;
+
+        .calories-info h3 {
+            color: #e74c3c;
+            margin-bottom: 8px;
+        }
+
+        .week-container {
+            margin-bottom: 50px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .week-header {
+            background: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .week-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .week-content {
+            padding: 30px;
+        }
+
+        .day-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .day-card {
+            background: linear-gradient(145deg, #34495e, #2c3e50);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border-color: #e74c3c;
+        }
+
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #3498db);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
-        
-        h3 {
-            font-size: 1.5em;
-            margin-top: 30px;
-            margin-bottom: 15px;
+
+        .day-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e74c3c;
         }
-        
-        .vocab-box {
-            background-color: #e8f5e8;
-            border: 2px solid #4caf50;
+
+        .day-type {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .fat-burn {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+
+        .cardio {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .hiit {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+
+        .circuit {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+        }
+
+        .active-rest {
+            background: linear-gradient(45deg, #27ae60, #229954);
+        }
+
+        .rest {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+        }
+
+        .exercise-list {
+            list-style: none;
+        }
+
+        .exercise-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .exercise-item:last-child {
+            border-bottom: none;
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .exercise-details {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .calories-burned {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            padding: 3px 8px;
             border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 10px;
+            display: inline-block;
         }
-        
-        .grammar-box {
-            background-color: #fff3e0;
-            border: 2px solid #ff9800;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        
-        .exercise-box {
-            background-color: #f3e5f5;
-            border: 2px solid #9c27b0;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        
-        .pronunciation-guide {
-            background-color: #e3f2fd;
-            border: 2px solid #2196f3;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        
-        table {
+
+        .intensity-bar {
             width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
         }
-        
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
+
+        .intensity-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            transition: width 0.3s ease;
         }
-        
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-            color: #d32f2f;
+
+        .low { width: 35%; background: linear-gradient(90deg, #27ae60, #2ecc71); }
+        .medium { width: 60%; background: linear-gradient(90deg, #f39c12, #e67e22); }
+        .high { width: 80%; background: linear-gradient(90deg, #e74c3c, #c0392b); }
+        .extreme { width: 100%; background: linear-gradient(90deg, #8e44ad, #9b59b6); }
+
+        .rest-day {
+            text-align: center;
+            padding: 40px 20px;
         }
-        
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+
+        .rest-day h3 {
+            color: #27ae60;
+            margin-bottom: 10px;
         }
-        
-        .dialogue {
-            background-color: #f0f8ff;
-            border-left: 5px solid #4169e1;
-            padding: 15px;
-            margin: 20px 0;
+
+        .rest-activities {
+            color: #bdc3c7;
             font-style: italic;
         }
-        
-        .spanish {
-            color: #d32f2f;
-            font-weight: bold;
+
+        .workout-focus {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #3498db;
         }
-        
-        .english {
-            color: #666;
+
+        .progress-tracker {
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #2ecc71;
         }
-        
-        .tip {
-            background-color: #fffacd;
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        
-        .tip::before {
-            content: "💡 Consejo: ";
-            font-weight: bold;
-            color: #ff8c00;
-        }
-        
-        ul, ol {
-            padding-left: 30px;
-        }
-        
-        li {
-            margin: 8px 0;
-        }
-        
-        .phonetic {
-            color: #666;
-            font-style: italic;
-        }
-        
-        @media print {
-            body {
-                font-size: 12pt;
-                line-height: 1.4;
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
             }
             
-            .chapter {
-                page-break-before: always;
+            .day-grid {
+                grid-template-columns: 1fr;
             }
             
-            .vocab-box, .grammar-box, .exercise-box, .pronunciation-guide {
-                page-break-inside: avoid;
+            .day-card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="cover">
-        <h1>APRENDE ESPAÑOL</h1>
-        <p>Complete Spanish Language Learning Guide</p>
-        <p>Guía Completa para Aprender Español</p>
-        <p style="margin-top: 40px; font-size: 1.1em;">From Beginner to Intermediate</p>
-        <p style="margin-top: 60px; font-size: 0.9em;">© 2024 Spanish Learning Ebook</p>
-    </div>
+    <div class="container">
+        <div class="header">
+            <h1>60-DAY WEIGHT LOSS WORKOUT PLAN</h1>
+            <p>Burn fat, boost metabolism, transform your body</p>
+        </div>
 
-    <div class="toc">
-        <h2>Tabla de Contenidos / Table of Contents</h2>
-        <ul>
-            <li>Capítulo 1: Introducción y Pronunciación / Introduction and Pronunciation</li>
-            <li>Capítulo 2: Saludos y Presentaciones / Greetings and Introductions</li>
-            <li>Capítulo 3: Números y Tiempo / Numbers and Time</li>
-            <li>Capítulo 4: La Familia / Family</li>
-            <li>Capítulo 5: Comida y Bebidas / Food and Drinks</li>
-            <li>Capítulo 6: Verbos Básicos / Basic Verbs</li>
-            <li>Capítulo 7: Colores y Descripciones / Colors and Descriptions</li>
-            <li>Capítulo 8: Direcciones y Lugares / Directions and Places</li>
-            <li>Capítulo 9: Gramática Esencial / Essential Grammar</li>
-            <li>Capítulo 10: Conversaciones Útiles / Useful Conversations</li>
-        </ul>
-    </div>
+        <div class="calories-info">
+            <h3>🔥 Target Calorie Burn: 300-800 per session</h3>
+            <p>Combine with proper nutrition for optimal fat loss results</p>
+        </div>
 
-    <div class="chapter">
-        <h1>Capítulo 1: Introducción y Pronunciación</h1>
-        
-        <h2>Bienvenido al Español / Welcome to Spanish</h2>
-        <p>El español es una lengua hermosa hablada por más de 500 millones de personas en todo el mundo. Es el segundo idioma más hablado por número de hablantes nativos y es oficial en 21 países.</p>
-        <p><em>Spanish is a beautiful language spoken by more than 500 million people worldwide. It's the second most spoken language by native speakers and is official in 21 countries.</em></p>
+        <!-- WEEK 1-2: Foundation Fat Burn -->
+        <div class="week-container">
+            <div class="week-header">
+                <h2>WEEK 1-2: FOUNDATION FAT BURN</h2>
+            </div>
+            <div class="week-content">
+                <div class="day-grid">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 1</div>
+                            <div class="day-type fat-burn">Fat Burn</div>
+                        </div>
+                        <div class="workout-focus">Focus: Low-impact cardio to establish base fitness</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Marching in Place</div>
+                                <div class="exercise-details">5 min warm-up</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Arm Circles + Step Touch</div>
+                                <div class="exercise-details">3x2min</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Modified Jumping Jacks</div>
+                                <div class="exercise-details">4x30s, 30s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Wall Push-ups</div>
+                                <div class="exercise-details">3x12-15</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Chair Squats</div>
+                                <div class="exercise-details">3x15</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cool-down Walk</div>
+                                <div class="exercise-details">5 min</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~250-350 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill low"></div>
+                        </div>
+                    </div>
 
-        <div class="pronunciation-guide">
-            <h3>Guía de Pronunciación / Pronunciation Guide</h3>
-            
-            <h4>Vocales / Vowels</h4>
-            <table>
-                <tr>
-                    <th>Letra</th>
-                    <th>Sonido</th>
-                    <th>Ejemplo</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td>A</td>
-                    <td>ah</td>
-                    <td>casa</td>
-                    <td class="phonetic">[kah-sah]</td>
-                </tr>
-                <tr>
-                    <td>E</td>
-                    <td>eh</td>
-                    <td>mesa</td>
-                    <td class="phonetic">[meh-sah]</td>
-                </tr>
-                <tr>
-                    <td>I</td>
-                    <td>ee</td>
-                    <td>niño</td>
-                    <td class="phonetic">[nee-nyoh]</td>
-                </tr>
-                <tr>
-                    <td>O</td>
-                    <td>oh</td>
-                    <td>todo</td>
-                    <td class="phonetic">[toh-doh]</td>
-                </tr>
-                <tr>
-                    <td>U</td>
-                    <td>oo</td>
-                    <td>luna</td>
-                    <td class="phonetic">[loo-nah]</td>
-                </tr>
-            </table>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 2</div>
+                            <div class="day-type cardio">Steady Cardio</div>
+                        </div>
+                        <div class="workout-focus">Focus: Aerobic base building</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Walking/Light Jogging</div>
+                                <div class="exercise-details">25-30 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Dynamic Stretching</div>
+                                <div class="exercise-details">5 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Calf Raises</div>
+                                <div class="exercise-details">3x20</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Side Steps</div>
+                                <div class="exercise-details">3x15 each direction</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~300-400 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill medium"></div>
+                        </div>
+                    </div>
 
-            <div class="tip">
-                Las vocales en español son muy consistentes. Siempre se pronuncian de la misma manera, sin importar su posición en la palabra.
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 3</div>
+                            <div class="day-type circuit">Circuit Training</div>
+                        </div>
+                        <div class="workout-focus">Focus: Full-body metabolic circuit</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Circuit A (3 rounds)</div>
+                                <div class="exercise-details">45s work, 15s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Knee-ups</div>
+                                <div class="exercise-details">Max reps</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Modified Push-ups</div>
+                                <div class="exercise-details">8-12 reps</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Bodyweight Squats</div>
+                                <div class="exercise-details">12-15 reps</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Standing Side Crunches</div>
+                                <div class="exercise-details">10 each side</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~280-380 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill medium"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 4</div>
+                            <div class="day-type active-rest">Active Rest</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Gentle Yoga Flow</div>
+                                <div class="exercise-details">20-30 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Leisurely Walk</div>
+                                <div class="exercise-details">20-30 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Stretching Routine</div>
+                                <div class="exercise-details">15 minutes</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~150-250 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill low"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 5</div>
+                            <div class="day-type hiit">Beginner HIIT</div>
+                        </div>
+                        <div class="workout-focus">Focus: Introduction to high-intensity intervals</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Warm-up</div>
+                                <div class="exercise-details">5 min light movement</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">HIIT Block (repeat 6x)</div>
+                                <div class="exercise-details">30s work, 60s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Step-ups or March</div>
+                                <div class="exercise-details">High knees variation</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Arm Swings + Squats</div>
+                                <div class="exercise-details">Dynamic combo</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cool-down</div>
+                                <div class="exercise-details">5 min walking</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~320-420 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 6</div>
+                            <div class="day-type fat-burn">Long Fat Burn</div>
+                        </div>
+                        <div class="workout-focus">Focus: Extended low-intensity cardio</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Walking/Light Cycling</div>
+                                <div class="exercise-details">35-45 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Core Stabilization</div>
+                                <div class="exercise-details">10 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Modified Planks</div>
+                                <div class="exercise-details">3x20-30s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Standing Core Twists</div>
+                                <div class="exercise-details">3x15 each side</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~350-450 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill medium"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 7</div>
+                            <div class="day-type rest">Complete Rest</div>
+                        </div>
+                        <div class="rest-day">
+                            <h3>Recovery Day</h3>
+                            <div class="rest-activities">
+                                Gentle stretching • Meditation • Meal prep • Hydration focus
+                            </div>
+                        </div>
+                        <div class="progress-tracker">
+                            Week 1 Complete! Track: Weight, measurements, energy levels
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="pronunciation-guide">
-            <h4>Consonantes Especiales / Special Consonants</h4>
-            <ul>
-                <li><strong>ñ</strong> - como "ny" en inglés: <span class="spanish">niño</span> <span class="phonetic">[nee-nyoh]</span></li>
-                <li><strong>rr</strong> - rr fuerte: <span class="spanish">perro</span> <span class="phonetic">[peh-rroh]</span></li>
-                <li><strong>ll</strong> - como "y": <span class="spanish">pollo</span> <span class="phonetic">[poh-yoh]</span></li>
-                <li><strong>j</strong> - sonido fuerte: <span class="spanish">jardín</span> <span class="phonetic">[har-deen]</span></li>
-                <li><strong>ch</strong> - como en inglés: <span class="spanish">muchacho</span> <span class="phonetic">[moo-chah-choh]</span></li>
-            </ul>
-        </div>
-    </div>
+        <!-- WEEK 3-4: Intensity Boost -->
+        <div class="week-container">
+            <div class="week-header">
+                <h2>WEEK 3-4: INTENSITY BOOST</h2>
+            </div>
+            <div class="week-content">
+                <div class="day-grid">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Days 15-28</div>
+                            <div class="day-type hiit">Metabolic HIIT</div>
+                        </div>
+                        <div class="workout-focus">Focus: Increased calorie burn through intervals</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Tabata Style (8 rounds)</div>
+                                <div class="exercise-details">20s work, 10s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Burpee Modifications</div>
+                                <div class="exercise-details">Step-back burpees</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Jump Squats (or step-ups)</div>
+                                <div class="exercise-details">Explosive movement</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Mountain Climbers</div>
+                                <div class="exercise-details">Knee to elbow</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Push-up + Knee Tuck</div>
+                                <div class="exercise-details">Full body combo</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~400-550 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
+                        </div>
+                    </div>
 
-    <div class="chapter">
-        <h1>Capítulo 2: Saludos y Presentaciones</h1>
-
-        <div class="vocab-box">
-            <h3>Vocabulario Básico / Basic Vocabulary</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">Hola</td>
-                    <td>Hello</td>
-                    <td class="phonetic">[oh-lah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Buenos días</td>
-                    <td>Good morning</td>
-                    <td class="phonetic">[bway-nos dee-ahs]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Buenas tardes</td>
-                    <td>Good afternoon</td>
-                    <td class="phonetic">[bway-nas tar-des]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Buenas noches</td>
-                    <td>Good evening/night</td>
-                    <td class="phonetic">[bway-nas noh-ches]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Adiós</td>
-                    <td>Goodbye</td>
-                    <td class="phonetic">[ah-dyohs]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Hasta luego</td>
-                    <td>See you later</td>
-                    <td class="phonetic">[ahs-tah lway-goh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Por favor</td>
-                    <td>Please</td>
-                    <td class="phonetic">[por fah-vor]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Gracias</td>
-                    <td>Thank you</td>
-                    <td class="phonetic">[grah-thyahs]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">De nada</td>
-                    <td>You're welcome</td>
-                    <td class="phonetic">[deh nah-dah]</td>
-                </tr>
-            </table>
-        </div>
-
-        <h2>Presentaciones / Introductions</h2>
-        <div class="vocab-box">
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">Me llamo...</td>
-                    <td>My name is...</td>
-                    <td class="phonetic">[meh yah-moh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Soy...</td>
-                    <td>I am...</td>
-                    <td class="phonetic">[soy]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Cómo te llamas?</td>
-                    <td>What's your name?</td>
-                    <td class="phonetic">[koh-moh teh yah-mas]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Mucho gusto</td>
-                    <td>Nice to meet you</td>
-                    <td class="phonetic">[moo-choh goos-toh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿De dónde eres?</td>
-                    <td>Where are you from?</td>
-                    <td class="phonetic">[deh dohn-deh eh-res]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Soy de...</td>
-                    <td>I'm from...</td>
-                    <td class="phonetic">[soy deh]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="dialogue">
-            <h3>Diálogo de Ejemplo / Sample Dialogue</h3>
-            <p><strong>María:</strong> <span class="spanish">¡Hola! Buenos días.</span><br>
-            <span class="english">Hello! Good morning.</span></p>
-            
-            <p><strong>Juan:</strong> <span class="spanish">Buenos días. Me llamo Juan. ¿Cómo te llamas?</span><br>
-            <span class="english">Good morning. My name is Juan. What's your name?</span></p>
-            
-            <p><strong>María:</strong> <span class="spanish">Me llamo María. Mucho gusto.</span><br>
-            <span class="english">My name is María. Nice to meet you.</span></p>
-            
-            <p><strong>Juan:</strong> <span class="spanish">Mucho gusto, María. ¿De dónde eres?</span><br>
-            <span class="english">Nice to meet you, María. Where are you from?</span></p>
-            
-            <p><strong>María:</strong> <span class="spanish">Soy de México. ¿Y tú?</span><br>
-            <span class="english">I'm from Mexico. And you?</span></p>
-        </div>
-
-        <div class="exercise-box">
-            <h3>Ejercicio 1: Completa las frases</h3>
-            <p>1. _____ días (Good morning)</p>
-            <p>2. Me _____ Pedro (My name is Pedro)</p>
-            <p>3. ¿_____ te llamas? (What's your name?)</p>
-            <p>4. _____ gusto (Nice to meet you)</p>
-            <p>5. Soy _____ España (I'm from Spain)</p>
-        </div>
-    </div>
-
-    <div class="chapter">
-        <h1>Capítulo 3: Números y Tiempo</h1>
-
-        <div class="vocab-box">
-            <h3>Números 0-20 / Numbers 0-20</h3>
-            <table>
-                <tr>
-                    <th>Número</th>
-                    <th>Español</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr><td>0</td><td class="spanish">cero</td><td class="phonetic">[theh-roh]</td></tr>
-                <tr><td>1</td><td class="spanish">uno</td><td class="phonetic">[oo-noh]</td></tr>
-                <tr><td>2</td><td class="spanish">dos</td><td class="phonetic">[dohs]</td></tr>
-                <tr><td>3</td><td class="spanish">tres</td><td class="phonetic">[tres]</td></tr>
-                <tr><td>4</td><td class="spanish">cuatro</td><td class="phonetic">[kwah-troh]</td></tr>
-                <tr><td>5</td><td class="spanish">cinco</td><td class="phonetic">[theen-koh]</td></tr>
-                <tr><td>6</td><td class="spanish">seis</td><td class="phonetic">[seys]</td></tr>
-                <tr><td>7</td><td class="spanish">siete</td><td class="phonetic">[syeh-teh]</td></tr>
-                <tr><td>8</td><td class="spanish">ocho</td><td class="phonetic">[oh-choh]</td></tr>
-                <tr><td>9</td><td class="spanish">nueve</td><td class="phonetic">[nweh-veh]</td></tr>
-                <tr><td>10</td><td class="spanish">diez</td><td class="phonetic">[dyeth]</td></tr>
-            </table>
-        </div>
-
-        <div class="vocab-box">
-            <h3>Números 11-20</h3>
-            <table>
-                <tr>
-                    <th>Número</th>
-                    <th>Español</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr><td>11</td><td class="spanish">once</td><td class="phonetic">[ohn-theh]</td></tr>
-                <tr><td>12</td><td class="spanish">doce</td><td class="phonetic">[doh-theh]</td></tr>
-                <tr><td>13</td><td class="spanish">trece</td><td class="phonetic">[treh-theh]</td></tr>
-                <tr><td>14</td><td class="spanish">catorce</td><td class="phonetic">[kah-tor-theh]</td></tr>
-                <tr><td>15</td><td class="spanish">quince</td><td class="phonetic">[keen-theh]</td></tr>
-                <tr><td>16</td><td class="spanish">dieciséis</td><td class="phonetic">[dyeh-thy-seys]</td></tr>
-                <tr><td>17</td><td class="spanish">diecisiete</td><td class="phonetic">[dyeh-thy-syeh-teh]</td></tr>
-                <tr><td>18</td><td class="spanish">dieciocho</td><td class="phonetic">[dyeh-thy-oh-choh]</td></tr>
-                <tr><td>19</td><td class="spanish">diecinueve</td><td class="phonetic">[dyeh-thy-nweh-veh]</td></tr>
-                <tr><td>20</td><td class="spanish">veinte</td><td class="phonetic">[veyn-teh]</td></tr>
-            </table>
-        </div>
-
-        <h2>La Hora / Time</h2>
-        <div class="vocab-box">
-            <h3>Vocabulario del Tiempo</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Qué hora es?</td>
-                    <td>What time is it?</td>
-                    <td class="phonetic">[keh oh-rah es]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Es la una</td>
-                    <td>It's one o'clock</td>
-                    <td class="phonetic">[es lah oo-nah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Son las dos</td>
-                    <td>It's two o'clock</td>
-                    <td class="phonetic">[son las dohs]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">y media</td>
-                    <td>and half</td>
-                    <td class="phonetic">[ee meh-dyah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">y cuarto</td>
-                    <td>and quarter</td>
-                    <td class="phonetic">[ee kwar-toh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">menos cuarto</td>
-                    <td>minus quarter</td>
-                    <td class="phonetic">[meh-nos kwar-toh]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="grammar-box">
-            <h3>Reglas de la Hora / Time Rules</h3>
-            <ul>
-                <li>Para la 1:00 usamos: <span class="spanish">"Es la una"</span></li>
-                <li>Para las demás horas usamos: <span class="spanish">"Son las + número"</span></li>
-                <li>Ejemplos:
-                    <ul>
-                        <li><span class="spanish">Es la una y media</span> (1:30)</li>
-                        <li><span class="spanish">Son las tres y cuarto</span> (3:15)</li>
-                        <li><span class="spanish">Son las cinco menos cuarto</span> (4:45)</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="chapter">
-        <h1>Capítulo 4: La Familia</h1>
-
-        <div class="vocab-box">
-            <h3>Miembros de la Familia / Family Members</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">la familia</td>
-                    <td>the family</td>
-                    <td class="phonetic">[lah fah-mee-lyah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el padre / papá</td>
-                    <td>the father / dad</td>
-                    <td class="phonetic">[el pah-dreh / pah-pah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la madre / mamá</td>
-                    <td>the mother / mom</td>
-                    <td class="phonetic">[lah mah-dreh / mah-mah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el hijo</td>
-                    <td>the son</td>
-                    <td class="phonetic">[el ee-hoh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la hija</td>
-                    <td>the daughter</td>
-                    <td class="phonetic">[lah ee-hah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el hermano</td>
-                    <td>the brother</td>
-                    <td class="phonetic">[el er-mah-noh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la hermana</td>
-                    <td>the sister</td>
-                    <td class="phonetic">[lah er-mah-nah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el abuelo</td>
-                    <td>the grandfather</td>
-                    <td class="phonetic">[el ah-bweh-loh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la abuela</td>
-                    <td>the grandmother</td>
-                    <td class="phonetic">[lah ah-bweh-lah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el tío</td>
-                    <td>the uncle</td>
-                    <td class="phonetic">[el tee-oh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la tía</td>
-                    <td>the aunt</td>
-                    <td class="phonetic">[lah tee-ah]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="grammar-box">
-            <h3>Género y Artículos / Gender and Articles</h3>
-            <p>En español, los sustantivos tienen género: masculino o femenino.</p>
-            
-            <h4>Artículos Definidos</h4>
-            <ul>
-                <li><strong>el</strong> - masculino singular (el padre)</li>
-                <li><strong>la</strong> - femenino singular (la madre)</li>
-                <li><strong>los</strong> - masculino plural (los padres)</li>
-                <li><strong>las</strong> - femenino plural (las madres)</li>
-            </ul>
-
-            <div class="tip">
-                La mayoría de las palabras que terminan en -a son femeninas, y las que terminan en -o son masculinas. ¡Pero hay excepciones!
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Circuit Days</div>
+                            <div class="day-type circuit">Fat Blast Circuits</div>
+                        </div>
+                        <div class="workout-focus">Focus: Multi-muscle group compound movements</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Circuit A (4 rounds)</div>
+                                <div class="exercise-details">45s work, 15s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Squat + Overhead Reach</div>
+                                <div class="exercise-details">Full body movement</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Lunge + Twist</div>
+                                <div class="exercise-details">Core + legs</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Push-up + Hip Thrust</div>
+                                <div class="exercise-details">Upper + lower combo</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Plank + Leg Lifts</div>
+                                <div class="exercise-details">Core intensive</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~380-480 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="dialogue">
-            <h3>Hablando de la Familia / Talking About Family</h3>
-            <p><strong>Ana:</strong> <span class="spanish">¿Tienes hermanos?</span><br>
-            <span class="english">Do you have siblings?</span></p>
-            
-            <p><strong>Carlos:</strong> <span class="spanish">Sí, tengo un hermano y una hermana. ¿Y tú?</span><br>
-            <span class="english">Yes, I have a brother and a sister. And you?</span></p>
-            
-            <p><strong>Ana:</strong> <span class="spanish">Yo tengo dos hermanas. Mi familia es grande.</span><br>
-            <span class="english">I have two sisters. My family is big.</span></p>
-            
-            <p><strong>Carlos:</strong> <span class="spanish">¿Vives con tus padres?</span><br>
-            <span class="english">Do you live with your parents?</span></p>
-            
-            <p><strong>Ana:</strong> <span class="spanish">Sí, vivo con mis padres y mi abuela.</span><br>
-            <span class="english">Yes, I live with my parents and my grandmother.</span></p>
-        </div>
-    </div>
+        <!-- WEEK 5-6: Maximum Burn -->
+        <div class="week-container">
+            <div class="week-header">
+                <h2>WEEK 5-6: MAXIMUM BURN PHASE</h2>
+            </div>
+            <div class="week-content">
+                <div class="day-grid">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Days 29-42</div>
+                            <div class="day-type hiit">Advanced HIIT</div>
+                        </div>
+                        <div class="workout-focus">Focus: Peak calorie burn and metabolic boost</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">EMOM (Every Minute on Minute)</div>
+                                <div class="exercise-details">20 minutes total</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 1: 15 Burpees</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 2: 20 Jump Squats</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 3: 30s Plank Hold</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 4: 25 Mountain Climbers</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~500-650 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
+                        </div>
+                    </div>
 
-    <div class="chapter">
-        <h1>Capítulo 5: Comida y Bebidas</h1>
-
-        <div class="vocab-box">
-            <h3>Comidas / Meals</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">el desayuno</td>
-                    <td>breakfast</td>
-                    <td class="phonetic">[el deh-sah-yoo-noh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el almuerzo</td>
-                    <td>lunch</td>
-                    <td class="phonetic">[el al-mwer-thoh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la cena</td>
-                    <td>dinner</td>
-                    <td class="phonetic">[lah theh-nah]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="vocab-box">
-            <h3>Alimentos / Foods</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">el pan</td>
-                    <td>bread</td>
-                    <td class="phonetic">[el pan]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la fruta</td>
-                    <td>fruit</td>
-                    <td class="phonetic">[lah froo-tah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la manzana</td>
-                    <td>apple</td>
-                    <td class="phonetic">[lah man-thah-nah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el plátano</td>
-                    <td>banana</td>
-                    <td class="phonetic">[el plah-tah-noh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la carne</td>
-                    <td>meat</td>
-                    <td class="phonetic">[lah kar-neh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el pollo</td>
-                    <td>chicken</td>
-                    <td class="phonetic">[el poh-yoh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el pescado</td>
-                    <td>fish</td>
-                    <td class="phonetic">[el pes-kah-doh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el arroz</td>
-                    <td>rice</td>
-                    <td class="phonetic">[el ah-roth]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">las verduras</td>
-                    <td>vegetables</td>
-                    <td class="phonetic">[las ver-doo-ras]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el queso</td>
-                    <td>cheese</td>
-                    <td class="phonetic">[el keh-soh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">los huevos</td>
-                    <td>eggs</td>
-                    <td class="phonetic">[los weh-vos]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="vocab-box">
-            <h3>Bebidas / Drinks</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">el agua</td>
-                    <td>water</td>
-                    <td class="phonetic">[el ah-gwah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la leche</td>
-                    <td>milk</td>
-                    <td class="phonetic">[lah leh-cheh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el café</td>
-                    <td>coffee</td>
-                    <td class="phonetic">[el kah-feh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el té</td>
-                    <td>tea</td>
-                    <td class="phonetic">[el teh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el jugo</td>
-                    <td>juice</td>
-                    <td class="phonetic">[el hoo-goh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la cerveza</td>
-                    <td>beer</td>
-                    <td class="phonetic">[lah ther-veh-thah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el vino</td>
-                    <td>wine</td>
-                    <td class="phonetic">[el vee-noh]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="dialogue">
-            <h3>En el Restaurante / At the Restaurant</h3>
-            <p><strong>Camarero:</strong> <span class="spanish">¿Qué desea ordenar?</span><br>
-            <span class="english">What would you like to order?</span></p>
-            
-            <p><strong>Cliente:</strong> <span class="spanish">Quiero pollo con arroz, por favor.</span><br>
-            <span class="english">I want chicken with rice, please.</span></p>
-            
-            <p><strong>Camarero:</strong> <span class="spanish">¿Y para beber?</span><br>
-            <span class="english">And to drink?</span></p>
-            
-            <p><strong>Cliente:</strong> <span class="spanish">Un agua, gracias.</span><br>
-            <span class="english">A water, thank you.</span></p>
-        </div>
-
-        <div class="exercise-box">
-            <h3>Ejercicio 2: Relaciona la comida</h3>
-            <p>1. Breakfast → a) la cena</p>
-            <p>2. Lunch → b) el desayuno</p>
-            <p>3. Dinner → c) el almuerzo</p>
-            <p>4. Apple → d) la manzana</p>
-            <p>5. Water → e) el agua</p>
-        </div>
-    </div>
-
-    <div class="chapter">
-        <h1>Capítulo 6: Verbos Básicos</h1>
-
-        <div class="grammar-box">
-            <h3>Verbos Más Comunes / Most Common Verbs</h3>
-            
-            <h4>SER (to be - permanent characteristics)</h4>
-            <table>
-                <tr>
-                    <th>Pronombre</th>
-                    <th>Conjugación</th>
-                    <th>English</th>
-                </tr>
-                <tr>
-                    <td>yo</td>
-                    <td class="spanish">soy</td>
-                    <td>I am</td>
-                </tr>
-                <tr>
-                    <td>tú</td>
-                    <td class="spanish">eres</td>
-                    <td>you are (informal)</td>
-                </tr>
-                <tr>
-                    <td>él/ella/usted</td>
-                    <td class="spanish">es</td>
-                    <td>he/she/you are (formal)</td>
-                </tr>
-                <tr>
-                    <td>nosotros</td>
-                    <td class="spanish">somos</td>
-                    <td>we are</td>
-                </tr>
-                <tr>
-                    <td>vosotros</td>
-                    <td class="spanish">sois</td>
-                    <td>you are (plural, Spain)</td>
-                </tr>
-                <tr>
-                    <td>ellos/ellas/ustedes</td>
-                    <td class="spanish">son</td>
-                    <td>they/you are (plural)</td>
-                </tr>
-            </table>
-
-            <h4>ESTAR (to be - temporary states/location)</h4>
-            <table>
-                <tr>
-                    <th>Pronombre</th>
-                    <th>Conjugación</th>
-                    <th>English</th>
-                </tr>
-                <tr>
-                    <td>yo</td>
-                    <td class="spanish">estoy</td>
-                    <td>I am</td>
-                </tr>
-                <tr>
-                    <td>tú</td>
-                    <td class="spanish">estás</td>
-                    <td>you are</td>
-                </tr>
-                <tr>
-                    <td>él/ella/usted</td>
-                    <td class="spanish">está</td>
-                    <td>he/she/you are</td>
-                </tr>
-                <tr>
-                    <td>nosotros</td>
-                    <td class="spanish">estamos</td>
-                    <td>we are</td>
-                </tr>
-                <tr>
-                    <td>vosotros</td>
-                    <td class="spanish">estáis</td>
-                    <td>you are</td>
-                </tr>
-                <tr>
-                    <td>ellos/ellas/ustedes</td>
-                    <td class="spanish">están</td>
-                    <td>they/you are</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="tip">
-            <strong>SER vs ESTAR:</strong><br>
-            • SER: características permanentes, profesión, nacionalidad<br>
-            • ESTAR: estados temporales, ubicación, emociones<br><br>
-            Ejemplos:<br>
-            • <span class="spanish">Soy médico</span> (I am a doctor - profession)<br>
-            • <span class="spanish">Estoy cansado</span> (I am tired - temporary state)
-        </div>
-
-        <div class="grammar-box">
-            <h4>TENER (to have)</h4>
-            <table>
-                <tr>
-                    <th>Pronombre</th>
-                    <th>Conjugación</th>
-                    <th>English</th>
-                </tr>
-                <tr>
-                    <td>yo</td>
-                    <td class="spanish">tengo</td>
-                    <td>I have</td>
-                </tr>
-                <tr>
-                    <td>tú</td>
-                    <td class="spanish">tienes</td>
-                    <td>you have</td>
-                </tr>
-                <tr>
-                    <td>él/ella/usted</td>
-                    <td class="spanish">tiene</td>
-                    <td>he/she/you have</td>
-                </tr>
-                <tr>
-                    <td>nosotros</td>
-                    <td class="spanish">tenemos</td>
-                    <td>we have</td>
-                </tr>
-                <tr>
-                    <td>vosotros</td>
-                    <td class="spanish">tenéis</td>
-                    <td>you have</td>
-                </tr>
-                <tr>
-                    <td>ellos/ellas/ustedes</td>
-                    <td class="spanish">tienen</td>
-                    <td>they/you have</td>
-                </tr>
-            </table>
-
-            <h4>HACER (to do/make)</h4>
-            <table>
-                <tr>
-                    <th>Pronombre</th>
-                    <th>Conjugación</th>
-                    <th>English</th>
-                </tr>
-                <tr>
-                    <td>yo</td>
-                    <td class="spanish">hago</td>
-                    <td>I do/make</td>
-                </tr>
-                <tr>
-                    <td>tú</td>
-                    <td class="spanish">haces</td>
-                    <td>you do/make</td>
-                </tr>
-                <tr>
-                    <td>él/ella/usted</td>
-                    <td class="spanish">hace</td>
-                    <td>he/she/you do/make</td>
-                </tr>
-                <tr>
-                    <td>nosotros</td>
-                    <td class="spanish">hacemos</td>
-                    <td>we do/make</td>
-                </tr>
-                <tr>
-                    <td>vosotros</td>
-                    <td class="spanish">hacéis</td>
-                    <td>you do/make</td>
-                </tr>
-                <tr>
-                    <td>ellos/ellas/ustedes</td>
-                    <td class="spanish">hacen</td>
-                    <td>they/you do/make</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="vocab-box">
-            <h3>Otros Verbos Importantes / Other Important Verbs</h3>
-            <ul>
-                <li><span class="spanish">hablar</span> - to speak</li>
-                <li><span class="spanish">comer</span> - to eat</li>
-                <li><span class="spanish">vivir</span> - to live</li>
-                <li><span class="spanish">trabajar</span> - to work</li>
-                <li><span class="spanish">estudiar</span> - to study</li>
-                <li><span class="spanish">querer</span> - to want/love</li>
-                <li><span class="spanish">poder</span> - to be able to/can</li>
-                <li><span class="spanish">ir</span> - to go</li>
-                <li><span class="spanish">venir</span> - to come</li>
-                <li><span class="spanish">ver</span> - to see</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="chapter">
-        <h1>Capítulo 7: Colores y Descripciones</h1>
-
-        <div class="vocab-box">
-            <h3>Colores / Colors</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">rojo/roja</td>
-                    <td>red</td>
-                    <td class="phonetic">[roh-hoh/roh-hah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">azul</td>
-                    <td>blue</td>
-                    <td class="phonetic">[ah-thool]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">verde</td>
-                    <td>green</td>
-                    <td class="phonetic">[ver-deh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">amarillo/amarilla</td>
-                    <td>yellow</td>
-                    <td class="phonetic">[ah-mah-ree-yoh/yah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">negro/negra</td>
-                    <td>black</td>
-                    <td class="phonetic">[neh-groh/grah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">blanco/blanca</td>
-                    <td>white</td>
-                    <td class="phonetic">[blan-koh/kah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">rosa</td>
-                    <td>pink</td>
-                    <td class="phonetic">[roh-sah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">morado/morada</td>
-                    <td>purple</td>
-                    <td class="phonetic">[moh-rah-doh/dah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">naranja</td>
-                    <td>orange</td>
-                    <td class="phonetic">[nah-ran-hah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">gris</td>
-                    <td>gray</td>
-                    <td class="phonetic">[grees]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="vocab-box">
-            <h3>Adjetivos Descriptivos / Descriptive Adjectives</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">grande</td>
-                    <td>big</td>
-                    <td class="phonetic">[gran-deh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">pequeño/pequeña</td>
-                    <td>small</td>
-                    <td class="phonetic">[peh-keh-nyoh/nyah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">alto/alta</td>
-                    <td>tall</td>
-                    <td class="phonetic">[al-toh/tah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">bajo/baja</td>
-                    <td>short</td>
-                    <td class="phonetic">[bah-hoh/hah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">gordo/gorda</td>
-                    <td>fat</td>
-                    <td class="phonetic">[gor-doh/dah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">delgado/delgada</td>
-                    <td>thin</td>
-                    <td class="phonetic">[del-gah-doh/dah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">joven</td>
-                    <td>young</td>
-                    <td class="phonetic">[hoh-ven]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">viejo/vieja</td>
-                    <td>old</td>
-                    <td class="phonetic">[vyeh-hoh/hah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">guapo/guapa</td>
-                    <td>handsome/pretty</td>
-                    <td class="phonetic">[gwah-poh/pah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">feo/fea</td>
-                    <td>ugly</td>
-                    <td class="phonetic">[feh-oh/ah]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="grammar-box">
-            <h3>Concordancia de Adjetivos / Adjective Agreement</h3>
-            <p>Los adjetivos en español deben concordar en género (masculino/femenino) y número (singular/plural) con el sustantivo que describen.</p>
-
-            <h4>Ejemplos:</h4>
-            <ul>
-                <li><span class="spanish">El coche rojo</span> (masculine singular)</li>
-                <li><span class="spanish">La casa roja</span> (feminine singular)</li>
-                <li><span class="spanish">Los coches rojos</span> (masculine plural)</li>
-                <li><span class="spanish">Las casas rojas</span> (feminine plural)</li>
-            </ul>
-
-            <div class="tip">
-                Algunos adjetivos no cambian de forma: azul, verde, rosa, naranja, gris
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Cardio Days</div>
+                            <div class="day-type cardio">Interval Cardio</div>
+                        </div>
+                        <div class="workout-focus">Focus: Aerobic capacity and fat oxidation</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Pyramid Intervals</div>
+                                <div class="exercise-details">45 minutes total</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• 1min high, 2min recovery</div>
+                                <div class="exercise-details">x3 rounds</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• 2min high, 2min recovery</div>
+                                <div class="exercise-details">x3 rounds</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• 3min high, 3min recovery</div>
+                                <div class="exercise-details">x2 rounds</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~450-600 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-box">
-            <h3>Ejercicio 3: Completa con el adjetivo correcto</h3>
-            <p>1. La mesa es _____ (rojo)</p>
-            <p>2. El libro _____ (azul)</p>
-            <p>3. Las flores _____ (amarillo)</p>
-            <p>4. Los gatos son _____ (negro)</p>
-            <p>5. Mi hermana es muy _____ (alto)</p>
-        </div>
-    </div>
-
-    <div class="chapter">
-        <h1>Capítulo 8: Direcciones y Lugares</h1>
-
-        <div class="vocab-box">
-            <h3>Lugares en la Ciudad / Places in the City</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">el banco</td>
-                    <td>the bank</td>
-                    <td class="phonetic">[el ban-koh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el hospital</td>
-                    <td>the hospital</td>
-                    <td class="phonetic">[el os-pee-tal]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la farmacia</td>
-                    <td>the pharmacy</td>
-                    <td class="phonetic">[lah far-mah-thyah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el supermercado</td>
-                    <td>the supermarket</td>
-                    <td class="phonetic">[el soo-per-mer-kah-doh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la escuela</td>
-                    <td>the school</td>
-                    <td class="phonetic">[lah es-kweh-lah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la iglesia</td>
-                    <td>the church</td>
-                    <td class="phonetic">[lah ee-gleh-syah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el parque</td>
-                    <td>the park</td>
-                    <td class="phonetic">[el par-keh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la biblioteca</td>
-                    <td>the library</td>
-                    <td class="phonetic">[lah bee-blee-oh-teh-kah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">el restaurante</td>
-                    <td>the restaurant</td>
-                    <td class="phonetic">[el res-tow-ran-teh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">la estación</td>
-                    <td>the station</td>
-                    <td class="phonetic">[lah es-tah-thyon]</td>
-                </tr>
-            </table>
+        <!-- WEEK 7-8: Peak Performance -->
+        <div class="week-container">
+            <div class="week-header">
+                <h2>WEEK 7-8: PEAK PERFORMANCE</h2>
+            </div>
+            <div class="week-content">
+                <div class="day-grid">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Days 43-56</div>
+                            <div class="day-type hiit">Elite Conditioning</div>
+                        </div>
+                        <div class="workout-focus">Focus: Maximum metabolic conditioning</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Complex Training</div>
+                                <div class="exercise-details">6 exercises, no rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Death By Burpees</div>
+                                <div class="exercise-details">1 first min, +1 each min</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Metabolic Finisher</div>
+                                <div class="exercise-details">100 total reps challenge</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cardio Acceleration</div>
+                                <div class="exercise-details">Between all exercises</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~600-800 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="vocab-box">
-            <h3>Direcciones / Directions</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Dónde está...?</td>
-                    <td>Where is...?</td>
-                    <td class="phonetic">[dohn-deh es-tah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">a la derecha</td>
-                    <td>to the right</td>
-                    <td class="phonetic">[ah lah deh-reh-chah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">a la izquierda</td>
-                    <td>to the left</td>
-                    <td class="phonetic">[ah lah eeth-kyehr-dah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">todo recto</td>
-                    <td>straight ahead</td>
-                    <td class="phonetic">[toh-doh rek-toh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">cerca de</td>
-                    <td>near</td>
-                    <td class="phonetic">[ther-kah deh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">lejos de</td>
-                    <td>far from</td>
-                    <td class="phonetic">[leh-hos deh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">al lado de</td>
-                    <td>next to</td>
-                    <td class="phonetic">[al lah-doh deh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">enfrente de</td>
-                    <td>in front of</td>
-                    <td class="phonetic">[en-fren-teh deh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">detrás de</td>
-                    <td>behind</td>
-                    <td class="phonetic">[deh-tras deh]</td>
-                </tr>
-            </table>
-        </div>
+        <!-- FINAL WEEK: Ultimate Challenge -->
+        <div class="week-container">
+            <div class="week-header">
+                <h2>DAYS 57-60: ULTIMATE FAT LOSS CHALLENGE</h2>
+            </div>
+            <div class="week-content">
+                <div class="day-grid">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 57</div>
+                            <div class="day-type hiit">Calorie Inferno</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">1000 Calorie Challenge</div>
+                                <div class="exercise-details">Mix of all exercises learned</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Non-Stop Movement</div>
+                                <div class="exercise-details">90-120 minutes</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~800-1000 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
+                        </div>
+                    </div>
 
-        <div class="dialogue">
-            <h3>Pidiendo Direcciones / Asking for Directions</h3>
-            <p><strong>Turista:</strong> <span class="spanish">Disculpe, ¿dónde está el banco?</span><br>
-            <span class="english">Excuse me, where is the bank?</span></p>
-            
-            <p><strong>Local:</strong> <span class="spanish">El banco está cerca del parque. Vaya todo recto y después gire a la derecha.</span><br>
-            <span class="english">The bank is near the park. Go straight ahead and then turn right.</span></p>
-            
-            <p><strong>Turista:</strong> <span class="spanish">¿Está lejos de aquí?</span><br>
-            <span class="english">Is it far from here?</span></p>
-            
-            <p><strong>Local:</strong> <span class="spanish">No, está muy cerca. A cinco minutos a pie.</span><br>
-            <span class="english">No, it's very close. Five minutes on foot.</span></p>
-            
-            <p><strong>Turista:</strong> <span class="spanish">Muchas gracias.</span><br>
-            <span class="english">Thank you very much.</span></p>
-        </div>
-    </div>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 58</div>
+                            <div class="day-type circuit">Endurance Test</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">60-Minute Circuit</div>
+                                <div class="exercise-details">Every exercise mastered</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cardio Intervals</div>
+                                <div class="exercise-details">Between strength sets</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~700-850 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
+                        </div>
+                    </div>
 
-    <div class="chapter">
-        <h1>Capítulo 9: Gramática Esencial</h1>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 59</div>
+                            <div class="day-type hiit">Final Push</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Morning HIIT Session</div>
+                                <div class="exercise-details">45 minutes intense</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Evening Fat Burn Walk</div>
+                                <div class="exercise-details">60 minutes steady</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Core Finisher</div>
+                                <div class="exercise-details">20 minutes abs</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~750-950 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
+                        </div>
+                    </div>
 
-        <div class="grammar-box">
-            <h3>Artículos / Articles</h3>
-            
-            <h4>Artículos Definidos (the)</h4>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Singular</th>
-                    <th>Plural</th>
-                </tr>
-                <tr>
-                    <td><strong>Masculino</strong></td>
-                    <td class="spanish">el</td>
-                    <td class="spanish">los</td>
-                </tr>
-                <tr>
-                    <td><strong>Femenino</strong></td>
-                    <td class="spanish">la</td>
-                    <td class="spanish">las</td>
-                </tr>
-            </table>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 60</div>
+                            <div class="day-type active-rest">Victory Celebration</div>
+                        </div>
+                        <div class="rest-day">
+                            <h3>🏆 Transformation Complete!</h3>
+                            <div class="rest-activities">
+                                Progress photos • Body measurements • Celebrate achievements • Plan maintenance phase
+                            </div>
+                        </div>
+                        <div class="progress-tracker">
+                            Final weigh-in and measurements! Compare to Day 1 progress photos.
+                        </div>
+                    </div>
+                </div>
 
-            <h4>Artículos Indefinidos (a/an/some)</h4>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Singular</th>
-                    <th>Plural</th>
-                </tr>
-                <tr>
-                    <td><strong>Masculino</strong></td>
-                    <td class="spanish">un</td>
-                    <td class="spanish">unos</td>
-                </tr>
-                <tr>
-                    <td><strong>Femenino</strong></td>
-                    <td class="spanish">una</td>
-                    <td class="spanish">unas</td>
-                </tr>
-            </table>
-        </div>
+                <!-- Weekly Schedule Template -->
+                <div class="day-grid" style="margin-top: 40px;">
+                    <div class="day-card" style="grid-column: 1 / -1;">
+                        <div class="day-header">
+                            <div class="day-title">TYPICAL WEEKLY SCHEDULE (Weeks 3-8)</div>
+                            <div class="day-type hiit">Schedule</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; margin-top: 20px;">
+                            <div style="text-align: center; padding: 15px; background: rgba(231, 76, 60, 0.2); border-radius: 8px;">
+                                <strong>MON</strong><br>
+                                <small>HIIT</small><br>
+                                <small>45min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.2); border-radius: 8px;">
+                                <strong>TUE</strong><br>
+                                <small>Steady Cardio</small><br>
+                                <small>50min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(155, 89, 182, 0.2); border-radius: 8px;">
+                                <strong>WED</strong><br>
+                                <small>Circuit</small><br>
+                                <small>40min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(39, 174, 96, 0.2); border-radius: 8px;">
+                                <strong>THU</strong><br>
+                                <small>Active Rest</small><br>
+                                <small>30min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(243, 156, 18, 0.2); border-radius: 8px;">
+                                <strong>FRI</strong><br>
+                                <small>HIIT</small><br>
+                                <small>45min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.2); border-radius: 8px;">
+                                <strong>SAT</strong><br>
+                                <small>Long Cardio</small><br>
+                                <small>60min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(149, 165, 166, 0.2); border-radius: 8px;">
+                                <strong>SUN</strong><br>
+                                <small>Rest</small><br>
+                                <small>Recovery</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="grammar-box">
-            <h3>Formación del Plural / Plural Formation</h3>
-            <ul>
-                <li><strong>Palabras terminadas en vocal:</strong> + s<br>
-                    <span class="spanish">casa → casas, libro → libros</span></li>
-                <li><strong>Palabras terminadas en consonante:</strong> + es<br>
-                    <span class="spanish">hotel → hoteles, ciudad → ciudades</span></li>
-                <li><strong>Palabras terminadas en -z:</strong> cambia z → ces<br>
-                    <span class="spanish">lápiz → lápices, pez → peces</span></li>
-            </ul>
-        </div>
+                <!-- Detailed Exercise Progressions -->
+                <div class="day-grid" style="margin-top: 40px;">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">HIIT Progressions</div>
+                            <div class="day-type hiit">Progression</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 1-2: Beginner HIIT</div>
+                                <div class="exercise-details">30s work, 60s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 3-4: Intermediate</div>
+                                <div class="exercise-details">45s work, 30s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 5-6: Advanced</div>
+                                <div class="exercise-details">45s work, 15s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 7-8: Elite</div>
+                                <div class="exercise-details">Tabata + complexes</div>
+                            </li>
+                        </ul>
+                    </div>
 
-        <div class="grammar-box">
-            <h3>Preguntas / Questions</h3>
-            
-            <h4>Palabras Interrogativas</h4>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Ejemplo</th>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Qué?</td>
-                    <td>What?</td>
-                    <td class="spanish">¿Qué comes?</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Quién?</td>
-                    <td>Who?</td>
-                    <td class="spanish">¿Quién es él?</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Dónde?</td>
-                    <td>Where?</td>
-                    <td class="spanish">¿Dónde vives?</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Cuándo?</td>
-                    <td>When?</td>
-                    <td class="spanish">¿Cuándo vienes?</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Cómo?</td>
-                    <td>How?</td>
-                    <td class="spanish">¿Cómo estás?</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Por qué?</td>
-                    <td>Why?</td>
-                    <td class="spanish">¿Por qué estudias?</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Cuánto?</td>
-                    <td>How much?</td>
-                    <td class="spanish">¿Cuánto cuesta?</td>
-                </tr>
-            </table>
-        </div>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Cardio Zones</div>
+                            <div class="day-type cardio">Heart Rate</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Fat Burn Zone</div>
+                                <div class="exercise-details">60-70% max HR</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Aerobic Zone</div>
+                                <div class="exercise-details">70-80% max HR</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Anaerobic Zone</div>
+                                <div class="exercise-details">80-90% max HR</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Max Effort</div>
+                                <div class="exercise-details">90-100% max HR</div>
+                            </li>
+                        </ul>
+                    </div>
 
-        <div class="grammar-box">
-            <h3>Negación / Negation</h3>
-            <p>Para hacer una oración negativa, se coloca <span class="spanish">"no"</span> antes del verbo:</p>
-            <ul>
-                <li><span class="spanish">Yo hablo español</span> → <span class="spanish">Yo no hablo español</span></li>
-                <li><span class="spanish">Ella come carne</span> → <span class="spanish">Ella no come carne</span></li>
-                <li><span class="spanish">Estamos en casa</span> → <span class="spanish">No estamos en casa</span></li>
-            </ul>
-        </div>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Circuit Examples</div>
+                            <div class="day-type circuit">Examples</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Fat Blast Circuit</div>
+                                <div class="exercise-details">8 exercises, 4 rounds</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Burpees</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Jump Squats</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Push-up + T-Rotation</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Mountain Climbers</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="exercise-box">
-            <h3>Ejercicio 4: Transforma a negativo</h3>
-            <p>1. Soy estudiante → _____ soy estudiante</p>
-            <p>2. Tengo hambre → _____ tengo hambre</p>
-            <p>3. Vivo en Madrid → _____ vivo en Madrid</p>
-            <p>4. Ella habla francés → Ella _____ habla francés</p>
-            <p>5. Estamos cansados → _____ estamos cansados</p>
-        </div>
-    </div>
+                <!-- Nutrition and Hydration Guidelines -->
+                <div class="day-grid" style="margin-top: 40px;">
+                    <div class="day-card" style="grid-column: 1 / -1;">
+                        <div class="day-header">
+                            <div class="day-title">WEIGHT LOSS SUCCESS GUIDELINES</div>
+                            <div class="day-type fat-burn">Guidelines</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
+                            <div style="background: rgba(46, 204, 113, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(46, 204, 113, 0.3);">
+                                <h4 style="color: #2ecc71; margin-bottom: 15px;">💧 HYDRATION</h4>
+                                <ul style="color: #ecf0f1; line-height: 1.6;">
+                                    <li>Drink 16oz water before each workout</li>
+                                    <li>Sip during exercise every 15-20 minutes</li>
+                                    <li>Aim for 3-4 liters total daily</li>
+                                    <li>Add lemon or cucumber for flavor</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(231, 76, 60, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(231, 76, 60, 0.3);">
+                                <h4 style="color: #e74c3c; margin-bottom: 15px;">🍎 NUTRITION TIMING</h4>
+                                <ul style="color: #ecf0f1; line-height: 1.6;">
+                                    <li>Pre-workout: Light carbs (banana)</li>
+                                    <li>Post-workout: Protein within 30min</li>
+                                    <li>Eat every 3-4 hours</li>
+                                    <li>Stop eating 3 hours before bed</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(52, 152, 219, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(52, 152, 219, 0.3);">
+                                <h4 style="color: #3498db; margin-bottom: 15px;">📊 TRACKING PROGRESS</h4>
+                                <ul style="color: #ecf0f1; line-height: 1.6;">
+                                    <li>Weigh weekly, same time/day</li>
+                                    <li>Take measurements every 2 weeks</li>
+                                    <li>Progress photos monthly</li>
+                                    <li>Track workout intensity & duration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="chapter">
-        <h1>Capítulo 10: Conversaciones Útiles</h1>
-
-        <div class="dialogue">
-            <h3>En la Tienda / At the Store</h3>
-            <p><strong>Vendedor:</strong> <span class="spanish">¿En qué le puedo ayudar?</span><br>
-            <span class="english">How can I help you?</span></p>
-            
-            <p><strong>Cliente:</strong> <span class="spanish">Busco una camisa azul, por favor.</span><br>
-            <span class="english">I'm looking for a blue shirt, please.</span></p>
-            
-            <p><strong>Vendedor:</strong> <span class="spanish">¿Qué talla necesita?</span><br>
-            <span class="english">What size do you need?</span></p>
-            
-            <p><strong>Cliente:</strong> <span class="spanish">Talla mediana. ¿Cuánto cuesta?</span><br>
-            <span class="english">Medium size. How much does it cost?</span></p>
-            
-            <p><strong>Vendedor:</strong> <span class="spanish">Cuesta treinta euros.</span><br>
-            <span class="english">It costs thirty euros.</span></p>
-        </div>
-
-        <div class="dialogue">
-            <h3>En el Hotel / At the Hotel</h3>
-            <p><strong>Recepcionista:</strong> <span class="spanish">¡Bienvenido! ¿Tiene reservación?</span><br>
-            <span class="english">Welcome! Do you have a reservation?</span></p>
-            
-            <p><strong>Huésped:</strong> <span class="spanish">Sí, tengo una reservación a nombre de García.</span><br>
-            <span class="english">Yes, I have a reservation under García.</span></p>
-            
-            <p><strong>Recepcionista:</strong> <span class="spanish">Perfecto. Su habitación es la número 205. Aquí tiene la llave.</span><br>
-            <span class="english">Perfect. Your room is number 205. Here's the key.</span></p>
-            
-            <p><strong>Huésped:</strong> <span class="spanish">¿A qué hora es el desayuno?</span><br>
-            <span class="english">What time is breakfast?</span></p>
-            
-            <p><strong>Recepcionista:</strong> <span class="spanish">El desayuno es de siete a diez de la mañana.</span><br>
-            <span class="english">Breakfast is from seven to ten in the morning.</span></p>
-        </div>
-
-        <div class="dialogue">
-            <h3>Pidiendo Ayuda / Asking for Help</h3>
-            <p><strong>Turista:</strong> <span class="spanish">Disculpe, ¿habla inglés?</span><br>
-            <span class="english">Excuse me, do you speak English?</span></p>
-            
-            <p><strong>Local:</strong> <span class="spanish">Un poco. ¿Necesita ayuda?</span><br>
-            <span class="english">A little. Do you need help?</span></p>
-            
-            <p><strong>Turista:</strong> <span class="spanish">Sí, estoy perdido. ¿Puede ayudarme?</span><br>
-            <span class="english">Yes, I'm lost. Can you help me?</span></p>
-            
-            <p><strong>Local:</strong> <span class="spanish">¡Claro! ¿Adónde quiere ir?</span><br>
-            <span class="english">Of course! Where do you want to go?</span></p>
-            
-            <p><strong>Turista:</strong> <span class="spanish">Al museo de arte, por favor.</span><br>
-            <span class="english">To the art museum, please.</span></p>
-        </div>
-
-        <div class="vocab-box">
-            <h3>Frases Útiles / Useful Phrases</h3>
-            <table>
-                <tr>
-                    <th>Español</th>
-                    <th>English</th>
-                    <th>Pronunciación</th>
-                </tr>
-                <tr>
-                    <td class="spanish">No entiendo</td>
-                    <td>I don't understand</td>
-                    <td class="phonetic">[noh en-tyen-doh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Puede repetir?</td>
-                    <td>Can you repeat?</td>
-                    <td class="phonetic">[pweh-deh reh-peh-teer]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Habla más despacio</td>
-                    <td>Speak slower</td>
-                    <td class="phonetic">[ah-blah mas des-pah-thyo]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Cómo se dice...?</td>
-                    <td>How do you say...?</td>
-                    <td class="phonetic">[koh-moh seh dee-theh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Qué significa...?</td>
-                    <td>What does... mean?</td>
-                    <td class="phonetic">[keh sig-nee-fee-kah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Con permiso</td>
-                    <td>Excuse me (to pass)</td>
-                    <td class="phonetic">[kon per-mee-soh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">Lo siento</td>
-                    <td>I'm sorry</td>
-                    <td class="phonetic">[loh syen-toh]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">No hay problema</td>
-                    <td>No problem</td>
-                    <td class="phonetic">[noh ay proh-bleh-mah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Cuánto cuesta?</td>
-                    <td>How much does it cost?</td>
-                    <td class="phonetic">[kwan-toh kwes-tah]</td>
-                </tr>
-                <tr>
-                    <td class="spanish">¿Dónde está el baño?</td>
-                    <td>Where is the bathroom?</td>
-                    <td class="phonetic">[dohn-deh es-tah el bah-nyoh]</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="exercise-box">
-            <h3>Ejercicio Final: Situaciones</h3>
-            <p><strong>¿Qué dirías en estas situaciones?</strong></p>
-            
-            <p>1. Quieres preguntar la hora:</p>
-            <p>2. No entiendes lo que alguien dijo:</p>
-            <p>3. Quieres saber el precio de algo:</p>
-            <p>4. Necesitas ir al baño:</p>
-            <p>5. Quieres disculparte:</p>
-        </div>
-    </div>
-
-    <div class="chapter">
-        <h1>Recursos Adicionales / Additional Resources</h1>
-
-        <h2>Consejos para Seguir Aprendiendo / Tips for Continued Learning</h2>
-        
-        <div class="tip">
-            <strong>1. Práctica Diaria:</strong> Dedica al menos 15-30 minutos diarios al español. La consistencia es más importante que la duración.
-        </div>
-
-        <div class="tip">
-            <strong>2. Inmersión:</strong> Escucha música en español, ve películas con subtítulos, y lee noticias en español.
-        </div>
-
-        <div class="tip">
-            <strong>3. Conversación:</strong> Busca intercambios de idiomas o clases de conversación para practicar el habla.
-        </div>
-
-        <div class="tip">
-            <strong>4. Aplicaciones:</strong> Usa aplicaciones como Duolingo, Babbel, o SpanishDict para práctica adicional.
-        </div>
-
-        <h2>Verbos Regulares - Patrones de Conjugación</h2>
-
-        <div class="grammar-box">
-            <h3>Verbos -AR (ejemplo: hablar)</h3>
-            <p>yo hablo, tú hablas, él/ella habla, nosotros hablamos, vosotros habláis, ellos hablan</p>
-
-            <h3>Verbos -ER (ejemplo: comer)</h3>
-            <p>yo como, tú comes, él/ella come, nosotros comemos, vosotros coméis, ellos comen</p>
-
-            <h3>Verbos -IR (ejemplo: vivir)</h3>
-            <p>yo vivo, tú vives, él/ella vive, nosotros vivimos, vosotros vivís, ellos viven</p>
-        </div>
-
-        <h2>Números Grandes / Large Numbers</h2>
-
-        <div class="vocab-box">
-            <table>
-                <tr>
-                    <th>Número</th>
-                    <th>Español</th>
-                    <th>English</th>
-                </tr>
-                <tr>
-                    <td>30</td>
-                    <td class="spanish">treinta</td>
-                    <td>thirty</td>
-                </tr>
-                <tr>
-                    <td>40</td>
-                    <td class="spanish">cuarenta</td>
-                    <td>forty</td>
-                </tr>
-                <tr>
-                    <td>50</td>
-                    <td class="spanish">cincuenta</td>
-                    <td>fifty</td>
-                </tr>
-                <tr>
-                    <td>100</td>
-                    <td class="spanish">cien/ciento</td>
-                    <td>one hundred</td>
-                </tr>
-                <tr>
-                    <td>1000</td>
-                    <td class="spanish">mil</td>
-                    <td>one thousand</td>
-                </tr>
-                <tr>
-                    <td>1,000,000</td>
-                    <td class="spanish">un millón</td>
-                    <td>one million</td>
-                </tr>
-            </table>
-        </div>
-
-        <h2>Días y Meses / Days and Months</h2>
-
-        <div class="vocab-box">
-            <h3>Días de la Semana / Days of the Week</h3>
-            <ul>
-                <li><span class="spanish">lunes</span> - Monday</li>
-                <li><span class="spanish">martes</span> - Tuesday</li>
-                <li><span class="spanish">miércoles</span> - Wednesday</li>
-                <li><span class="spanish">jueves</span> - Thursday</li>
-                <li><span class="spanish">viernes</span> - Friday</li>
-                <li><span class="spanish">sábado</span> - Saturday</li>
-                <li><span class="spanish">domingo</span> - Sunday</li>
-            </ul>
-
-            <h3>Meses del Año / Months of the Year</h3>
-            <ul>
-                <li><span class="spanish">enero</span> - January</li>
-                <li><span class="spanish">febrero</span> - February</li>
-                <li><span class="spanish">marzo</span> - March</li>
-                <li><span class="spanish">abril</span> - April</li>
-                <li><span class="spanish">mayo</span> - May</li>
-                <li><span class="spanish">junio</span> - June</li>
-                <li><span class="spanish">julio</span> - July</li>
-                <li><span class="spanish">agosto</span> - August</li>
-                <li><span class="spanish">septiembre</span> - September</li>
-                <li><span class="spanish">octubre</span> - October</li>
-                <li><span class="spanish">noviembre</span> - November</li>
-                <li><span class="spanish">diciembre</span> - December</li>
-            </ul>
-        </div>
-
-        <h2>Respuestas a los Ejercicios / Exercise Answers</h2>
-
-        <div class="exercise-box">
-            <h3>Respuestas</h3>
-            
-            <p><strong>Ejercicio 1:</strong></p>
-            <p>1. Buenos días</p>
-            <p>2. Me llamo Pedro</p>
-            <p>3. ¿Cómo te llamas?</p>
-            <p>4. Mucho gusto</p>
-            <p>5. Soy de España</p>
-
-            <p><strong>Ejercicio 2:</strong></p>
-            <p>1-b, 2-c, 3-a, 4-d, 5-e</p>
-
-            <p><strong>Ejercicio 3:</strong></p>
-            <p>1. roja</p>
-            <p>2. azul</p>
-            <p>3. amarillas</p>
-            <p>4. negros</p>
-            <p>5. alta</p>
-
-            <p><strong>Ejercicio 4:</strong></p>
-            <p>1. No soy estudiante</p>
-            <p>2. No tengo hambre</p>
-            <p>3. No vivo en Madrid</p>
-            <p>4. Ella no habla francés</p>
-            <p>5. No estamos cansados</p>
-        </div>
-
-        <div class="cover" style="margin-top: 40px; padding: 60px 20px;">
-            <h2>¡Felicidades!</h2>
-            <p>Has completado tu introducción al español</p>
-            <p><em>Congratulations! You have completed your introduction to Spanish</em></p>
-            <p style="margin-top: 30px;">¡Sigue practicando y buena suerte!</p>
-            <p><em>Keep practicing and good luck!</em></p>
-        </div>
-    </div>
-</body>
-</html>
+                <!-- Weekly Calorie Burn Targets -->
+                <div class="day-grid" style="margin-top: 30px;">
+                    <div class="day-card" style="grid-column: 1 / -1;">
+                        <div class="day-header">
+                            <div class="day-title">WEEKLY CALORIE BURN TARGETS</div>
+                            <div class="day-type fat-burn">Targets</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                            <div style="text-align: center; padding: 20px; background: rgba(39, 174, 96, 0.2); border-radius: 10px;">
+                                <h3 style="color: #2ecc71;">Week 1-2</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">1,800-2,400</div>
+                                <small>calories/week</small>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: rgba(243, 156, 18, 0.2); border-radius: 10px;">
+                                <h3 style="color: #f39c12;">Week 3-4</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">2,400-3,000</div>
+                                <small>calories/week</small>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: rgba(231, 76, 60, 0.2); border-radius: 10px;">
+                                <h3 style="color: #e74c3c;">Week 5-6</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">3,000-3,600</div>
+                                <small>calories/week</small>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: rgba(155, 89, 182, 0.2); border-radius: 10px;">
+                                <h3 style="color: #9b59b6;">Week 7-8</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">3,600-4,200</div>
+                                <small>calories/week</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
