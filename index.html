@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>60-Day Weight Loss Diet Plan</title>
+    <title>60-Day Weight Loss Workout Plan</title>
     <style>
-       * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 50%, #16a085 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%);
             color: #fff;
             line-height: 1.6;
             padding: 20px;
@@ -27,7 +27,7 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
-            background: linear-gradient(45deg, #f39c12, #e67e22);
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -46,41 +46,18 @@
             -webkit-text-fill-color: #ecf0f1;
         }
 
-        .nutrition-overview {
-            background: rgba(46, 204, 113, 0.1);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .macro-card {
-            background: rgba(255, 255, 255, 0.05);
+        .calories-info {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
+            margin-bottom: 30px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .macro-card h3 {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .macro-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .macro-description {
-            font-size: 0.9rem;
-            color: #bdc3c7;
-            margin-top: 5px;
+        .calories-info h3 {
+            color: #e74c3c;
+            margin-bottom: 8px;
         }
 
         .week-container {
@@ -94,7 +71,7 @@
         }
 
         .week-header {
-            background: linear-gradient(90deg, #27ae60 0%, #2ecc71 100%);
+            background: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
             padding: 20px;
             text-align: center;
         }
@@ -110,12 +87,12 @@
 
         .day-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
         .day-card {
-            background: linear-gradient(145deg, #2c3e50, #34495e);
+            background: linear-gradient(145deg, #34495e, #2c3e50);
             border-radius: 12px;
             padding: 25px;
             border: 1px solid rgba(255,255,255,0.1);
@@ -127,7 +104,7 @@
         .day-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            border-color: #27ae60;
+            border-color: #e74c3c;
         }
 
         .day-card::before {
@@ -137,7 +114,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #27ae60, #2ecc71, #16a085);
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #3498db);
         }
 
         .day-header {
@@ -150,207 +127,131 @@
         .day-title {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #fff;
+            color: #e74c3c;
         }
 
-        .calorie-badge {
+        .day-type {
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .fat-burn {
             background: linear-gradient(45deg, #e74c3c, #c0392b);
-            color: white;
         }
 
-        .meal-section {
-            margin-bottom: 20px;
+        .cardio {
+            background: linear-gradient(45deg, #3498db, #2980b9);
         }
 
-        .meal-header {
-            background: rgba(52, 152, 219, 0.2);
-            border: 1px solid rgba(52, 152, 219, 0.3);
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .hiit {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
         }
 
-        .meal-name {
-            font-weight: 600;
-            color: #fff;
-            font-size: 1.1rem;
+        .circuit {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
         }
 
-        .meal-calories {
-            font-size: 0.9rem;
-            color: #ecf0f1;
+        .active-rest {
+            background: linear-gradient(45deg, #27ae60, #229954);
         }
 
-        .food-list {
+        .rest {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+        }
+
+        .exercise-list {
             list-style: none;
-            padding-left: 15px;
         }
 
-        .food-item {
-            padding: 8px 0;
+        .exercise-item {
+            padding: 12px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .food-item:last-child {
+        .exercise-item:last-child {
             border-bottom: none;
         }
 
-        .food-name {
-            font-weight: 500;
-            color: #ecf0f1;
+        .exercise-name {
+            font-weight: 600;
+            color: #fff;
         }
 
-        .food-portion {
+        .exercise-details {
             color: #bdc3c7;
             font-size: 0.9rem;
         }
 
-        .hydration-tracker {
-            background: rgba(52, 152, 219, 0.1);
-            border: 1px solid rgba(52, 152, 219, 0.3);
+        .calories-burned {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            padding: 3px 8px;
             border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .water-emoji {
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
-
-        .supplement-section {
-            background: rgba(155, 89, 182, 0.1);
-            border: 1px solid rgba(155, 89, 182, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-
-        .supplement-title {
-            color: #fff;
+            font-size: 0.8rem;
             font-weight: 600;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .intensity-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .intensity-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            transition: width 0.3s ease;
+        }
+
+        .low { width: 35%; background: linear-gradient(90deg, #27ae60, #2ecc71); }
+        .medium { width: 60%; background: linear-gradient(90deg, #f39c12, #e67e22); }
+        .high { width: 80%; background: linear-gradient(90deg, #e74c3c, #c0392b); }
+        .extreme { width: 100%; background: linear-gradient(90deg, #8e44ad, #9b59b6); }
+
+        .rest-day {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .rest-day h3 {
+            color: #27ae60;
             margin-bottom: 10px;
         }
 
-        .workout-day {
-            border-left: 4px solid #e74c3c;
-            background: rgba(231, 76, 60, 0.05);
+        .rest-activities {
+            color: #bdc3c7;
+            font-style: italic;
         }
 
-        .rest-day {
-            border-left: 4px solid #95a5a6;
-            background: rgba(149, 165, 166, 0.05);
-        }
-
-        .meal-timing {
-            background: rgba(243, 156, 18, 0.1);
-            border: 1px solid rgba(243, 156, 18, 0.3);
+        .workout-focus {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 15px;
             font-size: 0.9rem;
-            color: #f39c12;
+            color: #3498db;
         }
 
-        .macro-breakdown {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .macro-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        .protein { color: #e74c3c; }
-        .carbs { color: #3498db; }
-        .fats { color: #f39c12; }
-
-        .recipe-card {
+        .progress-tracker {
             background: rgba(46, 204, 113, 0.1);
             border: 1px solid rgba(46, 204, 113, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .recipe-title {
-            color: #fff;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .recipe-ingredients {
-            margin-bottom: 15px;
-        }
-
-        .recipe-instructions {
-            font-size: 0.9rem;
-            color: #bdc3c7;
-            line-height: 1.5;
-        }
-
-        .celebration-banner {
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            margin: 40px 0;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(243, 156, 18, 0.5); }
-            to { box-shadow: 0 0 30px rgba(243, 156, 18, 0.8); }
-        }
-
-        .celebration-emoji {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .completion-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.85rem;
             color: #2ecc71;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #bdc3c7;
         }
 
         @media (max-width: 768px) {
@@ -362,8 +263,8 @@
                 grid-template-columns: 1fr;
             }
             
-            .nutrition-overview {
-                grid-template-columns: 1fr;
+            .day-card {
+                padding: 20px;
             }
         }
     </style>
@@ -371,1104 +272,713 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>60-DAY WEIGHT LOSS DIET PLAN</h1>
-            <p>Your complete nutritional transformation journey</p>
+            <h1>60-DAY WEIGHT LOSS WORKOUT PLAN</h1>
+            <p>Burn fat, boost metabolism, transform your body</p>
         </div>
 
-        <!-- Nutrition Overview -->
-        <div class="nutrition-overview">
-            <div class="macro-card">
-                <h3>Daily Calories</h3>
-                <div class="macro-value">1,400-1,850</div>
-                <div class="macro-description">Progressive adjustment</div>
-            </div>
-            <div class="macro-card">
-                <h3>Protein</h3>
-                <div class="macro-value">30%</div>
-                <div class="macro-description">Muscle preservation</div>
-            </div>
-            <div class="macro-card">
-                <h3>Carbs</h3>
-                <div class="macro-value">40%</div>
-                <div class="macro-description">Workout fuel</div>
-            </div>
-            <div class="macro-card">
-                <h3>Fats</h3>
-                <div class="macro-value">30%</div>
-                <div class="macro-description">Hormone support</div>
-            </div>
+        <div class="calories-info">
+            <h3>🔥 Target Calorie Burn: 300-800 per session</h3>
+            <p>Combine with proper nutrition for optimal fat loss results</p>
         </div>
 
-        <!-- WEEK 1-2: Foundation Nutrition -->
+        <!-- WEEK 1-2: Foundation Fat Burn -->
         <div class="week-container">
             <div class="week-header">
-                <h2>WEEK 1-2: FOUNDATION NUTRITION (1,400-1,500 CALORIES)</h2>
+                <h2>WEEK 1-2: FOUNDATION FAT BURN</h2>
             </div>
             <div class="week-content">
                 <div class="day-grid">
-                    <div class="day-card workout-day">
+                    <div class="day-card">
                         <div class="day-header">
-                            <div class="day-title">Workout Days</div>
-                            <div class="calorie-badge">1,500 cal</div>
+                            <div class="day-title">Day 1</div>
+                            <div class="day-type fat-burn">Fat Burn</div>
                         </div>
-                        <div class="meal-timing">
-                            ⏰ Pre-workout: 1-2 hours before • Post-workout: Within 30 minutes
-                        </div>
-                        
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🌅 Breakfast (350 cal)</div>
-                                <div class="meal-calories">7:00 AM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Steel-cut oats</div>
-                                    <div class="food-portion">1/2 cup dry (150 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Protein powder</div>
-                                    <div class="food-portion">1/2 scoop (60 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Blueberries</div>
-                                    <div class="food-portion">1/2 cup (40 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Almond butter</div>
-                                    <div class="food-portion">1 tbsp (95 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Cinnamon</div>
-                                    <div class="food-portion">to taste (5 cal)</div>
-                                </li>
-                            </ul>
-                            <div class="macro-breakdown">
-                                <div class="macro-item protein">Protein: 20g</div>
-                                <div class="macro-item carbs">Carbs: 45g</div>
-                                <div class="macro-item fats">Fat: 12g</div>
-                            </div>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🥗 Lunch (400 cal)</div>
-                                <div class="meal-calories">12:30 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Grilled chicken breast</div>
-                                    <div class="food-portion">4 oz (185 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Quinoa</div>
-                                    <div class="food-portion">1/2 cup cooked (110 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Mixed vegetables</div>
-                                    <div class="food-portion">1 cup steamed (50 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Olive oil</div>
-                                    <div class="food-portion">1 tsp (40 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Lemon + herbs</div>
-                                    <div class="food-portion">seasoning (15 cal)</div>
-                                </li>
-                            </ul>
-                            <div class="macro-breakdown">
-                                <div class="macro-item protein">Protein: 35g</div>
-                                <div class="macro-item carbs">Carbs: 30g</div>
-                                <div class="macro-item fats">Fat: 8g</div>
-                            </div>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🥜 Snack (150 cal)</div>
-                                <div class="meal-calories">3:30 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Greek yogurt (0% fat)</div>
-                                    <div class="food-portion">3/4 cup (100 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Mixed berries</div>
-                                    <div class="food-portion">1/3 cup (25 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Honey</div>
-                                    <div class="food-portion">1 tsp (25 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🍽️ Dinner (420 cal)</div>
-                                <div class="meal-calories">7:00 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Salmon fillet</div>
-                                    <div class="food-portion">5 oz baked (280 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Sweet potato</div>
-                                    <div class="food-portion">1 small baked (100 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Asparagus</div>
-                                    <div class="food-portion">8 spears (25 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Mixed green salad</div>
-                                    <div class="food-portion">light dressing (15 cal)</div>
-                                </li>
-                            </ul>
-                            <div class="macro-breakdown">
-                                <div class="macro-item protein">Protein: 40g</div>
-                                <div class="macro-item carbs">Carbs: 25g</div>
-                                <div class="macro-item fats">Fat: 15g</div>
-                            </div>
-                        </div>
-
-                        <div class="hydration-tracker">
-                            <span class="water-emoji">💧</span>
-                            <strong>Daily Water Goal: 3.5-4 liters</strong>
-                            <div style="margin-top: 10px; font-size: 0.9rem;">
-                                Start with 16oz upon waking • 8oz before each meal • Extra during workouts
-                            </div>
-                        </div>
-
-                        <div class="supplement-section">
-                            <div class="supplement-title">🧪 Foundation Supplements</div>
-                            <ul style="list-style: none; font-size: 0.9rem;">
-                                <li>• Multivitamin (with breakfast)</li>
-                                <li>• Omega-3 (with dinner)</li>
-                                <li>• Vitamin D3 (with breakfast)</li>
-                                <li>• Probiotics (with dinner)</li>
-                            </ul>
+                        <div class="workout-focus">Focus: Low-impact cardio to establish base fitness</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Marching in Place</div>
+                                <div class="exercise-details">5 min warm-up</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Arm Circles + Step Touch</div>
+                                <div class="exercise-details">3x2min</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Modified Jumping Jacks</div>
+                                <div class="exercise-details">4x30s, 30s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Wall Push-ups</div>
+                                <div class="exercise-details">3x12-15</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Chair Squats</div>
+                                <div class="exercise-details">3x15</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cool-down Walk</div>
+                                <div class="exercise-details">5 min</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~250-350 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill low"></div>
                         </div>
                     </div>
 
-                    <div class="day-card rest-day">
+                    <div class="day-card">
                         <div class="day-header">
-                            <div class="day-title">Rest Days</div>
-                            <div class="calorie-badge">1,400 cal</div>
+                            <div class="day-title">Day 2</div>
+                            <div class="day-type cardio">Steady Cardio</div>
                         </div>
-                        <div class="meal-timing">
-                            🔄 Focus on recovery with balanced nutrition and adequate protein
-                        </div>
-                        
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🌅 Breakfast (320 cal)</div>
-                                <div class="meal-calories">8:00 AM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Vegetable omelet (2 eggs)</div>
-                                    <div class="food-portion">180 cal</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Spinach, mushrooms, peppers</div>
-                                    <div class="food-portion">25 cal</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Whole grain toast</div>
-                                    <div class="food-portion">1 slice (80 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Avocado</div>
-                                    <div class="food-portion">1/4 medium (60 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🥗 Lunch (350 cal)</div>
-                                <div class="meal-calories">1:00 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Turkey and vegetable wrap</div>
-                                    <div class="food-portion">Whole meal</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Lean turkey breast</div>
-                                    <div class="food-portion">3 oz (135 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Whole wheat tortilla</div>
-                                    <div class="food-portion">8" (140 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Vegetables & hummus</div>
-                                    <div class="food-portion">75 cal</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🍽️ Dinner (380 cal)</div>
-                                <div class="meal-calories">6:30 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Lean ground beef</div>
-                                    <div class="food-portion">4 oz (200 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Zucchini noodles</div>
-                                    <div class="food-portion">2 cups (40 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Marinara sauce</div>
-                                    <div class="food-portion">1/2 cup (35 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Mixed vegetables</div>
-                                    <div class="food-portion">1 cup (50 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Olive oil</div>
-                                    <div class="food-portion">1 tsp (40 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="hydration-tracker">
-                            <span class="water-emoji">💧</span>
-                            <strong>Rest Day Hydration: 2.5-3 liters</strong>
+                        <div class="workout-focus">Focus: Aerobic base building</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Walking/Light Jogging</div>
+                                <div class="exercise-details">25-30 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Dynamic Stretching</div>
+                                <div class="exercise-details">5 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Calf Raises</div>
+                                <div class="exercise-details">3x20</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Side Steps</div>
+                                <div class="exercise-details">3x15 each direction</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~300-400 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill medium"></div>
                         </div>
                     </div>
-                </div>
 
-                <div class="recipe-card">
-                    <div class="recipe-title">🥤 Green Power Smoothie (Foundation Phase)</div>
-                    <div class="recipe-ingredients">
-                        <strong>Ingredients:</strong> 1 cup spinach, 1/2 banana, 1/2 apple, 1 scoop vanilla protein powder, 1 cup unsweetened almond milk, 1 tbsp almond butter, ice cubes, cinnamon to taste
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 3</div>
+                            <div class="day-type circuit">Circuit Training</div>
+                        </div>
+                        <div class="workout-focus">Focus: Full-body metabolic circuit</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Circuit A (3 rounds)</div>
+                                <div class="exercise-details">45s work, 15s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Knee-ups</div>
+                                <div class="exercise-details">Max reps</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Modified Push-ups</div>
+                                <div class="exercise-details">8-12 reps</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Bodyweight Squats</div>
+                                <div class="exercise-details">12-15 reps</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Standing Side Crunches</div>
+                                <div class="exercise-details">10 each side</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~280-380 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill medium"></div>
+                        </div>
                     </div>
-                    <div class="recipe-instructions">
-                        <strong>Instructions:</strong> Blend all ingredients until smooth. Perfect for post-workout recovery or as a meal replacement. Rich in vitamins, minerals, and complete protein. <strong>Calories: 280 | Protein: 28g</strong>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 4</div>
+                            <div class="day-type active-rest">Active Rest</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Gentle Yoga Flow</div>
+                                <div class="exercise-details">20-30 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Leisurely Walk</div>
+                                <div class="exercise-details">20-30 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Stretching Routine</div>
+                                <div class="exercise-details">15 minutes</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~150-250 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill low"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 5</div>
+                            <div class="day-type hiit">Beginner HIIT</div>
+                        </div>
+                        <div class="workout-focus">Focus: Introduction to high-intensity intervals</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Warm-up</div>
+                                <div class="exercise-details">5 min light movement</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">HIIT Block (repeat 6x)</div>
+                                <div class="exercise-details">30s work, 60s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Step-ups or March</div>
+                                <div class="exercise-details">High knees variation</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Arm Swings + Squats</div>
+                                <div class="exercise-details">Dynamic combo</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cool-down</div>
+                                <div class="exercise-details">5 min walking</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~320-420 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 6</div>
+                            <div class="day-type fat-burn">Long Fat Burn</div>
+                        </div>
+                        <div class="workout-focus">Focus: Extended low-intensity cardio</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Walking/Light Cycling</div>
+                                <div class="exercise-details">35-45 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Core Stabilization</div>
+                                <div class="exercise-details">10 minutes</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Modified Planks</div>
+                                <div class="exercise-details">3x20-30s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Standing Core Twists</div>
+                                <div class="exercise-details">3x15 each side</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~350-450 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill medium"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 7</div>
+                            <div class="day-type rest">Complete Rest</div>
+                        </div>
+                        <div class="rest-day">
+                            <h3>Recovery Day</h3>
+                            <div class="rest-activities">
+                                Gentle stretching • Meditation • Meal prep • Hydration focus
+                            </div>
+                        </div>
+                        <div class="progress-tracker">
+                            Week 1 Complete! Track: Weight, measurements, energy levels
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- WEEK 3-4: Metabolic Boost -->
+        <!-- WEEK 3-4: Intensity Boost -->
         <div class="week-container">
             <div class="week-header">
-                <h2>WEEK 3-4: METABOLIC BOOST (1,500-1,650 CALORIES)</h2>
+                <h2>WEEK 3-4: INTENSITY BOOST</h2>
             </div>
             <div class="week-content">
                 <div class="day-grid">
-                    <div class="day-card workout-day">
+                    <div class="day-card">
                         <div class="day-header">
-                            <div class="day-title">High Intensity Days</div>
-                            <div class="calorie-badge">1,650 cal</div>
+                            <div class="day-title">Days 15-28</div>
+                            <div class="day-type hiit">Metabolic HIIT</div>
                         </div>
-                        <div class="meal-timing">
-                            🔥 Increased calories to support higher workout intensity and prevent metabolic slowdown
+                        <div class="workout-focus">Focus: Increased calorie burn through intervals</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Tabata Style (8 rounds)</div>
+                                <div class="exercise-details">20s work, 10s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Burpee Modifications</div>
+                                <div class="exercise-details">Step-back burpees</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Jump Squats (or step-ups)</div>
+                                <div class="exercise-details">Explosive movement</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Mountain Climbers</div>
+                                <div class="exercise-details">Knee to elbow</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Push-up + Knee Tuck</div>
+                                <div class="exercise-details">Full body combo</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~400-550 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
                         </div>
-                        
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🌅 Power Breakfast (450 cal)</div>
-                                <div class="meal-calories">6:30 AM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Overnight oats with protein</div>
-                                    <div class="food-portion">Complete meal</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Steel-cut oats</div>
-                                    <div class="food-portion">1/2 cup dry (150 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Protein powder</div>
-                                    <div class="food-portion">1 scoop (120 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Almond milk</div>
-                                    <div class="food-portion">1 cup (40 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Chia seeds</div>
-                                    <div class="food-portion">1 tbsp (60 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Mixed berries</div>
-                                    <div class="food-portion">1/2 cup (40 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Cinnamon & vanilla</div>
-                                    <div class="food-portion">to taste (5 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
+                    </div>
 
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">💪 Post-Workout (180 cal)</div>
-                                <div class="meal-calories">Within 30 minutes</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Whey protein shake</div>
-                                    <div class="food-portion">1.5 scoops (180 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Coconut water</div>
-                                    <div class="food-portion">12 oz (60 cal)</div>
-                                </li>
-                            </ul>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Circuit Days</div>
+                            <div class="day-type circuit">Fat Blast Circuits</div>
                         </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🥗 Power Lunch (500 cal)</div>
-                                <div class="meal-calories">12:30 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Mediterranean power bowl</div>
-                                    <div class="food-portion">Complete meal</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Grilled chicken thigh</div>
-                                    <div class="food-portion">5 oz (250 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Brown rice</div>
-                                    <div class="food-portion">1/2 cup cooked (110 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Roasted vegetables</div>
-                                    <div class="food-portion">1.5 cups (75 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Avocado</div>
-                                    <div class="food-portion">1/4 whole (60 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🥜 Energy Snack (200 cal)</div>
-                                <div class="meal-calories">3:30 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Apple slices</div>
-                                    <div class="food-portion">1 medium (80 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Natural peanut butter</div>
-                                    <div class="food-portion">1.5 tbsp (140 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🍽️ Recovery Dinner (450 cal)</div>
-                                <div class="meal-calories">7:00 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Wild-caught cod</div>
-                                    <div class="food-portion">6 oz (180 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Quinoa</div>
-                                    <div class="food-portion">2/3 cup cooked (150 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Steamed broccoli</div>
-                                    <div class="food-portion">1 cup (55 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Brussels sprouts</div>
-                                    <div class="food-portion">1/2 cup roasted (28 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Olive oil</div>
-                                    <div class="food-portion">1 tsp (40 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="supplement-section">
-                            <div class="supplement-title">🧪 Metabolic Enhancement Stack</div>
-                            <ul style="list-style: none; font-size: 0.9rem;">
-                                <li>• Green tea extract (between meals)</li>
-                                <li>• L-Carnitine (pre-workout)</li>
-                                <li>• BCAA during workout</li>
-                                <li>• Digestive enzymes (with meals)</li>
-                            </ul>
+                        <div class="workout-focus">Focus: Multi-muscle group compound movements</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Circuit A (4 rounds)</div>
+                                <div class="exercise-details">45s work, 15s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Squat + Overhead Reach</div>
+                                <div class="exercise-details">Full body movement</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Lunge + Twist</div>
+                                <div class="exercise-details">Core + legs</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Push-up + Hip Thrust</div>
+                                <div class="exercise-details">Upper + lower combo</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Plank + Leg Lifts</div>
+                                <div class="exercise-details">Core intensive</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~380-480 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- WEEK 5-6: Maximum Fat Loss -->
+        <!-- WEEK 5-6: Maximum Burn -->
         <div class="week-container">
             <div class="week-header">
-                <h2>WEEK 5-6: MAXIMUM FAT LOSS (1,600-1,750 CALORIES)</h2>
+                <h2>WEEK 5-6: MAXIMUM BURN PHASE</h2>
             </div>
             <div class="week-content">
                 <div class="day-grid">
-                    <div class="day-card workout-day">
+                    <div class="day-card">
                         <div class="day-header">
-                            <div class="day-title">Peak Performance Days</div>
-                            <div class="calorie-badge">1,750 cal</div>
+                            <div class="day-title">Days 29-42</div>
+                            <div class="day-type hiit">Advanced HIIT</div>
                         </div>
-                        <div class="meal-timing">
-                            ⚡ Strategic carb timing for maximum fat oxidation while maintaining performance
-                        </div>
-                        
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🌅 Pre-Workout Breakfast (380 cal)</div>
-                                <div class="meal-calories">6:00 AM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Black coffee + MCT oil</div>
-                                    <div class="food-portion">1 cup + 1 tbsp (130 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Greek yogurt (2% fat)</div>
-                                    <div class="food-portion">3/4 cup (130 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Blueberries</div>
-                                    <div class="food-portion">1/2 cup (40 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Chopped almonds</div>
-                                    <div class="food-portion">1 tbsp (45 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Protein powder</div>
-                                    <div class="food-portion">1/2 scoop (60 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">💪 Post-Workout Feast (550 cal)</div>
-                                <div class="meal-calories">Within 45 minutes</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Protein pancakes (2)</div>
-                                    <div class="food-portion">400 cal</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Fresh strawberries</div>
-                                    <div class="food-portion">1 cup sliced (50 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Sugar-free syrup</div>
-                                    <div class="food-portion">2 tbsp (10 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Coconut water</div>
-                                    <div class="food-portion">12 oz (70 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🥗 Power Lunch (450 cal)</div>
-                                <div class="meal-calories">1:00 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Salmon salad bowl</div>
-                                    <div class="food-portion">Complete meal</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Wild salmon (canned)</div>
-                                    <div class="food-portion">5 oz (220 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Mixed greens + arugula</div>
-                                    <div class="food-portion">3 cups (30 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Cherry tomatoes</div>
-                                    <div class="food-portion">1 cup (30 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Hemp seeds</div>
-                                    <div class="food-portion">2 tbsp (110 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">• Lemon vinaigrette</div>
-                                    <div class="food-portion">1 tbsp (60 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🍽️ Lean Dinner (420 cal)</div>
-                                <div class="meal-calories">6:30 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Lean beef sirloin</div>
-                                    <div class="food-portion">4 oz grilled (200 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Cauliflower mash</div>
-                                    <div class="food-portion">1 cup (50 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Roasted asparagus</div>
-                                    <div class="food-portion">10 spears (30 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Sautéed kale</div>
-                                    <div class="food-portion">1 cup (35 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Olive oil (cooking)</div>
-                                    <div class="food-portion">2 tsp (80 cal)</div>
-                                </li>
-                            </ul>
+                        <div class="workout-focus">Focus: Peak calorie burn and metabolic boost</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">EMOM (Every Minute on Minute)</div>
+                                <div class="exercise-details">20 minutes total</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 1: 15 Burpees</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 2: 20 Jump Squats</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 3: 30s Plank Hold</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Minute 4: 25 Mountain Climbers</div>
+                                <div class="exercise-details">Rest remainder</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~500-650 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
                         </div>
                     </div>
-                </div>
 
-                <div class="recipe-card">
-                    <div class="recipe-title">🥞 Protein Pancakes (Week 5-6 Special)</div>
-                    <div class="recipe-ingredients">
-                        <strong>Ingredients:</strong> 2 scoops vanilla whey protein, 2 large eggs, 1/2 cup rolled oats, 1/2 banana (mashed), 1/4 cup unsweetened applesauce, 1 tsp baking powder, 1/2 tsp cinnamon, 1/4 cup blueberries
-                    </div>
-                    <div class="recipe-instructions">
-                        <strong>Instructions:</strong> Blend oats into flour. Mix all ingredients except blueberries. Heat non-stick pan with cooking spray. Pour 1/4 cup batter per pancake, add blueberries on top. Cook 2-3 min per side. Makes 4 pancakes. <strong>Total: 400 calories | 40g protein | 35g carbs</strong>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Cardio Days</div>
+                            <div class="day-type cardio">Interval Cardio</div>
+                        </div>
+                        <div class="workout-focus">Focus: Aerobic capacity and fat oxidation</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Pyramid Intervals</div>
+                                <div class="exercise-details">45 minutes total</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• 1min high, 2min recovery</div>
+                                <div class="exercise-details">x3 rounds</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• 2min high, 2min recovery</div>
+                                <div class="exercise-details">x3 rounds</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• 3min high, 3min recovery</div>
+                                <div class="exercise-details">x2 rounds</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~450-600 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill high"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- WEEK 7-8: Peak Shredding -->
+        <!-- WEEK 7-8: Peak Performance -->
         <div class="week-container">
             <div class="week-header">
-                <h2>WEEK 7-8: PEAK SHREDDING PHASE (1,700-1,850 CALORIES)</h2>
+                <h2>WEEK 7-8: PEAK PERFORMANCE</h2>
             </div>
             <div class="week-content">
                 <div class="day-grid">
-                    <div class="day-card workout-day">
+                    <div class="day-card">
                         <div class="day-header">
-                            <div class="day-title">Elite Training Days</div>
-                            <div class="calorie-badge">1,850 cal</div>
+                            <div class="day-title">Days 43-56</div>
+                            <div class="day-type hiit">Elite Conditioning</div>
                         </div>
-                        <div class="meal-timing">
-                            🎯 Precision nutrition for final phase fat loss and muscle preservation
-                        </div>
-                        
-                        <div style="background: rgba(231, 76, 60, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                            <strong style="color: #e74c3c;">Advanced Strategy:</strong> Carb cycling with intermittent fasting windows. Higher carbs on training days, strategic timing for optimal performance.
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">☕ Morning Protocol (130 cal)</div>
-                                <div class="meal-calories">6:00 AM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Black coffee + MCT oil</div>
-                                    <div class="food-portion">16 oz + 1 tbsp (130 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">L-Carnitine supplement</div>
-                                    <div class="food-portion">2g liquid (0 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">💪 Post-Training Feast (620 cal)</div>
-                                <div class="meal-calories">10:30 AM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Lean turkey breast</div>
-                                    <div class="food-portion">6 oz grilled (240 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Sweet potato</div>
-                                    <div class="food-portion">1 medium baked (100 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Egg whites</div>
-                                    <div class="food-portion">4 whites scrambled (68 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Spinach + mushrooms</div>
-                                    <div class="food-portion">2 cups sautéed (30 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Avocado</div>
-                                    <div class="food-portion">1/2 medium (120 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Coconut oil (cooking)</div>
-                                    <div class="food-portion">1.5 tsp (60 cal)</div>
-                                </li>
-                            </ul>
-                            <div class="macro-breakdown">
-                                <div class="macro-item protein">Protein: 55g</div>
-                                <div class="macro-item carbs">Carbs: 25g</div>
-                                <div class="macro-item fats">Fat: 25g</div>
-                            </div>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🥗 Strategic Lunch (480 cal)</div>
-                                <div class="meal-calories">2:00 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Grass-fed lean beef</div>
-                                    <div class="food-portion">5 oz (280 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Massive mixed salad</div>
-                                    <div class="food-portion">4 cups (40 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Bell peppers (all colors)</div>
-                                    <div class="food-portion">1 cup chopped (30 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Cucumber + celery</div>
-                                    <div class="food-portion">1 cup each (20 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Walnut pieces</div>
-                                    <div class="food-portion">1.5 tbsp (75 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Apple cider vinegar dressing</div>
-                                    <div class="food-portion">2 tbsp (35 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🍽️ Final Meal (420 cal)</div>
-                                <div class="meal-calories">6:00 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Wild-caught halibut</div>
-                                    <div class="food-portion">6 oz baked (220 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Roasted Brussels sprouts</div>
-                                    <div class="food-portion">1.5 cups (60 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Cauliflower rice</div>
-                                    <div class="food-portion">1 cup (25 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Sauerkraut</div>
-                                    <div class="food-portion">1/4 cup (5 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Olive oil + herbs</div>
-                                    <div class="food-portion">2 tsp (80 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="hydration-tracker">
-                            <span class="water-emoji">💧</span>
-                            <strong>Peak Phase Hydration: 4.5-5 liters</strong>
-                            <div style="margin-top: 10px; font-size: 0.9rem;">
-                                Add sea salt pinch to water • Monitor urine color • Extra during intense sessions
-                            </div>
-                        </div>
-
-                        <div class="supplement-section">
-                            <div class="supplement-title">🧪 Peak Shredding Stack</div>
-                            <ul style="list-style: none; font-size: 0.9rem;">
-                                <li>• CLA (with fat-containing meals)</li>
-                                <li>• Forskolin extract (between meals)</li>
-                                <li>• Alpha-lipoic acid (post-workout)</li>
-                                <li>• Ashwagandha (stress management)</li>
-                                <li>• ZMA (before bed)</li>
-                            </ul>
+                        <div class="workout-focus">Focus: Maximum metabolic conditioning</div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Complex Training</div>
+                                <div class="exercise-details">6 exercises, no rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Death By Burpees</div>
+                                <div class="exercise-details">1 first min, +1 each min</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Metabolic Finisher</div>
+                                <div class="exercise-details">100 total reps challenge</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cardio Acceleration</div>
+                                <div class="exercise-details">Between all exercises</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~600-800 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- FINAL WEEK: Transition to Maintenance -->
+        <!-- FINAL WEEK: Ultimate Challenge -->
         <div class="week-container">
             <div class="week-header">
-                <h2>DAYS 57-60: TRANSITION TO MAINTENANCE</h2>
+                <h2>DAYS 57-60: ULTIMATE FAT LOSS CHALLENGE</h2>
             </div>
             <div class="week-content">
                 <div class="day-grid">
-                    <div class="day-card workout-day">
+                    <div class="day-card">
                         <div class="day-header">
-                            <div class="day-title">Final Challenge Days</div>
-                            <div class="calorie-badge">2,000 cal</div>
+                            <div class="day-title">Day 57</div>
+                            <div class="day-type hiit">Calorie Inferno</div>
                         </div>
-                        <div class="meal-timing">
-                            🏆 Gradual increase in calories to prepare for maintenance phase
-                        </div>
-                        
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🌅 Champion Breakfast (500 cal)</div>
-                                <div class="meal-calories">6:30 AM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Steel-cut oats</div>
-                                    <div class="food-portion">3/4 cup cooked (150 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Protein powder</div>
-                                    <div class="food-portion">1.5 scoops (180 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Mixed berries</div>
-                                    <div class="food-portion">3/4 cup (60 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Almond butter</div>
-                                    <div class="food-portion">1 tbsp (95 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Chia seeds</div>
-                                    <div class="food-portion">1 tbsp (60 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">💪 Victory Lunch (600 cal)</div>
-                                <div class="meal-calories">12:30 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Grilled chicken breast</div>
-                                    <div class="food-portion">6 oz (280 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Jasmine rice</div>
-                                    <div class="food-portion">3/4 cup cooked (150 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Roasted vegetable medley</div>
-                                    <div class="food-portion">2 cups (80 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Tahini sauce</div>
-                                    <div class="food-portion">2 tbsp (120 cal)</div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="meal-section">
-                            <div class="meal-header">
-                                <div class="meal-name">🍽️ Celebration Dinner (550 cal)</div>
-                                <div class="meal-calories">7:00 PM</div>
-                            </div>
-                            <ul class="food-list">
-                                <li class="food-item">
-                                    <div class="food-name">Atlantic salmon fillet</div>
-                                    <div class="food-portion">6 oz grilled (350 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Quinoa pilaf</div>
-                                    <div class="food-portion">1/2 cup cooked (110 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Grilled asparagus</div>
-                                    <div class="food-portion">12 spears (36 cal)</div>
-                                </li>
-                                <li class="food-item">
-                                    <div class="food-name">Mixed green salad</div>
-                                    <div class="food-portion">with light dressing (54 cal)</div>
-                                </li>
-                            </ul>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">1000 Calorie Challenge</div>
+                                <div class="exercise-details">Mix of all exercises learned</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Non-Stop Movement</div>
+                                <div class="exercise-details">90-120 minutes</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~800-1000 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
                         </div>
                     </div>
 
-                    <div class="day-card" style="border-left: 4px solid #f39c12; background: rgba(243, 156, 18, 0.05);">
+                    <div class="day-card">
                         <div class="day-header">
-                            <div class="day-title">Day 60 - Victory!</div>
-                            <div class="calorie-badge" style="background: linear-gradient(45deg, #27ae60, #2ecc71);">Complete!</div>
+                            <div class="day-title">Day 58</div>
+                            <div class="day-type circuit">Endurance Test</div>
                         </div>
-                        
-                        <div class="celebration-banner">
-                            <span class="celebration-emoji">🎉</span>
-                            <h3>CONGRATULATIONS!</h3>
-                            <p>You've completed 60 days of disciplined nutrition!</p>
-                            
-                            <div class="completion-stats">
-                                <div class="stat-card">
-                                    <div class="stat-value">60</div>
-                                    <div class="stat-label">Days Complete</div>
-                                </div>
-                                <div class="stat-card">
-                                    <div class="stat-value">480+</div>
-                                    <div class="stat-label">Meals Planned</div>
-                                </div>
-                                <div class="stat-card">
-                                    <div class="stat-value">New</div>
-                                    <div class="stat-label">You!</div>
-                                </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">60-Minute Circuit</div>
+                                <div class="exercise-details">Every exercise mastered</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Cardio Intervals</div>
+                                <div class="exercise-details">Between strength sets</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~700-850 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 59</div>
+                            <div class="day-type hiit">Final Push</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Morning HIIT Session</div>
+                                <div class="exercise-details">45 minutes intense</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Evening Fat Burn Walk</div>
+                                <div class="exercise-details">60 minutes steady</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Core Finisher</div>
+                                <div class="exercise-details">20 minutes abs</div>
+                            </li>
+                        </ul>
+                        <div class="calories-burned">~750-950 calories</div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill extreme"></div>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Day 60</div>
+                            <div class="day-type active-rest">Victory Celebration</div>
+                        </div>
+                        <div class="rest-day">
+                            <h3>🏆 Transformation Complete!</h3>
+                            <div class="rest-activities">
+                                Progress photos • Body measurements • Celebrate achievements • Plan maintenance phase
+                            </div>
+                        </div>
+                        <div class="progress-tracker">
+                            Final weigh-in and measurements! Compare to Day 1 progress photos.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Schedule Template -->
+                <div class="day-grid" style="margin-top: 40px;">
+                    <div class="day-card" style="grid-column: 1 / -1;">
+                        <div class="day-header">
+                            <div class="day-title">TYPICAL WEEKLY SCHEDULE (Weeks 3-8)</div>
+                            <div class="day-type hiit">Schedule</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; margin-top: 20px;">
+                            <div style="text-align: center; padding: 15px; background: rgba(231, 76, 60, 0.2); border-radius: 8px;">
+                                <strong>MON</strong><br>
+                                <small>HIIT</small><br>
+                                <small>45min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.2); border-radius: 8px;">
+                                <strong>TUE</strong><br>
+                                <small>Steady Cardio</small><br>
+                                <small>50min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(155, 89, 182, 0.2); border-radius: 8px;">
+                                <strong>WED</strong><br>
+                                <small>Circuit</small><br>
+                                <small>40min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(39, 174, 96, 0.2); border-radius: 8px;">
+                                <strong>THU</strong><br>
+                                <small>Active Rest</small><br>
+                                <small>30min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(243, 156, 18, 0.2); border-radius: 8px;">
+                                <strong>FRI</strong><br>
+                                <small>HIIT</small><br>
+                                <small>45min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.2); border-radius: 8px;">
+                                <strong>SAT</strong><br>
+                                <small>Long Cardio</small><br>
+                                <small>60min</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: rgba(149, 165, 166, 0.2); border-radius: 8px;">
+                                <strong>SUN</strong><br>
+                                <small>Rest</small><br>
+                                <small>Recovery</small>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Maintenance Transition Guide -->
-                <div style="background: rgba(46, 204, 113, 0.1); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: 15px; padding: 30px; margin-top: 30px;">
-                    <h3 style="color: #2ecc71; text-align: center; margin-bottom: 25px;">🔄 TRANSITIONING TO MAINTENANCE</h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                        <div style="background: rgba(46, 204, 113, 0.05); padding: 20px; border-radius: 10px;">
-                            <h4 style="color: #2ecc71; margin-bottom: 15px;">📊 Calculate New Calories</h4>
-                            <ul style="color: #ecf0f1; line-height: 1.6; font-size: 0.9rem; list-style: none;">
-                                <li>• Add 200-300 calories gradually</li>
-                                <li>• Monitor weight for 2 weeks</li>
-                                <li>• Adjust based on activity level</li>
-                                <li>• Maintain protein intake</li>
-                            </ul>
+                <!-- Detailed Exercise Progressions -->
+                <div class="day-grid" style="margin-top: 40px;">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">HIIT Progressions</div>
+                            <div class="day-type hiit">Progression</div>
                         </div>
-                        
-                        <div style="background: rgba(52, 152, 219, 0.05); padding: 20px; border-radius: 10px;">
-                            <h4 style="color: #3498db; margin-bottom: 15px;">🔄 Workout Adjustments</h4>
-                            <ul style="color: #ecf0f1; line-height: 1.6; font-size: 0.9rem; list-style: none;">
-                                <li>• Reduce cardio frequency</li>
-                                <li>• Focus on strength training</li>
-                                <li>• 3-4 workouts per week</li>
-                                <li>• Add flexibility/mobility work</li>
-                            </ul>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 1-2: Beginner HIIT</div>
+                                <div class="exercise-details">30s work, 60s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 3-4: Intermediate</div>
+                                <div class="exercise-details">45s work, 30s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 5-6: Advanced</div>
+                                <div class="exercise-details">45s work, 15s rest</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Week 7-8: Elite</div>
+                                <div class="exercise-details">Tabata + complexes</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Cardio Zones</div>
+                            <div class="day-type cardio">Heart Rate</div>
                         </div>
-                        
-                        <div style="background: rgba(243, 156, 18, 0.05); padding: 20px; border-radius: 10px;">
-                            <h4 style="color: #f39c12; margin-bottom: 15px;">⚖️ Long-term Success</h4>
-                            <ul style="color: #ecf0f1; line-height: 1.6; font-size: 0.9rem; list-style: none;">
-                                <li>• Weekly weigh-ins</li>
-                                <li>• Monthly body measurements</li>
-                                <li>• 80/20 nutrition approach</li>
-                                <li>• Plan strategic refeed days</li>
-                            </ul>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Fat Burn Zone</div>
+                                <div class="exercise-details">60-70% max HR</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Aerobic Zone</div>
+                                <div class="exercise-details">70-80% max HR</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Anaerobic Zone</div>
+                                <div class="exercise-details">80-90% max HR</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">Max Effort</div>
+                                <div class="exercise-details">90-100% max HR</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">Circuit Examples</div>
+                            <div class="day-type circuit">Examples</div>
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <div class="exercise-name">Fat Blast Circuit</div>
+                                <div class="exercise-details">8 exercises, 4 rounds</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Burpees</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Jump Squats</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Push-up + T-Rotation</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                            <li class="exercise-item">
+                                <div class="exercise-name">• Mountain Climbers</div>
+                                <div class="exercise-details">45s</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Nutrition and Hydration Guidelines -->
+                <div class="day-grid" style="margin-top: 40px;">
+                    <div class="day-card" style="grid-column: 1 / -1;">
+                        <div class="day-header">
+                            <div class="day-title">WEIGHT LOSS SUCCESS GUIDELINES</div>
+                            <div class="day-type fat-burn">Guidelines</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
+                            <div style="background: rgba(46, 204, 113, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(46, 204, 113, 0.3);">
+                                <h4 style="color: #2ecc71; margin-bottom: 15px;">💧 HYDRATION</h4>
+                                <ul style="color: #ecf0f1; line-height: 1.6;">
+                                    <li>Drink 16oz water before each workout</li>
+                                    <li>Sip during exercise every 15-20 minutes</li>
+                                    <li>Aim for 3-4 liters total daily</li>
+                                    <li>Add lemon or cucumber for flavor</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(231, 76, 60, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(231, 76, 60, 0.3);">
+                                <h4 style="color: #e74c3c; margin-bottom: 15px;">🍎 NUTRITION TIMING</h4>
+                                <ul style="color: #ecf0f1; line-height: 1.6;">
+                                    <li>Pre-workout: Light carbs (banana)</li>
+                                    <li>Post-workout: Protein within 30min</li>
+                                    <li>Eat every 3-4 hours</li>
+                                    <li>Stop eating 3 hours before bed</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(52, 152, 219, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(52, 152, 219, 0.3);">
+                                <h4 style="color: #3498db; margin-bottom: 15px;">📊 TRACKING PROGRESS</h4>
+                                <ul style="color: #ecf0f1; line-height: 1.6;">
+                                    <li>Weigh weekly, same time/day</li>
+                                    <li>Take measurements every 2 weeks</li>
+                                    <li>Progress photos monthly</li>
+                                    <li>Track workout intensity & duration</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Weekly Shopping List Template -->
-                <div class="recipe-card" style="margin-top: 30px;">
-                    <div class="recipe-title">🛒 Weekly Shopping List Template</div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;">
-                        <div>
-                            <h5 style="color: #e74c3c; margin-bottom: 10px;">PROTEINS</h5>
-                            <ul style="font-size: 0.9rem; line-height: 1.5; list-style: none;">
-                                <li>• Chicken breast & thighs</li>
-                                <li>• Lean ground turkey</li>
-                                <li>• Wild salmon & white fish</li>
-                                <li>• Eggs (2-3 dozen)</li>
-                                <li>• Greek yogurt (0-2% fat)</li>
-                                <li>• Protein powder</li>
-                            </ul>
+                <!-- Weekly Calorie Burn Targets -->
+                <div class="day-grid" style="margin-top: 30px;">
+                    <div class="day-card" style="grid-column: 1 / -1;">
+                        <div class="day-header">
+                            <div class="day-title">WEEKLY CALORIE BURN TARGETS</div>
+                            <div class="day-type fat-burn">Targets</div>
                         </div>
-                        <div>
-                            <h5 style="color: #3498db; margin-bottom: 10px;">CARBOHYDRATES</h5>
-                            <ul style="font-size: 0.9rem; line-height: 1.5; list-style: none;">
-                                <li>• Steel-cut oats</li>
-                                <li>• Quinoa & brown rice</li>
-                                <li>• Sweet potatoes</li>
-                                <li>• Mixed berries</li>
-                                <li>• Apples & bananas</li>
-                                <li>• Whole grain bread</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 style="color: #f39c12; margin-bottom: 10px;">HEALTHY FATS</h5>
-                            <ul style="font-size: 0.9rem; line-height: 1.5; list-style: none;">
-                                <li>• Avocados</li>
-                                <li>• Raw nuts & seeds</li>
-                                <li>• Olive oil & coconut oil</li>
-                                <li>• Nut butters (natural)</li>
-                                <li>• MCT oil</li>
-                                <li>• Fish oil supplements</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 style="color: #27ae60; margin-bottom: 10px;">VEGETABLES</h5>
-                            <ul style="font-size: 0.9rem; line-height: 1.5; list-style: none;">
-                                <li>• Mixed greens & spinach</li>
-                                <li>• Broccoli & Brussels sprouts</li>
-                                <li>• Bell peppers (all colors)</li>
-                                <li>• Cucumber & celery</li>
-                                <li>• Asparagus & green beans</li>
-                                <li>• Cauliflower & zucchini</li>
-                            </ul>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                            <div style="text-align: center; padding: 20px; background: rgba(39, 174, 96, 0.2); border-radius: 10px;">
+                                <h3 style="color: #2ecc71;">Week 1-2</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">1,800-2,400</div>
+                                <small>calories/week</small>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: rgba(243, 156, 18, 0.2); border-radius: 10px;">
+                                <h3 style="color: #f39c12;">Week 3-4</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">2,400-3,000</div>
+                                <small>calories/week</small>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: rgba(231, 76, 60, 0.2); border-radius: 10px;">
+                                <h3 style="color: #e74c3c;">Week 5-6</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">3,000-3,600</div>
+                                <small>calories/week</small>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: rgba(155, 89, 182, 0.2); border-radius: 10px;">
+                                <h3 style="color: #9b59b6;">Week 7-8</h3>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #fff;">3,600-4,200</div>
+                                <small>calories/week</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Progress Tracking Section -->
-                <div style="background: rgba(155, 89, 182, 0.1); border: 1px solid rgba(155, 89, 182, 0.3); border-radius: 15px; padding: 30px; margin-top: 30px;">
-                    <h3 style="color: #9b59b6; text-align: center; margin-bottom: 25px;">📈 PROGRESS TRACKING GUIDE</h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <div style="background: rgba(155, 89, 182, 0.05); padding: 20px; border-radius: 10px;">
-                            <h4 style="color: #9b59b6; margin-bottom: 15px;">📏 Weekly Measurements</h4>
-                            <ul style="color: #ecf0f1; line-height: 1.6; font-size: 0.9rem; list-style: none;">
-                                <li>• Weight (same time, same scale)</li>
-                                <li>• Waist circumference</li>
-                                <li>• Hip circumference</li>
-                                <li>• Body fat percentage</li>
-                                <li>• Progress photos</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="background: rgba(231, 76, 60, 0.05); padding: 20px; border-radius: 10px;">
-                            <h4 style="color: #e74c3c; margin-bottom: 15px;">🎯 Performance Metrics</h4>
-                            <ul style="color: #ecf0f1; line-height: 1.6; font-size: 0.9rem; list-style: none;">
-                                <li>• Workout intensity levels</li>
-                                <li>• Energy levels (1-10 scale)</li>
-                                <li>• Sleep quality</li>
-                                <li>• Recovery between sessions</li>
-                                <li>• Strength improvements</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="background: rgba(52, 152, 219, 0.05); padding: 20px; border-radius: 10px;">
-                            <h4 style="color: #3498db; margin-bottom: 15px;">💡 Adjustment Triggers</h4>
-                            <ul style="color: #ecf0f1; line-height: 1.6; font-size: 0.9rem; list-style: none;">
-                                <li>• Plateau for 7+ days</li>
-                                <li>• Excessive fatigue</li>
-                                <li>• Losing strength rapidly</li>
-                                <li>• Extreme hunger/cravings</li>
-                                <li>• Poor sleep patterns</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Final Success Tips -->
-                <div style="background: rgba(243, 156, 18, 0.1); border: 1px solid rgba(243, 156, 18, 0.3); border-radius: 15px; padding: 30px; margin-top: 30px; text-align: center;">
-                    <h3 style="color: #f39c12; margin-bottom: 20px;">🏆 KEYS TO LONG-TERM SUCCESS</h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-                        <div style="background: rgba(243, 156, 18, 0.05); padding: 15px; border-radius: 8px;">
-                            <h5 style="color: #f39c12;">Consistency</h5>
-                            <p style="font-size: 0.9rem;">Small daily actions compound into massive results</p>
-                        </div>
-                        <div style="background: rgba(243, 156, 18, 0.05); padding: 15px; border-radius: 8px;">
-                            <h5 style="color: #f39c12;">Flexibility</h5>
-                            <p style="font-size: 0.9rem;">Adapt the plan to fit your lifestyle</p>
-                        </div>
-                        <div style="background: rgba(243, 156, 18, 0.05); padding: 15px; border-radius: 8px;">
-                            <h5 style="color: #f39c12;">Patience</h5>
-                            <p style="font-size: 0.9rem;">Trust the process and celebrate small wins</p>
-                        </div>
-                        <div style="background: rgba(243, 156, 18, 0.05); padding: 15px; border-radius: 8px;">
-                            <h5 style="color: #f39c12;">Balance</h5>
-                            <p style="font-size: 0.9rem;">Nutrition is just one part of a healthy life</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Emergency Protocols -->
-                <div style="background: rgba(231, 76, 60, 0.1); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: 15px; padding: 30px; margin-top: 30px;">
-                    <h3 style="color: #e74c3c; text-align: center; margin-bottom: 25px;">🚨 EMERGENCY PROTOCOLS</h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                        <div>
-                            <h4 style="color: #e74c3c; margin-bottom: 15px;">🍕 Cheat Meal Recovery</h4>
-                            <p style="font-size: 0.9rem; color: #ecf0f1; margin-bottom: 10px;">Had an unplanned indulgence? Here's how to get back on track:</p>
-                            <ul style="font-size: 0.9rem; color: #bdc3c7; line-height: 1.5; list-style: none;">
-                                <li>• Don't panic or guilt-trip yourself</li>
-                                <li>• Return to your next scheduled meal</li>
-                                <li>• Drink extra water</li>
-                                <li>• Add 20 minutes of walking</li>
-                                <li>• Focus on tomorrow, not yesterday</li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h4 style="color: #e74c3c; margin-bottom: 15px;">🤒 Sick Day Nutrition</h4>
-                            <p style="font-size: 0.9rem; color: #ecf0f1; margin-bottom: 10px;">When you're under the weather:</p>
-                            <ul style="font-size: 0.9rem; color: #bdc3c7; line-height: 1.5; list-style: none;">
-                                <li>• Prioritize hydration</li>
-                                <li>• Easy-to-digest proteins</li>
-                                <li>• Bone broth and herbal teas</li>
-                                <li>• Rest is more important than diet</li>
-                                <li>• Resume plan when feeling better</li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h4 style="color: #e74c3c; margin-bottom: 15px;">✈️ Travel Strategies</h4>
-                            <p style="font-size: 0.9rem; color: #ecf0f1; margin-bottom: 10px;">Maintaining nutrition while traveling:</p>
-                            <ul style="font-size: 0.9rem; color: #bdc3c7; line-height: 1.5; list-style: none;">
-                                <li>• Pack protein powder & bars</li>
-                                <li>• Research restaurants in advance</li>
-                                <li>• Stay hydrated during flights</li>
-                                <li>• Focus on protein + vegetables</li>
-                                <li>• Don't stress about perfection</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Final Motivational Message -->
-                <div style="background: linear-gradient(135deg, #27ae60, #2ecc71); border-radius: 15px; padding: 40px; text-align: center; margin: 40px 0;">
-                    <h2 style="color: white; margin-bottom: 20px; font-size: 2.5rem;">YOU DID IT! 🎉</h2>
-                    <p style="font-size: 1.2rem; color: white; margin-bottom: 20px;">
-                        60 days of commitment, discipline, and transformation
-                    </p>
-                    <p style="font-size: 1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto;">
-                        This isn't the end—it's the beginning of your new lifestyle. You've built the habits, knowledge, and confidence to maintain your results for life. Remember: you're not just lighter, you're stronger, healthier, and more disciplined than when you started.
-                    </p>
-                    
-                    <div style="margin-top: 30px;">
-                        <p style="font-size: 1.1rem; color: white; font-weight: bold;">
-                            Keep going. Keep growing. Keep thriving. 💪
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div style="text-align: center; padding: 30px; color: #bdc3c7; font-size: 0.9rem;">
-            <p>Remember: This plan is a guide. Listen to your body and consult healthcare professionals for personalized advice.</p>
-            <p style="margin-top: 10px;">© 2025 60-Day Transformation Plan • Your journey to a healthier you</p>
-        </div>
-    </div>
 </body>
 </html>
