@@ -1,4 +1,1198 @@
-<p><strong>Mu'tazilism:</strong> Stressed divine justice and human free will, giving significant role to reason in understanding faith.</p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Foundations of Islamic Knowledge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gold: #d4af37;
+            --secondary-gold: #b8941f;
+            --deep-green: #0d5d3a;
+            --light-green: #2e7d5a;
+            --cream: #f7f5e9;
+            --dark-brown: #3c2e26;
+            --light-brown: #8b7355;
+            --page-shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Amiri', serif;
+            line-height: 1.8;
+            color: var(--dark-brown);
+            background: linear-gradient(135deg, #e8dcc6 0%, #d4c5a9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .book-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--cream);
+            box-shadow: 
+                0 20px 60px var(--page-shadow),
+                inset 0 0 100px rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .book-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(13, 93, 58, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .geometric-border {
+            height: 8px;
+            background: linear-gradient(90deg, 
+                var(--primary-gold) 0%, 
+                var(--deep-green) 25%, 
+                var(--primary-gold) 50%, 
+                var(--deep-green) 75%, 
+                var(--primary-gold) 100%);
+        }
+        
+        .islamic-pattern {
+            position: relative;
+            padding: 40px;
+            background-image: 
+                radial-gradient(circle at 25px 25px, var(--primary-gold) 2px, transparent 2px),
+                radial-gradient(circle at 75px 75px, var(--light-green) 2px, transparent 2px);
+            background-size: 100px 100px;
+            background-repeat: repeat;
+            opacity: 0.3;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+            color: var(--cream);
+            position: relative;
+        }
+        
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M30 0l15 15-15 15-15-15zM30 30l15 15-15 15-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+        
+        .title {
+            font-family: 'Scheherazade New', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .arabic-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: var(--primary-gold);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ornamental-line {
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            margin: 20px auto;
+        }
+        
+        .content-area {
+            padding: 50px 60px;
+            position: relative;
+        }
+        
+        .page {
+            margin-bottom: 60px;
+            page-break-after: always;
+        }
+        
+        .chapter-header {
+            border-left: 5px solid var(--primary-gold);
+            padding-left: 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .chapter-number {
+            font-size: 0.9em;
+            color: var(--light-brown);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+        
+        .chapter-title {
+            font-family: 'Scheherazade New', serif;
+            font-size: 2.2em;
+            color: var(--deep-green);
+            margin-top: 5px;
+            font-weight: 700;
+        }
+        
+        .verse-box {
+            background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+            color: var(--cream);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(13, 93, 58, 0.3);
+        }
+        
+        .verse-box::before {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: var(--primary-gold);
+            font-family: serif;
+        }
+        
+        .verse-box::after {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            color: var(--primary-gold);
+            font-family: serif;
+        }
+        
+        .verse-reference {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: var(--primary-gold);
+            font-weight: 700;
+        }
+        
+        .hadith-box {
+            border: 2px solid var(--primary-gold);
+            background: rgba(212, 175, 55, 0.05);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .hadith-box::before {
+            content: "Hadith";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--cream);
+            color: var(--primary-gold);
+            padding: 0 15px;
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-divider {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .section-divider::before {
+            content: '';
+            display: inline-block;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-gold);
+            margin-right: 20px;
+            vertical-align: middle;
+        }
+        
+        .section-divider::after {
+            content: '';
+            display: inline-block;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-gold);
+            margin-left: 20px;
+            vertical-align: middle;
+        }
+        
+        .section-divider span {
+            color: var(--primary-gold);
+            font-size: 1.5em;
+            vertical-align: middle;
+        }
+        
+        .key-points {
+            background: rgba(46, 125, 90, 0.1);
+            border-left: 4px solid var(--light-green);
+            padding: 20px 30px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .key-points h3 {
+            color: var(--deep-green);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .key-points li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .key-points li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+            font-weight: bold;
+        }
+        
+        .arabic-text {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.4em;
+            text-align: center;
+            color: var(--deep-green);
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+        }
+        
+        .footnote {
+            font-size: 0.85em;
+            color: var(--light-brown);
+            border-top: 1px solid var(--light-brown);
+            padding-top: 10px;
+            margin-top: 30px;
+        }
+        
+        .page-number {
+            text-align: center;
+            color: var(--light-brown);
+            font-size: 0.9em;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(139, 115, 85, 0.3);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.05em;
+        }
+        
+        h2 {
+            color: var(--deep-green);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+        
+        h3 {
+            color: var(--light-green);
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+        
+        .table-of-contents {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .table-of-contents h2 {
+            text-align: center;
+            color: var(--deep-green);
+            margin-bottom: 25px;
+        }
+        
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--light-brown);
+            margin-bottom: 5px;
+        }
+        
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .book-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .page {
+                page-break-after: always;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content-area {
+                padding: 30px 30px;
+            }
+            .title {
+                font-size: 2.5em;
+            }
+            .arabic-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="geometric-border"></div>
+        
+        <!-- Cover Page -->
+        <div class="cover-page">
+            <h1 class="title">The Foundations of Islamic Knowledge</h1>
+            <p class="arabic-title">أسس المعرفة الإسلامية</p>
+            <p class="subtitle">A Comprehensive Guide to Understanding Islam</p>
+            <div class="ornamental-line"></div>
+            <div class="ornamental-line"></div>
+        </div>
+        
+        <div class="content-area">
+            <!-- Table of Contents -->
+            <div class="page">
+                <div class="table-of-contents">
+                    <h2>Table of Contents</h2>
+                    <div class="toc-item">
+                        <span>Introduction to Islam</span>
+                        <span>3</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>The Five Pillars of Islam</span>
+                        <span>5</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>The Six Articles of Faith</span>
+                        <span>7</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>The Quran: The Final Revelation</span>
+                        <span>9</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Prophet Muhammad (Peace be upon him)</span>
+                        <span>11</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>The Sunnah and Hadith</span>
+                        <span>13</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Islamic Law (Shariah)</span>
+                        <span>15</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Islamic Ethics and Morality</span>
+                        <span>17</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Islamic Worship and Spirituality</span>
+                        <span>19</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Islamic History and Civilization</span>
+                        <span>21</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Islamic Arts and Sciences</span>
+                        <span>23</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Islam and Modern Society</span>
+                        <span>25</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Islamic Philosophy and Theology</span>
+                        <span>27</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>The Islamic Calendar and Festivals</span>
+                        <span>29</span>
+                    </div>
+                    <div class="toc-item">
+                        <span>Conclusion and Further Study</span>
+                        <span>31</span>
+                    </div>
+                </div>
+                <div class="page-number">— Page 2 —</div>
+            </div>
+            
+            <!-- Chapter 1 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter One</div>
+                    <h1 class="chapter-title">Introduction to Islam</h1>
+                </div>
+                
+                <p>Islam is a monotheistic religion that emerged in the 7th century CE in the Arabian Peninsula. The word "Islam" comes from the Arabic root s-l-m, which means peace, safety, and submission to Allah (God). A person who practices Islam is called a Muslim, meaning "one who submits to Allah."</p>
+                
+                <div class="verse-box">
+                    <p>وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ</p>
+                    <p>And We have not sent you except as a mercy to all the worlds.</p>
+                    <div class="verse-reference">— Quran 21:107</div>
+                </div>
+                
+                <p>Islam is founded on five fundamental principles known as the Five Pillars, and Muslims believe in six articles of faith. The religion emphasizes the oneness of Allah, the prophethood of Muhammad (peace be upon him), and the importance of living a life in accordance with divine guidance.</p>
+                
+                <div class="key-points">
+                    <h3>Key Concepts in Islam:</h3>
+                    <ul>
+                        <li>Tawhid (Unity of Allah) - The fundamental belief in the oneness of God</li>
+                        <li>Risalah (Prophethood) - The belief in divine messengers</li>
+                        <li>Akhirah (Afterlife) - The belief in life after death and judgment</li>
+                        <li>Submission and Peace - Living in harmony with Allah's will</li>
+                    </ul>
+                </div>
+                
+                <div class="section-divider">
+                    <span>❋</span>
+                </div>
+                
+                <h2>The Meaning of Submission</h2>
+                
+                <p>In Islamic theology, submission to Allah does not mean passive resignation but rather an active choice to align one's life with divine guidance. This submission brings inner peace and spiritual fulfillment, as believers trust in Allah's wisdom and mercy.</p>
+                
+                <div class="hadith-box">
+                    <p>"None of you truly believes until he loves for his brother what he loves for himself."</p>
+                    <div class="verse-reference">— Sahih al-Bukhari</div>
+                </div>
+                
+                <div class="page-number">— Page 3 —</div>
+            </div>
+            
+            <!-- Chapter 2 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Two</div>
+                    <h1 class="chapter-title">The Five Pillars of Islam</h1>
+                </div>
+                
+                <p>The Five Pillars of Islam represent the foundation of Muslim life. These are the essential acts of worship and practice that define what it means to be a Muslim. Each pillar serves both as a spiritual obligation and a means of connecting with Allah and the Muslim community.</p>
+                
+                <h2>1. Shahada (Declaration of Faith)</h2>
+                
+                <div class="arabic-text">
+                    لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَسُولُ ٱللَّٰهِ
+                </div>
+                
+                <p>The Shahada is the Islamic declaration of faith: "There is no god but Allah, and Muhammad is the messenger of Allah." This testimony is the foundation of Islamic belief and the gateway to becoming a Muslim.</p>
+                
+                <h2>2. Salah (Prayer)</h2>
+                
+                <p>Muslims are required to perform five daily prayers at prescribed times: Fajr (dawn), Dhuhr (midday), Asr (afternoon), Maghrib (sunset), and Isha (night). These prayers serve as a direct connection between the worshipper and Allah.</p>
+                
+                <div class="key-points">
+                    <h3>Benefits of Regular Prayer:</h3>
+                    <ul>
+                        <li>Spiritual purification and mindfulness</li>
+                        <li>Regular remembrance of Allah throughout the day</li>
+                        <li>Discipline and time management</li>
+                        <li>Community bonding when performed in congregation</li>
+                    </ul>
+                </div>
+                
+                <h2>3. Zakat (Charitable Giving)</h2>
+                
+                <p>Zakat is the obligatory charity that Muslims must give annually, typically 2.5% of their accumulated wealth. This pillar promotes social justice and helps support the less fortunate in society.</p>
+                
+                <h2>4. Sawm (Fasting during Ramadan)</h2>
+                
+                <p>During the holy month of Ramadan, Muslims fast from dawn to sunset, abstaining from food, drink, and other physical needs. This practice develops self-discipline, empathy for the less fortunate, and spiritual awareness.</p>
+                
+                <h2>5. Hajj (Pilgrimage to Mecca)</h2>
+                
+                <p>Muslims who are physically and financially able must perform the Hajj pilgrimage to Mecca at least once in their lifetime. This journey represents spiritual purification and unity with Muslims from around the world.</p>
+                
+                <div class="verse-box">
+                    <p>And it is Allah's right upon the people that they perform Hajj of the House - whoever is able to find a way.</p>
+                    <div class="verse-reference">— Quran 3:97</div>
+                </div>
+                
+                <div class="page-number">— Page 4 —</div>
+            </div>
+            
+            <!-- Chapter 3 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Three</div>
+                    <h1 class="chapter-title">The Six Articles of Faith</h1>
+                </div>
+                
+                <p>The Six Articles of Faith (Arkan al-Iman) represent the core beliefs that every Muslim must hold. These beliefs form the theological foundation of Islam and guide the believer's understanding of existence, purpose, and destiny.</p>
+                
+                <h2>1. Belief in Allah (Tawhid)</h2>
+                
+                <p>Muslims believe in the absolute oneness and uniqueness of Allah. This concept, known as Tawhid, is the most fundamental aspect of Islamic theology. Allah is eternal, all-knowing, all-powerful, and the creator and sustainer of all existence.</p>
+                
+                <div class="verse-box">
+                    <p>قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</p>
+                    <p>Say: He is Allah, the One! Allah, the Eternal, Absolute. He begets not, nor is He begotten. And there is none like unto Him.</p>
+                    <div class="verse-reference">— Quran 112:1-4 (Surah Al-Ikhlas)</div>
+                </div>
+                
+                <h2>2. Belief in Angels (Mala'ika)</h2>
+                
+                <p>Muslims believe in the existence of angels as beings created by Allah from light. Angels are sinless, obedient servants of Allah who carry out His commands. Notable angels include Gabriel (Jibril), who delivered revelations to the prophets.</p>
+                
+                <h2>3. Belief in Divine Books</h2>
+                
+                <p>Muslims believe that Allah revealed divine books to guide humanity throughout history. These include the Torah (Tawrat) given to Moses, the Psalms (Zabur) given to David, the Gospel (Injil) given to Jesus, and finally the Quran given to Muhammad (peace be upon him).</p>
+                
+                <div class="key-points">
+                    <h3>The Divine Books:</h3>
+                    <ul>
+                        <li>Tawrat (Torah) - Revealed to Prophet Musa (Moses)</li>
+                        <li>Zabur (Psalms) - Revealed to Prophet Dawud (David)</li>
+                        <li>Injil (Gospel) - Revealed to Prophet Isa (Jesus)</li>
+                        <li>Quran - Revealed to Prophet Muhammad (peace be upon him)</li>
+                    </ul>
+                </div>
+                
+                <h2>4. Belief in Prophets and Messengers</h2>
+                
+                <p>Muslims believe that Allah sent prophets and messengers throughout history to guide different communities. Islam recognizes 25 prophets mentioned by name in the Quran, including Adam, Noah, Abraham, Moses, Jesus, and Muhammad (peace be upon them all).</p>
+                
+                <h2>5. Belief in the Day of Judgment</h2>
+                
+                <p>Muslims believe in life after death and the Day of Judgment, when all humans will be held accountable for their actions in this world. This belief encourages moral behavior and gives meaning to earthly existence.</p>
+                
+                <h2>6. Belief in Divine Decree (Qadar)</h2>
+                
+                <p>Muslims believe in Allah's divine decree - that Allah has knowledge of all things and that nothing occurs without His will. However, this does not negate human free will and responsibility for one's actions.</p>
+                
+                <div class="hadith-box">
+                    <p>"Faith is to believe in Allah, His angels, His books, His messengers, the Last Day, and to believe in divine decree, both good and bad."</p>
+                    <div class="verse-reference">— Sahih Muslim</div>
+                </div>
+                
+                <div class="page-number">— Page 6 —</div>
+            </div>
+            
+            <!-- Chapter 4 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Four</div>
+                    <h1 class="chapter-title">The Quran: The Final Revelation</h1>
+                </div>
+                
+                <p>The Quran is the holy book of Islam, believed by Muslims to be the direct word of Allah as revealed to Prophet Muhammad (peace be upon him) through the angel Gabriel (Jibril). The name "Quran" comes from the Arabic root q-r-a, meaning "to read" or "to recite."</p>
+                
+                <div class="verse-box">
+                    <p>إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ</p>
+                    <p>Indeed it is We who sent down the Quran and indeed, We will be its guardian.</p>
+                    <div class="verse-reference">— Quran 15:9</div>
+                </div>
+                
+                <h2>Structure and Composition</h2>
+                
+                <p>The Quran consists of 114 chapters called "Surahs," which vary in length from 3 to 286 verses called "Ayahs." The chapters are arranged roughly in order of decreasing length, with the exception of the opening chapter, Al-Fatiha.</p>
+                
+                <div class="key-points">
+                    <h3>Key Features of the Quran:</h3>
+                    <ul>
+                        <li>114 Surahs (chapters) with 6,236 Ayahs (verses)</li>
+                        <li>Revealed over a period of approximately 23 years</li>
+                        <li>Written in classical Arabic with unmatched literary beauty</li>
+                        <li>Memorized by millions of Muslims worldwide</li>
+                        <li>Preserved in its original language without alteration</li>
+                    </ul>
+                </div>
+                
+                <h2>Themes and Content</h2>
+                
+                <p>The Quran addresses various themes including theology, guidance for personal conduct, legislation, and stories of previous prophets. It emphasizes the oneness of Allah, moral righteousness, social justice, and preparation for the afterlife.</p>
+                
+                <div class="arabic-text">
+                    الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝ الرَّحْمَٰنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ
+                </div>
+                
+                <p>The opening verses of Al-Fatiha translate to: "All praise is due to Allah, Lord of all the worlds, The Most Gracious, the Most Merciful, Master of the Day of Judgment."</p>
+                
+                <h2>The Science of Quranic Recitation (Tajweed)</h2>
+                
+                <p>Tajweed is the art of Quranic recitation that ensures the proper pronunciation and intonation of each letter and word. This science preserves the original way the Quran was revealed and recited by Prophet Muhammad (peace be upon him).</p>
+                
+                <div class="hadith-box">
+                    <p>"The one who is skilled in the recitation of the Quran will be with the honorable and obedient scribes (angels), and the one who recites the Quran and finds it difficult will have two rewards."</p>
+                    <div class="verse-reference">— Sahih al-Bukhari</div>
+                </div>
+                
+                <div class="page-number">— Page 8 —</div>
+            </div>
+            
+            <!-- Chapter 5 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Five</div>
+                    <h1 class="chapter-title">Prophet Muhammad (Peace be upon him)</h1>
+                </div>
+                
+                <p>Muhammad ibn Abdullah (peace be upon him) was born in Mecca around 570 CE. Muslims believe he is the final messenger of Allah, sent to guide humanity with the message of Islam. His life serves as a perfect example for Muslims to follow.</p>
+                
+                <h2>Early Life</h2>
+                
+                <p>Muhammad (peace be upon him) was born into the Quraysh tribe. He lost his father before birth and his mother when he was six years old. Raised by his grandfather and later his uncle, he became known for his honesty and trustworthiness, earning the nickname "Al-Amin" (the trustworthy).</p>
+                
+                <div class="key-points">
+                    <h3>Key Events in the Prophet's Life:</h3>
+                    <ul>
+                        <li>570 CE - Born in Mecca during the Year of the Elephant</li>
+                        <li>610 CE - Received first revelation in Cave Hira</li>
+                        <li>622 CE - Migration (Hijra) to Medina</li>
+                        <li>630 CE - Peaceful conquest of Mecca</li>
+                        <li>632 CE - Farewell pilgrimage and passing away</li>
+                    </ul>
+                </div>
+                
+                <h2>The First Revelation</h2>
+                
+                <p>At age 40, while meditating in the Cave of Hira, Muhammad (peace be upon him) received his first revelation from Allah through the angel Gabriel. This marked the beginning of his prophetic mission.</p>
+                
+                <div class="verse-box">
+                    <p>اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ ۝ خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ ۝ اقْرَأْ وَرَبُّكَ الْأَكْرَمُ</p>
+                    <p>Read in the name of your Lord who created. Created man from a clot. Read, and your Lord is the Most Generous.</p>
+                    <div class="verse-reference">— Quran 96:1-3</div>
+                </div>
+                
+                <h2>The Migration to Medina (Hijra)</h2>
+                
+                <p>Facing persecution in Mecca, the Prophet and his followers migrated to Medina in 622 CE. This event, known as the Hijra, marks the beginning of the Islamic calendar and was crucial for the establishment of the first Muslim community.</p>
+                
+                <h2>Character and Teachings</h2>
+                
+                <p>The Prophet Muhammad (peace be upon him) exemplified the highest moral character. He was known for his kindness, justice, humility, and forgiveness. His teachings emphasized the importance of treating all people with respect and dignity.</p>
+                
+                <div class="hadith-box">
+                    <p>"I have been sent to perfect good character."</p>
+                    <div class="verse-reference">— Al-Adab al-Mufrad</div>
+                </div>
+                
+                <h2>The Final Sermon</h2>
+                
+                <p>During his farewell pilgrimage, the Prophet delivered a final sermon that summarized key Islamic principles including equality, justice, and the sanctity of life and property. This sermon remains a foundational text for understanding Islamic values.</p>
+                
+                <div class="page-number">— Page 10 —</div>
+            </div>
+            
+            <!-- Chapter 6 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Six</div>
+                    <h1 class="chapter-title">The Sunnah and Hadith</h1>
+                </div>
+                
+                <p>The Sunnah refers to the way of life of Prophet Muhammad (peace be upon him), including his actions, sayings, and approvals. Hadith are the recorded sayings, actions, and approvals of the Prophet that serve as the second source of Islamic law and guidance after the Quran.</p>
+                
+                <h2>The Importance of Sunnah</h2>
+                
+                <p>The Sunnah provides practical guidance on how to implement Quranic teachings in daily life. It explains, clarifies, and provides context for the Quranic revelations, making it an essential source for understanding Islam.</p>
+                
+                <div class="verse-box">
+                    <p>وَمَا آتَاكُمُ الرَّسُولُ فَخُذُوهُ وَمَا نَهَاكُمْ عَنْهُ فَانتَهُوا</p>
+                    <p>And whatever the Messenger has given you - take it; and what he has forbidden you - refrain from it.</p>
+                    <div class="verse-reference">— Quran 59:7</div>
+                </div>
+                
+                <h2>Classification of Hadith</h2>
+                
+                <p>Islamic scholars have developed a sophisticated system for classifying hadith based on their authenticity and chain of transmission (isnad). The main categories are:</p>
+                
+                <div class="key-points">
+                    <h3>Types of Hadith:</h3>
+                    <ul>
+                        <li>Sahih (Authentic) - Highest level of authenticity</li>
+                        <li>Hasan (Good) - Acceptable but slightly lower than Sahih</li>
+                        <li>Da'if (Weak) - Contains flaws in transmission</li>
+                        <li>Mawdu (Fabricated) - False attributions to the Prophet</li>
+                    </ul>
+                </div>
+                
+                <h2>Major Hadith Collections</h2>
+                
+                <p>Several renowned scholars compiled authentic hadith collections. The most famous are the "Sahih Sitta" (Six Authentic Collections), with Sahih al-Bukhari and Sahih Muslim being considered the most authentic.</p>
+                
+                <div class="section-divider">
+                    <span>❋</span>
+                </div>
+                
+                <h2>The Science of Hadith</h2>
+                
+                <p>Islamic scholars developed rigorous methods to verify the authenticity of hadith, examining both the chain of narrators and the content. This scientific approach ensured that only reliable traditions were accepted as guidance.</p>
+                
+                <div class="hadith-box">
+                    <p>"The example of guidance and knowledge with which Allah has sent me is like abundant rain falling on the earth, some of which was fertile soil that absorbed rain water and brought forth vegetation and grass in abundance."</p>
+                    <div class="verse-reference">— Sahih al-Bukhari</div>
+                </div>
+                
+                <div class="page-number">— Page 12 —</div>
+            </div>
+            
+            <!-- Chapter 7 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Seven</div>
+                    <h1 class="chapter-title">Islamic Law (Shariah)</h1>
+                </div>
+                
+                <p>Shariah, often translated as "Islamic Law," literally means "the path to water" or "the clear path." It represents the comprehensive framework of divine guidance that governs all aspects of Muslim life, derived from the Quran and Sunnah.</p>
+                
+                <h2>Sources of Islamic Law</h2>
+                
+                <p>Islamic jurisprudence (Fiqh) derives its principles from four main sources, known as the "Usul al-Fiqh" (Principles of Islamic Jurisprudence):</p>
+                
+                <div class="key-points">
+                    <h3>The Four Sources of Islamic Law:</h3>
+                    <ul>
+                        <li>Quran - The primary source of divine guidance</li>
+                        <li>Sunnah - The teachings and practices of Prophet Muhammad</li>
+                        <li>Ijma - Scholarly consensus on religious matters</li>
+                        <li>Qiyas - Analogical reasoning based on established principles</li>
+                    </ul>
+                </div>
+                
+                <h2>Categories of Islamic Law</h2>
+                
+                <p>Islamic law traditionally covers five categories of human actions, known as the "Ahkam" (rulings):</p>
+                
+                <p><strong>Fard/Wajib (Obligatory):</strong> Actions that are mandatory and rewarded when performed, punished when neglected.</p>
+                
+                <p><strong>Mustahabb/Sunnah (Recommended):</strong> Actions that are encouraged and rewarded when performed, but not punished when omitted.</p>
+                
+                <p><strong>Mubah (Permissible):</strong> Actions that are neutral - neither rewarded nor punished.</p>
+                
+                <p><strong>Makruh (Discouraged):</strong> Actions that are disliked but not forbidden.</p>
+                
+                <p><strong>Haram (Forbidden):</strong> Actions that are prohibited and punished when committed.</p>
+                
+                <h2>Schools of Islamic Jurisprudence</h2>
+                
+                <p>Over time, different schools of Islamic jurisprudence (madhabs) developed, each with slightly different methodologies while maintaining the same fundamental sources:</p>
+                
+                <div class="key-points">
+                    <h3>Major Sunni Schools:</h3>
+                    <ul>
+                        <li>Hanafi - Emphasizes reasoning and local customs</li>
+                        <li>Maliki - Focuses on practices of Medina</li>
+                        <li>Shafi'i - Systematic approach to legal methodology</li>
+                        <li>Hanbali - Conservative approach emphasizing text</li>
+                    </ul>
+                </div>
+                
+                <div class="verse-box">
+                    <p>وَأَنِ احْكُم بَيْنَهُم بِمَا أَنزَلَ اللَّهُ وَلَا تَتَّبِعْ أَهْوَاءَهُمْ</p>
+                    <p>And judge between them by what Allah has revealed and do not follow their inclinations.</p>
+                    <div class="verse-reference">— Quran 5:49</div>
+                </div>
+                
+                <h2>Contemporary Application</h2>
+                
+                <p>Modern Muslim scholars work to apply Islamic legal principles to contemporary issues, balancing traditional interpretations with modern realities while maintaining the core spiritual and ethical values of Islam.</p>
+                
+                <div class="page-number">— Page 14 —</div>
+            </div>
+            
+            <!-- Chapter 8 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Eight</div>
+                    <h1 class="chapter-title">Islamic Ethics and Morality</h1>
+                </div>
+                
+                <p>Islamic ethics, known as Akhlaq, encompasses the moral principles and values that guide Muslim behavior. These ethics are derived from the Quran and the Sunnah (teachings and practices) of Prophet Muhammad (peace be upon him).</p>
+                
+                <h2>Core Moral Principles</h2>
+                
+                <div class="key-points">
+                    <h3>Fundamental Virtues in Islam:</h3>
+                    <ul>
+                        <li>Justice (Adl) - Being fair and equitable in all dealings</li>
+                        <li>Compassion (Rahma) - Showing mercy and kindness to all creation</li>
+                        <li>Honesty (Sidq) - Truthfulness in speech and action</li>
+                        <li>Patience (Sabr) - Perseverance through difficulties</li>
+                        <li>Gratitude (Shukr) - Appreciation for Allah's blessings</li>
+                        <li>Humility (Tawadu) - Modesty and absence of arrogance</li>
+                        <li>Generosity (Karam) - Giving freely to others</li>
+                    </ul>
+                </div>
+                
+                <h2>Social Responsibility</h2>
+                
+                <p>Islam emphasizes the importance of community and social responsibility. Muslims are encouraged to contribute positively to society, help those in need, and work for justice and peace.</p>
+                
+                <div class="verse-box">
+                    <p>وَمَن أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا</p>
+                    <p>And whoever saves a life, it is as if he has saved all of mankind.</p>
+                    <div class="verse-reference">— Quran 5:32</div>
+                </div>
+                
+                <h2>Environmental Stewardship</h2>
+                
+                <p>Islam teaches that humans are trustees (khalifa) of the Earth and must care for the environment responsibly. This includes avoiding waste, protecting natural resources, and treating animals with kindness.</p>
+                
+                <div class="section-divider">
+                    <span>❋</span>
+                </div>
+                
+                <h2>The Golden Rule in Islam</h2>
+                
+                <p>The Islamic version of the Golden Rule emphasizes treating others with the same kindness and respect that one would wish to receive. This principle extends to all human relationships and interactions.</p>
+                
+                <div class="hadith-box">
+                    <p>"The believers in their mutual kindness, compassion, and sympathy are just like one body; when one limb is affected, the whole body responds to it with wakefulness and fever."</p>
+                    <div class="verse-reference">— Sahih al-Bukhari</div>
+                </div>
+                
+                <h2>Business Ethics</h2>
+                
+                <p>Islam provides detailed guidance on ethical business practices, emphasizing honesty, fairness, and the prohibition of usury (riba) and excessive uncertainty (gharar) in transactions.</p>
+                
+                <div class="page-number">— Page 16 —</div>
+            </div>
+            
+            <!-- Chapter 9 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Nine</div>
+                    <h1 class="chapter-title">Islamic Worship and Spirituality</h1>
+                </div>
+                
+                <p>Islamic worship extends beyond the Five Pillars to include various forms of devotion and spiritual practices that bring Muslims closer to Allah and purify their hearts and souls.</p>
+                
+                <h2>Dhikr (Remembrance of Allah)</h2>
+                
+                <p>Dhikr involves the continuous remembrance and mention of Allah through various phrases, prayers, and recitations. It can be performed silently or aloud, individually or in groups.</p>
+                
+                <div class="arabic-text">
+                    سُبْحَانَ اللهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ
+                </div>
+                
+                <p>"Glory be to Allah, and praise be to Allah, and there is no deity but Allah, and Allah is Greatest."</p>
+                
+                <div class="key-points">
+                    <h3>Common Forms of Dhikr:</h3>
+                    <ul>
+                        <li>Tasbih - Glorification of Allah (SubhanAllah)</li>
+                        <li>Tahmid - Praise of Allah (Alhamdulillah)</li>
+                        <li>Tahlil - Declaration of Allah's oneness (La ilaha illa Allah)</li>
+                        <li>Takbir - Proclamation of Allah's greatness (Allahu Akbar)</li>
+                        <li>Istighfar - Seeking Allah's forgiveness</li>
+                    </ul>
+                </div>
+                
+                <h2>Du'a (Supplication)</h2>
+                
+                <p>Du'a is the act of calling upon Allah in prayer and supplication. Muslims are encouraged to make du'a at all times, asking for guidance, forgiveness, blessings, and help in both worldly and spiritual matters.</p>
+                
+                <div class="verse-box">
+                    <p>وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ</p>
+                    <p>And your Lord says: Call upon Me; I will respond to you.</p>
+                    <div class="verse-reference">— Quran 40:60</div>
+                </div>
+                
+                <h2>Night Prayer (Tahajjud)</h2>
+                
+                <p>Tahajjud is the voluntary night prayer performed after sleeping and before dawn. It is considered one of the most spiritually rewarding acts of worship, offering a special time for intimate communion with Allah.</p>
+                
+                <h2>Fasting Beyond Ramadan</h2>
+                
+                <p>While fasting during Ramadan is obligatory, Muslims also engage in voluntary fasting throughout the year, such as on Mondays and Thursdays, or during the first ten days of Dhul Hijjah.</p>
+                
+                <div class="hadith-box">
+                    <p>"Whoever fasts one day for the sake of Allah, Allah will distance his face from the Hellfire by seventy years."</p>
+                    <div class="verse-reference">— Sahih al-Bukhari</div>
+                </div>
+                
+                <h2>Spiritual Purification (Tazkiyah)</h2>
+                
+                <p>Tazkiyah refers to the process of spiritual purification and self-development. It involves both external acts of worship and internal spiritual work to purify the heart from negative qualities and develop virtuous character.</p>
+                
+                <div class="page-number">— Page 18 —</div>
+            </div>
+            
+            <!-- Chapter 10 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Ten</div>
+                    <h1 class="chapter-title">Islamic History and Civilization</h1>
+                </div>
+                
+                <p>Islamic history spans over fourteen centuries, during which Muslim civilizations made significant contributions to human knowledge, culture, and society. Understanding this rich history provides insight into Islam's global impact.</p>
+                
+                <h2>The Rightly-Guided Caliphs (632-661 CE)</h2>
+                
+                <p>After Prophet Muhammad's death, the Muslim community was led by four successive caliphs known as the "Rightly-Guided Caliphs": Abu Bakr, Umar ibn al-Khattab, Uthman ibn Affan, and Ali ibn Abi Talib.</p>
+                
+                <div class="key-points">
+                    <h3>Achievements of the Early Caliphate:</h3>
+                    <ul>
+                        <li>Compilation and preservation of the Quran</li>
+                        <li>Rapid expansion of Islamic territories</li>
+                        <li>Establishment of administrative systems</li>
+                        <li>Development of Islamic jurisprudence</li>
+                        <li>Integration of diverse populations under Islamic rule</li>
+                    </ul>
+                </div>
+                
+                <h2>The Golden Age of Islam (8th-13th centuries)</h2>
+                
+                <p>During the Abbasid Caliphate and other Islamic dynasties, Muslim civilization experienced a golden age of learning, scientific advancement, and cultural flourishing.</p>
+                
+                <div class="section-divider">
+                    <span>❋</span>
+                </div>
+                
+                <h2>Major Islamic Empires</h2>
+                
+                <p><strong>The Umayyad Caliphate (661-750 CE):</strong> Extended Islamic rule from Spain to Central Asia, establishing Arabic as the administrative language.</p>
+                
+                <p><strong>The Abbasid Caliphate (750-1258 CE):</strong> Centered in Baghdad, this period saw tremendous intellectual and cultural achievements.</p>
+                
+                <p><strong>The Ottoman Empire (1299-1922 CE):</strong> One of the longest-lasting empires in history, spanning three continents and lasting over 600 years.</p>
+                
+                <div class="verse-box">
+                    <p>وَجَعَلْنَا مِنْهُمْ أَئِمَّةً يَهْدُونَ بِأَمْرِنَا لَمَّا صَبَرُوا وَكَانُوا بِآيَاتِنَا يُوقِنُونَ</p>
+                    <p>And We made from among them leaders guiding by Our command when they were patient and were certain of Our signs.</p>
+                    <div class="verse-reference">— Quran 32:24</div>
+                </div>
+                
+                <h2>Islamic Spain (Al-Andalus)</h2>
+                
+                <p>Muslim rule in the Iberian Peninsula from 711 to 1492 CE created a remarkable civilization known for its tolerance, learning, and architectural achievements. Cities like Cordoba and Granada became centers of knowledge.</p>
+                
+                <h2>The Spread of Islam</h2>
+                
+                <p>Islam spread through various means including trade, missionary activities, and conquest. Today, Islam is practiced by over 1.8 billion people worldwide, making it the second-largest religion globally.</p>
+                
+                <div class="hadith-box">
+                    <p>"The world is green and beautiful, and Allah has appointed you as His stewards over it."</p>
+                    <div class="verse-reference">— Sahih Muslim</div>
+                </div>
+                
+                <div class="page-number">— Page 20 —</div>
+            </div>
+            
+            <!-- Chapter 11 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Eleven</div>
+                    <h1 class="chapter-title">Islamic Arts and Sciences</h1>
+                </div>
+                
+                <p>Islamic civilization has made extraordinary contributions to the arts and sciences, driven by the Islamic emphasis on seeking knowledge and understanding Allah's creation. These achievements laid foundations for modern scientific and artistic endeavors.</p>
+                
+                <h2>Scientific Achievements</h2>
+                
+                <p>Muslim scholars made groundbreaking discoveries in various fields of science, often building upon and expanding the knowledge of previous civilizations while making original contributions.</p>
+                
+                <div class="key-points">
+                    <h3>Major Fields of Islamic Scientific Contribution:</h3>
+                    <ul>
+                        <li>Mathematics - Algebra, algorithms, decimal system</li>
+                        <li>Astronomy - Accurate star charts, astrolabes, observations</li>
+                        <li>Medicine - Surgical techniques, pharmacology, hospitals</li>
+                        <li>Chemistry - Laboratory equipment, distillation, chemical processes</li>
+                        <li>Physics - Optics, mechanics, scientific method</li>
+                        <li>Geography - World maps, navigation techniques</li>
+                    </ul>
+                </div>
+                
+                <h2>Notable Muslim Scientists and Scholars</h2>
+                
+                <p><strong>Al-Khwarizmi (780-850 CE):</strong> Known as the father of algebra, his work laid the foundation for modern mathematics and computer science.</p>
+                
+                <p><strong>Ibn Sina (Avicenna) (980-1037 CE):</strong> His medical encyclopedia "The Canon of Medicine" was used in European universities for centuries.</p>
+                
+                <p><strong>Al-Biruni (973-1048 CE):</strong> Made significant contributions to astronomy, mathematics, and anthropology, accurately calculating the Earth's circumference.</p>
+                
+                <p><strong>Ibn al-Haytham (Alhazen) (965-1040 CE):</strong> Pioneered the scientific method and made fundamental contributions to optics and physics.</p>
+                
+                <div class="verse-box">
+                    <p>وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
+                    <p>And say: My Lord, increase me in knowledge.</p>
+                    <div class="verse-reference">— Quran 20:114</div>
+                </div>
+                
+                <h2>Islamic Architecture</h2>
+                
+                <p>Islamic architecture developed distinctive features that reflect both spiritual principles and aesthetic beauty. Key elements include geometric patterns, calligraphy, and the integration of light and space.</p>
+                
+                <div class="key-points">
+                    <h3>Characteristic Features of Islamic Architecture:</h3>
+                    <ul>
+                        <li>Geometric patterns and arabesques</li>
+                        <li>Calligraphic decorations with Quranic verses</li>
+                        <li>Minarets and domes</li>
+                        <li>Courtyards and gardens (reflecting paradise)</li>
+                        <li>Mashrabiya (decorative wooden screens)</li>
+                        <li>Use of water features for cooling and beauty</li>
+                    </ul>
+                </div>
+                
+                <h2>Islamic Calligraphy</h2>
+                
+                <p>Arabic calligraphy is considered the highest form of Islamic art, as it directly represents the word of Allah. Different styles evolved across regions and periods, each with its own aesthetic characteristics.</p>
+                
+                <h2>Music and Poetry</h2>
+                
+                <p>Islamic civilization produced rich traditions of poetry and music. Poets like Rumi, Hafez, and Omar Khayyam created works that continue to inspire readers worldwide. Islamic music developed sophisticated theoretical frameworks and diverse regional styles.</p>
+                
+                <div class="hadith-box">
+                    <p>"Allah is beautiful and loves beauty."</p>
+                    <div class="verse-reference">— Sahih Muslim</div>
+                </div>
+                
+                <div class="page-number">— Page 22 —</div>
+            </div>
+            
+            <!-- Chapter 12 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Twelve</div>
+                    <h1 class="chapter-title">Islam and Modern Society</h1>
+                </div>
+                
+                <p>Islam continues to be a vibrant and relevant faith in the modern world, with Muslims adapting Islamic principles to contemporary challenges while maintaining core beliefs and values.</p>
+                
+                <h2>Contemporary Islamic Thought</h2>
+                
+                <p>Modern Muslim scholars and thinkers work to address contemporary issues through Islamic perspectives, balancing traditional wisdom with modern realities in fields such as science, technology, economics, and social justice.</p>
+                
+                <div class="key-points">
+                    <h3>Areas of Modern Islamic Discourse:</h3>
+                    <ul>
+                        <li>Islamic finance and economics</li>
+                        <li>Medical ethics and bioethics</li>
+                        <li>Environmental sustainability</li>
+                        <li>Human rights and social justice</li>
+                        <li>Gender roles and women's rights</li>
+                        <li>Interfaith dialogue and cooperation</li>
+                    </ul>
+                </div>
+                
+                <h2>Islamic Finance</h2>
+                
+                <p>Islamic finance operates according to Shariah principles, prohibiting interest (riba), excessive uncertainty (gharar), and investment in harmful industries. It emphasizes risk-sharing, asset-backing, and ethical investment.</p>
+                
+                <div class="section-divider">
+                    <span>❋</span>
+                </div>
+                
+                <h2>Education and Knowledge</h2>
+                
+                <p>The Islamic emphasis on seeking knowledge has led to the establishment of numerous educational institutions worldwide. Many Muslim countries have developed modern educational systems that integrate Islamic values with contemporary curricula.</p>
+                
+                <div class="verse-box">
+                    <p>يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قِيلَ لَكُمْ تَفَسَّحُوا فِي الْمَجَالِسِ فَافْسَحُوا يَفْسَحِ اللَّهُ لَكُمْ وَإِذَا قِيلَ انشُزُوا فَانشُزُوا يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ</p>
+                    <p>Allah will raise those who have believed among you and those who were given knowledge, by degrees.</p>
+                    <div class="verse-reference">— Quran 58:11</div>
+                </div>
+                
+                <h2>Interfaith Relations</h2>
+                
+                <p>Islam encourages respectful dialogue and cooperation with people of other faiths. The Quran acknowledges the diversity of human beliefs and emphasizes that there should be no compulsion in religion.</p>
+                
+                <h2>Social Justice and Human Rights</h2>
+                
+                <p>Islamic principles of justice, equality, and human dignity provide a framework for addressing modern social issues. Many Muslim organizations work actively on issues such as poverty alleviation, education, healthcare, and human rights.</p>
+                
+                <div class="hadith-box">
+                    <p>"All mankind is from Adam and Adam is from dust. There is no superiority of an Arab over a non-Arab, or of a non-Arab over an Arab, except by piety and good action."</p>
+                    <div class="verse-reference">— Final Sermon of Prophet Muhammad</div>
+                </div>
+                
+                <div class="page-number">— Page 24 —</div>
+            </div>
+            
+            <!-- Chapter 13 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Thirteen</div>
+                    <h1 class="chapter-title">Islamic Philosophy and Theology</h1>
+                </div>
+                
+                <p>Islamic philosophy and theology (Kalam) represent sophisticated intellectual traditions that have grappled with fundamental questions about existence, knowledge, ethics, and the nature of the divine for over a millennium.</p>
+                
+                <h2>Early Islamic Philosophy</h2>
+                
+                <p>Islamic philosophy emerged as Muslim scholars encountered Greek philosophical works and sought to reconcile reason with revelation. This led to rich debates about the relationship between faith and reason.</p>
+                
+                <div class="key-points">
+                    <h3>Major Islamic Philosophers:</h3>
+                    <ul>
+                        <li>Al-Kindi (801-873 CE) - "The Philosopher of the Arabs"</li>
+                        <li>Al-Farabi (872-950 CE) - Known for political philosophy</li>
+                        <li>Ibn Sina (980-1037 CE) - Metaphysician and scientist</li>
+                        <li>Ibn Rushd (1126-1198 CE) - Defender of Aristotelian philosophy</li>
+                        <li>Al-Ghazali (1058-1111 CE) - Critic of philosophers, mystic theologian</li>
+                    </ul>
+                </div>
+                
+                <h2>Schools of Islamic Theology</h2>
+                
+                <p>Several theological schools developed within Islam, each offering different approaches to understanding faith, reason, and divine attributes:</p>
+                
+                <p><strong>Ash'arism:</strong> Emphasized divine sovereignty and predestination while maintaining human responsibility.</p>
+                
+                <p><strong>Maturidism:</strong> Balanced divine sovereignty with human free will, emphasizing the role of reason in theology.</p>
+                
+                <p><strong>Mu'tazilism:</strong> Stressed divine justice and human free will, giving significant role to reason in understanding faith.</p>
                 
                 <div class="verse-box">
                     <p>وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ</p>
