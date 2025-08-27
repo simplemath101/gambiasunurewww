@@ -1,1364 +1,213 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Science of Love: Evidence-Based Relationship Guide</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap');
-        
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #e74c3c;
-            --accent-color: #3498db;
-            --text-color: #2c3e50;
-            --light-text: #7f8c8d;
-            --background: #fdfefe;
-            --paper-bg: #ffffff;
-            --border-color: #ecf0f1;
-            --highlight-color: #f39c12;
-            --chapter-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        body {
-            font-family: 'Crimson Text', serif;
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text-color);
-            background: var(--background);
-            counter-reset: chapter section;
-        }
-        
-        /* Container and layout */
-        .ebook-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background: var(--paper-bg);
-            box-shadow: 0 0 40px rgba(0,0,0,0.1);
-            min-height: 100vh;
-        }
-        
-        /* Typography hierarchy */
-        .title-page {
-            text-align: center;
-            padding: 80px 0;
-            border-bottom: 3px solid var(--primary-color);
-            margin-bottom: 60px;
-            background: var(--chapter-bg);
-            color: white;
-            margin: -40px -20px 60px -20px;
-            padding: 120px 40px 80px;
-        }
-        
-        .main-title {
-            font-size: 3.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            letter-spacing: -1px;
-        }
-        
-        .subtitle {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            font-style: italic;
-        }
-        
-        .author {
-            font-size: 1.3rem;
-            font-weight: 400;
-            opacity: 0.8;
-            margin-top: 40px;
-        }
-        
-        /* Table of contents */
-        .table-of-contents {
-            margin: 60px 0;
-            padding: 40px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 10px;
-            border-left: 5px solid var(--accent-color);
-        }
-        
-        .toc-title {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            color: var(--primary-color);
-            text-align: center;
-        }
-        
-        .toc-list {
-            list-style: none;
-        }
-        
-        .toc-item {
-            margin: 15px 0;
-            padding: 10px 0;
-            border-bottom: 1px dotted var(--border-color);
-        }
-        
-        .toc-link {
-            text-decoration: none;
-            color: var(--text-color);
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .toc-link:hover {
-            color: var(--accent-color);
-        }
-        
-        .toc-number {
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-        
-        /* Chapter styling */
-        .chapter {
-            margin: 80px 0;
-            page-break-before: always;
-        }
-        
-        .chapter-header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px 0;
-            background: var(--chapter-bg);
-            color: white;
-            margin: 0 -40px 50px -40px;
-            border-radius: 15px;
-        }
-        
-        .chapter-number {
-            font-size: 1.2rem;
-            font-weight: 300;
-            opacity: 0.8;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-        
-        .chapter-title {
-            font-size: 2.8rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-        
-        .chapter-subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
-            opacity: 0.9;
-            font-style: italic;
-        }
-        
-        /* Section styling */
-        .section {
-            margin: 40px 0;
-            counter-increment: section;
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent-color);
-            position: relative;
-        }
-        
-        .section-title::before {
-            content: counter(section, decimal);
-            position: absolute;
-            left: -40px;
-            top: 0;
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-        
-        /* Paragraph and text styling */
-        .content p {
-            margin-bottom: 20px;
-            text-align: justify;
-            text-indent: 30px;
-        }
-        
-        .content p:first-child {
-            text-indent: 0;
-        }
-        
-        .intro-text {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--light-text);
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 10px;
-            border-left: 5px solid var(--highlight-color);
-        }
-        
-        /* Research boxes */
-        .research-box {
-            background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%);
-            border-left: 5px solid var(--accent-color);
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 10px;
-            position: relative;
-        }
-        
-        .research-box::before {
-            content: "🔬 RESEARCH INSIGHT";
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent-color);
-            display: block;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-        
-        .research-box p {
-            text-indent: 0;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        /* Tip boxes */
-        .tip-box {
-            background: linear-gradient(135deg, #fff9e6 0%, #fef5d3 100%);
-            border-left: 5px solid var(--highlight-color);
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 10px;
-            position: relative;
-        }
-        
-        .tip-box::before {
-            content: "💡 PRACTICAL TIP";
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--highlight-color);
-            display: block;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-        
-        .tip-box p {
-            text-indent: 0;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        /* Lists */
-        .content ul, .content ol {
-            margin: 25px 0 25px 40px;
-            padding-left: 20px;
-        }
-        
-        .content li {
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-        
-        .content ul li::marker {
-            color: var(--accent-color);
-        }
-        
-        .content ol li::marker {
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-        
-        /* Quotes */
-        .quote {
-            font-size: 1.3rem;
-            font-style: italic;
-            text-align: center;
-            color: var(--primary-color);
-            margin: 40px 0;
-            padding: 30px;
-            position: relative;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 10px;
-        }
-        
-        .quote::before {
-            content: """;
-            font-size: 4rem;
-            color: var(--secondary-color);
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-family: Georgia, serif;
-        }
-        
-        .quote::after {
-            content: """;
-            font-size: 4rem;
-            color: var(--secondary-color);
-            position: absolute;
-            bottom: -40px;
-            right: 20px;
-            font-family: Georgia, serif;
-        }
-        
-        .quote-author {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 20px;
-            color: var(--light-text);
-            font-style: normal;
-        }
-        
-        /* Exercise sections */
-        .exercise {
-            background: linear-gradient(135deg, #fef7f7 0%, #fdeaea 100%);
-            border-left: 5px solid var(--secondary-color);
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 10px;
-        }
-        
-        .exercise-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .exercise-title::before {
-            content: "📝 ";
-            margin-right: 10px;
-        }
-        
-        .exercise p {
-            text-indent: 0;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        /* Key takeaways */
-        .key-takeaways {
-            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
-            border: 2px solid #27ae60;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-        
-        .key-takeaways-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #27ae60;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .key-takeaways ul {
-            margin-left: 0;
-            padding-left: 20px;
-        }
-        
-        .key-takeaways li {
-            color: #2c3e50;
-            font-weight: 500;
-        }
-        
-        /* Strong emphasis */
-        strong {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        em {
-            color: var(--secondary-color);
-            font-style: italic;
-        }
-        
-        /* Page breaks for print */
-        @media print {
-            .chapter {
-                page-break-before: always;
-            }
+<p><strong>Mu'tazilism:</strong> Stressed divine justice and human free will, giving significant role to reason in understanding faith.</p>
+                
+                <div class="verse-box">
+                    <p>وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ</p>
+                    <p>And I did not create the jinn and mankind except to worship Me.</p>
+                    <div class="verse-reference">— Quran 51:56</div>
+                </div>
+                
+                <h2>Islamic Mysticism (Sufism)</h2>
+                
+                <p>Sufism represents the mystical dimension of Islam, emphasizing the inner spiritual journey toward Allah. Sufis seek to purify the heart and achieve direct spiritual experience of the divine.</p>
+                
+                <div class="key-points">
+                    <h3>Stages of Sufi Spiritual Development:</h3>
+                    <ul>
+                        <li>Tawbah (Repentance) - Turning away from sin</li>
+                        <li>Wara (Scrupulousness) - Avoiding doubtful matters</li>
+                        <li>Zuhd (Asceticism) - Detachment from worldly desires</li>
+                        <li>Sabr (Patience) - Perseverance in trials</li>
+                        <li>Tawakkul (Trust) - Complete reliance on Allah</li>
+                        <li>Rida (Contentment) - Satisfaction with Allah's decree</li>
+                    </ul>
+                </div>
+                
+                <h2>The Question of Divine Attributes</h2>
+                
+                <p>Islamic theologians extensively debated the nature of Allah's attributes, such as knowledge, power, and mercy. The central question was whether these attributes are identical to Allah's essence or distinct from it.</p>
+                
+                <div class="hadith-box">
+                    <p>"Allah has ninety-nine names, one hundred minus one, and whoever encompasses them will enter Paradise."</p>
+                    <div class="verse-reference">— Sahih al-Bukhari</div>
+                </div>
+                
+                <div class="page-number">— Page 26 —</div>
+            </div>
             
-            .research-box, .tip-box, .exercise {
-                page-break-inside: avoid;
-            }
-        }
+            <!-- Chapter 14 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Fourteen</div>
+                    <h1 class="chapter-title">The Islamic Calendar and Festivals</h1>
+                </div>
+                
+                <p>The Islamic calendar, also known as the Hijri calendar, is a lunar calendar consisting of 12 months and approximately 354-355 days. It begins with the Hijra (migration) of Prophet Muhammad from Mecca to Medina in 622 CE.</p>
+                
+                <h2>The Islamic Months</h2>
+                
+                <div class="key-points">
+                    <h3>The Twelve Islamic Months:</h3>
+                    <ul>
+                        <li>Muharram - The sacred month, beginning of the Islamic year</li>
+                        <li>Safar - The empty or void month</li>
+                        <li>Rabi' al-Awwal - The first spring month</li>
+                        <li>Rabi' al-Thani - The second spring month</li>
+                        <li>Jumada al-Awwal - The first dry month</li>
+                        <li>Jumada al-Thani - The second dry month</li>
+                        <li>Rajab - The respected month</li>
+                        <li>Sha'ban - The month of separation</li>
+                        <li>Ramadan - The month of fasting</li>
+                        <li>Shawwal - The month of hunting</li>
+                        <li>Dhul Qi'dah - The month of rest</li>
+                        <li>Dhul Hijjah - The month of pilgrimage</li>
+                    </ul>
+                </div>
+                
+                <h2>Major Islamic Festivals</h2>
+                
+                <h3>Eid al-Fitr (Festival of Breaking the Fast)</h3>
+                
+                <p>Celebrated on the first day of Shawwal, marking the end of Ramadan. Muslims gather for special prayers, give charity (Zakat al-Fitr), exchange gifts, and enjoy festive meals with family and friends.</p>
+                
+                <h3>Eid al-Adha (Festival of Sacrifice)</h3>
+                
+                <p>Observed on the 10th day of Dhul Hijjah, commemorating Prophet Ibrahim's willingness to sacrifice his son in obedience to Allah. Muslims who can afford it sacrifice an animal and distribute the meat to family, friends, and the poor.</p>
+                
+                <div class="verse-box">
+                    <p>فَصَلِّ لِرَبِّكَ وَانْحَرْ</p>
+                    <p>So pray to your Lord and sacrifice [to Him alone].</p>
+                    <div class="verse-reference">— Quran 108:2</div>
+                </div>
+                
+                <h2>Sacred Months</h2>
+                
+                <p>Four months in the Islamic calendar are considered sacred: Muharram, Rajab, Dhul Qi'dah, and Dhul Hijjah. During these months, fighting was traditionally prohibited, and spiritual activities were emphasized.</p>
+                
+                <h2>Other Important Observances</h2>
+                
+                <div class="key-points">
+                    <h3>Significant Islamic Dates:</h3>
+                    <ul>
+                        <li>Ashura (10th Muharram) - Day of fasting and remembrance</li>
+                        <li>Mawlid al-Nabi - Birthday of Prophet Muhammad</li>
+                        <li>Laylat al-Qadr - The Night of Power during Ramadan</li>
+                        <li>Laylat al-Mi'raj - The Night Journey of the Prophet</li>
+                        <li>Day of Arafat (9th Dhul Hijjah) - Day of Hajj pilgrimage</li>
+                    </ul>
+                </div>
+                
+                <div class="section-divider">
+                    <span>❋</span>
+                </div>
+                
+                <h2>The Significance of Lunar Calendar</h2>
+                
+                <p>The use of a lunar calendar means that Islamic festivals rotate through different seasons over the years, ensuring that no particular season is permanently associated with religious observances.</p>
+                
+                <div class="hadith-box">
+                    <p>"Time has come back to its original state which it had when Allah created the Heavens and the Earth."</p>
+                    <div class="verse-reference">— Farewell Sermon, Sahih al-Bukhari</div>
+                </div>
+                
+                <div class="page-number">— Page 28 —</div>
+            </div>
+            
+            <!-- Chapter 15 -->
+            <div class="page">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter Fifteen</div>
+                    <h1 class="chapter-title">Conclusion and Further Study</h1>
+                </div>
+                
+                <p>This comprehensive guide has introduced the fundamental aspects of Islamic knowledge, from basic beliefs and practices to the rich intellectual and cultural traditions that have developed over fourteen centuries.</p>
+                
+                <h2>The Continuous Journey of Learning</h2>
+                
+                <p>Islamic knowledge is vast and multifaceted, encompassing theology, law, spirituality, philosophy, science, and the arts. This book serves as a foundation, but the journey of understanding Islam is lifelong.</p>
+                
+                <div class="verse-box">
+                    <p>اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</p>
+                    <p>Read in the name of your Lord who created.</p>
+                    <div class="verse-reference">— Quran 96:1</div>
+                </div>
+                
+                <h2>Key Takeaways</h2>
+                
+                <div class="key-points">
+                    <h3>Essential Understanding of Islam:</h3>
+                    <ul>
+                        <li>Islam is a complete way of life guided by the Quran and Sunnah</li>
+                        <li>The Five Pillars provide the framework for Muslim practice</li>
+                        <li>The Six Articles of Faith define core Islamic beliefs</li>
+                        <li>Islamic ethics emphasize justice, compassion, and social responsibility</li>
+                        <li>Islam encourages the pursuit of knowledge and wisdom</li>
+                        <li>Muslim civilization has contributed significantly to human progress</li>
+                        <li>Islam remains relevant and adaptable to modern challenges</li>
+                    </ul>
+                </div>
+                
+                <h2>Recommended Further Study</h2>
+                
+                <p>To deepen your understanding of Islam, consider exploring these areas:</p>
+                
+                <p><strong>Primary Sources:</strong> Study the Quran with reputable translations and commentaries, and explore authentic hadith collections.</p>
+                
+                <p><strong>Islamic History:</strong> Examine the development of Islamic civilization across different regions and time periods.</p>
+                
+                <p><strong>Comparative Religion:</strong> Understand Islam's relationship with other Abrahamic faiths and world religions.</p>
+                
+                <p><strong>Contemporary Issues:</strong> Explore how Islamic principles apply to modern challenges in ethics, politics, economics, and social justice.</p>
+                
+                <div class="section-divider">
+                    <span>❋</span>
+                </div>
+                
+                <h2>The Universal Message</h2>
+                
+                <p>Islam's core message transcends cultural and temporal boundaries: the recognition of one God, the importance of moral conduct, social justice, and preparation for the afterlife. These universal themes continue to guide millions of Muslims worldwide.</p>
+                
+                <div class="verse-box">
+                    <p>وَمَا أَرْسَلْنَاكَ إِلَّا كَافَّةً لِّلنَّاسِ بَشِيرًا وَنَذِيرًا</p>
+                    <p>And We have not sent you except comprehensively to mankind as a bringer of good tidings and a warner.</p>
+                    <div class="verse-reference">— Quran 34:28</div>
+                </div>
+                
+                <div class="hadith-box">
+                    <p>"The seeking of knowledge is obligatory upon every Muslim."</p>
+                    <div class="verse-reference">— Ibn Majah</div>
+                </div>
+                
+                <p>May this guide serve as a stepping stone in your journey of understanding Islam, and may Allah guide us all to knowledge, wisdom, and righteousness.</p>
+                
+                <div class="footnote">
+                    <p><strong>Note:</strong> This guide provides an introductory overview of Islamic knowledge. For deeper understanding, readers are encouraged to consult qualified Islamic scholars, attend Islamic educational institutions, and study authentic Islamic sources.</p>
+                </div>
+                
+                <div class="page-number">— Page 30 —</div>
+            </div>
+            
+            <!-- Back Cover -->
+            <div class="cover-page">
+                <div class="ornamental-line"></div>
+                <div class="ornamental-line"></div>
+                <p class="subtitle" style="font-size: 1.1em; margin-top: 40px;">This comprehensive guide introduces readers to the fundamental aspects of Islamic knowledge, covering beliefs, practices, history, and contributions to human civilization.</p>
+                
+                <p style="margin-top: 30px; font-size: 1em; font-style: italic;">From the Five Pillars and Six Articles of Faith to Islamic philosophy, science, and contemporary relevance, this book serves as an accessible introduction to understanding Islam.</p>
+                
+                <div class="ornamental-line" style="margin-top: 60px;"></div>
+                
+                <p class="arabic-title" style="font-size: 1.5em; margin-top: 40px;">
+                    وَقُل رَّبِّ زِدْنِي عِلْمًا
+                </p>
+                
+                <p style="margin-top: 20px; font-size: 1em;">
+                    "And say: My Lord, increase me in knowledge."<br>
+                    — Quran 20:114
+                </p>
+            </div>
+        </div>
         
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .ebook-container {
-                padding: 20px 15px;
-            }
-            
-            .main-title {
-                font-size: 2.5rem;
-            }
-            
-            .chapter-title {
-                font-size: 2.2rem;
-            }
-            
-            .section-title::before {
-                left: -30px;
-            }
-            
-            .quote::before, .quote::after {
-                font-size: 3rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="ebook-container">
-        <!-- Title Page -->
-        <div class="title-page">
-            <h1 class="main-title">The Science of Love</h1>
-            <p class="subtitle">Evidence-Based Strategies for Building Stronger, Happier Relationships</p>
-            <p class="author">A Comprehensive Guide Based on Psychological Research</p>
-        </div>
-
-        <!-- Table of Contents -->
-        <div class="table-of-contents">
-            <h2 class="toc-title">Table of Contents</h2>
-            <ul class="toc-list">
-                <li class="toc-item">
-                    <a href="#chapter-1" class="toc-link">
-                        <span><span class="toc-number">1.</span> The Foundation of Love: Understanding Attachment Theory</span>
-                    </a>
-                </li>
-                <li class="toc-item">
-                    <a href="#chapter-2" class="toc-link">
-                        <span><span class="toc-number">2.</span> Communication: The Gottman Method Revealed</span>
-                    </a>
-                </li>
-                <li class="toc-item">
-                    <a href="#chapter-3" class="toc-link">
-                        <span><span class="toc-number">3.</span> The Neuroscience of Love and Attraction</span>
-                    </a>
-                </li>
-                <li class="toc-item">
-                    <a href="#chapter-4" class="toc-link">
-                        <span><span class="toc-number">4.</span> Conflict Resolution: Science-Based Strategies</span>
-                    </a>
-                </li>
-                <li class="toc-item">
-                    <a href="#chapter-5" class="toc-link">
-                        <span><span class="toc-number">5.</span> Building Emotional Intelligence Together</span>
-                    </a>
-                </li>
-                <li class="toc-item">
-                    <a href="#chapter-6" class="toc-link">
-                        <span><span class="toc-number">6.</span> The Psychology of Long-Term Commitment</span>
-                    </a>
-                </li>
-                <li class="toc-item">
-                    <a href="#chapter-7" class="toc-link">
-                        <span><span class="toc-number">7.</span> Intimacy and Connection: Research-Backed Approaches</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Chapter 1 -->
-        <div id="chapter-1" class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Chapter One</div>
-                <h1 class="chapter-title">The Foundation of Love</h1>
-                <p class="chapter-subtitle">Understanding Attachment Theory</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">Love isn't just a feeling—it's a complex psychological process rooted in our earliest experiences. Understanding the science behind how we form and maintain emotional bonds is the first step toward building healthier, more fulfilling relationships.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Four Attachment Styles</h2>
-                    <p>Pioneered by psychologist John Bowlby and later expanded by Mary Ainsworth, attachment theory reveals how our early relationships with caregivers shape our approach to love throughout our lives. Research has consistently shown that understanding your attachment style—and your partner's—can dramatically improve relationship satisfaction.</p>
-
-                    <div class="research-box">
-                        <p>A longitudinal study following over 1,000 individuals for 30 years found that those who understood and worked with their attachment styles reported 73% higher relationship satisfaction and were 40% less likely to experience relationship dissolution.</p>
-                    </div>
-
-                    <p><strong>Secure Attachment (approximately 60% of adults):</strong> Those with secure attachment find it easy to get close to others and are comfortable depending on partners and having partners depend on them. They don't worry about being abandoned or having someone get too close.</p>
-
-                    <p><strong>Anxious Attachment (approximately 20% of adults):</strong> Individuals with anxious attachment want to be very close to their partners but worry that their partners don't feel the same way. They fear abandonment and may become clingy or demanding.</p>
-
-                    <p><strong>Avoidant Attachment (approximately 15% of adults):</strong> Those with avoidant attachment are uncomfortable getting close to others and prefer independence. They may have difficulty trusting partners and expressing emotions.</p>
-
-                    <p><strong>Disorganized Attachment (approximately 5% of adults):</strong> This style is characterized by inconsistent behavior in relationships, alternating between anxious and avoidant patterns, often due to trauma or inconsistent caregiving.</p>
-
-                    <div class="tip-box">
-                        <p>Take time to discuss attachment styles with your partner. Understanding each other's needs for closeness and independence can prevent many common relationship conflicts. Remember: attachment styles can evolve through secure, consistent relationships.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Building Secure Attachment in Adult Relationships</h2>
-                    <p>The remarkable finding from attachment research is that insecure attachment styles aren't permanent. Through what researchers call "earned security," adults can develop more secure patterns through healthy relationships.</p>
-
-                    <div class="quote">
-                        The greatest thing you'll ever learn is just to love and be loved in return.
-                        <div class="quote-author">— Eden Ahbez</div>
-                    </div>
-
-                    <p>Dr. Sue Johnson's research on Emotionally Focused Therapy demonstrates that couples can rewire their attachment patterns by:</p>
-
-                    <ul>
-                        <li>Recognizing negative cycles before they escalate</li>
-                        <li>Understanding the underlying attachment needs driving behavior</li>
-                        <li>Learning to express vulnerability safely</li>
-                        <li>Responding to your partner's attachment needs consistently</li>
-                        <li>Creating new positive interaction patterns</li>
-                    </ul>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">Attachment Style Assessment Exercise</h3>
-                        <p>Reflect on the following questions and discuss with your partner:</p>
-                        <ol>
-                            <li>How do you typically react when your partner seems distant or preoccupied?</li>
-                            <li>What do you need most from your partner when you're feeling stressed or upset?</li>
-                            <li>How comfortable are you with emotional intimacy and vulnerability?</li>
-                            <li>What patterns do you notice in your past relationships?</li>
-                        </ol>
-                        <p>Remember: There are no wrong answers, only opportunities for understanding and growth.</p>
-                    </div>
-                </div>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Key Takeaways</h3>
-                    <ul>
-                        <li>Your attachment style influences how you approach love and relationships</li>
-                        <li>Understanding both your and your partner's attachment needs prevents conflict</li>
-                        <li>Secure attachment can be developed through consistent, responsive relationships</li>
-                        <li>Recognizing attachment-based reactions helps break negative cycles</li>
-                        <li>Vulnerability and emotional safety are essential for secure bonding</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chapter 2 -->
-        <div id="chapter-2" class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Chapter Two</div>
-                <h1 class="chapter-title">Communication Mastery</h1>
-                <p class="chapter-subtitle">The Gottman Method Revealed</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">Dr. John Gottman's groundbreaking research, spanning over four decades and involving more than 3,000 couples, has identified specific communication patterns that predict relationship success or failure with over 90% accuracy.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Four Horsemen of the Apocalypse</h2>
-                    <p>Gottman identified four toxic communication patterns that, when present regularly, signal serious trouble in relationships. Understanding and eliminating these patterns is crucial for relationship health.</p>
-
-                    <div class="research-box">
-                        <p>Couples who frequently engage in the "Four Horsemen" behaviors are 5.6 times more likely to divorce within the first seven years of marriage. However, couples who learn to recognize and replace these patterns show dramatic improvements in relationship satisfaction within just 12 weeks.</p>
-                    </div>
-
-                    <p><strong>1. Criticism:</strong> Attacking your partner's character rather than addressing specific behavior. Instead of "You never listen to me," try "I felt unheard when you checked your phone during our conversation."</p>
-
-                    <p><strong>2. Contempt:</strong> Speaking from a position of superiority, often with sarcasm, eye-rolling, or name-calling. Contempt is the strongest predictor of relationship failure.</p>
-
-                    <p><strong>3. Defensiveness:</strong> Playing the victim or counter-attacking instead of taking responsibility. This escalates conflict rather than resolving it.</p>
-
-                    <p><strong>4. Stonewalling:</strong> Withdrawing from interaction, giving the silent treatment, or shutting down emotionally during conflict.</p>
-
-                    <div class="tip-box">
-                        <p>Practice the "24-hour rule": If you notice yourself engaging in any of the Four Horsemen, take a break and revisit the conversation within 24 hours using healthier communication strategies.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">The Gottman Method: Positive Communication Strategies</h2>
-                    <p>Successful couples have a 5:1 ratio of positive to negative interactions during conflict. Here are research-proven strategies to improve your communication:</p>
-
-                    <p><strong>Soft Startups:</strong> Begin difficult conversations gently. Start with "I feel..." rather than "You always..." This reduces your partner's defensiveness by 50%.</p>
-
-                    <p><strong>The Art of Repair:</strong> Successful couples master the ability to de-escalate conflict mid-argument. Simple phrases like "This is important to me" or "Can we take a break?" can reset the conversation.</p>
-
-                    <p><strong>Active Listening Techniques:</strong></p>
-                    <ul>
-                        <li>Reflect back what you heard: "It sounds like you're saying..."</li>
-                        <li>Validate emotions: "I can understand why you'd feel that way"</li>
-                        <li>Ask clarifying questions: "Help me understand what you need"</li>
-                        <li>Avoid the urge to immediately offer solutions</li>
-                    </ul>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">The Daily Stress-Reducing Conversation</h3>
-                        <p>Implement this 20-minute daily ritual proven to reduce relationship stress:</p>
-                        <ol>
-                            <li><strong>Minutes 1-10:</strong> Partner A shares their day's stresses while Partner B listens without offering advice</li>
-                            <li><strong>Minutes 11-20:</strong> Switch roles</li>
-                            <li><strong>Rules:</strong> No advice-giving, no problem-solving, just supportive listening</li>
-                            <li><strong>Focus:</strong> Understanding, not fixing</li>
-                        </ol>
-                        <p>Research shows this simple practice reduces cortisol levels and increases relationship satisfaction within just two weeks.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Building Love Maps</h2>
-                    <p>Gottman's research reveals that couples with detailed "love maps"—intimate knowledge of each other's inner worlds—have relationships that last. This isn't about memorizing facts, but about genuine curiosity and ongoing discovery.</p>
-
-                    <div class="quote">
-                        Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.
-                        <div class="quote-author">— Lao Tzu</div>
-                    </div>
-
-                    <p>Strong love maps include knowledge of:</p>
-                    <ul>
-                        <li>Your partner's current stresses and worries</li>
-                        <li>Their dreams and aspirations</li>
-                        <li>Their major life history events</li>
-                        <li>Their values and beliefs</li>
-                        <li>Their favorite ways to be comforted</li>
-                        <li>Their love language preferences</li>
-                    </ul>
-
-                    <div class="tip-box">
-                        <p>Make it a weekly habit to ask your partner: "What's one thing I could do this week to make you feel more loved?" This simple question, asked regularly, keeps your love map current and actionable.</p>
-                    </div>
-                </div>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Key Takeaways</h3>
-                    <ul>
-                        <li>Eliminate the Four Horsemen from your communication repertoire</li>
-                        <li>Maintain a 5:1 ratio of positive to negative interactions</li>
-                        <li>Use soft startups to begin difficult conversations</li>
-                        <li>Practice repair attempts to de-escalate conflicts</li>
-                        <li>Build detailed love maps through genuine curiosity</li>
-                        <li>Implement daily stress-reducing conversations</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chapter 3 -->
-        <div id="chapter-3" class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Chapter Three</div>
-                <h1 class="chapter-title">The Neuroscience of Love</h1>
-                <p class="chapter-subtitle">Understanding Your Brain in Love</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">Modern neuroscience has revealed that love literally changes our brains. Understanding the biological basis of attraction, attachment, and long-term bonding can help us work with—rather than against—our natural processes.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Three Brain Systems of Love</h2>
-                    <p>Anthropologist Dr. Helen Fisher's research has identified three distinct brain systems that drive romantic relationships, each with its own neural circuitry and evolutionary purpose.</p>
-
-                    <div class="research-box">
-                        <p>Brain imaging studies show that people in love display increased activity in the ventral tegmental area, the same region activated by cocaine. This explains why new love can feel addictive and why breakups can cause genuine withdrawal symptoms.</p>
-                    </div>
-
-                    <p><strong>1. Lust (Sex Drive):</strong> Driven primarily by testosterone and estrogen, this system motivates us to seek sexual partners. It's characterized by increased activity in the hypothalamus and creates the initial physical attraction.</p>
-
-                    <p><strong>2. Romantic Love (Attraction):</strong> Governed by dopamine, norepinephrine, and serotonin, this system focuses our attention on a specific partner. It creates the intense feelings of euphoria, energy, and obsessive thinking associated with new love.</p>
-
-                    <p><strong>3. Attachment (Long-term Bonding):</strong> Mediated by oxytocin and vasopressin, this system enables long-term partnership and the deep sense of security that comes with committed relationships.</p>
-
-                    <div class="tip-box">
-                        <p>Understanding these systems helps normalize the changes in feelings over time. The intense dopamine-driven attraction naturally diminishes, but this makes space for deeper oxytocin-based attachment to develop.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Oxytocin: The Bonding Hormone</h2>
-                    <p>Often called the "love hormone," oxytocin plays a crucial role in pair bonding, trust, and empathy. Research shows we can naturally increase oxytocin production through specific behaviors.</p>
-
-                    <p><strong>Natural Oxytocin Boosters:</strong></p>
-                    <ul>
-                        <li><strong>Physical Touch:</strong> 20-second hugs, holding hands, and cuddling all trigger oxytocin release</li>
-                        <li><strong>Eye Contact:</strong> Maintaining loving eye contact for just 4 minutes can significantly increase bonding</li>
-                        <li><strong>Synchronized Activities:</strong> Dancing, singing, or exercising together creates oxytocin through shared rhythm</li>
-                        <li><strong>Acts of Service:</strong> Doing thoughtful things for your partner activates the bonding system</li>
-                        <li><strong>Gratitude Expression:</strong> Regularly expressing appreciation boosts both oxytocin and dopamine</li>
-                    </ul>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">The 4-Minute Eye Contact Exercise</h3>
-                        <p>This research-backed exercise can dramatically increase feelings of closeness:</p>
-                        <ol>
-                            <li>Sit comfortably facing each other</li>
-                            <li>Set a timer for 4 minutes</li>
-                            <li>Make and maintain gentle eye contact</li>
-                            <li>Allow yourself to simply be present with your partner</li>
-                            <li>Notice any urges to laugh or look away—this is normal</li>
-                            <li>Afterward, share what the experience was like</li>
-                        </ol>
-                        <p>Studies show this simple exercise increases feelings of closeness by 45% and can reignite passion in long-term relationships.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">The Neuroscience of Relationship Habits</h2>
-                    <p>Our brains are constantly forming neural pathways based on repeated behaviors. In relationships, this means that positive interactions literally rewire our brains for love, while negative patterns create neural ruts that make conflict more likely.</p>
-
-                    <div class="research-box">
-                        <p>Neuroscientist Dr. Rick Hanson's research shows that it takes five positive experiences to outweigh one negative experience due to the brain's "negativity bias." This is why the Gottman 5:1 ratio is so crucial—it accounts for our brain's natural tendency to focus on problems.</p>
-                    </div>
-
-                    <p><strong>Creating Positive Neural Pathways:</strong></p>
-                    <ul>
-                        <li><strong>Mindful Appreciation:</strong> Spend 20 seconds focusing on something you love about your partner daily</li>
-                        <li><strong>Positive Assumption:</strong> Train your brain to assume positive intent behind your partner's actions</li>
-                        <li><strong>Celebration Rituals:</strong> Create consistent ways to celebrate each other's wins, no matter how small</li>
-                        <li><strong>Gratitude Practices:</strong> Express specific appreciation for your partner's efforts regularly</li>
-                    </ul>
-
-                    <div class="quote">
-                        Love is not just a feeling, it's a decision you make every day.
-                        <div class="quote-author">— Unknown</div>
-                    </div>
-                </div>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Key Takeaways</h3>
-                    <ul>
-                        <li>Love involves three distinct brain systems: lust, attraction, and attachment</li>
-                        <li>Oxytocin can be naturally increased through touch, eye contact, and synchronized activities</li>
-                        <li>Positive relationship habits literally rewire your brain for love</li>
-                        <li>The brain's negativity bias requires intentional focus on the positive</li>
-                        <li>Physical touch and emotional connection are neurologically linked</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chapter 4 -->
-        <div id="chapter-4" class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Chapter Four</div>
-                <h1 class="chapter-title">Conflict Resolution</h1>
-                <p class="chapter-subtitle">Science-Based Strategies for Healthy Disagreement</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">Conflict isn't the enemy of good relationships—it's an opportunity for growth and deeper understanding. Research shows that couples who learn to fight well actually become stronger and more intimate.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Physiology of Conflict</h2>
-                    <p>When we feel emotionally threatened, our sympathetic nervous system activates, flooding our bodies with stress hormones like cortisol and adrenaline. This "emotional flooding" makes productive conversation nearly impossible.</p>
-
-                    <div class="research-box">
-                        <p>Studies show that when heart rate exceeds 100 beats per minute during conflict, cognitive function decreases by up to 30%. Taking a 20-minute break allows stress hormones to metabolize and rational thinking to return.</p>
-                    </div>
-
-                    <p><strong>Signs of Emotional Flooding:</strong></p>
-                    <ul>
-                        <li>Heart racing or pounding</li>
-                        <li>Feeling overwhelmed or panicked</li>
-                        <li>Inability to think clearly</li>
-                        <li>Strong urge to attack or withdraw</li>
-                        <li>Physical tension or sweating</li>
-                    </ul>
-
-                    <div class="tip-box">
-                        <p>When you notice flooding, use the phrase "I need to take a break to calm down so I can hear you better." This frames the break as caring for the relationship, not abandoning it. Always return to the conversation within 24 hours.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">The PREP Method for Healthy Conflict</h2>
-                    <p>Developed by relationship researchers Markman, Stanley, and Blumberg, the PREP method provides a structured approach to discussing difficult issues without damaging the relationship.</p>
-
-                    <p><strong>P - Pause:</strong> Take a moment to breathe and center yourself before responding. This prevents reactive responses that escalate conflict.</p>
-
-                    <p><strong>R - Reflect:</strong> Mirror back what you heard your partner say before responding. "What I'm hearing is..." This ensures understanding before moving forward.</p>
-
-                    <p><strong>E - Empathize:</strong> Acknowledge your partner's feelings even if you disagree with their perspective. "I can see why you'd feel hurt by that."</p>
-
-                    <p><strong>P - Problem-solve:</strong> Only after the first three steps, work together to find solutions. "What would help you feel better about this situation?"</p>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">The 15-Minute Rule</h3>
-                        <p>Practice structured conflict resolution with this exercise:</p>
-                        <ol>
-                            <li><strong>Minutes 1-5:</strong> Partner A shares their perspective without interruption</li>
-                            <li><strong>Minutes 6-10:</strong> Partner B reflects back what they heard and empathizes</li>
-                            <li><strong>Minutes 11-15:</strong> Switch roles</li>
-                            <li><strong>After 15 minutes:</strong> Work together on solutions</li>
-                        </ol>
-                        <p>The key is staying in your designated role—speaker or listener—without switching mid-stream.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Understanding Conflict Styles</h2>
-                    <p>Research by Kenneth Thomas and Ralph Kilmann identified five conflict styles. Understanding your natural style—and your partner's—can prevent many misunderstandings.</p>
-
-                    <p><strong>Competing:</strong> High assertiveness, low cooperation. "I need to win." Can be useful in crises but damaging if overused.</p>
-
-                    <p><strong>Accommodating:</strong> Low assertiveness, high cooperation. "Whatever you want." Maintains harmony but can breed resentment.</p>
-
-                    <p><strong>Avoiding:</strong> Low assertiveness, low cooperation. "Let's not talk about this." May reduce immediate tension but problems remain unresolved.</p>
-
-                    <p><strong>Compromising:</strong> Moderate assertiveness and cooperation. "Let's split the difference." Quick solutions but may not address deeper needs.</p>
-
-                    <p><strong>Collaborating:</strong> High assertiveness, high cooperation. "Let's find a solution that works for both of us." Takes more time but creates the strongest outcomes.</p>
-
-                    <div class="tip-box">
-                        <p>Aim for collaboration on important issues, but recognize that other styles have their place. Use competing for urgent decisions, accommodating for minor preferences, avoiding for trivial issues, and compromising when time is limited.</p>
-                    </div>
-                </div>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Key Takeaways</h3>
-                    <ul>
-                        <li>Emotional flooding makes productive conversation impossible—take breaks when needed</li>
-                        <li>Use the PREP method: Pause, Reflect, Empathize, Problem-solve</li>
-                        <li>Understand your conflict style and practice collaboration for important issues</li>
-                        <li>Focus on understanding before being understood</li>
-                        <li>Return to difficult conversations within 24 hours of taking a break</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chapter 5 -->
-        <div id="chapter-5" class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Chapter Five</div>
-                <h1 class="chapter-title">Emotional Intelligence</h1>
-                <p class="chapter-subtitle">Building EQ Together</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">Emotional intelligence—the ability to understand and manage emotions—is a stronger predictor of relationship success than IQ, personality, or even compatibility. The good news? EQ can be developed throughout your lifetime.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Four Domains of Emotional Intelligence</h2>
-                    <p>Psychologist Daniel Goleman identified four key areas of emotional intelligence, each crucial for healthy relationships.</p>
-
-                    <div class="research-box">
-                        <p>A study of 2,000 couples found that relationships where both partners scored high on emotional intelligence measures were 87% more likely to report high satisfaction and 60% less likely to experience infidelity or separation.</p>
-                    </div>
-
-                    <p><strong>1. Self-Awareness:</strong> Understanding your own emotions, triggers, and patterns. This includes recognizing how your emotions affect your behavior and your partner.</p>
-
-                    <p><strong>2. Self-Management:</strong> The ability to regulate your emotions, especially during stress. This doesn't mean suppressing emotions, but responding thoughtfully rather than reactively.</p>
-
-                    <p><strong>3. Social Awareness:</strong> Reading your partner's emotions accurately and understanding their perspective, even when it differs from your own.</p>
-
-                    <p><strong>4. Relationship Management:</strong> Using emotional information to navigate interactions successfully, including conflict resolution and building intimacy.</p>
-
-                    <div class="tip-box">
-                        <p>Practice the "Name it to Tame it" technique: When you notice strong emotions arising, simply name what you're feeling out loud. Research shows this activates the prefrontal cortex and calms the emotional limbic system.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Developing Emotional Vocabulary</h2>
-                    <p>Most people use only basic emotion words like "good," "bad," "happy," or "sad." Expanding your emotional vocabulary increases your ability to understand and communicate feelings precisely.</p>
-
-                    <p><strong>Instead of "angry," try:</strong> Frustrated, irritated, resentful, furious, annoyed, outraged, or disappointed</p>
-
-                    <p><strong>Instead of "sad," try:</strong> Disappointed, heartbroken, melancholy, grieving, dejected, or discouraged</p>
-
-                    <p><strong>Instead of "happy," try:</strong> Joyful, content, elated, grateful, excited, or serene</p>
-
-                    <p><strong>Instead of "scared," try:</strong> Anxious, worried, terrified, nervous, apprehensive, or overwhelmed</p>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">Daily Emotion Check-In</h3>
-                        <p>Build emotional awareness with this simple daily practice:</p>
-                        <ol>
-                            <li>Set three random phone alarms throughout the day</li>
-                            <li>When the alarm goes off, pause and identify what you're feeling</li>
-                            <li>Use specific emotion words, not just "good" or "bad"</li>
-                            <li>Notice what triggered the emotion</li>
-                            <li>Share your observations with your partner during your daily check-in</li>
-                        </ol>
-                        <p>After just two weeks, you'll notice significant improvements in emotional awareness.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Emotional Contagion and Regulation</h2>
-                    <p>Emotions are contagious—we literally "catch" feelings from those around us through mirror neurons. In relationships, this means your emotional state directly impacts your partner's well-being.</p>
-
-                    <div class="quote">
-                        Your partner's nervous system is not separate from your own.
-                        <div class="quote-author">— Stan Tatkin</div>
-                    </div>
-
-                    <p><strong>Co-regulation Strategies:</strong></p>
-                    <ul>
-                        <li><strong>Synchronized Breathing:</strong> Breathe together for 2 minutes to sync your nervous systems</li>
-                        <li><strong>Calm Presence:</strong> When your partner is dysregulated, focus on maintaining your own calm</li>
-                        <li><strong>Physical Grounding:</strong> Use gentle touch or holding to provide nervous system stability</li>
-                        <li><strong>Validation First:</strong> Acknowledge emotions before trying to problem-solve</li>
-                    </ul>
-
-                    <div class="research-box">
-                        <p>Heart Rate Variability studies show that couples who practice co-regulation techniques demonstrate synchronized heart rhythms within just 5 minutes of focused connection, leading to reduced stress hormones and increased feelings of safety.</p>
-                    </div>
-                </div>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Key Takeaways</h3>
-                    <ul>
-                        <li>Emotional intelligence has four domains: self-awareness, self-management, social awareness, and relationship management</li>
-                        <li>Expanding your emotional vocabulary improves communication and understanding</li>
-                        <li>Emotions are contagious—your emotional state affects your partner</li>
-                        <li>Practice co-regulation to help each other manage difficult emotions</li>
-                        <li>Daily emotion check-ins build awareness and connection</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chapter 6 -->
-        <div id="chapter-6" class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Chapter Six</div>
-                <h1 class="chapter-title">Long-Term Commitment</h1>
-                <p class="chapter-subtitle">The Psychology of Lasting Love</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">What separates couples who thrive for decades from those who drift apart? Research reveals specific psychological factors that predict long-term relationship success—and most can be cultivated intentionally.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Investment Model of Relationships</h2>
-                    <p>Psychologist Caryl Rusbult's Investment Model explains why some relationships last while others end. Three factors predict commitment: satisfaction, quality of alternatives, and investment size.</p>
-
-                    <div class="research-box">
-                        <p>A 15-year longitudinal study found that couples with high investment levels were 4 times more likely to stay together, regardless of temporary dips in satisfaction. Investment—not just happiness—predicts longevity.</p>
-                    </div>
-
-                    <p><strong>Satisfaction:</strong> How rewarding is the relationship? This includes emotional, physical, and practical benefits minus costs.</p>
-
-                    <p><strong>Quality of Alternatives:</strong> How attractive are other options? This includes other potential partners but also the appeal of being single.</p>
-
-                    <p><strong>Investment Size:</strong> What would be lost if the relationship ended? This includes shared experiences, mutual friends, financial entanglement, and children.</p>
-
-                    <div class="tip-box">
-                        <p>Regularly increase your investment by creating shared experiences, building mutual friendships, and working toward common goals. These investments make the relationship more valuable to both partners and increase commitment naturally.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Shared Meaning and Purpose</h2>
-                    <p>The Gottman research shows that couples who create shared meaning have relationships that not only last but continue to grow stronger over time. This involves building a sense of shared purpose and common values.</p>
-
-                    <p><strong>Elements of Shared Meaning:</strong></p>
-                    <ul>
-                        <li><strong>Rituals of Connection:</strong> Regular practices that bond you together</li>
-                        <li><strong>Shared Goals:</strong> Working toward common objectives, big and small</li>
-                        <li><strong>Values Alignment:</strong> Understanding and respecting each other's core beliefs</li>
-                        <li><strong>Family Culture:</strong> Creating unique traditions and ways of being together</li>
-                        <li><strong>Spiritual Connection:</strong> Sharing beliefs about meaning and purpose in life</li>
-                    </ul>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">Creating Your Relationship Mission Statement</h3>
-                        <p>Work together to articulate your shared vision:</p>
-                        <ol>
-                            <li>Individually, write down your core values and life goals</li>
-                            <li>Share your lists and identify common themes</li>
-                            <li>Discuss what you want your relationship to represent</li>
-                            <li>Write a joint mission statement that captures your shared purpose</li>
-                            <li>Review and update it annually</li>
-                        </ol>
-                        <p>Example: "We commit to growing together while honoring our individual paths, creating a home filled with laughter and learning, and supporting each other's dreams while building our own."</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">The Growth Mindset in Relationships</h2>
-                    <p>Psychologist Carol Dweck's research on growth mindset applies powerfully to relationships. Couples who believe their relationship can improve and grow are more resilient and satisfied.</p>
-
-                    <div class="quote">
-                        The greatest relationships are those where both people never stop working to improve themselves and their connection.
-                        <div class="quote-author">— Unknown</div>
-                    </div>
-
-                    <p><strong>Fixed Mindset in Relationships:</strong> "We're either compatible or we're not." "If they really loved me, they'd change." "Good relationships shouldn't require work."</p>
-
-                    <p><strong>Growth Mindset in Relationships:</strong> "We can learn to understand each other better." "We're both growing and changing, and that's healthy." "Every challenge is an opportunity to strengthen our bond."</p>
-
-                    <div class="research-box">
-                        <p>Couples who received growth mindset training showed 40% improvement in relationship satisfaction scores and were 60% more likely to work through major conflicts successfully compared to control groups.</p>
-                    </div>
-
-                    <div class="tip-box">
-                        <p>Reframe relationship challenges as "growth opportunities" rather than "problems." Ask "What can we learn from this?" instead of "Why is this happening to us?" This simple shift activates problem-solving rather than blame.</p>
-                    </div>
-                </div>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Key Takeaways</h3>
-                    <ul>
-                        <li>Investment in the relationship, not just satisfaction, predicts longevity</li>
-                        <li>Shared meaning and purpose create deeper connection than compatibility alone</li>
-                        <li>A growth mindset helps couples navigate challenges and change together</li>
-                        <li>Regular rituals and traditions build relationship investment</li>
-                        <li>Creating a relationship mission statement provides direction during difficult times</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chapter 7 -->
-        <div id="chapter-7" class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Chapter Seven</div>
-                <h1 class="chapter-title">Intimacy and Connection</h1>
-                <p class="chapter-subtitle">Research-Backed Approaches to Deeper Bonding</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">Intimacy isn't just about physical connection—it's about feeling truly known, understood, and accepted by your partner. Research shows that different types of intimacy build on each other to create unshakeable bonds.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Five Types of Intimacy</h2>
-                    <p>Relationship researchers have identified five distinct types of intimacy, each contributing to overall relationship satisfaction and stability.</p>
-
-                    <div class="research-box">
-                        <p>A study of 1,500 long-term couples found that those who actively cultivated all five types of intimacy reported 92% higher satisfaction and were 3.5 times less likely to consider divorce compared to couples focusing on only one or two types.</p>
-                    </div>
-
-                    <p><strong>1. Emotional Intimacy:</strong> Sharing feelings, fears, dreams, and vulnerabilities. This includes being genuinely interested in your partner's inner world.</p>
-
-                    <p><strong>2. Physical Intimacy:</strong> All forms of physical connection, from holding hands to sexual intimacy. Non-sexual touch is equally important for bonding.</p>
-
-                    <p><strong>3. Intellectual Intimacy:</strong> Sharing ideas, having meaningful conversations, and respecting each other's thoughts and opinions, even when they differ.</p>
-
-                    <p><strong>4. Experiential Intimacy:</strong> Sharing activities, creating memories together, and having fun as a couple.</p>
-
-                    <p><strong>5. Spiritual Intimacy:</strong> Connecting over shared values, beliefs about meaning and purpose, and supporting each other's personal growth.</p>
-
-                    <div class="tip-box">
-                        <p>Assess your relationship regularly across all five intimacy types. Identify which areas are strong and which need attention. Most couples excel in 2-3 areas but neglect the others.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">The Science of Sexual Intimacy</h2>
-                    <p>Sexual satisfaction and relationship satisfaction are strongly correlated, but not in the way most people think. Quality matters far more than quantity, and emotional connection often predicts physical satisfaction.</p>
-
-                    <p><strong>Research-Based Predictors of Sexual Satisfaction:</strong></p>
-                    <ul>
-                        <li><strong>Communication about preferences:</strong> Couples who can discuss desires openly report 73% higher satisfaction</li>
-                        <li><strong>Emotional safety:</strong> Feeling secure and accepted is the strongest predictor of physical intimacy</li>
-                        <li><strong>Presence and mindfulness:</strong> Being fully present during intimate moments increases satisfaction for both partners</li>
-                        <li><strong>Non-sexual physical affection:</strong> Regular cuddling and touching maintains physical connection</li>
-                        <li><strong>Novelty and playfulness:</strong> Trying new experiences together keeps passion alive</li>
-                    </ul>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">The Intimacy Conversation Framework</h3>
-                        <p>Use this structure for discussing physical intimacy needs:</p>
-                        <ol>
-                            <li><strong>Start with appreciation:</strong> "I love how affectionate you are..."</li>
-                            <li><strong>Share your feelings:</strong> "I feel most connected when..."</li>
-                            <li><strong>Express needs without pressure:</strong> "Something I'd enjoy exploring is..."</li>
-                            <li><strong>Ask about their needs:</strong> "What would make you feel most loved?"</li>
-                            <li><strong>Make agreements:</strong> "This week, let's try..."</li>
-                        </ol>
-                        <p>Remember: These conversations should happen outside the bedroom in a relaxed, non-sexual context.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Building Emotional Safety</h2>
-                    <p>Dr. Sue Johnson's research shows that emotional safety—the confidence that your partner will be there for you—is the foundation of all intimacy. Without safety, vulnerability becomes too risky.</p>
-
-                    <div class="quote">
-                        We are only as strong as we are united, as weak as we are divided.
-                        <div class="quote-author">— J.K. Rowling</div>
-                    </div>
-
-                    <p><strong>Creating Emotional Safety:</strong></p>
-                    <ul>
-                        <li><strong>Consistent responsiveness:</strong> Show up emotionally when your partner needs you</li>
-                        <li><strong>Non-judgmental listening:</strong> Create space for your partner's feelings without trying to fix them</li>
-                        <li><strong>Reliability:</strong> Follow through on promises and commitments, big and small</li>
-                        <li><strong>Emotional validation:</strong> Acknowledge your partner's feelings even when you disagree with their perspective</li>
-                        <li><strong>Physical comfort:</strong> Offer appropriate touch and closeness during difficult moments</li>
-                    </ul>
-
-                    <div class="research-box">
-                        <p>Brain imaging studies show that when people feel emotionally safe with their partner, stress-response regions of the brain show 40% less activity, while reward and attachment areas become more active. Safety literally changes brain chemistry.</p>
-                    </div>
-
-                    <div class="tip-box">
-                        <p>Practice the "Turn Towards" response: When your partner makes a bid for attention, connection, or support, turn toward them with curiosity and care rather than turning away or against. This builds safety through micro-interactions.</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Maintaining Intimacy Through Life Changes</h2>
-                    <p>Long-term relationships face inevitable changes: career shifts, health challenges, raising children, aging. Couples who maintain intimacy through transitions share certain strategies.</p>
-
-                    <p><strong>Strategies for Intimacy During Transitions:</strong></p>
-                    <ul>
-                        <li><strong>Regular relationship meetings:</strong> Schedule weekly check-ins to discuss the relationship itself</li>
-                        <li><strong>Flexible intimacy:</strong> Adapt your connection methods to current circumstances</li>
-                        <li><strong>Intentional dating:</strong> Continue courting each other regardless of how long you've been together</li>
-                        <li><strong>Individual growth:</strong> Support each other's personal development and changing identities</li>
-                        <li><strong>Professional support:</strong> Seek couples therapy during major transitions, not just during crises</li>
-                    </ul>
-
-                    <div class="exercise">
-                        <h3 class="exercise-title">The Weekly Relationship Meeting</h3>
-                        <p>Implement this structure for maintaining connection:</p>
-                        <ol>
-                            <li><strong>Appreciations (5 minutes):</strong> Share what you appreciated about each other this week</li>
-                            <li><strong>Check-in (10 minutes):</strong> How is each person feeling about life and the relationship?</li>
-                            <li><strong>Issues (10 minutes):</strong> Discuss any concerns using the PREP method</li>
-                            <li><strong>Planning (5 minutes):</strong> Coordinate schedules and plan quality time together</li>
-                        </ol>
-                        <p>Keep it to 30 minutes maximum and focus on connection, not logistics.</p>
-                    </div>
-                </div>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Key Takeaways</h3>
-                    <ul>
-                        <li>Cultivate all five types of intimacy: emotional, physical, intellectual, experiential, and spiritual</li>
-                        <li>Sexual satisfaction depends more on emotional safety and communication than technique</li>
-                        <li>Emotional safety is the foundation that makes all other intimacy possible</li>
-                        <li>Turn toward your partner's bids for connection consistently</li>
-                        <li>Adapt intimacy strategies as life circumstances change</li>
-                        <li>Regular relationship meetings maintain connection through busy periods</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conclusion -->
-        <div class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Conclusion</div>
-                <h1 class="chapter-title">Your Journey Forward</h1>
-                <p class="chapter-subtitle">Implementing Science-Based Love</p>
-            </div>
-
-            <div class="content">
-                <p class="intro-text">Love is both an art and a science. While every relationship is unique, the research is clear: certain principles and practices consistently lead to stronger, more satisfying partnerships. Your journey toward deeper love begins with small, daily choices.</p>
-
-                <div class="section">
-                    <h2 class="section-title">The Compound Effect of Small Changes</h2>
-                    <p>Relationship transformation doesn't require dramatic gestures—it happens through the compound effect of small, consistent actions. A 20-second hug, a daily appreciation, a moment of curiosity about your partner's inner world—these micro-practices create macro-changes over time.</p>
-
-                    <div class="research-box">
-                        <p>Longitudinal studies show that couples who implement just three research-based practices consistently for six months report satisfaction improvements equivalent to couples who attended 20 hours of professional therapy.</p>
-                    </div>
-
-                    <p><strong>Your Daily Relationship Practices:</strong></p>
-                    <ul>
-                        <li>Start each day with a 20-second hug</li>
-                        <li>Express one specific appreciation daily</li>
-                        <li>Ask one curious question about your partner's experience</li>
-                        <li>Practice the 6-to-1 ratio: six positive interactions for every negative one</li>
-                        <li>End each day sharing one highlight and one challenge</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Your 30-Day Implementation Plan</h2>
-
-                    <p><strong>Week 1: Foundation Building</strong></p>
-                    <ul>
-                        <li>Take the attachment style assessment together</li>
-                        <li>Eliminate one of the Four Horsemen from your communication</li>
-                        <li>Practice the daily stress-reducing conversation</li>
-                    </ul>
-
-                    <p><strong>Week 2: Emotional Intelligence</strong></p>
-                    <ul>
-                        <li>Implement daily emotion check-ins</li>
-                        <li>Practice co-regulation during one conflict</li>
-                        <li>Expand your emotional vocabulary</li>
-                    </ul>
-
-                    <p><strong>Week 3: Deepening Connection</strong></p>
-                    <ul>
-                        <li>Try the 4-minute eye contact exercise</li>
-                        <li>Plan one novel experience together</li>
-                        <li>Create a relationship mission statement</li>
-                    </ul>
-
-                    <p><strong>Week 4: Integration and Planning</strong></p>
-                    <ul>
-                        <li>Hold your first weekly relationship meeting</li>
-                        <li>Identify which intimacy types need attention</li>
-                        <li>Plan your ongoing growth together</li>
-                    </ul>
-                </div>
-
-                <div class="quote">
-                    Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.
-                    <div class="quote-author">— Lao Tzu</div>
-                </div>
-
-                <p>Remember: you don't have to be perfect to have a great relationship. You just have to be willing to grow, learn, and show up for each other consistently. The science of love isn't about achieving some ideal—it's about building skills and practices that help you weather life's storms together and celebrate its joys more fully.</p>
-
-                <p>Your love story is still being written. Use these research-backed tools not as rigid rules, but as a compass to guide you toward deeper connection, understanding, and joy. The greatest relationships aren't those without challenges—they're those where two people commit to growing together through whatever life brings.</p>
-
-                <div class="key-takeaways">
-                    <h3 class="key-takeaways-title">Your Relationship Toolkit Summary</h3>
-                    <ul>
-                        <li><strong>Foundation:</strong> Understand your attachment styles and build secure bonding</li>
-                        <li><strong>Communication:</strong> Eliminate the Four Horsemen and practice the 5:1 positive ratio</li>
-                        <li><strong>Neuroscience:</strong> Work with your brain's love systems through oxytocin-building activities</li>
-                        <li><strong>Conflict:</strong> Use PREP method and take breaks when emotionally flooded</li>
-                        <li><strong>Emotional Intelligence:</strong> Expand your emotional vocabulary and practice co-regulation</li>
-                        <li><strong>Commitment:</strong> Build shared meaning and maintain a growth mindset</li>
-                        <li><strong>Intimacy:</strong> Cultivate all five types and prioritize emotional safety</li>
-                    </ul>
-                </div>
-
-                <p>The research is clear: love isn't just a feeling that happens to you—it's a skill you can develop, a practice you can refine, and a bond you can strengthen every single day. Here's to your journey of science-based love.</p>
-            </div>
-        </div>
-
-        <!-- Resources Section -->
-        <div class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">Resources</div>
-                <h1 class="chapter-title">Further Reading</h1>
-                <p class="chapter-subtitle">Continuing Your Learning Journey</p>
-            </div>
-
-            <div class="content">
-                <div class="section">
-                    <h2 class="section-title">Recommended Books</h2>
-                    <ul>
-                        <li><strong>"The Seven Principles for Making Marriage Work"</strong> by John Gottman - The foundational research on what makes relationships succeed</li>
-                        <li><strong>"Hold Me Tight"</strong> by Sue Johnson - Essential guide to Emotionally Focused Therapy and secure attachment</li>
-                        <li><strong>"Attached"</strong> by Amir Levine and Rachel Heller - Practical application of attachment theory in adult relationships</li>
-                        <li><strong>"Wired for Love"</strong> by Stan Tatkin - Understanding how our brains and nervous systems affect relationships</li>
-                        <li><strong>"The Relationship Cure"</strong> by John Gottman - Deep dive into emotional connection and building love maps</li>
-                        <li><strong>"Getting the Love You Want"</strong> by Harville Hendrix - Imago therapy approach to healing relationship patterns</li>
-                        <li><strong>"The Five Love Languages"</strong> by Gary Chapman - Understanding how different people express and receive love</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Research Organizations and Websites</h2>
-                    <ul>
-                        <li><strong>The Gottman Institute</strong> - Ongoing relationship research and resources</li>
-                        <li><strong>International Centre for Excellence in EFT</strong> - Emotionally Focused Therapy training and resources</li>
-                        <li><strong>The National Marriage Project</strong> - Annual reports on relationship trends and research</li>
-                        <li><strong>Relationship Research Institute</strong> - Academic research on couple and family dynamics</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">Apps and Tools</h2>
-                    <ul>
-                        <li><strong>Gottman Card Decks App</strong> - Daily conversation starters and relationship exercises</li>
-                        <li><strong>Relish</strong> - Relationship coaching platform with personalized guidance</li>
-                        <li><strong>Lasting</strong> - Marriage counseling app with science-based exercises</li>
-                        <li><strong>Paired</strong> - Daily questions and challenges for couples</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">When to Seek Professional Help</h2>
-                    <p>Consider couples therapy if you're experiencing:</p>
-                    <ul>
-                        <li>Frequent conflicts that don't get resolved</li>
-                        <li>Emotional distance or feeling like roommates</li>
-                        <li>Trust issues or infidelity</li>
-                        <li>Major life transitions or stressors</li>
-                        <li>Communication patterns that feel stuck</li>
-                        <li>Different visions for the future</li>
-                        <li>Sexual or intimacy concerns</li>
-                    </ul>
-
-                    <div class="tip-box">
-                        <p>Don't wait until your relationship is in crisis to seek help. Many couples benefit from "relationship tune-ups" during healthy periods, and prevention is always easier than repair.</p>
-                    </div>
-                </div>
-
-                <div class="research-box">
-                    <p><strong>Final Research Note:</strong> Studies show that couples who read relationship books together and discuss the concepts are 25% more likely to implement positive changes compared to those who read individually. Consider making this a shared learning journey.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- About Section -->
-        <div class="chapter">
-            <div class="chapter-header">
-                <div class="chapter-number">About</div>
-                <h1 class="chapter-title">About This Guide</h1>
-                <p class="chapter-subtitle">The Science Behind the Science</p>
-            </div>
-
-            <div class="content">
-                <p>This guide synthesizes decades of relationship research from leading psychologists, neuroscientists, and relationship researchers. Every recommendation is based on peer-reviewed studies and has been tested with real couples in clinical and research settings.</p>
-
-                <div class="section">
-                    <h2 class="section-title">Key Research Contributors</h2>
-                    <ul>
-                        <li><strong>John Gottman, PhD</strong> - Over 40 years of relationship research, creator of the "Love Lab"</li>
-                        <li><strong>Sue Johnson, EdD</strong> - Developer of Emotionally Focused Therapy, attachment researcher</li>
-                        <li><strong>Helen Fisher, PhD</strong> - Anthropologist studying the brain science of love and attraction</li>
-                        <li><strong>Stan Tatkin, PsyD</strong> - Researcher in neurobiology and attachment in couple relationships</li>
-                        <li><strong>Esther Perel, MA</strong> - Therapist and researcher on intimacy and desire in long-term relationships</li>
-                        <li><strong>Arthur Aron, PhD</strong> - Social psychologist studying romantic relationships and self-expansion</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2 class="section-title">How to Use This Guide</h2>
-                    <p>This ebook is designed for:</p>
-                    <ul>
-                        <li>Couples wanting to strengthen their relationship proactively</li>
-                        <li>Partners working through specific challenges</li>
-                        <li>Individuals seeking to understand relationship dynamics better</li>
-                        <li>Those preparing for marriage or long-term commitment</li>
-                        <li>Couples in therapy looking for additional resources</li>
-                    </ul>
-
-                    <div class="tip-box">
-                        <p>Read one chapter per week and focus on implementing the exercises before moving to the next section. Real change happens through consistent practice, not just knowledge acquisition.</p>
-                    </div>
-                </div>
-
-                <div class="quote">
-                    The best relationships are not just about finding the right person, but about being the right person for each other, every single day.
-                    <div class="quote-author">— Unknown</div>
-                </div>
-
-                <p class="intro-text">Remember: every relationship is a unique fingerprint, and while science provides the blueprint, you and your partner are the architects of your own love story. Use these tools with compassion, patience, and hope.</p>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div style="margin-top: 80px; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; border-radius: 15px;">
-            <h3 style="margin-bottom: 20px; font-size: 1.5rem;">The Science of Love</h3>
-            <p style="margin-bottom: 10px; opacity: 0.9;">Evidence-Based Strategies for Building Stronger, Happier Relationships</p>
-            <p style="opacity: 0.7; font-size: 0.9rem;">© 2024 - Based on peer-reviewed relationship research</p>
-        </div>
+        <div class="geometric-border"></div>
     </div>
 </body>
 </html>
