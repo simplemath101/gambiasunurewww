@@ -3,1813 +3,1794 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Vamos a Aprender Español! - Spanish Learning Guide</title>
+    <title>Chinese Math Formula Shortcuts - Complete Guide</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --primary-color: #c41e3a;
-            --secondary-color: #ffc400;
-            --accent-color: #2c5530;
-            --text-dark: #2c3e50;
-            --text-light: #34495e;
-            --background: #fdfbf7;
-            --paper-white: #ffffff;
-            --shadow: rgba(0,0,0,0.1);
-            --border-light: #e8e8e8;
-            --highlight: #fff3cd;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --primary-color: #c41e3a;
+            --secondary-color: #ffd700;
+            --accent-color: #8B4513;
+            --text-color: #2c3e50;
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
+            --border-color: #e1e8ed;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --gradient: linear-gradient(135deg, #c41e3a, #dc143c);
+        }
+
         body {
-            font-family: 'Crimson Text', serif;
-            font-size: 18px;
-            line-height: 1.7;
-            color: var(--text-dark);
-            background: linear-gradient(135deg, var(--background) 0%, #f8f6f0 100%);
-            padding: 0;
-            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-color);
+            overflow-x: hidden;
         }
-        
-        .ebook-container {
-            max-width: 800px;
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            background: var(--paper-white);
-            box-shadow: 0 0 50px var(--shadow);
-            position: relative;
-            overflow: hidden;
+            padding: 0 20px;
         }
-        
-        .page {
-            padding: 60px 80px;
-            min-height: 100vh;
-            position: relative;
-        }
-        
-        .page::before {
-            content: '';
-            position: absolute;
-            left: 60px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
-            opacity: 0.3;
-        }
-        
-        /* Cover Page */
-        .cover {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #8b1538 50%, var(--accent-color) 100%);
+
+        /* Header Styles */
+        .header {
+            background: var(--gradient);
             color: white;
+            padding: 2rem 0;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             position: relative;
             overflow: hidden;
         }
-        
-        .cover::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            animation: float 20s infinite linear;
-        }
-        
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        .cover h1 {
-            font-size: 4rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cover .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cover .flag-decoration {
-            width: 150px;
-            height: 100px;
-            background: linear-gradient(to bottom, var(--primary-color) 33%, var(--secondary-color) 33%, var(--secondary-color) 66%, var(--primary-color) 66%);
-            margin: 30px 0;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            margin-top: 40px;
-            position: relative;
-        }
-        
-        h2::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 30px;
-            background: var(--secondary-color);
-            border-radius: 3px;
-        }
-        
-        h3 {
-            font-size: 1.4rem;
-            color: var(--accent-color);
-            margin-top: 30px;
-        }
-        
-        /* Lesson boxes */
-        .lesson-box {
-            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-            border: 2px solid var(--border-light);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .lesson-box::before {
+
+        .header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="20" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
         }
-        
-        .lesson-number {
-            position: absolute;
-            top: -10px;
-            right: 20px;
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item a:hover {
             background: var(--primary-color);
             color: white;
-            width: 40px;
-            height: 40px;
+            transform: translateY(-2px);
+        }
+
+        /* Chapter Styles */
+        .chapter {
+            margin: 3rem 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .chapter:hover {
+            transform: translateY(-5px);
+        }
+
+        .chapter-header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .chapter-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid var(--primary-color);
+        }
+
+        .chapter-number {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .chapter-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .chapter-content {
+            padding: 2rem;
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula-box::before {
+            content: '数学';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.1;
+            font-weight: bold;
+        }
+
+        .formula-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .formula-title::before {
+            content: '⚡';
+            font-size: 1.5rem;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--primary-color);
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Example Box */
+        .example-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-title {
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .example-title::before {
+            content: '💡';
+            font-size: 1.3rem;
+        }
+
+        /* Grid Layout for Multiplication */
+        .multiplication-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            gap: 2px;
+            max-width: 300px;
+            margin: 1rem 0;
+            border: 2px solid var(--primary-color);
+        }
+
+        .grid-cell {
+            aspect-ratio: 1;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .grid-cell.header {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .grid-cell.diagonal {
+            background: linear-gradient(45deg, #f8f9fa 50%, var(--secondary-color) 50%);
+        }
+
+        /* Step-by-step guide */
+        .step-guide {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-left: 4px solid var(--primary-color);
+            background: white;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -2rem;
+            top: 1rem;
+            background: var(--primary-color);
+            color: white;
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
-            font-family: 'Open Sans', sans-serif;
-        }
-        
-        /* Vocabulary tables */
-        .vocab-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-        }
-        
-        .vocab-table th {
-            background: linear-gradient(135deg, var(--primary-color), #8b1538);
-            color: white;
-            padding: 15px;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-            text-align: left;
-        }
-        
-        .vocab-table td {
-            padding: 15px;
-            border-bottom: 1px solid var(--border-light);
-        }
-        
-        .vocab-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        
-        .vocab-table tr:hover {
-            background: var(--highlight);
-            transform: scale(1.01);
-            transition: all 0.3s ease;
-        }
-        
-        .spanish-word {
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 1.1em;
-        }
-        
-        .pronunciation {
-            font-style: italic;
-            color: var(--text-light);
-            font-size: 0.9em;
-        }
-        
-        /* Grammar boxes */
-        .grammar-box {
-            background: linear-gradient(135deg, var(--highlight) 0%, #fff8dc 100%);
-            border-left: 5px solid var(--secondary-color);
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 0 15px 15px 0;
-            position: relative;
-        }
-        
-        .grammar-box::before {
-            content: '📚';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--secondary-color);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 1.2em;
-        }
-        
-        .grammar-title {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        
-        /* Example sentences */
-        .example {
-            background: #f0f8ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 15px 0;
-            border-left: 4px solid var(--accent-color);
-            position: relative;
-        }
-        
-        .example::before {
-            content: '💬';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5em;
-        }
-        
-        .spanish-example {
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-        
-        .english-translation {
-            color: var(--text-light);
-            font-style: italic;
-        }
-        
-        /* Exercise boxes */
-        .exercise-box {
-            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
-            border: 2px dashed var(--accent-color);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-            position: relative;
-        }
-        
-        .exercise-box::before {
-            content: '✏️ PRÁCTICA';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-            font-size: 0.8em;
-        }
-        
-        /* Cultural notes */
-        .cultural-note {
-            background: linear-gradient(135deg, #ffe6e6 0%, #fff0f0 100%);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-            border: 2px solid rgba(196, 30, 58, 0.3);
-            position: relative;
-        }
-        
-        .cultural-note::before {
-            content: '🌍 CULTURA';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-            font-size: 0.8em;
-        }
-        
-        /* Lists */
-        ul, ol {
-            padding-left: 30px;
-            margin: 20px 0;
-        }
-        
-        li {
-            margin: 10px 0;
-            position: relative;
-        }
-        
-        ul li::marker {
-            content: '▶ ';
-            color: var(--primary-color);
             font-weight: bold;
         }
-        
-        /* Progress indicators */
-        .progress-bar {
-            height: 8px;
-            background: var(--border-light);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 20px 0;
+
+        .step h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            margin-left: 1rem;
         }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 4px;
-            transition: width 0.3s ease;
+
+        .step p {
+            margin-left: 1rem;
         }
-        
-        /* Page numbers */
-        .page-number {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.9em;
-            color: var(--text-light);
-            background: rgba(255,255,255,0.8);
-            padding: 5px 10px;
-            border-radius: 15px;
+
+        /* Practice Section */
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
-        
-        /* Table of contents */
-        .toc {
+
+        .practice-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
         }
-        
-        .toc-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px dotted var(--border-light);
+
+        .practice-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Interactive Elements */
+        .toggle-solution {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             cursor: pointer;
+            margin: 1rem 0;
             transition: all 0.3s ease;
         }
-        
-        .toc-item:hover {
-            background: var(--highlight);
-            padding-left: 10px;
+
+        .toggle-solution:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .solution {
+            display: none;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .solution.visible {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Chinese Characters */
+        .chinese-char {
+            font-size: 2rem;
+            color: var(--primary-color);
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        /* Abacus Visualization */
+        .abacus {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #8B4513;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .abacus-rod {
+            width: 10px;
+            height: 200px;
+            background: #654321;
+            margin: 0 20px;
+            position: relative;
             border-radius: 5px;
         }
-        
-        .toc-item:last-child {
-            border-bottom: none;
+
+        .abacus-bead {
+            width: 25px;
+            height: 15px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            position: absolute;
+            left: -7.5px;
+            border: 2px solid #b8860b;
         }
-        
-        .toc-title {
-            color: var(--primary-color);
-            font-weight: 500;
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
         }
-        
-        .toc-page {
-            color: var(--text-light);
-            font-family: 'Open Sans', sans-serif;
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
         }
-        
-        /* Responsive design */
+
+        .timeline-item {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 15px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            width: 45%;
+            margin-left: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 0;
+            margin-right: 55%;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .page {
-                padding: 30px 40px;
-            }
-            
-            .cover h1 {
-                font-size: 2.5rem;
-            }
-            
-            .vocab-table {
-                font-size: 0.9em;
-            }
-            
-            .vocab-table th,
-            .vocab-table td {
-                padding: 10px;
-            }
+            .header h1 { font-size: 2rem; }
+            .nav-list { justify-content: center; gap: 1rem; }
+            .nav-list { flex-direction: column; align-items: center; }
+            .chapter-title { font-size: 1.8rem; }
+            .timeline-content { width: 80%; margin-left: 20%; }
+            .timeline-item:nth-child(even) .timeline-content { margin-left: 20%; margin-right: 0; }
+            .timeline::before { left: 10%; }
+            .timeline-item::before { left: 10%; }
         }
-        
+
+        /* Print Styles */
         @media print {
-            .ebook-container {
-                box-shadow: none;
-            }
-            
-            .page {
-                break-after: page;
-                min-height: auto;
-            }
+            .nav { display: none; }
+            .chapter { break-inside: avoid; margin: 1rem 0; }
+            body { font-size: 12pt; line-height: 1.4; }
         }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: 2rem; }
+        .highlight { background: var(--secondary-color); padding: 0.2rem 0.4rem; border-radius: 3px; }
+        .bold { font-weight: bold; }
+        .italic { font-style: italic; }
     </style>
 </head>
 <body>
-    <div class="ebook-container">
-        <!-- Cover Page -->
-        <div class="page cover">
-            <h1>¡Vamos a Aprender Español!</h1>
-            <div class="subtitle">A Complete Spanish Learning Guide for English Speakers</div>
-            <div class="flag-decoration"></div>
-            <p style="font-size: 1.2em; margin-top: 20px;">From Basics to Conversation</p>
-            <p style="font-size: 1em; opacity: 0.8; margin-top: 40px;">Learn Spanish step by step with practical lessons, cultural insights, and engaging exercises</p>
+    <header class="header">
+        <div class="container">
+            <h1>Chinese Math Formula Shortcuts</h1>
+            <p>Master Ancient Techniques for Modern Problem Solving</p>
+            <p class="chinese-char">数学捷径</p>
         </div>
-
-        <!-- Table of Contents -->
-        <div class="page">
-            <h1>Tabla de Contenidos (Table of Contents)</h1>
-            <div class="toc">
-                <div class="toc-item">
-                    <span class="toc-title">Introducción - Getting Started</span>
-                    <span class="toc-page">3</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Lección 1: Saludos y Presentaciones</span>
-                    <span class="toc-page">4</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Lección 2: Los Números</span>
-                    <span class="toc-page">5</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Lección 3: La Familia</span>
-                    <span class="toc-page">6</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Lección 4: Los Colores y Adjetivos</span>
-                    <span class="toc-page">7</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Lección 5: La Comida</span>
-                    <span class="toc-page">8</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Gramática Esencial</span>
-                    <span class="toc-page">9</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Conversaciones Básicas</span>
-                    <span class="toc-page">10</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Cultura Hispana</span>
-                    <span class="toc-page">11</span>
-                </div>
-                <div class="toc-item">
-                    <span class="toc-title">Recursos Adicionales</span>
-                    <span class="toc-page">12</span>
-                </div>
-            </div>
-            <div class="page-number">2</div>
-        </div>
-
-        <!-- Introduction -->
-        <div class="page">
-            <h1>Introducción - Getting Started</h1>
-            
-            <h2>¡Bienvenidos! Welcome to Spanish!</h2>
-            <p>Spanish is the second most spoken language in the world by native speakers, with over 460 million people speaking it globally. Learning Spanish opens doors to rich cultures across Spain, Latin America, and Hispanic communities worldwide.</p>
-
-            <div class="grammar-box">
-                <div class="grammar-title">Why Learn Spanish?</div>
-                <ul>
-                    <li><strong>Global Communication:</strong> Spanish is spoken in 21 countries</li>
-                    <li><strong>Career Opportunities:</strong> Bilingual speakers have more job prospects</li>
-                    <li><strong>Cultural Enrichment:</strong> Access to literature, films, and traditions</li>
-                    <li><strong>Cognitive Benefits:</strong> Learning languages improves brain function</li>
-                </ul>
-            </div>
-
-            <h3>Spanish Pronunciation Basics</h3>
-            <p>Spanish pronunciation is relatively straightforward because it's largely phonetic - words are pronounced as they're written!</p>
-
-            <table class="vocab-table">
-                <thead>
-                    <tr>
-                        <th>Letter</th>
-                        <th>Sound</th>
-                        <th>Example</th>
-                        <th>English Equivalent</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>a</strong></td>
-                        <td>ah</td>
-                        <td><span class="spanish-word">casa</span> <span class="pronunciation">(KAH-sah)</span></td>
-                        <td>house</td>
-                    </tr>
-                    <tr>
-                        <td><strong>e</strong></td>
-                        <td>eh</td>
-                        <td><span class="spanish-word">mesa</span> <span class="pronunciation">(MEH-sah)</span></td>
-                        <td>table</td>
-                    </tr>
-                    <tr>
-                        <td><strong>i</strong></td>
-                        <td>ee</td>
-                        <td><span class="spanish-word">niño</span> <span class="pronunciation">(NEE-nyoh)</span></td>
-                        <td>child</td>
-                    </tr>
-                    <tr>
-                        <td><strong>o</strong></td>
-                        <td>oh</td>
-                        <td><span class="spanish-word">todo</span> <span class="pronunciation">(TOH-doh)</span></td>
-                        <td>everything</td>
-                    </tr>
-                    <tr>
-                        <td><strong>u</strong></td>
-                        <td>oo</td>
-                        <td><span class="spanish-word">mucho</span> <span class="pronunciation">(MOO-choh)</span></td>
-                        <td>much</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="cultural-note">
-                <p><strong>Did you know?</strong> Spanish has only 5 vowel sounds, compared to English's 12-20 vowel sounds (depending on dialect). This makes Spanish pronunciation much more consistent!</p>
-            </div>
-
-            <div class="page-number">3</div>
-        </div>
-
-        <!-- Lesson 1: Greetings -->
-        <div class="page">
-            <div class="lesson-box">
-                <div class="lesson-number">1</div>
-                <h1>Lección 1: Saludos y Presentaciones</h1>
-                <h2>Greetings and Introductions</h2>
-
-                <h3>Essential Greetings</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                            <th>When to Use</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">Hola</td>
-                            <td class="pronunciation">OH-lah</td>
-                            <td>Hello</td>
-                            <td>Anytime</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">Buenos días</td>
-                            <td class="pronunciation">BWAY-nohs DEE-ahs</td>
-                            <td>Good morning</td>
-                            <td>Until noon</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">Buenas tardes</td>
-                            <td class="pronunciation">BWAY-nahs TAR-dehs</td>
-                            <td>Good afternoon</td>
-                            <td>Noon to 6pm</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">Buenas noches</td>
-                            <td class="pronunciation">BWAY-nahs NOH-chehs</td>
-                            <td>Good evening/night</td>
-                            <td>After 6pm</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">Adiós</td>
-                            <td class="pronunciation">ah-DYOHS</td>
-                            <td>Goodbye</td>
-                            <td>Formal farewell</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">Hasta luego</td>
-                            <td class="pronunciation">AHS-tah LWAY-goh</td>
-                            <td>See you later</td>
-                            <td>Casual farewell</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>Introducing Yourself</h3>
-                <div class="example">
-                    <div class="spanish-example">Me llamo María. ¿Cómo te llamas?</div>
-                    <div class="english-translation">My name is Maria. What's your name?</div>
-                </div>
-
-                <div class="example">
-                    <div class="spanish-example">Soy de México. ¿De dónde eres?</div>
-                    <div class="english-translation">I'm from Mexico. Where are you from?</div>
-                </div>
-
-                <div class="example">
-                    <div class="spanish-example">Mucho gusto en conocerte.</div>
-                    <div class="english-translation">Nice to meet you.</div>
-                </div>
-
-                <div class="exercise-box">
-                    <h4>Practice Exercise</h4>
-                    <p>Complete this conversation:</p>
-                    <p><strong>Person A:</strong> ¡Hola! Me llamo Carlos. ¿Cómo _____ llamas?</p>
-                    <p><strong>Person B:</strong> Hola Carlos. _____ llamo Ana. Mucho _____ en conocerte.</p>
-                    <p><strong>Person A:</strong> ¿De _____ eres, Ana?</p>
-                    <p><strong>Person B:</strong> Soy _____ España. ¿Y tú?</p>
-                </div>
-
-                <div class="cultural-note">
-                    <p><strong>Cultural Tip:</strong> In Spanish-speaking countries, it's common to greet with a kiss on the cheek (or two kisses in Spain) among friends and family. A handshake is more formal and used in business settings.</p>
-                </div>
-            </div>
-            <div class="page-number">4</div>
-        </div>
-
-        <!-- Lesson 2: Numbers -->
-        <div class="page">
-            <div class="lesson-box">
-                <div class="lesson-number">2</div>
-                <h1>Lección 2: Los Números</h1>
-                <h2>Numbers (0-100)</h2>
-
-                <h3>Numbers 0-20</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>0</td><td class="spanish-word">cero</td><td class="pronunciation">SEH-roh</td></tr>
-                        <tr><td>1</td><td class="spanish-word">uno</td><td class="pronunciation">OO-noh</td></tr>
-                        <tr><td>2</td><td class="spanish-word">dos</td><td class="pronunciation">dohs</td></tr>
-                        <tr><td>3</td><td class="spanish-word">tres</td><td class="pronunciation">trehs</td></tr>
-                        <tr><td>4</td><td class="spanish-word">cuatro</td><td class="pronunciation">KWAH-troh</td></tr>
-                        <tr><td>5</td><td class="spanish-word">cinco</td><td class="pronunciation">SEEN-koh</td></tr>
-                        <tr><td>6</td><td class="spanish-word">seis</td><td class="pronunciation">says</td></tr>
-                        <tr><td>7</td><td class="spanish-word">siete</td><td class="pronunciation">see-EH-teh</td></tr>
-                        <tr><td>8</td><td class="spanish-word">ocho</td><td class="pronunciation">OH-choh</td></tr>
-                        <tr><td>9</td><td class="spanish-word">nueve</td><td class="pronunciation">nway-VEH</td></tr>
-                        <tr><td>10</td><td class="spanish-word">diez</td><td class="pronunciation">dee-EHS</td></tr>
-                    </tbody>
-                </table>
-
-                <div class="grammar-box">
-                    <div class="grammar-title">Pattern for 11-19</div>
-                    <p>Numbers 11-15 are irregular, but 16-19 follow a pattern:</p>
-                    <ul>
-                        <li>11 = <strong>once</strong> (OHN-seh)</li>
-                        <li>12 = <strong>doce</strong> (DOH-seh)</li>
-                        <li>13 = <strong>trece</strong> (TREH-seh)</li>
-                        <li>14 = <strong>catorce</strong> (kah-TOR-seh)</li>
-                        <li>15 = <strong>quince</strong> (KEEN-seh)</li>
-                        <li>16 = <strong>dieciséis</strong> (dee-eh-see-SAYS)</li>
-                        <li>17 = <strong>diecisiete</strong> (dee-eh-see-see-EH-teh)</li>
-                        <li>18 = <strong>dieciocho</strong> (dee-eh-see-OH-choh)</li>
-                        <li>19 = <strong>diecinueve</strong> (dee-eh-see-nway-VEH)</li>
-                    </ul>
-                </div>
-
-                <h3>Tens (20-100)</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>20</td><td class="spanish-word">veinte</td><td class="pronunciation">VAYN-teh</td></tr>
-                        <tr><td>30</td><td class="spanish-word">treinta</td><td class="pronunciation">TRAYN-tah</td></tr>
-                        <tr><td>40</td><td class="spanish-word">cuarenta</td><td class="pronunciation">kwah-REN-tah</td></tr>
-                        <tr><td>50</td><td class="spanish-word">cincuenta</td><td class="pronunciation">seen-KWEN-tah</td></tr>
-                        <tr><td>60</td><td class="spanish-word">sesenta</td><td class="pronunciation">seh-SEN-tah</td></tr>
-                        <tr><td>70</td><td class="spanish-word">setenta</td><td class="pronunciation">seh-TEN-tah</td></tr>
-                        <tr><td>80</td><td class="spanish-word">ochenta</td><td class="pronunciation">oh-CHEN-tah</td></tr>
-                        <tr><td>90</td><td class="spanish-word">noventa</td><td class="pronunciation">noh-VEN-tah</td></tr>
-                        <tr><td>100</td><td class="spanish-word">cien</td><td class="pronunciation">see-EN</td></tr>
-                    </tbody>
-                </table>
-
-                <div class="example">
-                    <div class="spanish-example">Tengo veinticinco años.</div>
-                    <div class="english-translation">I am 25 years old.</div>
-                </div>
-
-                <div class="example">
-                    <div class="spanish-example">Mi número de teléfono es cinco-cinco-cinco, tres-dos-uno-cero.</div>
-                    <div class="english-translation">My phone number is 555-3210.</div>
-                </div>
-
-                <div class="exercise-box">
-                    <h4>Practice: Write these numbers in Spanish</h4>
-                    <ul>
-                        <li>23 = veinti_____</li>
-                        <li>47 = cuarenta y _____</li>
-                        <li>68 = _____ y ocho</li>
-                        <li>91 = noventa y _____</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="page-number">5</div>
-        </div>
-
-        <!-- Lesson 3: Family -->
-        <div class="page">
-            <div class="lesson-box">
-                <div class="lesson-number">3</div>
-                <h1>Lección 3: La Familia</h1>
-                <h2>Family Members</h2>
-
-                <h3>Core Family Vocabulary</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                            <th>Plural</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">la familia</td>
-                            <td class="pronunciation">lah fah-MEE-lee-ah</td>
-                            <td>family</td>
-                            <td>las familias</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el padre/papá</td>
-                            <td class="pronunciation">el PAH-dreh/pah-PAH</td>
-                            <td>father/dad</td>
-                            <td>los padres</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la madre/mamá</td>
-                            <td class="pronunciation">lah MAH-dreh/mah-MAH</td>
-                            <td>mother/mom</td>
-                            <td>las madres</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el hijo</td>
-                            <td class="pronunciation">el EE-hoh</td>
-                            <td>son</td>
-                            <td>los hijos</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la hija</td>
-                            <td class="pronunciation">lah EE-hah</td>
-                            <td>daughter</td>
-                            <td>las hijas</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el hermano</td>
-                            <td class="pronunciation">el er-MAH-noh</td>
-                            <td>brother</td>
-                            <td>los hermanos</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la hermana</td>
-                            <td class="pronunciation">lah er-MAH-nah</td>
-                            <td>sister</td>
-                            <td>las hermanas</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el abuelo</td>
-                            <td class="pronunciation">el ah-BWAY-loh</td>
-                            <td>grandfather</td>
-                            <td>los abuelos</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la abuela</td>
-                            <td class="pronunciation">lah ah-BWAY-lah</td>
-                            <td>grandmother</td>
-                            <td>las abuelas</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="grammar-box">
-                    <div class="grammar-title">Gender and Articles in Spanish</div>
-                    <p>Spanish nouns have gender (masculine or feminine):</p>
-                    <ul>
-                        <li><strong>Masculine:</strong> el (the) - usually ends in -o</li>
-                        <li><strong>Feminine:</strong> la (the) - usually ends in -a</li>
-                        <li><strong>Plural:</strong> los (masculine) / las (feminine)</li>
-                    </ul>
-                </div>
-
-                <h3>Extended Family</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">el tío</td>
-                            <td class="pronunciation">el TEE-oh</td>
-                            <td>uncle</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la tía</td>
-                            <td class="pronunciation">lah TEE-ah</td>
-                            <td>aunt</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el primo</td>
-                            <td class="pronunciation">el PREE-moh</td>
-                            <td>cousin (male)</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la prima</td>
-                            <td class="pronunciation">lah PREE-mah</td>
-                            <td>cousin (female)</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el esposo/marido</td>
-                            <td class="pronunciation">el es-POH-soh/mah-REE-doh</td>
-                            <td>husband</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la esposa/mujer</td>
-                            <td class="pronunciation">lah es-POH-sah/moo-HER</td>
-                            <td>wife</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="example">
-                    <div class="spanish-example">Mi familia es grande. Tengo dos hermanos y una hermana.</div>
-                    <div class="english-translation">My family is big. I have two brothers and one sister.</div>
-                </div>
-
-                <div class="example">
-                    <div class="spanish-example">Mis abuelos viven en España.</div>
-                    <div class="english-translation">My grandparents live in Spain.</div>
-                </div>
-
-                <div class="cultural-note">
-                    <p><strong>Cultural Insight:</strong> Family is extremely important in Hispanic cultures. Extended families often live close together, and Sunday family meals are a cherished tradition. The concept of "familismo" emphasizes loyalty and solidarity within the family unit.</p>
-                </div>
-
-                <div class="exercise-box">
-                    <h4>Family Tree Exercise</h4>
-                    <p>Describe your family using these phrases:</p>
-                    <ul>
-                        <li>Tengo _____ hermanos. (I have _____ siblings.)</li>
-                        <li>Mi _____ se llama _____. (My _____ is named _____.)</li>
-                        <li>Somos _____ personas en mi familia. (There are _____ people in my family.)</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="page-number">6</div>
-        </div>
-
-        <!-- Lesson 4: Colors and Adjectives -->
-        <div class="page">
-            <div class="lesson-box">
-                <div class="lesson-number">4</div>
-                <h1>Lección 4: Los Colores y Adjetivos</h1>
-                <h2>Colors and Adjectives</h2>
-
-                <h3>Basic Colors</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                            <th>Feminine Form</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">rojo</td>
-                            <td class="pronunciation">ROH-hoh</td>
-                            <td>red</td>
-                            <td>roja</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">azul</td>
-                            <td class="pronunciation">ah-SOOL</td>
-                            <td>blue</td>
-                            <td>azul</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">verde</td>
-                            <td class="pronunciation">VER-deh</td>
-                            <td>green</td>
-                            <td>verde</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">amarillo</td>
-                            <td class="pronunciation">ah-mah-REE-yoh</td>
-                            <td>yellow</td>
-                            <td>amarilla</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">negro</td>
-                            <td class="pronunciation">NEH-groh</td>
-                            <td>black</td>
-                            <td>negra</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">blanco</td>
-                            <td class="pronunciation">BLAHN-koh</td>
-                            <td>white</td>
-                            <td>blanca</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">morado</td>
-                            <td class="pronunciation">moh-RAH-doh</td>
-                            <td>purple</td>
-                            <td>morada</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">naranja</td>
-                            <td class="pronunciation">nah-RAHN-hah</td>
-                            <td>orange</td>
-                            <td>naranja</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">rosa/rosado</td>
-                            <td class="pronunciation">ROH-sah/roh-SAH-doh</td>
-                            <td>pink</td>
-                            <td>rosa/rosada</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">marrón</td>
-                            <td class="pronunciation">mah-ROHN</td>
-                            <td>brown</td>
-                            <td>marrón</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="grammar-box">
-                    <div class="grammar-title">Adjective Agreement</div>
-                    <p>Spanish adjectives must agree in gender and number with the nouns they modify:</p>
-                    <ul>
-                        <li><strong>Masculine singular:</strong> el carro rojo (the red car)</li>
-                        <li><strong>Feminine singular:</strong> la casa roja (the red house)</li>
-                        <li><strong>Masculine plural:</strong> los carros rojos (the red cars)</li>
-                        <li><strong>Feminine plural:</strong> las casas rojas (the red houses)</li>
-                    </ul>
-                </div>
-
-                <h3>Descriptive Adjectives</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish (m/f)</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                            <th>Opposite</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">grande</td>
-                            <td class="pronunciation">GRAHN-deh</td>
-                            <td>big</td>
-                            <td>pequeño/a</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">alto/a</td>
-                            <td class="pronunciation">AHL-toh/tah</td>
-                            <td>tall</td>
-                            <td>bajo/a</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">gordo/a</td>
-                            <td class="pronunciation">GOR-doh/dah</td>
-                            <td>fat</td>
-                            <td>delgado/a</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">viejo/a</td>
-                            <td class="pronunciation">vee-EH-hoh/hah</td>
-                            <td>old</td>
-                            <td>joven</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">bueno/a</td>
-                            <td class="pronunciation">BWAY-noh/nah</td>
-                            <td>good</td>
-                            <td>malo/a</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">bonito/a</td>
-                            <td class="pronunciation">boh-NEE-toh/tah</td>
-                            <td>pretty</td>
-                            <td>feo/a</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">inteligente</td>
-                            <td class="pronunciation">een-teh-lee-HEN-teh</td>
-                            <td>intelligent</td>
-                            <td>tonto/a</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">simpático/a</td>
-                            <td class="pronunciation">seem-PAH-tee-koh/kah</td>
-                            <td>nice/friendly</td>
-                            <td>antipático/a</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="example">
-                    <div class="spanish-example">Mi hermana es alta y tiene el cabello negro.</div>
-                    <div class="english-translation">My sister is tall and has black hair.</div>
-                </div>
-
-                <div class="example">
-                    <div class="spanish-example">El carro azul es más grande que el carro rojo.</div>
-                    <div class="english-translation">The blue car is bigger than the red car.</div>
-                </div>
-
-                <div class="exercise-box">
-                    <h4>Description Practice</h4>
-                    <p>Complete the sentences with the correct adjective form:</p>
-                    <ul>
-                        <li>La casa es _____ (grande).</li>
-                        <li>Los niños son _____ (alto).</li>
-                        <li>Las flores _____ (amarillo) son bonitas.</li>
-                        <li>Mi abuela es muy _____ (simpático).</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="page-number">7</div>
-        </div>
-
-        <!-- Lesson 5: Food -->
-        <div class="page">
-            <div class="lesson-box">
-                <div class="lesson-number">5</div>
-                <h1>Lección 5: La Comida</h1>
-                <h2>Food and Drinks</h2>
-
-                <h3>Basic Foods</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                            <th>Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">el pan</td>
-                            <td class="pronunciation">el pahn</td>
-                            <td>bread</td>
-                            <td>carbs</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el arroz</td>
-                            <td class="pronunciation">el ah-ROHS</td>
-                            <td>rice</td>
-                            <td>carbs</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la pasta</td>
-                            <td class="pronunciation">lah PAHS-tah</td>
-                            <td>pasta</td>
-                            <td>carbs</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la carne</td>
-                            <td class="pronunciation">lah KAR-neh</td>
-                            <td>meat</td>
-                            <td>protein</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el pollo</td>
-                            <td class="pronunciation">el POH-yoh</td>
-                            <td>chicken</td>
-                            <td>protein</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el pescado</td>
-                            <td class="pronunciation">el peh-SKAH-doh</td>
-                            <td>fish</td>
-                            <td>protein</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">los huevos</td>
-                            <td class="pronunciation">lohs WAY-vohs</td>
-                            <td>eggs</td>
-                            <td>protein</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la leche</td>
-                            <td class="pronunciation">lah LEH-cheh</td>
-                            <td>milk</td>
-                            <td>dairy</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el queso</td>
-                            <td class="pronunciation">el KEH-soh</td>
-                            <td>cheese</td>
-                            <td>dairy</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>Fruits and Vegetables</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                            <th>Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">la manzana</td>
-                            <td class="pronunciation">lah mahn-SAH-nah</td>
-                            <td>apple</td>
-                            <td>fruit</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la naranja</td>
-                            <td class="pronunciation">lah nah-RAHN-hah</td>
-                            <td>orange</td>
-                            <td>fruit</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el plátano</td>
-                            <td class="pronunciation">el PLAH-tah-noh</td>
-                            <td>banana</td>
-                            <td>fruit</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">las fresas</td>
-                            <td class="pronunciation">lahs FREH-sahs</td>
-                            <td>strawberries</td>
-                            <td>fruit</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la lechuga</td>
-                            <td class="pronunciation">lah leh-CHOO-gah</td>
-                            <td>lettuce</td>
-                            <td>vegetable</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el tomate</td>
-                            <td class="pronunciation">el toh-MAH-teh</td>
-                            <td>tomato</td>
-                            <td>vegetable</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">las zanahorias</td>
-                            <td class="pronunciation">lahs sah-nah-OH-ree-ahs</td>
-                            <td>carrots</td>
-                            <td>vegetable</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">las papas/patatas</td>
-                            <td class="pronunciation">lahs PAH-pahs/pah-TAH-tahs</td>
-                            <td>potatoes</td>
-                            <td>vegetable</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>Drinks and Beverages</h3>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">el agua</td>
-                            <td class="pronunciation">el AH-gwah</td>
-                            <td>water</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el café</td>
-                            <td class="pronunciation">el kah-FEH</td>
-                            <td>coffee</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el té</td>
-                            <td class="pronunciation">el teh</td>
-                            <td>tea</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el jugo/zumo</td>
-                            <td class="pronunciation">el HOO-goh/SOO-moh</td>
-                            <td>juice</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">la cerveza</td>
-                            <td class="pronunciation">lah ser-VEH-sah</td>
-                            <td>beer</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">el vino</td>
-                            <td class="pronunciation">el VEE-noh</td>
-                            <td>wine</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="grammar-box">
-                    <div class="grammar-title">Expressions with Food</div>
-                    <ul>
-                        <li><strong>Tengo hambre</strong> - I'm hungry</li>
-                        <li><strong>Tengo sed</strong> - I'm thirsty</li>
-                        <li><strong>Me gusta...</strong> - I like...</li>
-                        <li><strong>No me gusta...</strong> - I don't like...</li>
-                        <li><strong>¿Qué quieres comer?</strong> - What do you want to eat?</li>
-                        <li><strong>¿Qué quieres beber?</strong> - What do you want to drink?</li>
-                    </ul>
-                </div>
-
-                <div class="example">
-                    <div class="spanish-example">Me gusta mucho el chocolate, pero no me gusta el café.</div>
-                    <div class="english-translation">I really like chocolate, but I don't like coffee.</div>
-                </div>
-
-                <div class="example">
-                    <div class="spanish-example">Para el desayuno, como huevos con pan y tomo jugo de naranja.</div>
-                    <div class="english-translation">For breakfast, I eat eggs with bread and drink orange juice.</div>
-                </div>
-
-                <div class="cultural-note">
-                    <p><strong>Food Culture:</strong> Meal times in Spanish-speaking countries are often later than in the US. Lunch (la comida) is typically the main meal around 2-3 PM, and dinner (la cena) might not be until 9-10 PM. "La sobremesa" - staying at the table to chat after eating - is an important social tradition.</p>
-                </div>
-
-                <div class="exercise-box">
-                    <h4>Restaurant Conversation</h4>
-                    <p>Practice ordering food:</p>
-                    <p><strong>Camarero:</strong> ¿Qué quiere usted?</p>
-                    <p><strong>Cliente:</strong> Quiero _____ y _____. (I want _____ and _____.)</p>
-                    <p><strong>Camarero:</strong> ¿Y para beber?</p>
-                    <p><strong>Cliente:</strong> Un _____, por favor.</p>
-                </div>
-            </div>
-            <div class="page-number">8</div>
-        </div>
-
-        <!-- Essential Grammar -->
-        <div class="page">
-            <h1>Gramática Esencial - Essential Grammar</h1>
-
-            <div class="grammar-box">
-                <div class="grammar-title">Present Tense of SER (to be) - Identity/Characteristics</div>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-                            <th>Conjugation</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>yo</td>
-                            <td class="spanish-word">soy</td>
-                            <td class="pronunciation">soy</td>
-                            <td>I am</td>
-                        </tr>
-                        <tr>
-                            <td>tú</td>
-                            <td class="spanish-word">eres</td>
-                            <td class="pronunciation">EH-rehs</td>
-                            <td>you are</td>
-                        </tr>
-                        <tr>
-                            <td>él/ella/usted</td>
-                            <td class="spanish-word">es</td>
-                            <td class="pronunciation">ehs</td>
-                            <td>he/she/you (formal) is/are</td>
-                        </tr>
-                        <tr>
-                            <td>nosotros</td>
-                            <td class="spanish-word">somos</td>
-                            <td class="pronunciation">SOH-mohs</td>
-                            <td>we are</td>
-                        </tr>
-                        <tr>
-                            <td>ellos/ellas/ustedes</td>
-                            <td class="spanish-word">son</td>
-                            <td class="pronunciation">sohn</td>
-                            <td>they/you all are</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="grammar-box">
-                <div class="grammar-title">Present Tense of ESTAR (to be) - Location/Temporary States</div>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-                            <th>Conjugation</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>yo</td>
-                            <td class="spanish-word">estoy</td>
-                            <td class="pronunciation">ehs-TOY</td>
-                            <td>I am</td>
-                        </tr>
-                        <tr>
-                            <td>tú</td>
-                            <td class="spanish-word">estás</td>
-                            <td class="pronunciation">ehs-TAHS</td>
-                            <td>you are</td>
-                        </tr>
-                        <tr>
-                            <td>él/ella/usted</td>
-                            <td class="spanish-word">está</td>
-                            <td class="pronunciation">ehs-TAH</td>
-                            <td>he/she/you (formal) is/are</td>
-                        </tr>
-                        <tr>
-                            <td>nosotros</td>
-                            <td class="spanish-word">estamos</td>
-                            <td class="pronunciation">ehs-TAH-mohs</td>
-                            <td>we are</td>
-                        </tr>
-                        <tr>
-                            <td>ellos/ellas/ustedes</td>
-                            <td class="spanish-word">están</td>
-                            <td class="pronunciation">ehs-TAHN</td>
-                            <td>they/you all are</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="example">
-                <div class="spanish-example">Soy María y soy de España. (permanent identity)</div>
-                <div class="english-translation">I am Maria and I am from Spain.</div>
-            </div>
-
-            <div class="example">
-                <div class="spanish-example">Estoy en casa y estoy cansada. (location and temporary state)</div>
-                <div class="english-translation">I am at home and I am tired.</div>
-            </div>
-
-            <div class="grammar-box">
-                <div class="grammar-title">Present Tense of TENER (to have) - Possession/Age</div>
-            <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-                            <th>Conjugation</th>
-                            <th>Pronunciation</th>
-                            <th>English</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>yo</td>
-                            <td class="spanish-word">tengo</td>
-                            <td class="pronunciation">TEN-goh</td>
-                            <td>I have</td>
-                        </tr>
-                        <tr>
-                            <td>tú</td>
-                            <td class="spanish-word">tienes</td>
-                            <td class="pronunciation">tee-EH-nehs</td>
-                            <td>you have</td>
-                        </tr>
-                        <tr>
-                            <td>él/ella/usted</td>
-                            <td class="spanish-word">tiene</td>
-                            <td class="pronunciation">tee-EH-neh</td>
-                            <td>he/she/you (formal) has/have</td>
-                        </tr>
-                        <tr>
-                            <td>nosotros</td>
-                            <td class="spanish-word">tenemos</td>
-                            <td class="pronunciation">teh-NEH-mohs</td>
-                            <td>we have</td>
-                        </tr>
-                        <tr>
-                            <td>ellos/ellas/ustedes</td>
-                            <td class="spanish-word">tienen</td>
-                            <td class="pronunciation">tee-EH-nen</td>
-                            <td>they/you all have</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="example">
-                <div class="spanish-example">Tengo veinte años y tengo dos hermanos.</div>
-                <div class="english-translation">I am twenty years old and I have two brothers.</div>
-            </div>
-
-            <div class="exercise-box">
-                <h4>Grammar Practice</h4>
-                <p>Fill in the blanks with the correct form of SER, ESTAR, or TENER:</p>
-                <ul>
-                    <li>Yo _____ estudiante. (I am a student.)</li>
-                    <li>Mi libro _____ en la mesa. (My book is on the table.)</li>
-                    <li>Nosotros _____ hambre. (We are hungry.)</li>
-                    <li>¿Dónde _____ tu hermana? (Where is your sister?)</li>
-                </ul>
-            </div>
-
-            <div class="page-number">9</div>
-        </div>
-
-        <!-- Basic Conversations -->
-        <div class="page">
-            <h1>Conversaciones Básicas - Basic Conversations</h1>
-
-            <h2>At the Restaurant - En el Restaurante</h2>
-            <div class="example">
-                <div class="spanish-example">
-                    <strong>Camarero:</strong> Buenas tardes. ¿Mesa para cuántas personas?<br>
-                    <strong>Cliente:</strong> Para dos personas, por favor.<br>
-                    <strong>Camarero:</strong> Muy bien. ¿Qué desean beber?<br>
-                    <strong>Cliente:</strong> Dos aguas y la carta, por favor.<br>
-                    <strong>Camarero:</strong> Enseguida. ¿Ya saben qué van a pedir?<br>
-                    <strong>Cliente:</strong> Sí, queremos paella para dos y una ensalada.<br>
-                    <strong>Camarero:</strong> Perfecto. ¿Algo más?<br>
-                    <strong>Cliente:</strong> No, es todo. Gracias.
-                </div>
-                <div class="english-translation">
-                    <strong>Waiter:</strong> Good afternoon. Table for how many people?<br>
-                    <strong>Customer:</strong> For two people, please.<br>
-                    <strong>Waiter:</strong> Very well. What would you like to drink?<br>
-                    <strong>Customer:</strong> Two waters and the menu, please.<br>
-                    <strong>Waiter:</strong> Right away. Do you already know what you're going to order?<br>
-                    <strong>Customer:</strong> Yes, we want paella for two and a salad.<br>
-                    <strong>Waiter:</strong> Perfect. Anything else?<br>
-                    <strong>Customer:</strong> No, that's all. Thank you.
-                </div>
-            </div>
-
-            <h2>Shopping - De Compras</h2>
-            <div class="example">
-                <div class="spanish-example">
-                    <strong>Cliente:</strong> Disculpe, ¿cuánto cuesta esta camisa?<br>
-                    <strong>Vendedor:</strong> Cuesta treinta euros.<br>
-                    <strong>Cliente:</strong> ¿Tienen en talla mediana?<br>
-                    <strong>Vendedor:</strong> Sí, aquí tiene. ¿Le gusta?<br>
-                    <strong>Cliente:</strong> Sí, me gusta mucho. ¿Puedo pagarla con tarjeta?<br>
-                    <strong>Vendedor:</strong> Por supuesto. La caja está por allí.<br>
-                    <strong>Cliente:</strong> Muchas gracias.
-                </div>
-                <div class="english-translation">
-                    <strong>Customer:</strong> Excuse me, how much does this shirt cost?<br>
-                    <strong>Salesperson:</strong> It costs thirty euros.<br>
-                    <strong>Customer:</strong> Do you have it in medium size?<br>
-                    <strong>Salesperson:</strong> Yes, here you go. Do you like it?<br>
-                    <strong>Customer:</strong> Yes, I like it a lot. Can I pay with card?<br>
-                    <strong>Salesperson:</strong> Of course. The register is over there.<br>
-                    <strong>Customer:</strong> Thank you very much.
-                </div>
-            </div>
-
-            <h2>Asking for Directions - Pidiendo Direcciones</h2>
-            <div class="example">
-                <div class="spanish-example">
-                    <strong>Turista:</strong> Perdón, ¿sabe dónde está el museo?<br>
-                    <strong>Local:</strong> Sí, está muy cerca. Siga recto dos cuadras.<br>
-                    <strong>Turista:</strong> ¿Está a la derecha o a la izquierda?<br>
-                    <strong>Local:</strong> A la izquierda. Es un edificio grande y blanco.<br>
-                    <strong>Turista:</strong> Perfecto. ¿Está abierto ahora?<br>
-                    <strong>Local:</strong> Sí, está abierto hasta las seis.<br>
-                    <strong>Turista:</strong> Muchas gracias por su ayuda.
-                </div>
-                <div class="english-translation">
-                    <strong>Tourist:</strong> Excuse me, do you know where the museum is?<br>
-                    <strong>Local:</strong> Yes, it's very close. Go straight for two blocks.<br>
-                    <strong>Tourist:</strong> Is it to the right or to the left?<br>
-                    <strong>Local:</strong> To the left. It's a large, white building.<br>
-                    <strong>Tourist:</strong> Perfect. Is it open now?<br>
-                    <strong>Local:</strong> Yes, it's open until six o'clock.<br>
-                    <strong>Tourist:</strong> Thank you very much for your help.
-                </div>
-            </div>
-
-            <div class="grammar-box">
-                <div class="grammar-title">Useful Phrases for Conversations</div>
-                <ul>
-                    <li><strong>Disculpe/Perdón</strong> - Excuse me</li>
-                    <li><strong>¿Puede repetir, por favor?</strong> - Can you repeat, please?</li>
-                    <li><strong>No entiendo</strong> - I don't understand</li>
-                    <li><strong>¿Habla más despacio?</strong> - Can you speak more slowly?</li>
-                    <li><strong>¿Cómo se dice... en español?</strong> - How do you say... in Spanish?</li>
-                    <li><strong>¿Qué significa...?</strong> - What does... mean?</li>
-                    <li><strong>Muchas gracias</strong> - Thank you very much</li>
-                    <li><strong>De nada</strong> - You're welcome</li>
-                </ul>
-            </div>
-
-            <div class="page-number">10</div>
-        </div>
-
-        <!-- Hispanic Culture -->
-        <div class="page">
-            <h1>Cultura Hispana - Hispanic Culture</h1>
-
-            <h2>Spanish-Speaking Countries</h2>
-            <p>Spanish is the official language in 21 countries around the world, each with its own unique culture, traditions, and variations of the language.</p>
-
-            <div class="cultural-note">
-                <h3>Spain - España</h3>
-                <p>The birthplace of the Spanish language, Spain is known for flamenco dancing, delicious tapas, beautiful architecture like the Sagrada Familia, and the famous Running of the Bulls in Pamplona. Spanish culture values family, leisure time (including the afternoon siesta), and social gatherings.</p>
-            </div>
-
-            <div class="cultural-note">
-                <h3>Mexico - México</h3>
-                <p>The largest Spanish-speaking country by population, Mexico has a rich indigenous heritage mixed with Spanish colonial influence. Famous for its cuisine (tacos, mole, pozole), colorful festivals like Día de los Muertos, mariachi music, and ancient civilizations like the Aztecs and Mayans.</p>
-            </div>
-
-            <div class="cultural-note">
-                <h3>Argentina - Argentina</h3>
-                <p>Known for tango dancing, excellent beef and wine, soccer passion, and the distinctive "voseo" (using "vos" instead of "tú"). Buenos Aires is called "The Paris of South America" for its European architecture and café culture.</p>
-            </div>
-
-            <div class="cultural-note">
-                <h3>Colombia - Colombia</h3>
-                <p>Famous for coffee production, emeralds, salsa dancing, and the magical realism literature of Gabriel García Márquez. Colombians are known for their warmth and hospitality, and the country has incredible biodiversity.</p>
-            </div>
-
-            <h2>Important Cultural Concepts</h2>
-
-            <div class="grammar-box">
-                <div class="grammar-title">La Familia (Family)</div>
-                <p>Family is the cornerstone of Hispanic culture. Extended families often live close together, and family gatherings are frequent and important. Respect for elders is highly valued, and children often live with parents until marriage.</p>
-            </div>
-
-            <div class="grammar-box">
-                <div class="grammar-title">El Respeto (Respect)</div>
-                <p>Showing respect through language and behavior is crucial. Using "usted" (formal "you") with elders, teachers, and strangers is important. Titles like "Don" and "Doña" show additional respect.</p>
-            </div>
-
-            <div class="grammar-box">
-                <div class="grammar-title">La Hospitalidad (Hospitality)</div>
-                <p>Hispanic cultures are known for their warmth and hospitality. Guests are treated with great care, often offered food and drink immediately upon arrival. Refusing hospitality can be considered rude.</p>
-            </div>
-
-            <h2>Celebrations and Holidays</h2>
-            <table class="vocab-table">
-                <thead>
-                    <tr>
-                        <th>Holiday</th>
-                        <th>Date</th>
-                        <th>Celebration</th>
-                        <th>Countries</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="spanish-word">Día de los Muertos</td>
-                        <td>Nov 1-2</td>
-                        <td>Honoring deceased loved ones</td>
-                        <td>Mexico, Central America</td>
-                    </tr>
-                    <tr>
-                        <td class="spanish-word">Las Posadas</td>
-                        <td>Dec 16-24</td>
-                        <td>Christmas processions</td>
-                        <td>Mexico, Guatemala</td>
-                    </tr>
-                    <tr>
-                        <td class="spanish-word">Día de Reyes</td>
-                        <td>Jan 6</td>
-                        <td>Three Kings Day gifts</td>
-                        <td>Spain, Latin America</td>
-                    </tr>
-                    <tr>
-                        <td class="spanish-word">Carnaval</td>
-                        <td>Feb-Mar</td>
-                        <td>Pre-Lent celebration</td>
-                        <td>Many countries</td>
-                    </tr>
-                    <tr>
-                        <td class="spanish-word">Semana Santa</td>
-                        <td>Mar-Apr</td>
-                        <td>Holy Week processions</td>
-                        <td>All Spanish-speaking</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Food Traditions</h2>
-            <p>Food is central to Hispanic culture, with each country having distinctive dishes:</p>
-            <ul>
-                <li><strong>Spain:</strong> Paella, tapas, jamón ibérico, gazpacho</li>
-                <li><strong>Mexico:</strong> Tacos, mole, pozole, chiles rellenos</li>
-                <li><strong>Argentina:</strong> Asado (barbecue), empanadas, dulce de leche</li>
-                <li><strong>Peru:</strong> Ceviche, lomo saltado, ají de gallina</li>
-                <li><strong>Cuba:</strong> Ropa vieja, moros y cristianos, flan</li>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#intro">Introduction</a></li>
+                <li class="nav-item"><a href="#foundations">Foundations</a></li>
+                <li class="nav-item"><a href="#multiplication">Multiplication</a></li>
+                <li class="nav-item"><a href="#division">Division</a></li>
+                <li class="nav-item"><a href="#addition">Addition</a></li>
+                <li class="nav-item"><a href="#squares">Squares & Cubes</a></li>
+                <li class="nav-item"><a href="#fractions">Fractions</a></li>
+                <li class="nav-item"><a href="#algebra">Algebra</a></li>
+                <li class="nav-item"><a href="#geometry">Geometry</a></li>
+                <li class="nav-item"><a href="#patterns">Patterns</a></li>
+                <li class="nav-item"><a href="#exams">Exam Tips</a></li>
+                <li class="nav-item"><a href="#practice">Practice</a></li>
             </ul>
-
-            <div class="page-number">11</div>
         </div>
+    </nav>
 
-        <!-- Additional Resources -->
-        <div class="page">
-            <h1>Recursos Adicionales - Additional Resources</h1>
-
-            <h2>Study Tips for Learning Spanish</h2>
-
-            <div class="grammar-box">
-                <div class="grammar-title">Daily Practice Strategies</div>
-                <ul>
-                    <li><strong>Set aside 15-30 minutes daily</strong> for consistent practice</li>
-                    <li><strong>Label objects in your house</strong> with Spanish words</li>
-                    <li><strong>Change your phone/computer language</strong> to Spanish</li>
-                    <li><strong>Listen to Spanish music</strong> and try to understand lyrics</li>
-                    <li><strong>Watch Spanish movies/shows</strong> with subtitles</li>
-                    <li><strong>Practice speaking to yourself</strong> in the mirror</li>
-                    <li><strong>Find a language exchange partner</strong> online or locally</li>
-                </ul>
+    <main class="container">
+        <section id="intro" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 1</div>
+                <h2 class="chapter-title">Introduction</h2>
+                <p class="chapter-subtitle">The Power of Chinese Mathematical Thinking</p>
             </div>
+            <div class="chapter-content">
+                <h3>Brief History of Chinese Mathematics</h3>
+                <p>Chinese mathematics has a rich history spanning over 4,000 years, with innovations that revolutionized computational thinking worldwide. From the ancient <span class="highlight">Nine Chapters on the Mathematical Art</span> (九章算术) to modern mental calculation techniques, Chinese mathematicians have consistently prioritized efficiency and elegance in problem-solving.</p>
 
-            <h2>Common Learning Challenges</h2>
-
-            <div class="cultural-note">
-                <h3>False Friends (Falsos Amigos)</h3>
-                <p>These are words that look similar in English and Spanish but have different meanings:</p>
-                <table class="vocab-table">
-                    <thead>
-                        <tr>
-                            <th>Spanish Word</th>
-                            <th>Looks Like...</th>
-                            <th>Actually Means...</th>
-                            <th>English Word in Spanish</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="spanish-word">embarazada</td>
-                            <td>embarrassed</td>
-                            <td>pregnant</td>
-                            <td>avergonzada</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">éxito</td>
-                            <td>exit</td>
-                            <td>success</td>
-                            <td>salida</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">realizar</td>
-                            <td>realize</td>
-                            <td>to carry out</td>
-                            <td>darse cuenta</td>
-                        </tr>
-                        <tr>
-                            <td class="spanish-word">actualmente</td>
-                            <td>actually</td>
-                            <td>currently</td>
-                            <td>en realidad</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2>Technology Resources</h2>
-
-            <div class="grammar-box">
-                <div class="grammar-title">Recommended Apps and Websites</div>
-                <ul>
-                    <li><strong>Language Learning Apps:</strong> Duolingo, Babbel, Rosetta Stone</li>
-                    <li><strong>Dictionary/Translation:</strong> WordReference, SpanishDict</li>
-                    <li><strong>Conversation Practice:</strong> HelloTalk, Tandem, italki</li>
-                    <li><strong>Listening Practice:</strong> SpanishPod101, News in Slow Spanish</li>
-                    <li><strong>Grammar Help:</strong> StudySpanish.com, SpanishGrammar.com</li>
-                    <li><strong>Video Content:</strong> YouTube (SpanishWithVicente, Butterfly Spanish)</li>
-                </ul>
-            </div>
-
-            <h2>Next Steps in Your Spanish Journey</h2>
-
-            <div class="lesson-box">
-                <h3>Beginner Level Complete!</h3>
-                <p>Congratulations! You've learned the basics of Spanish. Here's what to focus on next:</p>
-                
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 25%;"></div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>2000 BCE - Abacus Origins</h4>
+                            <p>Early counting boards and calculation methods developed</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>200 BCE - Nine Chapters</h4>
+                            <p>Foundational mathematical text establishing systematic approaches</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>1000 CE - Advanced Algebra</h4>
+                            <p>Development of sophisticated algebraic methods</p>
+                        </div>
+                    </div>
                 </div>
-                <p style="text-align: center; margin-top: 10px;"><strong>25% Complete - Beginner Level</strong></p>
 
-                <h4>Intermediate Topics to Study Next:</h4>
-                <ul>
-                    <li>Past tenses (preterite and imperfect)</li>
-                    <li>Future and conditional tenses</li>
-                    <li>Subjunctive mood</li>
-                    <li>Direct and indirect object pronouns</li>
-                    <li>More complex sentence structures</li>
-                    <li>Regional variations and slang</li>
-                    <li>Business and formal Spanish</li>
-                </ul>
+                <h3>Why Chinese Math Shortcuts Are Powerful</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Core Principles</div>
+                    <ul>
+                        <li><strong>Speed:</strong> Reduce calculation time by 50-80%</li>
+                        <li><strong>Simplicity:</strong> Break complex problems into simple steps</li>
+                        <li><strong>Mental Agility:</strong> Develop number sense and pattern recognition</li>
+                        <li><strong>Accuracy:</strong> Built-in error checking methods</li>
+                    </ul>
+                </div>
+
+                <h3>Who This Book Is For</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Students</h4>
+                        <p>Elementary through high school students looking to improve math speed and confidence</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Exam Prep</h4>
+                        <p>SAT, ACT, GRE, GMAT test-takers seeking competitive advantages</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Math Enthusiasts</h4>
+                        <p>Anyone fascinated by elegant mathematical techniques and mental calculation</p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="exercise-box">
-                <h4>Final Challenge: Introduce Yourself in Spanish</h4>
-                <p>Write a paragraph about yourself using what you've learned:</p>
-                <ul>
-                    <li>Your name and where you're from</li>
-                    <li>Your family members</li>
-                    <li>Your favorite foods and colors</li>
-                    <li>Your age</li>
-                    <li>Something you like to do</li>
-                </ul>
-                <p><strong>Example:</strong> "Hola, me llamo Sarah y soy de Estados Unidos. Tengo veinticinco años y soy estudiante. Mi familia es pequeña: tengo un hermano y mis padres. Me gusta mucho la comida mexicana, especialmente los tacos. Mi color favorito es el azul. Me gusta estudiar español porque es muy interesante."</p>
+        <section id="foundations" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 2</div>
+                <h2 class="chapter-title">Foundations of Chinese Math</h2>
+                <p class="chapter-subtitle">Building Blocks of Rapid Calculation</p>
             </div>
+            <div class="chapter-content">
+                <h3>Chinese Numeration System</h3>
+                <p>The Chinese counting system uses a base-10 structure that naturally facilitates mental calculation. Understanding this foundation is crucial for mastering advanced shortcuts.</p>
 
-            <div class="cultural-note">
-                <h3>¡Felicitaciones! Congratulations!</h3>
-                <p>You've completed your introduction to Spanish! Remember that language learning is a journey, not a destination. Keep practicing, be patient with yourself, and most importantly, <strong>¡diviértete!</strong> (have fun!)</p>
-                <p>The key to success is consistent practice and exposure to the language. Don't be afraid to make mistakes – they're a natural part of learning. Every Spanish speaker started exactly where you are now.</p>
-                <p><strong>¡Buena suerte en tu aventura con el español!</strong><br>Good luck on your Spanish adventure!</p>
+                <div class="formula-box">
+                    <div class="formula-title">Chinese Number Structure</div>
+                    <div class="formula">
+                        1 = 一 (yī)    10 = 十 (shí)    100 = 百 (bǎi)<br>
+                        2 = 二 (èr)    20 = 二十        200 = 二百<br>
+                        3 = 三 (sān)   30 = 三十        300 = 三百
+                    </div>
+                </div>
+
+                <h3>The Abacus (算盘 Suànpán)</h3>
+                <p>The Chinese abacus is not just a calculating tool—it's a visual representation of the decimal system that trains the mind to see numbers as concrete objects.</p>
+
+                <div class="abacus">
+                    <div class="abacus-rod">
+                        <div class="abacus-bead" style="top: 20px;"></div>
+                        <div class="abacus-bead" style="bottom: 60px;"></div>
+                        <div class="abacus-bead" style="bottom: 40px;"></div>
+                        <div class="abacus-bead" style="bottom: 20px;"></div>
+                    </div>
+                    <div class="abacus-rod">
+                        <div class="abacus-bead" style="top: 20px;"></div>
+                        <div class="abacus-bead" style="bottom: 60px;"></div>
+                        <div class="abacus-bead" style="bottom: 40px;"></div>
+                        <div class="abacus-bead" style="bottom: 20px;"></div>
+                    </div>
+                    <div class="abacus-rod">
+                        <div class="abacus-bead" style="top: 20px;"></div>
+                        <div class="abacus-bead" style="bottom: 60px;"></div>
+                        <div class="abacus-bead" style="bottom: 40px;"></div>
+                        <div class="abacus-bead" style="bottom: 20px;"></div>
+                    </div>
+                </div>
+
+                <h3>Mental Abacus Techniques</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Visualization</h4>
+                        <p>Learn to see the abacus in your mind's eye, moving beads to represent calculations</p>
+                    </div>
+                    <div class="step">
+                        <h4>Finger Memory</h4>
+                        <p>Develop muscle memory by practicing bead movements with your fingers</p>
+                    </div>
+                    <div class="step">
+                        <h4>Speed Building</h4>
+                        <p>Gradually increase calculation speed while maintaining accuracy</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Basic Mental Abacus Addition</div>
+                    <p><strong>Problem:</strong> 347 + 258</p>
+                    <p><strong>Mental Process:</strong></p>
+                    <ol>
+                        <li>Visualize 347 on the abacus</li>
+                        <li>Add 258 column by column: 7+8=15 (carry 1), 4+5+1=10 (carry 1), 3+2+1=6</li>
+                        <li>Result: 605</li>
+                    </ol>
+                </div>
             </div>
+        </section>
 
-            <div class="page-number">12</div>
+        <section id="multiplication" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 3</div>
+                <h2 class="chapter-title">Multiplication Shortcuts</h2>
+                <p class="chapter-subtitle">Lightning-Fast Multiplication Techniques</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Chinese Lattice Method</h3>
+                <p>The lattice method transforms multiplication into a visual grid, making complex calculations manageable and reducing errors.</p>
+
+                <div class="example-box">
+                    <div class="example-title">Lattice Method: 23 × 47</div>
+                    <div class="multiplication-grid">
+                        <div class="grid-cell header"></div>
+                        <div class="grid-cell header">2</div>
+                        <div class="grid-cell header">3</div>
+                        <div class="grid-cell header">4</div>
+                        <div class="grid-cell diagonal">0<br>8</div>
+                        <div class="grid-cell diagonal">1<br>2</div>
+                        <div class="grid-cell header">7</div>
+                        <div class="grid-cell diagonal">1<br>4</div>
+                        <div class="grid-cell diagonal">2<br>1</div>
+                    </div>
+                    <p><strong>Solution:</strong> Add diagonally: 1081</p>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">Lattice Method Steps</div>
+                    <div class="step-guide">
+                        <div class="step">
+                            <h4>Draw Grid</h4>
+                            <p>Create a grid with diagonal lines in each cell</p>
+                        </div>
+                        <div class="step">
+                            <h4>Multiply Digits</h4>
+                            <p>Multiply each digit pair, placing tens above and ones below the diagonal</p>
+                        </div>
+                        <div class="step">
+                            <h4>Add Diagonals</h4>
+                            <p>Sum along each diagonal from right to left, carrying when necessary</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Vertical & Cross Multiplication</h3>
+                <p>For two-digit multiplication, this method uses cross-multiplication patterns to achieve rapid results.</p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Cross Multiplication Formula</div>
+                    <div class="formula">
+                        (10a + b) × (10c + d) = 100ac + 10(ad + bc) + bd
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Cross Method: 34 × 27</div>
+                    <p><strong>Step 1:</strong> Outer digits: 3 × 2 = 6 (hundreds place)</p>
+                    <p><strong>Step 2:</strong> Cross multiply: (3 × 7) + (4 × 2) = 21 + 8 = 29 (tens place)</p>
+                    <p><strong>Step 3:</strong> Inner digits: 4 × 7 = 28 (ones place)</p>
+                    <p><strong>Result:</strong> 600 + 290 + 28 = 918</p>
+                </div>
+
+                <h3>Special Case Shortcuts</h3>
+                
+                <div class="formula-box">
+                    <div class="formula-title">Multiplying by Numbers Ending in 9</div>
+                    <div class="formula">
+                        n × (10k - 1) = 10nk - n
+                    </div>
+                    <p><strong>Example:</strong> 47 × 29 = 47 × (30 - 1) = 47 × 30 - 47 = 1410 - 47 = 1363</p>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">Multiplying Numbers Near 100</div>
+                    <div class="formula">
+                        (100 - a) × (100 - b) = 100(100 - a - b) + ab
+                    </div>
+                    <p><strong>Example:</strong> 97 × 94 = 100(100 - 3 - 6) + (3 × 6) = 100(91) + 18 = 9118</p>
+                </div>
+
+                <h3>Practice Problems</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Problem 1</h4>
+                        <p>Calculate: 56 × 78 using lattice method</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Grid multiplication: 5×7=35, 5×8=40, 6×7=42, 6×8=48</p>
+                            <p>Diagonal addition: 4368</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Problem 2</h4>
+                        <p>Calculate: 43 × 89 using cross method</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Cross: 4×8=32, (4×9)+(3×8)=36+24=60, 3×9=27</p>
+                            <p>Result: 3200 + 600 + 27 = 3827</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="division" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 4</div>
+                <h2 class="chapter-title">Division Shortcuts</h2>
+                <p class="chapter-subtitle">Rapid Division Techniques and Estimation</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Estimation-Based Division</h3>
+                <p>Chinese division methods emphasize quick estimation to narrow down answers before exact calculation.</p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Division by Powers of 2</div>
+                    <div class="formula">
+                        n ÷ 2^k = n >> k (binary shift)
+                    </div>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>248 ÷ 4 = 248 ÷ 2² = 62</li>
+                        <li>496 ÷ 8 = 496 ÷ 2³ = 62</li>
+                    </ul>
+                </div>
+
+                <h3>Division by 5 Shortcut</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Quick Division by 5</div>
+                    <div class="formula">
+                        n ÷ 5 = (n × 2) ÷ 10 = n × 0.2
+                    </div>
+                    <p><strong>Method:</strong> Double the number, then move decimal point one place left</p>
+                    <p><strong>Example:</strong> 485 ÷ 5 = (485 × 2) ÷ 10 = 970 ÷ 10 = 97</p>
+                </div>
+
+                <h3>Division by 9 - Digital Root Method</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Division by 9 Check</div>
+                    <div class="formula">
+                        If sum of digits is divisible by 9, then the number is divisible by 9
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Division by 9: 2673 ÷ 9</div>
+                    <p><strong>Step 1:</strong> Check divisibility: 2+6+7+3 = 18, 1+8 = 9 ✓</p>
+                    <p><strong>Step 2:</strong> Use complement method:</p>
+                    <p>2673 ÷ 9 = 297 (since 297 × 9 = 2673)</p>
+                </div>
+
+                <h3>Division by 11 - Alternating Sum Method</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Division by 11 Rule</div>
+                    <div class="formula">
+                        Alternating sum of digits must be divisible by 11
+                    </div>
+                    <p><strong>Example:</strong> 1331: 1-3+3-1 = 0 (divisible by 11)</p>
+                    <p>1331 ÷ 11 = 121</p>
+                </div>
+
+                <h3>Chinese Remainder Theorem - Simple Applications</h3>
+                <p>This ancient theorem helps solve division problems with multiple constraints.</p>
+
+                <div class="example-box">
+                    <div class="example-title">Simple Remainder Problem</div>
+                    <p><strong>Problem:</strong> Find a number that leaves remainder 2 when divided by 3, and remainder 3 when divided by 5.</p>
+                    <p><strong>Solution Process:</strong></p>
+                    <div class="step-guide">
+                        <div class="step">
+                            <h4>List Possibilities</h4>
+                            <p>Numbers leaving remainder 2 when divided by 3: 2, 5, 8, 11, 14, 17...</p>
+                        </div>
+                        <div class="step">
+                            <h4>Check Second Condition</h4>
+                            <p>Which also leave remainder 3 when divided by 5? 8 ✓</p>
+                        </div>
+                        <div class="step">
+                            <h4>Verify</h4>
+                            <p>8 ÷ 3 = 2 remainder 2 ✓, 8 ÷ 5 = 1 remainder 3 ✓</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Practice Problems</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Quick Division 1</h4>
+                        <p>Calculate: 1235 ÷ 5</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Double: 1235 × 2 = 2470</p>
+                            <p>Shift decimal: 2470 ÷ 10 = 247</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Divisibility Check</h4>
+                        <p>Is 4567 divisible by 9?</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Sum: 4+5+6+7 = 22</p>
+                            <p>22 is not divisible by 9, so 4567 is not divisible by 9</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="addition" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 5</div>
+                <h2 class="chapter-title">Addition & Subtraction Shortcuts</h2>
+                <p class="chapter-subtitle">Lightning-Fast Addition and Complement Methods</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Chunking Method for Large Additions</h3>
+                <p>Break large numbers into manageable chunks for mental calculation.</p>
+
+                <div class="example-box">
+                    <div class="example-title">Chunking: 247 + 358 + 193 + 426</div>
+                    <p><strong>Step 1:</strong> Group by hundreds: (200+300+100+400) = 1000</p>
+                    <p><strong>Step 2:</strong> Group by tens: (40+50+90+20) = 200</p>
+                    <p><strong>Step 3:</strong> Group by ones: (7+8+3+6) = 24</p>
+                    <p><strong>Total:</strong> 1000 + 200 + 24 = 1224</p>
+                </div>
+
+                <h3>Complement Addition Method</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Addition Using Complements</div>
+                    <div class="formula">
+                        a + b = a + (10^n - complement) = a - complement + 10^n
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Complement Method: 456 + 789</div>
+                    <p><strong>Traditional:</strong> 456 + 789 = 1245</p>
+                    <p><strong>Complement Method:</strong></p>
+                    <p>789 is close to 800, so: 456 + 800 - 11 = 1256 - 11 = 1245</p>
+                </div>
+
+                <h3>Subtraction Using Complements</h3>
+                <p>This method eliminates borrowing by using number complements.</p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Complement Subtraction</div>
+                    <div class="formula">
+                        a - b = a + (10^n - b) - 10^n = a + complement(b) - 10^n
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Complement Subtraction: 1000 - 347</div>
+                    <p><strong>Step 1:</strong> Find complement of 347 to 1000: 1000 - 347 = 653</p>
+                    <p><strong>Step 2:</strong> Use complement directly: 653</p>
+                    <p><strong>Verification:</strong> 653 + 347 = 1000 ✓</p>
+                </div>
+
+                <h3>Fast Mental Addition Patterns</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Left-to-Right Addition</h4>
+                        <p>Add from left to right instead of right to left: 247 + 358 = 200+300=500, 40+50=90, 7+8=15 → 605</p>
+                    </div>
+                    <div class="step">
+                        <h4>Compensation Method</h4>
+                        <p>Adjust one number to make calculation easier: 97 + 68 = 100 + 65 = 165</p>
+                    </div>
+                    <div class="step">
+                        <h4>Doubling and Halving</h4>
+                        <p>When adding same/similar numbers: 47 + 53 = 50 + 50 = 100</p>
+                    </div>
+                </div>
+
+                <h3>Advanced Carrying Techniques</h3>
+                <div class="formula-box">
+                    <div class="formula-title">No-Carry Addition Method</div>
+                    <p>Visualize carries as separate additions to avoid mental confusion:</p>
+                    <div class="formula">
+                        567 + 789 = (500+700) + (60+80) + (7+9) + carries
+                                  = 1200 + 140 + 16 = 1356
+                    </div>
+                </div>
+
+                <h3>Practice Section</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Chunking Practice</h4>
+                        <p>Add: 156 + 234 + 387 + 429</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Hundreds: 100+200+300+400 = 1000</p>
+                            <p>Tens: 50+30+80+20 = 180</p>
+                            <p>Ones: 6+4+7+9 = 26</p>
+                            <p>Total: 1000+180+26 = 1206</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Complement Subtraction</h4>
+                        <p>Calculate: 503 - 267</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Complement of 267 to 1000: 733</p>
+                            <p>503 - 267 = 503 + 733 - 1000 = 236</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="squares" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 6</div>
+                <h2 class="chapter-title">Squares & Cubes Shortcuts</h2>
+                <p class="chapter-subtitle">Lightning-Fast Power Calculations</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Squaring Numbers Ending in 5</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Perfect Square Pattern for Numbers Ending in 5</div>
+                    <div class="formula">
+                        (10a + 5)² = 100a(a+1) + 25
+                    </div>
+                    <p><strong>Rule:</strong> Multiply the tens digit by (tens digit + 1), then append 25</p>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Squaring: 35²</div>
+                    <p><strong>Method:</strong> 3 × (3+1) = 3 × 4 = 12, append 25</p>
+                    <p><strong>Result:</strong> 35² = 1225</p>
+                    <p><strong>More examples:</strong></p>
+                    <ul>
+                        <li>25² = 2×3 = 6, append 25 → 625</li>
+                        <li>85² = 8×9 = 72, append 25 → 7225</li>
+                        <li>95² = 9×10 = 90, append 25 → 9025</li>
+                    </ul>
+                </div>
+
+                <h3>Squaring Numbers Near Multiples of 10</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Near-Base Squaring</div>
+                    <div class="formula">
+                        (base ± diff)² = base² ± 2×base×diff + diff²
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Near-100 Squaring: 97²</div>
+                    <p><strong>Step 1:</strong> 97 = 100 - 3</p>
+                    <p><strong>Step 2:</strong> (100-3)² = 100² - 2×100×3 + 3² = 10000 - 600 + 9</p>
+                    <p><strong>Result:</strong> 97² = 9409</p>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Near-50 Squaring: 47²</div>
+                    <p><strong>Step 1:</strong> 47 = 50 - 3</p>
+                    <p><strong>Step 2:</strong> (50-3)² = 50² - 2×50×3 + 3² = 2500 - 300 + 9</p>
+                    <p><strong>Result:</strong> 47² = 2209</p>
+                </div>
+
+                <h3>Difference of Squares Shortcut</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Difference of Squares</div>
+                    <div class="formula">
+                        a² - b² = (a+b)(a-b)
+                    </div>
+                    <p><strong>Application:</strong> Calculate products of numbers equidistant from a middle value</p>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Using Difference of Squares: 23 × 17</div>
+                    <p><strong>Step 1:</strong> Middle value = (23+17)/2 = 20</p>
+                    <p><strong>Step 2:</strong> 23×17 = (20+3)(20-3) = 20² - 3² = 400 - 9 = 391</p>
+                </div>
+
+                <h3>Cube Shortcuts for Small Numbers</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Cube Pattern Recognition</div>
+                    <div class="formula">
+                        (a+b)³ = a³ + 3a²b + 3ab² + b³
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Cubing: 13³</div>
+                    <p><strong>Method 1:</strong> (10+3)³ = 10³ + 3×10²×3 + 3×10×3² + 3³</p>
+                    <p>= 1000 + 900 + 270 + 27 = 2197</p>
+                    <p><strong>Method 2:</strong> 13² = 169, then 169 × 13 = 2197</p>
+                </div>
+
+                <h3>Sum and Product Patterns</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Special Product Formulas</div>
+                    <div class="formula">
+                        • (a+b)² = a² + 2ab + b²<br>
+                        • (a-b)² = a² - 2ab + b²<br>
+                        • (a+b)(a-b) = a² - b²<br>
+                        • (a+b)³ = a³ + 3a²b + 3ab² + b³
+                    </div>
+                </div>
+
+                <h3>Practice Problems</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Square Practice 1</h4>
+                        <p>Calculate: 65²</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>6 × (6+1) = 6 × 7 = 42</p>
+                            <p>Append 25: 65² = 4225</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Near-Base Square</h4>
+                        <p>Calculate: 88²</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>88 = 90 - 2</p>
+                            <p>(90-2)² = 90² - 2×90×2 + 2² = 8100 - 360 + 4 = 7744</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Difference of Squares</h4>
+                        <p>Calculate: 34 × 26</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Middle: 30, difference: 4</p>
+                            <p>34×26 = 30² - 4² = 900 - 16 = 884</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fractions" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 7</div>
+                <h2 class="chapter-title">Fractions & Percentages</h2>
+                <p class="chapter-subtitle">Master Fractional Calculations and Percentage Tricks</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Quick Fraction Simplification</h3>
+                <div class="formula-box">
+                    <div class="formula-title">GCD Method for Simplification</div>
+                    <div class="formula">
+                        To simplify a/b: Find GCD(a,b), then divide both by GCD
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Simplifying: 168/252</div>
+                    <p><strong>Step 1:</strong> Find GCD using Euclidean algorithm</p>
+                    <p>252 = 168×1 + 84</p>
+                    <p>168 = 84×2 + 0</p>
+                    <p><strong>GCD = 84</strong></p>
+                    <p><strong>Step 2:</strong> 168/252 = (168÷84)/(252÷84) = 2/3</p>
+                </div>
+
+                <h3>Mental Fraction to Decimal Conversion</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Common Fraction Decimals (Memorize These!)</div>
+                    <div class="formula">
+                        1/2 = 0.5      1/4 = 0.25     1/8 = 0.125<br>
+                        1/3 = 0.333... 2/3 = 0.666... 1/6 = 0.1666...<br>
+                        1/5 = 0.2      2/5 = 0.4      3/5 = 0.6<br>
+                        1/7 = 0.142857... (repeating)  1/9 = 0.111...
+                    </div>
+                </div>
+
+                <h3>Percentage Shortcuts</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>10% Rule</h4>
+                        <p>Move decimal one place left: 10% of 347 = 34.7</p>
+                    </div>
+                    <div class="step">
+                        <h4>5% Rule</h4>
+                        <p>Half of 10%: 5% of 347 = 34.7 ÷ 2 = 17.35</p>
+                    </div>
+                    <div class="step">
+                        <h4>1% Rule</h4>
+                        <p>Move decimal two places left: 1% of 347 = 3.47</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Quick Percentage: 23% of 156</div>
+                    <p><strong>Method:</strong> Break into 20% + 3%</p>
+                    <p><strong>20%:</strong> 2 × 10% = 2 × 15.6 = 31.2</p>
+                    <p><strong>3%:</strong> 3 × 1% = 3 × 1.56 = 4.68</p>
+                    <p><strong>Total:</strong> 31.2 + 4.68 = 35.88</p>
+                </div>
+
+                <h3>Percentage Change Calculations</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Percentage Increase/Decrease</div>
+                    <div class="formula">
+                        % change = (New Value - Original Value) / Original Value × 100%
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Price Change: $80 to $96</div>
+                    <p><strong>Change:</strong> $96 - $80 = $16</p>
+                    <p><strong>Percentage:</strong> 16/80 × 100% = 1/5 × 100% = 20% increase</p>
+                </div>
+
+                <h3>Chinese Fractional Shortcuts</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Traditional Chinese Fraction Methods</div>
+                    <p><strong>Cross Multiplication for Comparison:</strong></p>
+                    <div class="formula">
+                        To compare a/b and c/d: Compare ad vs bc
+                    </div>
+                    <p>If ad > bc, then a/b > c/d</p>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Comparing Fractions: 7/11 vs 5/8</div>
+                    <p><strong>Cross multiply:</strong> 7×8 = 56, 5×11 = 55</p>
+                    <p><strong>Since 56 > 55:</strong> 7/11 > 5/8</p>
+                </div>
+
+                <h3>Advanced Percentage Tricks</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Compound Percentage Changes</div>
+                    <div class="formula">
+                        Multiple changes: Final = Initial × (1 ± p₁%) × (1 ± p₂%) × ...
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Compound Change: +20% then -15%</div>
+                    <p><strong>Starting value:</strong> $100</p>
+                    <p><strong>After +20%:</strong> $100 × 1.20 = $120</p>
+                    <p><strong>After -15%:</strong> $120 × 0.85 = $102</p>
+                    <p><strong>Net change:</strong> +2%</p>
+                </div>
+
+                <h3>Practice Section</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Fraction Simplification</h4>
+                        <p>Simplify: 144/216</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>GCD(144,216) = 72</p>
+                            <p>144/216 = 2/3</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Quick Percentage</h4>
+                        <p>Calculate: 17% of 240</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>10% = 24, 7% = 7×2.4 = 16.8</p>
+                            <p>17% = 24 + 16.8 = 40.8</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Percentage Change</h4>
+                        <p>Change from 45 to 63</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>Change: 63-45 = 18</p>
+                            <p>Percentage: 18/45 = 2/5 = 40% increase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Final Chapter</div>
+                <h2 class="chapter-title">Mastery and Practice</h2>
+                <p class="chapter-subtitle">Building Speed, Accuracy, and Confidence</p>
+            </div>
+            <div class="chapter-content">
+                <h3>The Most Powerful Shortcuts Recap</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Top 10 Chinese Math Shortcuts</div>
+                    <ol>
+                        <li><strong>Lattice Multiplication:</strong> Visual grid method for complex multiplication</li>
+                        <li><strong>Squares ending in 5:</strong> n(n+1) + 25 pattern</li>
+                        <li><strong>Division by 5:</strong> Double and shift decimal</li>
+                        <li><strong>Complement addition:</strong> Use round numbers and adjust</li>
+                        <li><strong>Percentage by parts:</strong> Break into 10%, 5%, 1% components</li>
+                        <li><strong>Difference of squares:</strong> (a+b)(a-b) = a²-b²</li>
+                        <li><strong>Mental abacus:</strong> Visualization for rapid calculation</li>
+                        <li><strong>Cross multiplication:</strong> For comparing fractions</li>
+                        <li><strong>Chunking addition:</strong> Group by place value</li>
+                        <li><strong>Near-base calculations:</strong> Use closest round number</li>
+                    </ol>
+                </div>
+
+                <h3>Building Speed and Accuracy</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Daily Practice Schedule</h4>
+                        <p>15 minutes daily: 5 min basics, 5 min new technique, 5 min mixed problems</p>
+                    </div>
+                    <div class="step">
+                        <h4>Progressive Difficulty</h4>
+                        <p>Master each technique with small numbers before advancing to larger calculations</p>
+                    </div>
+                    <div class="step">
+                        <h4>Error Analysis</h4>
+                        <p>Track mistakes to identify weak areas and focus improvement efforts</p>
+                    </div>
+                    <div class="step">
+                        <h4>Speed Building</h4>
+                        <p>Use timers to gradually increase calculation speed while maintaining accuracy</p>
+                    </div>
+                </div>
+
+                <h3>Final Challenge Problems</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Master Challenge 1</h4>
+                        <p>Calculate: 47 × 83 + 156² - 2847 ÷ 9</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>47×83 = (50-3)(80+3) = 4000+150-240-9 = 3901</p>
+                            <p>156² = (160-4)² = 25600-1280+16 = 24336</p>
+                            <p>2847÷9 = 316.33... ≈ 316</p>
+                            <p>Total: 3901 + 24336 - 316 = 27921</p>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Master Challenge 2</h4>
+                        <p>A store increases prices by 25%, then offers 20% discount. What's the net change?</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                        <div class="solution">
+                            <p>After 25% increase: 1.25 × original</p>
+                            <p>After 20% discount: 1.25 × 0.8 = 1.0</p>
+                            <p>Net change: 0% (prices return to original)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Congratulations!</h3>
+                <p>You've mastered the ancient art of Chinese mathematical shortcuts! These techniques, refined over millennia, will serve you well in academics, professional life, and daily calculations. Remember:</p>
+                
+                <div class="formula-box">
+                    <div class="formula-title">The Path to Mastery</div>
+                    <p><strong>Practice consistently</strong> - even 10 minutes daily will maintain and improve your skills.</p>
+                    <p><strong>Apply regularly</strong> - use these shortcuts in real-world situations to internalize them.</p>
+                    <p><strong>Teach others</strong> - sharing knowledge deepens your own understanding.</p>
+                    <p><strong>Stay curious</strong> - continue exploring mathematical patterns and relationships.</p>
+                </div>
+
+                <div class="text-center" style="margin: 2rem 0; font-size: 2rem; color: var(--primary-color);">
+                    <span class="chinese-char">数学</span> Mathematics is the language of the universe <span class="chinese-char">宇宙</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Sections -->
+        <section id="algebra" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 8</div>
+                <h2 class="chapter-title">Algebra Shortcuts</h2>
+                <p class="chapter-subtitle">Pattern Recognition and Quick Solutions</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Algebraic Identity Shortcuts</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Essential Algebraic Identities</div>
+                    <div class="formula">
+                        (a + b)² = a² + 2ab + b²<br>
+                        (a - b)² = a² - 2ab + b²<br>
+                        (a + b)(a - b) = a² - b²<br>
+                        (a + b)³ = a³ + 3a²b + 3ab² + b³<br>
+                        a³ + b³ = (a + b)(a² - ab + b²)<br>
+                        a³ - b³ = (a - b)(a² + ab + b²)
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Quick Factoring: x² - 49</div>
+                    <p><strong>Recognize pattern:</strong> a² - b² where a = x, b = 7</p>
+                    <p><strong>Apply formula:</strong> x² - 49 = (x + 7)(x - 7)</p>
+                </div>
+
+                <h3>Mental Quadratic Solutions</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Quick Quadratic Recognition</div>
+                    <div class="formula">
+                        For x² + bx + c = 0, find two numbers that:<br>
+                        • Add to b<br>
+                        • Multiply to c
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Solving: x² + 5x + 6 = 0</div>
+                    <p><strong>Need numbers that:</strong> Add to 5, multiply to 6</p>
+                    <p><strong>Numbers:</strong> 2 and 3 (2+3=5, 2×3=6)</p>
+                    <p><strong>Solution:</strong> (x + 2)(x + 3) = 0, so x = -2 or x = -3</p>
+                </div>
+
+                <h3>Simultaneous Equation Shortcuts</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Elimination Method</h4>
+                        <p>Look for coefficients that are multiples of each other for quick elimination</p>
+                    </div>
+                    <div class="step">
+                        <h4>Substitution Patterns</h4>
+                        <p>Identify simple expressions to substitute (like y = 2x)</p>
+                    </div>
+                    <div class="step">
+                        <h4>Addition/Subtraction Tricks</h4>
+                        <p>Sometimes adding or subtracting equations gives immediate solutions</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Quick System Solution</div>
+                    <p><strong>Equations:</strong> 2x + y = 7, x - y = 2</p>
+                    <p><strong>Add equations:</strong> 3x = 9, so x = 3</p>
+                    <p><strong>Substitute back:</strong> 3 - y = 2, so y = 1</p>
+                    <p><strong>Solution:</strong> (3, 1)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="geometry" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 9</div>
+                <h2 class="chapter-title">Geometry Shortcuts</h2>
+                <p class="chapter-subtitle">Quick Area, Perimeter, and Pythagorean Tricks</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Area Formula Shortcuts</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Essential Area Formulas</div>
+                    <div class="formula">
+                        Rectangle: A = lw<br>
+                        Triangle: A = ½bh<br>
+                        Circle: A = πr² ≈ 3.14r²<br>
+                        Trapezoid: A = ½h(b₁ + b₂)<br>
+                        Parallelogram: A = bh
+                    </div>
+                </div>
+
+                <h3>Pythagorean Theorem Shortcuts</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Common Pythagorean Triples (Memorize!)</div>
+                    <div class="formula">
+                        3-4-5 (and multiples: 6-8-10, 9-12-15, 12-16-20)<br>
+                        5-12-13 (and multiples: 10-24-26)<br>
+                        8-15-17<br>
+                        7-24-25<br>
+                        20-21-29
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Quick Right Triangle Check</div>
+                    <p><strong>Triangle sides:</strong> 15, 20, 25</p>
+                    <p><strong>Recognize:</strong> 3-4-5 triangle × 5</p>
+                    <p><strong>Verification:</strong> 15² + 20² = 225 + 400 = 625 = 25²</p>
+                </div>
+
+                <h3>Circle Calculations</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Circle Shortcuts</div>
+                    <div class="formula">
+                        π ≈ 3.14 (for quick estimates)<br>
+                        π ≈ 22/7 (for fractional calculations)<br>
+                        Circumference: C = 2πr ≈ 6.28r<br>
+                        Area: A = πr² ≈ 3.14r²
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Quick Circle Area: radius = 7</div>
+                    <p><strong>Using π ≈ 22/7:</strong> A = (22/7) × 7² = 22 × 7 = 154</p>
+                    <p><strong>Exact:</strong> A = 49π ≈ 153.94</p>
+                </div>
+
+                <h3>Triangle Properties</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Sum of Angles</h4>
+                        <p>Always 180° in any triangle</p>
+                    </div>
+                    <div class="step">
+                        <h4>Isosceles Triangle</h4>
+                        <p>Two equal sides means two equal angles</p>
+                    </div>
+                    <div class="step">
+                        <h4>Equilateral Triangle</h4>
+                        <p>All sides equal, all angles 60°</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="patterns" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 10</div>
+                <h2 class="chapter-title">Number Patterns & Sequences</h2>
+                <p class="chapter-subtitle">Recognizing Mathematical Patterns</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Arithmetic Sequences</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Arithmetic Sequence Formulas</div>
+                    <div class="formula">
+                        nth term: aₙ = a₁ + (n-1)d<br>
+                        Sum of n terms: Sₙ = n/2 × (2a₁ + (n-1)d)<br>
+                        Or: Sₙ = n/2 × (first term + last term)
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Arithmetic Sequence: 5, 9, 13, 17, ...</div>
+                    <p><strong>First term (a₁):</strong> 5</p>
+                    <p><strong>Common difference (d):</strong> 4</p>
+                    <p><strong>10th term:</strong> a₁₀ = 5 + (10-1)×4 = 5 + 36 = 41</p>
+                    <p><strong>Sum of first 10 terms:</strong> S₁₀ = 10/2 × (5 + 41) = 5 × 46 = 230</p>
+                </div>
+
+                <h3>Geometric Sequences</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Geometric Sequence Formulas</div>
+                    <div class="formula">
+                        nth term: aₙ = a₁ × r^(n-1)<br>
+                        Sum of n terms: Sₙ = a₁(rⁿ - 1)/(r - 1) when r ≠ 1
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Geometric Sequence: 3, 6, 12, 24, ...</div>
+                    <p><strong>First term (a₁):</strong> 3</p>
+                    <p><strong>Common ratio (r):</strong> 2</p>
+                    <p><strong>8th term:</strong> a₈ = 3 × 2⁷ = 3 × 128 = 384</p>
+                    <p><strong>Sum of first 8 terms:</strong> S₈ = 3(2⁸ - 1)/(2 - 1) = 3 × 255 = 765</p>
+                </div>
+
+                <h3>Special Number Patterns</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Common Mathematical Sequences</div>
+                    <ul>
+                        <li><strong>Fibonacci:</strong> 1, 1, 2, 3, 5, 8, 13, 21, ... (each term = sum of previous two)</li>
+                        <li><strong>Square numbers:</strong> 1, 4, 9, 16, 25, 36, ... (n²)</li>
+                        <li><strong>Triangular numbers:</strong> 1, 3, 6, 10, 15, ... (n(n+1)/2)</li>
+                        <li><strong>Powers of 2:</strong> 1, 2, 4, 8, 16, 32, 64, ... (2ⁿ)</li>
+                    </ul>
+                </div>
+
+                <h3>Pattern Recognition Strategies</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Look for Differences</h4>
+                        <p>Calculate differences between consecutive terms</p>
+                    </div>
+                    <div class="step">
+                        <h4>Check for Ratios</h4>
+                        <p>See if consecutive terms have a constant ratio</p>
+                    </div>
+                    <div class="step">
+                        <h4>Recognize Common Patterns</h4>
+                        <p>Compare to known sequences (squares, cubes, Fibonacci, etc.)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exams" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 11</div>
+                <h2 class="chapter-title">Exam Applications</h2>
+                <p class="chapter-subtitle">Maximizing Test Performance</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Standardized Test Strategy</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Test-Taking Priorities</div>
+                    <ol>
+                        <li><strong>Speed over perfection</strong> - Use shortcuts to save time</li>
+                        <li><strong>Estimation first</strong> - Eliminate obviously wrong answers</li>
+                        <li><strong>Pattern recognition</strong> - Look for familiar problem types</li>
+                        <li><strong>Work backwards</strong> - Use answer choices to check work</li>
+                        <li><strong>Skip and return</strong> - Don't get stuck on difficult problems</li>
+                    </ol>
+                </div>
+
+                <h3>SAT/ACT Math Shortcuts</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Multiple Choice Strategy</h4>
+                        <p>Use answer choices to guide solution method</p>
+                    </div>
+                    <div class="step">
+                        <h4>Calculator vs Mental Math</h4>
+                        <p>Know when mental shortcuts are faster than calculator</p>
+                    </div>
+                    <div class="step">
+                        <h4>Time Management</h4>
+                        <p>Allocate time per problem and stick to schedule</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">SAT Problem: 23% of 156 is closest to:</div>
+                    <p><strong>Answer choices:</strong> (A) 30 (B) 36 (C) 42 (D) 48</p>
+                    <p><strong>Quick estimate:</strong> 25% of 156 = 1/4 × 156 = 39</p>
+                    <p><strong>23% is slightly less:</strong> Answer (B) 36</p>
+                </div>
+
+                <h3>GRE/GMAT Quantitative Strategies</h3>
+                <div class="formula-box">
+                    <div class="formula-title">Advanced Test Techniques</div>
+                    <ul>
+                        <li><strong>Data Sufficiency:</strong> Don't solve completely, just check if solvable</li>
+                        <li><strong>Quantitative Comparison:</strong> Look for shortcuts to compare values</li>
+                        <li><strong>Word Problems:</strong> Translate systematically to equations</li>
+                        <li><strong>Graph Analysis:</strong> Use estimation and scaling tricks</li>
+                    </ul>
+                </div>
+
+                <h3>Asian Math Exam Preparation</h3>
+                <div class="step-guide">
+                    <div class="step">
+                        <h4>Speed Emphasis</h4>
+                        <p>Asian exams often prioritize calculation speed</p>
+                    </div>
+                    <div class="step">
+                        <h4>Mental Math Focus</h4>
+                        <p>Practice calculations without calculator dependency</p>
+                    </div>
+                    <div class="step">
+                        <h4>Pattern Mastery</h4>
+                        <p>Memorize common problem patterns and solutions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice" class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">Chapter 12</div>
+                <h2 class="chapter-title">Comprehensive Practice</h2>
+                <p class="chapter-subtitle">100+ Problems with Step-by-Step Solutions</p>
+            </div>
+            <div class="chapter-content">
+                <h3>Timed Speed Drills</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Multiplication Speed Test (2 minutes)</h4>
+                        <p>1. 47 × 23 = ?</p>
+                        <p>2. 89 × 67 = ?</p>
+                        <p>3. 56 × 78 = ?</p>
+                        <p>4. 34 × 29 = ?</p>
+                        <p>5. 83 × 47 = ?</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solutions</button>
+                        <div class="solution">
+                            <p>1. 47×23 = 1081 (lattice/cross method)</p>
+                            <p>2. 89×67 = 5963</p>
+                            <p>3. 56×78 = 4368</p>
+                            <p>4. 34×29 = 986</p>
+                            <p>5. 83×47 = 3901</p>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h4>Square Numbers (90 seconds)</h4>
+                        <p>1. 35² = ?</p>
+                        <p>2. 67² = ?</p>
+                        <p>3. 45² = ?</p>
+                        <p>4. 88² = ?</p>
+                        <p>5. 95² = ?</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solutions</button>
+                        <div class="solution">
+                            <p>1. 35² = 1225 (3×4=12, append 25)</p>
+                            <p>2. 67² = 4489 (near 70: 70²-6²)</p>
+                            <p>3. 45² = 2025 (4×5=20, append 25)</p>
+                            <p>4. 88² = 7744 (near 90: 90²-4²)</p>
+                            <p>5. 95² = 9025 (9×10=90, append 25)</p>
+                        </div>
+                    </div>
+
+                    <div class="practice-card">
+                        <h4>Percentage Calculations (3 minutes)</h4>
+                        <p>1. 18% of 250 = ?</p>
+                        <p>2. 35% of 180 = ?</p>
+                        <p>3. 12.5% of 320 = ?</p>
+                        <p>4. 66⅔% of 150 = ?</p>
+                        <p>5. 125% of 80 = ?</p>
+                        <button class="toggle-solution" onclick="toggleSolution(this)">Show Solutions</button>
+                        <div class="solution">
+                            <p>1. 18% = 10% + 8% = 25 + 20 = 45</p>
+                            <p>2. 35% = 30% + 5% = 54 + 9 = 63</p>
+                            <p>3. 12.5% = 1/8 = 40</p>
+                            <p>4. 66⅔% = 2/3 = 100</p>
+                            <p>5. 125% = 1.25 × 80 = 100</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Challenge Problem Sets</h3>
+                <div class="example-box">
+                    <div class="example-title">Advanced Challenge 1</div>
+                    <p><strong>Problem:</strong> A square has the same area as a rectangle with dimensions 16 by 25. What's the perimeter of the square?</p>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Rectangle area: 16 × 25 = 400</p>
+                        <p>Square side: √400 = 20</p>
+                        <p>Square perimeter: 4 × 20 = 80</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Advanced Challenge 2</div>
+                    <p><strong>Problem:</strong> If 3x + 2y = 17 and x - y = 2, find the value of x² + y²</p>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>From x - y = 2: x = y + 2</p>
+                        <p>Substitute: 3(y+2) + 2y = 17</p>
+                        <p>3y + 6 + 2y = 17, so 5y = 11, y = 11/5</p>
+                        <p>x = 11/5 + 2 = 21/5</p>
+                        <p>x² + y² = (21/5)² + (11/5)² = (441+121)/25 = 562/25 = 22.48</p>
+                    </div>
+                </div>
+
+                <h3>Mental Math Mastery Test</h3>
+                <p>Complete these problems using only mental calculation:</p>
+                
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>Level 1 - Basic</h4>
+                        <p>1. 146 + 287 + 393 = ?</p>
+                        <p>2. 15² = ?</p>
+                        <p>3. 144 ÷ 12 = ?</p>
+                        <p>4. 25% of 168 = ?</p>
+                        <p>5. 13 × 17 = ?</p>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h4>Level 2 - Intermediate</h4>
+                        <p>1. 0.375 as a fraction = ?</p>
+                        <p>2. 89² = ?</p>
+                        <p>3. 2847 ÷ 9 = ?</p>
+                        <p>4. 37.5% of 240 = ?</p>
+                        <p>5. 23 × 47 = ?</p>
+                    </div>
+                    
+                    <div class="practice-card">
+                        <h4>Level 3 - Advanced</h4>
+                        <p>1. ∛216 = ?</p>
+                        <p>2. 127² = ?</p>
+                        <p>3. 17 × 19 × 21 = ?</p>
+                        <p>4. 83⅓% of 216 = ?</p>
+                        <p>5. √1369 = ?</p>
+                    </div>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">Practice Schedule Recommendation</div>
+                    <p><strong>Week 1-2:</strong> Master basic shortcuts (multiplication, division by 5, squares ending in 5)</p>
+                    <p><strong>Week 3-4:</strong> Add percentage calculations and fraction work</p>
+                    <p><strong>Week 5-6:</strong> Include algebra shortcuts and pattern recognition</p>
+                    <p><strong>Week 7-8:</strong> Focus on speed drills and mixed problem types</p>
+                    <p><strong>Ongoing:</strong> Daily 15-minute practice maintaining all skills</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--gradient); color: white; text-align: center; padding: 2rem; margin-top: 3rem;">
+        <div class="container">
+            <h3>Master the Art of Chinese Mathematics</h3>
+            <p style="margin: 1rem 0; opacity: 0.9;">With practice and dedication, these ancient techniques will transform your mathematical abilities.</p>
+            <div style="font-size: 2rem; margin: 1rem 0;">
+                <span class="chinese-char">智慧</span> Wisdom Through Numbers <span class="chinese-char">算数</span>
+            </div>
+            <p style="opacity: 0.7; font-size: 0.9rem;">© 2024 Chinese Math Formula Shortcuts Guide. For educational and personal use.</p>
         </div>
-    </div>
+    </footer>
+
+    <script>
+        // Interactive functionality
+        function toggleSolution(button) {
+            const solution = button.nextElementSibling;
+            if (solution.classList.contains('visible')) {
+                solution.classList.remove('visible');
+                button.textContent = 'Show Solution';
+            } else {
+                solution.classList.add('visible');
+                button.textContent = 'Hide Solution';
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-item a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        function highlightActiveSection() {
+            const sections = document.querySelectorAll('.chapter');
+            const navLinks = document.querySelectorAll('.nav-item a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.style.background = 'var(--primary-color)';
+                    link.style.color = 'white';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightActiveSection);
+        window.addEventListener('load', highlightActiveSection);
+
+        // Print functionality
+        function printEbook() {
+            window.print();
+        }
+
+        // Add print button to header (optional)
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Chinese Math Shortcuts Ebook loaded successfully!');
+            console.log('Use the navigation bar to jump between sections.');
+            console.log('Click "Show Solution" buttons to reveal answers.');
+        });
+    </script>
 </body>
 </html>
