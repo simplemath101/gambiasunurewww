@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTG Timetable</title>
+    <title>UTG Timetable - Landscape</title>
     <style>
         * {
             margin: 0;
@@ -15,26 +15,28 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
         .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             width: 100%;
-            max-width: 900px;
+            max-width: 1200px;
+            min-height: 600px;
         }
 
         .header {
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
             text-align: center;
-            padding: 30px;
+            padding: 20px;
             position: relative;
             overflow: hidden;
         }
@@ -62,68 +64,78 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             position: relative;
             z-index: 1;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             position: relative;
             z-index: 1;
             opacity: 0.9;
         }
 
-        .timetable {
-            padding: 0;
+        .timetable-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            height: calc(100% - 100px);
         }
 
-        .day-section {
-            border-bottom: 1px solid #e0e0e0;
+        .day-column {
+            border-right: 2px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
         }
 
-        .day-section:last-child {
-            border-bottom: none;
+        .day-column:last-child {
+            border-right: none;
         }
 
         .day-header {
             background: linear-gradient(135deg, #74b9ff, #0984e3);
             color: white;
-            padding: 15px 25px;
+            padding: 15px;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            text-align: center;
             position: relative;
         }
 
         .day-header::after {
             content: '';
             position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 8px solid white;
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #0984e3;
         }
 
         .subjects {
-            padding: 20px 0;
+            padding: 20px 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .subject {
-            margin: 0 25px 20px;
             background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 5px solid;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .subject::before {
@@ -133,7 +145,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%);
+            background: linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.2) 50%, transparent 51%);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -143,61 +155,74 @@
         }
 
         .subject:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .subject:nth-child(1) { border-left-color: #e74c3c; }
-        .subject:nth-child(2) { border-left-color: #9b59b6; }
-        .subject:nth-child(3) { border-left-color: #3498db; }
-        .subject:nth-child(4) { border-left-color: #2ecc71; }
+        /* Color coding for subjects */
+        .monday .subject:nth-child(1) { border-left-color: #e74c3c; }
+        .monday .subject:nth-child(2) { border-left-color: #9b59b6; }
+        
+        .tuesday .subject:nth-child(1) { border-left-color: #3498db; }
+        
+        .thursday .subject:nth-child(1) { border-left-color: #2ecc71; }
+        .thursday .subject:nth-child(2) { border-left-color: #f39c12; }
+        .thursday .subject:nth-child(3) { border-left-color: #e67e22; }
 
         .subject-name {
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: #2c3e50;
             margin-bottom: 8px;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .subject-time {
             color: #7f8c8d;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
         }
 
         .time-icon {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
             opacity: 0.7;
         }
 
-        .empty-day {
-            text-align: center;
-            padding: 40px 25px;
-            color: #95a5a6;
-            font-style: italic;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .container {
+                max-width: 100%;
             }
             
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
-            .subject {
-                margin: 0 15px 15px;
-                padding: 15px;
+            .subject-name {
+                font-size: 0.9rem;
             }
             
-            .day-header {
-                padding: 12px 15px;
-                font-size: 1.1rem;
+            .subject-time {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .timetable-grid {
+                grid-template-columns: 1fr;
+                gap: 1px;
+            }
+            
+            .day-column {
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+            }
+            
+            .day-column:last-child {
+                border-bottom: none;
             }
         }
     </style>
@@ -209,8 +234,8 @@
             <p>University of The Gambia - Academic Schedule</p>
         </div>
         
-        <div class="timetable">
-            <div class="day-section">
+        <div class="timetable-grid">
+            <div class="day-column monday">
                 <div class="day-header">MONDAY</div>
                 <div class="subjects">
                     <div class="subject">
@@ -234,7 +259,7 @@
                 </div>
             </div>
 
-            <div class="day-section">
+            <div class="day-column tuesday">
                 <div class="day-header">TUESDAY</div>
                 <div class="subjects">
                     <div class="subject">
@@ -249,7 +274,7 @@
                 </div>
             </div>
 
-            <div class="day-section">
+            <div class="day-column thursday">
                 <div class="day-header">THURSDAY</div>
                 <div class="subjects">
                     <div class="subject">
