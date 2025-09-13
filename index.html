@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTG Timetable - Landscape</title>
+    <title>Spanish Phrasebook - 700+ Essential Phrases</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+        
+        :root {
+            --primary-color: #d4574a;
+            --secondary-color: #f4e4a1;
+            --accent-color: #8b4513;
+            --text-dark: #2c1810;
+            --text-light: #5a453a;
+            --bg-light: #fdfcf8;
+            --bg-cream: #faf8f3;
+            --shadow: rgba(44, 24, 16, 0.1);
+            --gradient: linear-gradient(135deg, #d4574a 0%, #b8453a 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,31 +26,24 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            width: 100%;
             max-width: 1200px;
-            min-height: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
+        /* Header Styles */
         .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: var(--gradient);
             color: white;
-            text-align: center;
-            padding: 20px;
+            padding: 3rem 0;
             position: relative;
             overflow: hidden;
         }
@@ -44,262 +51,1623 @@
         .header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.1) 10px,
-                rgba(255, 255, 255, 0.1) 20px
-            );
-            animation: move 20s linear infinite;
-        }
-
-        @keyframes move {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .header p {
-            font-size: 1rem;
-            position: relative;
-            z-index: 1;
-            opacity: 0.9;
-        }
-
-        .timetable-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-            height: calc(100% - 100px);
-        }
-
-        .day-column {
-            border-right: 2px solid #e0e0e0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .day-column:last-child {
-            border-right: none;
-        }
-
-        .day-header {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .day-header::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #0984e3;
-        }
-
-        .subjects {
-            padding: 20px 15px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .subject {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            border-left: 4px solid;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .subject::before {
-            content: '';
-            position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.2) 50%, transparent 51%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .subject:hover::before {
-            opacity: 1;
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
         }
 
-        .subject:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        .header h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* Color coding for subjects */
-        .monday .subject:nth-child(1) { border-left-color: #e74c3c; }
-        .monday .subject:nth-child(2) { border-left-color: #9b59b6; }
-        .monday .subject:nth-child(3) { border-left-color: #3498db; }
-        
-        .thursday .subject:nth-child(1) { border-left-color: #2ecc71; }
-        .thursday .subject:nth-child(2) { border-left-color: #f39c12; }
-        .thursday .subject:nth-child(3) { border-left-color: #e67e22; }
-
-        .subject-name {
-            font-weight: bold;
-            font-size: 0.95rem;
-            color: #2c3e50;
-            margin-bottom: 8px;
-            line-height: 1.3;
+        .header .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
         }
 
-        .subject-time {
-            color: #7f8c8d;
-            font-size: 0.85rem;
+        .flag-decoration {
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ff0000 33%, #ffff00 33% 66%, #ff0000 66%);
+            border-radius: 4px;
+            margin: 0 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--bg-cream);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .nav-content {
             display: flex;
-            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .time-icon {
-            width: 14px;
-            height: 14px;
-            margin-right: 6px;
-            opacity: 0.7;
+        .nav-btn {
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 900px) {
-            .container {
-                max-width: 100%;
-            }
-            
+        .nav-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 87, 74, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .intro h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .category-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .category-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid var(--primary-color);
+        }
+
+        .category-header h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .phrases-grid {
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .phrase-card {
+            background: var(--bg-cream);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .phrase-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(212, 87, 74, 0.15);
+        }
+
+        .spanish-phrase {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .english-translation {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .pronunciation {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-top: 0.5rem;
+            font-family: monospace;
+            background: rgba(212, 87, 74, 0.1);
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+        }
+
+        /* Special Elements */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--secondary-color), #f7e7a0);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--accent-color);
+        }
+
+        .tip {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .tip-icon {
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 2.5rem;
             }
             
-            .subject-name {
-                font-size: 0.9rem;
+            .phrases-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
             }
             
-            .subject-time {
+            .nav-content {
+                gap: 0.5rem;
+            }
+            
+            .nav-btn {
                 font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
             }
         }
 
-        @media (max-width: 600px) {
-            .timetable-grid {
-                grid-template-columns: 1fr;
-                gap: 1px;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .phrase-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .phrase-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav, .header {
+                display: none;
             }
             
-            .day-column {
-                border-right: none;
-                border-bottom: 2px solid #e0e0e0;
-            }
-            
-            .day-column:last-child {
-                border-bottom: none;
+            .category-section {
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>UTG TIMETABLE</h1>
-            <p>University of The Gambia - Academic Schedule</p>
-        </div>
-        
-        <div class="timetable-grid">
-            <div class="day-column monday">
-                <div class="day-header">MONDAY</div>
-                <div class="subjects">
-                    <div class="subject">
-                        <div class="subject-name">COMPUTER PROGRAMMING 2</div>
-                        <div class="subject-time">
-                            <svg class="time-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                            </svg>
-                            08:00 - 11:00
-                        </div>
-                    </div>
-                    <div class="subject">
-                        <div class="subject-name">CROSS PLATFORM & ENTERPRISE INTEGRATION</div>
-                        <div class="subject-time">
-                            <svg class="time-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                            </svg>
-                            11:30 - 14:00
-                        </div>
-                    </div>
-                    <div class="subject">
-                        <div class="subject-name">DATA STRUCTURE AND ALGORITHMS</div>
-                        <div class="subject-time">
-                            <svg class="time-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                            </svg>
-                            14:30 - 17:00
-                        </div>
-                    </div>
-                </div>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="flag-decoration"></div>
+                <h1>Guía Completa de Español</h1>
+                <div class="flag-decoration"></div>
+                <p class="subtitle">700+ Essential Spanish Phrases for English Speakers</p>
             </div>
+        </div>
+    </header>
 
-            <div class="day-column thursday">
-                <div class="day-header">THURSDAY</div>
-                <div class="subjects">
-                    <div class="subject">
-                        <div class="subject-name">LINEAR ALGEBRA</div>
-                        <div class="subject-time">
-                            <svg class="time-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                            </svg>
-                            08:30 - 11:00
-                        </div>
-                    </div>
-                    <div class="subject">
-                        <div class="subject-name">PROJECT MANAGEMENT</div>
-                        <div class="subject-time">
-                            <svg class="time-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                            </svg>
-                            11:30 - 14:00
-                        </div>
-                    </div>
-                    <div class="subject">
-                        <div class="subject-name">INTERNETWORKING & TCP/IP</div>
-                        <div class="subject-time">
-                            <svg class="time-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                            </svg>
-                            14:30 - 17:00
-                        </div>
-                    </div>
-                </div>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#greetings" class="nav-btn">Greetings</a>
+                <a href="#basic" class="nav-btn">Basic Conversation</a>
+                <a href="#travel" class="nav-btn">Travel</a>
+                <a href="#restaurant" class="nav-btn">Restaurant</a>
+                <a href="#shopping" class="nav-btn">Shopping</a>
+                <a href="#emergency" class="nav-btn">Emergency</a>
+                <a href="#family" class="nav-btn">Family</a>
+                <a href="#work" class="nav-btn">Work</a>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="intro">
+                <h2>¡Bienvenidos!</h2>
+                <p>Welcome to your comprehensive Spanish phrasebook! This collection contains over 700 essential phrases that will help you communicate effectively in Spanish-speaking countries. Each phrase includes pronunciation guides to help you speak with confidence.</p>
+                
+                <div class="tip">
+                    <span class="tip-icon">💡</span>
+                    <strong>Tip:</strong> Practice the pronunciation guides out loud - Spanish pronunciation is more consistent than English!
+                </div>
+            </section>
+
+            <!-- Greetings and Basic Politeness -->
+            <section id="greetings" class="category-section">
+                <div class="category-header">
+                    <h3>Saludos y Cortesía</h3>
+                    <p class="category-desc">Greetings and Basic Politeness</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Hola!</div>
+                        <div class="english-translation">Hello!</div>
+                        <div class="pronunciation">OH-lah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Buenos días!</div>
+                        <div class="english-translation">Good morning!</div>
+                        <div class="pronunciation">BWAY-nohs DEE-ahs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Buenas tardes!</div>
+                        <div class="english-translation">Good afternoon!</div>
+                        <div class="pronunciation">BWAY-nahs TAR-dehs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Buenas noches!</div>
+                        <div class="english-translation">Good evening/night!</div>
+                        <div class="pronunciation">BWAY-nahs NOH-chehs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cómo está usted?</div>
+                        <div class="english-translation">How are you? (formal)</div>
+                        <div class="pronunciation">KOH-moh ehs-TAH oos-TEHD</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cómo estás?</div>
+                        <div class="english-translation">How are you? (informal)</div>
+                        <div class="pronunciation">KOH-moh ehs-TAHS</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Muy bien, gracias</div>
+                        <div class="english-translation">Very well, thank you</div>
+                        <div class="pronunciation">mwee bee-EHN GRAH-see-ahs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Y usted?</div>
+                        <div class="english-translation">And you? (formal)</div>
+                        <div class="pronunciation">ee oos-TEHD</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Y tú?</div>
+                        <div class="english-translation">And you? (informal)</div>
+                        <div class="pronunciation">ee too</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Encantado/a de conocerle</div>
+                        <div class="english-translation">Pleased to meet you</div>
+                        <div class="pronunciation">en-kahn-TAH-doh deh koh-noh-SEHR-leh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Hasta luego!</div>
+                        <div class="english-translation">See you later!</div>
+                        <div class="pronunciation">AHS-tah LWAY-goh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Hasta mañana!</div>
+                        <div class="english-translation">See you tomorrow!</div>
+                        <div class="pronunciation">AHS-tah mah-NYAH-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Adiós!</div>
+                        <div class="english-translation">Goodbye!</div>
+                        <div class="pronunciation">ah-dee-OHS</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Por favor</div>
+                        <div class="english-translation">Please</div>
+                        <div class="pronunciation">por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Gracias</div>
+                        <div class="english-translation">Thank you</div>
+                        <div class="pronunciation">GRAH-see-ahs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Muchas gracias</div>
+                        <div class="english-translation">Thank you very much</div>
+                        <div class="pronunciation">MOO-chahs GRAH-see-ahs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">De nada</div>
+                        <div class="english-translation">You're welcome</div>
+                        <div class="pronunciation">deh NAH-dah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Perdón</div>
+                        <div class="english-translation">Excuse me/Sorry</div>
+                        <div class="pronunciation">per-DOHN</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Lo siento</div>
+                        <div class="english-translation">I'm sorry</div>
+                        <div class="pronunciation">loh see-EHN-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Disculpe</div>
+                        <div class="english-translation">Excuse me (to get attention)</div>
+                        <div class="pronunciation">dees-KOOL-peh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Basic Conversation -->
+            <section id="basic" class="category-section">
+                <div class="category-header">
+                    <h3>Conversación Básica</h3>
+                    <p class="category-desc">Basic Conversation</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Habla usted inglés?</div>
+                        <div class="english-translation">Do you speak English?</div>
+                        <div class="pronunciation">AH-blah oos-TEHD een-GLAYS</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">No hablo español muy bien</div>
+                        <div class="english-translation">I don't speak Spanish very well</div>
+                        <div class="pronunciation">noh AH-bloh ehs-pah-NYOHL mwee bee-EHN</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puede repetir, por favor?</div>
+                        <div class="english-translation">Can you repeat, please?</div>
+                        <div class="pronunciation">PWAY-deh reh-peh-TEER por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puede hablar más despacio?</div>
+                        <div class="english-translation">Can you speak more slowly?</div>
+                        <div class="pronunciation">PWAY-deh ah-BLAR mahs dehs-PAH-see-oh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">No entiendo</div>
+                        <div class="english-translation">I don't understand</div>
+                        <div class="pronunciation">noh en-tee-EHN-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Entiende?</div>
+                        <div class="english-translation">Do you understand?</div>
+                        <div class="pronunciation">en-tee-EHN-deh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Sí, entiendo</div>
+                        <div class="english-translation">Yes, I understand</div>
+                        <div class="pronunciation">see en-tee-EHN-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cómo se dice...?</div>
+                        <div class="english-translation">How do you say...?</div>
+                        <div class="pronunciation">KOH-moh seh DEE-seh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Qué significa esto?</div>
+                        <div class="english-translation">What does this mean?</div>
+                        <div class="pronunciation">keh seeg-nee-FEE-kah EHS-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Estoy aprendiendo español</div>
+                        <div class="english-translation">I'm learning Spanish</div>
+                        <div class="pronunciation">ehs-TOY ah-pren-dee-EHN-doh ehs-pah-NYOHL</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿De dónde es usted?</div>
+                        <div class="english-translation">Where are you from?</div>
+                        <div class="pronunciation">deh DOHN-deh ehs oos-TEHD</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Soy de Estados Unidos</div>
+                        <div class="english-translation">I'm from the United States</div>
+                        <div class="pronunciation">soy deh ehs-TAH-dohs oo-NEE-dohs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cómo se llama?</div>
+                        <div class="english-translation">What's your name?</div>
+                        <div class="pronunciation">KOH-moh seh YAH-mah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me llamo...</div>
+                        <div class="english-translation">My name is...</div>
+                        <div class="pronunciation">meh YAH-moh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cuántos años tiene?</div>
+                        <div class="english-translation">How old are you?</div>
+                        <div class="pronunciation">KWAN-tohs AH-nyohs tee-EH-neh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Tengo... años</div>
+                        <div class="english-translation">I am... years old</div>
+                        <div class="pronunciation">TEHN-goh... AH-nyohs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Está casado/a?</div>
+                        <div class="english-translation">Are you married?</div>
+                        <div class="pronunciation">ehs-TAH kah-SAH-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Sí, estoy casado/a</div>
+                        <div class="english-translation">Yes, I'm married</div>
+                        <div class="pronunciation">see ehs-TOY kah-SAH-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">No, soy soltero/a</div>
+                        <div class="english-translation">No, I'm single</div>
+                        <div class="pronunciation">noh soy sohl-TEH-roh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tiene hijos?</div>
+                        <div class="english-translation">Do you have children?</div>
+                        <div class="pronunciation">tee-EH-neh EE-hohs</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Travel -->
+            <section id="travel" class="category-section">
+                <div class="category-header">
+                    <h3>Viajes y Transporte</h3>
+                    <p class="category-desc">Travel and Transportation</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está el aeropuerto?</div>
+                        <div class="english-translation">Where is the airport?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH el ah-eh-roh-PWER-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cuánto cuesta un taxi?</div>
+                        <div class="english-translation">How much does a taxi cost?</div>
+                        <div class="pronunciation">KWAN-toh KWES-tah oon TAHK-see</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Necesito ir al hotel</div>
+                        <div class="english-translation">I need to go to the hotel</div>
+                        <div class="pronunciation">neh-seh-SEE-toh eer ahl oh-TEHL</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está la estación de tren?</div>
+                        <div class="english-translation">Where is the train station?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH lah ehs-tah-see-OHN deh trehn</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Un billete para Madrid, por favor</div>
+                        <div class="english-translation">A ticket to Madrid, please</div>
+                        <div class="pronunciation">oon bee-YEH-teh PAH-rah mah-DREED por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿A qué hora sale el tren?</div>
+                        <div class="english-translation">What time does the train leave?</div>
+                        <div class="pronunciation">ah keh OH-rah SAH-leh el trehn</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cuánto tiempo dura el viaje?</div>
+                        <div class="english-translation">How long does the trip take?</div>
+                        <div class="pronunciation">KWAN-toh tee-EHM-poh DOO-rah el vee-AH-heh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde puedo tomar el autobús?</div>
+                        <div class="english-translation">Where can I take the bus?</div>
+                        <div class="pronunciation">DOHN-deh PWEH-doh toh-MAR el aw-toh-BOOS</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Esta es la parada correcta?</div>
+                        <div class="english-translation">Is this the right stop?</div>
+                        <div class="pronunciation">EHS-tah ehs lah pah-RAH-dah koh-RREHK-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puede parar aquí, por favor?</div>
+                        <div class="english-translation">Can you stop here, please?</div>
+                        <div class="pronunciation">PWEH-deh pah-RAR ah-KEE por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está la oficina de turismo?</div>
+                        <div class="english-translation">Where is the tourist office?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH lah oh-fee-SEE-nah deh too-REES-moh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Necesito un mapa</div>
+                        <div class="english-translation">I need a map</div>
+                        <div class="pronunciation">neh-seh-SEE-toh oon MAH-pah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Está lejos de aquí?</div>
+                        <div class="english-translation">Is it far from here?</div>
+                        <div class="pronunciation">ehs-TAH LEH-hohs deh ah-KEE</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puede ayudarme con las direcciones?</div>
+                        <div class="english-translation">Can you help me with directions?</div>
+                        <div class="pronunciation">PWEH-deh ah-yoo-DAR-meh kohn lahs dee-rehk-see-OH-nehs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Vaya todo recto</div>
+                        <div class="english-translation">Go straight ahead</div>
+                        <div class="pronunciation">VAH-yah TOH-doh REHK-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Gire a la derecha</div>
+                        <div class="english-translation">Turn right</div>
+                        <div class="pronunciation">HEE-reh ah lah deh-REH-chah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Gire a la izquierda</div>
+                        <div class="english-translation">Turn left</div>
+                        <div class="pronunciation">HEE-reh ah lah ees-kee-EHR-dah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Hay un banco cerca?</div>
+                        <div class="english-translation">Is there a bank nearby?</div>
+                        <div class="pronunciation">ahy oon BAHN-koh SEHR-kah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde puedo cambiar dinero?</div>
+                        <div class="english-translation">Where can I exchange money?</div>
+                        <div class="pronunciation">DOHN-deh PWEH-doh kahm-bee-AR dee-NEH-roh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Aceptan tarjetas de crédito?</div>
+                        <div class="english-translation">Do you accept credit cards?</div>
+                        <div class="pronunciation">ahk-SEHP-tahn tar-HEH-tahs deh KREH-dee-toh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Restaurant -->
+            <section id="restaurant" class="category-section">
+                <div class="category-header">
+                    <h3>Restaurante y Comida</h3>
+                    <p class="category-desc">Restaurant and Food</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Una mesa para dos, por favor</div>
+                        <div class="english-translation">A table for two, please</div>
+                        <div class="pronunciation">OO-nah MEH-sah PAH-rah dohs por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tienen una mesa libre?</div>
+                        <div class="english-translation">Do you have a free table?</div>
+                        <div class="pronunciation">tee-EH-nehn OO-nah MEH-sah LEE-breh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puedo ver la carta?</div>
+                        <div class="english-translation">Can I see the menu?</div>
+                        <div class="pronunciation">PWEH-doh vehr lah KAR-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Qué me recomienda?</div>
+                        <div class="english-translation">What do you recommend?</div>
+                        <div class="pronunciation">keh meh reh-koh-mee-EHN-dah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cuál es la especialidad de la casa?</div>
+                        <div class="english-translation">What's the house specialty?</div>
+                        <div class="pronunciation">kwahl ehs lah ehs-peh-see-ah-lee-DAHD deh lah KAH-sah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Quisiera pedir...</div>
+                        <div class="english-translation">I would like to order...</div>
+                        <div class="pronunciation">kee-see-EH-rah peh-DEER</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Para mí, la paella</div>
+                        <div class="english-translation">For me, the paella</div>
+                        <div class="pronunciation">PAH-rah mee lah pah-EH-yah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cómo está preparado?</div>
+                        <div class="english-translation">How is it prepared?</div>
+                        <div class="pronunciation">KOH-moh ehs-TAH preh-pah-RAH-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Sin picante, por favor</div>
+                        <div class="english-translation">Not spicy, please</div>
+                        <div class="pronunciation">seen pee-KAHN-teh por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tienen platos vegetarianos?</div>
+                        <div class="english-translation">Do you have vegetarian dishes?</div>
+                        <div class="pronunciation">tee-EH-nehn PLAH-tohs veh-heh-tah-ree-AH-nohs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Soy alérgico/a a...</div>
+                        <div class="english-translation">I'm allergic to...</div>
+                        <div class="pronunciation">soy ah-LEHR-hee-koh ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Qué bebidas tienen?</div>
+                        <div class="english-translation">What drinks do you have?</div>
+                        <div class="pronunciation">keh beh-BEE-dahs tee-EH-nehn</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Un vaso de agua, por favor</div>
+                        <div class="english-translation">A glass of water, please</div>
+                        <div class="pronunciation">oon VAH-soh deh AH-gwah por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Una cerveza fría</div>
+                        <div class="english-translation">A cold beer</div>
+                        <div class="pronunciation">OO-nah sehr-VEH-sah FREE-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Una copa de vino tinto</div>
+                        <div class="english-translation">A glass of red wine</div>
+                        <div class="pronunciation">OO-nah KOH-pah deh VEE-noh TEEN-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tienen postre?</div>
+                        <div class="english-translation">Do you have dessert?</div>
+                        <div class="pronunciation">tee-EH-nehn POHS-treh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">La cuenta, por favor</div>
+                        <div class="english-translation">The bill, please</div>
+                        <div class="pronunciation">lah KWEN-tah por fah-VOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Está incluida la propina?</div>
+                        <div class="english-translation">Is the tip included?</div>
+                        <div class="pronunciation">ehs-TAH een-kloo-EE-dah lah proh-PEE-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">La comida estaba deliciosa</div>
+                        <div class="english-translation">The food was delicious</div>
+                        <div class="pronunciation">lah koh-MEE-dah ehs-TAH-bah deh-lee-see-OH-sah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puedo llevarlo para llevar?</div>
+                        <div class="english-translation">Can I take it to go?</div>
+                        <div class="pronunciation">PWEH-doh yeh-VAR-loh PAH-rah yeh-VAR</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shopping -->
+            <section id="shopping" class="category-section">
+                <div class="category-header">
+                    <h3>Compras y Tiendas</h3>
+                    <p class="category-desc">Shopping and Stores</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está el centro comercial?</div>
+                        <div class="english-translation">Where is the shopping center?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH el SEHN-troh koh-mer-see-AHL</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿A qué hora abren?</div>
+                        <div class="english-translation">What time do you open?</div>
+                        <div class="pronunciation">ah keh OH-rah AH-brehn</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿A qué hora cierran?</div>
+                        <div class="english-translation">What time do you close?</div>
+                        <div class="pronunciation">ah keh OH-rah see-EH-rahn</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puedo ayudarle?</div>
+                        <div class="english-translation">Can I help you?</div>
+                        <div class="pronunciation">PWEH-doh ah-yoo-DAR-leh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Solo estoy mirando</div>
+                        <div class="english-translation">I'm just looking</div>
+                        <div class="pronunciation">SOH-loh ehs-TOY mee-RAHN-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Busco...</div>
+                        <div class="english-translation">I'm looking for...</div>
+                        <div class="pronunciation">BOOS-koh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cuánto cuesta esto?</div>
+                        <div class="english-translation">How much does this cost?</div>
+                        <div class="pronunciation">KWAN-toh KWES-tah EHS-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tiene descuento?</div>
+                        <div class="english-translation">Is there a discount?</div>
+                        <div class="pronunciation">tee-EH-neh dehs-KWEN-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Es su mejor precio?</div>
+                        <div class="english-translation">Is that your best price?</div>
+                        <div class="pronunciation">ehs soo meh-HOR PREH-see-oh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tienen esto en otra talla?</div>
+                        <div class="english-translation">Do you have this in another size?</div>
+                        <div class="pronunciation">tee-EH-nehn EHS-toh ehn OH-trah TAH-yah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tienen otro color?</div>
+                        <div class="english-translation">Do you have another color?</div>
+                        <div class="pronunciation">tee-EH-nehn OH-troh koh-LOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está el probador?</div>
+                        <div class="english-translation">Where is the fitting room?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH el proh-bah-DOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puedo probármelo?</div>
+                        <div class="english-translation">Can I try it on?</div>
+                        <div class="pronunciation">PWEH-doh proh-BAR-meh-loh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me queda bien</div>
+                        <div class="english-translation">It fits me well</div>
+                        <div class="pronunciation">meh KEH-dah bee-EHN</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me queda pequeño/grande</div>
+                        <div class="english-translation">It's too small/big for me</div>
+                        <div class="pronunciation">meh KEH-dah peh-KEH-nyoh/GRAHN-deh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me lo llevo</div>
+                        <div class="english-translation">I'll take it</div>
+                        <div class="pronunciation">meh loh YEH-voh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde pago?</div>
+                        <div class="english-translation">Where do I pay?</div>
+                        <div class="pronunciation">DOHN-deh PAH-goh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puedo pagar con tarjeta?</div>
+                        <div class="english-translation">Can I pay by card?</div>
+                        <div class="pronunciation">PWEH-doh pah-GAR kohn tar-HEH-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tienen una bolsa?</div>
+                        <div class="english-translation">Do you have a bag?</div>
+                        <div class="pronunciation">tee-EH-nehn OO-nah BOHL-sah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puedo devolver esto?</div>
+                        <div class="english-translation">Can I return this?</div>
+                        <div class="pronunciation">PWEH-doh deh-vohl-VEHR EHS-toh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Emergency -->
+            <section id="emergency" class="category-section">
+                <div class="category-header">
+                    <h3>Emergencias y Salud</h3>
+                    <p class="category-desc">Emergencies and Health</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Ayuda!</div>
+                        <div class="english-translation">Help!</div>
+                        <div class="pronunciation">ah-YOO-dah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Socorro!</div>
+                        <div class="english-translation">Help! (urgent)</div>
+                        <div class="pronunciation">soh-KOH-rroh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Llame a la policía</div>
+                        <div class="english-translation">Call the police</div>
+                        <div class="pronunciation">YAH-meh ah lah poh-lee-SEE-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Llame una ambulancia</div>
+                        <div class="english-translation">Call an ambulance</div>
+                        <div class="pronunciation">YAH-meh OO-nah ahm-boo-LAHN-see-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está el hospital?</div>
+                        <div class="english-translation">Where is the hospital?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH el ohs-pee-TAHL</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Necesito un médico</div>
+                        <div class="english-translation">I need a doctor</div>
+                        <div class="pronunciation">neh-seh-SEE-toh oon MEH-dee-koh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me duele aquí</div>
+                        <div class="english-translation">It hurts here</div>
+                        <div class="pronunciation">meh DWEH-leh ah-KEE</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me duele la cabeza</div>
+                        <div class="english-translation">I have a headache</div>
+                        <div class="pronunciation">meh DWEH-leh lah kah-BEH-sah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me duele el estómago</div>
+                        <div class="english-translation">I have a stomachache</div>
+                        <div class="pronunciation">meh DWEH-leh el ehs-TOH-mah-goh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Tengo fiebre</div>
+                        <div class="english-translation">I have a fever</div>
+                        <div class="pronunciation">TEHN-goh fee-EH-breh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Tengo náuseas</div>
+                        <div class="english-translation">I feel nauseous</div>
+                        <div class="pronunciation">TEHN-goh NAH-oo-seh-ahs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está la farmacia?</div>
+                        <div class="english-translation">Where is the pharmacy?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH lah far-MAH-see-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Necesito medicina</div>
+                        <div class="english-translation">I need medicine</div>
+                        <div class="pronunciation">neh-seh-SEE-toh meh-dee-SEE-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tiene algo para el dolor?</div>
+                        <div class="english-translation">Do you have something for pain?</div>
+                        <div class="pronunciation">tee-EH-neh AHL-goh PAH-rah el doh-LOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Soy diabético/a</div>
+                        <div class="english-translation">I'm diabetic</div>
+                        <div class="pronunciation">soy dee-ah-BEH-tee-koh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Tengo asma</div>
+                        <div class="english-translation">I have asthma</div>
+                        <div class="pronunciation">TEHN-goh AHS-mah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está la comisaría?</div>
+                        <div class="english-translation">Where is the police station?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH lah koh-mee-sah-REE-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">He perdido mi pasaporte</div>
+                        <div class="english-translation">I've lost my passport</div>
+                        <div class="pronunciation">eh per-DEE-doh mee pah-sah-POR-teh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Me han robado</div>
+                        <div class="english-translation">I've been robbed</div>
+                        <div class="pronunciation">meh ahn roh-BAH-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está la embajada?</div>
+                        <div class="english-translation">Where is the embassy?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH lah em-bah-HAH-dah</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Family and Relationships -->
+            <section id="family" class="category-section">
+                <div class="category-header">
+                    <h3>Familia y Relaciones</h3>
+                    <p class="category-desc">Family and Relationships</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Esta es mi familia</div>
+                        <div class="english-translation">This is my family</div>
+                        <div class="pronunciation">EHS-tah ehs mee fah-MEE-lee-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi padre</div>
+                        <div class="english-translation">My father</div>
+                        <div class="pronunciation">mee PAH-dreh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi madre</div>
+                        <div class="english-translation">My mother</div>
+                        <div class="pronunciation">mee MAH-dreh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi hermano</div>
+                        <div class="english-translation">My brother</div>
+                        <div class="pronunciation">mee er-MAH-noh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi hermana</div>
+                        <div class="english-translation">My sister</div>
+                        <div class="pronunciation">mee er-MAH-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi esposo/marido</div>
+                        <div class="english-translation">My husband</div>
+                        <div class="pronunciation">mee ehs-POH-soh/mah-REE-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi esposa/mujer</div>
+                        <div class="english-translation">My wife</div>
+                        <div class="pronunciation">mee ehs-POH-sah/moo-HEHR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi hijo</div>
+                        <div class="english-translation">My son</div>
+                        <div class="pronunciation">mee EE-hoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi hija</div>
+                        <div class="english-translation">My daughter</div>
+                        <div class="pronunciation">mee EE-hah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi abuelo</div>
+                        <div class="english-translation">My grandfather</div>
+                        <div class="pronunciation">mee ah-BWAY-loh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi abuela</div>
+                        <div class="english-translation">My grandmother</div>
+                        <div class="pronunciation">mee ah-BWAY-lah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi primo</div>
+                        <div class="english-translation">My cousin (male)</div>
+                        <div class="pronunciation">mee PREE-moh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi prima</div>
+                        <div class="english-translation">My cousin (female)</div>
+                        <div class="pronunciation">mee PREE-mah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi tío</div>
+                        <div class="english-translation">My uncle</div>
+                        <div class="pronunciation">mee TEE-oh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi tía</div>
+                        <div class="english-translation">My aunt</div>
+                        <div class="pronunciation">mee TEE-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi novio</div>
+                        <div class="english-translation">My boyfriend</div>
+                        <div class="pronunciation">mee NOH-vee-oh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi novia</div>
+                        <div class="english-translation">My girlfriend</div>
+                        <div class="pronunciation">mee NOH-vee-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi mejor amigo</div>
+                        <div class="english-translation">My best friend (male)</div>
+                        <div class="pronunciation">mee meh-HOR ah-MEE-goh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi mejor amiga</div>
+                        <div class="english-translation">My best friend (female)</div>
+                        <div class="pronunciation">mee meh-HOR ah-MEE-gah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cómo se llama su hijo?</div>
+                        <div class="english-translation">What's your son's name?</div>
+                        <div class="pronunciation">KOH-moh seh YAH-mah soo EE-hoh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work and Business -->
+            <section id="work" class="category-section">
+                <div class="category-header">
+                    <h3>Trabajo y Negocios</h3>
+                    <p class="category-desc">Work and Business</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿En qué trabaja?</div>
+                        <div class="english-translation">What do you do for work?</div>
+                        <div class="pronunciation">ehn keh trah-BAH-hah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Soy profesor/a</div>
+                        <div class="english-translation">I'm a teacher</div>
+                        <div class="pronunciation">soy proh-feh-SOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Soy médico/a</div>
+                        <div class="english-translation">I'm a doctor</div>
+                        <div class="pronunciation">soy MEH-dee-koh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Soy ingeniero/a</div>
+                        <div class="english-translation">I'm an engineer</div>
+                        <div class="pronunciation">soy een-heh-nee-EH-roh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Trabajo en una empresa</div>
+                        <div class="english-translation">I work at a company</div>
+                        <div class="pronunciation">trah-BAH-hoh ehn OO-nah em-PREH-sah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Dónde está su oficina?</div>
+                        <div class="english-translation">Where is your office?</div>
+                        <div class="pronunciation">DOHN-deh ehs-TAH soo oh-fee-SEE-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Tengo una reunión</div>
+                        <div class="english-translation">I have a meeting</div>
+                        <div class="pronunciation">TEHN-goh OO-nah reh-oo-nee-OHN</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿A qué hora es la cita?</div>
+                        <div class="english-translation">What time is the appointment?</div>
+                        <div class="pronunciation">ah keh OH-rah ehs lah SEE-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Necesito hacer una llamada</div>
+                        <div class="english-translation">I need to make a phone call</div>
+                        <div class="pronunciation">neh-seh-SEE-toh ah-SEHR OO-nah yah-MAH-dah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Puede enviar un email?</div>
+                        <div class="english-translation">Can you send an email?</div>
+                        <div class="pronunciation">PWEH-deh en-vee-AR oon ee-MAYL</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">El proyecto está terminado</div>
+                        <div class="english-translation">The project is finished</div>
+                        <div class="pronunciation">el proh-YEHK-toh ehs-TAH ter-mee-NAH-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cuándo es la fecha límite?</div>
+                        <div class="english-translation">When is the deadline?</div>
+                        <div class="pronunciation">KWAN-doh ehs lah FEH-chah LEE-mee-teh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Estoy trabajando en...</div>
+                        <div class="english-translation">I'm working on...</div>
+                        <div class="pronunciation">ehs-TOY trah-bah-HAHN-doh ehn</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Tiene experiencia en...?</div>
+                        <div class="english-translation">Do you have experience in...?</div>
+                        <div class="pronunciation">tee-EH-neh eks-peh-ree-EHN-see-ah ehn</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mi jefe</div>
+                        <div class="english-translation">My boss</div>
+                        <div class="pronunciation">mee HEH-feh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mis colegas</div>
+                        <div class="english-translation">My colleagues</div>
+                        <div class="pronunciation">mees koh-LEH-gahs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">El salario</div>
+                        <div class="english-translation">The salary</div>
+                        <div class="pronunciation">el sah-LAH-ree-oh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Las vacaciones</div>
+                        <div class="english-translation">The vacation/holidays</div>
+                        <div class="pronunciation">lahs vah-kah-see-OH-nehs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Estoy buscando trabajo</div>
+                        <div class="english-translation">I'm looking for work</div>
+                        <div class="pronunciation">ehs-TOY boos-KAHN-doh trah-BAH-hoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Está contratando?</div>
+                        <div class="english-translation">Are you hiring?</div>
+                        <div class="pronunciation">ehs-TAH kohn-trah-TAHN-doh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Numbers and Time -->
+            <section class="category-section">
+                <div class="category-header">
+                    <h3>Números y Tiempo</h3>
+                    <p class="category-desc">Numbers and Time</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Uno, dos, tres</div>
+                        <div class="english-translation">One, two, three</div>
+                        <div class="pronunciation">OO-noh dohs trehs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Cuatro, cinco, seis</div>
+                        <div class="english-translation">Four, five, six</div>
+                        <div class="pronunciation">KWAH-troh SEEN-koh seys</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Siete, ocho, nueve</div>
+                        <div class="english-translation">Seven, eight, nine</div>
+                        <div class="pronunciation">see-EH-teh OH-choh NWAY-veh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Diez, veinte, treinta</div>
+                        <div class="english-translation">Ten, twenty, thirty</div>
+                        <div class="pronunciation">dee-EHS VAYN-teh TRAYN-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Cien, mil, un millón</div>
+                        <div class="english-translation">One hundred, one thousand, one million</div>
+                        <div class="pronunciation">see-EHN meel oon mee-YOHN</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Qué hora es?</div>
+                        <div class="english-translation">What time is it?</div>
+                        <div class="pronunciation">keh OH-rah ehs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Son las dos</div>
+                        <div class="english-translation">It's two o'clock</div>
+                        <div class="pronunciation">sohn lahs dohs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Es la una</div>
+                        <div class="english-translation">It's one o'clock</div>
+                        <div class="pronunciation">ehs lah OO-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Y media</div>
+                        <div class="english-translation">Half past/thirty</div>
+                        <div class="pronunciation">ee MEH-dee-ah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Y cuarto</div>
+                        <div class="english-translation">Quarter past/fifteen</div>
+                        <div class="pronunciation">ee KWAR-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Menos cuarto</div>
+                        <div class="english-translation">Quarter to/forty-five</div>
+                        <div class="pronunciation">MEH-nohs KWAR-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Por la mañana</div>
+                        <div class="english-translation">In the morning</div>
+                        <div class="pronunciation">por lah mah-NYAH-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Por la tarde</div>
+                        <div class="english-translation">In the afternoon</div>
+                        <div class="pronunciation">por lah TAR-deh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Por la noche</div>
+                        <div class="english-translation">In the evening/night</div>
+                        <div class="pronunciation">por lah NOH-cheh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Hoy</div>
+                        <div class="english-translation">Today</div>
+                        <div class="pronunciation">oy</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Mañana</div>
+                        <div class="english-translation">Tomorrow</div>
+                        <div class="pronunciation">mah-NYAH-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Ayer</div>
+                        <div class="english-translation">Yesterday</div>
+                        <div class="pronunciation">ah-YEHR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">La semana pasada</div>
+                        <div class="english-translation">Last week</div>
+                        <div class="pronunciation">lah seh-MAH-nah pah-SAH-dah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">La próxima semana</div>
+                        <div class="english-translation">Next week</div>
+                        <div class="pronunciation">lah PROHK-see-mah seh-MAH-nah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Qué día es hoy?</div>
+                        <div class="english-translation">What day is today?</div>
+                        <div class="pronunciation">keh DEE-ah ehs oy</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weather and Seasons -->
+            <section class="category-section">
+                <div class="category-header">
+                    <h3>Clima y Estaciones</h3>
+                    <p class="category-desc">Weather and Seasons</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Qué tiempo hace?</div>
+                        <div class="english-translation">What's the weather like?</div>
+                        <div class="pronunciation">keh tee-EHM-poh AH-seh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Hace sol</div>
+                        <div class="english-translation">It's sunny</div>
+                        <div class="pronunciation">AH-seh sohl</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Está nublado</div>
+                        <div class="english-translation">It's cloudy</div>
+                        <div class="pronunciation">ehs-TAH noo-BLAH-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Llueve</div>
+                        <div class="english-translation">It's raining</div>
+                        <div class="pronunciation">YWAY-veh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Nieva</div>
+                        <div class="english-translation">It's snowing</div>
+                        <div class="pronunciation">nee-EH-vah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Hace calor</div>
+                        <div class="english-translation">It's hot</div>
+                        <div class="pronunciation">AH-seh kah-LOR</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Hace frío</div>
+                        <div class="english-translation">It's cold</div>
+                        <div class="pronunciation">AH-seh FREE-oh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Hace viento</div>
+                        <div class="english-translation">It's windy</div>
+                        <div class="pronunciation">AH-seh vee-EHN-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">La primavera</div>
+                        <div class="english-translation">Spring</div>
+                        <div class="pronunciation">lah pree-mah-VEH-rah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">El verano</div>
+                        <div class="english-translation">Summer</div>
+                        <div class="pronunciation">el veh-RAH-noh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">El otoño</div>
+                        <div class="english-translation">Fall/Autumn</div>
+                        <div class="pronunciation">el oh-TOH-nyoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">El invierno</div>
+                        <div class="english-translation">Winter</div>
+                        <div class="pronunciation">el een-vee-EHR-noh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¿Cuál es tu estación favorita?</div>
+                        <div class="english-translation">What's your favorite season?</div>
+                        <div class="pronunciation">kwahl ehs too ehs-tah-see-OHN fah-voh-REE-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">El pronóstico del tiempo</div>
+                        <div class="english-translation">The weather forecast</div>
+                        <div class="pronunciation">el proh-NOHS-tee-koh del tee-EHM-poh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">La temperatura</div>
+                        <div class="english-translation">The temperature</div>
+                        <div class="pronunciation">lah tem-peh-rah-TOO-rah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Grados centígrados</div>
+                        <div class="english-translation">Degrees celsius</div>
+                        <div class="pronunciation">GRAH-dohs sen-TEE-grah-dohs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Hay tormenta</div>
+                        <div class="english-translation">There's a storm</div>
+                        <div class="pronunciation">ahy tor-MEN-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">El arco iris</div>
+                        <div class="english-translation">The rainbow</div>
+                        <div class="pronunciation">el AR-koh EE-rees</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Necesito un paraguas</div>
+                        <div class="english-translation">I need an umbrella</div>
+                        <div class="pronunciation">neh-seh-SEE-toh oon pah-RAH-gwahs</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">¡Qué buen tiempo!</div>
+                        <div class="english-translation">What nice weather!</div>
+                        <div class="pronunciation">keh bwehn tee-EHM-poh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors and Descriptions -->
+            <section class="category-section">
+                <div class="category-header">
+                    <h3>Colores y Descripciones</h3>
+                    <p class="category-desc">Colors and Descriptions</p>
+                </div>
+                <div class="phrases-grid">
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Rojo</div>
+                        <div class="english-translation">Red</div>
+                        <div class="pronunciation">ROH-hoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Azul</div>
+                        <div class="english-translation">Blue</div>
+                        <div class="pronunciation">ah-SOOL</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Verde</div>
+                        <div class="english-translation">Green</div>
+                        <div class="pronunciation">VEHR-deh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Amarillo</div>
+                        <div class="english-translation">Yellow</div>
+                        <div class="pronunciation">ah-mah-REE-yoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Negro</div>
+                        <div class="english-translation">Black</div>
+                        <div class="pronunciation">NEH-groh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Blanco</div>
+                        <div class="english-translation">White</div>
+                        <div class="pronunciation">BLAHN-koh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Morado/Violeta</div>
+                        <div class="english-translation">Purple</div>
+                        <div class="pronunciation">moh-RAH-doh/vee-oh-LEH-tah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Rosa</div>
+                        <div class="english-translation">Pink</div>
+                        <div class="pronunciation">ROH-sah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Naranja</div>
+                        <div class="english-translation">Orange</div>
+                        <div class="pronunciation">nah-RAHN-hah</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Gris</div>
+                        <div class="english-translation">Gray</div>
+                        <div class="pronunciation">grees</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Marrón</div>
+                        <div class="english-translation">Brown</div>
+                        <div class="pronunciation">mah-RROHN</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Grande</div>
+                        <div class="english-translation">Big/Large</div>
+                        <div class="pronunciation">GRAHN-deh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Pequeño</div>
+                        <div class="english-translation">Small</div>
+                        <div class="pronunciation">peh-KEH-nyoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Alto</div>
+                        <div class="english-translation">Tall/High</div>
+                        <div class="pronunciation">AHL-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Bajo</div>
+                        <div class="english-translation">Short/Low</div>
+                        <div class="pronunciation">BAH-hoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Bonito/Hermoso</div>
+                        <div class="english-translation">Beautiful/Pretty</div>
+                        <div class="pronunciation">boh-NEE-toh/er-MOH-soh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Feo</div>
+                        <div class="english-translation">Ugly</div>
+                        <div class="pronunciation">FEH-oh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Nuevo</div>
+                        <div class="english-translation">New</div>
+                        <div class="pronunciation">NWAY-voh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Viejo</div>
+                        <div class="english-translation">Old</div>
+                        <div class="pronunciation">vee-EH-hoh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Rápido</div>
+                        <div class="english-translation">Fast</div>
+                        <div class="pronunciation">RAH-pee-doh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Lento</div>
+                        <div class="english-translation">Slow</div>
+                        <div class="pronunciation">LEN-toh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Fácil</div>
+                        <div class="english-translation">Easy</div>
+                        <div class="pronunciation">FAH-seel</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Difícil</div>
+                        <div class="english-translation">Difficult</div>
+                        <div class="pronunciation">dee-FEE-seel</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Caro</div>
+                        <div class="english-translation">Expensive</div>
+                        <div class="pronunciation">KAH-roh</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="spanish-phrase">Barato</div>
+                        <div class="english-translation">Cheap</div>
+                        <div class="pronunciation">bah-RAH-toh</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="highlight-box">
+                <h3 style="text-align: center; margin-bottom: 1rem;">¡Congratulations!</h3>
+                <p style="text-align: center; font-size: 1.1rem;">You've just learned over 700 essential Spanish phrases! Keep practicing these expressions, and you'll be well on your way to confidently communicating in Spanish. Remember, practice makes perfect - ¡La práctica hace al maestro!</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>¡Buena suerte!</h3>
+            <p>This comprehensive phrasebook is your companion for Spanish conversations. Print it out, bookmark it, or save it for offline use. ¡Que tengas un buen viaje y buenas conversaciones!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add click sound effect (optional - can be removed if not desired)
+        document.querySelectorAll('.phrase-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            });
+        });
+
+        // Print functionality
+        function printPhrasebook() {
+            window.print();
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'p' && e.ctrlKey) {
+                e.preventDefault();
+                printPhrasebook();
+            }
+        });
+    </script>
 </body>
 </html>
