@@ -1,884 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Stoic's Guide to Modern Life</title>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spanish — English Phrase Cards</title>
+  <style>
+    :root{
+      --bg: #f7efe0; /* paper beige */
+      --card: #fff6e8;
+      --border: #d6c9b0;
+      --text: #1b1b1b;
+      --muted: #6b5f4b;
+      --gap: 14px;
+      --radius: 8px;
+      --shadow: 0 6px 18px rgba(15,15,15,0.06);
+      --max-width: 720px;
     }
 
-    body {
-        font-family: 'Georgia', serif;
-        line-height: 1.8;
-        color: #3b2f1e;
-        background: #f4e9d8;
-        background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-                          linear-gradient(to bottom, #f8f0e0, #e6d6b8);
-        background-size: 6px 6px, 100% 100%;
-        max-width: 850px;
-        margin: 0 auto;
-        padding: 30px;
+    *{box-sizing: border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: "Nunito", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg,var(--bg), #fffdf8 120%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
     }
 
-    .book-container {
-        background: #f8f0dc;
-        background-image: url("https://www.transparenttextures.com/patterns/parchment.png");
-        background-blend-mode: multiply;
-        box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-        border-radius: 6px;
-        border: 1px solid #bfa873;
-        overflow: hidden;
+    .sheet{
+      width:100%;
+      max-width:var(--max-width);
+      background:var(--card);
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+      overflow:hidden;
     }
 
-    .cover {
-        background: linear-gradient(135deg, #c2a56f, #9e7e52);
-        color: #2b1d0e;
-        text-align: center;
-        padding: 80px 40px;
-        position: relative;
-        font-family: 'Georgia', serif;
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:0;
+      width:100%;
     }
 
-    .cover::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url("https://www.transparenttextures.com/patterns/aged-paper.png") repeat;
-        opacity: 0.3;
+    .cell{
+      padding:28px 22px;
+      border-bottom:1px solid var(--border);
+      border-right:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      min-height:64px;
+      background:transparent;
     }
 
-    .cover-content {
-        position: relative;
-        z-index: 2;
+    /* remove right border on right column */
+    .cell:nth-child(2n){
+      border-right:0;
+      justify-content:flex-end;
     }
 
-    .cover h1 {
-        font-size: 3em;
-        margin-bottom: 20px;
-        font-weight: bold;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    /* top row styling (headers) */
+    .cell.header{
+      font-weight:900;
+      font-size:26px;
+      text-transform:capitalize;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:26px 16px;
+      background:transparent;
     }
 
-    .cover .subtitle {
-        font-size: 1.3em;
-        font-style: italic;
-        margin-bottom: 40px;
-        opacity: 0.9;
+    .phrase{
+      font-size:20px;
+      font-weight:800;
+      line-height:1.15;
+      color:var(--text);
+      text-align:left;
+      max-width:95%;
+      word-wrap:break-word;
     }
 
-    .content {
-        padding: 50px;
+    /* right column text is slightly smaller and aligned right */
+    .cell:nth-child(2n) .phrase{
+      text-align:right;
+      font-size:20px;
+      font-weight:800;
     }
 
-    .page-break {
-        page-break-before: always;
-        margin-top: 60px;
-        padding-top: 20px;
-        border-top: 2px dashed #a58a5f;
+    /* last row: remove bottom border */
+    .cell:nth-last-child(-n+2){
+      border-bottom:0;
     }
 
-    h2 {
-        color: #4a3b25;
-        font-size: 2.3em;
-        margin-bottom: 25px;
-        text-align: center;
-        border-bottom: 2px solid #9b8357;
-        padding-bottom: 10px;
-        font-variant: small-caps;
+    /* responsive: stack on small screens */
+    @media (max-width:520px){
+      .grid{grid-template-columns:1fr;}
+      .cell{justify-content:flex-start}
+      .cell:nth-child(2n){border-right:1px solid var(--border);} /* restore visual divider when stacked */
+      .cell:nth-child(2n) .phrase{text-align:left}
     }
-
-    h3 {
-        color: #5c472f;
-        font-size: 1.6em;
-        margin: 30px 0 15px 0;
-        border-left: 5px solid #8a6e44;
-        padding-left: 15px;
-    }
-
-    p {
-        margin-bottom: 22px;
-        text-align: justify;
-        text-indent: 30px;
-    }
-
-    .quote {
-        background: rgba(255, 248, 230, 0.85);
-        border-left: 5px solid #9b7a4d;
-        padding: 25px;
-        margin: 35px 0;
-        font-style: italic;
-        position: relative;
-        box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
-    }
-
-    .quote::before {
-        content: '“';
-        font-size: 4em;
-        color: #9b7a4d;
-        position: absolute;
-        top: -20px;
-        left: 10px;
-        opacity: 0.4;
-    }
-
-    .quote-author {
-        text-align: right;
-        font-weight: bold;
-        margin-top: 10px;
-        color: #4a3b25;
-    }
-
-    .principle {
-        background: rgba(240, 225, 200, 0.9);
-        padding: 25px;
-        margin: 25px 0;
-        border-radius: 6px;
-        border: 1px solid #b59c6b;
-    }
-
-    .principle h4 {
-        color: #3b2f1e;
-        font-size: 1.3em;
-        margin-bottom: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .exercise {
-        background: rgba(233, 210, 170, 0.85);
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 6px;
-        border-left: 6px solid #7d623c;
-    }
-
-    .exercise h4 {
-        color: #3d2e1c;
-        margin-bottom: 10px;
-        font-size: 1.2em;
-    }
-
-    .toc {
-        background: rgba(252, 244, 220, 0.9);
-        padding: 30px;
-        margin: 20px 0;
-        border-radius: 6px;
-        border: 1px solid #c3ab7b;
-    }
-
-    .toc h2 {
-        border-bottom: none;
-        margin-bottom: 25px;
-    }
-
-    .toc li {
-        margin-bottom: 12px;
-        font-size: 1.1em;
-        border-bottom: 1px dotted #bca579;
-        padding-bottom: 6px;
-    }
-
-    .toc a {
-        text-decoration: none;
-        color: #3b2f1e;
-    }
-
-    .toc a:hover {
-        color: #7d623c;
-    }
-
-    .footer {
-        text-align: center;
-        padding: 40px;
-        color: #5c472f;
-        font-size: 0.9em;
-        border-top: 1px solid #c1a87b;
-        margin-top: 60px;
-    }
-
-    @media print {
-        body {
-            background: white;
-            font-size: 12pt;
-            line-height: 1.5;
-        }
-        
-        .book-container {
-            box-shadow: none;
-            border-radius: 0;
-            background: white;
-        }
-        
-        .page-break {
-            page-break-before: always;
-            margin-top: 0;
-            border-top: none;
-            padding-top: 0;
-        }
-        
-        .cover {
-            page-break-after: always;
-        }
-    }
-</style>
-
+  </style>
 </head>
 <body>
-    <div class="book-container">
-        <!-- Cover Page -->
-        <div class="cover">
-            <div class="cover-content">
-                <div class="ornament">❦</div>
-                <h1>The Stoic's Guide to Modern Life</h1>
-                <p class="subtitle">Ancient wisdom adapted to today's challenges — learn how to stay calm, resilient, and focused in a chaotic world</p>
-                <div class="ornament">❦</div>
-            </div>
-        </div>
+  <main class="sheet" role="main">
+    <section class="grid" aria-label="Spanish English phrases table">
+      <div class="cell header">Hola</div>
+      <div class="cell header">Hello</div>
 
-        <div class="content">
-            <!-- Table of Contents -->
-            <div class="toc">
-                <h2>Table of Contents</h2>
-                <ul>
-                    <li><a href="#introduction"><span class="chapter-number">1.</span>Introduction to Stoicism</a></li>
-                    <li><a href="#foundations"><span class="chapter-number">2.</span>The Four Cardinal Virtues</a></li>
-                    <li><a href="#control"><span class="chapter-number">3.</span>The Dichotomy of Control</a></li>
-                    <li><a href="#emotions"><span class="chapter-number">4.</span>Managing Emotions and Reactions</a></li>
-                    <li><a href="#resilience"><span class="chapter-number">5.</span>Building Resilience Through Adversity</a></li>
-                    <li><a href="#relationships"><span class="chapter-number">6.</span>Stoic Principles in Relationships</a></li>
-                    <li><a href="#work"><span class="chapter-number">7.</span>Stoicism in the Workplace</a></li>
-                    <li><a href="#daily"><span class="chapter-number">8.</span>Daily Stoic Practices</a></li>
-                    <li><a href="#conclusion"><span class="chapter-number">9.</span>Living the Stoic Life</a></li>
-                </ul>
-            </div>
+      <div class="cell"><div class="phrase">¿Cómo estás?</div></div>
+      <div class="cell"><div class="phrase">How are you?</div></div>
 
-            <!-- Chapter 1: Introduction -->
-            <div class="page-break" id="introduction">
-                <h2>Chapter 1: Introduction to Stoicism</h2>
-                
-                <div class="quote">
-                    You have power over your mind—not outside events. Realize this, and you will find strength.
-                    <div class="quote-author">— Marcus Aurelius</div>
-                </div>
+      <div class="cell"><div class="phrase">Bien, gracias.</div></div>
+      <div class="cell"><div class="phrase">Fine, thank you.</div></div>
 
-                <p>In our fast-paced, constantly connected world, finding peace and stability can feel like an impossible task. We're bombarded with notifications, overwhelmed by choices, and often feel powerless against the chaos that surrounds us. Yet over two thousand years ago, ancient philosophers developed a practical system for living that remains remarkably relevant today: Stoicism.</p>
+      <div class="cell"><div class="phrase">¿Y tú?</div></div>
+      <div class="cell"><div class="phrase">And you?</div></div>
 
-                <p>Stoicism isn't about suppressing emotions or accepting whatever happens with resignation. Rather, it's a philosophy that teaches us to distinguish between what we can and cannot control, to respond to life's challenges with wisdom and virtue, and to find contentment regardless of external circumstances.</p>
+      <div class="cell"><div class="phrase">Adiós</div></div>
+      <div class="cell"><div class="phrase">Goodbye</div></div>
 
-                <h3>What is Stoicism?</h3>
-                
-                <p>Founded in Athens around 300 BCE by Zeno of Citium, Stoicism became one of the most influential philosophical schools of the ancient world. The philosophy takes its name from the Stoa Poikile (painted porch) where early Stoics would gather and teach.</p>
+      <div class="cell"><div class="phrase">Por favor</div></div>
+      <div class="cell"><div class="phrase">Please</div></div>
 
-                <p>At its core, Stoicism teaches that virtue is the only true good and the path to happiness. External things—money, fame, even health—are "indifferent." They're not inherently good or bad; what matters is how we use them and how we respond to their presence or absence in our lives.</p>
+      <div class="cell"><div class="phrase">Gracias</div></div>
+      <div class="cell"><div class="phrase">Thank you</div></div>
 
-                <div class="principle">
-                    <h4>Core Stoic Principle</h4>
-                    <p>The fundamental insight of Stoicism is that we don't control what happens to us, but we do control how we respond to what happens to us. Our thoughts, judgments, and actions are within our power—everything else is not.</p>
-                </div>
+      <div class="cell"><div class="phrase">Lo siento</div></div>
+      <div class="cell"><div class="phrase">I'm sorry</div></div>
 
-                <h3>Why Stoicism Matters Today</h3>
+      <div class="cell"><div class="phrase">Perdón</div></div>
+      <div class="cell"><div class="phrase">Excuse me</div></div>
 
-                <p>Modern life presents unique challenges that make Stoic wisdom particularly valuable. We live in an age of information overload, social media comparison, and constant pressure to achieve more, have more, and be more. Stoicism offers tools to navigate these pressures with clarity and purpose.</p>
-
-                <p>Research in psychology has validated many Stoic insights. Cognitive Behavioral Therapy (CBT), one of the most effective forms of modern psychotherapy, shares remarkable similarities with Stoic practices. Both emphasize the connection between our thoughts, emotions, and behaviors, and both teach techniques for examining and challenging unhelpful thinking patterns.</p>
-            </div>
-
-            <!-- Chapter 2: The Four Cardinal Virtues -->
-            <div class="page-break" id="foundations">
-                <h2>Chapter 2: The Four Cardinal Virtues</h2>
-
-                <div class="quote">
-                    The four cardinal virtues are the foundation of the good life. Everything else is built upon them.
-                    <div class="quote-author">— Epictetus</div>
-                </div>
-
-                <p>Stoic philosophy rests on four cardinal virtues that serve as guideposts for living well. Unlike external goods that can be taken away, these virtues are entirely within our control and form the basis of true happiness and fulfillment.</p>
-
-                <h3>1. Wisdom (Sophia)</h3>
-                
-                <p>Wisdom is the ability to navigate complex situations, to know what is truly important, and to see things as they really are rather than as we wish they were. In Stoicism, wisdom involves understanding the difference between what is up to us and what is not, and acting accordingly.</p>
-
-                <div class="exercise">
-                    <h4>Daily Wisdom Practice</h4>
-                    <p>Each morning, spend five minutes reflecting on the day ahead. Identify one situation that might challenge you and consider: What aspects are within my control? How can I respond with wisdom regardless of the outcome?</p>
-                </div>
-
-                <h3>2. Justice (Dikaiosyne)</h3>
-
-                <p>Justice extends beyond legal fairness to encompass our duty to others and to society. It involves treating people with respect, fulfilling our obligations, and working toward the common good. The Stoic concept of justice reminds us that we are social beings with responsibilities to our communities.</p>
-
-                <p>In modern contexts, justice might mean standing up for what's right at work, treating service workers with kindness, or contributing to causes that benefit society. It's about recognizing our interconnectedness and acting accordingly.</p>
-
-                <h3>3. Courage (Andreia)</h3>
-
-                <p>Courage isn't just physical bravery—it's the strength to do what is right even when it's difficult, uncomfortable, or unpopular. This includes moral courage: speaking truth to power, admitting when we're wrong, and facing our fears rather than avoiding them.</p>
-
-                <div class="principle">
-                    <h4>Types of Stoic Courage</h4>
-                    <p><strong>Physical Courage:</strong> Facing danger when necessary</p>
-                    <p><strong>Moral Courage:</strong> Standing up for what's right</p>
-                    <p><strong>Emotional Courage:</strong> Facing difficult emotions rather than avoiding them</p>
-                    <p><strong>Intellectual Courage:</strong> Questioning our beliefs and admitting ignorance</p>
-                </div>
-
-                <h3>4. Temperance (Sophrosyne)</h3>
-
-                <p>Temperance is self-discipline and moderation. It's the ability to resist temptation, delay gratification, and maintain balance in all areas of life. In our age of instant gratification and endless consumption, temperance is perhaps more relevant than ever.</p>
-
-                <p>This virtue helps us resist the urge to check our phones constantly, avoid overconsumption, and maintain healthy habits even when we don't feel like it. Temperance creates the space necessary for wisdom, justice, and courage to flourish.</p>
-
-                <div class="exercise">
-                    <h4>Temperance Challenge</h4>
-                    <p>Choose one area where you struggle with moderation (social media, shopping, eating, etc.). For one week, set a specific limit and stick to it. Notice how this constraint affects your overall sense of control and well-being.</p>
-                </div>
-            </div>
-
-            <!-- Chapter 3: The Dichotomy of Control -->
-            <div class="page-break" id="control">
-                <h2>Chapter 3: The Dichotomy of Control</h2>
-
-                <div class="quote">
-                    Some things are within our power, while others are not. Within our power are opinion, motivation, desire, aversion, and, in a word, whatever is of our own doing; not within our power are our body, our property, reputation, position, and, in a word, whatever is not of our own doing.
-                    <div class="quote-author">— Epictetus</div>
-                </div>
-
-                <p>Perhaps no Stoic teaching is more fundamental—or more life-changing—than the dichotomy of control. This principle divides all things into two categories: those that are "up to us" and those that are "not up to us." Understanding and applying this distinction is the key to Stoic peace of mind.</p>
-
-                <h3>What Is Up to Us</h3>
-
-                <p>According to Epictetus, only a few things are truly within our complete control:</p>
-
-                <div class="principle">
-                    <h4>Things Within Our Control</h4>
-                    <p><strong>Our judgments and opinions:</strong> How we interpret events and circumstances</p>
-                    <p><strong>Our desires and aversions:</strong> What we choose to want or avoid</p>
-                    <p><strong>Our decisions and actions:</strong> How we choose to respond in any given moment</p>
-                    <p><strong>Our values and character:</strong> The principles we choose to live by</p>
-                </div>
-
-                <p>These internal aspects of our experience are our true domain of power. No one can force us to think a particular thought or hold a specific opinion. Even in the most constrained circumstances, we retain the freedom to choose our response.</p>
-
-                <h3>What Is Not Up to Us</h3>
-
-                <p>Everything else falls outside our direct control:</p>
-
-                <div class="principle">
-                    <h4>Things Outside Our Control</h4>
-                    <p><strong>Other people's actions and opinions:</strong> We cannot control what others do, say, or think</p>
-                    <p><strong>External events:</strong> Natural disasters, economic conditions, political changes</p>
-                    <p><strong>Our past and future:</strong> What has happened and what will happen</p>
-                    <p><strong>Our reputation:</strong> How others perceive us</p>
-                    <p><strong>Outcomes:</strong> The results of our actions, despite our best efforts</p>
-                </div>
-
-                <p>This doesn't mean these things don't matter or that we should be passive. Rather, it means we should focus our energy on what we can influence while accepting what we cannot.</p>
-
-                <h3>Applying the Dichotomy in Daily Life</h3>
-
-                <p>Consider a common modern scenario: you're stuck in traffic and running late for an important meeting. The traffic (not up to you) triggers anxiety and frustration, but these emotions stem from your judgments about the situation (up to you). You might think, "This is terrible! I'm going to look irresponsible!"</p>
-
-                <p>A Stoic approach would involve recognizing what you can and cannot control. You cannot control the traffic, but you can control your response. You might use the time to prepare for the meeting mentally, practice breathing exercises, or simply accept the situation with equanimity.</p>
-
-                <div class="exercise">
-                    <h4>Control Analysis Exercise</h4>
-                    <p>When you find yourself stressed or frustrated, pause and ask:</p>
-                    <p>1. What exactly is bothering me?</p>
-                    <p>2. Which aspects of this situation are within my control?</p>
-                    <p>3. Which aspects are outside my control?</p>
-                    <p>4. How can I focus my energy on what I can influence?</p>
-                    <p>5. How can I accept what I cannot change?</p>
-                </div>
-
-                <h3>The Freedom of Letting Go</h3>
-
-                <p>When we truly internalize the dichotomy of control, something remarkable happens: we experience a profound sense of freedom. No longer do we waste energy worrying about things beyond our influence. Instead, we can channel all our power into the areas where we can make a real difference.</p>
-
-                <p>This doesn't mean we become indifferent to outcomes. We still care about our health, relationships, and goals. But we hold these preferences lightly, knowing that our happiness and peace of mind don't depend on getting exactly what we want.</p>
-            </div>
-
-            <!-- Chapter 4: Managing Emotions and Reactions -->
-            <div class="page-break" id="emotions">
-                <h2>Chapter 4: Managing Emotions and Reactions</h2>
-
-                <div class="quote">
-                    You have power over your mind—not outside events. Realize this, and you will find strength.
-                    <div class="quote-author">— Marcus Aurelius</div>
-                </div>
-
-                <p>One of the most misunderstood aspects of Stoicism is its approach to emotions. Critics often characterize Stoics as emotionless robots, but this is far from the truth. Stoicism doesn't advocate for suppressing emotions; instead, it teaches us to understand them, examine them, and choose our responses wisely.</p>
-
-                <h3>The Stoic Theory of Emotions</h3>
-
-                <p>According to Stoic theory, our emotions arise not directly from events themselves, but from our judgments about those events. This insight, which predates modern cognitive psychology by over two millennia, is revolutionary in its implications.</p>
-
-                <p>Consider this sequence: Something happens → We judge it as good or bad → We experience an emotional response. The Stoics realized that by examining and potentially changing our judgments, we can influence our emotional experiences.</p>
-
-                <div class="principle">
-                    <h4>The Four Steps of Emotional Formation</h4>
-                    <p><strong>1. Initial Impression:</strong> Something happens that catches our attention</p>
-                    <p><strong>2. Judgment:</strong> We evaluate the event as good, bad, or indifferent</p>
-                    <p><strong>3. Emotional Response:</strong> Our judgment triggers an emotional reaction</p>
-                    <p><strong>4. Action:</strong> Our emotion motivates us to act in a certain way</p>
-                </div>
-
-                <h3>The Pause Between Stimulus and Response</h3>
-
-                <p>Viktor Frankl, a Holocaust survivor and psychologist, captured this Stoic insight perfectly: "Between stimulus and response there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom."</p>
-
-                <p>This space—this pause—is where Stoic practice takes place. Instead of automatically reacting to our initial impressions, we can step back and examine them. Is this judgment accurate? Is it helpful? Are there other ways to interpret this situation?</p>
-
-                <div class="exercise">
-                    <h4>The STOP Technique</h4>
-                    <p>When you notice a strong emotional reaction beginning:</p>
-                    <p><strong>S</strong> - Stop what you're doing</p>
-                    <p><strong>T</strong> - Take a breath</p>
-                    <p><strong>O</strong> - Observe your thoughts and judgments</p>
-                    <p><strong>P</strong> - Proceed with intention</p>
-                </div>
-
-                <h3>Healthy vs. Unhealthy Emotions</h3>
-
-                <p>The Stoics distinguished between healthy and unhealthy emotions. Unhealthy emotions (what they called "passions") are based on false judgments about what is truly good or bad. Healthy emotions arise from accurate judgments aligned with virtue.</p>
-
-                <p>For example, anger often arises from the judgment that someone has wronged us and that this wrong is a genuine harm. A Stoic would examine this judgment: Is what happened really harmful to what matters most (my character and virtue)? Can I respond in a way that maintains my integrity while addressing the situation constructively?</p>
-
-                <h3>Practical Techniques for Emotional Regulation</h3>
-
-                <p>Here are several Stoic-inspired techniques for managing difficult emotions:</p>
-
-                <div class="exercise">
-                    <h4>The View from Above</h4>
-                    <p>When overwhelmed by a situation, imagine viewing it from high above—like an astronaut looking down at Earth. How significant does this problem appear from that perspective? This technique, favored by Marcus Aurelius, helps put challenges in context.</p>
-                </div>
-
-                <div class="exercise">
-                    <h4>Negative Visualization</h4>
-                    <p>Periodically imagine losing something you value—your health, a relationship, or a possession. This isn't pessimism; it's preparation. By mentally rehearsing loss, you become more grateful for what you have and more resilient if loss actually occurs.</p>
-                </div>
-
-                <div class="exercise">
-                    <h4>The Discipline of Desire</h4>
-                    <p>Before wanting something, ask yourself: "Do I need this to be happy? Will getting it genuinely improve my life? Am I prepared to be content if I don't get it?" This helps distinguish between genuine needs and manufactured desires.</p>
-                </div>
-
-                <h3>Dealing with Difficult People</h3>
-
-                <p>Perhaps nowhere is emotional regulation more challenging than in our interactions with others. The Stoics had practical advice for these situations:</p>
-
-                <p>First, remember that other people's actions reflect their character, not yours. You cannot control how others behave, but you can control how you respond. Second, try to understand rather than judge. That difficult colleague might be dealing with personal struggles you know nothing about.</p>
-
-                <p>Finally, use challenging interactions as opportunities to practice virtue. Can you respond with patience instead of frustration? With understanding instead of judgment? With kindness instead of cruelty? These moments, however unpleasant, are chances to strengthen your character.</p>
-            </div>
-
-            <!-- Chapter 5: Building Resilience -->
-            <div class="page-break" id="resilience">
-                <h2>Chapter 5: Building Resilience Through Adversity</h2>
-
-                <div class="quote">
-                    The impediment to action advances action. What stands in the way becomes the way.
-                    <div class="quote-author">— Marcus Aurelius</div>
-                </div>
-
-                <p>Resilience—the ability to bounce back from setbacks, adapt to change, and grow stronger through challenges—is perhaps the most practical gift of Stoic philosophy. Rather than viewing obstacles as unfortunate interruptions to our plans, Stoicism teaches us to see them as opportunities for growth and character development.</p>
-
-                <h3>The Obstacle as the Path</h3>
-
-                <p>Marcus Aurelius's insight that "the impediment to action advances action" reveals a fundamental Stoic truth: obstacles aren't separate from our path—they are the path. Every challenge we face is an opportunity to practice virtue, develop strength, and refine our character.</p>
-
-                <p>This doesn't mean we should seek out difficulties or enjoy suffering. Rather, it means that when challenges arise—as they inevitably will—we can choose to view them as training rather than punishment.</p>
-
-                <div class="principle">
-                    <h4>The Three Disciplines of Resilience</h4>
-                    <p><strong>Perception:</strong> How we see and interpret challenges</p>
-                    <p><strong>Action:</strong> What we do in response to difficulties</p>
-                    <p><strong>Will:</strong> How we accept what we cannot change</p>
-                </div>
-
-                <h3>Reframing Adversity</h3>
-
-                <p>The first step in building resilience is learning to reframe adversity. Instead of asking "Why is this happening to me?" we can ask "How can this help me grow?" or "What can this teach me?" This shift in perspective transforms us from victims of circumstance into active participants in our own development.</p>
-
-                <p>Consider job loss—a common modern fear. While losing a job is undoubtedly stressful and can create real financial hardship, it also presents opportunities: to reassess career goals, develop new skills, strengthen relationships, or discover inner resources we didn't know we possessed.</p>
-
-                <div class="exercise">
-                    <h4>The Growth Question</h4>
-                    <p>When facing any challenge, ask yourself: "How is this difficulty helping me become stronger, wiser, or more virtuous?" Look for at least three potential benefits or lessons, no matter how small.</p>
-                </div>
-
-                <h3>The Discipline of Action</h3>
-
-                <p>Resilience isn't just about thinking differently—it's about acting effectively despite difficulties. The Stoics emphasized that we must do what we can with what we have, where we are. This requires breaking overwhelming problems into manageable actions.</p>
-
-                <p>When facing a major setback, the path forward might not be clear, but there's almost always something constructive you can do. You can gather information, reach out for support, take care of your health, or simply take the next small step forward.</p>
-
-                <div class="exercise">
-                    <h4>The Next Right Thing</h4>
-                    <p>When overwhelmed by a situation, ignore the big picture for a moment. Ask yourself: "What's the next right thing I can do?" Focus only on that one action. Complete it, then ask the question again.</p>
-                </div>
-
-                <h3>Building Antifragility</h3>
-
-                <p>Nassim Taleb's concept of "antifragility" aligns perfectly with Stoic thinking. While fragile things break under stress and resilient things resist stress, antifragile systems actually get stronger from stressors. The Stoics understood that we can become antifragile by using challenges as opportunities for growth.</p>
-
-                <p>Each time you successfully navigate a difficulty, you build confidence and skills for handling future challenges. Each time you practice virtue under pressure, you strengthen your character. Each time you maintain your composure in chaos, you develop greater equanimity.</p>
-
-                <h3>The Role of Community</h3>
-
-                <p>While Stoicism emphasizes self-reliance, it doesn't advocate for isolation. Building resilience often requires community support. The Stoics recognized that we are social beings with duties to one another.</p>
-
-                <p>Don't hesitate to seek help when facing major challenges. This isn't a sign of weakness—it's a recognition of our interconnectedness. At the same time, be ready to offer support to others when they face difficulties. Building a network of mutual support strengthens everyone's resilience.</p>
-
-                <div class="exercise">
-                    <h4>Adversity Reflection</h4>
-                    <p>Think of a past difficulty you've overcome. Write about:</p>
-                    <p>1. How did this challenge help you grow?</p>
-                    <p>2. What strengths did you discover in yourself?</p>
-                    <p>3. How are you better prepared for future challenges?</p>
-                    <p>4. How can you use this experience to help others?</p>
-                </div>
-            </div>
-
-            <!-- Chapter 6: Relationships -->
-            <div class="page-break" id="relationships">
-                <h2>Chapter 6: Stoic Principles in Relationships</h2>
-
-                <div class="quote">
-                    We are born for cooperation, like feet, like hands, like eyelids, like the rows of upper and lower teeth.
-                    <div class="quote-author">— Marcus Aurelius</div>
-                </div>
-
-                <p>Relationships are perhaps the most complex and rewarding aspect of human life, and they're also where Stoic principles prove most valuable. Whether dealing with family, friends, romantic partners, or colleagues, Stoic wisdom can help us build stronger, more authentic connections while maintaining our own integrity and peace of mind.</p>
-
-                <h3>The Foundation: You Cannot Control Others</h3>
-
-                <p>The most fundamental Stoic insight about relationships is also the most challenging to accept: you cannot control other people's thoughts, feelings, or actions. You can influence others through your own behavior, but you cannot control their responses.</p>
-
-                <p>This realization is simultaneously liberating and terrifying. It's liberating because it frees you from the exhausting task of trying to manage other people's emotions and reactions. It's terrifying because it means you must accept that others might not respond the way you hope, no matter how reasonable or loving your approach.</p>
-
-                <div class="principle">
-                    <h4>Relationship Boundaries</h4>
-                    <p><strong>Your Responsibility:</strong> Your own thoughts, words, and actions</p>
-                    <p><strong>Not Your Responsibility:</strong> Others' thoughts, feelings, and reactions</p>
-                </div>
-
-                <h3>Loving Without Attachment</h3>
-
-                <p>Stoicism doesn't advocate for emotional detachment in relationships. Instead, it teaches us to love fully while holding our attachments lightly. We can care deeply about others without making our happiness dependent on their choices or circumstances.</p>
-
-                <p>This might seem contradictory, but it's actually the foundation of healthy relationships. When we need others to behave in certain ways for us to be okay, we create pressure and resentment. When we love freely without conditions, we create space for authentic connection.</p>
-
-                <div class="exercise">
-                    <h4>Unconditional Appreciation</h4>
-                    <p>Choose someone important to you. For one week, practice appreciating them exactly as they are, without wanting them to change. Notice how this affects your interactions and your own sense of peace.</p>
-                </div>
-
-                <h3>Dealing with Difficult Relationships</h3>
-
-                <p>Every life includes challenging relationships—the critical family member, the demanding boss, the unreliable friend. Stoicism offers practical strategies for navigating these connections:</p>
-
-                <p><strong>First, examine your expectations.</strong> Are you expecting others to behave in ways they've never behaved? Are your expectations reasonable, or are they based on how you wish things were rather than how they are?</p>
-
-                <p><strong>Second, focus on your own behavior.</strong> You cannot control whether someone is kind to you, but you can control whether you are kind to them. You cannot control whether someone respects you, but you can control whether you act respectably.</p>
-
-                <p><strong>Third, set appropriate boundaries.</strong> Accepting that you cannot control others doesn't mean accepting mistreatment. You can choose how much time and energy to invest in different relationships.</p>
-
-                <div class="exercise">
-                    <h4>Relationship Assessment</h4>
-                    <p>Think of a challenging relationship in your life:</p>
-                    <p>1. What expectations do you have that might be unrealistic?</p>
-                    <p>2. How can you improve your own behavior in this relationship?</p>
-                    <p>3. What boundaries might be helpful to establish?</p>
-                    <p>4. How can you practice virtue even when others don't?</p>
-                </div>
-
-                <h3>Communication and Conflict</h3>
-
-                <p>Conflict is inevitable in relationships, but how we handle it makes all the difference. Stoic principles can transform disagreements from destructive battles into opportunities for understanding and growth.</p>
-
-                <p><strong>Listen to understand, not to win.</strong> Most conflicts escalate because people feel unheard. Before defending your position, make sure you truly understand the other person's perspective.</p>
-
-                <p><strong>Speak your truth with kindness.</strong> You have a responsibility to be honest, but you also have a responsibility to be compassionate. The goal is not to prove you're right but to strengthen the relationship.</p>
-
-                <p><strong>Focus on solutions, not blame.</strong> Instead of focusing on who's at fault, focus on how to move forward constructively. What can be learned? How can things improve?</p>
-
-                <h3>The Practice of Forgiveness</h3>
-
-                <p>Forgiveness is not about condoning harmful behavior or pretending wrongs didn't happen. It's about freeing yourself from the burden of resentment. As the Stoics understood, holding onto anger hurts you more than it hurts the person who wronged you.</p>
-
-                <p>Forgiveness is a practice, not a feeling. You don't have to feel forgiving to act in forgiving ways. You can choose to release resentment, wish the other person well, and focus on your own growth and healing.</p>
-            </div>
-
-            <!-- Chapter 7: Work -->
-            <div class="page-break" id="work">
-                <h2>Chapter 7: Stoicism in the Workplace</h2>
-
-                <div class="quote">
-                    Confine yourself to the present.
-                    <div class="quote-author">— Marcus Aurelius</div>
-                </div>
-
-                <p>The modern workplace can be a source of tremendous stress: demanding deadlines, difficult colleagues, uncertain career prospects, and the constant pressure to perform. Stoic philosophy offers practical tools for navigating these challenges while maintaining integrity and inner peace.</p>
-
-                <h3>Your Professional Purpose</h3>
-
-                <p>Before applying Stoic techniques to workplace challenges, it's important to clarify your professional purpose. Why do you work? What value do you provide? How does your work contribute to the common good?</p>
-
-                <p>For the Stoics, work wasn't just about earning money—it was about fulfilling our social duty and using our talents in service of others. When you understand your work as a form of service, it becomes easier to maintain motivation and perspective during difficult times.</p>
-
-                <div class="exercise">
-                    <h4>Work Purpose Reflection</h4>
-                    <p>Complete these statements:</p>
-                    <p>1. Through my work, I serve others by...</p>
-                    <p>2. My work allows me to practice virtue by...</p>
-                    <p>3. The skills I develop at work help me become...</p>
-                    <p>4. My work contributes to society by...</p>
-                </div>
-
-                <h3>Dealing with Workplace Stress</h3>
-
-                <p>Workplace stress often comes from focusing on things outside our control: deadlines we didn't set, decisions made by others, economic conditions, or company policies. While these factors affect our work environment, our response to them is entirely within our control.</p>
-
-                <p><strong>Focus on process, not outcomes.</strong> You can control the quality of your effort, but you cannot control whether your project gets approved, your presentation is well-received, or your proposal is accepted. Do excellent work and let the results take care of themselves.</p>
-
-                <p><strong>Prepare for obstacles.</strong> Setbacks, delays, and complications are normal parts of working life. When you expect challenges, you're less likely to be thrown off balance when they occur.</p>
-
-                <div class="principle">
-                    <h4>Workplace Applications of Control</h4>
-                    <p><strong>In Your Control:</strong> Your effort, attitude, preparation, communication, integrity</p>
-                    <p><strong>Outside Your Control:</strong> Others' decisions, company policies, market conditions, recognition</p>
-                </div>
-
-                <h3>Managing Difficult Colleagues</h3>
-
-                <p>Every workplace has challenging personalities: the micromanaging boss, the credit-stealing colleague, the perpetually negative team member. These relationships test our patience and professionalism, but they also provide opportunities to practice Stoic virtues.</p>
-
-                <p><strong>Remember that their behavior reflects their character, not yours.</strong> When someone treats you poorly, it says something about them, not about your worth or competence.</p>
-
-                <p><strong>Respond to the behavior, not the person.</strong> You can address problematic actions while still treating the person with respect and dignity.</p>
-
-                <p><strong>Look for opportunities to model better behavior.</strong> Your consistent professionalism and integrity can influence others over time, even if the change isn't immediately visible.</p>
-
-                <div class="exercise">
-                    <h4>Difficult Colleague Strategy</h4>
-                    <p>Think of a challenging work relationship:</p>
-                    <p>1. What behaviors are problematic?</p>
-                    <p>2. How can you address these professionally?</p>
-                    <p>3. What virtues can you practice in this relationship?</p>
-                    <p>4. How can you protect your own well-being?</p>
-                </div>
-
-                <h3>Career Development and Ambition</h3>
-
-                <p>Stoicism doesn't discourage ambition or career growth, but it does encourage us to hold our career goals lightly. Work toward promotions, seek new opportunities, and develop your skills—but don't make your happiness dependent on achieving specific outcomes.</p>
-
-                <p><strong>Focus on what you can control in your career development:</strong> Your skills, your network, your reputation for integrity and excellence. These investments will serve you well regardless of specific opportunities that may or may not arise.</p>
-
-                <p><strong>Be prepared for setbacks.</strong> Promotions may go to others, projects may be cancelled, companies may restructure. These events are disappointing but not devastating when you maintain perspective.</p>
-
-                <h3>Work-Life Balance</h3>
-
-                <p>The concept of work-life balance assumes that work and life are separate entities in constant tension. A Stoic approach recognizes that work is part of life, and both should be aligned with our values and commitments.</p>
-
-                <p><strong>Set clear boundaries based on your values.</strong> What time do you want to spend with family? What activities are important for your well-being? Protect these priorities just as you would protect important work commitments.</p>
-
-                <p><strong>Be fully present wherever you are.</strong> When you're at work, focus on work. When you're with family, focus on family. This presence makes both more fulfilling and reduces the sense of constant division.</p>
-
-                <h3>Dealing with Job Insecurity</h3>
-
-                <p>Economic uncertainty makes job security feel like a relic of the past. While you cannot control broader economic forces or company decisions, you can control how you prepare for and respond to career uncertainty.</p>
-
-                <p><strong>Build multiple forms of security:</strong> strong relationships, diverse skills, financial savings, and most importantly, confidence in your ability to adapt and create value in various situations.</p>
-
-                <p><strong>View uncertainty as opportunity.</strong> When change is forced upon us, it often opens doors we never would have walked through voluntarily.</p>
-            </div>
-
-            <!-- Chapter 8: Daily Practices -->
-            <div class="page-break" id="daily">
-                <h2>Chapter 8: Daily Stoic Practices</h2>
-
-                <div class="quote">
-                    Every new beginning comes from some other beginning's end.
-                    <div class="quote-author">— Seneca</div>
-                </div>
-
-                <p>Philosophy without practice is merely intellectual exercise. The Stoics understood that wisdom must be lived to be truly valuable. This chapter outlines practical daily exercises that can help you integrate Stoic principles into your everyday life.</p>
-
-                <h3>Morning Preparation</h3>
-
-                <p>How you begin your day sets the tone for everything that follows. The Stoics recommended starting each day with reflection and preparation, mentally rehearsing the challenges ahead and committing to respond with virtue.</p>
-
-                <div class="exercise">
-                    <h4>Morning Reflection Questions</h4>
-                    <p>Spend 10 minutes each morning considering:</p>
-                    <p>1. What challenges might I face today?</p>
-                    <p>2. How can I respond to these with wisdom, justice, courage, and temperance?</p>
-                    <p>3. What am I grateful for right now?</p>
-                    <p>4. How can I contribute to the common good today?</p>
-                    <p>5. What would I like to learn or improve today?</p>
-                </div>
-
-                <p><strong>Negative Visualization:</strong> Spend a few minutes imagining potential setbacks or losses. This isn't pessimism—it's preparation. By mentally rehearsing difficulties, you become more resilient when they actually occur and more grateful for what you currently have.</p>
-
-                <p><strong>Intention Setting:</strong> Choose one or two specific ways you want to practice virtue today. Perhaps you want to practice patience with a difficult colleague or courage in speaking up about an important issue.</p>
-
-                <h3>Midday Reset</h3>
-
-                <p>The middle of the day often brings stress, frustration, or fatigue. A brief midday pause can help you reconnect with your principles and adjust your approach if needed.</p>
-
-                <div class="exercise">
-                    <h4>The Midday Check-in</h4>
-                    <p>Take 5 minutes around midday to ask:</p>
-                    <p>1. How am I doing with my morning intentions?</p>
-                    <p>2. What has challenged me so far today?</p>
-                    <p>3. How can I improve my responses this afternoon?</p>
-                    <p>4. What am I learning about myself?</p>
-                </div>
-
-                <p><strong>The View from Above:</strong> If you're feeling overwhelmed, imagine viewing your current situation from a great height. How significant will this problem seem in a week? A year? A decade? This perspective can help restore calm and clarity.</p>
-
-                <h3>Evening Review</h3>
-
-                <p>Seneca practiced a daily evening review, examining his actions, thoughts, and responses from the day. This isn't an exercise in self-criticism but rather honest self-assessment aimed at continuous improvement.</p>
-
-                <div class="exercise">
-                    <h4>Evening Reflection</h4>
-                    <p>Before bed, spend 10 minutes reviewing:</p>
-                    <p>1. What went well today? What am I proud of?</p>
-                    <p>2. What could I have handled better?</p>
-                    <p>3. What did I learn about myself or others?</p>
-                    <p>4. How did I practice (or fail to practice) the four virtues?</p>
-                    <p>5. What am I grateful for from today?</p>
-                </div>
-
-                <p><strong>Forgiveness Practice:</strong> If you made mistakes or responded poorly to situations, practice self-forgiveness. The goal isn't to excuse poor behavior but to learn from it without being crushed by guilt or shame.</p>
-
-                <h3>Weekly Practices</h3>
-
-                <p><strong>Voluntary Discomfort:</strong> Once a week, deliberately choose a minor discomfort—take a cold shower, skip a meal, walk instead of driving, or sleep on the floor. These exercises build mental toughness and reduce attachment to comfort.</p>
-
-                <p><strong>Virtue Focus:</strong> Each week, choose one of the four cardinal virtues to focus on. Look for opportunities to practice that virtue and reflect on how it shows up in your life.</p>
-
-                <p><strong>Relationship Review:</strong> Weekly, consider your important relationships. Are you showing up as the person you want to be? Are there apologies to make or appreciation to express?</p>
-
-                <h3>Monthly Practices</h3>
-
-                <p><strong>Life Audit:</strong> Monthly, step back and examine the bigger picture. Are your daily actions aligned with your values? Are you making progress on what truly matters? What adjustments might be needed?</p>
-
-                <p><strong>Death Meditation:</strong> This might sound morbid, but regularly contemplating mortality is one of the most life-affirming practices you can do. It clarifies what truly matters and motivates you to live with greater intention and appreciation.</p>
-
-                <div class="exercise">
-                    <h4>Creating Your Practice</h4>
-                    <p>Design a simple daily routine that you can maintain consistently:</p>
-                    <p>1. Choose 2-3 practices that resonate with you</p>
-                    <p>2. Start small—even 5 minutes per practice</p>
-                    <p>3. Link practices to existing habits</p>
-                    <p>4. Track your consistency without self-judgment</p>
-                    <p>5. Adjust as needed based on what works</p>
-                </div>
-
-                <h3>Making Practice Sustainable</h3>
-
-                <p>The key to successful Stoic practice is consistency, not perfection. It's better to do a simple 5-minute morning routine every day than an elaborate 30-minute practice that you abandon after a week.</p>
-
-                <p><strong>Start small:</strong> Begin with just one practice and do it for at least two weeks before adding another.</p>
-
-                <p><strong>Be flexible:</strong> Adapt practices to your schedule and circumstances. The goal is integration, not rigid adherence to a specific format.</p>
-
-                <p><strong>Focus on principles, not techniques:</strong> If a specific exercise doesn't work for you, find another way to practice the underlying principle.</p>
-            </div>
-
-            <!-- Chapter 9: Living the Stoic Life -->
-            <div class="page-break" id="conclusion">
-                <h2>Chapter 9: Living the Stoic Life</h2>
-
-                <div class="quote">
-                    You have power over your mind—not outside events. Realize this, and you will find strength.
-                    <div class="quote-author">— Marcus Aurelius</div>
-                </div>
-
-                <p>Stoicism is not a destination but a journey. It's not about achieving perfect wisdom or emotional control—it's about the ongoing practice of living according to virtue and wisdom, recognizing that growth and learning never end.</p>
-
-                <h3>Integration, Not Perfection</h3>
-
-                <p>The goal of Stoic practice is not to become a perfectly rational being who never experiences difficult emotions. Such a person would be inhuman. Instead, the goal is to develop wisdom, resilience, and virtue that help you navigate life's inevitable challenges with greater skill and peace.</p>
-
-                <p>You will still feel frustrated, sad, anxious, and angry. The difference is that these emotions won't control you. You'll experience them, learn from them, and choose your responses more consciously.</p>
-
-                <div class="principle">
-                    <h4>Signs of Stoic Progress</h4>
-                    <p><strong>You pause before reacting</strong> to unexpected events</p>
-                    <p><strong>You focus on what you can control</strong> rather than lamenting what you cannot</p>
-                    <p><strong>You treat setbacks as learning opportunities</strong> rather than personal failures</p>
-                    <p><strong>You maintain perspective</strong> during both good times and bad</p>
-                    <p><strong>You act according to your values</strong> even when it's difficult</p>
-                </div>
-
-                <h3>Common Misconceptions</h3>
-
-                <p>As you begin or deepen your Stoic practice, you may encounter several common misconceptions:</p>
-
-                <p><strong>"Stoics don't care about anything."</strong> This is false. Stoics care deeply—about virtue, relationships, justice, and contributing to society. They simply don't make their happiness dependent on external outcomes.</p>
-
-                <p><strong>"Stoicism is about suppressing emotions."</strong> Actually, Stoicism is about understanding emotions and choosing conscious responses rather than automatic reactions.</p>
-
-                <p><strong>"Stoics are passive."</strong> The Stoics were among the most engaged people of their time—political leaders, writers, teachers, and reformers. They acted vigorously on what they could control while accepting what they could not.</p>
-
-                <h3>Stoicism and Modern Psychology</h3>
-
-                <p>Modern psychology has validated many Stoic insights. Cognitive Behavioral Therapy (CBT) is based on the principle that our thoughts influence our emotions and behaviors—a core Stoic teaching. Research on resilience, emotional regulation, and wellbeing consistently supports Stoic approaches.</p>
-
-                <p>This convergence between ancient wisdom and modern science suggests that Stoic principles reflect deep truths about human psychology and flourishing that transcend any particular time period or culture.</p>
-
-                <h3>Building a Stoic Community</h3>
-
-                <p>While Stoicism emphasizes self-reliance, it also recognizes that we are social beings who benefit from community support. Seek out others who share your interest in philosophical living—whether through online forums, local discussion groups, or simply conversations with friends and family.</p>
-
-                <p>Share what you're learning, but do so with humility. The goal is not to preach or convert others but to live in a way that demonstrates the value of Stoic principles.</p>
-
-                <div class="exercise">
-                    <h4>Your Stoic Commitment</h4>
-                    <p>Write a personal statement about how you want to integrate Stoicism into your life:</p>
-                    <p>1. Which Stoic principles resonate most strongly with you?</p>
-                    <p>2. What specific practices will you commit to?</p>
-                    <p>3. How do you hope Stoicism will change your life?</p>
-                    <p>4. What support do you need to maintain your practice?</p>
-                </div>
-
-                <h3>The Ongoing Journey</h3>
-
-                <p>Marcus Aurelius, one of the most powerful men in history, wrote his "Meditations" as personal reminders and encouragements. Even after years of philosophical study and practice, he still needed to remind himself of basic Stoic principles. This tells us something important: the practice never ends.</p>
-
-                <p>There will be days when you forget everything you've learned and react poorly to situations. There will be times when you feel like you're making no progress. This is normal and human. The practice is not about perfection—it's about returning again and again to the principles that serve you.</p>
-
-                <h3>A Life Worth Living</h3>
-
-                <p>Ultimately, Stoicism offers a framework for living a life of meaning, purpose, and inner peace regardless of external circumstances. It teaches us that happiness comes not from getting what we want but from wanting what we have, not from controlling what happens to us but from controlling how we respond to what happens.</p>
-
-                <p>This is perhaps the greatest gift of Stoic philosophy: the recognition that a good life is available to anyone, anywhere, at any time. You don't need perfect health, unlimited resources, or ideal circumstances. You need only the commitment to live according to wisdom, justice, courage, and temperance.</p>
-
-                <div class="quote">
-                    Don't demand that things happen as you wish—they will happen as they do happen—and you will go well.
-                    <div class="quote-author">— Epictetus</div>
-                </div>
-
-                <p>The Stoic path is not easy, but it is simple. It asks only that you take responsibility for your own thoughts, choices, and actions while accepting everything else with equanimity. In doing so, you join a tradition stretching back over two millennia—a tradition of people who chose wisdom over ignorance, virtue over vice, and inner peace over external validation.</p>
-
-                <p>Your journey in Stoic living begins now, with whatever challenges and opportunities today brings. Face them with courage, respond with wisdom, act with justice, and maintain temperance in all things. This is the way of the Stoic, and it is a way that leads to a life well-lived.</p>
-            </div>
-
-            <div class="footer">
-                <p>The journey of a thousand miles begins with a single step. Your Stoic journey begins with your next choice.</p>
-                <p>❦</p>
-                <p><em>© 2024 - Ancient wisdom for modern times</em></p>
-            </div>
-        </div>
-    </div>
+      <div class="cell"><div class="phrase">¿Qué tal?</div></div>
+      <div class="cell"><div class="phrase">What's up?</div></div>
+    </section>
+  </main>
 </body>
 </html>
