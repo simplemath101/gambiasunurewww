@@ -27,7 +27,8 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:32px;
+      padding:20px;
+      min-height:100vh;
     }
 
     .sheet{
@@ -48,13 +49,13 @@
     }
 
     .cell{
-      padding:28px 22px;
+      padding:16px 12px;
       border-bottom:1px solid var(--border);
       border-right:1px solid var(--border);
       display:flex;
       align-items:center;
       justify-content:flex-start;
-      min-height:64px;
+      min-height:50px;
       background:transparent;
     }
 
@@ -67,19 +68,19 @@
     /* top row styling (headers) */
     .cell.header{
       font-weight:900;
-      font-size:26px;
+      font-size:22px;
       text-transform:capitalize;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:26px 16px;
+      padding:18px 12px;
       background:transparent;
     }
 
     .phrase{
-      font-size:20px;
+      font-size:16px;
       font-weight:800;
-      line-height:1.15;
+      line-height:1.2;
       color:var(--text);
       text-align:left;
       max-width:95%;
@@ -89,7 +90,7 @@
     /* right column text is slightly smaller and aligned right */
     .cell:nth-child(2n) .phrase{
       text-align:right;
-      font-size:20px;
+      font-size:16px;
       font-weight:800;
     }
 
@@ -99,11 +100,64 @@
     }
 
     /* responsive: stack on small screens */
-    @media (max-width:520px){
+    @media (max-width:620px){
+      body{
+        padding:12px;
+        align-items:flex-start;
+      }
+      .sheet{
+        margin-top:8px;
+      }
+      .cell{
+        padding:12px 10px;
+        min-height:40px;
+      }
+      .cell.header{
+        font-size:18px;
+        padding:14px 10px;
+      }
+      .phrase{
+        font-size:14px;
+      }
+      .cell:nth-child(2n) .phrase{
+        font-size:14px;
+      }
+    }
+
+    @media (max-width:480px){
       .grid{grid-template-columns:1fr;}
-      .cell{justify-content:flex-start}
+      .cell{justify-content:flex-start; padding:10px 12px;}
       .cell:nth-child(2n){border-right:1px solid var(--border);} /* restore visual divider when stacked */
       .cell:nth-child(2n) .phrase{text-align:left}
+      .cell.header{
+        font-size:16px;
+        padding:12px;
+      }
+      .phrase{
+        font-size:13px;
+      }
+    }
+
+    @media (max-height:700px) and (max-width:480px){
+      body{
+        align-items:flex-start;
+        padding:8px;
+      }
+      .sheet{
+        margin-top:4px;
+      }
+      .cell{
+        padding:8px 10px;
+        min-height:35px;
+      }
+      .cell.header{
+        padding:10px;
+        font-size:15px;
+      }
+      .phrase{
+        font-size:12px;
+        line-height:1.1;
+      }
     }
   </style>
 </head>
