@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Proposal Template</title>
+    <title>Project Proposal - CRM System Implementation</title>
     <style>
         * {
             margin: 0;
@@ -12,171 +12,132 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.5;
+            color: #000;
+            background-color: #fff;
             padding: 20px;
+            font-weight: 600;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             background-color: white;
-            padding: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
         }
 
         .header-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 8px;
-            overflow: hidden;
+            margin-bottom: 20px;
+            border: 2px solid #000;
         }
 
         .header-table th {
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: bold;
+            border: 1px solid #000;
+            background-color: #f0f0f0;
         }
 
         .header-table td {
-            padding: 12px 15px;
+            padding: 12px;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #000;
+            font-size: 16px;
+            font-weight: bold;
         }
 
         .section-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 25px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
+            margin-bottom: 15px;
+            border: 2px solid #000;
         }
 
         .section-header {
-            background-color: #4a5568;
-            color: white;
-            padding: 15px;
-            font-weight: 600;
-            font-size: 14px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            border: 1px solid #000;
+            text-align: left;
         }
 
         .section-content {
-            padding: 20px;
-            background-color: #fafafa;
+            padding: 12px;
+            background-color: #fff;
             vertical-align: top;
+            border: 1px solid #000;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.5;
         }
 
         .section-content ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .section-content li {
-            padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 4px 0;
             position: relative;
-            padding-left: 20px;
-        }
-
-        .section-content li:last-child {
-            border-bottom: none;
+            padding-left: 15px;
+            font-weight: 600;
         }
 
         .section-content li:before {
-            content: "•";
-            color: #667eea;
+            content: "-";
             position: absolute;
             left: 0;
             font-weight: bold;
-            font-size: 18px;
-        }
-
-        .phase {
-            background-color: #e6f3ff;
-            padding: 10px;
-            margin: 8px 0;
-            border-left: 4px solid #667eea;
-            border-radius: 4px;
-        }
-
-        .phase-title {
-            font-weight: bold;
-            color: #2c5282;
         }
 
         .team-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .team-table th {
-            background-color: #4a5568;
-            color: white;
-            padding: 12px;
+            background-color: #f0f0f0;
+            padding: 10px;
             text-align: left;
-            font-size: 14px;
-            text-transform: uppercase;
+            font-size: 15px;
+            font-weight: bold;
+            border: 1px solid #000;
         }
 
         .team-table td {
-            padding: 15px 12px;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 10px;
+            border: 1px solid #000;
             background-color: white;
+            font-size: 15px;
+            font-weight: 600;
         }
 
-        .team-table tr:nth-child(even) td {
-            background-color: #f8f9fa;
+        .timeline-text {
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 600;
         }
 
-        .placeholder {
-            color: #666;
-            font-style: italic;
-            background-color: #fff3cd;
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-
-        .instructions {
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 6px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        .instructions h3 {
-            color: #155724;
-            margin-bottom: 10px;
-        }
-
-        .instructions ul {
-            color: #155724;
-            margin-left: 20px;
-        }
-
-        .instructions li {
+        .phase-line {
             margin: 5px 0;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 10px;
             }
             
             .header-table th,
             .header-table td {
-                padding: 10px 8px;
+                padding: 8px 5px;
                 font-size: 14px;
             }
         }
@@ -276,26 +237,13 @@
             </tr>
             <tr>
                 <td class="section-content">
-                    <p><strong>Estimated Duration:</strong> 4 months (January - April 2026)</p>
-                    
-                    <div class="phase">
-                        <div class="phase-title">Phase 1 - Planning & Analysis (Month 1):</div>
-                        Requirements gathering, vendor evaluation, and system selection
-                    </div>
-                    
-                    <div class="phase">
-                        <div class="phase-title">Phase 2 - Design & Configuration (Month 2):</div>
-                        System setup, customization, and integration planning
-                    </div>
-                    
-                    <div class="phase">
-                        <div class="phase-title">Phase 3 - Implementation & Testing (Month 3):</div>
-                        Data migration, system testing, and user acceptance testing
-                    </div>
-                    
-                    <div class="phase">
-                        <div class="phase-title">Phase 4 - Deployment & Training (Month 4):</div>
-                        Go-live activities, user training, and post-implementation support
+                    <div class="timeline-text">
+                        Estimated Duration: 4 months (January - April 2026)
+                        <br><br>
+                        <div class="phase-line">Phase 1: Planning & Analysis</div>
+                        <div class="phase-line">Phase 2: Design & Configuration</div>
+                        <div class="phase-line">Phase 3: Implementation & Testing</div>
+                        <div class="phase-line">Phase 4: Deployment & Training</div>
                     </div>
                 </td>
             </tr>
@@ -346,183 +294,6 @@
             <tr>
                 <td class="section-content">
                     This project requires coordination with multiple departments and may impact daily operations during the transition period. The success of this implementation depends on strong executive support, adequate user training, and careful change management. Budget considerations include software licensing, hardware upgrades, training costs, and potential temporary productivity impacts during the transition phase.
-                </td>
-            </tr>
-        </table>
-
-        <!-- Budget Section -->
-        <table class="section-table">
-            <tr>
-                <td class="section-header">PROJECT BUDGET</td>
-            </tr>
-            <tr>
-                <td class="section-content">
-                    <table class="team-table">
-                        <tr>
-                            <th>COST CATEGORY</th>
-                            <th>ESTIMATED AMOUNT</th>
-                        </tr>
-                        <tr>
-                            <td>CRM Software License (Annual)</td>
-                            <td>D25,000</td>
-                        </tr>
-                        <tr>
-                            <td>Implementation Services</td>
-                            <td>D15,000</td>
-                        </tr>
-                        <tr>
-                            <td>Hardware Upgrades</td>
-                            <td>D8,000</td>
-                        </tr>
-                        <tr>
-                            <td>Training and Documentation</td>
-                            <td>D5,000</td>
-                        </tr>
-                        <tr>
-                            <td>Data Migration Services</td>
-                            <td>D7,000</td>
-                        </tr>
-                        <tr>
-                            <td>Contingency (10%)</td>
-                            <td>D6,000</td>
-                        </tr>
-                        <tr style="font-weight: bold; background-color: #e6f3ff;">
-                            <td><strong>TOTAL PROJECT COST</strong></td>
-                            <td><strong>D66,000</strong></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-
-        <!-- Risk Assessment -->
-        <table class="section-table">
-            <tr>
-                <td class="section-header">RISK ASSESSMENT</td>
-            </tr>
-            <tr>
-                <td class="section-content">
-                    <table class="team-table">
-                        <tr>
-                            <th>RISK</th>
-                            <th>PROBABILITY</th>
-                            <th>IMPACT</th>
-                            <th>MITIGATION STRATEGY</th>
-                        </tr>
-                        <tr>
-                            <td>Data Migration Issues</td>
-                            <td>Medium</td>
-                            <td>High</td>
-                            <td>Thorough testing, backup procedures, phased rollout</td>
-                        </tr>
-                        <tr>
-                            <td>User Resistance to Change</td>
-                            <td>High</td>
-                            <td>Medium</td>
-                            <td>Early stakeholder engagement, comprehensive training, change champions</td>
-                        </tr>
-                        <tr>
-                            <td>Integration Complications</td>
-                            <td>Medium</td>
-                            <td>Medium</td>
-                            <td>Detailed technical assessment, API testing, vendor support</td>
-                        </tr>
-                        <tr>
-                            <td>Budget Overrun</td>
-                            <td>Low</td>
-                            <td>Medium</td>
-                            <td>Fixed-price contracts, regular budget monitoring, 10% contingency</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-
-        <!-- Success Metrics -->
-        <table class="section-table">
-            <tr>
-                <td class="section-header">SUCCESS METRICS</td>
-            </tr>
-            <tr>
-                <td class="section-content">
-                    <ul>
-                        <li><strong>System Performance:</strong> 99.5% uptime within 30 days of go-live</li>
-                        <li><strong>User Adoption:</strong> 90% of sales team actively using CRM within 60 days</li>
-                        <li><strong>Data Quality:</strong> 95% data accuracy after migration completion</li>
-                        <li><strong>Productivity:</strong> 30% reduction in time spent on administrative tasks</li>
-                        <li><strong>Customer Service:</strong> 25% improvement in response times to customer inquiries</li>
-                        <li><strong>Sales Performance:</strong> 20% increase in lead conversion rates within 6 months</li>
-                        <li><strong>Training Effectiveness:</strong> 85% user satisfaction score on training programs</li>
-                    </ul>
-                </td>
-            </tr>
-        </table>
-
-        <!-- Dependencies -->
-        <table class="section-table">
-            <tr>
-                <td class="section-header">PROJECT DEPENDENCIES</td>
-            </tr>
-            <tr>
-                <td class="section-content">
-                    <ul>
-                        <li><strong>Executive Approval:</strong> Final budget approval and resource allocation from C-level executives</li>
-                        <li><strong>IT Infrastructure:</strong> Server capacity and network bandwidth upgrades must be completed</li>
-                        <li><strong>Data Cleanup:</strong> Legacy system data cleanup by departmental data owners</li>
-                        <li><strong>Vendor Coordination:</strong> CRM vendor availability for implementation support and training</li>
-                        <li><strong>Third-party Integrations:</strong> API access from existing software providers (accounting, email marketing)</li>
-                        <li><strong>User Availability:</strong> Key users available for training and testing during specified timeframes</li>
-                        <li><strong>Security Clearance:</strong> IT security team approval for new system deployment</li>
-                    </ul>
-                </td>
-            </tr>
-        </table>
-
-        <!-- Communication Plan -->
-        <table class="section-table">
-            <tr>
-                <td class="section-header">COMMUNICATION PLAN</td>
-            </tr>
-            <tr>
-                <td class="section-content">
-                    <table class="team-table">
-                        <tr>
-                            <th>AUDIENCE</th>
-                            <th>FREQUENCY</th>
-                            <th>METHOD</th>
-                            <th>CONTENT</th>
-                        </tr>
-                        <tr>
-                            <td>Executive Team</td>
-                            <td>Monthly</td>
-                            <td>Executive Dashboard & Reports</td>
-                            <td>Project status, budget, risks, milestones</td>
-                        </tr>
-                        <tr>
-                            <td>Department Heads</td>
-                            <td>Bi-weekly</td>
-                            <td>Status Meetings</td>
-                            <td>Progress updates, upcoming activities, resource needs</td>
-                        </tr>
-                        <tr>
-                            <td>End Users</td>
-                            <td>Weekly</td>
-                            <td>Email Updates & Intranet</td>
-                            <td>Training schedules, system updates, tips and tricks</td>
-                        </tr>
-                        <tr>
-                            <td>Project Team</td>
-                            <td>Daily</td>
-                            <td>Stand-up Meetings</td>
-                            <td>Task progress, blockers, daily objectives</td>
-                        </tr>
-                        <tr>
-                            <td>IT Support</td>
-                            <td>As Needed</td>
-                            <td>Technical Briefings</td>
-                            <td>System changes, troubleshooting procedures, escalation paths</td>
-                        </tr>
-                    </table>
                 </td>
             </tr>
         </table>
