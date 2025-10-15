@@ -1,555 +1,317 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Studies Exam Questions</title>
-    <style>
-        @page {
-            margin: 1in;
+import java.util.ArrayList;
+
+// Course class to represent a university course
+class Course {
+    private String courseCode;
+    private String courseName;
+    private int credits;
+    private int maxCapacity;
+    private ArrayList<Student> enrolledStudents;
+    
+    public Course(String courseCode, String courseName, int credits, int maxCapacity) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.credits = credits;
+        this.maxCapacity = maxCapacity;
+        this.enrolledStudents = new ArrayList<>();
+    }
+    
+    public String getCourseCode() {
+        return courseCode;
+    }
+    
+    public String getCourseName() {
+        return courseName;
+    }
+    
+    public int getCredits() {
+        return credits;
+    }
+    
+    public int getAvailableSeats() {
+        return maxCapacity - enrolledStudents.size();
+    }
+    
+    public boolean isFull() {
+        return enrolledStudents.size() >= maxCapacity;
+    }
+    
+    public boolean enrollStudent(Student student) {
+        if (isFull()) {
+            System.out.println("Cannot enroll. Course " + courseCode + " is full.");
+            return false;
         }
         
-        body {
-            font-family: Calibri, 'Calibri Body', sans-serif;
-            font-size: 14pt;
-            line-height: 1.6;
-            max-width: 8.5in;
-            margin: 0 auto;
-            padding: 1in;
-            background-color: white;
-            color: #000;
+        if (enrolledStudents.contains(student)) {
+            System.out.println("Student is already enrolled in " + courseCode);
+            return false;
         }
         
-        .question {
-            margin-bottom: 20px;
-            page-break-inside: avoid;
-        }
-        
-        .question-number {
-            font-weight: normal;
-            margin-bottom: 5px;
-        }
-        
-        .options {
-            margin-left: 20px;
-            margin-top: 5px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .option {
-            margin-bottom: 3px;
-        }
-        
-        @media print {
-            body {
-                padding: 0;
-                margin: 0;
+        enrolledStudents.add(student);
+        return true;
+    }
+    
+    public boolean dropStudent(Student student) {
+        return enrolledStudents.remove(student);
+    }
+    
+    public void displayCourseInfo() {
+        System.out.println("\n--- Course Information ---");
+        System.out.println("Code: " + courseCode);
+        System.out.println("Name: " + courseName);
+        System.out.println("Credits: " + credits);
+        System.out.println("Enrolled: " + enrolledStudents.size() + "/" + maxCapacity);
+        System.out.println("Available Seats: " + getAvailableSeats());
+    }
+    
+    public void listEnrolledStudents() {
+        System.out.println("\nStudents enrolled in " + courseCode + ":");
+        if (enrolledStudents.isEmpty()) {
+            System.out.println("No students enrolled yet.");
+        } else {
+            for (Student student : enrolledStudents) {
+                System.out.println("- " + student.getName() + " (ID: " + student.getStudentId() + ")");
             }
         }
-    </style>
-</head>
-<body>
+    }
+}
+
+// Student class to represent a university student
+class Student {
+    private String studentId;
+    private String name;
+    private String major;
+    private ArrayList<Course> registeredCourses;
     
-    <div class="question">
-        <div class="question-number">1. The reward of a shareholder of a company is known as</div>
-        <div class="options">
-            <div class="option">A. profit.</div>
-            <div class="option">B. dividend.</div>
-            <div class="option">C. wages.</div>
-            <div class="option">D. salary.</div>
-        </div>
-    </div>
+    public Student(String studentId, String name, String major) {
+        this.studentId = studentId;
+        this.name = name;
+        this.major = major;
+        this.registeredCourses = new ArrayList<>();
+    }
+    
+    public String getStudentId() {
+        return studentId;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getMajor() {
+        return major;
+    }
+    
+    public boolean registerForCourse(Course course) {
+        if (registeredCourses.contains(course)) {
+            System.out.println(name + " is already registered for " + course.getCourseCode());
+            return false;
+        }
+        
+        if (course.enrollStudent(this)) {
+            registeredCourses.add(course);
+            System.out.println(name + " successfully registered for " + course.getCourseCode());
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean dropCourse(Course course) {
+        if (registeredCourses.remove(course)) {
+            course.dropStudent(this);
+            System.out.println(name + " dropped " + course.getCourseCode());
+            return true;
+        } else {
+            System.out.println(name + " is not registered for " + course.getCourseCode());
+            return false;
+        }
+    }
+    
+    public int getTotalCredits() {
+        int total = 0;
+        for (Course course : registeredCourses) {
+            total += course.getCredits();
+        }
+        return total;
+    }
+    
+    public void displayStudentInfo() {
+        System.out.println("\n--- Student Information ---");
+        System.out.println("ID: " + studentId);
+        System.out.println("Name: " + name);
+        System.out.println("Major: " + major);
+        System.out.println("Total Credits: " + getTotalCredits());
+    }
+    
+    public void listRegisteredCourses() {
+        System.out.println("\nCourses registered by " + name + ":");
+        if (registeredCourses.isEmpty()) {
+            System.out.println("No courses registered yet.");
+        } else {
+            for (Course course : registeredCourses) {
+                System.out.println("- " + course.getCourseCode() + ": " + course.getCourseName() + 
+                                   " (" + course.getCredits() + " credits)");
+            }
+        }
+    }
+}
 
-    <div class="question">
-        <div class="question-number">2. A partner who contributes capital but does not take active part in the running of the business is a</div>
-        <div class="options">
-            <div class="option">A. nominal partner.</div>
-            <div class="option">B. general partner.</div>
-            <div class="option">C. dormant partner.</div>
-            <div class="option">D. limited partner.</div>
-        </div>
-    </div>
+// University class to manage students and courses
+class University {
+    private String universityName;
+    private ArrayList<Student> students;
+    private ArrayList<Course> courses;
+    
+    public University(String universityName) {
+        this.universityName = universityName;
+        this.students = new ArrayList<>();
+        this.courses = new ArrayList<>();
+    }
+    
+    public void addStudent(Student student) {
+        students.add(student);
+        System.out.println("Student " + student.getName() + " added to " + universityName);
+    }
+    
+    public void addCourse(Course course) {
+        courses.add(course);
+        System.out.println("Course " + course.getCourseCode() + " added to " + universityName);
+    }
+    
+    public Student findStudent(String studentId) {
+        for (Student student : students) {
+            if (student.getStudentId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
+    }
+    
+    public Course findCourse(String courseCode) {
+        for (Course course : courses) {
+            if (course.getCourseCode().equals(courseCode)) {
+                return course;
+            }
+        }
+        return null;
+    }
+    
+    public void listAllStudents() {
+        System.out.println("\n=== All Students at " + universityName + " ===");
+        if (students.isEmpty()) {
+            System.out.println("No students enrolled.");
+        } else {
+            for (Student student : students) {
+                System.out.println("- " + student.getName() + " (ID: " + student.getStudentId() + 
+                                   ", Major: " + student.getMajor() + ")");
+            }
+        }
+    }
+    
+    public void listAllCourses() {
+        System.out.println("\n=== All Courses at " + universityName + " ===");
+        if (courses.isEmpty()) {
+            System.out.println("No courses available.");
+        } else {
+            for (Course course : courses) {
+                System.out.println("- " + course.getCourseCode() + ": " + course.getCourseName() + 
+                                   " (" + course.getCredits() + " credits, " + 
+                                   course.getAvailableSeats() + " seats available)");
+            }
+        }
+    }
+}
 
-    <div class="question">
-        <div class="question-number">3. The class of people who are affected by the operation of a business enterprise are collectively known as</div>
-        <div class="options">
-            <div class="option">A. volunteers.</div>
-            <div class="option">B. committee.</div>
-            <div class="option">C. members.</div>
-            <div class="option">D. stakeholders.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">4. Which of the following is an advantage of sole proprietorship?</div>
-        <div class="options">
-            <div class="option">A. Quick decision-making</div>
-            <div class="option">B. Large capital</div>
-            <div class="option">C. Employment of experts</div>
-            <div class="option">D. Limited liability</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">5. The process of influencing workers positively to achieve organizational objective comes under the function of</div>
-        <div class="options">
-            <div class="option">A. planning.</div>
-            <div class="option">B. organizing.</div>
-            <div class="option">C. directing.</div>
-            <div class="option">D. controlling.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">6. The stage in decision-making where critical assessment of the available options is carried out is referred to as</div>
-        <div class="options">
-            <div class="option">A. definition of the problem.</div>
-            <div class="option">B. analytical stage of the problem.</div>
-            <div class="option">C. gathering of information.</div>
-            <div class="option">D. evaluation of the alternative.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">7. In a line-and-staff organization, the line officers are the executive and the staff officers are the</div>
-        <div class="options">
-            <div class="option">A. controllers.</div>
-            <div class="option">B. employers.</div>
-            <div class="option">C. specialist.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">8. Job instructions take the form of</div>
-        <div class="options">
-            <div class="option">A. horizontal communication.</div>
-            <div class="option">B. upward communication.</div>
-            <div class="option">C. downward communication.</div>
-            <div class="option">D. diagonal communication.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">9. The management function which is said to be an integral part of all the other functions is:</div>
-        <div class="options">
-            <div class="option">A. planning.</div>
-            <div class="option">B. organizing.</div>
-            <div class="option">C. controlling.</div>
-            <div class="option">D. directing.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">10. The purpose of creating functional divisions in an organization is to encourage:</div>
-        <div class="options">
-            <div class="option">A. centralization.</div>
-            <div class="option">B. specialization.</div>
-            <div class="option">C. privatization.</div>
-            <div class="option">D. decentralization.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">11. When a manager ensures that the different departments of a company work in harmony, he is performing the function of</div>
-        <div class="options">
-            <div class="option">A. directing.</div>
-            <div class="option">B. co-ordinating.</div>
-            <div class="option">C. controlling.</div>
-            <div class="option">D. planning.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">12. The comparison of actual performance with stated objectives shows which management function?</div>
-        <div class="options">
-            <div class="option">A. Planning.</div>
-            <div class="option">B. Organizing.</div>
-            <div class="option">C. Directing.</div>
-            <div class="option">D. Controlling.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">13. Communication gap exists when</div>
-        <div class="options">
-            <div class="option">A. perceived meaning is different from intended meaning.</div>
-            <div class="option">B. sender and receiver have the same understanding.</div>
-            <div class="option">C. feedback is received promptly.</div>
-            <div class="option">D. it is a two-way affair between sender and receiver.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">14. Communication is said to be complete when the</div>
-        <div class="options">
-            <div class="option">A. communication is factual.</div>
-            <div class="option">B. intended meaning is received.</div>
-            <div class="option">C. recipient does not understand the message.</div>
-            <div class="option">D. communication is in writing.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">15. The printer of a computer is an example of</div>
-        <div class="options">
-            <div class="option">A. input device.</div>
-            <div class="option">B. output device.</div>
-            <div class="option">C. processing device.</div>
-            <div class="option">D. scanning device.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">16. Computer software refers to</div>
-        <div class="options">
-            <div class="option">A. output unit.</div>
-            <div class="option">B. the instructions that tell the computer what to do.</div>
-            <div class="option">C. the storage unit.</div>
-            <div class="option">D. that part of the computer that is made of plastic.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">17. An important rule in the law of contract is that</div>
-        <div class="options">
-            <div class="option">A. the principal should always rectify agent's acts.</div>
-            <div class="option">B. all arrangements must be sealed.</div>
-            <div class="option">C. acceptance must be communicated.</div>
-            <div class="option">D. an offer must move from the promise.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">18. A cheque which allows anyone in possession of it to be paid is</div>
-        <div class="options">
-            <div class="option">A. a crossed cheque.</div>
-            <div class="option">B. an open cheque.</div>
-            <div class="option">C. a stale cheque.</div>
-            <div class="option">D. an endorsed cheque.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">19. Which of the following is not a negotiable instrument?</div>
-        <div class="options">
-            <div class="option">A. Crossed cheque</div>
-            <div class="option">B. Pecuniary order</div>
-            <div class="option">C. Promissory note</div>
-            <div class="option">D. Treasury bill</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">20. Which of the following is a duty of an agent?</div>
-        <div class="options">
-            <div class="option">A. Disclose vital business information</div>
-            <div class="option">B. Act on his own in all cases</div>
-            <div class="option">C. Withhold account from his principal</div>
-            <div class="option">D. Have conflict of interest</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">21. A contract that is valid and in which one of the parties to the contract is bound is called:</div>
-        <div class="options">
-            <div class="option">A. voidable contract.</div>
-            <div class="option">B. void contract.</div>
-            <div class="option">C. avoidable contract.</div>
-            <div class="option">D. null contract.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">22. Demand-pull inflation favours:</div>
-        <div class="options">
-            <div class="option">A. pensioners.</div>
-            <div class="option">B. producers.</div>
-            <div class="option">C. depositors.</div>
-            <div class="option">D. creditors.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">23. Which of the following functions is performed by commercial banks?</div>
-        <div class="options">
-            <div class="option">A. Issuing of currencies</div>
-            <div class="option">B. Serving as agents of payment</div>
-            <div class="option">C. Regulating activities of other banks</div>
-            <div class="option">D. Serving as lender of last resort</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">24. The aid to trade which deals with the pooling and management of risks is:</div>
-        <div class="options">
-            <div class="option">A. communication.</div>
-            <div class="option">B. warehousing.</div>
-            <div class="option">C. transport.</div>
-            <div class="option">D. insurance.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">25. Which of the following is an attribute of a good tax system?</div>
-        <div class="options">
-            <div class="option">A. Rigidity</div>
-            <div class="option">B. Transferability</div>
-            <div class="option">C. Divisibility</div>
-            <div class="option">D. Flexibility</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">26. Which of the following is not a source of government revenue?</div>
-        <div class="options">
-            <div class="option">A. Court fines</div>
-            <div class="option">B. Tax refund</div>
-            <div class="option">C. Foreign aid and grants</div>
-            <div class="option">D. Sale of government property</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">27. An advantage of international trade is that it increases</div>
-        <div class="options">
-            <div class="option">A. the cost of domestic firms.</div>
-            <div class="option">B. the power of domestic monopolies.</div>
-            <div class="option">C. international co-operation.</div>
-            <div class="option">D. the imports of foreign products.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">28. The document which enables a consignee to clear goods from the port is</div>
-        <div class="options">
-            <div class="option">A. bill of lading.</div>
-            <div class="option">B. certificate of inspection.</div>
-            <div class="option">C. delivery note.</div>
-            <div class="option">D. proforma invoice.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">29. One of the effects of embargo in international trade is to</div>
-        <div class="options">
-            <div class="option">A. reduce prices.</div>
-            <div class="option">B. reduce imports.</div>
-            <div class="option">C. increase tariffs.</div>
-            <div class="option">D. control production.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">30. One way of reversing a country's trade deficit is to</div>
-        <div class="options">
-            <div class="option">A. increase exports.</div>
-            <div class="option">B. adjust its exchange rate upward.</div>
-            <div class="option">C. revalue its currency upward.</div>
-            <div class="option">D. increase imports.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">31. Balance of payments is the record of</div>
-        <div class="options">
-            <div class="option">A. payments of a country's imports.</div>
-            <div class="option">B. importation of goods and services.</div>
-            <div class="option">C. a country's international transactions.</div>
-            <div class="option">D. exportation of goods and services.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">32. Which of the following institutions was established to secure financial stability and sustain economic growth among member countries?</div>
-        <div class="options">
-            <div class="option">A. The World Bank</div>
-            <div class="option">B. World Trade Organization</div>
-            <div class="option">C. International Monetary Fund</div>
-            <div class="option">D. International Maritime Organization</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">33. The main reason for the formation of the Association of South East Asia Nations was to</div>
-        <div class="options">
-            <div class="option">A. introduce different currencies for the member countries.</div>
-            <div class="option">B. promote free trade among member states.</div>
-            <div class="option">C. promote social and cultural integration.</div>
-            <div class="option">D. introduce new taxes to enhance tax revenue.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">34. Which of the following business units depend on subventions?</div>
-        <div class="options">
-            <div class="option">A. Public corporations</div>
-            <div class="option">B. Private company</div>
-            <div class="option">C. Sole proprietorship</div>
-            <div class="option">D. Public company</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">35. One weapon that management may use to make strike undertaken by workers ineffective is</div>
-        <div class="options">
-            <div class="option">A. boycott.</div>
-            <div class="option">B. picketing.</div>
-            <div class="option">C. corporate campaign.</div>
-            <div class="option">D. lock out.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">36. An advantage of e-commerce is that</div>
-        <div class="options">
-            <div class="option">A. it is possible to examine the product before buying.</div>
-            <div class="option">B. there is personal interaction between sales staff and customers.</div>
-            <div class="option">C. a faulty product may be difficult to return.</div>
-            <div class="option">D. a person need not leave home in order to shop.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">37. At which stage of the product cycle will the company experience low profits, high production and marketing costs?</div>
-        <div class="options">
-            <div class="option">A. Introduction stage</div>
-            <div class="option">B. Growth stage</div>
-            <div class="option">C. Maturity stage</div>
-            <div class="option">D. Decline stage</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">38. The use of brand names, trademarks and labelling are all methods of</div>
-        <div class="options">
-            <div class="option">A. target marketing.</div>
-            <div class="option">B. quality control.</div>
-            <div class="option">C. product differentiation.</div>
-            <div class="option">D. market research.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">39. Which of the following is an advantage of outdoor advertising?</div>
-        <div class="options">
-            <div class="option">A. Repeat exposure</div>
-            <div class="option">B. Geographic flexibility</div>
-            <div class="option">C. Audience selectivity</div>
-            <div class="option">D. Low cost</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">40. The technique which seeks to provide employees with different work experiences by moving them across jobs is known as</div>
-        <div class="options">
-            <div class="option">A. job rotation.</div>
-            <div class="option">B. job analysis.</div>
-            <div class="option">C. job enlargement.</div>
-            <div class="option">D. job enrichment.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">41. The key functions of human resource management is to ensure that the organization</div>
-        <div class="options">
-            <div class="option">A. sets product quality standards.</div>
-            <div class="option">B. recruits, selects and retains quality staff.</div>
-            <div class="option">C. bargains for salaries required by labour.</div>
-            <div class="option">D. obtains loans and overdrafts for employees.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">42. Which of the following sources of funds is primary to labour unions?</div>
-        <div class="options">
-            <div class="option">A. Donor funds</div>
-            <div class="option">B. Government contributions</div>
-            <div class="option">C. Membership dues</div>
-            <div class="option">D. Employer's contribution</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">43. The section of a business plan that gives the reader a preview of what the plan contains is</div>
-        <div class="options">
-            <div class="option">A. executive summary.</div>
-            <div class="option">B. mission statement.</div>
-            <div class="option">C. management audit.</div>
-            <div class="option">D. industry summary.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">44. Which of the following stakeholders is a risk borne in the running of a business?</div>
-        <div class="options">
-            <div class="option">A. Employee</div>
-            <div class="option">B. Entrepreneur</div>
-            <div class="option">C. Debtor</div>
-            <div class="option">D. Underwriter</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">45. Which of the following business entities is funded with tax revenue?</div>
-        <div class="options">
-            <div class="option">A. Private companies</div>
-            <div class="option">B. Public corporations</div>
-            <div class="option">C. Limited partnerships</div>
-            <div class="option">D. Co-operative societies</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">46. Type of share that confers voting rights but not preferential rights to dividends of a company is</div>
-        <div class="options">
-            <div class="option">A. ordinary share.</div>
-            <div class="option">B. cumulative share.</div>
-            <div class="option">C. bonus share.</div>
-            <div class="option">D. preference share.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">47. A speculator at a stock exchange who sells shares in anticipation that prices are about to fall is called a</div>
-        <div class="options">
-            <div class="option">A. broker.</div>
-            <div class="option">B. bull.</div>
-            <div class="option">C. stag.</div>
-            <div class="option">D. bear.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">48. A technique in production in which a fixed number of standard items are produced in groups, is</div>
-        <div class="options">
-            <div class="option">A. job production.</div>
-            <div class="option">B. batch production.</div>
-            <div class="option">C. flow production.</div>
-            <div class="option">D. process production.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">49. A written statement that identifies the tasks, duties and performance results required in a particular job is</div>
-        <div class="options">
-            <div class="option">A. job analysis.</div>
-            <div class="option">B. job description.</div>
-            <div class="option">C. job specification.</div>
-            <div class="option">D. job enlargement.</div>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="question-number">50. The funds contributed by the owners of a business is referred to as</div>
-        <div class="options">
-            <div class="option">A. loan.</div>
-            <div class="option">B. debenture.</div>
-            <div class="option">C. capital.</div>
-            <div class="option">D. mortgage.</div>
-        </div>
-    </div>
-
-</body>
-</html>
+// Main class to demonstrate the system
+public class UniversitySystem {
+    public static void main(String[] args) {
+        // Create university
+        University university = new University("Tech University");
+        
+        System.out.println("=== University Course Registration System ===\n");
+        
+        // Create courses
+        Course cs101 = new Course("CS101", "Introduction to Programming", 3, 30);
+        Course cs102 = new Course("CS102", "Data Structures", 4, 25);
+        Course math201 = new Course("MATH201", "Calculus I", 4, 40);
+        Course eng101 = new Course("ENG101", "English Composition", 3, 35);
+        
+        // Add courses to university
+        university.addCourse(cs101);
+        university.addCourse(cs102);
+        university.addCourse(math201);
+        university.addCourse(eng101);
+        
+        System.out.println();
+        
+        // Create students
+        Student alice = new Student("S001", "Alice Johnson", "Computer Science");
+        Student bob = new Student("S002", "Bob Smith", "Mathematics");
+        Student charlie = new Student("S003", "Charlie Brown", "Computer Science");
+        
+        // Add students to university
+        university.addStudent(alice);
+        university.addStudent(bob);
+        university.addStudent(charlie);
+        
+        System.out.println("\n" + "=".repeat(50));
+        
+        // Students register for courses
+        System.out.println("\n--- Course Registration ---");
+        alice.registerForCourse(cs101);
+        alice.registerForCourse(math201);
+        alice.registerForCourse(eng101);
+        
+        bob.registerForCourse(math201);
+        bob.registerForCourse(cs101);
+        
+        charlie.registerForCourse(cs102);
+        charlie.registerForCourse(cs101);
+        
+        System.out.println("\n" + "=".repeat(50));
+        
+        // Display student information
+        alice.displayStudentInfo();
+        alice.listRegisteredCourses();
+        
+        bob.displayStudentInfo();
+        bob.listRegisteredCourses();
+        
+        System.out.println("\n" + "=".repeat(50));
+        
+        // Display course information
+        cs101.displayCourseInfo();
+        cs101.listEnrolledStudents();
+        
+        math201.displayCourseInfo();
+        math201.listEnrolledStudents();
+        
+        System.out.println("\n" + "=".repeat(50));
+        
+        // Drop a course
+        System.out.println("\n--- Dropping a Course ---");
+        alice.dropCourse(eng101);
+        
+        alice.displayStudentInfo();
+        alice.listRegisteredCourses();
+        
+        System.out.println("\n" + "=".repeat(50));
+        
+        // List all students and courses
+        university.listAllStudents();
+        university.listAllCourses();
+        
+        System.out.println("\n" + "=".repeat(50));
+        
+        // Demonstrate course capacity
+        System.out.println("\n--- Testing Course Capacity ---");
+        Course smallCourse = new Course("CS999", "Advanced Topics", 3, 2);
+        university.addCourse(smallCourse);
+        
+        alice.registerForCourse(smallCourse);
+        bob.registerForCourse(smallCourse);
+        charlie.registerForCourse(smallCourse); // Should fail - course is full
+        
+        smallCourse.displayCourseInfo();
+    }
+}
