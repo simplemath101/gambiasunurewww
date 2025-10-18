@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Trading Chart Patterns eBook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 50px rgba(0,0,0,0.3);
+        }
+
+        .cover {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .cover h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cover p {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            padding: 60px 40px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #2a5298;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #667eea;
+        }
+
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .pattern-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pattern-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+        }
+
+        .pattern-card h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .pattern-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .pattern-description {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .badge-bullish {
+            background: #10b981;
+            color: white;
+        }
+
+        .badge-bearish {
+            background: #ef4444;
+            color: white;
+        }
+
+        .badge-neutral {
+            background: #6b7280;
+            color: white;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .intro h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .toc {
+            background: #f8fafc;
+            padding: 40px;
+        }
+
+        .toc h2 {
+            color: #2a5298;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .toc a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+        }
+
+        @media print {
+            .pattern-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cover h1 {
+                font-size: 2em;
+            }
+            .pattern-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cover Page -->
+        <div class="cover">
+            <h1>📈 Complete Trading Chart Patterns Guide</h1>
+            <p>Master 70+ Essential Chart Patterns</p>
+            <p>For Technical Analysis & Trading Success</p>
+            <p style="margin-top: 40px; font-size: 1em; opacity: 0.9;">From Continuation to Reversal Patterns</p>
+        </div>
+
+        <!-- Introduction -->
+        <div class="intro">
+            <h2>Welcome to Your Trading Journey</h2>
+            <p>This comprehensive guide covers every major chart pattern used by professional traders worldwide. Learn to identify bullish, bearish, and neutral patterns to make informed trading decisions.</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>📚 Table of Contents</h2>
+            <ul>
+                <li><a href="#continuation">1. Continuation Patterns</a></li>
+                <li><a href="#bullish-continuation">   • Bullish Continuation Patterns</a></li>
+                <li><a href="#bearish-continuation">   • Bearish Continuation Patterns</a></li>
+                <li><a href="#reversal">2. Reversal Patterns</a></li>
+                <li><a href="#bullish-reversal">   • Bullish Reversal Patterns</a></li>
+                <li><a href="#bearish-reversal">   • Bearish Reversal Patterns</a></li>
+                <li><a href="#neutral">3. Neutral / Bilateral Patterns</a></li>
+                <li><a href="#harmonic">4. Harmonic Patterns</a></li>
+                <li><a href="#wave">5. Wave and Fractal Patterns</a></li>
+                <li><a href="#candlestick">6. Candlestick-Based Patterns</a></li>
+            </ul>
+        </div>
+
+        <!-- Bullish Continuation Patterns -->
+        <div class="section" id="bullish-continuation">
+            <h2 class="section-title">🔼 Bullish Continuation Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns suggest the uptrend will continue after a brief consolidation period.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>1. Bullish Flag</h3>
+                    <img src="https://www.investopedia.com/thmb/lqm8EE5nVDVxY8aTx6EF0rxGwMA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Bull_Flag_Pattern_Sep_2020-01-c26b6d5ce1d54f8fa9e5f9f6aa5d9c85.jpg" alt="Bullish Flag Pattern" class="pattern-img">
+                    <p class="pattern-description">A sharp upward move followed by a rectangular consolidation that slopes slightly downward. Breakout continues the uptrend.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>2. Bullish Pennant</h3>
+                    <img src="https://www.investopedia.com/thmb/qpvXvBBVDjr1k3Yqs-VrfbVYvEg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Pennant_Pattern_Sep_2020-01-f2d85e07a4e141fca63d96cf2e4b73b8.jpg" alt="Bullish Pennant Pattern" class="pattern-img">
+                    <p class="pattern-description">Similar to a flag but with converging trendlines forming a small symmetrical triangle after a strong upward move.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>3. Ascending Triangle</h3>
+                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Ascending_Triangle_Sep_2020-01-69d8b1ad121947d88c6f8a8d4d0f5d7e.jpg" alt="Ascending Triangle Pattern" class="pattern-img">
+                    <p class="pattern-description">Horizontal resistance line with rising support line. Indicates buyers becoming more aggressive, typically breaks upward.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>4. Symmetrical Triangle (Upward Breakout)</h3>
+                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Symmetrical_Triangle_Pattern_Sep_2020-01-fc3e3e7c4e4c4f0e9e5c8d6f0a8c6c1a.jpg" alt="Symmetrical Triangle Pattern" class="pattern-img">
+                    <p class="pattern-description">Converging trendlines with equal slopes. In uptrend context, typically continues upward after consolidation.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>5. Cup with Handle</h3>
+                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Cup_and_handle-5c6c21bfc9e77c00012b9e3f.png" alt="Cup with Handle Pattern" class="pattern-img">
+                    <p class="pattern-description">U-shaped rounded bottom (cup) followed by a small downward drift (handle). Classic bullish continuation pattern.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>6. Measured Move Up</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/measured_move_up.png" alt="Measured Move Up Pattern" class="pattern-img">
+                    <p class="pattern-description">Three distinct moves: initial rally, correction, then continuation rally of similar magnitude to first move.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>7. Ascending Scallop</h3>
+                    <img src="https://thepatternsite.com/images/AscendingScallopBull.gif" alt="Ascending Scallop Pattern" class="pattern-img">
+                    <p class="pattern-description">Series of rounded bottoms that gradually ascend, showing increasing buying pressure over time.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>8. Rectangle (Bullish)</h3>
+                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rectangle-5c6c21bfc9e77c00012b9e3f.png" alt="Rectangle Pattern" class="pattern-img">
+                    <p class="pattern-description">Price moves between parallel support and resistance. In uptrend, typically breaks upward to continue trend.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>9. Three Rising Valleys</h3>
+                    <img src="https://thepatternsite.com/images/3RisingValleys.gif" alt="Three Rising Valleys Pattern" class="pattern-img">
+                    <p class="pattern-description">Three consecutive lows that form at progressively higher levels, showing strong support building.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">BULLISH</span>
+                    <h3>10. Bullish Channel</h3>
+                    <img src="https://www.investopedia.com/thmb/2Q5xKqJD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/channels-5c6c21bfc9e77c00012b9e3f.png" alt="Bullish Channel Pattern" class="pattern-img">
+                    <p class="pattern-description">Two parallel trendlines sloping upward. Price respects both support and resistance within channel.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bearish Continuation Patterns -->
+        <div class="section" id="bearish-continuation">
+            <h2 class="section-title">🔽 Bearish Continuation Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns suggest the downtrend will continue after a temporary consolidation period.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>1. Bearish Flag</h3>
+                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Bear_Flag_Pattern_Sep_2020-01-2a5d9c85c1d54f8fa9e5f9f6aa5d9c85.jpg" alt="Bearish Flag Pattern" class="pattern-img">
+                    <p class="pattern-description">Sharp downward move followed by rectangular consolidation sloping slightly upward before continuing down.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>2. Bearish Pennant</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/bearish_pennant.png" alt="Bearish Pennant Pattern" class="pattern-img">
+                    <p class="pattern-description">Strong downward move followed by small converging triangle before breakdown continues the downtrend.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>3. Descending Triangle</h3>
+                    <img src="https://www.investopedia.com/thmb/A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Descending_Triangle_Sep_2020-01-fc3e3e7c4e4c4f0e9e5c8d6f0a8c6c1a.jpg" alt="Descending Triangle Pattern" class="pattern-img">
+                    <p class="pattern-description">Horizontal support line with descending resistance. Shows sellers becoming more aggressive, breaks downward.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>4. Symmetrical Triangle (Downward Breakout)</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/symmetrical_triangle_bearish.png" alt="Symmetrical Triangle Bearish Pattern" class="pattern-img">
+                    <p class="pattern-description">Converging trendlines in downtrend context. Consolidation typically resolves with downward continuation.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>5. Inverted Cup with Handle</h3>
+                    <img src="https://thepatternsite.com/images/InvertedCupHandle.gif" alt="Inverted Cup with Handle Pattern" class="pattern-img">
+                    <p class="pattern-description">Inverted U-shape (cup) followed by small upward drift (handle). Bearish continuation after breakdown.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>6. Measured Move Down</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/measured_move_down.png" alt="Measured Move Down Pattern" class="pattern-img">
+                    <p class="pattern-description">Initial decline, consolidation, then continuation decline of similar magnitude to first move down.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>7. Descending Scallop</h3>
+                    <img src="https://thepatternsite.com/images/DescendingScallopBear.gif" alt="Descending Scallop Pattern" class="pattern-img">
+                    <p class="pattern-description">Series of rounded tops that gradually descend, showing increasing selling pressure over time.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>8. Rectangle (Bearish)</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/rectangle_bearish.png" alt="Rectangle Bearish Pattern" class="pattern-img">
+                    <p class="pattern-description">Horizontal consolidation within downtrend. Typically breaks down to continue the bearish move.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>9. Three Descending Peaks</h3>
+                    <img src="https://thepatternsite.com/images/3FallingPeaks.gif" alt="Three Descending Peaks Pattern" class="pattern-img">
+                    <p class="pattern-description">Three consecutive highs forming at progressively lower levels, showing weakening resistance.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">BEARISH</span>
+                    <h3>10. Bearish Channel</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/channel_down.png" alt="Bearish Channel Pattern" class="pattern-img">
+                    <p class="pattern-description">Two parallel trendlines sloping downward. Price respects channel boundaries during downtrend.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bullish Reversal Patterns -->
+        <div class="section" id="bullish-reversal">
+            <h2 class="section-title">🔄 Bullish Reversal Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns signal a potential change from downtrend to uptrend.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>1. Double Bottom</h3>
+                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doublebottom-5c6c21bfc9e77c00012b9e3f.png" alt="Double Bottom Pattern" class="pattern-img">
+                    <p class="pattern-description">Two distinct lows at approximately same level with moderate peak between. Classic reversal signaling support.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>2. Triple Bottom</h3>
+                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/triplebottom-5c6c21bfc9e77c00012b9e3f.png" alt="Triple Bottom Pattern" class="pattern-img">
+                    <p class="pattern-description">Three lows at similar level with rallies between. Stronger reversal signal than double bottom.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>3. Inverted Head and Shoulders</h3>
+                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/inverseheadandshoulders-5c6c21bfc9e77c00012b9e3f.png" alt="Inverted Head and Shoulders Pattern" class="pattern-img">
+                    <p class="pattern-description">Three lows with middle low (head) deeper than two shoulders. Very reliable bullish reversal pattern.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>4. Rounding Bottom</h3>
+                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/roundingbottom-5c6c21bfc9e77c00012b9e3f.png" alt="Rounding Bottom Pattern" class="pattern-img">
+                    <p class="pattern-description">Smooth U-shaped curve forming over extended period. Gradual shift from bearish to bullish sentiment.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>5. Diamond Bottom</h3>
+                    <img src="https://thepatternsite.com/images/DiamondBottom.gif" alt="Diamond Bottom Pattern" class="pattern-img">
+                    <p class="pattern-description">Rare pattern forming diamond shape at market bottom. Expands then contracts before upward breakout.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>6. Falling Wedge (Bullish)</h3>
+                    <img src="https://www.investopedia.com/thmb/2Q5xKqJD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/fallingwedge-5c6c21bfc9e77c00012b9e3f.png" alt="Falling Wedge Pattern" class="pattern-img">
+                    <p class="pattern-description">Converging downward-sloping trendlines. Decreasing volume and range indicate exhaustion before reversal.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>7. Descending Broadening Wedge</h3>
+                    <img src="https://thepatternsite.com/images/BroadeningWedgeDescending.gif" alt="Descending Broadening Wedge Pattern" class="pattern-img">
+                    <p class="pattern-description">Expanding price range with downward bias. Increased volatility often precedes bullish breakout.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>8. Bump and Run Reversal (Bottom)</h3>
+                    <img src="https://thepatternsite.com/images/BumpRunBottom.gif" alt="Bump and Run Bottom Pattern" class="pattern-img">
+                    <p class="pattern-description">Sharp decline (bump) followed by consolidation along support line before upward run begins.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>9. Adam and Eve Double Bottom</h3>
+                    <img src="https://thepatternsite.com/images/AdamEveDoubleBottom.gif" alt="Adam and Eve Double Bottom Pattern" class="pattern-img">
+                    <p class="pattern-description">Sharp V-bottom (Adam) followed by rounded bottom (Eve). Combination pattern showing strong reversal.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bullish">REVERSAL</span>
+                    <h3>10. Complex Head and Shoulders Bottom</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/complex_inverse_head_shoulders.png" alt="Complex Inverted Head and Shoulders Pattern" class="pattern-img">
+                    <p class="pattern-description">Multiple shoulders or heads at similar levels. More complex but still reliable bullish reversal.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bearish Reversal Patterns -->
+        <div class="section" id="bearish-reversal">
+            <h2 class="section-title">🔄 Bearish Reversal Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns signal a potential change from uptrend to downtrend.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>1. Double Top</h3>
+                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doubletop-5c6c21bfc9e77c00012b9e3f.png" alt="Double Top Pattern" class="pattern-img">
+                    <p class="pattern-description">Two peaks at approximately same level with moderate trough between. Classic resistance rejection pattern.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>2. Triple Top</h3>
+                    <img src="https://www.investopedia.com/thmb/A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/tripletop-5c6c21bfc9e77c00012b9e3f.png" alt="Triple Top Pattern" class="pattern-img">
+                    <p class="pattern-description">Three peaks at similar level with declines between. Strong resistance showing distribution phase.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>3. Head and Shoulders (Top)</h3>
+                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/headandshoulders-5c6c21bfc9e77c00012b9e3f.png" alt="Head and Shoulders Pattern" class="pattern-img">
+                    <p class="pattern-description">Three peaks with middle peak (head) higher than two shoulders. Most reliable bearish reversal pattern.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>4. Rounding Top</h3>
+                    <img src="https://www.investopedia.com/thmb/qpvXvBBVDjr1k3Yqs-VrfbVYvEg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/roundingtop-5c6c21bfc9e77c00012b9e3f.png" alt="Rounding Top Pattern" class="pattern-img">
+                    <p class="pattern-description">Inverted U-shaped curve forming over time. Gradual shift from bullish to bearish sentiment.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>5. Diamond Top</h3>
+                    <img src="https://thepatternsite.com/images/DiamondTop.gif" alt="Diamond Top Pattern" class="pattern-img">
+                    <p class="pattern-description">Rare diamond-shaped pattern at market top. Expands then contracts before downward breakdown.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>6. Rising Wedge (Bearish)</h3>
+                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/risingwedge-5c6c21bfc9e77c00012b9e3f.png" alt="Rising Wedge Pattern" class="pattern-img">
+                    <p class="pattern-description">Converging upward-sloping trendlines. Momentum slowing despite higher prices signals exhaustion.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>7. Ascending Broadening Wedge</h3>
+                    <img src="https://thepatternsite.com/images/BroadeningWedgeAscending.gif" alt="Ascending Broadening Wedge Pattern" class="pattern-img">
+                    <p class="pattern-description">Expanding price range with upward bias. Increasing volatility often precedes bearish breakdown.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>8. Bump and Run Reversal (Top)</h3>
+                    <img src="https://thepatternsite.com/images/BumpRunTop.gif" alt="Bump and Run Top Pattern" class="pattern-img">
+                    <p class="pattern-description">Sharp rally (bump) followed by consolidation along resistance before downward run begins.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>9. Adam and Eve Double Top</h3>
+                    <img src="https://thepatternsite.com/images/AdamEveDoubleTop.gif" alt="Adam and Eve Double Top Pattern" class="pattern-img">
+                    <p class="pattern-description">Sharp peak (Adam) followed by rounded top (Eve). Combination showing distribution and reversal.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-bearish">REVERSAL</span>
+                    <h3>10. Complex Head and Shoulders Top</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/complex_head_shoulders.png" alt="Complex Head and Shoulders Pattern" class="pattern-img">
+                    <p class="pattern-description">Multiple shoulders or heads at similar levels. Complex but reliable bearish reversal formation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neutral Patterns -->
+        <div class="section" id="neutral">
+            <h2 class="section-title">⚖️ Neutral / Bilateral Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns can break out in either direction depending on market conditions.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">NEUTRAL</span>
+                    <h3>1. Symmetrical Triangle</h3>
+                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Symmetrical_Triangle_Pattern_Sep_2020-01-fc3e3e7c4e4c4f0e9e5c8d6f0a8c6c1a.jpg" alt="Symmetrical Triangle Pattern" class="pattern-img">
+                    <p class="pattern-description">Converging trendlines with equal slopes. Can break either direction, typically continues prevailing trend.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">NEUTRAL</span>
+                    <h3>2. Rectangle (Neutral)</h3>
+                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rectangle-5c6c21bfc9e77c00012b9e3f.png" alt="Rectangle Pattern" class="pattern-img">
+                    <p class="pattern-description">Horizontal consolidation between support and resistance. Breakout direction determines next move.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">NEUTRAL</span>
+                    <h3>3. Broadening Formation</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/broadening_formation.png" alt="Broadening Formation Pattern" class="pattern-img">
+                    <p class="pattern-description">Expanding price range with diverging trendlines. Increasing volatility signals indecision.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">NEUTRAL</span>
+                    <h3>4. Megaphone Pattern</h3>
+                    <img src="https://thepatternsite.com/images/MegaphoneTop.gif" alt="Megaphone Pattern" class="pattern-img">
+                    <p class="pattern-description">Similar to broadening formation. Expanding swings show extreme market uncertainty.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">NEUTRAL</span>
+                    <h3>5. Diamond Formation</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/diamond_formation.png" alt="Diamond Formation Pattern" class="pattern-img">
+                    <p class="pattern-description">Price expands then contracts forming diamond shape. Can break either direction from apex.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">NEUTRAL</span>
+                    <h3>6. Consolidation Zone</h3>
+                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/consolidation.png" alt="Consolidation Zone Pattern" class="pattern-img">
+                    <p class="pattern-description">Sideways price action without clear pattern. Accumulation or distribution before next move.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Harmonic Patterns -->
+        <div class="section" id="harmonic">
+            <h2 class="section-title">🎵 Harmonic Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">Advanced patterns based on Fibonacci ratios and geometric price movements.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">HARMONIC</span>
+                    <h3>1. Gartley Pattern</h3>
+                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gartley-5c6c21bfc9e77c00012b9e3f.png" alt="Gartley Pattern" class="pattern-img">
+                    <p class="pattern-description">M or W shape with specific Fibonacci ratios (0.618 retracement). Bullish or bearish reversal signal.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">HARMONIC</span>
+                    <h3>2. Bat Pattern</h3>
+                    <img src="https://forextraininggroup.com/wp-content/uploads/2020/09/Bat-Pattern-Bullish-and-Bearish-1024x512.png" alt="Bat Pattern" class="pattern-img">
+                    <p class="pattern-description">Similar to Gartley but with 0.886 retracement of XA leg. Strong reversal indicator.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">HARMONIC</span>
+                    <h3>3. Butterfly Pattern</h3>
+                    <img src="https://forextraininggroup.com/wp-content/uploads/2020/09/Butterfly-Pattern-Bullish-and-Bearish-1024x512.png" alt="Butterfly Pattern" class="pattern-img">
+                    <p class="pattern-description">Extension pattern with D point beyond X. Uses 1.27 or 1.618 extension for reversal zone.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">HARMONIC</span>
+                    <h3>4. Crab Pattern</h3>
+                    <img src="https://forextraininggroup.com/wp-content/uploads/2020/09/Crab-Pattern-Bullish-and-Bearish-1024x512.png" alt="Crab Pattern" class="pattern-img">
+                    <p class="pattern-description">Extreme harmonic pattern with 1.618 extension. Deepest retracement pattern with high accuracy.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">HARMONIC</span>
+                    <h3>5. Shark Pattern</h3>
+                    <img src="https://harmonicpattern.com/wp-content/uploads/2020/01/Shark-Pattern.png" alt="Shark Pattern" class="pattern-img">
+                    <p class="pattern-description">Unique pattern with 0.886 and 1.13 ratios. Earlier reversal signal than other harmonics.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">HARMONIC</span>
+                    <h3>6. Cypher Pattern</h3>
+                    <img src="https://harmonicpattern.com/wp-content/uploads/2020/01/Cypher-Pattern.png" alt="Cypher Pattern" class="pattern-img">
+                    <p class="pattern-description">Modern harmonic using 0.786 retracement. Less common but reliable when identified correctly.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Patterns -->
+        <div class="section" id="wave">
+            <h2 class="section-title">🌊 Wave and Fractal Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">Complex patterns based on wave theory and market psychology cycles.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">WAVE</span>
+                    <h3>1. Elliott Wave</h3>
+                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ElliottWave-5c6c21bfc9e77c00012b9e3f.png" alt="Elliott Wave Pattern" class="pattern-img">
+                    <p class="pattern-description">Five-wave impulse followed by three-wave correction. Foundation of wave analysis theory.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">WAVE</span>
+                    <h3>2. Wolfe Wave</h3>
+                    <img src="https://forextraininggroup.com/wp-content/uploads/2017/11/Wolfe-Wave-Pattern.png" alt="Wolfe Wave Pattern" class="pattern-img">
+                    <p class="pattern-description">Natural rhythm pattern with converging wedge lines. Predicts price target and timing.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">WAVE</span>
+                    <h3>3. ABCD Pattern</h3>
+                    <img src="https://www.investopedia.com/thmb/A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/abcd-5c6c21bfc9e77c00012b9e3f.png" alt="ABCD Pattern" class="pattern-img">
+                    <p class="pattern-description">Simple three-move pattern with equal legs. Uses Fibonacci 0.618 and 1.618 for targets.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candlestick Patterns -->
+        <div class="section" id="candlestick">
+            <h2 class="section-title">🕯️ Candlestick-Based Patterns</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">Short-term patterns formed by one to three candlesticks, showing immediate sentiment shifts.</p>
+            
+            <div class="pattern-grid">
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">CANDLESTICK</span>
+                    <h3>1. Morning Star / Evening Star</h3>
+                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/morningstar-5c6c21bfc9e77c00012b9e3f.png" alt="Morning Star Pattern" class="pattern-img">
+                    <p class="pattern-description">Three-candle reversal: downtrend, small-body candle (star), then strong up candle (morning) or reverse (evening).</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">CANDLESTICK</span>
+                    <h3>2. Engulfing Pattern</h3>
+                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/engulfing-5c6c21bfc9e77c00012b9e3f.png" alt="Engulfing Pattern" class="pattern-img">
+                    <p class="pattern-description">Second candle completely engulfs first. Bullish engulfing at bottom, bearish at top signals reversal.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">CANDLESTICK</span>
+                    <h3>3. Doji Reversal</h3>
+                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doji-5c6c21bfc9e77c00012b9e3f.png" alt="Doji Pattern" class="pattern-img">
+                    <p class="pattern-description">Open and close at same level creating cross or plus sign. Shows indecision and potential reversal.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">CANDLESTICK</span>
+                    <h3>4. Three White Soldiers / Three Black Crows</h3>
+                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/threewhitesoldiers-5c6c21bfc9e77c00012b9e3f.png" alt="Three White Soldiers Pattern" class="pattern-img">
+                    <p class="pattern-description">Three consecutive strong candles. White soldiers (bullish) or black crows (bearish) show momentum shift.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">CANDLESTICK</span>
+                    <h3>5. Hammer / Hanging Man</h3>
+                    <img src="https://www.investopedia.com/thmb/qpvXvBBVDjr1k3Yqs-VrfbVYvEg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hammer-5c6c21bfc9e77c00012b9e3f.png" alt="Hammer Pattern" class="pattern-img">
+                    <p class="pattern-description">Small body with long lower shadow. Hammer (bullish) at bottom, hanging man (bearish) at top.</p>
+                </div>
+
+                <div class="pattern-card">
+                    <span class="badge badge-neutral">CANDLESTICK</span>
+                    <h3>6. Shooting Star / Inverted Hammer</h3>
+                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shootingstar-5c6c21bfc9e77c00012b9e3f.png" alt="Shooting Star Pattern" class="pattern-img">
+                    <p class="pattern-description">Small body with long upper shadow. Shooting star (bearish) at top, inverted hammer (bullish) at bottom.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-bottom: none;">
+            <h2 style="color: white; border-bottom-color: rgba(255,255,255,0.3);">📖 Conclusion</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px; color: rgba(255,255,255,0.95);">
+                Mastering chart patterns is essential for successful technical analysis. These patterns represent the collective psychology of market participants and provide valuable insights into potential price movements.
+            </p>
+            <p style="font-size: 1.1em; margin-bottom: 20px; color: rgba(255,255,255,0.95);">
+                Remember:
+            </p>
+            <ul style="list-style-position: inside; margin-left: 20px; font-size: 1.05em; color: rgba(255,255,255,0.95);">
+                <li style="margin: 10px 0;">No pattern is 100% accurate - always use confirmation</li>
+                <li style="margin: 10px 0;">Combine patterns with volume analysis and other indicators</li>
+                <li style="margin: 10px 0;">Practice identifying patterns on historical charts</li>
+                <li style="margin: 10px 0;">Always use proper risk management and stop-losses</li>
+                <li style="margin: 10px 0;">Higher timeframes generally provide more reliable patterns</li>
+            </ul>
+            <p style="font-size: 1.2em; margin-top: 30px; text-align: center; font-weight: bold;">
+                Happy Trading! 📊💰
+            </p>
+        </div>
+    </div>
+</body>
+</html>
