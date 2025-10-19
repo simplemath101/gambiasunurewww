@@ -3,754 +3,1092 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Trading Chart Patterns eBook</title>
+    <title>Complete Crypto Trading Guide</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #2c3e50;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
         }
-
-        .container {
-            max-width: 1200px;
+        
+        .ebook-container {
+            max-width: 900px;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 0 50px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
         }
-
+        
         .cover {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 100px 40px;
+            padding: 80px 40px;
             text-align: center;
         }
-
+        
         .cover h1 {
             font-size: 3em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
+        
         .cover p {
             font-size: 1.3em;
-            margin-bottom: 10px;
+            opacity: 0.9;
         }
-
-        .section {
-            padding: 60px 40px;
-            border-bottom: 3px solid #f0f0f0;
+        
+        .content {
+            padding: 60px 50px;
         }
-
-        .section-title {
-            font-size: 2.5em;
-            color: #2a5298;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 4px solid #667eea;
+        
+        .chapter {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
         }
-
-        .pattern-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .pattern-card {
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .pattern-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-        }
-
-        .pattern-card h3 {
-            color: #1e3c72;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-
-        .pattern-img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            background: white;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .pattern-description {
-            color: #555;
-            font-size: 0.95em;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
+        
+        .chapter-number {
+            color: #667eea;
+            font-size: 0.9em;
             font-weight: bold;
+            letter-spacing: 2px;
             margin-bottom: 10px;
         }
-
-        .badge-bullish {
-            background: #10b981;
-            color: white;
+        
+        h2 {
+            color: #1e3c72;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
         }
-
-        .badge-bearish {
-            background: #ef4444;
-            color: white;
-        }
-
-        .badge-neutral {
-            background: #6b7280;
-            color: white;
-        }
-
-        .intro {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-        }
-
-        .intro h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        .intro p {
-            font-size: 1.2em;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .toc {
-            background: #f8fafc;
-            padding: 40px;
-        }
-
-        .toc h2 {
+        
+        h3 {
             color: #2a5298;
-            font-size: 2em;
+            font-size: 1.6em;
+            margin-top: 35px;
             margin-bottom: 20px;
         }
-
+        
+        h4 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .pattern-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        
+        .pattern-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .key-point {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .strategy-card {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+        
+        .toc h2 {
+            border: none;
+            margin-bottom: 20px;
+        }
+        
         .toc ul {
             list-style: none;
-            padding-left: 20px;
+            margin-left: 0;
         }
-
+        
         .toc li {
             padding: 8px 0;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #dee2e6;
         }
-
-        .toc a {
-            color: #1e3c72;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+        
+        strong {
+            color: #2c3e50;
         }
-
-        .toc a:hover {
-            color: #667eea;
-        }
-
+        
         @media print {
-            .pattern-grid {
-                grid-template-columns: repeat(2, 1fr);
+            body {
+                background: white;
+                padding: 0;
             }
-        }
-
-        @media (max-width: 768px) {
-            .cover h1 {
-                font-size: 2em;
-            }
-            .pattern-grid {
-                grid-template-columns: 1fr;
+            
+            .ebook-container {
+                box-shadow: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Cover Page -->
+    <div class="ebook-container">
         <div class="cover">
-            <h1>📈 Complete Trading Chart Patterns Guide</h1>
-            <p>Master 70+ Essential Chart Patterns</p>
-            <p>For Technical Analysis & Trading Success</p>
-            <p style="margin-top: 40px; font-size: 1em; opacity: 0.9;">From Continuation to Reversal Patterns</p>
+            <h1>📈 The Complete Crypto Trading Guide</h1>
+            <p>Master Candlesticks, Chart Patterns & Trading Psychology</p>
+            <p style="margin-top: 40px; font-size: 1em;">From Beginner to Advanced Trader</p>
         </div>
-
-        <!-- Introduction -->
-        <div class="intro">
-            <h2>Welcome to Your Trading Journey</h2>
-            <p>This comprehensive guide covers every major chart pattern used by professional traders worldwide. Learn to identify bullish, bearish, and neutral patterns to make informed trading decisions.</p>
-        </div>
-
-        <!-- Table of Contents -->
-        <div class="toc">
-            <h2>📚 Table of Contents</h2>
-            <ul>
-                <li><a href="#continuation">1. Continuation Patterns</a></li>
-                <li><a href="#bullish-continuation">   • Bullish Continuation Patterns (10)</a></li>
-                <li><a href="#bearish-continuation">   • Bearish Continuation Patterns (10)</a></li>
-                <li><a href="#reversal">2. Reversal Patterns</a></li>
-                <li><a href="#bullish-reversal">   • Bullish Reversal Patterns (10)</a></li>
-                <li><a href="#bearish-reversal">   • Bearish Reversal Patterns (10)</a></li>
-                <li><a href="#neutral">3. Neutral / Bilateral Patterns (6)</a></li>
-                <li><a href="#harmonic">4. Harmonic Patterns (6)</a></li>
-                <li><a href="#wave">5. Wave and Fractal Patterns (3)</a></li>
-                <li><a href="#candlestick">6. Candlestick-Based Patterns (6)</a></li>
-            </ul>
-        </div>
-
-        <!-- Bullish Continuation Patterns -->
-        <div class="section" id="bullish-continuation">
-            <h2 class="section-title">🔼 Bullish Continuation Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns suggest the uptrend will continue after a brief consolidation period.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>1. Bullish Flag</h3>
-                    <img src="https://www.investopedia.com/thmb/lqm8EE5nVDVxY8aTx6EF0rxGwMA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Bull_Flag_Pattern_Sep_2020-01-c26b6d5ce1d54f8fa9e5f9f6aa5d9c85.jpg" alt="Bullish Flag Pattern" class="pattern-img">
-                    <p class="pattern-description">A sharp upward move (flagpole) followed by a rectangular consolidation that slopes slightly downward. Breakout continues the uptrend with similar magnitude to the flagpole.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>2. Bullish Pennant</h3>
-                    <img src="https://www.investopedia.com/thmb/qpvXvBBVDjr1k3Yqs-VrfbVYvEg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Pennant_Pattern_Sep_2020-01-f2d85e07a4e141fca63d96cf2e4b73b8.jpg" alt="Bullish Pennant Pattern" class="pattern-img">
-                    <p class="pattern-description">Similar to a flag but with converging trendlines forming a small symmetrical triangle after a strong upward move. Brief pause before continuation.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>3. Ascending Triangle</h3>
-                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Ascending_Triangle_Sep_2020-01-69d8b1ad121947d88c6f8a8d4d0f5d7e.jpg" alt="Ascending Triangle Pattern" class="pattern-img">
-                    <p class="pattern-description">Horizontal resistance line with rising support line. Indicates buyers becoming more aggressive with each dip, typically breaks upward.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>4. Symmetrical Triangle (Upward)</h3>
-                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Symmetrical_Triangle_Pattern_Sep_2020-01-fc3e3e7c4e4c4f0e9e5c8d6f0a8c6c1a.jpg" alt="Symmetrical Triangle Pattern" class="pattern-img">
-                    <p class="pattern-description">Converging trendlines with equal slopes. In uptrend context, typically continues upward after consolidation. Volume decreases during formation.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>5. Cup with Handle</h3>
-                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Cup_and_handle-5c6c21bfc9e77c00012b9e3f.png" alt="Cup with Handle Pattern" class="pattern-img">
-                    <p class="pattern-description">U-shaped rounded bottom (cup) followed by a small downward drift (handle). Classic bullish continuation pattern popularized by William O'Neil.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>6. Measured Move Up</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/measured_move_up.png" alt="Measured Move Up Pattern" class="pattern-img">
-                    <p class="pattern-description">Three distinct moves: initial rally, correction/consolidation, then continuation rally of similar magnitude to first move. Predictable target.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>7. Ascending Scallop</h3>
-                    <img src="https://thepatternsite.com/images/AscendingScallopBull.gif" alt="Ascending Scallop Pattern" class="pattern-img">
-                    <p class="pattern-description">Series of rounded bottoms that gradually ascend, showing increasing buying pressure over time. Each bottom higher than previous.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>8. Rectangle (Bullish)</h3>
-                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rectangle-5c6c21bfc9e77c00012b9e3f.png" alt="Rectangle Pattern" class="pattern-img">
-                    <p class="pattern-description">Price moves between parallel support and resistance. In uptrend, typically breaks upward to continue trend. Also called trading range.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>9. Three Rising Valleys</h3>
-                    <img src="https://thepatternsite.com/images/3RisingValleys.gif" alt="Three Rising Valleys Pattern" class="pattern-img">
-                    <p class="pattern-description">Three consecutive lows that form at progressively higher levels, showing strong support building and sellers losing control.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">BULLISH</span>
-                    <h3>10. Bullish Channel (Parallel Up)</h3>
-                    <img src="https://www.investopedia.com/thmb/2Q5xKqJD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/channels-5c6c21bfc9e77c00012b9e3f.png" alt="Bullish Channel Pattern" class="pattern-img">
-                    <p class="pattern-description">Two parallel trendlines sloping upward. Price respects both support and resistance within channel, bouncing between boundaries.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bearish Continuation Patterns -->
-        <div class="section" id="bearish-continuation">
-            <h2 class="section-title">🔽 Bearish Continuation Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns suggest the downtrend will continue after a temporary consolidation period.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>1. Bearish Flag</h3>
-                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Bear_Flag_Pattern_Sep_2020-01-2a5d9c85c1d54f8fa9e5f9f6aa5d9c85.jpg" alt="Bearish Flag Pattern" class="pattern-img">
-                    <p class="pattern-description">Sharp downward move (flagpole) followed by rectangular consolidation sloping slightly upward before continuing down with similar magnitude.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>2. Bearish Pennant</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/bearish_pennant.png" alt="Bearish Pennant Pattern" class="pattern-img">
-                    <p class="pattern-description">Strong downward move followed by small converging triangle before breakdown continues the downtrend. Short-term consolidation pattern.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>3. Descending Triangle</h3>
-                    <img src="https://www.investopedia.com/thmb/A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Descending_Triangle_Sep_2020-01-fc3e3e7c4e4c4f0e9e5c8d6f0a8c6c1a.jpg" alt="Descending Triangle Pattern" class="pattern-img">
-                    <p class="pattern-description">Horizontal support line with descending resistance. Shows sellers becoming more aggressive with each bounce, typically breaks downward.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>4. Symmetrical Triangle (Downward)</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/symmetrical_triangle_bearish.png" alt="Symmetrical Triangle Bearish Pattern" class="pattern-img">
-                    <p class="pattern-description">Converging trendlines in downtrend context. Consolidation typically resolves with downward continuation. Decreasing volume during formation.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>5. Inverted Cup with Handle</h3>
-                    <img src="https://thepatternsite.com/images/InvertedCupHandle.gif" alt="Inverted Cup with Handle Pattern" class="pattern-img">
-                    <p class="pattern-description">Inverted U-shape (cup) followed by small upward drift (handle). Bearish continuation after breakdown through support.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>6. Measured Move Down</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/measured_move_down.png" alt="Measured Move Down Pattern" class="pattern-img">
-                    <p class="pattern-description">Initial decline, consolidation/correction, then continuation decline of similar magnitude to first move down. Provides price target.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>7. Descending Scallop</h3>
-                    <img src="https://thepatternsite.com/images/DescendingScallopBear.gif" alt="Descending Scallop Pattern" class="pattern-img">
-                    <p class="pattern-description">Series of rounded tops that gradually descend, showing increasing selling pressure over time. Each top lower than previous.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>8. Rectangle (Bearish)</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/rectangle_bearish.png" alt="Rectangle Bearish Pattern" class="pattern-img">
-                    <p class="pattern-description">Horizontal consolidation within downtrend. Typically breaks down to continue the bearish move after distribution phase.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>9. Three Descending Peaks</h3>
-                    <img src="https://thepatternsite.com/images/3FallingPeaks.gif" alt="Three Descending Peaks Pattern" class="pattern-img">
-                    <p class="pattern-description">Three consecutive highs forming at progressively lower levels, showing weakening resistance and buyers losing control.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">BEARISH</span>
-                    <h3>10. Bearish Channel (Parallel Down)</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/channel_down.png" alt="Bearish Channel Pattern" class="pattern-img">
-                    <p class="pattern-description">Two parallel trendlines sloping downward. Price respects channel boundaries during downtrend, bouncing between support and resistance.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bullish Reversal Patterns -->
-        <div class="section" id="bullish-reversal">
-            <h2 class="section-title">🔄 Bullish Reversal Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns signal a potential change from downtrend to uptrend.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>1. Double Bottom</h3>
-                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doublebottom-5c6c21bfc9e77c00012b9e3f.png" alt="Double Bottom Pattern" class="pattern-img">
-                    <p class="pattern-description">Two distinct lows at approximately same level with moderate peak between. Classic reversal signaling strong support. Confirmed on breakout above middle peak.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>2. Triple Bottom</h3>
-                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/triplebottom-5c6c21bfc9e77c00012b9e3f.png" alt="Triple Bottom Pattern" class="pattern-img">
-                    <p class="pattern-description">Three lows at similar level with rallies between. Stronger reversal signal than double bottom showing sellers exhausted after three failed attempts.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>3. Inverted Head and Shoulders</h3>
-                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/inverseheadandshoulders-5c6c21bfc9e77c00012b9e3f.png" alt="Inverted Head and Shoulders Pattern" class="pattern-img">
-                    <p class="pattern-description">Three lows with middle low (head) deeper than two shoulders. Very reliable bullish reversal pattern. Neckline breakout confirms reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>4. Rounding Bottom (Saucer)</h3>
-                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/roundingbottom-5c6c21bfc9e77c00012b9e3f.png" alt="Rounding Bottom Pattern" class="pattern-img">
-                    <p class="pattern-description">Smooth U-shaped curve forming over extended period. Gradual shift from bearish to bullish sentiment. Long-term accumulation pattern.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>5. Diamond Bottom</h3>
-                    <img src="https://thepatternsite.com/images/DiamondBottom.gif" alt="Diamond Bottom Pattern" class="pattern-img">
-                    <p class="pattern-description">Rare pattern forming diamond shape at market bottom. Price range expands then contracts before upward breakout. High volatility pattern.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>6. Falling Wedge (Bullish)</h3>
-                    <img src="https://www.investopedia.com/thmb/2Q5xKqJD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/fallingwedge-5c6c21bfc9e77c00012b9e3f.png" alt="Falling Wedge Pattern" class="pattern-img">
-                    <p class="pattern-description">Converging downward-sloping trendlines. Decreasing volume and range indicate selling exhaustion before bullish breakout reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>7. Descending Broadening Wedge</h3>
-                    <img src="https://thepatternsite.com/images/BroadeningWedgeDescending.gif" alt="Descending Broadening Wedge Pattern" class="pattern-img">
-                    <p class="pattern-description">Expanding price range with downward bias. Increased volatility and wider swings often precede bullish breakout from bottom.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>8. Bump and Run Reversal (Bottom)</h3>
-                    <img src="https://thepatternsite.com/images/BumpRunBottom.gif" alt="Bump and Run Bottom Pattern" class="pattern-img">
-                    <p class="pattern-description">Sharp decline (bump) followed by consolidation along support trendline before explosive upward run begins. Capitulation reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>9. Adam and Eve Double Bottom</h3>
-                    <img src="https://thepatternsite.com/images/AdamEveDoubleBottom.gif" alt="Adam and Eve Double Bottom Pattern" class="pattern-img">
-                    <p class="pattern-description">Sharp V-bottom (Adam) followed by rounded bottom (Eve). Combination pattern showing initial panic then gradual accumulation for strong reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bullish">REVERSAL</span>
-                    <h3>10. Complex Head and Shoulders Bottom</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/complex_inverse_head_shoulders.png" alt="Complex Inverted Head and Shoulders Pattern" class="pattern-img">
-                    <p class="pattern-description">Multiple shoulders or heads at similar levels. More complex formation but still reliable bullish reversal. Takes longer to develop.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bearish Reversal Patterns -->
-        <div class="section" id="bearish-reversal">
-            <h2 class="section-title">🔄 Bearish Reversal Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns signal a potential change from uptrend to downtrend.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>1. Double Top</h3>
-                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doubletop-5c6c21bfc9e77c00012b9e3f.png" alt="Double Top Pattern" class="pattern-img">
-                    <p class="pattern-description">Two peaks at approximately same level with moderate trough between. Classic resistance rejection pattern. Breakdown below trough confirms reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>2. Triple Top</h3>
-                    <img src="https://www.investopedia.com/thmb/A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/tripletop-5c6c21bfc9e77c00012b9e3f.png" alt="Triple Top Pattern" class="pattern-img">
-                    <p class="pattern-description">Three peaks at similar level with declines between. Strong resistance showing distribution phase. Buyers exhausted after three failed attempts.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>3. Head and Shoulders (Top)</h3>
-                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/headandshoulders-5c6c21bfc9e77c00012b9e3f.png" alt="Head and Shoulders Pattern" class="pattern-img">
-                    <p class="pattern-description">Three peaks with middle peak (head) higher than two shoulders. Most reliable bearish reversal pattern. Neckline breakdown confirms trend change.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>4. Rounding Top (Saucer Top)</h3>
-                    <img src="https://www.investopedia.com/thmb/qpvXvBBVDjr1k3Yqs-VrfbVYvEg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/roundingtop-5c6c21bfc9e77c00012b9e3f.png" alt="Rounding Top Pattern" class="pattern-img">
-                    <p class="pattern-description">Inverted U-shaped curve forming over extended time. Gradual shift from bullish to bearish sentiment. Long-term distribution pattern.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>5. Diamond Top</h3>
-                    <img src="https://thepatternsite.com/images/DiamondTop.gif" alt="Diamond Top Pattern" class="pattern-img">
-                    <p class="pattern-description">Rare diamond-shaped pattern at market top. Price range expands then contracts before downward breakdown. High volatility exhaustion.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>6. Rising Wedge (Bearish)</h3>
-                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/risingwedge-5c6c21bfc9e77c00012b9e3f.png" alt="Rising Wedge Pattern" class="pattern-img">
-                    <p class="pattern-description">Converging upward-sloping trendlines. Momentum slowing despite higher prices signals buying exhaustion and impending reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>7. Ascending Broadening Wedge</h3>
-                    <img src="https://thepatternsite.com/images/BroadeningWedgeAscending.gif" alt="Ascending Broadening Wedge Pattern" class="pattern-img">
-                    <p class="pattern-description">Expanding price range with upward bias. Increasing volatility and wider swings often precede bearish breakdown from top.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>8. Bump and Run Reversal (Top)</h3>
-                    <img src="https://thepatternsite.com/images/BumpRunTop.gif" alt="Bump and Run Top Pattern" class="pattern-img">
-                    <p class="pattern-description">Sharp rally (bump) followed by consolidation along resistance trendline before downward run begins. Climax top reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>9. Adam and Eve Double Top</h3>
-                    <img src="https://thepatternsite.com/images/AdamEveDoubleTop.gif" alt="Adam and Eve Double Top Pattern" class="pattern-img">
-                    <p class="pattern-description">Sharp peak (Adam) followed by rounded top (Eve). Combination showing initial spike then gradual distribution for strong bearish reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-bearish">REVERSAL</span>
-                    <h3>10. Complex Head and Shoulders Top</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/complex_head_shoulders.png" alt="Complex Head and Shoulders Pattern" class="pattern-img">
-                    <p class="pattern-description">Multiple shoulders or heads at similar levels. Complex but reliable bearish reversal formation. Takes longer time to complete.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Neutral Patterns -->
-        <div class="section" id="neutral">
-            <h2 class="section-title">⚖️ Neutral / Bilateral Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">These patterns can break out in either direction depending on market conditions and volume.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">NEUTRAL</span>
-                    <h3>1. Symmetrical Triangle</h3>
-                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dotdash_Final_Symmetrical_Triangle_Pattern_Sep_2020-01-fc3e3e7c4e4c4f0e9e5c8d6f0a8c6c1a.jpg" alt="Symmetrical Triangle Pattern" class="pattern-img">
-                    <p class="pattern-description">Converging trendlines with equal slopes creating triangle. Can break either direction, typically continues prevailing trend. Volume contracts during formation.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">NEUTRAL</span>
-                    <h3>2. Rectangle (Neutral)</h3>
-                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rectangle-5c6c21bfc9e77c00012b9e3f.png" alt="Rectangle Pattern" class="pattern-img">
-                    <p class="pattern-description">Horizontal consolidation between parallel support and resistance. Breakout direction with volume determines next significant move.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">NEUTRAL</span>
-                    <h3>3. Broadening Formation (Symmetrical)</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/broadening_formation.png" alt="Broadening Formation Pattern" class="pattern-img">
-                    <p class="pattern-description">Expanding price range with diverging trendlines. Increasing volatility signals market indecision and uncertainty about direction.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">NEUTRAL</span>
-                    <h3>4. Megaphone Pattern</h3>
-                    <img src="https://thepatternsite.com/images/MegaphoneTop.gif" alt="Megaphone Pattern" class="pattern-img">
-                    <p class="pattern-description">Similar to broadening formation with expanding swings. Shows extreme market uncertainty and emotional trading. High risk pattern.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">NEUTRAL</span>
-                    <h3>5. Diamond Formation</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/diamond_formation.png" alt="Diamond Formation Pattern" class="pattern-img">
-                    <p class="pattern-description">Price expands then contracts forming diamond shape. Can break either direction from apex. Rare but significant when found.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">NEUTRAL</span>
-                    <h3>6. Consolidation Zone</h3>
-                    <img src="https://stockcharts.com/school/data/media/chart_school/chart_analysis/chart_patterns/consolidation.png" alt="Consolidation Zone Pattern" class="pattern-img">
-                    <p class="pattern-description">Sideways price action without clear defined pattern. Represents accumulation or distribution phase before next directional move.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Harmonic Patterns -->
-        <div class="section" id="harmonic">
-            <h2 class="section-title">🎵 Harmonic Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">Advanced patterns based on Fibonacci ratios and geometric price movements. Require precise measurement.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">HARMONIC</span>
-                    <h3>1. Gartley Pattern (Bullish/Bearish)</h3>
-                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gartley-5c6c21bfc9e77c00012b9e3f.png" alt="Gartley Pattern" class="pattern-img">
-                    <p class="pattern-description">M or W shape with specific Fibonacci ratios (0.618 XA retracement). Most common harmonic pattern. Bullish or bearish reversal signal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">HARMONIC</span>
-                    <h3>2. Bat Pattern</h3>
-                    <img src="https://forextraininggroup.com/wp-content/uploads/2020/09/Bat-Pattern-Bullish-and-Bearish-1024x512.png" alt="Bat Pattern" class="pattern-img">
-                    <p class="pattern-description">Similar to Gartley but with deeper 0.886 retracement of XA leg. Point D extends to 1.618-2.618 BC. Strong reversal indicator.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">HARMONIC</span>
-                    <h3>3. Butterfly Pattern</h3>
-                    <img src="https://forextraininggroup.com/wp-content/uploads/2020/09/Butterfly-Pattern-Bullish-and-Bearish-1024x512.png" alt="Butterfly Pattern" class="pattern-img">
-                    <p class="pattern-description">Extension pattern with D point beyond X. Uses 1.27 or 1.618 extension of XA for potential reversal zone. Aggressive entry pattern.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">HARMONIC</span>
-                    <h3>4. Crab Pattern</h3>
-                    <img src="https://forextraininggroup.com/wp-content/uploads/2020/09/Crab-Pattern-Bullish-and-Bearish-1024x512.png" alt="Crab Pattern" class="pattern-img">
-                    <p class="pattern-description">Extreme harmonic pattern with 1.618 extension of XA. Deepest retracement pattern (3.14-3.618 BC extension). Highest accuracy rate.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">HARMONIC</span>
-                    <h3>5. Shark Pattern</h3>
-                    <img src="https://harmonicpattern.com/wp-content/uploads/2020/01/Shark-Pattern.png" alt="Shark Pattern" class="pattern-img">
-                    <p class="pattern-description">Unique pattern with 0.886 and 1.13 ratios at point C. Provides earlier reversal signal than other harmonics. Less common formation.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">HARMONIC</span>
-                    <h3>6. Cypher Pattern</h3>
-                    <img src="https://harmonicpattern.com/wp-content/uploads/2020/01/Cypher-Pattern.png" alt="Cypher Pattern" class="pattern-img">
-                    <p class="pattern-description">Modern harmonic using 0.786 XA retracement and 1.272-1.414 XC projection. Less common but reliable when identified correctly.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Wave Patterns -->
-        <div class="section" id="wave">
-            <h2 class="section-title">🌊 Wave and Fractal Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">Complex patterns based on wave theory and market psychology cycles. Used for long-term analysis.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">WAVE</span>
-                    <h3>1. Elliott Wave</h3>
-                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ElliottWave-5c6c21bfc9e77c00012b9e3f.png" alt="Elliott Wave Pattern" class="pattern-img">
-                    <p class="pattern-description">Five-wave impulse (1,2,3,4,5) followed by three-wave correction (A,B,C). Foundation of wave analysis theory. Fractal nature applies across timeframes.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">WAVE</span>
-                    <h3>2. Wolfe Wave</h3>
-                    <img src="https://forextraininggroup.com/wp-content/uploads/2017/11/Wolfe-Wave-Pattern.png" alt="Wolfe Wave Pattern" class="pattern-img">
-                    <p class="pattern-description">Natural rhythm pattern with converging wedge lines and five points. Predicts both price target and timing. Based on supply-demand equilibrium.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">WAVE</span>
-                    <h3>3. ABCD Pattern</h3>
-                    <img src="https://www.investopedia.com/thmb/A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/abcd-5c6c21bfc9e77c00012b9e3f.png" alt="ABCD Pattern" class="pattern-img">
-                    <p class="pattern-description">Simple three-move pattern (AB, BC, CD) with equal legs. BC retraces 0.618 of AB, CD extends 1.272-1.618 of BC. Foundation for harmonics.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Candlestick Patterns -->
-        <div class="section" id="candlestick">
-            <h2 class="section-title">🕯️ Candlestick-Based Patterns</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1em; color: #555;">Short-term patterns formed by one to three candlesticks, showing immediate sentiment shifts and reversal signals.</p>
-            
-            <div class="pattern-grid">
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">CANDLESTICK</span>
-                    <h3>1. Morning Star / Evening Star</h3>
-                    <img src="https://www.investopedia.com/thmb/U_oeXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/morningstar-5c6c21bfc9e77c00012b9e3f.png" alt="Morning Star Pattern" class="pattern-img">
-                    <p class="pattern-description">Three-candle reversal: downtrend/uptrend candle, small-body star showing indecision, then strong reversal candle. Morning star bullish, evening star bearish.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">CANDLESTICK</span>
-                    <h3>2. Engulfing Pattern</h3>
-                    <img src="https://www.investopedia.com/thmb/qZ6xqHjD9K5c-_xqJvJQOxKqFZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/engulfing-5c6c21bfc9e77c00012b9e3f.png" alt="Engulfing Pattern" class="pattern-img">
-                    <p class="pattern-description">Second candle completely engulfs first candle's body. Bullish engulfing at bottom signals reversal up, bearish at top signals down. Strong momentum shift.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">CANDLESTICK</span>
-                    <h3>3. Doji Reversal</h3>
-                    <img src="https://www.investopedia.com/thmb/CnKnQbG5A-sj4R6qhfDMxqDGC1w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doji-5c6c21bfc9e77c00012b9e3f.png" alt="Doji Pattern" class="pattern-img">
-                    <p class="pattern-description">Open and close at same level creating cross or plus sign. Shows indecision and potential reversal. Most significant at trend extremes.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">CANDLESTICK</span>
-                    <h3>4. Three White Soldiers / Three Black Crows</h3>
-                    <img src="https://www.investopedia.com/thmb/D3nFzKq8f6Y4yVK5GqQx5FZ5d5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/threewhitesoldiers-5c6c21bfc9e77c00012b9e3f.png" alt="Three White Soldiers Pattern" class="pattern-img">
-                    <p class="pattern-description">Three consecutive strong same-direction candles with progressively higher/lower closes. White soldiers (bullish) or black crows (bearish) show strong momentum.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">CANDLESTICK</span>
-                    <h3>5. Hammer / Hanging Man</h3>
-                    <img src="https://www.investopedia.com/thmb/qpvXvBBVDjr1k3Yqs-VrfbVYvEg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hammer-5c6c21bfc9e77c00012b9e3f.png" alt="Hammer Pattern" class="pattern-img">
-                    <p class="pattern-description">Small body with long lower shadow (2-3x body length). Hammer (bullish) at bottom shows rejection of lower prices, hanging man (bearish) at top warns of reversal.</p>
-                </div>
-
-                <div class="pattern-card">
-                    <span class="badge badge-neutral">CANDLESTICK</span>
-                    <h3>6. Shooting Star / Inverted Hammer</h3>
-                    <img src="https://www.investopedia.com/thmb/RfqvXcGHRHCFxXqxVjxGXMYqQ4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shootingstar-5c6c21bfc9e77c00012b9e3f.png" alt="Shooting Star Pattern" class="pattern-img">
-                    <p class="pattern-description">Small body with long upper shadow. Shooting star (bearish) at top shows rejection of higher prices, inverted hammer (bullish) at bottom signals potential reversal.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conclusion -->
-        <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-bottom: none;">
-            <h2 style="color: white; border-bottom-color: rgba(255,255,255,0.3); font-size: 2.5em;">📖 Conclusion & Trading Tips</h2>
-            <p style="font-size: 1.2em; margin-bottom: 25px; color: rgba(255,255,255,0.95); line-height: 1.8;">
-                Mastering chart patterns is essential for successful technical analysis. These patterns represent the collective psychology of market participants and provide valuable insights into potential price movements. Understanding these formations gives you a significant edge in identifying high-probability trading opportunities.
-            </p>
-            
-            <h3 style="font-size: 1.8em; margin: 30px 0 20px 0; color: white;">🎯 Key Principles to Remember:</h3>
-            <ul style="list-style-position: inside; margin-left: 20px; font-size: 1.1em; color: rgba(255,255,255,0.95); line-height: 1.8;">
-                <li style="margin: 12px 0;">✓ <strong>No pattern is 100% accurate</strong> - Always use confirmation signals and multiple timeframes</li>
-                <li style="margin: 12px 0;">✓ <strong>Volume is crucial</strong> - Breakouts with high volume are more reliable than low-volume moves</li>
-                <li style="margin: 12px 0;">✓ <strong>Context matters</strong> - Consider the broader market trend and where pattern forms</li>
-                <li style="margin: 12px 0;">✓ <strong>Practice identification</strong> - Review historical charts daily to train your pattern recognition</li>
-                <li style="margin: 12px 0;">✓ <strong>Risk management is paramount</strong> - Always use stop-losses and proper position sizing</li>
-                <li style="margin: 12px 0;">✓ <strong>Higher timeframes are more reliable</strong> - Daily and weekly patterns have better success rates</li>
-                <li style="margin: 12px 0;">✓ <strong>Combine with other indicators</strong> - Use RSI, MACD, moving averages for confirmation</li>
-                <li style="margin: 12px 0;">✓ <strong>Patience pays off</strong> - Wait for complete pattern formation before entering trades</li>
-            </ul>
-
-            <h3 style="font-size: 1.8em; margin: 35px 0 20px 0; color: white;">📊 Pattern Success Tips:</h3>
-            <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px; margin: 20px 0;">
-                <p style="font-size: 1.05em; margin: 10px 0; line-height: 1.7;"><strong>Continuation Patterns:</strong> Best traded in strong trends. Enter on breakout with volume confirmation.</p>
-                <p style="font-size: 1.05em; margin: 10px 0; line-height: 1.7;"><strong>Reversal Patterns:</strong> Wait for complete formation and neckline/support break. More reliable at major support/resistance.</p>
-                <p style="font-size: 1.05em; margin: 10px 0; line-height: 1.7;"><strong>Harmonic Patterns:</strong> Require precise Fibonacci measurements. Use for reversal trades at potential reversal zones (PRZ).</p>
-                <p style="font-size: 1.05em; margin: 10px 0; line-height: 1.7;"><strong>Candlestick Patterns:</strong> Best for short-term trades. Confirm with follow-through price action next day.</p>
+        
+        <div class="content">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><strong>Chapter 1:</strong> Introduction to Candlestick Patterns</li>
+                    <li><strong>Chapter 2:</strong> Single Candlestick Patterns</li>
+                    <li><strong>Chapter 3:</strong> Multiple Candlestick Patterns</li>
+                    <li><strong>Chapter 4:</strong> Analyzing and Trading Candlesticks</li>
+                    <li><strong>Chapter 5:</strong> Chart Patterns Identification</li>
+                    <li><strong>Chapter 6:</strong> Trading Strategies</li>
+                    <li><strong>Chapter 7:</strong> Trading Psychology</li>
+                    <li><strong>Chapter 8:</strong> Putting It All Together</li>
+                </ul>
             </div>
 
-            <div style="margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.15); border-radius: 15px; text-align: center;">
-                <p style="font-size: 1.4em; font-weight: bold; margin-bottom: 15px;">
-                    "The market is a device for transferring money from the impatient to the patient."
-                </p>
-                <p style="font-size: 1.1em; opacity: 0.9;">- Warren Buffett</p>
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 1</div>
+                <h2>Introduction to Candlestick Patterns</h2>
+                
+                <p>Candlestick charts originated in 18th century Japan and have become the most popular method of displaying price action in modern trading. Each candlestick provides four crucial pieces of information: the opening price, closing price, highest price, and lowest price during a specific time period.</p>
+                
+                <h3>Anatomy of a Candlestick</h3>
+                
+                <img src="https://cdn.britannica.com/13/237813-050-0CA3E424/candlestick-chart-definition.jpg?w=385" alt="Candlestick Anatomy" class="pattern-image">
+                
+                <img src="https://trinity-core.s3.us-west-1.amazonaws.com/fortunly/assets/6328647234919.png" alt="Candlestick Components" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Key Components:</h4>
+                    <ul>
+                        <li><strong>Body:</strong> The thick part representing the range between open and close prices</li>
+                        <li><strong>Wicks/Shadows:</strong> The thin lines above and below the body showing the high and low</li>
+                        <li><strong>Color:</strong> Green/white for bullish (close > open), Red/black for bearish (close < open)</li>
+                    </ul>
+                </div>
+                
+                <p>Understanding candlestick patterns is essential for crypto trading because they provide immediate visual insights into market sentiment, momentum, and potential reversals. Unlike traditional line charts, candlesticks reveal the psychological battle between buyers and sellers.</p>
             </div>
 
-            <p style="font-size: 1.3em; margin-top: 40px; text-align: center; font-weight: bold;">
-                Happy Trading! 📊💰🚀
-            </p>
-            <p style="font-size: 1em; margin-top: 15px; text-align: center; opacity: 0.85;">
-                Study these patterns, practice regularly, and trade with discipline!
-            </p>
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 2</div>
+                <h2>Single Candlestick Patterns</h2>
+                
+                <h3>1. Doji</h3>
+                <p>A Doji forms when the opening and closing prices are virtually equal, creating a cross or plus sign. This pattern signals indecision in the market and potential reversal.</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/doji-candlestick.png" alt="Doji Pattern" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Trading the Doji:</h4>
+                    <ul>
+                        <li><strong>Significance:</strong> Indicates market indecision and potential trend reversal</li>
+                        <li><strong>Context:</strong> Most powerful at the top of uptrends or bottom of downtrends</li>
+                        <li><strong>Confirmation:</strong> Wait for the next candle to confirm direction</li>
+                    </ul>
+                </div>
+                
+                <h3>2. Hammer and Hanging Man</h3>
+                <p>These patterns have small bodies with long lower wicks. A Hammer appears at the bottom of downtrends (bullish), while a Hanging Man appears at the top of uptrends (bearish).</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/hammer-hanging-man.png" alt="Hammer and Hanging Man" class="pattern-image">
+                
+                <div class="key-point">
+                    <strong>Pro Tip:</strong> The longer the lower wick relative to the body, the more significant the pattern. The lower wick should be at least twice the length of the body.
+                </div>
+                
+                <h3>3. Shooting Star and Inverted Hammer</h3>
+                <p>These patterns have small bodies with long upper wicks. The Shooting Star appears at trend tops (bearish), while the Inverted Hammer appears at trend bottoms (bullish).</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/shooting-star-inverted-hammer.png" alt="Shooting Star and Inverted Hammer" class="pattern-image">
+                
+                <h3>4. Marubozu</h3>
+                <p>A Marubozu is a candlestick with little or no wicks, indicating strong momentum in one direction. A bullish Marubozu shows buyers in complete control, while a bearish Marubozu shows sellers dominating.</p>
+                
+                <div class="pattern-box">
+                    <h4>Trading Marubozu Patterns:</h4>
+                    <ul>
+                        <li>Strong continuation signal in the direction of the trend</li>
+                        <li>Enter on the close of the Marubozu or on a small pullback</li>
+                        <li>Set stop loss just beyond the high/low of the Marubozu</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 3</div>
+                <h2>Multiple Candlestick Patterns</h2>
+                
+                <h3>1. Engulfing Patterns</h3>
+                <p>Engulfing patterns consist of two candles where the second candle's body completely engulfs the first candle's body. These are powerful reversal signals.</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/bullish-bearish-engulfing.png" alt="Engulfing Patterns" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Bullish Engulfing:</h4>
+                    <ul>
+                        <li>Appears at the bottom of downtrends</li>
+                        <li>Second (green) candle engulfs the first (red) candle</li>
+                        <li>Signals strong buying pressure and potential reversal</li>
+                    </ul>
+                    <h4>Bearish Engulfing:</h4>
+                    <ul>
+                        <li>Appears at the top of uptrends</li>
+                        <li>Second (red) candle engulfs the first (green) candle</li>
+                        <li>Signals strong selling pressure and potential reversal</li>
+                    </ul>
+                </div>
+                
+                <h3>2. Morning Star and Evening Star</h3>
+                <p>These three-candle patterns are among the most reliable reversal signals in technical analysis.</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/morning-evening-star.png" alt="Morning and Evening Star" class="pattern-image">
+                
+                <div class="key-point">
+                    <strong>Morning Star (Bullish):</strong>
+                    <ol>
+                        <li>Long bearish candle</li>
+                        <li>Small-bodied candle (the "star") gapping down</li>
+                        <li>Long bullish candle closing above the midpoint of the first candle</li>
+                    </ol>
+                    <strong>Evening Star (Bearish):</strong>
+                    <ol>
+                        <li>Long bullish candle</li>
+                        <li>Small-bodied candle gapping up</li>
+                        <li>Long bearish candle closing below the midpoint of the first candle</li>
+                    </ol>
+                </div>
+                
+                <h3>3. Three White Soldiers and Three Black Crows</h3>
+                <p>These three-candle patterns indicate strong continuation or reversal with sustained momentum.</p>
+                
+                <img src="https://admiralmarkets.com/images/education/forex-trading/three-white-soldiers-three-black-crows.png" alt="Three White Soldiers and Three Black Crows" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Three White Soldiers (Bullish):</h4>
+                    <ul>
+                        <li>Three consecutive long green candles</li>
+                        <li>Each closes near its high with minimal upper wick</li>
+                        <li>Each opens within or near the previous candle's body</li>
+                    </ul>
+                    <h4>Three Black Crows (Bearish):</h4>
+                    <ul>
+                        <li>Three consecutive long red candles</li>
+                        <li>Each closes near its low with minimal lower wick</li>
+                        <li>Each opens within or near the previous candle's body</li>
+                    </ul>
+                </div>
+                
+                <h3>4. Harami Patterns</h3>
+                <p>The Harami is a two-candle pattern where the second candle is contained within the body of the first candle, suggesting a potential reversal or pause in trend.</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/bullish-bearish-harami.png" alt="Harami Patterns" class="pattern-image">
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 4</div>
+                <h2>Analyzing and Trading Candlesticks</h2>
+                
+                <h3>Context is Everything</h3>
+                <p>The most critical rule in candlestick trading is that patterns must be analyzed within the broader market context. A bullish pattern in a strong downtrend may only produce a minor bounce, while the same pattern at a key support level could signal a major reversal.</p>
+                
+                <div class="key-point">
+                    <h4>Essential Context Factors:</h4>
+                    <ul>
+                        <li><strong>Trend Direction:</strong> Is the market trending or ranging?</li>
+                        <li><strong>Support/Resistance:</strong> Are we at a key price level?</li>
+                        <li><strong>Volume:</strong> Is the pattern supported by high volume?</li>
+                        <li><strong>Market Structure:</strong> Recent highs, lows, and swing points</li>
+                        <li><strong>Multiple Timeframes:</strong> Does the pattern align across timeframes?</li>
+                    </ul>
+                </div>
+                
+                <h3>Combining Candlesticks with Technical Indicators</h3>
+                
+                <img src="https://www.investopedia.com/thmb/9KCjVUk_FvKKPGk3Zr7ZO7Y0yGM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/candlestick-chart-with-indicators-5c7c9c6946e0fb00013e8cc0.png" alt="Candlesticks with Indicators" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Powerful Indicator Combinations:</h4>
+                    <ul>
+                        <li><strong>RSI (Relative Strength Index):</strong> Confirm reversals when RSI shows oversold/overbought conditions</li>
+                        <li><strong>Moving Averages:</strong> Use 20, 50, and 200 MA for trend confirmation</li>
+                        <li><strong>MACD:</strong> Confirm momentum shifts with candlestick patterns</li>
+                        <li><strong>Volume:</strong> High volume validates the pattern's significance</li>
+                        <li><strong>Bollinger Bands:</strong> Identify patterns near band extremes</li>
+                    </ul>
+                </div>
+                
+                <h3>Risk Management with Candlestick Trading</h3>
+                
+                <div class="strategy-card">
+                    <h4>Stop Loss Placement:</h4>
+                    <ul>
+                        <li><strong>Reversal Patterns:</strong> Place stop just beyond the pattern's high/low</li>
+                        <li><strong>Continuation Patterns:</strong> Stop beyond the most recent swing point</li>
+                        <li><strong>Rule of Thumb:</strong> Risk no more than 1-2% of your account per trade</li>
+                    </ul>
+                    
+                    <h4>Take Profit Strategies:</h4>
+                    <ul>
+                        <li>Target previous support/resistance levels</li>
+                        <li>Use risk-reward ratio of at least 1:2 or 1:3</li>
+                        <li>Take partial profits at key levels</li>
+                        <li>Use trailing stops to lock in gains</li>
+                    </ul>
+                </div>
+                
+                <h3>Timeframe Selection</h3>
+                <p>Different timeframes serve different trading styles:</p>
+                
+                <ul>
+                    <li><strong>1-5 Minute Charts:</strong> Scalping (high frequency, small profits)</li>
+                    <li><strong>15-60 Minute Charts:</strong> Day trading (intraday positions)</li>
+                    <li><strong>4-Hour Charts:</strong> Swing trading (positions held days to weeks)</li>
+                    <li><strong>Daily Charts:</strong> Position trading (longer-term holdings)</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Important:</strong> Always analyze at least three timeframes before entering a trade. Check higher timeframes for trend direction and lower timeframes for precise entry points.
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 5</div>
+                <h2>Chart Patterns Identification</h2>
+                
+                <h3>Continuation Patterns</h3>
+                
+                <h4>1. Bull and Bear Flags</h4>
+                <p>Flags are short-term consolidations that appear after strong price moves. They represent brief pauses before the trend continues.</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/bull-bear-flag-pattern.png" alt="Bull and Bear Flags" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Trading Flags:</h4>
+                    <ul>
+                        <li><strong>Identification:</strong> Strong move (pole) followed by tight consolidation (flag)</li>
+                        <li><strong>Entry:</strong> Breakout from the flag in the direction of the pole</li>
+                        <li><strong>Target:</strong> Measure the pole length and project from breakout point</li>
+                        <li><strong>Stop Loss:</strong> Below/above the flag's opposite end</li>
+                    </ul>
+                </div>
+                
+                <h4>2. Triangles (Ascending, Descending, Symmetrical)</h4>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/triangle-patterns.png" alt="Triangle Patterns" class="pattern-image">
+                
+                <div class="strategy-card">
+                    <h4>Ascending Triangle (Bullish):</h4>
+                    <ul>
+                        <li>Flat upper resistance with rising lower support</li>
+                        <li>Indicates buyers gaining strength</li>
+                        <li>Breakout typically occurs upward</li>
+                    </ul>
+                    
+                    <h4>Descending Triangle (Bearish):</h4>
+                    <ul>
+                        <li>Flat lower support with declining upper resistance</li>
+                        <li>Indicates sellers gaining control</li>
+                        <li>Breakout typically occurs downward</li>
+                    </ul>
+                    
+                    <h4>Symmetrical Triangle (Neutral):</h4>
+                    <ul>
+                        <li>Both support and resistance converge</li>
+                        <li>Breakout can occur in either direction</li>
+                        <li>Wait for confirmation before entering</li>
+                    </ul>
+                </div>
+                
+                <h3>Reversal Patterns</h3>
+                
+                <h4>3. Head and Shoulders (Top and Bottom)</h4>
+                <p>One of the most reliable reversal patterns in technical analysis.</p>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/head-and-shoulders-pattern.png" alt="Head and Shoulders" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Head and Shoulders Top (Bearish):</h4>
+                    <ol>
+                        <li><strong>Left Shoulder:</strong> Price rallies and pulls back</li>
+                        <li><strong>Head:</strong> Price rallies higher than left shoulder, then pulls back</li>
+                        <li><strong>Right Shoulder:</strong> Price rallies again but fails to exceed the head</li>
+                        <li><strong>Neckline:</strong> Connect the lows; break signals reversal</li>
+                    </ol>
+                    
+                    <h4>Trading Strategy:</h4>
+                    <ul>
+                        <li><strong>Entry:</strong> Break and close below neckline</li>
+                        <li><strong>Target:</strong> Measure head to neckline, project downward from break</li>
+                        <li><strong>Stop Loss:</strong> Above the right shoulder</li>
+                    </ul>
+                </div>
+                
+                <h4>4. Double Top and Double Bottom</h4>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/double-top-bottom.png" alt="Double Top and Bottom" class="pattern-image">
+                
+                <div class="key-point">
+                    <h4>Double Top (Bearish):</h4>
+                    <p>Price reaches a resistance level twice but fails to break through, forming an "M" shape. Break below the middle trough confirms reversal.</p>
+                    
+                    <h4>Double Bottom (Bullish):</h4>
+                    <p>Price reaches a support level twice but fails to break down, forming a "W" shape. Break above the middle peak confirms reversal.</p>
+                </div>
+                
+                <h4>5. Cup and Handle</h4>
+                <p>A bullish continuation pattern that resembles a teacup on the chart.</p>
+                
+                <img src="https://www.investopedia.com/thmb/rQKZ_7rYZGxYqJPRGEqvqXpVYn8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/cup-and-handle-pattern-5c6f8c5b46e0fb0001f70c0d.png" alt="Cup and Handle" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Pattern Components:</h4>
+                    <ul>
+                        <li><strong>Cup:</strong> U-shaped consolidation after uptrend</li>
+                        <li><strong>Handle:</strong> Short-term pullback forming near the cup's high</li>
+                        <li><strong>Breakout:</strong> Above the handle's resistance</li>
+                        <li><strong>Target:</strong> Depth of cup added to breakout point</li>
+                    </ul>
+                </div>
+                
+                <h4>6. Wedges (Rising and Falling)</h4>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/rising-falling-wedge.png" alt="Wedge Patterns" class="pattern-image">
+                
+                <div class="strategy-card">
+                    <h4>Rising Wedge (Bearish):</h4>
+                    <ul>
+                        <li>Both support and resistance slope upward</li>
+                        <li>Price action becomes compressed</li>
+                        <li>Typically breaks downward</li>
+                    </ul>
+                    
+                    <h4>Falling Wedge (Bullish):</h4>
+                    <ul>
+                        <li>Both support and resistance slope downward</li>
+                        <li>Volume typically decreases</li>
+                        <li>Typically breaks upward</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 6</div>
+                <h2>Trading Strategies</h2>
+                
+                <h3>Strategy 1: Trend Following with Moving Averages</h3>
+                
+                <div class="strategy-card">
+                    <h4>Setup:</h4>
+                    <ul>
+                        <li>Use 20 EMA (fast), 50 EMA (medium), 200 SMA (slow)</li>
+                        <li>Apply on 4-hour or daily charts for crypto</li>
+                        <li>Add RSI for confirmation</li>
+                    </ul>
+                    
+                    <h4>Entry Rules (Long):</h4>
+                    <ol>
+                        <li>Price is above all three moving averages</li>
+                        <li>20 EMA crosses above 50 EMA (Golden Cross on smaller scale)</li>
+                        <li>Wait for pullback to 20 or 50 EMA</li>
+                        <li>Enter when bullish candlestick forms at the EMA</li>
+                        <li>RSI above 50 confirms uptrend</li>
+                    </ol>
+                    
+                    <h4>Exit Rules:</h4>
+                    <ul>
+                        <li>Stop Loss: Below recent swing low or 2 ATR below entry</li>
+                        <li>Take Profit: At resistance levels or use 2:1 risk-reward ratio</li>
+                        <li>Trailing Stop: Move stop to break-even after 1:1 RR achieved</li>
+                    </ul>
+                </div>
+                
+                <h3>Strategy 2: Breakout Trading</h3>
+                
+                <img src="https://admiralmarkets.com/images/education/forex-trading/breakout-trading-strategy.png" alt="Breakout Trading" class="pattern-image">
+                
+                <div class="strategy-card">
+                    <h4>Identifying Breakouts:</h4>
+                    <ul>
+                        <li>Look for consolidation periods (triangles, rectangles, flags)</li>
+                        <li>Identify clear support/resistance levels</li>
+                        <li>Watch for volume increase on breakout</li>
+                    </ul>
+                    
+                    <h4>Entry Strategy:</h4>
+                    <ol>
+                        <li>Wait for price to break above resistance (or below support)</li>
+                        <li>Confirm with strong volume (2x average volume)</li>
+                        <li>Enter on candle close beyond the level</li>
+                        <li>Or wait for retest of broken level and enter on bounce</li>
+                    </ol>
+                    
+                    <h4>Risk Management:</h4>
+                    <ul>
+                        <li>Stop Loss: Just below breakout level or recent swing low</li>
+                        <li>Target: Measure consolidation range and project from breakout</li>
+                        <li>Risk no more than 1-2% of capital</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Beware of False Breakouts:</strong> In crypto markets, false breakouts are common. Always wait for confirmation (strong volume, candle close beyond level, or successful retest).
+                </div>
+                
+                <h3>Strategy 3: Support and Resistance Bounce</h3>
+                
+                <div class="strategy-card">
+                    <h4>Concept:</h4>
+                    <p>Trade the bounces off established support and resistance levels in ranging markets.</p>
+                    
+                    <h4>Setup:</h4>
+                    <ol>
+                        <li>Identify clear horizontal support/resistance levels</li>
+                        <li>Mark levels that have been tested at least 2-3 times</li>
+                        <li>Confirm market is ranging (not trending strongly)</li>
+                    </ol>
+                    
+                    <h4>Entry (Long at Support):</h4>
+                    <ul>
+                        <li>Wait for price to reach support zone</li>
+                        <li>Look for bullish reversal candlestick (hammer, bullish engulfing)</li>
+                        <li>Confirm with RSI showing oversold (below 30)</li>
+                        <li>Enter on close of confirmation candle</li>
+                    </ul>
+                    
+                    <h4>Exit Strategy:</h4>
+                    <ul>
+                        <li>Stop Loss: 1-2% below support level</li>
+                        <li>Take Profit: Near resistance level (80-90% of the range)</li>
+                        <li>Scale out: Take 50% at mid-range, 50% near resistance</li>
+                    </ul>
+                </div>
+                
+                <h3>Strategy 4: RSI Divergence Trading</h3>
+                
+                <img src="https://www.investopedia.com/thmb/CxXZJQGLZY5h6KN9qGzWkT3KJ8Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rsi-divergence-5c7c9c6946e0fb0001890dc2.png" alt="RSI Divergence" class="pattern-image">
+                
+                <div class="strategy-card">
+                    <h4>Bullish Divergence (Reversal Signal):</h4>
+                    <p>Price makes lower lows, but RSI makes higher lows - indicates weakening downtrend.</p>
+                    
+                    <h4>Bearish Divergence (Reversal Signal):</h4>
+                    <p>Price makes higher highs, but RSI makes lower highs - indicates weakening uptrend.</p>
+                    
+                    <h4>Trading Rules:</h4>
+                    <ol>
+                        <li>Identify divergence on 4-hour or daily chart</li>
+                        <li>Wait for reversal candlestick pattern at the divergence point</li>
+                        <li>Confirm with break of recent trendline</li>
+                        <li>Enter after confirmation candle closes</li>
+                    </ol>
+                    
+                    <h4>Risk Parameters:</h4>
+                    <ul>
+                        <li>Stop Loss: Beyond the divergence low/high</li>
+                        <li>Target: Previous swing high/low or 2:1 risk-reward</li>
+                    </ul>
+                </div>
+                
+                <h3>Strategy 5: MACD Crossover Strategy</h3>
+                
+                <div class="strategy-card">
+                    <h4>Indicator Settings:</h4>
+                    <p>Standard MACD (12, 26, 9) on 4-hour or daily timeframe</p>
+                    
+                    <h4>Bullish Setup:</h4>
+                    <ul>
+                        <li>MACD line crosses above signal line</li>
+                        <li>Histogram turns positive (green)</li>
+                        <li>Crossover occurs above zero line (stronger signal)</li>
+                        <li>Price is above 50 EMA</li>
+                    </ul>
+                    
+                    <h4>Bearish Setup:</h4>
+                    <ul>
+                        <li>MACD line crosses below signal line</li>
+                        <li>Histogram turns negative (red)</li>
+                        <li>Crossover occurs below zero line (stronger signal)</li>
+                        <li>Price is below 50 EMA</li>
+                    </ul>
+                    
+                    <h4>Entry and Exit:</h4>
+                    <ul>
+                        <li><strong>Entry:</strong> On the candle close after crossover</li>
+                        <li><strong>Stop Loss:</strong> Recent swing point or 2 ATR</li>
+                        <li><strong>Exit:</strong> When MACD crosses back or target is reached</li>
+                    </ul>
+                </div>
+                
+                <h3>Strategy 6: Fibonacci Retracement Strategy</h3>
+                
+                <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/ContentImage/fibonacci-retracement.png" alt="Fibonacci Retracement" class="pattern-image">
+                
+                <div class="strategy-card">
+                    <h4>Application:</h4>
+                    <p>Fibonacci levels (23.6%, 38.2%, 50%, 61.8%, 78.6%) identify potential support/resistance during pullbacks.</p>
+                    
+                    <h4>Trading Steps:</h4>
+                    <ol>
+                        <li>Identify a strong trend (uptrend or downtrend)</li>
+                        <li>Draw Fibonacci from swing low to swing high (uptrend) or high to low (downtrend)</li>
+                        <li>Wait for price to retrace to a key Fib level (38.2%, 50%, or 61.8%)</li>
+                        <li>Look for reversal candlestick pattern at the Fib level</li>
+                        <li>Enter when price confirms reversal in trend direction</li>
+                    </ol>
+                    
+                    <h4>Best Practices:</h4>
+                    <ul>
+                        <li>50% and 61.8% levels are most reliable</li>
+                        <li>Combine with support/resistance for stronger signals</li>
+                        <li>Use higher timeframes for more significant levels</li>
+                        <li>Stop loss below the next Fib level</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <strong>Pro Strategy Tip:</strong> Never rely on a single strategy. The most successful traders combine multiple confirmations (candlesticks + indicators + patterns + volume) before entering trades.
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 7</div>
+                <h2>Trading Psychology</h2>
+                
+                <p>Technical analysis and strategies are only 20% of successful trading. The remaining 80% is psychology and risk management. Even the best strategy will fail if you cannot control your emotions and maintain discipline.</p>
+                
+                <h3>The Psychological Cycle of Trading</h3>
+                
+                <img src="https://www.investopedia.com/thmb/6ZfN3yxOJZ3h8P5hUKm2QT1vQzc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/investor-emotion-cycle-5c7c9c6946e0fb0001890dc1.png" alt="Psychology Cycle" class="pattern-image">
+                
+                <div class="pattern-box">
+                    <h4>Typical Emotional Stages:</h4>
+                    <ol>
+                        <li><strong>Optimism:</strong> Market looks promising, feeling positive</li>
+                        <li><strong>Excitement:</strong> First wins, confidence building</li>
+                        <li><strong>Thrill:</strong> Maximum confidence, feeling invincible</li>
+                        <li><strong>Euphoria:</strong> Peak of market, ignoring risks</li>
+                        <li><strong>Anxiety:</strong> Market turns, first signs of trouble</li>
+                        <li><strong>Denial:</strong> Refusing to accept losses, holding losing positions</li>
+                        <li><strong>Fear:</strong> Panic sets in, uncertainty dominates</li>
+                        <li><strong>Desperation:</strong> Hoping for recovery, making impulsive decisions</li>
+                        <li><strong>Panic:</strong> Selling at the worst time</li>
+                        <li><strong>Capitulation:</strong> Giving up, exiting the market</li>
+                        <li><strong>Despondency:</strong> Depression, feeling defeated</li>
+                        <li><strong>Depression:</strong> Hitting bottom emotionally</li>
+                        <li><strong>Hope:</strong> Market shows signs of recovery</li>
+                        <li><strong>Relief:</strong> Slowly rebuilding confidence</li>
+                    </ol>
+                </div>
+                
+                <h3>Common Psychological Traps</h3>
+                
+                <div class="warning-box">
+                    <h4>1. FOMO (Fear of Missing Out)</h4>
+                    <p><strong>Problem:</strong> Entering trades impulsively because you see others making money or price is moving without you.</p>
+                    <p><strong>Solution:</strong> Stick to your trading plan. Remember: there's always another opportunity. Missing one trade is better than entering a bad one.</p>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>2. Revenge Trading</h4>
+                    <p><strong>Problem:</strong> After a loss, you immediately enter another trade to "win back" the money, often with larger position sizes.</p>
+                    <p><strong>Solution:</strong> Take a break after losses. Review what went wrong. Never increase position size after a loss. Follow your risk management rules strictly.</p>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>3. Overconfidence After Wins</h4>
+                    <p><strong>Problem:</strong> A string of winning trades leads to overconfidence, larger positions, and abandoning your strategy.</p>
+                    <p><strong>Solution:</strong> Maintain consistency regardless of results. Stick to the same position sizing. Remember: past performance doesn't guarantee future results.</p>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>4. Loss Aversion</h4>
+                    <p><strong>Problem:</strong> Holding losing positions hoping they'll recover, while taking profits too early on winning trades.</p>
+                    <p><strong>Solution:</strong> Set stop losses before entering trades and honor them. Let winners run according to your plan. Accept that losses are part of trading.</p>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>5. Analysis Paralysis</h4>
+                    <p><strong>Problem:</strong> Over-analyzing every detail, looking at too many indicators, and being unable to pull the trigger on trades.</p>
+                    <p><strong>Solution:</strong> Simplify your strategy. Define clear entry and exit rules. Trust your analysis and act decisively when your criteria are met.</p>
+                </div>
+                
+                <h3>Developing a Winning Mindset</h3>
+                
+                <div class="strategy-card">
+                    <h4>1. Accept Uncertainty</h4>
+                    <p>No one knows what the market will do next. Even the best traders are wrong 40-50% of the time. Success comes from risk management, not prediction.</p>
+                    
+                    <h4>2. Think in Probabilities</h4>
+                    <p>Each trade is just one outcome in a series of many trades. Focus on following your process, not on individual trade results. Your edge plays out over hundreds of trades.</p>
+                    
+                    <h4>3. Detach from Money</h4>
+                    <p>Think in terms of risk-reward ratios and percentages, not dollar amounts. This emotional distance helps maintain objectivity.</p>
+                    
+                    <h4>4. Embrace Losses</h4>
+                    <p>Losses are the cost of doing business. Every loss teaches you something. Professional traders don't fear losses; they manage them.</p>
+                    
+                    <h4>5. Patience is Profitable</h4>
+                    <p>The market rewards patience. Wait for high-probability setups that meet all your criteria. Quality over quantity always wins.</p>
+                </div>
+                
+                <h3>Building Discipline Through Systems</h3>
+                
+                <div class="key-point">
+                    <h4>Create a Trading Plan (Write It Down!):</h4>
+                    <ul>
+                        <li><strong>Markets to trade:</strong> Which cryptocurrencies?</li>
+                        <li><strong>Timeframes:</strong> Which charts will you analyze?</li>
+                        <li><strong>Strategy:</strong> What setups will you trade?</li>
+                        <li><strong>Risk per trade:</strong> Maximum 1-2% of account</li>
+                        <li><strong>Daily loss limit:</strong> Stop trading after X% daily loss</li>
+                        <li><strong>Trading hours:</strong> When will you trade?</li>
+                        <li><strong>Position sizing:</strong> How much per trade?</li>
+                        <li><strong>Entry rules:</strong> Specific criteria that must be met</li>
+                        <li><strong>Exit rules:</strong> Stop loss and take profit levels</li>
+                        <li><strong>Review process:</strong> Weekly review of trades and performance</li>
+                    </ul>
+                </div>
+                
+                <h3>The Trading Journal</h3>
+                
+                <div class="strategy-card">
+                    <h4>Why Keep a Journal?</h4>
+                    <p>A trading journal is your path to continuous improvement. It helps identify patterns in your behavior, both good and bad.</p>
+                    
+                    <h4>What to Record:</h4>
+                    <ul>
+                        <li><strong>Date and time</strong> of trade</li>
+                        <li><strong>Cryptocurrency traded</strong></li>
+                        <li><strong>Entry and exit prices</strong></li>
+                        <li><strong>Position size</strong></li>
+                        <li><strong>Stop loss and take profit levels</strong></li>
+                        <li><strong>Strategy used</strong></li>
+                        <li><strong>Chart screenshot</strong> with annotations</li>
+                        <li><strong>Reason for entry:</strong> Why did you take this trade?</li>
+                        <li><strong>Emotional state:</strong> How did you feel before, during, and after?</li>
+                        <li><strong>Outcome:</strong> Win/loss and why</li>
+                        <li><strong>Lessons learned:</strong> What would you do differently?</li>
+                    </ul>
+                    
+                    <h4>Review Process:</h4>
+                    <p>Every week, review your journal to identify:</p>
+                    <ul>
+                        <li>Which setups are most profitable for you</li>
+                        <li>What times of day you trade best</li>
+                        <li>Emotional patterns that lead to losses</li>
+                        <li>Rule violations and their consequences</li>
+                        <li>Areas for improvement</li>
+                    </ul>
+                </div>
+                
+                <h3>Risk Management Rules</h3>
+                
+                <div class="pattern-box">
+                    <h4>Golden Rules of Risk Management:</h4>
+                    <ol>
+                        <li><strong>Never risk more than 1-2% per trade</strong> - This ensures you can survive 20+ consecutive losses</li>
+                        <li><strong>Use proper position sizing</strong> - Calculate based on stop loss distance and account size</li>
+                        <li><strong>Always use stop losses</strong> - No exceptions, no "mental stops"</li>
+                        <li><strong>Maintain 2:1 or 3:1 risk-reward ratio</strong> - You can be right 40% of the time and still profit</li>
+                        <li><strong>Don't overtrade</strong> - Quality setups only, typically 1-3 trades per day maximum</li>
+                        <li><strong>Diversify carefully</strong> - Don't put all capital in correlated assets</li>
+                        <li><strong>Keep emotions in check</strong> - If angry, scared, or euphoric, step away</li>
+                        <li><strong>Take breaks</strong> - After big wins or losses, pause to reset</li>
+                    </ol>
+                </div>
+                
+                <h3>Daily Trading Routine</h3>
+                
+                <div class="strategy-card">
+                    <h4>Pre-Market Routine (30 minutes):</h4>
+                    <ul>
+                        <li>Review major crypto news and events</li>
+                        <li>Check Bitcoin and Ethereum trends (they lead the market)</li>
+                        <li>Identify key support/resistance levels on your watchlist</li>
+                        <li>Mark important economic releases or crypto events</li>
+                        <li>Review your trading plan and rules</li>
+                        <li>Set daily risk limit and maximum number of trades</li>
+                    </ul>
+                    
+                    <h4>During Trading:</h4>
+                    <ul>
+                        <li>Follow your plan strictly - no impulsive trades</li>
+                        <li>Wait for high-probability setups</li>
+                        <li>Take breaks between trades to clear your mind</li>
+                        <li>Stay hydrated and maintain physical comfort</li>
+                        <li>If you hit your daily loss limit, stop immediately</li>
+                    </ul>
+                    
+                    <h4>Post-Market Routine (15 minutes):</h4>
+                    <ul>
+                        <li>Update your trading journal</li>
+                        <li>Review all trades taken today</li>
+                        <li>Identify what you did well and what needs improvement</li>
+                        <li>Calculate P&L and win rate</li>
+                        <li>Prepare watchlist for tomorrow</li>
+                    </ul>
+                </div>
+                
+                <h3>Mindfulness and Stress Management</h3>
+                
+                <div class="key-point">
+                    <h4>Techniques for Emotional Control:</h4>
+                    <ul>
+                        <li><strong>Breathing exercises:</strong> Before entering trades, take 5 deep breaths</li>
+                        <li><strong>Meditation:</strong> 10 minutes daily improves focus and emotional control</li>
+                        <li><strong>Physical exercise:</strong> Regular exercise reduces stress and improves decision-making</li>
+                        <li><strong>Sleep:</strong> 7-8 hours per night is crucial for optimal cognitive function</li>
+                        <li><strong>Proper nutrition:</strong> Avoid excessive caffeine and sugar during trading hours</li>
+                        <li><strong>Social support:</strong> Join trading communities for encouragement and learning</li>
+                        <li><strong>Breaks from screens:</strong> Every hour, look away from screens for 5 minutes</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Know When to Stop:</strong> If you're experiencing sustained losses, feeling burnt out, or trading is affecting your mental health or relationships, take a break. The market will still be there when you return refreshed.
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER 8</div>
+                <h2>Putting It All Together</h2>
+                
+                <h3>A Complete Trade Example</h3>
+                
+                <div class="strategy-card">
+                    <h4>Scenario: Bitcoin (BTC/USD) 4-Hour Chart</h4>
+                    
+                    <p><strong>Step 1: Market Analysis</strong></p>
+                    <ul>
+                        <li>Bitcoin has been in an uptrend for 3 weeks</li>
+                        <li>Price is above 20, 50, and 200 EMAs</li>
+                        <li>Recent pullback to the 50 EMA support</li>
+                        <li>RSI cooled down from overbought to 55 (healthy)</li>
+                    </ul>
+                    
+                    <p><strong>Step 2: Pattern Recognition</strong></p>
+                    <ul>
+                        <li>Bullish flag pattern forming (continuation pattern)</li>
+                        <li>At the 50 EMA, a bullish engulfing candle appears</li>
+                        <li>Volume increases on the engulfing candle</li>
+                    </ul>
+                    
+                    <p><strong>Step 3: Confirmation Checklist</strong></p>
+                    <ul>
+                        <li>✓ Trend direction: Uptrend</li>
+                        <li>✓ Support level: 50 EMA holding</li>
+                        <li>✓ Candlestick pattern: Bullish engulfing</li>
+                        <li>✓ Volume: Above average</li>
+                        <li>✓ RSI: Showing strength (above 50)</li>
+                        <li>✓ Chart pattern: Bull flag</li>
+                        <li>✓ Risk-reward: 3:1 ratio achievable</li>
+                    </ul>
+                    
+                    <p><strong>Step 4: Trade Execution</strong></p>
+                    <ul>
+                        <li><strong>Entry:</strong> $45,000 (close of bullish engulfing candle)</li>
+                        <li><strong>Stop Loss:</strong> $44,200 (below recent swing low) = $800 risk</li>
+                        <li><strong>Take Profit:</strong> $47,400 (resistance level) = $2,400 profit</li>
+                        <li><strong>Risk-Reward Ratio:</strong> 1:3</li>
+                        <li><strong>Position Size:</strong> If account is $10,000 and risking 2% = $200 risk allowed</li>
+                        <li><strong>Calculate Position:</strong> $200 / $800 = 0.25 BTC position</li>
+                    </ul>
+                    
+                    <p><strong>Step 5: Trade Management</strong></p>
+                    <ul>
+                        <li>Once price reaches $46,200 (1:1.5 RR), move stop to break-even</li>
+                        <li>At $46,700 (1:2 RR), take 50% profit, let the rest run</li>
+                        <li>Trail stop loss using 20 EMA or recent swing lows</li>
+                        <li>Exit remaining position at target or if pattern breaks</li>
+                    </ul>
+                    
+                    <p><strong>Step 6: Journal Entry</strong></p>
+                    <ul>
+                        <li>Record all details, chart screenshot, emotional state</li>
+                        <li>Note what worked well and any mistakes</li>
+                        <li>Update performance metrics</li>
+                    </ul>
+                </div>
+                
+                <h3>Building Your Trading System</h3>
+                
+                <div class="pattern-box">
+                    <h4>Phase 1: Education (2-3 Months)</h4>
+                    <ul>
+                        <li>Study candlestick patterns thoroughly</li>
+                        <li>Learn chart patterns and their psychology</li>
+                        <li>Understand key indicators (MA, RSI, MACD, Volume)</li>
+                        <li>Read about trading psychology and risk management</li>
+                        <li>Paper trade or use demo accounts</li>
+                    </ul>
+                    
+                    <h4>Phase 2: Strategy Development (1-2 Months)</h4>
+                    <ul>
+                        <li>Choose 1-2 strategies that fit your personality</li>
+                        <li>Define clear entry and exit rules</li>
+                        <li>Backtest on historical charts</li>
+                        <li>Create a detailed trading plan document</li>
+                        <li>Continue demo trading with your strategy</li>
+                    </ul>
+                    
+                    <h4>Phase 3: Small Live Trading (3-6 Months)</h4>
+                    <ul>
+                        <li>Start with small position sizes (0.5% risk)</li>
+                        <li>Focus on following your process, not profits</li>
+                        <li>Keep detailed journal of every trade</li>
+                        <li>Review performance weekly</li>
+                        <li>Adjust strategy based on data, not emotions</li>
+                    </ul>
+                    
+                    <h4>Phase 4: Scaling Up (Ongoing)</h4>
+                    <ul>
+                        <li>After 100+ trades with positive results, gradually increase risk to 1-2%</li>
+                        <li>Maintain strict discipline and risk management</li>
+                        <li>Continue education and adaptation</li>
+                        <li>Build trading community for support</li>
+                        <li>Never stop learning and improving</li>
+                    </ul>
+                </div>
+                
+                <h3>Key Takeaways</h3>
+                
+                <div class="key-point">
+                    <h4>The 10 Commandments of Crypto Trading:</h4>
+                    <ol>
+                        <li><strong>Never trade without a plan</strong> - Random trading is gambling</li>
+                        <li><strong>Always use stop losses</strong> - Protect your capital first</li>
+                        <li><strong>Risk only 1-2% per trade</strong> - Survival is more important than profits</li>
+                        <li><strong>Master one strategy before learning others</strong> - Depth beats breadth</li>
+                        <li><strong>Trade what you see, not what you think</strong> - Follow price action</li>
+                        <li><strong>Be patient</strong> - Wait for high-probability setups</li>
+                        <li><strong>Control your emotions</strong> - Discipline separates winners from losers</li>
+                        <li><strong>Keep learning</strong> - Markets evolve, and so must you</li>
+                        <li><strong>Journal every trade</strong> - Data reveals truth</li>
+                        <li><strong>Accept losses gracefully</strong> - They're part of the game</li>
+                    </ol>
+                </div>
+                
+                <h3>Common Beginner Mistakes to Avoid</h3>
+                
+                <div class="warning-box">
+                    <ul>
+                        <li><strong>Overtrading:</strong> Taking too many trades, chasing every move</li>
+                        <li><strong>No stop losses:</strong> Hoping losing trades will recover</li>
+                        <li><strong>Revenge trading:</strong> Trying to quickly recover losses</li>
+                        <li><strong>Ignoring risk management:</strong> Betting too much on single trades</li>
+                        <li><strong>Following others blindly:</strong> Taking trades from social media tips</li>
+                        <li><strong>Not having a plan:</strong> Making decisions based on emotions</li>
+                        <li><strong>Using too many indicators:</strong> Analysis paralysis</li>
+                        <li><strong>Jumping strategies:</strong> Constantly changing approaches</li>
+                        <li><strong>Trading news:</strong> Entering trades during high volatility events</li>
+                        <li><strong>Neglecting psychology:</strong> Focusing only on technical skills</li>
+                    </ul>
+                </div>
+                
+                <h3>Resources for Continued Learning</h3>
+                
+                <div class="strategy-card">
+                    <h4>Recommended Practices:</h4>
+                    <ul>
+                        <li><strong>TradingView:</strong> Free charting platform with social community</li>
+                        <li><strong>Crypto News:</strong> Follow CoinDesk, CoinTelegraph for market updates</li>
+                        <li><strong>YouTube Channels:</strong> Search for reputable technical analysis educators</li>
+                        <li><strong>Books:</strong>
+                            <ul>
+                                <li>"Japanese Candlestick Charting Techniques" by Steve Nison</li>
+                                <li>"Trading in the Zone" by Mark Douglas</li>
+                                <li>"Technical Analysis of Financial Markets" by John Murphy</li>
+                            </ul>
+                        </li>
+                        <li><strong>Practice:</strong> Use demo accounts on Binance, Coinbase, or other exchanges</li>
+                        <li><strong>Communities:</strong> Join Discord or Reddit trading communities for support</li>
+                    </ul>
+                </div>
+                
+                <h3>Final Words of Wisdom</h3>
+                
+                <p>Trading cryptocurrencies is a marathon, not a sprint. Success doesn't come from finding the "perfect" strategy or the "holy grail" indicator. It comes from:</p>
+                
+                <ul>
+                    <li>Consistent application of a proven strategy</li>
+                    <li>Unwavering discipline in risk management</li>
+                    <li>Emotional control under pressure</li>
+                    <li>Continuous learning and adaptation</li>
+                    <li>Patience to wait for the right opportunities</li>
+                </ul>
+                
+                <p>Most traders fail not because they lack knowledge, but because they lack discipline and emotional control. They know what to do but can't consistently do it. Your edge in trading comes not just from your technical skills, but from your ability to execute your plan with discipline, manage your emotions, and persist through inevitable losing streaks.</p>
+                
+                <div class="key-point">
+                    <p><strong>Remember:</strong> Every expert trader was once a beginner who refused to quit. They lost money, made mistakes, felt frustrated, but kept learning and improving. Your journey will have ups and downs. Embrace the process, trust your system, and never stop growing.</p>
+                    
+                    <p style="margin-top: 20px; font-size: 1.2em; text-align: center;"><em>"The goal of a successful trader is to make the best trades. Money is secondary." - Alexander Elder</em></p>
+                </div>
+                
+                <div class="pattern-box" style="margin-top: 40px; text-align: center; border-left: 4px solid #28a745;">
+                    <h3 style="color: #28a745;">Your Trading Journey Starts Now</h3>
+                    <p>Start small, think big, and never stop learning. The market rewards patience, discipline, and continuous improvement. May your trades be profitable and your losses small.</p>
+                    <p style="margin-top: 20px; font-size: 1.1em;"><strong>Happy Trading! 📈</strong></p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
