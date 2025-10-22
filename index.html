@@ -52,8 +52,6 @@
         
         .content {
             padding: 60px 50px;
-            overflow-y: auto;
-            flex: 1;
         }
         
         .chapter {
@@ -105,13 +103,42 @@
         }
         
         .pattern-image {
-            width: 100%;
-            max-width: 650px;
-            height: auto;
+            display: none;
+        }
+        
+        .image-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
             margin: 20px auto;
-            display: block;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .image-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .image-cta a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: block;
+        }
+        
+        .image-cta a:hover {
+            text-decoration: underline;
+        }
+        
+        .image-cta p {
+            margin: 0 0 10px 0;
+            font-size: 0.95em;
+            opacity: 0.95;
         }
         
         .key-point {
@@ -207,9 +234,15 @@
                 
                 <h3>Anatomy of a Candlestick</h3>
                 
-                <img src="https://cdn.britannica.com/13/237813-050-0CA3E424/candlestick-chart-definition.jpg?w=385" alt="Candlestick Anatomy 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Candlestick Anatomy:</p>
+                    <a href="https://cdn.britannica.com/13/237813-050-0CA3E424/candlestick-chart-definition.jpg?w=385" target="_blank">View Candlestick Chart Definition →</a>
+                </div>
                 
-                <img src="https://trinity-core.s3.us-west-1.amazonaws.com/fortunly/assets/6328647234919.png" alt="Candlestick Anatomy 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Candlestick Components:</p>
+                    <a href="https://trinity-core.s3.us-west-1.amazonaws.com/fortunly/assets/6328647234919.png" target="_blank">View Candlestick Components Diagram →</a>
+                </div>
                 
                 <div class="pattern-box">
                     <h4>Key Components:</h4>
@@ -231,9 +264,15 @@
                 <h3>1. Doji</h3>
                 <p>A Doji forms when the opening and closing prices are virtually equal, creating a cross or plus sign. This pattern signals indecision in the market and potential reversal.</p>
                 
-                <img src="https://www.forex.com/en-us/-/media/project/gain-capital/forex/feature-images/learn-forex-trading/doji-candle/doji-candlesticks-daily-eur-usd.png" alt="Doji Pattern 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Doji Pattern Example:</p>
+                    <a href="https://www.forex.com/en-us/-/media/project/gain-capital/forex/feature-images/learn-forex-trading/doji-candle/doji-candlesticks-daily-eur-usd.png" target="_blank">View Doji Candlestick Pattern →</a>
+                </div>
                 
-                <img src="https://www.investopedia.com/thmb/p6yBiuIcsmocFBwJ-o40uwHx6MY%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/DojiDefinition-efc3ba7213db4200a0a69f354369960b.png" alt="Doji Pattern 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Doji Types:</p>
+                    <a href="https://www.investopedia.com/thmb/p6yBiuIcsmocFBwJ-o40uwHx6MY%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/DojiDefinition-efc3ba7213db4200a0a69f354369960b.png" target="_blank">View Different Doji Types →</a>
+                </div>
                 
                 <div class="pattern-box">
                     <h4>Trading the Doji:</h4>
@@ -247,11 +286,20 @@
                 <h3>2. Hammer and Hanging Man</h3>
                 <p>These patterns have small bodies with long lower wicks. A Hammer appears at the bottom of downtrends (bullish), while a Hanging Man appears at the top of uptrends (bearish).</p>
                 
-                <img src="https://framerusercontent.com/images/KRhwQSOcB60evb3FB0u4T1MnJD8.jpg?height=3456&width=6912" alt="Hammer Hanging Man 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Hammer & Hanging Man Patterns:</p>
+                    <a href="https://framerusercontent.com/images/KRhwQSOcB60evb3FB0u4T1MnJD8.jpg?height=3456&width=6912" target="_blank">View Hammer & Hanging Man Chart →</a>
+                </div>
                 
-                <img src="https://navi.com/blog/wp-content/uploads/2022/12/Hanging-Man-Candlestick.jpg" alt="Hammer Hanging Man 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Hanging Man Example:</p>
+                    <a href="https://navi.com/blog/wp-content/uploads/2022/12/Hanging-Man-Candlestick.jpg" target="_blank">View Hanging Man Candlestick →</a>
+                </div>
                 
-                <img src="https://media.marketrealist.com/brand-img/MVrsSBe8e/0x0/uploads/2014/12/hammer-and-hanging-man11.png" alt="Hammer Hanging Man 3" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Hammer Pattern Details:</p>
+                    <a href="https://media.marketrealist.com/brand-img/MVrsSBe8e/0x0/uploads/2014/12/hammer-and-hanging-man11.png" target="_blank">View Hammer Pattern Guide →</a>
+                </div>
                 
                 <div class="key-point">
                     <strong>Pro Tip:</strong> The longer the lower wick relative to the body, the more significant the pattern. The lower wick should be at least twice the length of the body.
@@ -260,11 +308,20 @@
                 <h3>3. Shooting Star and Inverted Hammer</h3>
                 <p>These patterns have small bodies with long upper wicks. The Shooting Star appears at trend tops (bearish), while the Inverted Hammer appears at trend bottoms (bullish).</p>
                 
-                <img src="https://cms-resources.groww.in/uploads/Screenshot_2024_12_24_at_12_19_42_PM_5613e36d15.png" alt="Shooting Star 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Shooting Star & Inverted Hammer:</p>
+                    <a href="https://cms-resources.groww.in/uploads/Screenshot_2024_12_24_at_12_19_42_PM_5613e36d15.png" target="_blank">View Shooting Star Pattern →</a>
+                </div>
                 
-                <img src="https://www.xs.com/storage/blogs/8528ec3e-67e1-41de-b7b4-93170ef28b51/shooting-star-candlestick.jpg" alt="Shooting Star 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Shooting Star Example:</p>
+                    <a href="https://www.xs.com/storage/blogs/8528ec3e-67e1-41de-b7b4-93170ef28b51/shooting-star-candlestick.jpg" target="_blank">View Shooting Star Chart →</a>
+                </div>
                 
-                <img src="https://lakshmishree.com/blog/wp-content/uploads/2024/12/Blog-Img-2024-12-28T120909.506-1024x473.jpg" alt="Shooting Star 3" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Inverted Hammer:</p>
+                    <a href="https://lakshmishree.com/blog/wp-content/uploads/2024/12/Blog-Img-2024-12-28T120909.506-1024x473.jpg" target="_blank">View Inverted Hammer Pattern →</a>
+                </div>
                 
                 <h3>4. Marubozu</h3>
                 <p>A Marubozu is a candlestick with little or no wicks, indicating strong momentum in one direction.</p>
@@ -287,11 +344,20 @@
                 <h3>1. Engulfing Patterns</h3>
                 <p>Engulfing patterns consist of two candles where the second candle's body completely engulfs the first candle's body. These are powerful reversal signals.</p>
                 
-                <img src="https://tradeciety.com/hubfs/Bullish%20Engulfing%20Candle.png" alt="Engulfing 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Bullish Engulfing Pattern:</p>
+                    <a href="https://tradeciety.com/hubfs/Bullish%20Engulfing%20Candle.png" target="_blank">View Bullish Engulfing Candle →</a>
+                </div>
                 
-                <img src="https://eu-images.contentstack.com/v3/assets/blt73dfd92ee49f59a6/blt34fe88616c41c820/685bd3169eedb7610ddf7e49/MDP-3296_1200x675_2.png" alt="Engulfing 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Engulfing Pattern Example:</p>
+                    <a href="https://eu-images.contentstack.com/v3/assets/blt73dfd92ee49f59a6/blt34fe88616c41c820/685bd3169eedb7610ddf7e49/MDP-3296_1200x675_2.png" target="_blank">View Engulfing Pattern Chart →</a>
+                </div>
                 
-                <img src="https://www.strike.money/wp-content/uploads/2023/09/Bearish-Engulfing-Candlestick-Definition-how-to-use-in-trading-examples-Banner-1.jpg" alt="Engulfing 3" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Bearish Engulfing:</p>
+                    <a href="https://www.strike.money/wp-content/uploads/2023/09/Bearish-Engulfing-Candlestick-Definition-how-to-use-in-trading-examples-Banner-1.jpg" target="_blank">View Bearish Engulfing Guide →</a>
+                </div>
                 
                 <div class="pattern-box">
                     <h4>Bullish Engulfing:</h4>
@@ -311,11 +377,20 @@
                 <h3>2. Morning Star and Evening Star</h3>
                 <p>These three-candle patterns are among the most reliable reversal signals in technical analysis.</p>
                 
-                <img src="https://cms-resources.groww.in/uploads/Morning_star_pattern_1_4f6ecfeaac.png" alt="Morning Star 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Morning Star Pattern:</p>
+                    <a href="https://cms-resources.groww.in/uploads/Morning_star_pattern_1_4f6ecfeaac.png" target="_blank">View Morning Star Pattern →</a>
+                </div>
                 
-                <img src="https://www.tradingwithrayner.com/wp-content/uploads/2018/10/38-1024x580.png" alt="Morning Star 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Morning Star Example:</p>
+                    <a href="https://www.tradingwithrayner.com/wp-content/uploads/2018/10/38-1024x580.png" target="_blank">View Morning Star Chart →</a>
+                </div>
                 
-                <img src="https://www.investopedia.com/thmb/ElGSD3eD-VwouJwBGbe3aq10Lb4%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_Evening_Star_Dec_2020-01-2e934a9c033c47debb64279250a18ea2.jpg" alt="Evening Star" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Evening Star Pattern:</p>
+                    <a href="https://www.investopedia.com/thmb/ElGSD3eD-VwouJwBGbe3aq10Lb4%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_Evening_Star_Dec_2020-01-2e934a9c033c47debb64279250a18ea2.jpg" target="_blank">View Evening Star Pattern →</a>
+                </div>
                 
                 <div class="key-point">
                     <strong>Morning Star (Bullish):</strong>
@@ -335,11 +410,20 @@
                 <h3>3. Three White Soldiers and Three Black Crows</h3>
                 <p>These three-candle patterns indicate strong continuation or reversal with sustained momentum.</p>
                 
-                <img src="https://media.warriortrading.com/2020/11/20104733/Three-White-Soldiers-Pattern.jpg" alt="Three Soldiers 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Three White Soldiers:</p>
+                    <a href="https://media.warriortrading.com/2020/11/20104733/Three-White-Soldiers-Pattern.jpg" target="_blank">View Three White Soldiers Pattern →</a>
+                </div>
                 
-                <img src="https://images.contentstack.io/v3/assets/bltc23b87e0fef43b66/bltf3d985a97c5312b4/66be6c4f843a42764c761720/three-white-soldiers-chart.jpg" alt="Three Soldiers 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Three White Soldiers Chart:</p>
+                    <a href="https://images.contentstack.io/v3/assets/bltc23b87e0fef43b66/bltf3d985a97c5312b4/66be6c4f843a42764c761720/three-white-soldiers-chart.jpg" target="_blank">View Three Soldiers Example →</a>
+                </div>
                 
-                <img src="https://www.investopedia.com/thmb/oMOxnKYDVMWGtlaCnDC4TWVTcvI%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/The5MostPowerfulCandlestickPatterns3-f3b280e0165a4b2fa5e5d3b42b36e337.png" alt="Three Black Crows" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Three Black Crows:</p>
+                    <a href="https://www.investopedia.com/thmb/oMOxnKYDVMWGtlaCnDC4TWVTcvI%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/The5MostPowerfulCandlestickPatterns3-f3b280e0165a4b2fa5e5d3b42b36e337.png" target="_blank">View Three Black Crows Pattern →</a>
+                </div>
                 
                 <div class="pattern-box">
                     <h4>Three White Soldiers (Bullish):</h4>
@@ -359,11 +443,20 @@
                 <h3>4. Harami Patterns</h3>
                 <p>The Harami is a two-candle pattern where the second candle is contained within the body of the first candle.</p>
                 
-                <img src="https://images.surferseo.art/47940153-1dc7-4157-8bd3-b682bf396742.png" alt="Harami 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Harami Pattern:</p>
+                    <a href="https://images.surferseo.art/47940153-1dc7-4157-8bd3-b682bf396742.png" target="_blank">View Harami Pattern Diagram →</a>
+                </div>
                 
-                <img src="https://www.chartmill.com/images/uploads/bullish_harami_pattern_cd63dfb0e6.webp" alt="Harami 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Bullish Harami:</p>
+                    <a href="https://www.chartmill.com/images/uploads/bullish_harami_pattern_cd63dfb0e6.webp" target="_blank">View Bullish Harami Chart →</a>
+                </div>
                 
-                <img src="https://alchemymarkets.com/wp-content/uploads/2025/02/1st-Bearish-Harami-Candlestick-Chart-Analysis.png" alt="Harami 3" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Bearish Harami:</p>
+                    <a href="https://alchemymarkets.com/wp-content/uploads/2025/02/1st-Bearish-Harami-Candlestick-Chart-Analysis.png" target="_blank">View Bearish Harami Analysis →</a>
+                </div>
             </div>
 
             <!-- CHAPTER 4 -->
@@ -387,11 +480,20 @@
                 
                 <h3>Combining Candlesticks with Technical Indicators</h3>
                 
-                <img src="https://market-prod-23f4d22-e289.s3.amazonaws.com/960b1030-dd29-43da-b166-347d54ded63a_1.png" alt="Indicators 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Candlesticks with Indicators:</p>
+                    <a href="https://market-prod-23f4d22-e289.s3.amazonaws.com/960b1030-dd29-43da-b166-347d54ded63a_1.png" target="_blank">View Indicator Chart Example →</a>
+                </div>
                 
-                <img src="https://chartdynamix.com/wp-content/uploads/edd/CDXHTFChartOverlay_NT8_1.png" alt="Indicators 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Chart Overlay with Indicators:</p>
+                    <a href="https://chartdynamix.com/wp-content/uploads/edd/CDXHTFChartOverlay_NT8_1.png" target="_blank">View Multi-Indicator Chart →</a>
+                </div>
                 
-                <img src="https://www.quantifiedstrategies.com/wp-content/uploads/2022/12/macd-rsi-strategy.png" alt="Indicators 3" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view MACD RSI Strategy:</p>
+                    <a href="https://www.quantifiedstrategies.com/wp-content/uploads/2022/12/macd-rsi-strategy.png" target="_blank">View MACD & RSI Strategy →</a>
+                </div>
                 
                 <div class="pattern-box">
                     <h4>Powerful Indicator Combinations:</h4>
@@ -416,15 +518,37 @@
                 <h3>1. Bull and Bear Flags</h3>
                 <p>Flags are short-term consolidations that appear after strong price moves.</p>
                 
-                <img src="https://alchemymarkets.com/wp-content/uploads/2024/04/image-118.png" alt="Flags 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Flag Patterns:</p>
+                    <a href="https://alchemymarkets.com/wp-content/uploads/2024/04/image-118.png" target="_blank">View Bull & Bear Flag Patterns →</a>
+                </div>
                 
-                <img src="https://tradeciety.com/hubfs/EURAUD_2023-11-28_17-09-40.png" alt="Flags 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Bull Flag Example:</p>
+                    <a href="https://tradeciety.com/hubfs/EURAUD_2023-11-28_17-09-40.png" target="_blank">View Bull Flag Chart →</a>
+                </div>
                 
-                <img src="https://www.forex.com/en-us/-/media/project/gain-capital/shared/academy/cn-and-jp-assets/bullish-and-bearish-flags-chart.png" alt="Flags 3" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Bullish & Bearish Flags:</p>
+                    <a href="https://www.forex.com/en-us/-/media/project/gain-capital/shared/academy/cn-and-jp-assets/bullish-and-bearish-flags-chart.png" target="_blank">View Flag Trading Guide →</a>
+                </div>
                 
                 <h3>2. Triangles</h3>
                 
-                <img src="https://www.investopedia.com/thmb/nEv3DIsiQ_Lt0vShcqaqLSuBMgk%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/UnderstandingTriangle2-0651c3c900b3422cadc70d83555a5072.png" alt="Triangles 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Triangle Patterns Overview:</p>
+                    <a href="https://www.investopedia.com/thmb/nEv3DIsiQ_Lt0vShcqaqLSuBMgk%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/UnderstandingTriangle2-0651c3c900b3422cadc70d83555a5072.png" target="_blank">View Triangle Pattern Types →</a>
+                </div>
+                
+                <div class="image-cta">
+                    <p>📊 Click below to view Ascending & Descending Triangles:</p>
+                    <a href="https://scanz.com/wp-content/uploads/2019/01/ascendingdescendingtriangles.jpg" target="_blank">View Triangle Patterns Chart →</a>
+                </div>
+                
+                <div class="image-cta">
+                    <p>📊 Click below to view Symmetrical Triangle:</p>
+                    <a href="https://www.investopedia.com/thmb/ahS5SCbQ0co6f66L4fd40AYe0fs%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/Triangles_AShortStudyinContinuationPatterns3_2-6eb5b82169aa45859c5696835f97244f-0886dbfef93d40d7a20a67836e32226e.png" target="_blank">View Symmetrical Triangle Guide →</a>
+                </div>" alt="Triangles 1" class="pattern-image">
                 
                 <img src="https://scanz.com/wp-content/uploads/2019/01/ascendingdescendingtriangles.jpg" alt="Triangles 2" class="pattern-image">
                 
@@ -432,11 +556,20 @@
                 
                 <h3>3. Head and Shoulders</h3>
                 
-                <img src="https://www.investopedia.com/thmb/-06wyWh1tc1Vz9t7j-DIYyZM_0c%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_Head_And_Shoulders_Pattern_Sep_2020-01-4c225a762427464699e42461088c1e86.jpg" alt="H&S 1" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Head and Shoulders Pattern:</p>
+                    <a href="https://www.investopedia.com/thmb/-06wyWh1tc1Vz9t7j-DIYyZM_0c%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_Head_And_Shoulders_Pattern_Sep_2020-01-4c225a762427464699e42461088c1e86.jpg" target="_blank">View Head & Shoulders Pattern →</a>
+                </div>
                 
-                <img src="https://www.tradingwithrayner.com/wp-content/uploads/2018/10/68-1024x474.png" alt="H&S 2" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Head and Shoulders Top:</p>
+                    <a href="https://www.tradingwithrayner.com/wp-content/uploads/2018/10/68-1024x474.png" target="_blank">View H&S Top Example →</a>
+                </div>
                 
-                <img src="https://centerpointsecurities.com/wp-content/uploads/2023/06/Inverse-Head-and-Shoulders-Lead-in-Downtrend.png" alt="H&S 3" class="pattern-image">
+                <div class="image-cta">
+                    <p>📊 Click below to view Inverse Head and Shoulders:</p>
+                    <a href="https://centerpointsecurities.com/wp-content/uploads/2023/06/Inverse-Head-and-Shoulders-Lead-in-Downtrend.png" target="_blank">View Inverse H&S Pattern →</a>
+                </div>
                 
                 <h3>4. Double Top and Bottom</h3>
                 
