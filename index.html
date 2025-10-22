@@ -16,7 +16,10 @@
             line-height: 1.8;
             color: #2c3e50;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
         }
         
         .ebook-container {
@@ -24,8 +27,9 @@
             margin: 0 auto;
             background: white;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            border-radius: 10px;
-            overflow: hidden;
+            border-radius: 0;
+            overflow-y: auto;
+            height: 100vh;
         }
         
         .cover {
@@ -48,8 +52,8 @@
         
         .content {
             padding: 60px 50px;
-            max-height: 90vh;
             overflow-y: auto;
+            flex: 1;
         }
         
         .chapter {
