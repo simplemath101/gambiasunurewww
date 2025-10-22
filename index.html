@@ -3,985 +3,1549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Crypto Trading Guide</title>
+    <title>Mastering Crypto Trading - Complete Guide</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Georgia', serif;
             line-height: 1.8;
             color: #2c3e50;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 0;
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
+            padding: 20px;
         }
-        
+
         .ebook-container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            border-radius: 0;
-            overflow-y: auto;
-            height: 100vh;
+            border-radius: 10px;
+            overflow: hidden;
         }
-        
+
         .cover {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             padding: 80px 40px;
             text-align: center;
         }
-        
+
         .cover h1 {
             font-size: 3em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
-        .cover p {
+
+        .cover .subtitle {
             font-size: 1.3em;
             opacity: 0.9;
+            margin-bottom: 30px;
         }
-        
+
+        .cover .author {
+            font-style: italic;
+            font-size: 1.1em;
+            margin-top: 40px;
+        }
+
         .content {
             padding: 60px 50px;
         }
-        
+
         .chapter {
             margin-bottom: 60px;
             page-break-inside: avoid;
         }
-        
+
         .chapter-number {
             color: #667eea;
             font-size: 0.9em;
             font-weight: bold;
             letter-spacing: 2px;
+            text-transform: uppercase;
             margin-bottom: 10px;
         }
-        
-        h2 {
-            color: #1e3c72;
+
+        .chapter-title {
             font-size: 2.2em;
-            margin-bottom: 25px;
+            color: #1e3c72;
+            margin-bottom: 30px;
             border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
-        
-        h3 {
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
             color: #2a5298;
-            font-size: 1.6em;
-            margin-top: 35px;
-            margin-bottom: 20px;
-        }
-        
-        h4 {
-            color: #34495e;
-            font-size: 1.3em;
-            margin-top: 25px;
             margin-bottom: 15px;
+            font-weight: bold;
         }
-        
+
+        .subsection-title {
+            font-size: 1.2em;
+            color: #34495e;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+        }
+
         p {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: justify;
         }
-        
-        .pattern-box {
+
+        .highlight-box {
             background: #f8f9fa;
             border-left: 4px solid #667eea;
-            padding: 25px;
-            margin: 30px 0;
+            padding: 20px;
+            margin: 25px 0;
             border-radius: 5px;
         }
-        
-        .pattern-image {
-            display: none;
+
+        .key-point {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #2196f3;
         }
-        
-        .image-cta {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .definition {
+            background: #fff3e0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .tip {
+            background: #f1f8e9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #8bc34a;
+        }
+
+        .warning {
+            background: #ffebee;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #f44336;
+        }
+
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding-left: 50px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
             color: white;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 8px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-placeholder {
+            background: #f5f5f5;
+            border: 2px dashed #ccc;
+            padding: 30px;
+            margin: 25px 0;
             text-align: center;
-            max-width: 600px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 8px;
         }
-        
-        .image-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        .image-cta a {
-            color: white;
+
+        .image-link {
+            display: inline-block;
+            color: #667eea;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1em;
-            display: block;
-        }
-        
-        .image-cta a:hover {
-            text-decoration: underline;
-        }
-        
-        .image-cta p {
-            margin: 0 0 10px 0;
-            font-size: 0.95em;
-            opacity: 0.95;
-        }
-        
-        .key-point {
-            background: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-        }
-        
-        .warning-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-        }
-        
-        .strategy-card {
+            padding: 10px 20px;
             background: white;
             border: 2px solid #667eea;
-            padding: 25px;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .image-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .cta-text {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        
-        ul, ol {
-            margin-left: 30px;
-            margin-bottom: 20px;
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-        
-        li {
-            margin-bottom: 12px;
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
         }
-        
+
         .toc {
             background: #f8f9fa;
             padding: 30px;
             margin-bottom: 40px;
             border-radius: 8px;
         }
-        
+
         .toc h2 {
-            border: none;
+            color: #1e3c72;
             margin-bottom: 20px;
         }
-        
+
         .toc ul {
             list-style: none;
             margin-left: 0;
         }
-        
+
         .toc li {
-            padding: 8px 0;
-            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
         }
-        
-        strong {
-            color: #2c3e50;
+
+        .toc li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .links-reference {
+            background: #e8eaf6;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+        }
+
+        .links-reference h3 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .link-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+
+        .link-item strong {
+            color: #2a5298;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .link-item a {
+            color: #667eea;
+            word-break: break-all;
+            text-decoration: none;
+        }
+
+        .link-item a:hover {
+            text-decoration: underline;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .ebook-container {
+                box-shadow: none;
+            }
+            .chapter {
+                page-break-before: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+            .cover h1 {
+                font-size: 2em;
+            }
+            .chapter-title {
+                font-size: 1.8em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="ebook-container">
+        <!-- Cover Page -->
         <div class="cover">
-            <h1>📈 SIMPLE TRADING BOOK - Technical Analysis Simplified</h1>
-            <p>Master Candlesticks, Chart Patterns & Trading Psychology</p>
-            <p style="margin-top: 40px; font-size: 1em;"></p>
+            <h1>📈 MASTERING CRYPTO TRADING</h1>
+            <div class="subtitle">A Complete Guide to Market Structure, Order Flow, and Smart Money Concepts</div>
+            <div class="author">Professional Trading Strategies for the Modern Crypto Trader</div>
         </div>
-        
+
+        <!-- Content -->
         <div class="content">
+            <!-- Table of Contents -->
             <div class="toc">
-                <h2>Table of Contents</h2>
+                <h2>📚 Table of Contents</h2>
                 <ul>
-                    <li><strong>Chapter 1:</strong> Introduction to Candlestick Patterns</li>
-                    <li><strong>Chapter 2:</strong> Single Candlestick Patterns</li>
-                    <li><strong>Chapter 3:</strong> Multiple Candlestick Patterns</li>
-                    <li><strong>Chapter 4:</strong> Analyzing and Trading Candlesticks</li>
-                    <li><strong>Chapter 5:</strong> Chart Patterns Identification</li>
-                    <li><strong>Chapter 6:</strong> Trading Strategies</li>
-                    <li><strong>Chapter 7:</strong> Trading Psychology</li>
-                    <li><strong>Chapter 8:</strong> Putting It All Together</li>
+                    <li>Chapter 1: Market Structure</li>
+                    <li>Chapter 2: Supply and Demand</li>
+                    <li>Chapter 3: Liquidity and Inducement</li>
+                    <li>Chapter 4: Fair Value Gaps (FVG)</li>
+                    <li>Chapter 5: Entry Models</li>
+                    <li>Chapter 6: Trading Plan & Top-Down Analysis</li>
+                    <li>Chapter 7: Risk Management</li>
+                    <li>Image Links Reference</li>
                 </ul>
             </div>
 
-            <!-- CHAPTER 1 -->
+            <!-- Chapter 1: Market Structure -->
             <div class="chapter">
-                <div class="chapter-number">CHAPTER 1</div>
-                <h2>Introduction to Candlestick Patterns</h2>
-                
-                <p>Candlestick charts originated in 18th century Japan and have become the most popular method of displaying price action in modern trading. Each candlestick provides four crucial pieces of information: the opening price, closing price, highest price, and lowest price during a specific time period.</p>
-                
-                <h3>Anatomy of a Candlestick</h3>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Candlestick Anatomy:</p>
-                    <a href="https://cdn.britannica.com/13/237813-050-0CA3E424/candlestick-chart-definition.jpg?w=385" target="_blank">View Candlestick Chart Definition →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Candlestick Components:</p>
-                    <a href="https://trinity-core.s3.us-west-1.amazonaws.com/fortunly/assets/6328647234919.png" target="_blank">View Candlestick Components Diagram →</a>
-                </div>
-                
-                <div class="pattern-box">
-                    <h4>Key Components:</h4>
+                <div class="chapter-number">Chapter 1</div>
+                <h2 class="chapter-title">🧭 Market Structure</h2>
+
+                <div class="section">
+                    <h3 class="section-title">Understanding Market Structure</h3>
+                    
+                    <div class="definition">
+                        <strong>What is Market Structure?</strong><br>
+                        Market structure is the framework that describes how price moves through time, creating patterns of highs and lows. It's the foundation of technical analysis and helps traders understand whether the market is trending or consolidating.
+                    </div>
+
+                    <p>Market structure reveals the battle between buyers and sellers. By understanding how price creates structure, you can identify the dominant force in the market and position yourself accordingly. Every price movement leaves behind clues about future direction.</p>
+
+                    <div class="image-placeholder">
+                        <p>📊 <strong>Market Structure Diagram</strong></p>
+                        <a href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3" class="image-link" target="_blank">View Market Structure Chart</a>
+                        <p class="cta-text">👆 Click to see a visual representation of trending vs ranging markets</p>
+                    </div>
+
+                    <h4 class="subsection-title">How Price Moves: Trending vs Ranging Markets</h4>
+                    
+                    <p><strong>Trending Markets:</strong> Price creates a series of higher highs and higher lows (uptrend) or lower lows and lower highs (downtrend). These markets offer the best trading opportunities as they provide clear direction and momentum.</p>
+
+                    <p><strong>Ranging Markets:</strong> Price oscillates between established support and resistance levels without creating new structural points. These markets require different strategies, typically focused on mean reversion rather than momentum.</p>
+
+                    <div class="key-point">
+                        <strong>Key Insight:</strong> Approximately 70% of the time, markets are ranging. The skilled trader waits patiently for trending conditions and strikes when structure confirms direction.
+                    </div>
+
+                    <h4 class="subsection-title">Identifying Highs, Lows, and Swing Points</h4>
+
+                    <p>Swing points are the pivotal moments where price reverses direction, creating peaks (highs) and troughs (lows). These points define market structure and provide reference points for future analysis.</p>
+
                     <ul>
-                        <li><strong>Body:</strong> The thick part representing the range between open and close prices</li>
-                        <li><strong>Wicks/Shadows:</strong> The thin lines above and below the body showing the high and low</li>
-                        <li><strong>Color:</strong> Green/white for bullish (close > open), Red/black for bearish (close < open)</li>
+                        <li><strong>Swing High:</strong> A candlestick high that is higher than the highs of the candles immediately before and after it</li>
+                        <li><strong>Swing Low:</strong> A candlestick low that is lower than the lows of the candles immediately before and after it</li>
+                        <li><strong>Higher High (HH):</strong> A swing high that exceeds the previous swing high</li>
+                        <li><strong>Higher Low (HL):</strong> A swing low that is higher than the previous swing low</li>
+                        <li><strong>Lower Low (LL):</strong> A swing low that breaks below the previous swing low</li>
+                        <li><strong>Lower High (LH):</strong> A swing high that fails to exceed the previous swing high</li>
                     </ul>
+
+                    <div class="image-placeholder">
+                        <p>📈 <strong>Swing Points Illustration</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642790106117-e829e14a795f" class="image-link" target="_blank">View Swing Points Example</a>
+                        <p class="cta-text">👆 Click to see how to identify swing highs and lows on a chart</p>
+                    </div>
                 </div>
-                
-                <p>Understanding candlestick patterns is essential for crypto trading because they provide immediate visual insights into market sentiment, momentum, and potential reversals.</p>
+
+                <div class="section">
+                    <h3 class="section-title">BOS and CHOCH</h3>
+
+                    <p>These two concepts are critical for understanding market momentum and potential reversals. They tell you whether the current trend is likely to continue or if a reversal is imminent.</p>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">BOS (Break of Structure)</h4>
+                        <p>A Break of Structure occurs when price breaks beyond a previous swing high (in an uptrend) or swing low (in a downtrend). This confirms that the trend is continuing and provides confidence for trend-following entries.</p>
+                        
+                        <p><strong>Bullish BOS:</strong> Price breaks above the previous swing high, confirming upward momentum.</p>
+                        <p><strong>Bearish BOS:</strong> Price breaks below the previous swing low, confirming downward momentum.</p>
+                        
+                        <div class="tip">
+                            <strong>Trading Tip:</strong> After a BOS, wait for price to retrace into a demand zone (uptrend) or supply zone (downtrend) before entering. This gives you better risk-to-reward ratios.
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">CHOCH (Change of Character)</h4>
+                        <p>A Change of Character signals a potential trend reversal. It occurs when price breaks the opposite structure—for example, in an uptrend, price breaks below a previous swing low instead of making a higher low.</p>
+                        
+                        <p><strong>Bullish CHOCH:</strong> During a downtrend, price breaks above a previous swing high.</p>
+                        <p><strong>Bearish CHOCH:</strong> During an uptrend, price breaks below a previous swing low.</p>
+                        
+                        <div class="warning">
+                            <strong>Important:</strong> CHOCH alone is not enough confirmation for a reversal. Wait for price to create a new structure in the opposite direction (forming a new high/low) before committing to reversal trades.
+                        </div>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>🔄 <strong>BOS vs CHOCH Comparison</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642543492481-44e81e3914a7" class="image-link" target="_blank">View BOS and CHOCH Examples</a>
+                        <p class="cta-text">👆 Click to see the difference between BOS and CHOCH on real charts</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Internal and External Structure</h3>
+
+                    <p>Understanding the relationship between different timeframe structures is crucial for accurate market analysis. This multi-timeframe approach helps you avoid false signals and align your trades with the dominant trend.</p>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">External Structure (Higher Timeframe)</h4>
+                        <p>External structure represents the major swing points visible on higher timeframes (4H, Daily, Weekly). These are the primary levels that institutional traders and smart money are watching. External structure defines the overall trend and major support/resistance zones.</p>
+                        
+                        <p>Think of external structure as the "big picture" that governs overall market direction. It's slower to change and provides the context for all lower timeframe movements.</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Internal Structure (Lower Timeframe)</h4>
+                        <p>Internal structure consists of the smaller swing points that form within the legs of external structure. These are visible on lower timeframes (15m, 1H) and provide precise entry opportunities within the context of the higher timeframe trend.</p>
+                        
+                        <p>Internal structure helps you refine your entries and exits. While external structure tells you the direction, internal structure tells you the timing.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>The Golden Rule:</strong> Trade internal structure in the direction of external structure. When higher timeframe structure is bullish, look for bullish internal structure breaks on lower timeframes for entries. This alignment dramatically improves your win rate.
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>🔍 <strong>Multi-Timeframe Analysis</strong></p>
+                        <a href="https://images.unsplash.com/photo-1640826514546-7d2d357e0b9d" class="image-link" target="_blank">View Internal vs External Structure</a>
+                        <p class="cta-text">👆 Click to see how internal and external structure work together</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- CHAPTER 2 -->
+            <!-- Chapter 2: Supply and Demand -->
             <div class="chapter">
-                <div class="chapter-number">CHAPTER 2</div>
-                <h2>Single Candlestick Patterns</h2>
-                
-                <h3>1. Doji</h3>
-                <p>A Doji forms when the opening and closing prices are virtually equal, creating a cross or plus sign. This pattern signals indecision in the market and potential reversal.</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Doji Pattern Example:</p>
-                    <a href="https://www.forex.com/en-us/-/media/project/gain-capital/forex/feature-images/learn-forex-trading/doji-candle/doji-candlesticks-daily-eur-usd.png" target="_blank">View Doji Candlestick Pattern →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Doji Types:</p>
-                    <a href="https://www.investopedia.com/thmb/p6yBiuIcsmocFBwJ-o40uwHx6MY%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/DojiDefinition-efc3ba7213db4200a0a69f354369960b.png" target="_blank">View Different Doji Types →</a>
-                </div>
-                
-                <div class="pattern-box">
-                    <h4>Trading the Doji:</h4>
+                <div class="chapter-number">Chapter 2</div>
+                <h2 class="chapter-title">⚖️ Supply and Demand</h2>
+
+                <div class="section">
+                    <h3 class="section-title">Understanding Supply & Demand Zones</h3>
+
+                    <div class="definition">
+                        <strong>What are Supply and Demand Zones?</strong><br>
+                        Supply and demand zones are areas on the chart where significant buying or selling pressure caused an imbalance, resulting in strong price movements away from those levels. These zones represent areas where institutional orders were placed.
+                    </div>
+
+                    <p>Unlike traditional support and resistance lines, supply and demand zones are areas rather than precise levels. They represent regions where large players accumulated or distributed positions, leaving behind footprints of their activity.</p>
+
+                    <p><strong>Demand Zone (Buying Area):</strong> An area where buyers overwhelmed sellers, causing price to move aggressively higher. These are potential support zones where price may bounce again.</p>
+
+                    <p><strong>Supply Zone (Selling Area):</strong> An area where sellers overwhelmed buyers, causing price to move aggressively lower. These are potential resistance zones where price may reverse again.</p>
+
+                    <div class="image-placeholder">
+                        <p>⚡ <strong>Supply and Demand Zones</strong></p>
+                        <a href="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e" class="image-link" target="_blank">View Supply & Demand Example</a>
+                        <p class="cta-text">👆 Click to see how to identify supply and demand zones on charts</p>
+                    </div>
+
+                    <h4 class="subsection-title">How Price Reacts to These Zones</h4>
+
+                    <p>When price returns to a supply or demand zone, several scenarios can occur:</p>
+
                     <ul>
-                        <li><strong>Significance:</strong> Indicates market indecision and potential trend reversal</li>
-                        <li><strong>Context:</strong> Most powerful at the top of uptrends or bottom of downtrends</li>
-                        <li><strong>Confirmation:</strong> Wait for the next candle to confirm direction</li>
+                        <li><strong>Respect:</strong> Price bounces off the zone, confirming it's still valid</li>
+                        <li><strong>Mitigation:</strong> Price moves into the zone and partially fills orders before reversing</li>
+                        <li><strong>Violation:</strong> Price moves completely through the zone, invalidating it</li>
                     </ul>
+
+                    <div class="tip">
+                        <strong>Pro Tip:</strong> Fresh zones (untested after creation) have the highest probability of causing reactions. Once a zone has been tested multiple times, its strength diminishes.
+                    </div>
                 </div>
-                
-                <h3>2. Hammer and Hanging Man</h3>
-                <p>These patterns have small bodies with long lower wicks. A Hammer appears at the bottom of downtrends (bullish), while a Hanging Man appears at the top of uptrends (bearish).</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Hammer & Hanging Man Patterns:</p>
-                    <a href="https://framerusercontent.com/images/KRhwQSOcB60evb3FB0u4T1MnJD8.jpg?height=3456&width=6912" target="_blank">View Hammer & Hanging Man Chart →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Hanging Man Example:</p>
-                    <a href="https://navi.com/blog/wp-content/uploads/2022/12/Hanging-Man-Candlestick.jpg" target="_blank">View Hanging Man Candlestick →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Hammer Pattern Details:</p>
-                    <a href="https://media.marketrealist.com/brand-img/MVrsSBe8e/0x0/uploads/2014/12/hammer-and-hanging-man11.png" target="_blank">View Hammer Pattern Guide →</a>
-                </div>
-                
-                <div class="key-point">
-                    <strong>Pro Tip:</strong> The longer the lower wick relative to the body, the more significant the pattern. The lower wick should be at least twice the length of the body.
-                </div>
-                
-                <h3>3. Shooting Star and Inverted Hammer</h3>
-                <p>These patterns have small bodies with long upper wicks. The Shooting Star appears at trend tops (bearish), while the Inverted Hammer appears at trend bottoms (bullish).</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Shooting Star & Inverted Hammer:</p>
-                    <a href="https://cms-resources.groww.in/uploads/Screenshot_2024_12_24_at_12_19_42_PM_5613e36d15.png" target="_blank">View Shooting Star Pattern →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Shooting Star Example:</p>
-                    <a href="https://www.xs.com/storage/blogs/8528ec3e-67e1-41de-b7b4-93170ef28b51/shooting-star-candlestick.jpg" target="_blank">View Shooting Star Chart →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Inverted Hammer:</p>
-                    <a href="https://lakshmishree.com/blog/wp-content/uploads/2024/12/Blog-Img-2024-12-28T120909.506-1024x473.jpg" target="_blank">View Inverted Hammer Pattern →</a>
-                </div>
-                
-                <h3>4. Marubozu</h3>
-                <p>A Marubozu is a candlestick with little or no wicks, indicating strong momentum in one direction.</p>
-                
-                <div class="pattern-box">
-                    <h4>Trading Marubozu Patterns:</h4>
+
+                <div class="section">
+                    <h3 class="section-title">Order Flow</h3>
+
+                    <p>Order flow is the real-time analysis of buying and selling pressure in the market. It reveals which side (buyers or sellers) is in control and helps predict future price movement.</p>
+
+                    <h4 class="subsection-title">Reading Price Movement</h4>
+
+                    <p><strong>Bullish Order Flow:</strong></p>
                     <ul>
-                        <li>Strong continuation signal in the direction of the trend</li>
-                        <li>Enter on the close of the Marubozu or on a small pullback</li>
-                        <li>Set stop loss just beyond the high/low of the Marubozu</li>
+                        <li>Strong green candles with small wicks</li>
+                        <li>Consecutive higher highs and higher lows</li>
+                        <li>Quick moves through resistance</li>
+                        <li>Shallow pullbacks</li>
+                        <li>Volume increasing on upward moves</li>
                     </ul>
+
+                    <p><strong>Bearish Order Flow:</strong></p>
+                    <ul>
+                        <li>Strong red candles with small wicks</li>
+                        <li>Consecutive lower lows and lower highs</li>
+                        <li>Quick moves through support</li>
+                        <li>Shallow pullbacks</li>
+                        <li>Volume increasing on downward moves</li>
+                    </ul>
+
+                    <div class="image-placeholder">
+                        <p>💹 <strong>Order Flow Analysis</strong></p>
+                        <a href="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f" class="image-link" target="_blank">View Order Flow Examples</a>
+                        <p class="cta-text">👆 Click to see bullish and bearish order flow patterns</p>
+                    </div>
+
+                    <h4 class="subsection-title">Identifying Momentum and Exhaustion</h4>
+
+                    <p><strong>Momentum Signals:</strong></p>
+                    <ul>
+                        <li>Large candle bodies relative to wicks</li>
+                        <li>Consecutive candles in the same direction</li>
+                        <li>Breaking through zones with ease</li>
+                        <li>Increasing range of candles</li>
+                    </ul>
+
+                    <p><strong>Exhaustion Signals:</strong></p>
+                    <ul>
+                        <li>Long wicks with small bodies (rejection)</li>
+                        <li>Slowing momentum (smaller candle ranges)</li>
+                        <li>Multiple attempts to break a level with failure</li>
+                        <li>Divergence between price and volume</li>
+                    </ul>
+
+                    <div class="warning">
+                        <strong>Warning:</strong> Exhaustion doesn't guarantee an immediate reversal. Price can remain in exhaustion for extended periods before finally reversing. Wait for structure confirmation.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Order Blocks</h3>
+
+                    <div class="definition">
+                        <strong>What is an Order Block?</strong><br>
+                        An order block is the last up-close candle before a bearish move (bearish OB) or the last down-close candle before a bullish move (bullish OB). It represents where institutional orders were placed before causing a significant move in the opposite direction.
+                    </div>
+
+                    <p>Order blocks are more refined than simple supply and demand zones. They pinpoint the exact candle or cluster of candles where smart money initiated their positions, making them highly accurate for entries.</p>
+
+                    <h4 class="subsection-title">How to Identify Valid Order Blocks</h4>
+
+                    <p>Not all order blocks are created equal. Valid order blocks have specific characteristics:</p>
+
+                    <ul>
+                        <li><strong>Strong Impulse:</strong> The move away from the OB must be strong and decisive</li>
+                        <li><strong>Clean Structure:</strong> Minimal consolidation before the impulse move</li>
+                        <li><strong>Volume:</strong> Increased volume on the impulse candle away from the OB</li>
+                        <li><strong>Freshness:</strong> Untested OBs have higher probability</li>
+                        <li><strong>Alignment:</strong> OB aligns with higher timeframe structure</li>
+                    </ul>
+
+                    <div class="image-placeholder">
+                        <p>📦 <strong>Order Block Examples</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642790595397-7047dc98fa72" class="image-link" target="_blank">View Order Block Identification</a>
+                        <p class="cta-text">👆 Click to see how to identify and trade order blocks</p>
+                    </div>
+
+                    <h4 class="subsection-title">How to Choose Order Blocks</h4>
+
+                    <p>When multiple order blocks are present, use these criteria to select the best one:</p>
+
+                    <div class="highlight-box">
+                        <p><strong>1. Alignment with Structure:</strong> The OB should align with a BOS or CHOCH. An OB that forms after a structural break has much higher probability.</p>
+
+                        <p><strong>2. Liquidity Before OB:</strong> Look for liquidity sweeps (equal highs/lows taken) just before the OB forms. Smart money often grabs liquidity before placing their orders.</p>
+
+                        <p><strong>3. Confirmation with BOS/CHOCH:</strong> The OB should be followed by a clear break of structure in the expected direction, confirming that orders are being filled.</p>
+
+                        <p><strong>4. Proper Mitigation and Imbalance:</strong> The OB should show imbalance (FVG) within or near it, and price should partially mitigate it rather than blowing straight through.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>Golden Rule for Order Blocks:</strong> The best order blocks combine all four criteria: structural alignment, liquidity grab, BOS confirmation, and imbalance. Never settle for OBs that only meet one or two criteria.
+                    </div>
                 </div>
             </div>
 
-            <!-- CHAPTER 3 -->
+            <!-- Chapter 3: Liquidity and Inducement -->
             <div class="chapter">
-                <div class="chapter-number">CHAPTER 3</div>
-                <h2>Multiple Candlestick Patterns</h2>
-                
-                <h3>1. Engulfing Patterns</h3>
-                <p>Engulfing patterns consist of two candles where the second candle's body completely engulfs the first candle's body. These are powerful reversal signals.</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Bullish Engulfing Pattern:</p>
-                    <a href="https://tradeciety.com/hubfs/Bullish%20Engulfing%20Candle.png" target="_blank">View Bullish Engulfing Candle →</a>
+                <div class="chapter-number">Chapter 3</div>
+                <h2 class="chapter-title">💧 Liquidity and Inducement</h2>
+
+                <div class="section">
+                    <h3 class="section-title">Types of Liquidity</h3>
+
+                    <div class="definition">
+                        <strong>What is Liquidity?</strong><br>
+                        Liquidity refers to clusters of stop-loss orders and pending orders that accumulate at obvious price levels. Smart money (institutions) targets these liquidity pools to fill their large orders efficiently.
+                    </div>
+
+                    <p>Understanding liquidity is like seeing the matrix of the market. While retail traders place stops at obvious levels, smart money hunts these stops before moving price in their intended direction. This creates the "stop hunts" and "false breakouts" that trap uninformed traders.</p>
+
+                    <h4 class="subsection-title">Equal Highs/Lows</h4>
+
+                    <p>Equal highs or equal lows are swing points that form at approximately the same price level. These areas are liquidity magnets because retail traders place their stop-losses just above equal highs (for shorts) or below equal lows (for longs).</p>
+
+                    <div class="tip">
+                        <strong>Trading Tip:</strong> When you see equal highs in an uptrend, expect price to sweep above them before reversing. When you see equal lows in a downtrend, expect price to sweep below them before reversing. This is classic liquidity engineering.
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>💰 <strong>Equal Highs/Lows Liquidity</strong></p>
+                        <a href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3" class="image-link" target="_blank">View Liquidity Pools</a>
+                        <p class="cta-text">👆 Click to see equal highs and lows liquidity examples</p>
+                    </div>
+
+                    <h4 class="subsection-title">Trendline Liquidity</h4>
+
+                    <p>Trendlines are another obvious place where retail traders congregate. Smart money knows that thousands of traders are watching the same trendlines and placing their orders there. Breaking below an upward trendline or above a downward trendline triggers mass stop-losses and provides liquidity.</p>
+
+                    <h4 class="subsection-title">Session Liquidity</h4>
+
+                    <p>Session highs and lows (from Asian, London, or New York sessions) attract liquidity. The previous day's high/low, previous week's high/low, and previous month's high/low are all significant liquidity levels that price often targets.</p>
+
+                    <h4 class="subsection-title">Internal vs External Liquidity</h4>
+
+                    <p><strong>Internal Liquidity:</strong> Liquidity that sits within the current range. This includes equal highs/lows and swing points inside the larger structure. Internal liquidity is often used for inducement—grabbing stops to fuel the move toward external liquidity.</p>
+
+                    <p><strong>External Liquidity:</strong> Liquidity that sits beyond the current structure highs or lows. This is the primary target for smart money. Major structural highs/lows hold the most external liquidity and are the ultimate destinations for price moves.</p>
+
+                    <div class="key-point">
+                        <strong>Liquidity Concept:</strong> Price moves from liquidity to liquidity. It sweeps internal liquidity (inducement) to gather momentum, then targets external liquidity (the real objective). Understanding this flow gives you a massive edge.
+                    </div>
                 </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Engulfing Pattern Example:</p>
-                    <a href="https://eu-images.contentstack.com/v3/assets/blt73dfd92ee49f59a6/blt34fe88616c41c820/685bd3169eedb7610ddf7e49/MDP-3296_1200x675_2.png" target="_blank">View Engulfing Pattern Chart →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Bearish Engulfing:</p>
-                    <a href="https://www.strike.money/wp-content/uploads/2023/09/Bearish-Engulfing-Candlestick-Definition-how-to-use-in-trading-examples-Banner-1.jpg" target="_blank">View Bearish Engulfing Guide →</a>
-                </div>
-                
-                <div class="pattern-box">
-                    <h4>Bullish Engulfing:</h4>
+
+                <div class="section">
+                    <h3 class="section-title">How to Spot Liquidity</h3>
+
+                    <p>Identifying liquidity zones is a critical skill that separates profitable traders from the rest. Here's how to systematically find liquidity on any chart:</p>
+
                     <ul>
-                        <li>Appears at the bottom of downtrends</li>
-                        <li>Second (green) candle engulfs the first (red) candle</li>
-                        <li>Signals strong buying pressure and potential reversal</li>
+                        <li><strong>Mark All Swing Highs and Lows:</strong> These are natural stop-loss placement areas</li>
+                        <li><strong>Identify Equal Levels:</strong> Multiple touches at the same price create liquidity pools</li>
+                        <li><strong>Note Psychological Levels:</strong> Round numbers (e.g., $50,000 for Bitcoin) attract orders</li>
+                        <li><strong>Previous Session Extremes:</strong> Daily, weekly, monthly highs and lows</li>
+                        <li><strong>Trendline Breaks:</strong> Where retail traders are stopped out</li>
+                        <li><strong>Gaps:</strong> Overnight or weekend gaps often see liquidity sweeps</li>
                     </ul>
-                    <h4>Bearish Engulfing:</h4>
+
+                    <div class="image-placeholder">
+                        <p>🎯 <strong>Liquidity Identification</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642790106117-e829e14a795f" class="image-link" target="_blank">View Liquidity Spots</a>
+                        <p class="cta-text">👆 Click to see how to mark liquidity on your charts</p>
+                    </div>
+
+                    <h4 class="subsection-title">Areas Where Traders' Stop-Losses Are Likely Placed</h4>
+
+                    <p>Put yourself in the shoes of retail traders. Where would they place stops?</p>
+
                     <ul>
-                        <li>Appears at the top of uptrends</li>
-                        <li>Second (red) candle engulfs the first (green) candle</li>
-                        <li>Signals strong selling pressure and potential reversal</li>
+                        <li>Just above/below obvious swing points</li>
+                        <li>Beyond trendlines they're trading</li>
+                        <li>Above/below consolidation ranges (breakout traders' stops)</li>
+                        <li>At round psychological numbers</li>
+                        <li>Previous day's high/low (common for day traders)</li>
                     </ul>
+
+                    <h4 class="subsection-title">Points Where Smart Money Targets Liquidity Pools</h4>
+                    
+                    <p>Smart money doesn't randomly hunt liquidity. They target specific pools that provide the most efficiency for their large orders:</p>
+
+                    <ul>
+                        <li><strong>Breakout Trap Zones:</strong> Areas where false breakouts previously occurred</li>
+                        <li><strong>Multiple Timeframe Confluence:</strong> Where liquidity aligns across several timeframes</li>
+                        <li><strong>Pre-News Levels:</strong> Stops accumulated before major news events</li>
+                        <li><strong>Old Swing Points:</strong> Significant highs/lows from weeks or months ago</li>
+                        <li><strong>Retail Patterns:</strong> Head and shoulders, triangles, wedges—patterns that retail trades</li>
+                    </ul>
+
+                    <div class="warning">
+                        <strong>Critical Insight:</strong> Smart money doesn't fight retail—they use retail as exit liquidity. When everyone is buying, institutions are selling to them. When everyone is selling in panic, institutions are buying from them.
+                    </div>
                 </div>
-                
-                <h3>2. Morning Star and Evening Star</h3>
-                <p>These three-candle patterns are among the most reliable reversal signals in technical analysis.</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Morning Star Pattern:</p>
-                    <a href="https://cms-resources.groww.in/uploads/Morning_star_pattern_1_4f6ecfeaac.png" target="_blank">View Morning Star Pattern →</a>
+
+                <div class="section">
+                    <h3 class="section-title">Internal and External Liquidity Deep Dive</h3>
+
+                    <p>The relationship between internal and external liquidity creates the roadmap for price movement. Mastering this concept transforms how you read charts.</p>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Internal Liquidity (Inducement)</h4>
+                        
+                        <p>Internal liquidity serves as bait. Smart money sweeps these levels to:</p>
+                        <ul>
+                            <li>Trigger retail stops and create momentum</li>
+                            <li>Generate the fuel needed to reach external liquidity</li>
+                            <li>Create the appearance of a reversal (false signal)</li>
+                            <li>Establish optimal entry positions</li>
+                        </ul>
+
+                        <p><strong>Example:</strong> In a bullish market structure, price might sweep below an internal low (taking out stops), creating a false breakdown. This inducement generates selling pressure that smart money absorbs, then price reverses sharply upward toward external liquidity above.</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">External Liquidity (True Target)</h4>
+                        
+                        <p>External liquidity represents the real objective. These are the major stops and orders that sit beyond current structure:</p>
+                        <ul>
+                            <li>All-time highs or lows</li>
+                            <li>Major swing points on daily/weekly charts</li>
+                            <li>Month/year opening levels</li>
+                            <li>Significant psychological levels</li>
+                        </ul>
+
+                        <p><strong>Example:</strong> Bitcoin trading at $42,000 with previous high at $44,000. The $44,000 level is external liquidity. Price will likely sweep internal lows first (perhaps $41,500), then drive toward $44,000+ to grab external liquidity.</p>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>🌊 <strong>Liquidity Flow Diagram</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642543492481-44e81e3914a7" class="image-link" target="_blank">View Internal vs External Liquidity</a>
+                        <p class="cta-text">👆 Click to see how price flows from internal to external liquidity</p>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>Trading Strategy:</strong> When price sweeps internal liquidity and shows reversal signs (CHOCH, strong rejection candle, order block formation), enter in the direction of external liquidity. This alignment gives you high-probability trades with excellent risk-reward.
+                    </div>
                 </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Morning Star Example:</p>
-                    <a href="https://www.tradingwithrayner.com/wp-content/uploads/2018/10/38-1024x580.png" target="_blank">View Morning Star Chart →</a>
+            </div>
+
+            <!-- Chapter 4: Fair Value Gaps -->
+            <div class="chapter">
+                <div class="chapter-number">Chapter 4</div>
+                <h2 class="chapter-title">⚡ Fair Value Gaps (FVG)</h2>
+
+                <div class="section">
+                    <h3 class="section-title">What is FVG?</h3>
+
+                    <div class="definition">
+                        <strong>Fair Value Gap Definition</strong><br>
+                        A Fair Value Gap is an imbalance in price action where price moves so quickly that it leaves behind an unfilled area on the chart. This gap represents inefficiency—an area where fair value was not established because one side (buyers or sellers) completely overwhelmed the other.
+                    </div>
+
+                    <p>FVGs appear as three-candle patterns where the wicks of candles 1 and 3 don't overlap, leaving a visible gap. This gap represents "fair value" that price tends to return to and fill before continuing in the original direction.</p>
+
+                    <div class="image-placeholder">
+                        <p>⚡ <strong>Fair Value Gap Formation</strong></p>
+                        <a href="https://images.unsplash.com/photo-1640826514546-7d2d357e0b9d" class="image-link" target="_blank">View FVG Examples</a>
+                        <p class="cta-text">👆 Click to see how Fair Value Gaps form on charts</p>
+                    </div>
+
+                    <h4 class="subsection-title">Price Imbalance and Rebalancing Concept</h4>
+
+                    <p>Think of FVGs as debts that the market must repay. When price creates an imbalance by moving too quickly, it eventually returns to "balance the books" by filling that gap.</p>
+
+                    <p><strong>Rebalancing occurs when:</strong></p>
+                    <ul>
+                        <li>Price returns to the FVG zone</li>
+                        <li>At least 50% of the gap is filled</li>
+                        <li>Often, the entire gap gets filled before price continues</li>
+                    </ul>
+
+                    <div class="tip">
+                        <strong>Pro Tip:</strong> Not all FVGs get filled immediately. Some remain open for days or weeks. The larger the timeframe of the FVG, the more significant it is and the higher the probability it will eventually be filled.
+                    </div>
                 </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Evening Star Pattern:</p>
-                    <a href="https://www.investopedia.com/thmb/ElGSD3eD-VwouJwBGbe3aq10Lb4%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_Evening_Star_Dec_2020-01-2e934a9c033c47debb64279250a18ea2.jpg" target="_blank">View Evening Star Pattern →</a>
+
+                <div class="section">
+                    <h3 class="section-title">Buy-Sell Imbalance</h3>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Buy-Side Imbalance (Bullish FVG)</h4>
+                        
+                        <p>A buy-side imbalance occurs when buyers are so aggressive that they push price up rapidly, leaving a gap. This creates a bullish FVG—an area of unfilled value below current price.</p>
+
+                        <p><strong>Characteristics:</strong></p>
+                        <ul>
+                            <li>Three consecutive candles with upward momentum</li>
+                            <li>Gap between candle 1's high and candle 3's low</li>
+                            <li>Strong bullish candle in the middle (candle 2)</li>
+                            <li>Represents demand exceeding supply dramatically</li>
+                        </ul>
+
+                        <p><strong>Trading Application:</strong> When price retraces into a bullish FVG after a BOS, it presents a buying opportunity. The FVG acts as support, and you can enter long positions within the gap with stops below it.</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Sell-Side Imbalance (Bearish FVG)</h4>
+                        
+                        <p>A sell-side imbalance occurs when sellers are so aggressive that they push price down rapidly, leaving a gap. This creates a bearish FVG—an area of unfilled value above current price.</p>
+
+                        <p><strong>Characteristics:</strong></p>
+                        <ul>
+                            <li>Three consecutive candles with downward momentum</li>
+                            <li>Gap between candle 1's low and candle 3's high</li>
+                            <li>Strong bearish candle in the middle (candle 2)</li>
+                            <li>Represents supply exceeding demand dramatically</li>
+                        </ul>
+
+                        <p><strong>Trading Application:</strong> When price retraces into a bearish FVG after a BOS, it presents a selling opportunity. The FVG acts as resistance, and you can enter short positions within the gap with stops above it.</p>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>📊 <strong>Buy-Side vs Sell-Side Imbalances</strong></p>
+                        <a href="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e" class="image-link" target="_blank">View Bullish and Bearish FVGs</a>
+                        <p class="cta-text">👆 Click to see examples of both types of imbalances</p>
+                    </div>
                 </div>
-                
-                <div class="key-point">
-                    <strong>Morning Star (Bullish):</strong>
-                    <ol>
-                        <li>Long bearish candle</li>
-                        <li>Small-bodied candle (the "star") gapping down</li>
-                        <li>Long bullish candle closing above the midpoint of the first candle</li>
+
+                <div class="section">
+                    <h3 class="section-title">Premium and Discount</h3>
+
+                    <p>Every market range can be divided into premium and discount zones. This concept helps you buy low (discount) and sell high (premium), increasing your win rate and risk-reward ratios.</p>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Understanding Equilibrium</h4>
+                        
+                        <p>Draw the range from a significant low to a significant high. The 50% level is equilibrium—fair value. Everything above 50% is premium (expensive). Everything below 50% is discount (cheap).</p>
+
+                        <p><strong>The Range Breakdown:</strong></p>
+                        <ul>
+                            <li><strong>100% - 75%:</strong> Extreme Premium</li>
+                            <li><strong>75% - 50%:</strong> Premium</li>
+                            <li><strong>50%:</strong> Equilibrium (Fair Value)</li>
+                            <li><strong>50% - 25%:</strong> Discount</li>
+                            <li><strong>25% - 0%:</strong> Extreme Discount</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Premium Zone (Sell Area Above Equilibrium)</h4>
+                        
+                        <p>The premium zone is where you look for short entries if you're bearish. This is where price is "expensive" relative to the range, making it an ideal area to sell.</p>
+
+                        <div class="warning">
+                            <strong>Important:</strong> Never short just because price is in premium. You need confirmation that sellers are taking control (CHOCH, rejection candle, etc.). Premium alone is not an entry signal.
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Discount Zone (Buy Area Below Equilibrium)</h4>
+                        
+                        <p>The discount zone is where you look for long entries if you're bullish. This is where price is "cheap" relative to the range, making it an ideal area to buy.</p>
+
+                        <div class="tip">
+                            <strong>Golden Rule:</strong> In an uptrend, only buy in discount. In a downtrend, only sell in premium. This simple rule prevents you from chasing price and improves your entries dramatically.
+                        </div>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>⚖️ <strong>Premium and Discount Zones</strong></p>
+                        <a href="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f" class="image-link" target="_blank">View Premium/Discount Analysis</a>
+                        <p class="cta-text">👆 Click to see how to identify premium and discount zones on your charts</p>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>Advanced Concept:</strong> FVGs that form in discount zones during an uptrend are the highest probability longs. FVGs that form in premium zones during a downtrend are the highest probability shorts. This combination of concepts creates A+ setups.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 5: Entry Models -->
+            <div class="chapter">
+                <div class="chapter-number">Chapter 5</div>
+                <h2 class="chapter-title">🎯 Entry Models</h2>
+
+                <div class="section">
+                    <h3 class="section-title">Continuation Entry</h3>
+
+                    <p>The continuation entry is one of the highest probability setups because you're trading with the established trend after it has proven itself with a clear Break of Structure.</p>
+
+                    <div class="definition">
+                        <strong>Continuation Entry Definition</strong><br>
+                        A continuation entry occurs after price breaks structure in the direction of the trend (BOS), then retraces into a valid order block or FVG, providing an opportunity to enter in the direction of the trend continuation.
+                    </div>
+
+                    <h4 class="subsection-title">Step-by-Step Continuation Entry Process</h4>
+
+                    <ol class="step-list">
+                        <li><strong>Identify the Trend:</strong> Confirm you're in an uptrend (HH, HL) or downtrend (LL, LH) on your chosen timeframe</li>
+                        
+                        <li><strong>Wait for BOS:</strong> Price must break the previous swing high (uptrend) or swing low (downtrend) to confirm continuation</li>
+                        
+                        <li><strong>Mark the Order Block/FVG:</strong> Identify the last opposing candle before the BOS move and any FVGs created during the impulse</li>
+                        
+                        <li><strong>Wait for Retracement:</strong> Be patient as price pulls back into your marked zone. Don't chase the initial impulse</li>
+                        
+                        <li><strong>Look for Confirmation:</strong> When price reaches the OB/FVG, wait for rejection signs or a lower timeframe BOS</li>
+                        
+                        <li><strong>Enter the Trade:</strong> Place entry within the OB/FVG with stop loss below the OB (longs) or above the OB (shorts)</li>
+                        
+                        <li><strong>Set Targets:</strong> Target the next liquidity level, structural high/low, or use a risk-reward ratio of at least 1:3</li>
                     </ol>
-                    <strong>Evening Star (Bearish):</strong>
-                    <ol>
-                        <li>Long bullish candle</li>
-                        <li>Small-bodied candle gapping up</li>
-                        <li>Long bearish candle closing below the midpoint of the first candle</li>
+
+                    <div class="image-placeholder">
+                        <p>🎯 <strong>Continuation Entry Example</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642790595397-7047dc98fa72" class="image-link" target="_blank">View Continuation Setup</a>
+                        <p class="cta-text">👆 Click to see a complete continuation entry setup with all elements</p>
+                    </div>
+
+                    <div class="tip">
+                        <strong>Pro Tip:</strong> The best continuation entries occur after liquidity sweeps. If price sweeps internal liquidity before the BOS, then retraces to your OB, the probability increases significantly.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">CHOCH Entry</h3>
+
+                    <p>The CHOCH entry is used when you anticipate a trend reversal. This is a more advanced and riskier entry model, but when executed correctly, it can catch the beginning of major trend reversals.</p>
+
+                    <div class="definition">
+                        <strong>CHOCH Entry Definition</strong><br>
+                        A CHOCH entry occurs after price breaks structure in the opposite direction of the previous trend, signaling a Change of Character. This suggests the trend may be reversing, creating an opportunity to enter early in the new direction.
+                    </div>
+
+                    <h4 class="subsection-title">Step-by-Step CHOCH Entry Process</h4>
+
+                    <ol class="step-list">
+                        <li><strong>Identify Weakness:</strong> Look for signs the current trend is weakening</li>
+                        
+                        <li><strong>Spot the CHOCH:</strong> Price breaks opposite structure</li>
+                        
+                        <li><strong>Wait for Structure Formation:</strong> Wait for price to create a new high or low in the new direction</li>
+                        
+                        <li><strong>Identify Order Block:</strong> Mark the order block that formed before the CHOCH move</li>
+                        
+                        <li><strong>Wait for Retracement:</strong> Price should retrace back to the OB/FVG</li>
+                        
+                        <li><strong>Confirm with Lower Timeframe BOS:</strong> Drop to a lower timeframe and wait for a BOS</li>
+                        
+                        <li><strong>Enter with Caution:</strong> Enter within the OB with stops beyond the previous structure point</li>
                     </ol>
-                </div>
-                
-                <h3>3. Three White Soldiers and Three Black Crows</h3>
-                <p>These three-candle patterns indicate strong continuation or reversal with sustained momentum.</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Three White Soldiers:</p>
-                    <a href="https://media.warriortrading.com/2020/11/20104733/Three-White-Soldiers-Pattern.jpg" target="_blank">View Three White Soldiers Pattern →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Three White Soldiers Chart:</p>
-                    <a href="https://images.contentstack.io/v3/assets/bltc23b87e0fef43b66/bltf3d985a97c5312b4/66be6c4f843a42764c761720/three-white-soldiers-chart.jpg" target="_blank">View Three Soldiers Example →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Three Black Crows:</p>
-                    <a href="https://www.investopedia.com/thmb/oMOxnKYDVMWGtlaCnDC4TWVTcvI%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/The5MostPowerfulCandlestickPatterns3-f3b280e0165a4b2fa5e5d3b42b36e337.png" target="_blank">View Three Black Crows Pattern →</a>
-                </div>
-                
-                <div class="pattern-box">
-                    <h4>Three White Soldiers (Bullish):</h4>
-                    <ul>
-                        <li>Three consecutive long green candles</li>
-                        <li>Each closes near its high with minimal upper wick</li>
-                        <li>Each opens within or near the previous candle's body</li>
-                    </ul>
-                    <h4>Three Black Crows (Bearish):</h4>
-                    <ul>
-                        <li>Three consecutive long red candles</li>
-                        <li>Each closes near its low with minimal lower wick</li>
-                        <li>Each opens within or near the previous candle's body</li>
-                    </ul>
-                </div>
-                
-                <h3>4. Harami Patterns</h3>
-                <p>The Harami is a two-candle pattern where the second candle is contained within the body of the first candle.</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Harami Pattern:</p>
-                    <a href="https://images.surferseo.art/47940153-1dc7-4157-8bd3-b682bf396742.png" target="_blank">View Harami Pattern Diagram →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Bullish Harami:</p>
-                    <a href="https://www.chartmill.com/images/uploads/bullish_harami_pattern_cd63dfb0e6.webp" target="_blank">View Bullish Harami Chart →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Bearish Harami:</p>
-                    <a href="https://alchemymarkets.com/wp-content/uploads/2025/02/1st-Bearish-Harami-Candlestick-Chart-Analysis.png" target="_blank">View Bearish Harami Analysis →</a>
-                </div>
-            </div>
 
-            <!-- CHAPTER 4 -->
-            <div class="chapter">
-                <div class="chapter-number">CHAPTER 4</div>
-                <h2>Analyzing and Trading Candlesticks</h2>
-                
-                <h3>Context is Everything</h3>
-                <p>The most critical rule in candlestick trading is that patterns must be analyzed within the broader market context.</p>
-                
-                <div class="key-point">
-                    <h4>Essential Context Factors:</h4>
-                    <ul>
-                        <li><strong>Trend Direction:</strong> Is the market trending or ranging?</li>
-                        <li><strong>Support/Resistance:</strong> Are we at a key price level?</li>
-                        <li><strong>Volume:</strong> Is the pattern supported by high volume?</li>
-                        <li><strong>Market Structure:</strong> Recent highs, lows, and swing points</li>
-                        <li><strong>Multiple Timeframes:</strong> Does the pattern align across timeframes?</li>
-                    </ul>
-                </div>
-                
-                <h3>Combining Candlesticks with Technical Indicators</h3>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Candlesticks with Indicators:</p>
-                    <a href="https://market-prod-23f4d22-e289.s3.amazonaws.com/960b1030-dd29-43da-b166-347d54ded63a_1.png" target="_blank">View Indicator Chart Example →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Chart Overlay with Indicators:</p>
-                    <a href="https://chartdynamix.com/wp-content/uploads/edd/CDXHTFChartOverlay_NT8_1.png" target="_blank">View Multi-Indicator Chart →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view MACD RSI Strategy:</p>
-                    <a href="https://www.quantifiedstrategies.com/wp-content/uploads/2022/12/macd-rsi-strategy.png" target="_blank">View MACD & RSI Strategy →</a>
-                </div>
-                
-                <div class="pattern-box">
-                    <h4>Powerful Indicator Combinations:</h4>
-                    <ul>
-                        <li><strong>RSI:</strong> Confirm reversals when RSI shows oversold/overbought conditions</li>
-                        <li><strong>Moving Averages:</strong> Use 20, 50, and 200 MA for trend confirmation</li>
-                        <li><strong>MACD:</strong> Confirm momentum shifts with candlestick patterns</li>
-                        <li><strong>Volume:</strong> High volume validates the pattern's significance</li>
-                    </ul>
-                </div>
-                
-                <div class="warning-box">
-                    <strong>⚠️ Important:</strong> Always analyze at least three timeframes before entering a trade.
-                </div>
-            </div>
+                    <div class="warning">
+                        <strong>Critical Warning:</strong> CHOCH entries are counter-trend initially, making them riskier. Never rely on CHOCH alone. You must see structure confirmation before fully committing.
+                    </div>
 
-            <!-- CHAPTER 5 -->
-            <div class="chapter">
-                <div class="chapter-number">CHAPTER 5</div>
-                <h2>Chart Patterns Identification</h2>
-                
-                <h3>1. Bull and Bear Flags</h3>
-                <p>Flags are short-term consolidations that appear after strong price moves.</p>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Flag Patterns:</p>
-                    <a href="https://alchemymarkets.com/wp-content/uploads/2024/04/image-118.png" target="_blank">View Bull & Bear Flag Patterns →</a>
+                    <div class="image-placeholder">
+                        <p>🔄 <strong>CHOCH Entry Example</strong></p>
+                        <a href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3" class="image-link" target="_blank">View CHOCH Setup</a>
+                        <p class="cta-text">👆 Click to see how to trade Change of Character setups safely</p>
+                    </div>
                 </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Bull Flag Example:</p>
-                    <a href="https://tradeciety.com/hubfs/EURAUD_2023-11-28_17-09-40.png" target="_blank">View Bull Flag Chart →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Bullish & Bearish Flags:</p>
-                    <a href="https://www.forex.com/en-us/-/media/project/gain-capital/shared/academy/cn-and-jp-assets/bullish-and-bearish-flags-chart.png" target="_blank">View Flag Trading Guide →</a>
-                </div>
-                
-                <h3>2. Triangles</h3>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Triangle Patterns Overview:</p>
-                    <a href="https://www.investopedia.com/thmb/nEv3DIsiQ_Lt0vShcqaqLSuBMgk%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/UnderstandingTriangle2-0651c3c900b3422cadc70d83555a5072.png" target="_blank">View Triangle Pattern Types →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Ascending & Descending Triangles:</p>
-                    <a href="https://scanz.com/wp-content/uploads/2019/01/ascendingdescendingtriangles.jpg" target="_blank">View Triangle Patterns Chart →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Symmetrical Triangle:</p>
-                    <a href="https://www.investopedia.com/thmb/ahS5SCbQ0co6f66L4fd40AYe0fs%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/Triangles_AShortStudyinContinuationPatterns3_2-6eb5b82169aa45859c5696835f97244f-0886dbfef93d40d7a20a67836e32226e.png" target="_blank">View Symmetrical Triangle Guide →</a>
-                </div>" alt="Triangles 1" class="pattern-image">
-                
-                <img src="https://scanz.com/wp-content/uploads/2019/01/ascendingdescendingtriangles.jpg" alt="Triangles 2" class="pattern-image">
-                
-                <img src="https://www.investopedia.com/thmb/ahS5SCbQ0co6f66L4fd40AYe0fs%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/Triangles_AShortStudyinContinuationPatterns3_2-6eb5b82169aa45859c5696835f97244f-0886dbfef93d40d7a20a67836e32226e.png" alt="Triangles 3" class="pattern-image">
-                
-                <h3>3. Head and Shoulders</h3>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Head and Shoulders Pattern:</p>
-                    <a href="https://www.investopedia.com/thmb/-06wyWh1tc1Vz9t7j-DIYyZM_0c%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_Head_And_Shoulders_Pattern_Sep_2020-01-4c225a762427464699e42461088c1e86.jpg" target="_blank">View Head & Shoulders Pattern →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Head and Shoulders Top:</p>
-                    <a href="https://www.tradingwithrayner.com/wp-content/uploads/2018/10/68-1024x474.png" target="_blank">View H&S Top Example →</a>
-                </div>
-                
-                <div class="image-cta">
-                    <p>📊 Click below to view Inverse Head and Shoulders:</p>
-                    <a href="https://centerpointsecurities.com/wp-content/uploads/2023/06/Inverse-Head-and-Shoulders-Lead-in-Downtrend.png" target="_blank">View Inverse H&S Pattern →</a>
-                </div>
-                
-                <h3>4. Double Top and Bottom</h3>
-                
-                <img src="https://www.investopedia.com/thmb/ELYmBuUFuPxmER8GlbD0IRK5wXM%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_Double_Top_Definition_Oct_2020-02-24bead3ae99c4462b24745f285bb6515.jpg" alt="Double 1" class="pattern-image">
-                
-                <img src="https://www.bapital.com/media/double-top-patterns.jpg" alt="Double 2" class="pattern-image">
-                
-                <img src="https://dailypriceaction.com/wp-content/uploads/2014/09/double-bottom-measured-move.png" alt="Double 3" class="pattern-image">
-                
-                <h3>5. Cup and Handle</h3>
-                
-                <img src="https://www.bapital.com/media/cup-and-handle-chart-patterns.jpg" alt="Cup 1" class="pattern-image">
-                
-                <img src="https://d2cdo4blch85n8.cloudfront.net/wp-content/uploads/2024/11/How-To-Identify-And-Trade-The-Cup-And-Handle-Chart-Pattern.jpg" alt="Cup 2" class="pattern-image">
-                
-                <img src="https://www.investopedia.com/thmb/A5sk-53LLzS8Z1djL4LKxwMIKM8%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/CupandHandleDefinition1-c721e47fd1f7451997d0d5d941f6e174.png" alt="Cup 3" class="pattern-image">
-                
-                <h3>6. Wedges</h3>
-                
-                <img src="https://media.warriortrading.com/2020/08/21110229/Rising-Wedge-5.png" alt="Wedge 1" class="pattern-image">
-                
-                <img src="https://www.investopedia.com/thmb/iZchkrBcn3oTY_XgebUFTrssyms%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/VFHRisingWedgePattern-bc1fa80ed0194c5f82b03204091944c0.png" alt="Wedge 2" class="pattern-image">
-                
-                <img src="https://s.yimg.com/ny/api/res/1.2/9TnLp1NA4zFBTSHfOrnZLA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTY1NA--/http%3A//globalfinance.zenfs.com/en_us/Finance/US_AHTTP_DAILYFX_LIVE_NEW_1/5_Easy_Steps_to_Trade_the_Forex_Falling_Wedge_Price_Pattern_body_wedge1.jpg" alt="Wedge 3" class="pattern-image">
-            </div>
 
-            <!-- CHAPTER 6 -->
-            <div class="chapter">
-                <div class="chapter-number">CHAPTER 6</div>
-                <h2>Trading Strategies</h2>
-                
-                <h3>Strategy 1: Breakout Trading</h3>
-                
-                <img src="https://www.investopedia.com/thmb/lMW4EUQARGJGskMCWX5qNIdQcIk%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/dotdash_Final_The_Anatomy_of_Trading_Breakouts_Jun_2020-04-b83064c68c16499b8d92602a438bc58f.jpg" alt="Breakout 1" class="pattern-image">
-                
-                <img src="https://a.c-dn.net/c/content/dam/igcom-websites/en_GB/images/academy/2024/12/06/IG_Breakout%20trading_Lesson%201-01%20%281%29.png/jcr%3Acontent/renditions/original-size.webp" alt="Breakout 2" class="pattern-image">
-                
-                <img src="https://i.pinimg.com/736x/f3/6b/3d/f36b3d5d53e6d5473e917b76f1662f55.jpg" alt="Breakout 3" class="pattern-image">
-                
-                <div class="strategy-card">
-                    <h4>Breakout Strategy:</h4>
-                    <ul>
-                        <li>Wait for price to break above resistance with volume</li>
-                        <li>Enter on candle close beyond the level</li>
-                        <li>Stop loss below breakout level</li>
-                        <li>Target measured move from consolidation range</li>
-                    </ul>
-                </div>
-                
-                <h3>Strategy 2: RSI Divergence Trading</h3>
-                
-                <img src="https://www.thewolfofallstreets.io/wp-content/uploads/2020/08/ypJFS-x-1024x811.jpg" alt="RSI Divergence 1" class="pattern-image">
-                
-                <img src="https://images.squarespace-cdn.com/content/v1/65b2962d46997020b44bd729/1720513204222-IBR1FSEDES0SDF1DLKSR/Bullish%2BRSI%2BDivergence.png" alt="RSI Divergence 2" class="pattern-image">
-                
-                <img src="https://alchemymarkets.com/wp-content/uploads/2025/03/Divergence-cheat-sheet-1.jpg" alt="RSI Divergence 3" class="pattern-image">
-                
-                <div class="strategy-card">
-                    <h4>RSI Divergence Strategy:</h4>
-                    <ul>
-                        <li><strong>Bullish Divergence:</strong> Price makes lower lows, RSI makes higher lows</li>
-                        <li><strong>Bearish Divergence:</strong> Price makes higher highs, RSI makes lower highs</li>
-                        <li>Wait for reversal candlestick pattern at divergence point</li>
-                        <li>Enter after confirmation candle closes</li>
-                        <li>Stop loss beyond the divergence low/high</li>
-                    </ul>
-                </div>
-                
-                <h3>Strategy 3: Fibonacci Retracement</h3>
-                
-                <img src="https://www.fidelity.com/bin-public/600_Fidelity_Com_English/images/migration/Fib602x345_2025_update.png" alt="Fibonacci 1" class="pattern-image">
-                
-                <img src="https://www.cityindex.com/en-uk/-/media/research/global/patrick-foot/macd/bullish-pennant-ci/fibonacci-retracement-levels-on-a-chart.png?h=394&w=600" alt="Fibonacci 2" class="pattern-image">
-                
-                <img src="https://howtotrade.com/wp-content/uploads/2020/11/fibonacci-retracement-candlestick-patterns-howtotrade.png" alt="Fibonacci 3" class="pattern-image">
-                
-                <div class="strategy-card">
-                    <h4>Fibonacci Strategy:</h4>
-                    <ul>
-                        <li>Draw Fibonacci from swing low to swing high in uptrend</li>
-                        <li>Wait for price to retrace to 38.2%, 50%, or 61.8% level</li>
-                        <li>Look for reversal candlestick pattern at Fib level</li>
-                        <li>Enter when price confirms trend continuation</li>
-                        <li>Stop loss below next Fib level</li>
-                        <li>Target previous high or 1.618 extension</li>
-                    </ul>
-                </div>
-                
-                <div class="warning-box">
-                    <strong>⚠️ Risk Management:</strong> Never risk more than 1-2% of your account per trade. Use proper position sizing based on your stop loss distance.
-                </div>
-            </div>
+                <div class="section">
+                    <h3 class="section-title">Flip Entry</h3>
 
-            <!-- CHAPTER 7 -->
-            <div class="chapter">
-                <div class="chapter-number">CHAPTER 7</div>
-                <h2>Trading Psychology</h2>
-                
-                <p>Technical analysis and strategies are only 20% of successful trading. The remaining 80% is psychology and risk management.</p>
-                
-                <h3>The Psychological Cycle of Trading</h3>
-                
-                <img src="https://media.onedayinjuly.com/media/images/Investor_Emotion_3.png" alt="Psychology 1" class="pattern-image">
-                
-                <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fe013a0bc-9793-45d6-97a5-0e595064bf92_768x624.jpeg" alt="Psychology 2" class="pattern-image">
-                
-                <img src="https://priceactionninja.com/wp-content/uploads/2023/04/image-1.jpg" alt="Psychology 3" class="pattern-image">
-                
-                <div class="pattern-box">
-                    <h4>Typical Emotional Stages:</h4>
-                    <ol>
-                        <li><strong>Optimism:</strong> Market looks promising, feeling positive</li>
-                        <li><strong>Excitement:</strong> First wins, confidence building</li>
-                        <li><strong>Thrill:</strong> Maximum confidence, feeling invincible</li>
-                        <li><strong>Euphoria:</strong> Peak of market, ignoring risks</li>
-                        <li><strong>Anxiety:</strong> Market turns, first signs of trouble</li>
-                        <li><strong>Denial:</strong> Refusing to accept losses</li>
-                        <li><strong>Fear:</strong> Panic sets in, uncertainty dominates</li>
-                        <li><strong>Desperation:</strong> Hoping for recovery</li>
-                        <li><strong>Panic:</strong> Selling at the worst time</li>
-                        <li><strong>Capitulation:</strong> Giving up, exiting the market</li>
-                        <li><strong>Hope:</strong> Market shows signs of recovery</li>
-                        <li><strong>Relief:</strong> Slowly rebuilding confidence</li>
+                    <p>The flip entry is one of the most powerful setups because it represents zones where the market has completely changed character.</p>
+
+                    <div class="definition">
+                        <strong>Flip Entry Definition</strong><br>
+                        A flip entry occurs when a previous supply zone (resistance) is broken and becomes a demand zone (support), or when a previous demand zone (support) is broken and becomes a supply zone (resistance).
+                    </div>
+
+                    <h4 class="subsection-title">Entry on Retest of Flipped Structure</h4>
+
+                    <ol class="step-list">
+                        <li><strong>Identify the Original Zone:</strong> Mark significant supply or demand zones</li>
+                        
+                        <li><strong>Wait for the Break:</strong> Price must decisively break through the zone</li>
+                        
+                        <li><strong>Confirm the Flip:</strong> Price should move away and create new structure</li>
+                        
+                        <li><strong>Wait for Retest:</strong> Be patient as price returns to test the flipped zone</li>
+                        
+                        <li><strong>Look for Rejection:</strong> Watch for strong rejection candles</li>
+                        
+                        <li><strong>Enter the Trade:</strong> Enter within the flipped zone with stops beyond the zone boundary</li>
                     </ol>
-                </div>
-                
-                <h3>Common Psychological Traps</h3>
-                
-                <div class="warning-box">
-                    <h4>1. FOMO (Fear of Missing Out)</h4>
-                    <p><strong>Problem:</strong> Entering trades impulsively because you see others making money.</p>
-                    <p><strong>Solution:</strong> Stick to your trading plan. There's always another opportunity.</p>
-                </div>
-                
-                <div class="warning-box">
-                    <h4>2. Revenge Trading</h4>
-                    <p><strong>Problem:</strong> After a loss, immediately entering another trade to "win back" the money.</p>
-                    <p><strong>Solution:</strong> Take a break after losses. Review what went wrong. Never increase position size after a loss.</p>
-                </div>
-                
-                <div class="warning-box">
-                    <h4>3. Overconfidence After Wins</h4>
-                    <p><strong>Problem:</strong> A string of winning trades leads to overconfidence and larger positions.</p>
-                    <p><strong>Solution:</strong> Maintain consistency regardless of results. Stick to the same position sizing.</p>
-                </div>
-                
-                <div class="warning-box">
-                    <h4>4. Loss Aversion</h4>
-                    <p><strong>Problem:</strong> Holding losing positions hoping they'll recover, while taking profits too early on winners.</p>
-                    <p><strong>Solution:</strong> Set stop losses before entering and honor them. Let winners run according to your plan.</p>
-                </div>
-                
-                <h3>Developing a Winning Mindset</h3>
-                
-                <div class="strategy-card">
-                    <h4>1. Accept Uncertainty</h4>
-                    <p>No one knows what the market will do next. Even the best traders are wrong 40-50% of the time.</p>
-                    
-                    <h4>2. Think in Probabilities</h4>
-                    <p>Each trade is just one outcome in a series of many trades. Focus on following your process, not individual results.</p>
-                    
-                    <h4>3. Detach from Money</h4>
-                    <p>Think in terms of risk-reward ratios and percentages, not dollar amounts.</p>
-                    
-                    <h4>4. Embrace Losses</h4>
-                    <p>Losses are the cost of doing business. Every loss teaches you something. Professional traders don't fear losses; they manage them.</p>
-                    
-                    <h4>5. Patience is Profitable</h4>
-                    <p>The market rewards patience. Wait for high-probability setups that meet all your criteria.</p>
-                </div>
-                
-                <h3>The Trading Journal</h3>
-                
-                <div class="key-point">
-                    <h4>What to Record:</h4>
-                    <ul>
-                        <li>Date and time of trade</li>
-                        <li>Cryptocurrency traded</li>
-                        <li>Entry and exit prices</li>
-                        <li>Position size</li>
-                        <li>Stop loss and take profit levels</li>
-                        <li>Strategy used</li>
-                        <li>Chart screenshot with annotations</li>
-                        <li>Reason for entry</li>
-                        <li>Emotional state before, during, and after</li>
-                        <li>Outcome and lessons learned</li>
-                    </ul>
-                </div>
-                
-                <h3>Risk Management Rules</h3>
-                
-                <div class="pattern-box">
-                    <h4>Golden Rules:</h4>
-                    <ol>
-                        <li><strong>Never risk more than 1-2% per trade</strong></li>
-                        <li><strong>Use proper position sizing</strong></li>
-                        <li><strong>Always use stop losses</strong></li>
-                        <li><strong>Maintain 2:1 or 3:1 risk-reward ratio</strong></li>
-                        <li><strong>Don't overtrade</strong> - Quality over quantity</li>
-                        <li><strong>Diversify carefully</strong></li>
-                        <li><strong>Keep emotions in check</strong></li>
-                        <li><strong>Take breaks after big wins or losses</strong></li>
-                    </ol>
-                </div>
-                
-                <h3>Daily Trading Routine</h3>
-                
-                <div class="strategy-card">
-                    <h4>Pre-Market Routine (30 minutes):</h4>
-                    <ul>
-                        <li>Review major crypto news and events</li>
-                        <li>Check Bitcoin and Ethereum trends</li>
-                        <li>Identify key support/resistance levels</li>
-                        <li>Review your trading plan and rules</li>
-                        <li>Set daily risk limit</li>
-                    </ul>
-                    
-                    <h4>During Trading:</h4>
-                    <ul>
-                        <li>Follow your plan strictly</li>
-                        <li>Wait for high-probability setups</li>
-                        <li>Take breaks between trades</li>
-                        <li>If you hit daily loss limit, stop immediately</li>
-                    </ul>
-                    
-                    <h4>Post-Market Routine (15 minutes):</h4>
-                    <ul>
-                        <li>Update your trading journal</li>
-                        <li>Review all trades taken today</li>
-                        <li>Identify what you did well and areas for improvement</li>
-                        <li>Calculate P&L and win rate</li>
-                        <li>Prepare watchlist for tomorrow</li>
-                    </ul>
+
+                    <div class="image-placeholder">
+                        <p>🔄 <strong>Flip Zone Examples</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642790106117-e829e14a795f" class="image-link" target="_blank">View Supply/Demand Flips</a>
+                        <p class="cta-text">👆 Click to see how zones flip from supply to demand and vice versa</p>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>Why Flips Work:</strong> Flipped zones are powerful because they represent areas where the market consensus has completely changed. This creates strong reactions.
+                    </div>
                 </div>
             </div>
 
-            <!-- CHAPTER 8 -->
+            <!-- Chapter 6: Trading Plan -->
             <div class="chapter">
-                <div class="chapter-number">CHAPTER 8</div>
-                <h2>Putting It All Together</h2>
-                
-                <h3>A Complete Trade Example</h3>
-                
-                <div class="strategy-card">
-                    <h4>Scenario: Bitcoin (BTC/USD) 4-Hour Chart</h4>
-                    
-                    <p><strong>Step 1: Market Analysis</strong></p>
-                    <ul>
-                        <li>Bitcoin has been in an uptrend for 3 weeks</li>
-                        <li>Price is above 20, 50, and 200 EMAs</li>
-                        <li>Recent pullback to the 50 EMA support</li>
-                        <li>RSI cooled down from overbought to 55</li>
-                    </ul>
-                    
-                    <p><strong>Step 2: Pattern Recognition</strong></p>
-                    <ul>
-                        <li>Bullish flag pattern forming</li>
-                        <li>At the 50 EMA, a bullish engulfing candle appears</li>
-                        <li>Volume increases on the engulfing candle</li>
-                    </ul>
-                    
-                    <p><strong>Step 3: Confirmation Checklist</strong></p>
-                    <ul>
-                        <li>✓ Trend direction: Uptrend</li>
-                        <li>✓ Support level: 50 EMA holding</li>
-                        <li>✓ Candlestick pattern: Bullish engulfing</li>
-                        <li>✓ Volume: Above average</li>
-                        <li>✓ RSI: Showing strength (above 50)</li>
-                        <li>✓ Chart pattern: Bull flag</li>
-                        <li>✓ Risk-reward: 3:1 ratio achievable</li>
-                    </ul>
-                    
-                    <p><strong>Step 4: Trade Execution</strong></p>
-                    <ul>
-                        <li><strong>Entry:</strong> $45,000</li>
-                        <li><strong>Stop Loss:</strong> $44,200 = $800 risk</li>
-                        <li><strong>Take Profit:</strong> $47,400 = $2,400 profit</li>
-                        <li><strong>Risk-Reward Ratio:</strong> 1:3</li>
-                        <li><strong>Position Size:</strong> If account is $10,000 and risking 2% = $200</li>
-                        <li><strong>Calculate:</strong> $200 / $800 = 0.25 BTC position</li>
-                    </ul>
-                    
-                    <p><strong>Step 5: Trade Management</strong></p>
-                    <ul>
-                        <li>At $46,200 (1:1.5 RR), move stop to break-even</li>
-                        <li>At $46,700 (1:2 RR), take 50% profit</li>
-                        <li>Trail stop loss using 20 EMA</li>
-                        <li>Exit remaining at target or if pattern breaks</li>
-                    </ul>
-                </div>
-                
-                <h3>Building Your Trading System</h3>
-                
-                <div class="pattern-box">
-                    <h4>Phase 1: Education (2-3 Months)</h4>
-                    <ul>
-                        <li>Study candlestick patterns thoroughly</li>
-                        <li>Learn chart patterns and their psychology</li>
-                        <li>Understand key indicators</li>
-                        <li>Read about trading psychology</li>
-                        <li>Paper trade or use demo accounts</li>
-                    </ul>
-                    
-                    <h4>Phase 2: Strategy Development (1-2 Months)</h4>
-                    <ul>
-                        <li>Choose 1-2 strategies that fit your personality</li>
-                        <li>Define clear entry and exit rules</li>
-                        <li>Backtest on historical charts</li>
-                        <li>Create a detailed trading plan</li>
-                        <li>Continue demo trading</li>
-                    </ul>
-                    
-                    <h4>Phase 3: Small Live Trading (3-6 Months)</h4>
-                    <ul>
-                        <li>Start with small position sizes (0.5% risk)</li>
-                        <li>Focus on following your process</li>
-                        <li>Keep detailed journal of every trade</li>
-                        <li>Review performance weekly</li>
-                        <li>Adjust strategy based on data</li>
-                    </ul>
-                    
-                    <h4>Phase 4: Scaling Up (Ongoing)</h4>
-                    <ul>
-                        <li>After 100+ trades with positive results, increase risk to 1-2%</li>
-                        <li>Maintain strict discipline</li>
-                        <li>Continue education and adaptation</li>
-                        <li>Build trading community</li>
-                        <li>Never stop learning</li>
-                    </ul>
-                </div>
-                
-                <h3>Key Takeaways</h3>
-                
-                <div class="key-point">
-                    <h4>The 10 Commandments of Crypto Trading:</h4>
-                    <ol>
-                        <li><strong>Never trade without a plan</strong></li>
-                        <li><strong>Always use stop losses</strong></li>
-                        <li><strong>Risk only 1-2% per trade</strong></li>
-                        <li><strong>Master one strategy before learning others</strong></li>
-                        <li><strong>Trade what you see, not what you think</strong></li>
-                        <li><strong>Be patient</strong></li>
-                        <li><strong>Control your emotions</strong></li>
-                        <li><strong>Keep learning</strong></li>
-                        <li><strong>Journal every trade</strong></li>
-                        <li><strong>Accept losses gracefully</strong></li>
+                <div class="chapter-number">Chapter 6</div>
+                <h2 class="chapter-title">🧩 Trading Plan & Top-Down Analysis</h2>
+
+                <div class="section">
+                    <h3 class="section-title">Step-by-Step Process to Analyse and Place a Trade</h3>
+
+                    <ol class="step-list">
+                        <li><strong>Identify Higher Timeframe Trend (HTF Bias)</strong> - Start on the Daily or 4H chart</li>
+                        
+                        <li><strong>Mark External Structure and Liquidity</strong> - Identify key levels that price is likely to target</li>
+                        
+                        <li><strong>Drop to Lower Timeframe for Internal Structure</strong> - Move to 1H or 15m timeframe</li>
+                        
+                        <li><strong>Look for Liquidity Sweeps + CHOCH</strong> - Watch for price to sweep internal liquidity</li>
+                        
+                        <li><strong>Refine OB/FVG for Entry</strong> - Pinpoint your exact entry zone</li>
+                        
+                        <li><strong>Confirm Entry Trigger</strong> - Wait for confirmation before entering</li>
+                        
+                        <li><strong>Manage Trade with Risk and Targets</strong> - Set stops and targets properly</li>
                     </ol>
+
+                    <div class="image-placeholder">
+                        <p>🗺️ <strong>Top-Down Analysis Process</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642543492481-44e81e3914a7" class="image-link" target="_blank">View Complete Analysis Example</a>
+                        <p class="cta-text">👆 Click to see a complete top-down analysis from HTF to entry</p>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>The 80/20 Rule:</strong> Spend 80% of your time analyzing and waiting for A+ setups, and only 20% actually in trades. Patient traders are profitable traders.
+                    </div>
                 </div>
-                
-                <h3>Common Beginner Mistakes</h3>
-                
-                <div class="warning-box">
-                    <ul>
-                        <li>Overtrading - Taking too many trades</li>
-                        <li>No stop losses - Hoping losing trades will recover</li>
-                        <li>Revenge trading - Trying to quickly recover losses</li>
-                        <li>Ignoring risk management - Betting too much</li>
-                        <li>Following others blindly - Taking social media tips</li>
-                        <li>Not having a plan - Making emotional decisions</li>
-                        <li>Using too many indicators - Analysis paralysis</li>
-                        <li>Jumping strategies - Constantly changing approaches</li>
-                        <li>Trading news - Entering during high volatility</li>
-                        <li>Neglecting psychology - Focusing only on technical skills</li>
-                    </ul>
+
+                <div class="section">
+                    <h3 class="section-title">Pre-Trade Checklist</h3>
+
+                    <table>
+                        <tr>
+                            <th>Checklist Item</th>
+                            <th>What to Verify</th>
+                        </tr>
+                        <tr>
+                            <td>✅ HTF Bias Clear</td>
+                            <td>Can you clearly define trend direction?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ External Liquidity Marked</td>
+                            <td>Do you know where price is heading?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ Liquidity Sweep Occurred</td>
+                            <td>Did price take internal liquidity?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ CHOCH or BOS Present</td>
+                            <td>Is there structural confirmation?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ Valid OB/FVG Identified</td>
+                            <td>Is there a clear institutional zone?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ Premium/Discount Aligned</td>
+                            <td>Buying in discount or selling in premium?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ Risk-Reward 1:3 Minimum</td>
+                            <td>Does the setup offer at least 3R potential?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ Entry Confirmation</td>
+                            <td>Do you have a clear trigger?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ Stop Loss Defined</td>
+                            <td>Do you know exactly where you're wrong?</td>
+                        </tr>
+                        <tr>
+                            <td>✅ Emotional State Check</td>
+                            <td>Are you calm and following your plan?</td>
+                        </tr>
+                    </table>
                 </div>
-                
-                <h3>Resources for Continued Learning</h3>
-                
-                <div class="strategy-card">
-                    <h4>Recommended Practices:</h4>
-                    <ul>
-                        <li><strong>TradingView:</strong> Free charting platform</li>
-                        <li><strong>Crypto News:</strong> Follow CoinDesk, CoinTelegraph</li>
-                        <li><strong>Books:</strong>
-                            <ul>
-                                <li>"Japanese Candlestick Charting Techniques" by Steve Nison</li>
-                                <li>"Trading in the Zone" by Mark Douglas</li>
-                                <li>"Technical Analysis of Financial Markets" by John Murphy</li>
-                            </ul>
-                        </li>
-                        <li><strong>Practice:</strong> Use demo accounts on exchanges</li>
-                        <li><strong>Communities:</strong> Join Discord or Reddit trading groups</li>
-                    </ul>
-                </div>
-                
-                <h3>Final Words of Wisdom</h3>
-                
-                <p>Trading cryptocurrencies is a marathon, not a sprint. Success doesn't come from finding the "perfect" strategy or the "holy grail" indicator. It comes from:</p>
-                
-                <ul>
-                    <li>Consistent application of a proven strategy</li>
-                    <li>Unwavering discipline in risk management</li>
-                    <li>Emotional control under pressure</li>
-                    <li>Continuous learning and adaptation</li>
-                    <li>Patience to wait for the right opportunities</li>
-                </ul>
-                
-                <p>Most traders fail not because they lack knowledge, but because they lack discipline and emotional control. They know what to do but can't consistently do it. Your edge in trading comes not just from your technical skills, but from your ability to execute your plan with discipline, manage your emotions, and persist through inevitable losing streaks.</p>
-                
-                <div class="key-point">
-                    <p><strong>Remember:</strong> Every expert trader was once a beginner who refused to quit. They lost money, made mistakes, felt frustrated, but kept learning and improving. Your journey will have ups and downs. Embrace the process, trust your system, and never stop growing.</p>
-                    
-                    <p style="margin-top: 20px; font-size: 1.2em; text-align: center;"><em>"The goal of a successful trader is to make the best trades. Money is secondary." - Alexander Elder</em></p>
-                </div>
-                
-                <div class="pattern-box" style="margin-top: 40px; text-align: center; border-left: 4px solid #28a745;">
-                    <h3 style="color: #28a745;">Your Trading Journey Starts Now</h3>
-                    <p>Start small, think big, and never stop learning. The market rewards patience, discipline, and continuous improvement. May your trades be profitable and your losses small.</p>
-                    <p style="margin-top: 20px; font-size: 1.1em;"><strong>Happy Trading! 📈</strong></p>
+
+                <div class="section">
+                    <h3 class="section-title">Trade Journaling</h3>
+
+                    <p>Every trade you take should be documented. This creates a feedback loop that accelerates your learning.</p>
+
+                    <div class="image-placeholder">
+                        <p>📝 <strong>Trade Journal Example</strong></p>
+                        <a href="https://images.unsplash.com/photo-1517842645767-c639042777db" class="image-link" target="_blank">View Trade Journal Template</a>
+                        <p class="cta-text">👆 Click to see a professional trade journal format</p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Chapter 7: Risk Management -->
+            <div class="chapter">
+                <div class="chapter-number">Chapter 7</div>
+                <h2 class="chapter-title">💰 Risk Management</h2>
+
+                <div class="section">
+                    <h3 class="section-title">The Foundation of Long-Term Success</h3>
+
+                    <p>You can have the best technical analysis in the world, but without proper risk management, you will eventually lose everything.</p>
+
+                    <div class="key-point">
+                        <strong>Fundamental Truth:</strong> Your job as a trader is not to make money on every trade. Your job is to execute your edge consistently while protecting your capital.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Risk-to-Reward Ratio</h3>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Understanding RR Ratios</h4>
+                        
+                        <p><strong>1:1 RR:</strong> Risk $100 to make $100 (break-even requires 50% win rate)</p>
+                        <p><strong>1:2 RR:</strong> Risk $100 to make $200 (break-even requires 33% win rate)</p>
+                        <p><strong>1:3 RR:</strong> Risk $100 to make $300 (break-even requires 25% win rate)</p>
+                        <p><strong>1:5 RR:</strong> Risk $100 to make $500 (break-even requires 17% win rate)</p>
+
+                        <div class="key-point">
+                            <strong>The Math That Changes Everything:</strong> With a 1:3 RR, you can be wrong 60% of the time and still be profitable.
+                        </div>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>📊 <strong>Risk-Reward Visualization</strong></p>
+                        <a href="https://images.unsplash.com/photo-1642790595397-7047dc98fa72" class="image-link" target="_blank">View RR Ratio Examples</a>
+                        <p class="cta-text">👆 Click to see how to measure risk-reward on charts</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Fixed Percentage Per Trade</h3>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">The 1-2% Rule</h4>
+                        
+                        <p><strong>Why 1-2% is Optimal:</strong></p>
+                        <ul>
+                            <li><strong>Survivability:</strong> You can withstand 50 consecutive losses</li>
+                            <li><strong>Psychological Health:</strong> Individual losses don't create emotional damage</li>
+                            <li><strong>Compound Growth:</strong> Small consistent gains compound dramatically</li>
+                            <li><strong>Professional Standard:</strong> This is what institutional traders use</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Position Sizing Formula</h4>
+                        
+                        <div class="definition">
+                            <strong>Position Size = (Account Size × Risk %) / (Entry Price - Stop Loss)</strong>
+                        </div>
+
+                        <p><strong>Example:</strong></p>
+                        <ul>
+                            <li>Account Size: $10,000</li>
+                            <li>Risk Per Trade: 2% ($200)</li>
+                            <li>Entry Price: $50,000</li>
+                            <li>Stop Loss: $49,500</li>
+                            <li>Risk Per Unit: $500</li>
+                            <li><strong>Position Size: $200 ÷ $500 = 0.4 units (BTC)</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>🧮 <strong>Position Sizing Calculator</strong></p>
+                        <a href="https://images.unsplash.com/photo-1554224311-beee4ece3c5b" class="image-link" target="_blank">View Position Size Examples</a>
+                        <p class="cta-text">👆 Click to see position sizing calculations in action</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Stop Loss Placement</h3>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Strategic Stop Loss Placement</h4>
+                        
+                        <p><strong>For Long Positions:</strong></p>
+                        <ul>
+                            <li>Below the order block you entered from</li>
+                            <li>Below the liquidity sweep low</li>
+                            <li>Below the FVG zone</li>
+                            <li>Give it breathing room</li>
+                        </ul>
+
+                        <p><strong>For Short Positions:</strong></p>
+                        <ul>
+                            <li>Above the order block</li>
+                            <li>Above the liquidity sweep high</li>
+                            <li>Above the FVG zone</li>
+                            <li>Give it breathing room</li>
+                        </ul>
+
+                        <div class="warning">
+                            <strong>Never Move Your Stop Loss Further Away:</strong> This is how traders blow accounts.
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>Trailing Stop Strategy:</strong> As price continues in your favor, trail your stop below each new swing low (longs) or above each new swing high (shorts). This locks in profits while giving the trend room to breathe.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Emotional Discipline</h3>
+
+                    <p>Technical skills get you into trades. Emotional discipline keeps you profitable long-term. The psychology of trading is often more important than the technical analysis.</p>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">The Psychological Challenges of Trading</h4>
+                        
+                        <p><strong>Fear:</strong> Fear of losing money can prevent you from taking valid setups. Combat this by risking only 1-2% per trade.</p>
+
+                        <p><strong>Greed:</strong> Greed causes you to overtrade or risk too much. Combat this by having strict rules.</p>
+
+                        <p><strong>Revenge Trading:</strong> After a loss, the urge to "get it back" leads to impulsive trades. Combat this by stepping away after a loss.</p>
+
+                        <p><strong>FOMO:</strong> Seeing price move without you creates urgency to enter late. Combat this by accepting that you'll miss trades.</p>
+
+                        <p><strong>Overconfidence:</strong> After a winning streak, traders often increase risk. Combat this by maintaining the same process.</p>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>🧘 <strong>Trading Psychology</strong></p>
+                        <a href="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" class="image-link" target="_blank">View Trading Discipline Practices</a>
+                        <p class="cta-text">👆 Click to see resources for developing trading discipline</p>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>The 90/90/90 Rule:</strong> 90% of traders lose 90% of their money in 90 days. The reason? Not lack of knowledge—lack of discipline and risk management.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Trade Journaling and Review</h3>
+
+                    <p>Your trading journal is your laboratory. It's where you conduct experiments, track results, and identify patterns that lead to consistent profitability.</p>
+
+                    <div class="highlight-box">
+                        <h4 class="subsection-title">Weekly and Monthly Reviews</h4>
+                        
+                        <p><strong>Weekly Review Questions:</strong></p>
+                        <ul>
+                            <li>What was my win rate this week?</li>
+                            <li>What was my average RR?</li>
+                            <li>Which setups performed best?</li>
+                            <li>Did I follow my rules consistently?</li>
+                            <li>What emotional challenges did I face?</li>
+                        </ul>
+
+                        <p><strong>Monthly Review Questions:</strong></p>
+                        <ul>
+                            <li>What is my overall profitability?</li>
+                            <li>Am I improving compared to previous months?</li>
+                            <li>What are my strongest patterns/setups?</li>
+                            <li>What are my weakest areas?</li>
+                            <li>Do I need to adjust any rules?</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>The Compound Effect:</strong> Small improvements in your win rate, average RR, or risk management compound dramatically over time. Your journal is the tool that makes this improvement possible.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Final Risk Management Principles</h3>
+
+                    <div class="highlight-box">
+                        <h4>The Non-Negotiable Rules</h4>
+                        
+                        <ol>
+                            <li><strong>Never risk more than 2% per trade</strong> — No exceptions</li>
+                            
+                            <li><strong>Never risk more than 6% total</strong> — Maximum of 3 concurrent trades</li>
+                            
+                            <li><strong>Minimum 1:3 RR on every trade</strong> — If you can't get 1:3, don't take the trade</li>
+                            
+                            <li><strong>Always use stop losses</strong> — Never hope a losing trade will come back</li>
+                            
+                            <li><strong>Never move stops further away</strong> — This is how accounts die</li>
+                            
+                            <li><strong>Take breaks after losses</strong> — Don't revenge trade</li>
+                            
+                            <li><strong>Journal every trade</strong> — Without data, you can't improve</li>
+                            
+                            <li><strong>Follow your rules religiously</strong> — Consistency beats brilliance</li>
+                            
+                            <li><strong>Accept that losses happen</strong> — Even the best traders have 40-50% losses</li>
+                            
+                            <li><strong>Protect capital above all</strong> — You can't trade if you blow your account</li>
+                        </ol>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <p>💎 <strong>Risk Management Framework</strong></p>
+                        <a href="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e" class="image-link" target="_blank">View Risk Management System</a>
+                        <p class="cta-text">👆 Click to see a complete risk management framework</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="chapter">
+                <div class="chapter-number">Conclusion</div>
+                <h2 class="chapter-title">🎓 Your Journey Begins Now</h2>
+
+                <div class="section">
+                    <p>You now possess a comprehensive framework for trading cryptocurrency markets using institutional concepts. But knowledge alone is not enough. Trading mastery comes from deliberate practice, consistent application, and continuous learning.</p>
+
+                    <div class="highlight-box">
+                        <h4>The Path to Mastery</h4>
+                        
+                        <p><strong>Stage 1: Education (Weeks 1-4)</strong></p>
+                        <ul>
+                            <li>Study this material repeatedly until concepts become intuitive</li>
+                            <li>Practice identifying structures on historical charts</li>
+                            <li>Mark up hundreds of charts with OBs, FVGs, liquidity, and structure</li>
+                        </ul>
+
+                        <p><strong>Stage 2: Simulation (Weeks 5-12)</strong></p>
+                        <ul>
+                            <li>Paper trade or use a demo account</li>
+                            <li>Execute your full process on every setup</li>
+                            <li>Journal every trade as if real money were on the line</li>
+                            <li>Aim for 50+ simulated trades before risking real capital</li>
+                        </ul>
+
+                        <p><strong>Stage 3: Real Trading (Week 13+)</strong></p>
+                        <ul>
+                            <li>Start with minimum position sizes (1% risk)</li>
+                            <li>Take only A+ setups that meet all criteria</li>
+                            <li>Follow your risk management rules religiously</li>
+                            <li>Scale up position size only after consistent profitability</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-point">
+                        <strong>Remember:</strong> Professional trading is not about getting rich quickly. It's about developing an edge, executing it consistently, managing risk intelligently, and allowing time to compound your results.
+                    </div>
+
+                    <div class="warning">
+                        <strong>Final Warning:</strong> The concepts in this book work, but they require discipline and patience to apply correctly. Most traders fail not because the strategy doesn't work, but because they lack the discipline to follow it consistently. Don't be one of them.
+                    </div>
+
+                    <p style="margin-top: 40px; text-align: center; font-size: 1.2em; font-style: italic; color: #667eea;">
+                        "The market is a device for transferring money from the impatient to the patient."<br>— Warren Buffett
+                    </p>
+
+                    <p style="margin-top: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">
+                        Good luck on your trading journey. May your analysis be sharp, your risk management tight, and your patience infinite.
+                    </p>
+
+                    <div class="image-placeholder" style="margin-top: 40px;">
+                        <p>🚀 <strong>Begin Your Trading Journey</strong></p>
+                        <a href="https://images.unsplash.com/photo-1639762681485-074b7f938ba0" class="image-link" target="_blank">View Successful Trading Mindset</a>
+                        <p class="cta-text">👆 Click to see what successful trading looks like</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Links Reference Section -->
+            <div class="links-reference">
+                <h3>📎 Image Links Reference</h3>
+                <p style="margin-bottom: 20px;">Below are all the image links used throughout this eBook for your reference:</p>
+
+                <div class="link-item">
+                    <strong>Chapter 1 - Market Structure Chart</strong>
+                    <a href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3" target="_blank">https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 1 - Swing Points Example</strong>
+                    <a href="https://images.unsplash.com/photo-1642790106117-e829e14a795f" target="_blank">https://images.unsplash.com/photo-1642790106117-e829e14a795f</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 1 - BOS and CHOCH Examples</strong>
+                    <a href="https://images.unsplash.com/photo-1642543492481-44e81e3914a7" target="_blank">https://images.unsplash.com/photo-1642543492481-44e81e3914a7</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 1 - Internal vs External Structure</strong>
+                    <a href="https://images.unsplash.com/photo-1640826514546-7d2d357e0b9d" target="_blank">https://images.unsplash.com/photo-1640826514546-7d2d357e0b9d</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 2 - Supply & Demand Example</strong>
+                    <a href="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e" target="_blank">https://images.unsplash.com/photo-1526304640581-d334cdbbf45e</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 2 - Order Flow Examples</strong>
+                    <a href="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f" target="_blank">https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 2 - Order Block Identification</strong>
+                    <a href="https://images.unsplash.com/photo-1642790595397-7047dc98fa72" target="_blank">https://images.unsplash.com/photo-1642790595397-7047dc98fa72</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 3 - Liquidity Pools (Equal Highs/Lows)</strong>
+                    <a href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3" target="_blank">https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 3 - Liquidity Identification</strong>
+                    <a href="https://images.unsplash.com/photo-1642790106117-e829e14a795f" target="_blank">https://images.unsplash.com/photo-1642790106117-e829e14a795f</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 3 - Internal vs External Liquidity Flow</strong>
+                    <a href="https://images.unsplash.com/photo-1642543492481-44e81e3914a7" target="_blank">https://images.unsplash.com/photo-1642543492481-44e81e3914a7</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 4 - Fair Value Gap Formation</strong>
+                    <a href="https://images.unsplash.com/photo-1640826514546-7d2d357e0b9d" target="_blank">https://images.unsplash.com/photo-1640826514546-7d2d357e0b9d</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 4 - Bullish and Bearish FVGs</strong>
+                    <a href="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e" target="_blank">https://images.unsplash.com/photo-1526304640581-d334cdbbf45e</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 4 - Premium/Discount Analysis</strong>
+                    <a href="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f" target="_blank">https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 5 - Continuation Entry Setup</strong>
+                    <a href="https://images.unsplash.com/photo-1642790595397-7047dc98fa72" target="_blank">https://images.unsplash.com/photo-1642790595397-7047dc98fa72</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 5 - CHOCH Entry Setup</strong>
+                    <a href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3" target="_blank">https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 5 - Flip Zone Examples</strong>
+                    <a href="https://images.unsplash.com/photo-1642790106117-e829e14a795f" target="_blank">https://images.unsplash.com/photo-1642790106117-e829e14a795f</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 6 - Top-Down Analysis Process</strong>
+                    <a href="https://images.unsplash.com/photo-1642543492481-44e81e3914a7" target="_blank">https://images.unsplash.com/photo-1642543492481-44e81e3914a7</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 6 - Trade Journal Template</strong>
+                    <a href="https://images.unsplash.com/photo-1517842645767-c639042777db" target="_blank">https://images.unsplash.com/photo-1517842645767-c639042777db</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 7 - Risk-Reward Visualization</strong>
+                    <a href="https://images.unsplash.com/photo-1642790595397-7047dc98fa72" target="_blank">https://images.unsplash.com/photo-1642790595397-7047dc98fa72</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 7 - Position Sizing Calculator</strong>
+                    <a href="https://images.unsplash.com/photo-1554224311-beee4ece3c5b" target="_blank">https://images.unsplash.com/photo-1554224311-beee4ece3c5b</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 7 - Trading Psychology/Discipline</strong>
+                    <a href="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" target="_blank">https://images.unsplash.com/photo-1544367567-0f2fcb009e0b</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Chapter 7 - Risk Management Framework</strong>
+                    <a href="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e" target="_blank">https://images.unsplash.com/photo-1579621970563-ebec7560ff3e</a>
+                </div>
+
+                <div class="link-item">
+                    <strong>Conclusion - Successful Trading Mindset</strong>
+                    <a href="https://images.unsplash.com/photo-1639762681485-074b7f938ba0" target="_blank">https://images.unsplash.com/photo-1639762681485-074b7f938ba0</a>
+                </div>
+            </div>
+
+            <!-- Author Note -->
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; text-align: center; margin-top: 60px; border-radius: 10px;">
+                <h3 style="margin-bottom: 20px; font-size: 1.8em;">Thank You for Reading</h3>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    This eBook represents years of study, practice, and real trading experience. The concepts presented here are used by professional traders worldwide. Apply them with discipline, manage your risk intelligently, and success will follow.
+                </p>
+                <p style="font-size: 1.1em; margin-top: 20px;">
+                    Remember: Trading is a marathon, not a sprint. Stay patient, stay disciplined, and never stop learning.
+                </p>
+                <p style="font-size: 1.3em; margin-top: 30px; font-weight: bold;">
+                    Trade smart. Trade safe. Trade profitably.
+                </p>
+            </div>
+
         </div>
     </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                window.scrollBy({top: 800, behavior: 'smooth'});
+            } else if (e.key === 'ArrowLeft') {
+                window.scrollBy({top: -800, behavior: 'smooth'});
+            }
+        });
+
+        // Print button (optional)
+        function printEbook() {
+            window.print();
+        }
+
+        // Scroll to top button
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                document.body.style.cursor = 'pointer';
+            } else {
+                document.body.style.cursor = 'default';
+            }
+        });
+    </script>
 </body>
 </html>
