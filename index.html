@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mastering Crypto Trading - Complete Guide</title>
+    <title>Precision Trading: A 1:7 Strategy Guide</title>
     <style>
         * {
             margin: 0;
@@ -15,1323 +15,1194 @@
             font-family: 'Georgia', serif;
             line-height: 1.8;
             color: #2c3e50;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            background: #f8f9fa;
         }
 
-        .ebook-container {
-            max-width: 900px;
+        .book {
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            border-radius: 10px;
-            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
         }
 
         .cover {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 80px 40px;
+            padding: 100px 60px;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .cover h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
         .cover .subtitle {
-            font-size: 1.3em;
+            font-size: 1.5em;
+            margin-bottom: 40px;
             opacity: 0.9;
-            margin-bottom: 30px;
+            font-style: italic;
         }
 
         .cover .author {
-            font-style: italic;
-            font-size: 1.1em;
-            margin-top: 40px;
+            font-size: 1.2em;
+            margin-top: 60px;
+            opacity: 0.8;
         }
 
-        .content {
-            padding: 60px 50px;
+        .page {
+            padding: 60px;
+            min-height: 100vh;
         }
 
-        .chapter {
-            margin-bottom: 60px;
-            page-break-inside: avoid;
+        .toc {
+            background: #f8f9fa;
         }
 
-        .chapter-number {
-            color: #667eea;
-            font-size: 0.9em;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .chapter-title {
-            font-size: 2.2em;
+        h2 {
             color: #1e3c72;
+            font-size: 2.5em;
             margin-bottom: 30px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #2a5298;
             padding-bottom: 15px;
         }
 
-        .section {
-            margin-bottom: 35px;
-        }
-
-        .section-title {
-            font-size: 1.5em;
+        h3 {
             color: #2a5298;
-            margin-bottom: 15px;
-            font-weight: bold;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
-        .subsection-title {
-            font-size: 1.2em;
+        h4 {
             color: #34495e;
-            margin: 20px 0 10px 0;
-            font-weight: bold;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
         }
 
         p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: justify;
         }
 
-        .highlight-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin: 25px 0;
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1em;
+        }
+
+        .toc-list li:last-child {
+            border-bottom: none;
+        }
+
+        .toc-chapter {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-top: 15px;
+        }
+
+        .toc-section {
+            padding-left: 30px;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .callout {
+            background: #e8f4f8;
+            border-left: 5px solid #2a5298;
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 5px;
         }
 
-        .key-point {
-            background: #e3f2fd;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 4px solid #2196f3;
+        .callout h4 {
+            color: #1e3c72;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
 
-        .definition {
-            background: #fff3e0;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 4px solid #ff9800;
+        .callout ul {
+            margin-left: 20px;
         }
 
-        .tip {
-            background: #f1f8e9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 4px solid #8bc34a;
-        }
-
-        .warning {
-            background: #ffebee;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 4px solid #f44336;
-        }
-
-        ul {
-            margin: 15px 0 15px 30px;
-        }
-
-        li {
+        .callout li {
             margin-bottom: 10px;
         }
 
-        .step-list {
-            counter-reset: step-counter;
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .step-list li {
-            counter-increment: step-counter;
-            margin-bottom: 20px;
-            padding-left: 50px;
-            position: relative;
-        }
-
-        .step-list li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #667eea;
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .image-placeholder {
-            background: #f5f5f5;
-            border: 2px dashed #ccc;
-            padding: 30px;
-            margin: 25px 0;
-            text-align: center;
-            border-radius: 8px;
-        }
-
-        .image-link {
-            display: inline-block;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            background: white;
-            border: 2px solid #667eea;
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 5px;
-            margin-top: 10px;
-            transition: all 0.3s ease;
         }
 
-        .image-link:hover {
-            background: #667eea;
-            color: white;
+        .example-trade {
+            background: #f0f8f0;
+            border: 2px solid #28a745;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 5px;
         }
 
-        .cta-text {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 10px;
+        .example-trade h4 {
+            color: #155724;
+            margin-top: 0;
+        }
+
+        .trade-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .trade-detail {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #28a745;
+        }
+
+        .trade-detail strong {
+            display: block;
+            color: #155724;
+            margin-bottom: 5px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .chapter-number {
+            color: #2a5298;
+            font-size: 0.7em;
+            display: block;
+            margin-bottom: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
+            margin: 30px 0;
         }
 
         th, td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         th {
-            background: #667eea;
+            background: #1e3c72;
             color: white;
-            font-weight: bold;
+            font-weight: 600;
         }
 
-        .toc {
+        tr:hover {
             background: #f8f9fa;
-            padding: 30px;
-            margin-bottom: 40px;
-            border-radius: 8px;
         }
 
-        .toc h2 {
-            color: #1e3c72;
-            margin-bottom: 20px;
-        }
-
-        .toc ul {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .toc li {
-            margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .toc li::before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-        }
-
-        .links-reference {
-            background: #e8eaf6;
-            padding: 30px;
-            margin: 40px 0;
-            border-radius: 8px;
-            border: 2px solid #667eea;
-        }
-
-        .links-reference h3 {
-            color: #1e3c72;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-
-        .link-item {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
+        .formula {
+            background: #f8f9fa;
+            padding: 20px;
             border-radius: 5px;
-            border-left: 3px solid #667eea;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border: 1px solid #ddd;
         }
 
-        .link-item strong {
-            color: #2a5298;
-            display: block;
-            margin-bottom: 5px;
+        .author-page {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            text-align: center;
         }
 
-        .link-item a {
-            color: #667eea;
-            word-break: break-all;
-            text-decoration: none;
+        .author-page h2 {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
         }
 
-        .link-item a:hover {
-            text-decoration: underline;
+        .disclaimer {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            line-height: 1.6;
         }
 
         @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .ebook-container {
-                box-shadow: none;
-            }
-            .chapter {
-                page-break-before: always;
+            .page {
+                page-break-after: always;
             }
         }
 
         @media (max-width: 768px) {
-            .content {
+            .cover h1 {
+                font-size: 2.5em;
+            }
+            
+            .page {
                 padding: 30px 20px;
             }
-            .cover h1 {
+            
+            h2 {
                 font-size: 2em;
-            }
-            .chapter-title {
-                font-size: 1.8em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="ebook-container">
+    <div class="book">
         <!-- Cover Page -->
         <div class="cover">
-            <h1>📈 BEGINNER TO PROFITABLE TRADER</h1>
-            <div class="subtitle">A Complete Guide to Market Structure, Order Flow, and Smart Money Concepts</div>
-            <div class="author">Professional Trading Strategies for the Modern Crypto Trader</div>
+            <h1>MyY SIMPLE STRATEGY</h1>
+            <div class="subtitle">A 1:7 Risk-Reward Strategy Guide<br>for Consistent Profits</div>
+            <div class="author">By Professional Trader</div>
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <!-- Table of Contents -->
-            <div class="toc">
-                <h2>📚 Table of Contents</h2>
+        <!-- Table of Contents -->
+        <div class="page toc">
+            <h2>Table of Contents</h2>
+            <ul class="toc-list">
+                <li class="toc-chapter">Introduction</li>
+                <li class="toc-section">Strategy Overview, Objectives & Target Audience</li>
+                
+                <li class="toc-chapter">Chapter 1 — How I Start My Trading Day</li>
+                <li class="toc-section">Defining the Real Trading Window</li>
+                <li class="toc-section">Identifying Optimal Liquidity Times</li>
+                <li class="toc-section">Pre-Market Preparation Checklist</li>
+                
+                <li class="toc-chapter">Chapter 2 — Pairs I Trade</li>
+                <li class="toc-section">Best Trading Pairs: EUR/USD, GBP/USD, XAU/USD</li>
+                <li class="toc-section">Why These Pairs Matter</li>
+                <li class="toc-section">Spreads, Brokers & Avoiding Exotic Pairs</li>
+                
+                <li class="toc-chapter">Chapter 3 — Time Frame</li>
+                <li class="toc-section">Main Chart: 15-Minute (M15)</li>
+                <li class="toc-section">Higher Time Frame Bias: H1 & H4</li>
+                <li class="toc-section">Combining HTF Bias with M15 Entries</li>
+                
+                <li class="toc-chapter">Chapter 4 — Entries & Exits</li>
+                <li class="toc-section">Entry Rules & Confirmation</li>
+                <li class="toc-section">Stop Loss Placement</li>
+                <li class="toc-section">Take Profit Targets</li>
+                <li class="toc-section">Example Trade Walkthrough</li>
+                
+                <li class="toc-chapter">Chapter 5 — Risk & Reward</li>
+                <li class="toc-section">1:7 Risk-Reward Target</li>
+                <li class="toc-section">Risk Per Trade & Position Sizing</li>
+                <li class="toc-section">Psychology & Trade Selection</li>
+                
+                <li class="toc-chapter">Conclusion</li>
+                <li class="toc-section">Final Tips & Recommendations</li>
+                
+                <li class="toc-chapter">About the Author</li>
+            </ul>
+        </div>
+
+        <!-- Introduction -->
+        <div class="page">
+            <h2>Introduction</h2>
+            <p>Welcome to <strong>Precision Trading</strong>, a comprehensive guide designed to help you achieve consistency and precision in the financial markets. This strategy is built on years of experience, countless hours of backtesting, and a commitment to disciplined execution.</p>
+            
+            <h3>About This Strategy</h3>
+            <p>This ebook presents a systematic approach to trading that focuses on high-probability setups with exceptional risk-reward ratios. The core philosophy centers around <span class="highlight">quality over quantity</span>—taking fewer trades with significantly better odds of success.</p>
+            
+            <p>The strategy employs concepts from Smart Money trading, including liquidity sweeps, market structure shifts, and imbalance fills. These institutional-level concepts, when properly understood and applied, can provide retail traders with a significant edge in the markets.</p>
+            
+            <h3>Objectives</h3>
+            <p>The primary objectives of this strategy are:</p>
+            <ul>
+                <li><strong>Consistency:</strong> Building a reliable trading system that produces predictable results over time</li>
+                <li><strong>Precision:</strong> Identifying high-probability entry points with surgical accuracy</li>
+                <li><strong>Risk Management:</strong> Protecting capital through disciplined position sizing and stop-loss placement</li>
+                <li><strong>Profitability:</strong> Achieving a minimum 1:7 risk-reward ratio on every trade</li>
+            </ul>
+            
+            <h3>Target Audience</h3>
+            <p>This guide is designed for:</p>
+            <ul>
+                <li>Intermediate to advanced traders looking to refine their strategy</li>
+                <li>Traders who understand basic market concepts (support/resistance, candlestick patterns)</li>
+                <li>Individuals willing to dedicate time to backtesting and practice</li>
+                <li>Those seeking a structured, rule-based approach to trading</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h4>⚠️ Important Note</h4>
+                <p>This strategy requires patience, discipline, and emotional control. It is not a "get rich quick" scheme. Success comes from consistent application of the rules, proper risk management, and continuous learning from each trade.</p>
+            </div>
+            
+            <p>Let's begin your journey to becoming a precision trader.</p>
+        </div>
+
+        <!-- Chapter 1 -->
+        <div class="page">
+            <span class="chapter-number">CHAPTER 01</span>
+            <h2>How I Start My Trading Day</h2>
+            
+            <p>The foundation of successful trading begins before the markets even open. Your pre-market routine determines the quality of your trading decisions throughout the day. This chapter outlines the systematic approach I use every single trading day.</p>
+            
+            <h3>Defining the "Real Trading Window"</h3>
+            <p>Not all trading hours are created equal. The <span class="highlight">real trading window</span> refers to the specific times when market conditions align to provide optimal trading opportunities. During these windows, we see:</p>
+            <ul>
+                <li>Highest liquidity levels</li>
+                <li>Tightest spreads</li>
+                <li>Clear directional moves</li>
+                <li>Institutional participation</li>
+            </ul>
+            
+            <p>Trading outside these windows often results in choppy, unpredictable price action that leads to unnecessary losses. By limiting our trading to these premium hours, we dramatically increase our win rate.</p>
+            
+            <h3>Identifying Optimal Liquidity Times</h3>
+            <p>The forex and gold markets operate 24 hours a day, but activity varies significantly across different sessions. Here's how to identify the best times:</p>
+            
+            <h4>Major Trading Sessions</h4>
+            <table>
+                <tr>
+                    <th>Session</th>
+                    <th>Time (EST)</th>
+                    <th>Characteristics</th>
+                </tr>
+                <tr>
+                    <td>London</td>
+                    <td>3:00 AM - 12:00 PM</td>
+                    <td>Highest volume, strong trends</td>
+                </tr>
+                <tr>
+                    <td>New York</td>
+                    <td>8:00 AM - 5:00 PM</td>
+                    <td>High volatility, major news releases</td>
+                </tr>
+                <tr>
+                    <td>London/NY Overlap</td>
+                    <td>8:00 AM - 12:00 PM</td>
+                    <td><strong>PREMIUM WINDOW</strong> - Maximum liquidity</td>
+                </tr>
+            </table>
+            
+            <div class="callout">
+                <h4>🎯 The Golden Window</h4>
+                <p>The <strong>London/New York overlap (8:00 AM - 12:00 PM EST)</strong> is where I take 80% of my trades. During these four hours, both European and American institutions are active, creating the liquidity and volatility needed for our 1:7 setups.</p>
+                <p>Gold (XAU/USD) is particularly responsive during this window, as it's heavily influenced by both London and New York trading desks.</p>
+            </div>
+            
+            <h4>Session Overlap Logic</h4>
+            <p>Why does the overlap matter so much? When two major financial centers are trading simultaneously:</p>
+            <ul>
+                <li>Trading volume increases 3-4x compared to single-session periods</li>
+                <li>Spreads tighten to their lowest levels</li>
+                <li>Institutional orders create clear directional momentum</li>
+                <li>Liquidity pools are more easily identified and swept</li>
+            </ul>
+            
+            <h3>Pre-Market Preparation Checklist</h3>
+            <p>Every morning, before placing a single trade, I complete this systematic checklist:</p>
+            
+            <div class="callout">
+                <h4>📋 Daily Pre-Market Checklist</h4>
+                <ol>
+                    <li><strong>Economic Calendar Review (15 minutes)</strong>
+                        <ul>
+                            <li>Check high-impact news events for the day</li>
+                            <li>Note times of major releases (NFP, CPI, FOMC, etc.)</li>
+                            <li>Avoid trading 30 minutes before and after major news</li>
+                        </ul>
+                    </li>
+                    <li><strong>Higher Time Frame Analysis (20 minutes)</strong>
+                        <ul>
+                            <li>Review H4 and H1 charts for each pair</li>
+                            <li>Identify current market structure (bullish/bearish/ranging)</li>
+                            <li>Mark key liquidity levels (previous day high/low, Asian range)</li>
+                            <li>Determine daily bias for each pair</li>
+                        </ul>
+                    </li>
+                    <li><strong>Key Level Marking (10 minutes)</strong>
+                        <ul>
+                            <li>Previous day high and low</li>
+                            <li>Weekly opening price</li>
+                            <li>Asian session range (high and low)</li>
+                            <li>Obvious swing points and liquidity pools</li>
+                        </ul>
+                    </li>
+                    <li><strong>Mental Preparation (5 minutes)</strong>
+                        <ul>
+                            <li>Review previous day's trades and lessons</li>
+                            <li>Set risk parameters for the day (max loss, max trades)</li>
+                            <li>Affirm commitment to following the rules</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            
+            <p>This 50-minute routine sets the foundation for the entire trading day. It provides context, identifies opportunities, and ensures you're mentally prepared to execute with discipline.</p>
+            
+            <div class="warning-box">
+                <h4>⚠️ Critical Rule</h4>
+                <p>Never skip your pre-market routine. Trading without proper preparation is like flying a plane without checking the instruments—you might get away with it a few times, but eventually, it will catch up with you.</p>
+            </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="page">
+            <span class="chapter-number">CHAPTER 02</span>
+            <h2>Pairs I Trade</h2>
+            
+            <p>In trading, focus is power. Rather than spreading attention across dozens of instruments, I concentrate on three specific pairs that consistently provide high-quality setups. This chapter explains which pairs I trade and, more importantly, why.</p>
+            
+            <h3>The Three Pillars: EUR/USD, GBP/USD, XAU/USD</h3>
+            <p>After years of testing various instruments, I've narrowed my focus to three pairs that offer the optimal combination of liquidity, volatility, and structural clarity:</p>
+            
+            <h4>1. EUR/USD (Euro / U.S. Dollar)</h4>
+            <p>The "King of Forex" and the most traded currency pair in the world.</p>
+            <ul>
+                <li><strong>Daily Volume:</strong> Over $1 trillion in daily turnover</li>
+                <li><strong>Typical Spread:</strong> 0.1-0.3 pips with quality brokers</li>
+                <li><strong>Best Trading Hours:</strong> London/NY overlap</li>
+                <li><strong>Why It Works:</strong> Extremely liquid, respects technical levels beautifully, predictable institutional behavior</li>
+            </ul>
+            
+            <h4>2. GBP/USD (British Pound / U.S. Dollar)</h4>
+            <p>Known as "Cable," this pair offers excellent volatility for larger reward potential.</p>
+            <ul>
+                <li><strong>Characteristics:</strong> More volatile than EUR/USD, trending moves</li>
+                <li><strong>Typical Spread:</strong> 0.5-1.0 pips</li>
+                <li><strong>Best Trading Hours:</strong> London session and overlap</li>
+                <li><strong>Why It Works:</strong> Clean market structure, strong directional moves, excellent for 1:7+ RR setups</li>
+            </ul>
+            
+            <h4>3. XAU/USD (Gold / U.S. Dollar)</h4>
+            <p>The most consistent performer for Smart Money strategies.</p>
+            <ul>
+                <li><strong>Characteristics:</strong> High liquidity, clear institutional footprints</li>
+                <li><strong>Typical Spread:</strong> 10-30 cents ($0.10-$0.30)</li>
+                <li><strong>Best Trading Hours:</strong> London open through NY session</li>
+                <li><strong>Why It Works:</strong> Gold respects liquidity levels exceptionally well, frequent liquidity sweeps, strong trends</li>
+            </ul>
+            
+            <h3>Why These Pairs Matter</h3>
+            <p>These three instruments aren't chosen randomly. They share specific characteristics that make them ideal for precision trading:</p>
+            
+            <div class="callout">
+                <h4>🔑 Key Advantages</h4>
                 <ul>
-                    <li>Chapter 1: Market Structure</li>
-                    <li>Chapter 2: Supply and Demand</li>
-                    <li>Chapter 3: Liquidity and Inducement</li>
-                    <li>Chapter 4: Fair Value Gaps (FVG)</li>
-                    <li>Chapter 5: Entry Models</li>
-                    <li>Chapter 6: Trading Plan & Top-Down Analysis</li>
-                    <li>Chapter 7: Risk Management</li>
-                    <li>Image Links Reference</li>
+                    <li><strong>Liquidity:</strong> Deep liquidity ensures orders are filled at expected prices without significant slippage</li>
+                    <li><strong>Volatility:</strong> Sufficient price movement to reach our 1:7 targets within reasonable timeframes</li>
+                    <li><strong>Clear Structure:</strong> These pairs respect market structure, making analysis more reliable</li>
+                    <li><strong>Institutional Participation:</strong> Heavy bank involvement creates predictable liquidity patterns</li>
+                    <li><strong>Technical Respect:</strong> Price consistently reacts to key levels and imbalances</li>
                 </ul>
             </div>
-
-            <!-- Chapter 1: Market Structure -->
-            <div class="chapter">
-                <div class="chapter-number">Chapter 1</div>
-                <h2 class="chapter-title">🧭 Market Structure</h2>
-
-                <div class="section">
-                    <h3 class="section-title">Understanding Market Structure</h3>
-                    
-                    <div class="definition">
-                        <strong>What is Market Structure?</strong><br>
-                        Market structure is the framework that describes how price moves through time, creating patterns of highs and lows. It's the foundation of technical analysis and helps traders understand whether the market is trending or consolidating.
-                    </div>
-
-                    <p>Market structure reveals the battle between buyers and sellers. By understanding how price creates structure, you can identify the dominant force in the market and position yourself accordingly. Every price movement leaves behind clues about future direction.</p>
-
-                    
-
-                    <h4 class="subsection-title">How Price Moves: Trending vs Ranging Markets</h4>
-                    
-                    <p><strong>Trending Markets:</strong> Price creates a series of higher highs and higher lows (uptrend) or lower lows and lower highs (downtrend). These markets offer the best trading opportunities as they provide clear direction and momentum.</p>
-
-                    <p><strong>Ranging Markets:</strong> Price oscillates between established support and resistance levels without creating new structural points. These markets require different strategies, typically focused on mean reversion rather than momentum.</p>
-
-                    <div class="key-point">
-                        <strong>Key Insight:</strong> Approximately 70% of the time, markets are ranging. The skilled trader waits patiently for trending conditions and strikes when structure confirms direction.
-                    </div>
-
-                    <h4 class="subsection-title">Identifying Highs, Lows, and Swing Points</h4>
-
-                    <p>Swing points are the pivotal moments where price reverses direction, creating peaks (highs) and troughs (lows). These points define market structure and provide reference points for future analysis.</p>
-
-                    <ul>
-                        <li><strong>Swing High:</strong> A candlestick high that is higher than the highs of the candles immediately before and after it</li>
-                        <li><strong>Swing Low:</strong> A candlestick low that is lower than the lows of the candles immediately before and after it</li>
-                        <li><strong>Higher High (HH):</strong> A swing high that exceeds the previous swing high</li>
-                        <li><strong>Higher Low (HL):</strong> A swing low that is higher than the previous swing low</li>
-                        <li><strong>Lower Low (LL):</strong> A swing low that breaks below the previous swing low</li>
-                        <li><strong>Lower High (LH):</strong> A swing high that fails to exceed the previous swing high</li>
-                    </ul>
-
-                   
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">BOS and CHOCH</h3>
-
-                    <p>These two concepts are critical for understanding market momentum and potential reversals. They tell you whether the current trend is likely to continue or if a reversal is imminent.</p>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">BOS (Break of Structure)</h4>
-                        <p>A Break of Structure occurs when price breaks beyond a previous swing high (in an uptrend) or swing low (in a downtrend). This confirms that the trend is continuing and provides confidence for trend-following entries.</p>
-                        
-                        <p><strong>Bullish BOS:</strong> Price breaks above the previous swing high, confirming upward momentum.</p>
-                        <p><strong>Bearish BOS:</strong> Price breaks below the previous swing low, confirming downward momentum.</p>
-                        
-                        <div class="tip">
-                            <strong>Trading Tip:</strong> After a BOS, wait for price to retrace into a demand zone (uptrend) or supply zone (downtrend) before entering. This gives you better risk-to-reward ratios.
-                        </div>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">CHOCH (Change of Character)</h4>
-                        <p>A Change of Character signals a potential trend reversal. It occurs when price breaks the opposite structure—for example, in an uptrend, price breaks below a previous swing low instead of making a higher low.</p>
-                        
-                        <p><strong>Bullish CHOCH:</strong> During a downtrend, price breaks above a previous swing high.</p>
-                        <p><strong>Bearish CHOCH:</strong> During an uptrend, price breaks below a previous swing low.</p>
-                        
-                        <div class="warning">
-                            <strong>Important:</strong> CHOCH alone is not enough confirmation for a reversal. Wait for price to create a new structure in the opposite direction (forming a new high/low) before committing to reversal trades.
-                        </div>
-                    </div>
-
-                   
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Internal and External Structure</h3>
-
-                    <p>Understanding the relationship between different timeframe structures is crucial for accurate market analysis. This multi-timeframe approach helps you avoid false signals and align your trades with the dominant trend.</p>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">External Structure (Higher Timeframe)</h4>
-                        <p>External structure represents the major swing points visible on higher timeframes (4H, Daily, Weekly). These are the primary levels that institutional traders and smart money are watching. External structure defines the overall trend and major support/resistance zones.</p>
-                        
-                        <p>Think of external structure as the "big picture" that governs overall market direction. It's slower to change and provides the context for all lower timeframe movements.</p>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Internal Structure (Lower Timeframe)</h4>
-                        <p>Internal structure consists of the smaller swing points that form within the legs of external structure. These are visible on lower timeframes (15m, 1H) and provide precise entry opportunities within the context of the higher timeframe trend.</p>
-                        
-                        <p>Internal structure helps you refine your entries and exits. While external structure tells you the direction, internal structure tells you the timing.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <strong>The Golden Rule:</strong> Trade internal structure in the direction of external structure. When higher timeframe structure is bullish, look for bullish internal structure breaks on lower timeframes for entries. This alignment dramatically improves your win rate.
-                    </div>
-
-                    
-                </div>
+            
+            <h3>Understanding Spreads and Broker Selection</h3>
+            <p>The spread—the difference between bid and ask prices—directly impacts profitability. With our strategy targeting 1:7 risk-reward ratios, even small spreads can accumulate significantly over time.</p>
+            
+            <h4>Spread Impact Example</h4>
+            <p>Imagine you're trading EUR/USD with a 10-pip stop loss targeting 70 pips profit (1:7 RR):</p>
+            <ul>
+                <li><strong>With 0.2 pip spread:</strong> Negligible impact on performance</li>
+                <li><strong>With 2.0 pip spread:</strong> You need an extra 2 pips of movement, effectively making your risk 12 pips—now it's 1:5.8 RR</li>
+            </ul>
+            
+            <div class="callout">
+                <h4>💡 Broker Requirements</h4>
+                <p>Choose a broker with:</p>
+                <ul>
+                    <li>ECN/STP execution (no dealing desk)</li>
+                    <li>Tight spreads during London/NY overlap</li>
+                    <li>Minimal slippage on stop losses and take profits</li>
+                    <li>Reliable platform (MT4, MT5, or cTrader)</li>
+                    <li>Strong regulatory oversight (FCA, ASIC, or equivalent)</li>
+                </ul>
             </div>
-
-            <!-- Chapter 2: Supply and Demand -->
-            <div class="chapter">
-                <div class="chapter-number">Chapter 2</div>
-                <h2 class="chapter-title">⚖️ Supply and Demand</h2>
-
-                <div class="section">
-                    <h3 class="section-title">Understanding Supply & Demand Zones</h3>
-
-                    <div class="definition">
-                        <strong>What are Supply and Demand Zones?</strong><br>
-                        Supply and demand zones are areas on the chart where significant buying or selling pressure caused an imbalance, resulting in strong price movements away from those levels. These zones represent areas where institutional orders were placed.
-                    </div>
-
-                    <p>Unlike traditional support and resistance lines, supply and demand zones are areas rather than precise levels. They represent regions where large players accumulated or distributed positions, leaving behind footprints of their activity.</p>
-
-                    <p><strong>Demand Zone (Buying Area):</strong> An area where buyers overwhelmed sellers, causing price to move aggressively higher. These are potential support zones where price may bounce again.</p>
-
-                    <p><strong>Supply Zone (Selling Area):</strong> An area where sellers overwhelmed buyers, causing price to move aggressively lower. These are potential resistance zones where price may reverse again.</p>
-
-                    
-
-                    <h4 class="subsection-title">How Price Reacts to These Zones</h4>
-
-                    <p>When price returns to a supply or demand zone, several scenarios can occur:</p>
-
-                    <ul>
-                        <li><strong>Respect:</strong> Price bounces off the zone, confirming it's still valid</li>
-                        <li><strong>Mitigation:</strong> Price moves into the zone and partially fills orders before reversing</li>
-                        <li><strong>Violation:</strong> Price moves completely through the zone, invalidating it</li>
-                    </ul>
-
-                    <div class="tip">
-                        <strong>Pro Tip:</strong> Fresh zones (untested after creation) have the highest probability of causing reactions. Once a zone has been tested multiple times, its strength diminishes.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Order Flow</h3>
-
-                    <p>Order flow is the real-time analysis of buying and selling pressure in the market. It reveals which side (buyers or sellers) is in control and helps predict future price movement.</p>
-
-                    <h4 class="subsection-title">Reading Price Movement</h4>
-
-                    <p><strong>Bullish Order Flow:</strong></p>
-                    <ul>
-                        <li>Strong green candles with small wicks</li>
-                        <li>Consecutive higher highs and higher lows</li>
-                        <li>Quick moves through resistance</li>
-                        <li>Shallow pullbacks</li>
-                        <li>Volume increasing on upward moves</li>
-                    </ul>
-
-                    <p><strong>Bearish Order Flow:</strong></p>
-                    <ul>
-                        <li>Strong red candles with small wicks</li>
-                        <li>Consecutive lower lows and lower highs</li>
-                        <li>Quick moves through support</li>
-                        <li>Shallow pullbacks</li>
-                        <li>Volume increasing on downward moves</li>
-                    </ul>
-
-                   
-                    <h4 class="subsection-title">Identifying Momentum and Exhaustion</h4>
-
-                    <p><strong>Momentum Signals:</strong></p>
-                    <ul>
-                        <li>Large candle bodies relative to wicks</li>
-                        <li>Consecutive candles in the same direction</li>
-                        <li>Breaking through zones with ease</li>
-                        <li>Increasing range of candles</li>
-                    </ul>
-
-                    <p><strong>Exhaustion Signals:</strong></p>
-                    <ul>
-                        <li>Long wicks with small bodies (rejection)</li>
-                        <li>Slowing momentum (smaller candle ranges)</li>
-                        <li>Multiple attempts to break a level with failure</li>
-                        <li>Divergence between price and volume</li>
-                    </ul>
-
-                    <div class="warning">
-                        <strong>Warning:</strong> Exhaustion doesn't guarantee an immediate reversal. Price can remain in exhaustion for extended periods before finally reversing. Wait for structure confirmation.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Order Blocks</h3>
-
-                    <div class="definition">
-                        <strong>What is an Order Block?</strong><br>
-                        An order block is the last up-close candle before a bearish move (bearish OB) or the last down-close candle before a bullish move (bullish OB). It represents where institutional orders were placed before causing a significant move in the opposite direction.
-                    </div>
-
-                    <p>Order blocks are more refined than simple supply and demand zones. They pinpoint the exact candle or cluster of candles where smart money initiated their positions, making them highly accurate for entries.</p>
-
-                    <h4 class="subsection-title">How to Identify Valid Order Blocks</h4>
-
-                    <p>Not all order blocks are created equal. Valid order blocks have specific characteristics:</p>
-
-                    <ul>
-                        <li><strong>Strong Impulse:</strong> The move away from the OB must be strong and decisive</li>
-                        <li><strong>Clean Structure:</strong> Minimal consolidation before the impulse move</li>
-                        <li><strong>Volume:</strong> Increased volume on the impulse candle away from the OB</li>
-                        <li><strong>Freshness:</strong> Untested OBs have higher probability</li>
-                        <li><strong>Alignment:</strong> OB aligns with higher timeframe structure</li>
-                    </ul>
-
-                   
-
-                    <h4 class="subsection-title">How to Choose Order Blocks</h4>
-
-                    <p>When multiple order blocks are present, use these criteria to select the best one:</p>
-
-                    <div class="highlight-box">
-                        <p><strong>1. Alignment with Structure:</strong> The OB should align with a BOS or CHOCH. An OB that forms after a structural break has much higher probability.</p>
-
-                        <p><strong>2. Liquidity Before OB:</strong> Look for liquidity sweeps (equal highs/lows taken) just before the OB forms. Smart money often grabs liquidity before placing their orders.</p>
-
-                        <p><strong>3. Confirmation with BOS/CHOCH:</strong> The OB should be followed by a clear break of structure in the expected direction, confirming that orders are being filled.</p>
-
-                        <p><strong>4. Proper Mitigation and Imbalance:</strong> The OB should show imbalance (FVG) within or near it, and price should partially mitigate it rather than blowing straight through.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <strong>Golden Rule for Order Blocks:</strong> The best order blocks combine all four criteria: structural alignment, liquidity grab, BOS confirmation, and imbalance. Never settle for OBs that only meet one or two criteria.
-                    </div>
-                </div>
+            
+            <h3>Why I Avoid Exotic Pairs</h3>
+            <p>While exotic pairs (USD/TRY, USD/ZAR, etc.) might seem attractive due to their large price movements, they introduce several problems:</p>
+            <ul>
+                <li><strong>Wide Spreads:</strong> Often 20-50 pips, making profitable trading nearly impossible</li>
+                <li><strong>Low Liquidity:</strong> Increased slippage and unpredictable fills</li>
+                <li><strong>Erratic Behavior:</strong> Less respect for technical levels</li>
+                <li><strong>High Overnight Costs:</strong> Substantial swap fees for holding positions</li>
+                <li><strong>Political Risk:</strong> Sudden, unpredictable moves due to local events</li>
+            </ul>
+            
+            <p>Stick to major pairs and gold. Master these three instruments completely before considering others. Specialization leads to expertise, and expertise leads to profitability.</p>
+            
+            <div class="warning-box">
+                <h4>⚠️ Focus Principle</h4>
+                <p>It's better to be an expert in three pairs than a novice in thirty. Deep familiarity with how your chosen instruments move gives you an intuitive edge that comes only with focused attention over time.</p>
             </div>
-
-            <!-- Chapter 3: Liquidity and Inducement -->
-            <div class="chapter">
-                <div class="chapter-number">Chapter 3</div>
-                <h2 class="chapter-title">💧 Liquidity and Inducement</h2>
-
-                <div class="section">
-                    <h3 class="section-title">Types of Liquidity</h3>
-
-                    <div class="definition">
-                        <strong>What is Liquidity?</strong><br>
-                        Liquidity refers to clusters of stop-loss orders and pending orders that accumulate at obvious price levels. Smart money (institutions) targets these liquidity pools to fill their large orders efficiently.
-                    </div>
-
-                    <p>Understanding liquidity is like seeing the matrix of the market. While retail traders place stops at obvious levels, smart money hunts these stops before moving price in their intended direction. This creates the "stop hunts" and "false breakouts" that trap uninformed traders.</p>
-
-                    <h4 class="subsection-title">Equal Highs/Lows</h4>
-
-                    <p>Equal highs or equal lows are swing points that form at approximately the same price level. These areas are liquidity magnets because retail traders place their stop-losses just above equal highs (for shorts) or below equal lows (for longs).</p>
-
-                    <div class="tip">
-                        <strong>Trading Tip:</strong> When you see equal highs in an uptrend, expect price to sweep above them before reversing. When you see equal lows in a downtrend, expect price to sweep below them before reversing. This is classic liquidity engineering.
-                    </div>
-
-                    
-                    <h4 class="subsection-title">Trendline Liquidity</h4>
-
-                    <p>Trendlines are another obvious place where retail traders congregate. Smart money knows that thousands of traders are watching the same trendlines and placing their orders there. Breaking below an upward trendline or above a downward trendline triggers mass stop-losses and provides liquidity.</p>
-
-                    <h4 class="subsection-title">Session Liquidity</h4>
-
-                    <p>Session highs and lows (from Asian, London, or New York sessions) attract liquidity. The previous day's high/low, previous week's high/low, and previous month's high/low are all significant liquidity levels that price often targets.</p>
-
-                    <h4 class="subsection-title">Internal vs External Liquidity</h4>
-
-                    <p><strong>Internal Liquidity:</strong> Liquidity that sits within the current range. This includes equal highs/lows and swing points inside the larger structure. Internal liquidity is often used for inducement—grabbing stops to fuel the move toward external liquidity.</p>
-
-                    <p><strong>External Liquidity:</strong> Liquidity that sits beyond the current structure highs or lows. This is the primary target for smart money. Major structural highs/lows hold the most external liquidity and are the ultimate destinations for price moves.</p>
-
-                    <div class="key-point">
-                        <strong>Liquidity Concept:</strong> Price moves from liquidity to liquidity. It sweeps internal liquidity (inducement) to gather momentum, then targets external liquidity (the real objective). Understanding this flow gives you a massive edge.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">How to Spot Liquidity</h3>
-
-                    <p>Identifying liquidity zones is a critical skill that separates profitable traders from the rest. Here's how to systematically find liquidity on any chart:</p>
-
-                    <ul>
-                        <li><strong>Mark All Swing Highs and Lows:</strong> These are natural stop-loss placement areas</li>
-                        <li><strong>Identify Equal Levels:</strong> Multiple touches at the same price create liquidity pools</li>
-                        <li><strong>Note Psychological Levels:</strong> Round numbers (e.g., $50,000 for Bitcoin) attract orders</li>
-                        <li><strong>Previous Session Extremes:</strong> Daily, weekly, monthly highs and lows</li>
-                        <li><strong>Trendline Breaks:</strong> Where retail traders are stopped out</li>
-                        <li><strong>Gaps:</strong> Overnight or weekend gaps often see liquidity sweeps</li>
-                    </ul>
-
-                   
-                    <h4 class="subsection-title">Areas Where Traders' Stop-Losses Are Likely Placed</h4>
-
-                    <p>Put yourself in the shoes of retail traders. Where would they place stops?</p>
-
-                    <ul>
-                        <li>Just above/below obvious swing points</li>
-                        <li>Beyond trendlines they're trading</li>
-                        <li>Above/below consolidation ranges (breakout traders' stops)</li>
-                        <li>At round psychological numbers</li>
-                        <li>Previous day's high/low (common for day traders)</li>
-                    </ul>
-
-                    <h4 class="subsection-title">Points Where Smart Money Targets Liquidity Pools</h4>
-                    
-                    <p>Smart money doesn't randomly hunt liquidity. They target specific pools that provide the most efficiency for their large orders:</p>
-
-                    <ul>
-                        <li><strong>Breakout Trap Zones:</strong> Areas where false breakouts previously occurred</li>
-                        <li><strong>Multiple Timeframe Confluence:</strong> Where liquidity aligns across several timeframes</li>
-                        <li><strong>Pre-News Levels:</strong> Stops accumulated before major news events</li>
-                        <li><strong>Old Swing Points:</strong> Significant highs/lows from weeks or months ago</li>
-                        <li><strong>Retail Patterns:</strong> Head and shoulders, triangles, wedges—patterns that retail trades</li>
-                    </ul>
-
-                    <div class="warning">
-                        <strong>Critical Insight:</strong> Smart money doesn't fight retail—they use retail as exit liquidity. When everyone is buying, institutions are selling to them. When everyone is selling in panic, institutions are buying from them.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Internal and External Liquidity Deep Dive</h3>
-
-                    <p>The relationship between internal and external liquidity creates the roadmap for price movement. Mastering this concept transforms how you read charts.</p>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Internal Liquidity (Inducement)</h4>
-                        
-                        <p>Internal liquidity serves as bait. Smart money sweeps these levels to:</p>
-                        <ul>
-                            <li>Trigger retail stops and create momentum</li>
-                            <li>Generate the fuel needed to reach external liquidity</li>
-                            <li>Create the appearance of a reversal (false signal)</li>
-                            <li>Establish optimal entry positions</li>
-                        </ul>
-
-                        <p><strong>Example:</strong> In a bullish market structure, price might sweep below an internal low (taking out stops), creating a false breakdown. This inducement generates selling pressure that smart money absorbs, then price reverses sharply upward toward external liquidity above.</p>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">External Liquidity (True Target)</h4>
-                        
-                        <p>External liquidity represents the real objective. These are the major stops and orders that sit beyond current structure:</p>
-                        <ul>
-                            <li>All-time highs or lows</li>
-                            <li>Major swing points on daily/weekly charts</li>
-                            <li>Month/year opening levels</li>
-                            <li>Significant psychological levels</li>
-                        </ul>
-
-                        <p><strong>Example:</strong> Bitcoin trading at $42,000 with previous high at $44,000. The $44,000 level is external liquidity. Price will likely sweep internal lows first (perhaps $41,500), then drive toward $44,000+ to grab external liquidity.</p>
-                    </div>
-
-                   
-
-                    <div class="key-point">
-                        <strong>Trading Strategy:</strong> When price sweeps internal liquidity and shows reversal signs (CHOCH, strong rejection candle, order block formation), enter in the direction of external liquidity. This alignment gives you high-probability trades with excellent risk-reward.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapter 4: Fair Value Gaps -->
-            <div class="chapter">
-                <div class="chapter-number">Chapter 4</div>
-                <h2 class="chapter-title">⚡ Fair Value Gaps (FVG)</h2>
-
-                <div class="section">
-                    <h3 class="section-title">What is FVG?</h3>
-
-                    <div class="definition">
-                        <strong>Fair Value Gap Definition</strong><br>
-                        A Fair Value Gap is an imbalance in price action where price moves so quickly that it leaves behind an unfilled area on the chart. This gap represents inefficiency—an area where fair value was not established because one side (buyers or sellers) completely overwhelmed the other.
-                    </div>
-
-                    <p>FVGs appear as three-candle patterns where the wicks of candles 1 and 3 don't overlap, leaving a visible gap. This gap represents "fair value" that price tends to return to and fill before continuing in the original direction.</p>
-
-                   
-
-                    <h4 class="subsection-title">Price Imbalance and Rebalancing Concept</h4>
-
-                    <p>Think of FVGs as debts that the market must repay. When price creates an imbalance by moving too quickly, it eventually returns to "balance the books" by filling that gap.</p>
-
-                    <p><strong>Rebalancing occurs when:</strong></p>
-                    <ul>
-                        <li>Price returns to the FVG zone</li>
-                        <li>At least 50% of the gap is filled</li>
-                        <li>Often, the entire gap gets filled before price continues</li>
-                    </ul>
-
-                    <div class="tip">
-                        <strong>Pro Tip:</strong> Not all FVGs get filled immediately. Some remain open for days or weeks. The larger the timeframe of the FVG, the more significant it is and the higher the probability it will eventually be filled.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Buy-Sell Imbalance</h3>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Buy-Side Imbalance (Bullish FVG)</h4>
-                        
-                        <p>A buy-side imbalance occurs when buyers are so aggressive that they push price up rapidly, leaving a gap. This creates a bullish FVG—an area of unfilled value below current price.</p>
-
-                        <p><strong>Characteristics:</strong></p>
-                        <ul>
-                            <li>Three consecutive candles with upward momentum</li>
-                            <li>Gap between candle 1's high and candle 3's low</li>
-                            <li>Strong bullish candle in the middle (candle 2)</li>
-                            <li>Represents demand exceeding supply dramatically</li>
-                        </ul>
-
-                        <p><strong>Trading Application:</strong> When price retraces into a bullish FVG after a BOS, it presents a buying opportunity. The FVG acts as support, and you can enter long positions within the gap with stops below it.</p>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Sell-Side Imbalance (Bearish FVG)</h4>
-                        
-                        <p>A sell-side imbalance occurs when sellers are so aggressive that they push price down rapidly, leaving a gap. This creates a bearish FVG—an area of unfilled value above current price.</p>
-
-                        <p><strong>Characteristics:</strong></p>
-                        <ul>
-                            <li>Three consecutive candles with downward momentum</li>
-                            <li>Gap between candle 1's low and candle 3's high</li>
-                            <li>Strong bearish candle in the middle (candle 2)</li>
-                            <li>Represents supply exceeding demand dramatically</li>
-                        </ul>
-
-                        <p><strong>Trading Application:</strong> When price retraces into a bearish FVG after a BOS, it presents a selling opportunity. The FVG acts as resistance, and you can enter short positions within the gap with stops above it.</p>
-                    </div>
-
-                   
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Premium and Discount</h3>
-
-                    <p>Every market range can be divided into premium and discount zones. This concept helps you buy low (discount) and sell high (premium), increasing your win rate and risk-reward ratios.</p>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Understanding Equilibrium</h4>
-                        
-                        <p>Draw the range from a significant low to a significant high. The 50% level is equilibrium—fair value. Everything above 50% is premium (expensive). Everything below 50% is discount (cheap).</p>
-
-                        <p><strong>The Range Breakdown:</strong></p>
-                        <ul>
-                            <li><strong>100% - 75%:</strong> Extreme Premium</li>
-                            <li><strong>75% - 50%:</strong> Premium</li>
-                            <li><strong>50%:</strong> Equilibrium (Fair Value)</li>
-                            <li><strong>50% - 25%:</strong> Discount</li>
-                            <li><strong>25% - 0%:</strong> Extreme Discount</li>
-                        </ul>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Premium Zone (Sell Area Above Equilibrium)</h4>
-                        
-                        <p>The premium zone is where you look for short entries if you're bearish. This is where price is "expensive" relative to the range, making it an ideal area to sell.</p>
-
-                        <div class="warning">
-                            <strong>Important:</strong> Never short just because price is in premium. You need confirmation that sellers are taking control (CHOCH, rejection candle, etc.). Premium alone is not an entry signal.
-                        </div>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Discount Zone (Buy Area Below Equilibrium)</h4>
-                        
-                        <p>The discount zone is where you look for long entries if you're bullish. This is where price is "cheap" relative to the range, making it an ideal area to buy.</p>
-
-                        <div class="tip">
-                            <strong>Golden Rule:</strong> In an uptrend, only buy in discount. In a downtrend, only sell in premium. This simple rule prevents you from chasing price and improves your entries dramatically.
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="key-point">
-                        <strong>Advanced Concept:</strong> FVGs that form in discount zones during an uptrend are the highest probability longs. FVGs that form in premium zones during a downtrend are the highest probability shorts. This combination of concepts creates A+ setups.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapter 5: Entry Models -->
-            <div class="chapter">
-                <div class="chapter-number">Chapter 5</div>
-                <h2 class="chapter-title">🎯 Entry Models</h2>
-
-                <div class="section">
-                    <h3 class="section-title">Continuation Entry</h3>
-
-                    <p>The continuation entry is one of the highest probability setups because you're trading with the established trend after it has proven itself with a clear Break of Structure.</p>
-
-                    <div class="definition">
-                        <strong>Continuation Entry Definition</strong><br>
-                        A continuation entry occurs after price breaks structure in the direction of the trend (BOS), then retraces into a valid order block or FVG, providing an opportunity to enter in the direction of the trend continuation.
-                    </div>
-
-                    <h4 class="subsection-title">Step-by-Step Continuation Entry Process</h4>
-
-                    <ol class="step-list">
-                        <li><strong>Identify the Trend:</strong> Confirm you're in an uptrend (HH, HL) or downtrend (LL, LH) on your chosen timeframe</li>
-                        
-                        <li><strong>Wait for BOS:</strong> Price must break the previous swing high (uptrend) or swing low (downtrend) to confirm continuation</li>
-                        
-                        <li><strong>Mark the Order Block/FVG:</strong> Identify the last opposing candle before the BOS move and any FVGs created during the impulse</li>
-                        
-                        <li><strong>Wait for Retracement:</strong> Be patient as price pulls back into your marked zone. Don't chase the initial impulse</li>
-                        
-                        <li><strong>Look for Confirmation:</strong> When price reaches the OB/FVG, wait for rejection signs or a lower timeframe BOS</li>
-                        
-                        <li><strong>Enter the Trade:</strong> Place entry within the OB/FVG with stop loss below the OB (longs) or above the OB (shorts)</li>
-                        
-                        <li><strong>Set Targets:</strong> Target the next liquidity level, structural high/low, or use a risk-reward ratio of at least 1:3</li>
-                    </ol>
-
-                    
-
-                    <div class="tip">
-                        <strong>Pro Tip:</strong> The best continuation entries occur after liquidity sweeps. If price sweeps internal liquidity before the BOS, then retraces to your OB, the probability increases significantly.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">CHOCH Entry</h3>
-
-                    <p>The CHOCH entry is used when you anticipate a trend reversal. This is a more advanced and riskier entry model, but when executed correctly, it can catch the beginning of major trend reversals.</p>
-
-                    <div class="definition">
-                        <strong>CHOCH Entry Definition</strong><br>
-                        A CHOCH entry occurs after price breaks structure in the opposite direction of the previous trend, signaling a Change of Character. This suggests the trend may be reversing, creating an opportunity to enter early in the new direction.
-                    </div>
-
-                    <h4 class="subsection-title">Step-by-Step CHOCH Entry Process</h4>
-
-                    <ol class="step-list">
-                        <li><strong>Identify Weakness:</strong> Look for signs the current trend is weakening</li>
-                        
-                        <li><strong>Spot the CHOCH:</strong> Price breaks opposite structure</li>
-                        
-                        <li><strong>Wait for Structure Formation:</strong> Wait for price to create a new high or low in the new direction</li>
-                        
-                        <li><strong>Identify Order Block:</strong> Mark the order block that formed before the CHOCH move</li>
-                        
-                        <li><strong>Wait for Retracement:</strong> Price should retrace back to the OB/FVG</li>
-                        
-                        <li><strong>Confirm with Lower Timeframe BOS:</strong> Drop to a lower timeframe and wait for a BOS</li>
-                        
-                        <li><strong>Enter with Caution:</strong> Enter within the OB with stops beyond the previous structure point</li>
-                    </ol>
-
-                    <div class="warning">
-                        <strong>Critical Warning:</strong> CHOCH entries are counter-trend initially, making them riskier. Never rely on CHOCH alone. You must see structure confirmation before fully committing.
-                    </div>
-
-                   
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Flip Entry</h3>
-
-                    <p>The flip entry is one of the most powerful setups because it represents zones where the market has completely changed character.</p>
-
-                    <div class="definition">
-                        <strong>Flip Entry Definition</strong><br>
-                        A flip entry occurs when a previous supply zone (resistance) is broken and becomes a demand zone (support), or when a previous demand zone (support) is broken and becomes a supply zone (resistance).
-                    </div>
-
-                    <h4 class="subsection-title">Entry on Retest of Flipped Structure</h4>
-
-                    <ol class="step-list">
-                        <li><strong>Identify the Original Zone:</strong> Mark significant supply or demand zones</li>
-                        
-                        <li><strong>Wait for the Break:</strong> Price must decisively break through the zone</li>
-                        
-                        <li><strong>Confirm the Flip:</strong> Price should move away and create new structure</li>
-                        
-                        <li><strong>Wait for Retest:</strong> Be patient as price returns to test the flipped zone</li>
-                        
-                        <li><strong>Look for Rejection:</strong> Watch for strong rejection candles</li>
-                        
-                        <li><strong>Enter the Trade:</strong> Enter within the flipped zone with stops beyond the zone boundary</li>
-                    </ol>
-
-                    
-
-                    <div class="key-point">
-                        <strong>Why Flips Work:</strong> Flipped zones are powerful because they represent areas where the market consensus has completely changed. This creates strong reactions.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapter 6: Trading Plan -->
-            <div class="chapter">
-                <div class="chapter-number">Chapter 6</div>
-                <h2 class="chapter-title">🧩 Trading Plan & Top-Down Analysis</h2>
-
-                <div class="section">
-                    <h3 class="section-title">Step-by-Step Process to Analyse and Place a Trade</h3>
-
-                    <ol class="step-list">
-                        <li><strong>Identify Higher Timeframe Trend (HTF Bias)</strong> - Start on the Daily or 4H chart</li>
-                        
-                        <li><strong>Mark External Structure and Liquidity</strong> - Identify key levels that price is likely to target</li>
-                        
-                        <li><strong>Drop to Lower Timeframe for Internal Structure</strong> - Move to 1H or 15m timeframe</li>
-                        
-                        <li><strong>Look for Liquidity Sweeps + CHOCH</strong> - Watch for price to sweep internal liquidity</li>
-                        
-                        <li><strong>Refine OB/FVG for Entry</strong> - Pinpoint your exact entry zone</li>
-                        
-                        <li><strong>Confirm Entry Trigger</strong> - Wait for confirmation before entering</li>
-                        
-                        <li><strong>Manage Trade with Risk and Targets</strong> - Set stops and targets properly</li>
-                    </ol>
-
-                    
-
-                    <div class="key-point">
-                        <strong>The 80/20 Rule:</strong> Spend 80% of your time analyzing and waiting for A+ setups, and only 20% actually in trades. Patient traders are profitable traders.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Pre-Trade Checklist</h3>
-
-                    <table>
-                        <tr>
-                            <th>Checklist Item</th>
-                            <th>What to Verify</th>
-                        </tr>
-                        <tr>
-                            <td>✅ HTF Bias Clear</td>
-                            <td>Can you clearly define trend direction?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ External Liquidity Marked</td>
-                            <td>Do you know where price is heading?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Liquidity Sweep Occurred</td>
-                            <td>Did price take internal liquidity?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ CHOCH or BOS Present</td>
-                            <td>Is there structural confirmation?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Valid OB/FVG Identified</td>
-                            <td>Is there a clear institutional zone?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Premium/Discount Aligned</td>
-                            <td>Buying in discount or selling in premium?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Risk-Reward 1:3 Minimum</td>
-                            <td>Does the setup offer at least 3R potential?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Entry Confirmation</td>
-                            <td>Do you have a clear trigger?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Stop Loss Defined</td>
-                            <td>Do you know exactly where you're wrong?</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Emotional State Check</td>
-                            <td>Are you calm and following your plan?</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Trade Journaling</h3>
-
-                    <p>Every trade you take should be documented. This creates a feedback loop that accelerates your learning.</p>
-
-                    
-                </div>
-            </div>
-
-            <!-- Chapter 7: Risk Management -->
-            <div class="chapter">
-                <div class="chapter-number">Chapter 7</div>
-                <h2 class="chapter-title">💰 Risk Management</h2>
-
-                <div class="section">
-                    <h3 class="section-title">The Foundation of Long-Term Success</h3>
-
-                    <p>You can have the best technical analysis in the world, but without proper risk management, you will eventually lose everything.</p>
-
-                    <div class="key-point">
-                        <strong>Fundamental Truth:</strong> Your job as a trader is not to make money on every trade. Your job is to execute your edge consistently while protecting your capital.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Risk-to-Reward Ratio</h3>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Understanding RR Ratios</h4>
-                        
-                        <p><strong>1:1 RR:</strong> Risk $100 to make $100 (break-even requires 50% win rate)</p>
-                        <p><strong>1:2 RR:</strong> Risk $100 to make $200 (break-even requires 33% win rate)</p>
-                        <p><strong>1:3 RR:</strong> Risk $100 to make $300 (break-even requires 25% win rate)</p>
-                        <p><strong>1:5 RR:</strong> Risk $100 to make $500 (break-even requires 17% win rate)</p>
-
-                        <div class="key-point">
-                            <strong>The Math That Changes Everything:</strong> With a 1:3 RR, you can be wrong 60% of the time and still be profitable.
-                        </div>
-                    </div>
-
-                    
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Fixed Percentage Per Trade</h3>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">The 1-2% Rule</h4>
-                        
-                        <p><strong>Why 1-2% is Optimal:</strong></p>
-                        <ul>
-                            <li><strong>Survivability:</strong> You can withstand 50 consecutive losses</li>
-                            <li><strong>Psychological Health:</strong> Individual losses don't create emotional damage</li>
-                            <li><strong>Compound Growth:</strong> Small consistent gains compound dramatically</li>
-                            <li><strong>Professional Standard:</strong> This is what institutional traders use</li>
-                        </ul>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Position Sizing Formula</h4>
-                        
-                        <div class="definition">
-                            <strong>Position Size = (Account Size × Risk %) / (Entry Price - Stop Loss)</strong>
-                        </div>
-
-                        <p><strong>Example:</strong></p>
-                        <ul>
-                            <li>Account Size: $10,000</li>
-                            <li>Risk Per Trade: 2% ($200)</li>
-                            <li>Entry Price: $50,000</li>
-                            <li>Stop Loss: $49,500</li>
-                            <li>Risk Per Unit: $500</li>
-                            <li><strong>Position Size: $200 ÷ $500 = 0.4 units (BTC)</strong></li>
-                        </ul>
-                    </div>
-
-                    
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Stop Loss Placement</h3>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Strategic Stop Loss Placement</h4>
-                        
-                        <p><strong>For Long Positions:</strong></p>
-                        <ul>
-                            <li>Below the order block you entered from</li>
-                            <li>Below the liquidity sweep low</li>
-                            <li>Below the FVG zone</li>
-                            <li>Give it breathing room</li>
-                        </ul>
-
-                        <p><strong>For Short Positions:</strong></p>
-                        <ul>
-                            <li>Above the order block</li>
-                            <li>Above the liquidity sweep high</li>
-                            <li>Above the FVG zone</li>
-                            <li>Give it breathing room</li>
-                        </ul>
-
-                        <div class="warning">
-                            <strong>Never Move Your Stop Loss Further Away:</strong> This is how traders blow accounts.
-                        </div>
-                    </div>
-
-                    <div class="tip">
-                        <strong>Trailing Stop Strategy:</strong> As price continues in your favor, trail your stop below each new swing low (longs) or above each new swing high (shorts). This locks in profits while giving the trend room to breathe.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Emotional Discipline</h3>
-
-                    <p>Technical skills get you into trades. Emotional discipline keeps you profitable long-term. The psychology of trading is often more important than the technical analysis.</p>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">The Psychological Challenges of Trading</h4>
-                        
-                        <p><strong>Fear:</strong> Fear of losing money can prevent you from taking valid setups. Combat this by risking only 1-2% per trade.</p>
-
-                        <p><strong>Greed:</strong> Greed causes you to overtrade or risk too much. Combat this by having strict rules.</p>
-
-                        <p><strong>Revenge Trading:</strong> After a loss, the urge to "get it back" leads to impulsive trades. Combat this by stepping away after a loss.</p>
-
-                        <p><strong>FOMO:</strong> Seeing price move without you creates urgency to enter late. Combat this by accepting that you'll miss trades.</p>
-
-                        <p><strong>Overconfidence:</strong> After a winning streak, traders often increase risk. Combat this by maintaining the same process.</p>
-                    </div>
-
-                    
-
-                    <div class="key-point">
-                        <strong>The 90/90/90 Rule:</strong> 90% of traders lose 90% of their money in 90 days. The reason? Not lack of knowledge—lack of discipline and risk management.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Trade Journaling and Review</h3>
-
-                    <p>Your trading journal is your laboratory. It's where you conduct experiments, track results, and identify patterns that lead to consistent profitability.</p>
-
-                    <div class="highlight-box">
-                        <h4 class="subsection-title">Weekly and Monthly Reviews</h4>
-                        
-                        <p><strong>Weekly Review Questions:</strong></p>
-                        <ul>
-                            <li>What was my win rate this week?</li>
-                            <li>What was my average RR?</li>
-                            <li>Which setups performed best?</li>
-                            <li>Did I follow my rules consistently?</li>
-                            <li>What emotional challenges did I face?</li>
-                        </ul>
-
-                        <p><strong>Monthly Review Questions:</strong></p>
-                        <ul>
-                            <li>What is my overall profitability?</li>
-                            <li>Am I improving compared to previous months?</li>
-                            <li>What are my strongest patterns/setups?</li>
-                            <li>What are my weakest areas?</li>
-                            <li>Do I need to adjust any rules?</li>
-                        </ul>
-                    </div>
-
-                    <div class="key-point">
-                        <strong>The Compound Effect:</strong> Small improvements in your win rate, average RR, or risk management compound dramatically over time. Your journal is the tool that makes this improvement possible.
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Final Risk Management Principles</h3>
-
-                    <div class="highlight-box">
-                        <h4>The Non-Negotiable Rules</h4>
-                        
-                        <ol>
-                            <li><strong>Never risk more than 2% per trade</strong> — No exceptions</li>
-                            
-                            <li><strong>Never risk more than 6% total</strong> — Maximum of 3 concurrent trades</li>
-                            
-                            <li><strong>Minimum 1:3 RR on every trade</strong> — If you can't get 1:3, don't take the trade</li>
-                            
-                            <li><strong>Always use stop losses</strong> — Never hope a losing trade will come back</li>
-                            
-                            <li><strong>Never move stops further away</strong> — This is how accounts die</li>
-                            
-                            <li><strong>Take breaks after losses</strong> — Don't revenge trade</li>
-                            
-                            <li><strong>Journal every trade</strong> — Without data, you can't improve</li>
-                            
-                            <li><strong>Follow your rules religiously</strong> — Consistency beats brilliance</li>
-                            
-                            <li><strong>Accept that losses happen</strong> — Even the best traders have 40-50% losses</li>
-                            
-                            <li><strong>Protect capital above all</strong> — You can't trade if you blow your account</li>
-                        </ol>
-                    </div>
-
-                    
-                </div>
-            </div>
-
-            <!-- Conclusion -->
-            <div class="chapter">
-                <div class="chapter-number">Conclusion</div>
-                <h2 class="chapter-title">🎓 Your Journey Begins Now</h2>
-
-                <div class="section">
-                    <p>You now possess a comprehensive framework for trading cryptocurrency markets using institutional concepts. But knowledge alone is not enough. Trading mastery comes from deliberate practice, consistent application, and continuous learning.</p>
-
-                    <div class="highlight-box">
-                        <h4>The Path to Mastery</h4>
-                        
-                        <p><strong>Stage 1: Education (Weeks 1-4)</strong></p>
-                        <ul>
-                            <li>Study this material repeatedly until concepts become intuitive</li>
-                            <li>Practice identifying structures on historical charts</li>
-                            <li>Mark up hundreds of charts with OBs, FVGs, liquidity, and structure</li>
-                        </ul>
-
-                        <p><strong>Stage 2: Simulation (Weeks 5-12)</strong></p>
-                        <ul>
-                            <li>Paper trade or use a demo account</li>
-                            <li>Execute your full process on every setup</li>
-                            <li>Journal every trade as if real money were on the line</li>
-                            <li>Aim for 50+ simulated trades before risking real capital</li>
-                        </ul>
-
-                        <p><strong>Stage 3: Real Trading (Week 13+)</strong></p>
-                        <ul>
-                            <li>Start with minimum position sizes (1% risk)</li>
-                            <li>Take only A+ setups that meet all criteria</li>
-                            <li>Follow your risk management rules religiously</li>
-                            <li>Scale up position size only after consistent profitability</li>
-                        </ul>
-                    </div>
-
-                    <div class="key-point">
-                        <strong>Remember:</strong> Professional trading is not about getting rich quickly. It's about developing an edge, executing it consistently, managing risk intelligently, and allowing time to compound your results.
-                    </div>
-
-                    <div class="warning">
-                        <strong>Final Warning:</strong> The concepts in this book work, but they require discipline and patience to apply correctly. Most traders fail not because the strategy doesn't work, but because they lack the discipline to follow it consistently. Don't be one of them.
-                    </div>
-
-                    <p style="margin-top: 40px; text-align: center; font-size: 1.2em; font-style: italic; color: #667eea;">
-                        "The market is a device for transferring money from the impatient to the patient."<br>— Warren Buffett
-                    </p>
-
-                    <p style="margin-top: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">
-                        Good luck on your trading journey. May your analysis be sharp, your risk management tight, and your patience infinite.
-                    </p>
-
-                   
-                </div>
-            </div>
-
-          
-
-            <!-- Author Note -->
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; text-align: center; margin-top: 60px; border-radius: 10px;">
-                <h3 style="margin-bottom: 20px; font-size: 1.8em;">Thank You for Reading</h3>
-                <p style="font-size: 1.1em; line-height: 1.8;">
-                    This eBook represents years of study, practice, and real trading experience. The concepts presented here are used by professional traders worldwide. Apply them with discipline, manage your risk intelligently, and success will follow.
-                </p>
-                <p style="font-size: 1.1em; margin-top: 20px;">
-                    Remember: Trading is a marathon, not a sprint. Stay patient, stay disciplined, and never stop learning.
-                </p>
-                <p style="font-size: 1.3em; margin-top: 30px; font-weight: bold;">
-                    Trade smart. Trade safe. Trade profitably.
-                </p>
-            </div>
-
         </div>
+
+        <!-- Chapter 3 -->
+        <div class="page">
+            <span class="chapter-number">CHAPTER 03</span>
+            <h2>Time Frame</h2>
+            
+            <p>Time frame selection is crucial for precision trading. The wrong time frame can lead to premature entries, noise-filled signals, or missed opportunities. This chapter reveals the exact time frame combination that maximizes setup quality while maintaining practical execution.</p>
+            
+            <h3>Main Chart: 15-Minute (M15)</h3>
+            <p>The <span class="highlight">15-minute chart</span> serves as my primary execution time frame. This is where I identify entry triggers and place trades. Here's why M15 is optimal:</p>
+            
+            <ul>
+                <li><strong>Precision Timing:</strong> Provides clear entry points without excessive noise</li>
+                <li><strong>Swing Trade Duration:</strong> Trades typically last 2-8 hours, fitting within a single trading session</li>
+                <li><strong>Clean Structure:</strong> Market structure shifts are clearly visible</li>
+                <li><strong>Practical Execution:</strong> Enough time to analyze and execute without rushed decisions</li>
+                <li><strong>Realistic Targets:</strong> 1:7 risk-reward ratios are achievable within reasonable timeframes</li>
+            </ul>
+            
+            <p>On the M15 chart, I look for specific entry patterns that will be detailed in Chapter 4. The key is that M15 provides granular detail without getting lost in the noise of lower time frames like M5 or M1.</p>
+            
+            <h3>Higher Time Frame Bias: H1 & H4</h3>
+            <p>While M15 is our execution chart, we never trade in isolation. Higher time frames provide the essential context and directional bias:</p>
+            
+            <h4>4-Hour Chart (H4) — The Strategic Overview</h4>
+            <p>The H4 chart reveals the overall market structure and long-term trend:</p>
+            <ul>
+                <li>Identifies major market structure (bullish, bearish, or ranging)</li>
+                <li>Shows weekly and daily key levels</li>
+                <li>Reveals large imbalances and liquidity pools</li>
+                <li>Determines whether we should be looking for longs or shorts</li>
+            </ul>
+            
+            <h4>1-Hour Chart (H1) — The Tactical Bridge</h4>
+            <p>The H1 chart bridges the gap between strategic overview and tactical execution:</p>
+            <ul>
+                <li>Confirms the H4 bias with more recent price action</li>
+                <li>Identifies interim structure breaks</li>
+                <li>Shows session-specific liquidity levels</li>
+                <li>Provides recent swing points for stop-loss placement</li>
+            </ul>
+            
+            <div class="callout">
+                <h4>📊 Time Frame Hierarchy</h4>
+                <p><strong>H4:</strong> "Where are we going?" (Overall direction)<br>
+                <strong>H1:</strong> "How are we getting there?" (Recent structure)<br>
+                <strong>M15:</strong> "When do I enter?" (Precise timing)</p>
+            </div>
+            
+            <h3>Combining HTF Bias with M15 Entries</h3>
+            <p>The magic happens when we align all three time frames. Here's the step-by-step process:</p>
+            
+            <h4>Step 1: Establish H4 Bias</h4>
+            <p>Every trading session begins with H4 analysis:</p>
+            <ul>
+                <li>Is price making higher highs and higher lows? (Bullish bias)</li>
+                <li>Is price making lower highs and lower lows? (Bearish bias)</li>
+                <li>Is price trapped in a range? (No clear bias—wait for breakout)</li>
+            </ul>
+            
+            <h4>Step 2: Confirm with H1 Structure</h4>
+            <p>Once H4 bias is established, zoom into H1:</p>
+            <ul>
+                <li>Does H1 structure support the H4 bias?</li>
+                <li>Has there been a recent market structure shift (MSS) in the direction of H4 bias?</li>
+                <li>Where are the most recent swing points for stop-loss placement?</li>
+            </ul>
+            
+            <h4>Step 3: Execute on M15 Confirmation</h4>
+            <p>With HTF bias confirmed, wait for M15 entry trigger:</p>
+            <ul>
+                <li>Liquidity sweep of recent high/low</li>
+                <li>Market structure shift on M15</li>
+                <li>Displacement candle showing institutional entry</li>
+                <li>Entry into imbalance or order block</li>
+            </ul>
+            
+            <div class="example-trade">
+                <h4>📈 Multi-Time Frame Example</h4>
+                <p><strong>Scenario: EUR/USD Long Setup</strong></p>
+                <p><strong>H4 Analysis:</strong> Price is making higher highs and higher lows. Clear uptrend. Recent H4 candle closed above previous swing high. Bias = BULLISH.</p>
+                <p><strong>H1 Analysis:</strong> Price swept the Asian session low, then broke above the Asian high creating a market structure shift. Recent swing low at 1.0850. Bias confirmed = LONG.</p>
+                <p><strong>M15 Execution:</strong> Waited for price to sweep liquidity below the recent M15 low at 1.0865, then observed strong displacement candle back up breaking M15 structure. Entry at 1.0870 with stop below the sweep at 1.0860 (10 pips risk). Target at 1.0940 (70 pips reward = 1:7 RR).</p>
+                <p><strong>Result:</strong> All three time frames aligned. Trade executed with confidence. Price hit target within 6 hours.</p>
+            </div>
+            
+            <h3>The Multi-Time Frame Advantage</h3>
+            <p>Trading with multi-time frame analysis provides several critical advantages:</p>
+            <ul>
+                <li><strong>Higher Probability:</strong> Alignment across time frames increases win rate</li>
+                <li><strong>Reduced False Signals:</strong> HTF context filters out counter-trend noise</li>
+                <li><strong>Better Risk Management:</strong> Clear invalidation points from HTF structure</li>
+                <li><strong>Confidence:</strong> Knowing the "big picture" supports conviction in trades</li>
+                <li><strong>Patience:</strong> Understanding HTF bias helps you wait for optimal entries</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h4>⚠️ Never Trade Against HTF Bias</h4>
+                <p>This is a cardinal rule: if H4 is bullish and H1 confirms, do NOT take short entries on M15 even if you see a perfect bearish setup. Counter-trend trades might work occasionally, but over time they destroy accounts. Always trade WITH the higher time frame bias.</p>
+            </div>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="page">
+            <span class="chapter-number">CHAPTER 04</span>
+            <h2>Entries & Exits</h2>
+            
+            <p>This is where theory meets practice. Entry and exit rules are the heart of any trading strategy. This chapter provides the exact criteria for entering trades, placing stop losses, and taking profits with surgical precision.</p>
+            
+            <h3>Entry Rules: The Three-Step Confirmation</h3>
+            <p>Every trade must satisfy three mandatory conditions before execution. Missing even one condition means NO TRADE.</p>
+            
+            <h4>Condition 1: Liquidity Sweep</h4>
+            <p>Price must first sweep a liquidity pool. Liquidity pools are areas where stop losses cluster, typically:</p>
+            <ul>
+                <li>Above/below recent swing highs/lows</li>
+                <li>Above/below round numbers (e.g., 1.1000, 1950.00 for gold)</li>
+                <li>Asian session range extremes</li>
+                <li>Previous day high/low</li>
+            </ul>
+            
+            <p>A liquidity sweep occurs when price briefly moves beyond these levels to trigger stops, then quickly reverses. This "stop hunt" is institutional behavior—they need liquidity to fill large orders.</p>
+            
+            <h4>Condition 2: Market Structure Shift (MSS)</h4>
+            <p>After the liquidity sweep, price must break structure in the opposite direction:</p>
+            <ul>
+                <li><strong>For longs:</strong> Price must break above the most recent lower high</li>
+                <li><strong>For shorts:</strong> Price must break below the most recent higher low</li>
+            </ul>
+            
+            <p>The market structure shift signals that institutional orders have been filled and the true direction is now unfolding.</p>
+            
+            <h4>Condition 3: Confirmation & Entry Trigger</h4>
+            <p>After the MSS, wait for price to retrace into a premium area:</p>
+            <ul>
+                <li><strong>Order Block:</strong> The last opposite-colored candle before the strong move</li>
+                <li><strong>Fair Value Gap (Imbalance):</strong> The gap left by the displacement candle</li>
+                <li><strong>Fibonacci Level:</strong> 0.618 or 0.786 retracement of the impulse move</li>
+            </ul>
+            
+            <p>Entry is taken when price enters this zone AND shows a strong displacement candle (large candle with minimal wick) in the direction of bias.</p>
+            
+            <div class="callout">
+                <h4>✅ Entry Checklist</h4>
+                <ul>
+                    <li>☑ HTF bias confirmed (H4 and H1 aligned)</li>
+                    <li>☑ Liquidity sweep observed (stop hunt above/below key level)</li>
+                    <li>☑ Market structure shift on M15 (break of structure in bias direction)</li>
+                    <li>☑ Price retraced into premium zone (order block, FVG, or Fib level)</li>
+                    <li>☑ Strong displacement candle confirming entry</li>
+                    <li>☑ Trading during optimal liquidity hours (London/NY overlap)</li>
+                    <li>☑ No high-impact news scheduled within next 2 hours</li>
+                </ul>
+                <p><strong>If ALL boxes are checked → Execute trade. If any box is unchecked → Wait for next setup.</strong></p>
+            </div>
+            
+            <h3>Stop Loss Placement: Protecting Capital</h3>
+            <p>Stop loss placement is non-negotiable. Every single trade must have a stop loss placed immediately upon entry.</p>
+            
+            <h4>Stop Loss Rules</h4>
+            <p>Place your stop loss beyond the invalidation point:</p>
+            <ul>
+                <li><strong>For longs:</strong> 5-10 pips below the liquidity sweep low</li>
+                <li><strong>For shorts:</strong> 5-10 pips above the liquidity sweep high</li>
+            </ul>
+            
+            <p>The extra 5-10 pips (or equivalent for gold) accounts for spread and minor volatility. Your stop should not be so tight that normal price fluctuation triggers it, but not so wide that risk becomes unacceptable.</p>
+            
+            <h4>Stop Loss Example</h4>
+            <p>GBP/USD long entry:</p>
+            <ul>
+                <li>Liquidity sweep low: 1.2650</li>
+                <li>Entry price: 1.2670</li>
+                <li>Stop loss: 1.2640 (10 pips below sweep low)</li>
+                <li>Risk: 30 pips</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h4>⚠️ Never Move Stop Loss Against Your Position</h4>
+                <p>Once a stop loss is placed, you may move it to breakeven or trailing stop in profit, but NEVER move it further away from entry to "give the trade more room." This is how accounts blow up. If price hits your stop, the setup was invalid—accept it and move on.</p>
+            </div>
+            
+            <h3>Take Profit: Targeting Liquidity</h3>
+            <p>Take profit targets are based on the next significant liquidity pool or imbalance in the direction of your trade.</p>
+            
+            <h4>Take Profit Targets (Priority Order)</h4>
+            <ol>
+                <li><strong>Next Major Liquidity Pool:</strong> Swing high/low, round number, or session extreme</li>
+                <li><strong>Unfilled Imbalance:</strong> Previous fair value gap that hasn't been filled</li>
+                <li><strong>Key Technical Level:</strong> Daily/weekly high or low, major support/resistance</li>
+            </ol>
+            
+            <p>Measure the distance to your target. For a 1:7 risk-reward ratio, your target must be at least 7 times your stop loss distance.</p>
+            
+            <h4>Take Profit Example</h4>
+            <p>Continuing the GBP/USD example:</p>
+            <ul>
+                <li>Entry: 1.2670</li>
+                <li>Stop: 1.2640 (30 pips risk)</li>
+                <li>Target: Previous day high at 1.2880 (210 pips reward)</li>
+                <li>Risk-Reward: 1:7</li>
+            </ul>
+            
+            <div class="callout">
+                <h4>✅ Exit Checklist</h4>
+                <ul>
+                    <li>☑ Stop loss placed immediately upon entry</li>
+                    <li>☑ Stop loss positioned beyond liquidity sweep point</li>
+                    <li>☑ Take profit target identified at next liquidity pool</li>
+                    <li>☑ Risk-reward ratio minimum 1:7 verified</li>
+                    <li>☑ Take profit order placed (or alert set)</li>
+                    <li>☑ Position size calculated based on stop loss distance</li>
+                    <li>☑ Trade logged in journal with screenshots</li>
+                </ul>
+            </div>
+            
+            <h3>Complete Trade Example</h3>
+            
+            <div class="example-trade">
+                <h4>📊 Full Trade Walkthrough: XAU/USD (Gold)</h4>
+                
+                <p><strong>Date:</strong> Tuesday, 9:30 AM EST (London/NY Overlap)</p>
+                
+                <p><strong>Pre-Trade Analysis:</strong></p>
+                <ul>
+                    <li><strong>H4 Bias:</strong> Bullish structure intact, making higher highs and higher lows</li>
+                    <li><strong>H1 Bias:</strong> Broke above Asian session high at $1,945, confirming bullish continuation</li>
+                    <li><strong>M15 Setup:</strong> Watching for liquidity sweep and reentry</li>
+                </ul>
+                
+                <p><strong>Trade Execution:</strong></p>
+                
+                <div class="trade-details">
+                    <div class="trade-detail">
+                        <strong>Liquidity Sweep</strong>
+                        Price dropped to $1,942.50, sweeping the Asian low at $1,943.00 and collecting stops
+                    </div>
+                    <div class="trade-detail">
+                        <strong>Market Structure Shift</strong>
+                        Strong bullish displacement candle broke above recent M15 lower high at $1,945.00
+                    </div>
+                    <div class="trade-detail">
+                        <strong>Entry Trigger</strong>
+                        Price retraced into the order block at $1,946.50, showing strong bullish confirmation candle
+                    </div>
+                </div>
+                
+                <p><strong>Trade Parameters:</strong></p>
+                
+                <div class="trade-details">
+                    <div class="trade-detail">
+                        <strong>Entry Price</strong>
+                        $1,946.50
+                    </div>
+                    <div class="trade-detail">
+                        <strong>Stop Loss</strong>
+                        $1,941.50 (50 cents below sweep low)
+                    </div>
+                    <div class="trade-detail">
+                        <strong>Take Profit</strong>
+                        $1,950.00 (previous day high - major liquidity)
+                    </div>
+                    <div class="trade-detail">
+                        <strong>Risk</strong>
+                        $5.00 per ounce
+                    </div>
+                    <div class="trade-detail">
+                        <strong>Reward</strong>
+                        $35.00 per ounce
+                    </div>
+                    <div class="trade-detail">
+                        <strong>Risk-Reward</strong>
+                        1:7
+                    </div>
+                </div>
+                
+                <p><strong>Outcome:</strong> Price reached take profit target at $1,950.00 within 4 hours. Trade executed perfectly according to the strategy rules.</p>
+                
+                <p><strong>Key Lessons:</strong> All three conditions were met before entry. HTF bias was clear. Stop loss was never in danger. Patience to wait for the full setup paid off with a 1:7 winner.</p>
+            </div>
+            
+            <h3>Partial Profit Taking (Advanced)</h3>
+            <p>Once you're consistently profitable with full position exits, you may consider partial profits:</p>
+            <ul>
+                <li><strong>First Target (50% of position):</strong> Take profit at 1:3 or 1:4 RR</li>
+                <li><strong>Move stop to breakeven</strong> after first target is hit</li>
+                <li><strong>Second Target (remaining 50%):</strong> Full 1:7+ target</li>
+            </ul>
+            
+            <p>This approach locks in profits while still allowing for maximum reward. However, beginners should focus on full position management first.</p>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div class="page">
+            <span class="chapter-number">CHAPTER 05</span>
+            <h2>Risk & Reward</h2>
+            
+            <p>Risk management separates professional traders from gamblers. You can have the best entry strategy in the world, but without proper risk control, long-term success is impossible. This chapter covers the exact risk parameters that have kept my account growing consistently.</p>
+            
+            <h3>The 1:7 Risk-Reward Target</h3>
+            <p>The foundation of this strategy is the <span class="highlight">minimum 1:7 risk-reward ratio</span>. This means for every dollar you risk, you aim to make at least seven dollars.</p>
+            
+            <h4>Why 1:7 Matters</h4>
+            <p>With a 1:7 RR ratio, you only need to win 30% of your trades to be profitable:</p>
+            
+            <table>
+                <tr>
+                    <th>Trades</th>
+                    <th>Winners (30%)</th>
+                    <th>Losers (70%)</th>
+                    <th>Net Result</th>
+                </tr>
+                <tr>
+                    <td>10 trades</td>
+                    <td>3 wins × $700 = $2,100</td>
+                    <td>7 losses × -$100 = -$700</td>
+                    <td>+$1,400 profit</td>
+                </tr>
+                <tr>
+                    <td>20 trades</td>
+                    <td>6 wins × $700 = $4,200</td>
+                    <td>14 losses × -$100 = -$1,400</td>
+                    <td>+$2,800 profit</td>
+                </tr>
+            </table>
+            
+            <p>Even with a 30% win rate, you're profitable. With proper execution, a 40-50% win rate is achievable, which produces exceptional returns.</p>
+            
+            <div class="callout">
+                <h4>💡 The Math of Success</h4>
+                <p>At 40% win rate with 1:7 RR over 100 trades:</p>
+                <ul>
+                    <li>40 winners × $700 = $28,000</li>
+                    <li>60 losers × -$100 = -$6,000</li>
+                    <li><strong>Net profit: $22,000</strong></li>
+                </ul>
+                <p>This is why patient, quality setups with excellent RR ratios outperform high-frequency trading with mediocre ratios.</p>
+            </div>
+            
+            <h3>Risk Per Trade: The 1-2% Rule</h3>
+            <p>Never risk more than <span class="highlight">1-2% of your total account</span> on any single trade. This is non-negotiable.</p>
+            
+            <h4>Why This Matters</h4>
+            <p>Conservative risk management ensures you can survive losing streaks:</p>
+            <ul>
+                <li><strong>At 1% risk:</strong> You can lose 10 trades in a row and still have 90% of your account</li>
+                <li><strong>At 2% risk:</strong> You can lose 10 trades in a row and still have 82% of your account</li>
+                <li><strong>At 10% risk:</strong> You can lose 10 trades in a row and your account is virtually destroyed</li>
+            </ul>
+            
+            <p>Losing streaks happen to everyone. Proper risk management ensures they're temporary setbacks, not career-ending disasters.</p>
+            
+            <h3>Position Sizing: The Formula</h3>
+            <p>Position sizing determines how many lots (or contracts) to trade based on your risk parameters.</p>
+            
+            <div class="formula">
+                Position Size = (Account Size × Risk %) ÷ Stop Loss Distance
+            </div>
+            
+            <h4>Position Sizing Examples</h4>
+            
+            <p><strong>Example 1: EUR/USD</strong></p>
+            <ul>
+                <li>Account size: $10,000</li>
+                <li>Risk per trade: 1% = $100</li>
+                <li>Stop loss distance: 20 pips</li>
+                <li>Position size: $100 ÷ (20 pips × $10 per pip) = 0.5 standard lots</li>
+            </ul>
+            
+            <p><strong>Example 2: XAU/USD (Gold)</strong></p>
+            <ul>
+                <li>Account size: $5,000</li>
+                <li>Risk per trade: 2% = $100</li>
+                <li>Stop loss distance: $5.00</li>
+                <li>Position size: $100 ÷ $5.00 = 20 micro lots (0.20 lots)</li>
+            </ul>
+            
+            <div class="callout">
+                <h4>📏 Position Sizing Steps</h4>
+                <ol>
+                    <li>Determine your account size</li>
+                    <li>Calculate risk amount (1-2% of account)</li>
+                    <li>Measure stop loss distance in pips or dollars</li>
+                    <li>Divide risk amount by stop loss distance</li>
+                    <li>Round down to the nearest tradeable lot size</li>
+                </ol>
+                <p><strong>Always round down, never up.</strong> It's better to risk slightly less than planned than to exceed your risk limit.</p>
+            </div>
+            
+            <h3>Practical Risk Management Rules</h3>
+            
+            <h4>Daily Loss Limit</h4>
+            <p>Set a maximum daily loss limit of 3-4% of your account. If you hit this limit, stop trading for the day. Take a break, review what went wrong, and come back fresh the next day.</p>
+            
+            <h4>Maximum Concurrent Trades</h4>
+            <p>Limit yourself to 2-3 open positions maximum. More trades mean more risk and divided attention. Quality over quantity applies to position management too.</p>
+            
+            <h4>Never Average Down</h4>
+            <p>If a trade goes against you, do NOT add to the position to "average your entry price." This is a recipe for disaster. Accept the loss if your stop is hit and wait for the next setup.</p>
+            
+            <h4>Weekly Risk Limit</h4>
+            <p>Consider implementing a weekly loss limit of 6-8% of your account. If you hit this limit, take a break from trading for the remainder of the week. Use this time to review your trades, refine your analysis, and reset mentally.</p>
+            
+            <h3>Psychology & Trade Selection</h3>
+            <p>Risk management isn't just about numbers—it's about mindset. The psychological aspect of trading is what separates consistent winners from those who blow up accounts.</p>
+            
+            <h4>Quality Over Quantity</h4>
+            <p>This strategy is designed for <span class="highlight">precision, not frequency</span>. Some days you might take zero trades. That's perfectly fine. It's better to wait for one perfect 1:7 setup than to force five mediocre 1:2 setups.</p>
+            
+            <p>Top traders average 1-3 trades per day. They're not glued to their screens, constantly entering and exiting. They wait patiently for their edge to appear, then execute with confidence.</p>
+            
+            <h4>Emotional Control Principles</h4>
+            <ul>
+                <li><strong>Detachment from Outcomes:</strong> Focus on executing the process correctly, not on individual trade outcomes</li>
+                <li><strong>Accept Losses:</strong> Losses are part of the business. A loss doesn't mean you failed—it means you managed risk properly</li>
+                <li><strong>No Revenge Trading:</strong> After a loss, resist the urge to immediately "win it back." This leads to poor decision-making</li>
+                <li><strong>Celebrate Process, Not Profits:</strong> Take pride in following your rules, regardless of the result</li>
+                <li><strong>Stay Humble:</strong> Winning streaks end. Don't increase risk during hot streaks—variance catches everyone</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h4>⚠️ The Revenge Trading Trap</h4>
+                <p>Revenge trading is the fastest way to destroy an account. After taking a loss, your brain wants to "make it back" immediately. This emotional state causes you to:</p>
+                <ul>
+                    <li>Take suboptimal setups that don't meet all criteria</li>
+                    <li>Increase position size beyond your risk rules</li>
+                    <li>Force trades when no valid setup exists</li>
+                </ul>
+                <p>If you feel emotional after a loss, step away from the charts. Go for a walk. Review the trade objectively. Come back when you're calm and ready to follow the process.</p>
+            </div>
+            
+            <h3>Trade Selection Criteria</h3>
+            <p>Not every setup that appears valid should be taken. Here are additional filters for selecting only the highest-quality trades:</p>
+            
+            <h4>The "A+ Setup" Filter</h4>
+            <p>Ask yourself these questions before entering:</p>
+            <ol>
+                <li><strong>Is HTF bias crystal clear?</strong> If you have any doubt about H4/H1 direction, skip the trade</li>
+                <li><strong>Are all three entry conditions met?</strong> Liquidity sweep + MSS + confirmation—all must be present</li>
+                <li><strong>Is the RR ratio at least 1:7?</strong> If not, the trade doesn't meet strategy criteria</li>
+                <li><strong>Is this during optimal hours?</strong> London/NY overlap gets priority</li>
+                <li><strong>Do I feel calm and confident?</strong> If you're anxious or uncertain, skip it</li>
+            </ol>
+            
+            <p>If the answer to any question is "no," don't take the trade. Wait for the next opportunity.</p>
+            
+            <h3>Building a Trader's Mindset</h3>
+            <p>Success in trading comes from developing the right mental framework:</p>
+            
+            <div class="callout">
+                <h4>🧠 Professional Trader Mindset</h4>
+                <ul>
+                    <li><strong>Think in Probabilities:</strong> No single trade matters. What matters is the statistical edge over hundreds of trades</li>
+                    <li><strong>Process Over Outcomes:</strong> Judge yourself by whether you followed the rules, not by whether this specific trade won</li>
+                    <li><strong>Long-Term Perspective:</strong> Focus on monthly and quarterly results, not daily swings</li>
+                    <li><strong>Continuous Learning:</strong> Every trade—win or lose—provides data to improve</li>
+                    <li><strong>Capital Preservation:</strong> Protecting your account is more important than growing it aggressively</li>
+                </ul>
+            </div>
+            
+            <h4>The Power of Patience</h4>
+            <p>Patience is the most underrated skill in trading. The market rewards those who wait for their specific edge to appear. Consider this:</p>
+            <ul>
+                <li>A sniper takes one perfect shot after hours of waiting</li>
+                <li>A machine gunner sprays bullets hoping to hit something</li>
+            </ul>
+            <p>Be the sniper. Wait for your setup. Execute with precision. Move on.</p>
+            
+            <h3>Journaling and Review</h3>
+            <p>Keeping a detailed trading journal is essential for long-term improvement:</p>
+            
+            <h4>What to Record</h4>
+            <ul>
+                <li>Screenshots of entry, stop loss, and take profit levels</li>
+                <li>HTF bias and reasoning</li>
+                <li>Entry conditions (liquidity sweep, MSS, confirmation)</li>
+                <li>Trade outcome (win/loss, RR achieved)</li>
+                <li>Emotional state during the trade</li>
+                <li>Lessons learned or observations</li>
+            </ul>
+            
+            <h4>Weekly Review Process</h4>
+            <p>Every weekend, review your trades from the week:</p>
+            <ol>
+                <li>Calculate win rate and average RR</li>
+                <li>Identify which setups worked best</li>
+                <li>Note any rule violations and their consequences</li>
+                <li>Recognize patterns in your losses (time of day, pair, emotional state)</li>
+                <li>Set specific goals for the following week</li>
+            </ol>
+            
+            <p>This review process turns experience into expertise. Without it, you repeat the same mistakes indefinitely.</p>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="page">
+            <h2>Conclusion</h2>
+            
+            <p>Congratulations on completing this comprehensive guide to precision trading. You now have a complete, rule-based strategy that, when applied with discipline, can produce consistent results in the markets.</p>
+            
+            <h3>Strategy Summary</h3>
+            <p>Let's recap the core components:</p>
+            
+            <ul>
+                <li><strong>Trading Window:</strong> Focus on London/NY overlap (8 AM - 12 PM EST) for optimal liquidity</li>
+                <li><strong>Pairs:</strong> EUR/USD, GBP/USD, and XAU/USD—master these three before expanding</li>
+                <li><strong>Time Frames:</strong> H4 for bias, H1 for confirmation, M15 for execution</li>
+                <li><strong>Entry Rules:</strong> Liquidity sweep + market structure shift + confirmation—all three required</li>
+                <li><strong>Risk Management:</strong> 1-2% per trade, minimum 1:7 RR, strict stop loss discipline</li>
+                <li><strong>Mindset:</strong> Quality over quantity, process over outcomes, patience over action</li>
+            </ul>
+            
+            <h3>The Path Forward</h3>
+            <p>Reading this ebook is just the beginning. True mastery comes from application and refinement. Here's your recommended path forward:</p>
+            
+            <h4>Phase 1: Backtesting (2-4 Weeks)</h4>
+            <p>Before risking real money, backtest this strategy extensively:</p>
+            <ul>
+                <li>Review at least 100 historical setups on your chosen pairs</li>
+                <li>Mark entry, stop loss, and take profit for each setup</li>
+                <li>Record the outcome and RR achieved</li>
+                <li>Calculate your theoretical win rate and average RR</li>
+            </ul>
+            <p>This builds pattern recognition and proves the strategy works before capital is at risk.</p>
+            
+            <h4>Phase 2: Demo Trading (4-8 Weeks)</h4>
+            <p>Trade the strategy in real-time on a demo account:</p>
+            <ul>
+                <li>Follow every rule exactly as written</li>
+                <li>Trade only during optimal hours</li>
+                <li>Journal every single trade with screenshots</li>
+                <li>Focus on execution quality, not P&L</li>
+                <li>Aim for at least 50 trades to establish statistical validity</li>
+            </ul>
+            <p>Demo trading reveals how the strategy performs in live market conditions and exposes any gaps in your understanding.</p>
+            
+            <h4>Phase 3: Live Trading (Small Size)</h4>
+            <p>Once you're consistently profitable on demo, transition to live trading:</p>
+            <ul>
+                <li>Start with minimum position sizes (micro lots)</li>
+                <li>Risk only 0.5% per trade initially</li>
+                <li>Focus on emotional control and execution</li>
+                <li>Gradually increase position size as confidence grows</li>
+                <li>Never increase risk beyond 2% per trade</li>
+            </ul>
+            
+            <h3>Final Tips for Success</h3>
+            
+            <div class="callout">
+                <h4>🎯 Keys to Long-Term Profitability</h4>
+                <ol>
+                    <li><strong>Never Skip Your Routine:</strong> Pre-market preparation is non-negotiable</li>
+                    <li><strong>Follow Every Rule:</strong> Selective rule-following leads to inconsistent results</li>
+                    <li><strong>Be Patient:</strong> Some days have zero valid setups—that's normal</li>
+                    <li><strong>Protect Your Capital:</strong> Risk management comes before profit-seeking</li>
+                    <li><strong>Journal Everything:</strong> Your journal is your path to mastery</li>
+                    <li><strong>Stay Humble:</strong> The market humbles everyone eventually</li>
+                    <li><strong>Continuous Learning:</strong> Markets evolve; stay curious and adaptive</li>
+                    <li><strong>Take Breaks:</strong> Mental freshness is essential for good decisions</li>
+                </ol>
+            </div>
+            
+            <h3>Common Pitfalls to Avoid</h3>
+            <ul>
+                <li><strong>Overtrading:</strong> Taking suboptimal setups out of boredom or desire for action</li>
+                <li><strong>Ignoring HTF Bias:</strong> Trading against higher time frame direction</li>
+                <li><strong>Moving Stop Losses:</strong> Giving losing trades "more room" instead of accepting the loss</li>
+                <li><strong>Increasing Risk After Wins:</strong> Getting overconfident and risking more than planned</li>
+                <li><strong>Revenge Trading:</strong> Trying to immediately recover losses with emotional trades</li>
+                <li><strong>Comparing to Others:</strong> Your trading journey is unique—focus on your own progress</li>
+            </ul>
+            
+            <h3>Measuring Progress</h3>
+            <p>Success in trading isn't measured by daily profits, but by consistent execution over time. Track these metrics:</p>
+            <ul>
+                <li><strong>Rule Adherence Rate:</strong> What percentage of trades followed all rules? (Target: 100%)</li>
+                <li><strong>Win Rate:</strong> Percentage of winning trades (Target: 35-50%)</li>
+                <li><strong>Average RR:</strong> Average risk-reward of your trades (Target: 1:7+)</li>
+                <li><strong>Expectancy:</strong> Average profit per trade over many trades (Target: positive)</li>
+                <li><strong>Maximum Drawdown:</strong> Largest peak-to-trough decline (Target: <15%)</li>
+            </ul>
+            
+            <h3>A Final Word</h3>
+            <p>Trading is a marathon, not a sprint. It's a skill that takes months and years to develop, not days or weeks. Be patient with yourself. Embrace the learning process. Celebrate small wins—a week of perfect execution is more valuable than a lucky profitable trade.</p>
+            
+            <p>The strategy outlined in this ebook works. It's been tested, refined, and proven in live markets. But it only works if <em>you</em> work. It requires discipline, patience, and unwavering commitment to the process.</p>
+            
+            <p>The markets will test you. There will be losing streaks. There will be days when nothing makes sense. There will be moments when you want to abandon the rules and "just wing it." These are the moments that define whether you'll succeed or fail.</p>
+            
+            <p>Stay disciplined. Trust the process. Focus on what you can control—your preparation, your risk management, your emotional state, and your adherence to the rules. The results will take care of themselves.</p>
+            
+            <div class="callout">
+                <h4>🌟 Your Trading Journey Starts Now</h4>
+                <p>You have the knowledge. You have the strategy. You have the rules. What happens next is up to you.</p>
+                <p>Backtest thoroughly. Practice consistently. Execute flawlessly. Journal religiously. Learn continuously.</p>
+                <p>The path to consistent profitability is clear. Walk it with patience, discipline, and respect for the craft of trading.</p>
+                <p><strong>Welcome to the journey. Let's trade with precision.</strong></p>
+            </div>
+        </div>
+
+        <!-- About the Author -->
+        <div class="page author-page">
+            <h2>About the Author</h2>
+            
+            <p>This strategy guide was developed through years of trial, error, and refinement in the financial markets. After experiencing the typical roller coaster of early trading—inconsistent results, blown accounts, and emotional turmoil—the author committed to developing a systematic, rule-based approach to trading.</p>
+            
+            <p>The breakthrough came from studying institutional trading behavior, particularly Smart Money Concepts, and combining these insights with rigorous risk management and psychological discipline. The result is the precision trading strategy outlined in this ebook.</p>
+            
+            <h3>Philosophy</h3>
+            <p>Trading success comes from three pillars:</p>
+            <ul>
+                <li><strong>Technical Edge:</strong> Understanding market structure and institutional behavior</li>
+                <li><strong>Risk Management:</strong> Protecting capital through disciplined position sizing</li>
+                <li><strong>Psychology:</strong> Maintaining emotional control and process focus</li>
+            </ul>
+            
+            <p>Master all three, and consistent profitability follows.</p>
+            
+            <h3>Mission</h3>
+            <p>The goal of this ebook is to provide retail traders with a complete, actionable strategy that levels the playing field against institutional participants. By understanding how Smart Money operates and implementing proper risk management, individual traders can achieve consistent results.</p>
+            
+            <div class="disclaimer">
+                <h3>⚠️ Important Disclaimer</h3>
+                <p><strong>This ebook is for educational purposes only and does not constitute financial advice.</strong></p>
+                
+                <p>Trading foreign exchange, gold, and other leveraged instruments carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite.</p>
+                
+                <p>Past performance is not indicative of future results. The possibility exists that you could sustain a loss of some or all of your initial investment. You should not invest money that you cannot afford to lose.</p>
+                
+                <p>The strategies and concepts presented in this ebook represent the author's personal approach to trading. Results may vary significantly between individuals based on factors including but not limited to: market conditions, execution quality, psychological discipline, and adherence to the rules.</p>
+                
+                <p>No guarantee or implication is made that you will profit from the information provided. The author and publisher assume no responsibility for your trading results.</p>
+                
+                <p><strong>Seek advice from an independent financial advisor before making any investment decisions.</strong></p>
+            </div>
+            
+            <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.3); text-align: center;">
+                <p style="font-size: 0.9em; opacity: 0.8;">© 2025 Precision Trading Strategy Guide<br>All Rights Reserved</p>
+                <p style="font-size: 0.85em; opacity: 0.7; margin-top: 20px;">Trade with discipline. Execute with precision. Succeed with patience.</p>
+            </div>
+        </div>
+
     </div>
-
-    <script>
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight') {
-                window.scrollBy({top: 800, behavior: 'smooth'});
-            } else if (e.key === 'ArrowLeft') {
-                window.scrollBy({top: -800, behavior: 'smooth'});
-            }
-        });
-
-        // Print button (optional)
-        function printEbook() {
-            window.print();
-        }
-
-        // Scroll to top button
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 500) {
-                document.body.style.cursor = 'pointer';
-            } else {
-                document.body.style.cursor = 'default';
-            }
-        });
-    </script>
 </body>
 </html>
