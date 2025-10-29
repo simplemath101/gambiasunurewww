@@ -3,1529 +3,1063 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Money Concepts Trading Strategy</title>
+    <title>Linear Algebra I - Solutions</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.8;
-            color: #2c3e50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
+            color: #333;
         }
-
-        .book-container {
-            max-width: 800px;
+        
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-
-        .page {
-            padding: 60px;
-            min-height: 100vh;
-            page-break-after: always;
-        }
-
-        .cover {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        
+        .header {
             text-align: center;
-        }
-
-        .cover h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .cover .subtitle {
-            font-size: 1.5em;
             margin-bottom: 40px;
-            font-style: italic;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
         }
-
-        .cover .author {
-            font-size: 1.3em;
-            margin-top: 60px;
-        }
-
-        .disclaimer {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 20px;
-            margin: 30px 0;
-            font-weight: 600;
-            color: #856404;
-        }
-
+        
         h1 {
-            color: #1e3c72;
+            color: #667eea;
             font-size: 2.5em;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #2a5298;
-            padding-bottom: 15px;
+            margin-bottom: 10px;
         }
-
-        h2 {
-            color: #2a5298;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
+        
+        .course-info {
+            color: #666;
+            font-size: 1.1em;
         }
-
-        h3 {
-            color: #34495e;
+        
+        .question {
+            margin: 40px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+        }
+        
+        .question-number {
             font-size: 1.5em;
-            margin-top: 30px;
+            font-weight: bold;
+            color: #667eea;
             margin-bottom: 15px;
         }
-
-        p {
+        
+        .question-text {
+            font-size: 1.1em;
             margin-bottom: 20px;
-            text-align: justify;
+            color: #444;
         }
-
-        ul, ol {
-            margin-left: 40px;
-            margin-bottom: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        .callout {
-            background: #e3f2fd;
-            border-left: 5px solid #2196f3;
+        
+        .solution {
+            background: white;
             padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-
-        .callout.success {
-            background: #e8f5e9;
-            border-left-color: #4caf50;
-        }
-
-        .callout.warning {
-            background: #fff3e0;
-            border-left-color: #ff9800;
-        }
-
-        .callout.danger {
-            background: #ffebee;
-            border-left-color: #f44336;
-        }
-
-        .callout h4 {
-            margin-bottom: 10px;
-            color: #1976d2;
-            font-size: 1.3em;
-        }
-
-        .callout.success h4 {
-            color: #388e3c;
-        }
-
-        .callout.warning h4 {
-            color: #f57c00;
-        }
-
-        .callout.danger h4 {
-            color: #d32f2f;
-        }
-
-        .toc {
-            background: #f8f9fa;
-            padding: 30px;
             border-radius: 8px;
-            margin: 30px 0;
+            margin-top: 15px;
         }
-
-        .toc h2 {
-            margin-top: 0;
+        
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 5px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .matrix {
+            display: inline-block;
+            position: relative;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        
+        .matrix::before,
+        .matrix::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            border: 2px solid #333;
+        }
+        
+        .matrix::before {
+            left: 0;
+            border-right: none;
+        }
+        
+        .matrix::after {
+            right: 0;
+            border-left: none;
+        }
+        
+        table {
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        td {
+            padding: 8px 15px;
+            text-align: center;
+            min-width: 50px;
+        }
+        
+        .equation {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #764ba2;
+        }
+        
+        .result {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .sub-question {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .sub-title {
+            font-weight: bold;
+            color: #764ba2;
+            margin: 10px 0;
+        }
+        
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
             text-align: center;
         }
-
-        .toc ul {
-            list-style: none;
-            margin-left: 0;
+        
+        .fraction .numerator {
+            border-bottom: 1px solid #333;
+            padding: 0 5px;
         }
-
-        .toc li {
-            padding: 10px 0;
-            border-bottom: 1px solid #dee2e6;
+        
+        .fraction .denominator {
+            padding: 0 5px;
         }
-
-        .toc li:last-child {
-            border-bottom: none;
+        
+        .determinant {
+            display: inline-block;
+            position: relative;
+            padding: 5px 15px;
         }
-
-        .toc a {
-            color: #2a5298;
-            text-decoration: none;
-            font-weight: 600;
+        
+        .determinant::before,
+        .determinant::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #333;
         }
-
-        .toc a:hover {
-            color: #1e3c72;
+        
+        .determinant::before {
+            left: 5px;
         }
-
-        .example-box {
-            background: #f1f8ff;
-            border: 2px solid #0366d6;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 6px;
-        }
-
-        .example-box h4 {
-            color: #0366d6;
-            margin-bottom: 15px;
-        }
-
-        .formula {
-            background: #fafafa;
-            padding: 15px;
-            border-left: 4px solid #9c27b0;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .highlight {
-            background: #ffeb3b;
-            padding: 2px 6px;
-            font-weight: 600;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-        }
-
-        th, td {
-            border: 1px solid #dee2e6;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background: #2a5298;
-            color: white;
-            font-weight: 600;
-        }
-
-        tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .chapter-intro {
-            font-size: 1.1em;
-            font-style: italic;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        @media print {
-            .page {
-                page-break-after: always;
-            }
+        
+        .determinant::after {
+            right: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="book-container">
-        <!-- Cover Page -->
-        <div class="page cover">
-            <h1>One Simple Strategy</h1>
-            <div class="subtitle">A Precision Trading Strategy for Consistency & Profitability</div>
-            <div class="subtitle">Mastering Liquidity, Structure & High R:R Trades</div>
-            <div class="author">Trading Education Series</div>
-        </div>
-
-        <!-- Disclaimer Page -->
-        <div class="page">
-            <h1>Important Notice</h1>
-            
-            <div class="disclaimer">
-                <strong>EDUCATIONAL PURPOSES ONLY – NOT FINANCIAL ADVICE</strong>
-                <p style="margin-top: 15px;">This eBook is designed solely for educational purposes. The strategies, techniques, and examples provided are for informational use only and should not be considered financial, investment, or trading advice.</p>
-            </div>
-
-            <h2>Risk Warning</h2>
-            <p>Trading forex, cryptocurrencies, and other financial instruments involves substantial risk of loss and is not suitable for every investor. The high degree of leverage can work against you as well as for you. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite.</p>
-
-            <p>The possibility exists that you could sustain a loss of some or all of your initial investment. Therefore, you should not invest money that you cannot afford to lose. You should be aware of all the risks associated with trading and seek advice from an independent financial advisor if you have any doubts.</p>
-
-            <h2>No Guarantee of Results</h2>
-            <p>Past performance is not indicative of future results. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed in this eBook. The examples provided are hypothetical and for educational illustration only.</p>
-
-            <h2>Your Responsibility</h2>
-            <p>By reading this eBook, you acknowledge that all trading decisions are your own responsibility. The author and publisher are not responsible for any losses or damages resulting from the use of the information contained herein.</p>
-        </div>
-
-        <!-- Table of Contents -->
-        <div class="page">
-            <div class="toc">
-                <h2>Table of Contents</h2>
-                <ul>
-                    <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#ch1">Chapter 1 – How I Start My Trading Day</a></li>
-                    <li><a href="#ch2">Chapter 2 – Pairs I Trade</a></li>
-                    <li><a href="#ch3">Chapter 3 – Time Frames</a></li>
-                    <li><a href="#ch4">Chapter 4 – Entries & Exits</a></li>
-                    <li><a href="#ch5">Chapter 5 – Risk & Reward</a></li>
-                    <li><a href="#ch6">Chapter 6 – The Secret to Reading Candlestick Patterns</a></li>
-                    <li><a href="#ch7">Chapter 7 – Chart Patterns I Look For in Trades</a></li>
-                    <li><a href="#ch8">Chapter 8 – Key Terms You Need to Respect</a></li>
-                    <li><a href="#conclusion">Conclusion</a></li>
-                    <li><a href="#author">About the Author</a></li>
-                </ul>
+    <div class="container">
+        <div class="header">
+            <h1>Linear Algebra I - Complete Solutions</h1>
+            <div class="course-info">
+                <p>Dr. Cham | Email: bmcham@utg.edu.gm</p>
+                <p>Date: October 18, 2025</p>
             </div>
         </div>
 
-        <!-- Introduction -->
-        <div class="page" id="intro">
-            <h1>Introduction</h1>
-            
-            <p class="chapter-intro">Welcome to a trading strategy built on precision, patience, and understanding how institutional money moves the markets.</p>
-
-            <p>This eBook introduces you to a systematic approach to trading based on <span class="highlight">Smart Money Concepts (SMC)</span>. Unlike retail trading methods that rely on lagging indicators or hope, this strategy focuses on reading market structure, identifying liquidity zones, and entering trades with institutional precision.</p>
-
-            <h2>What Is This Strategy About?</h2>
-            <p>Smart Money Concepts is a methodology that teaches you to think like the institutions—the banks, hedge funds, and market makers who move billions of dollars every day. These players leave footprints in the market through:</p>
-            
-            <ul>
-                <li><strong>Liquidity sweeps</strong> – where stops are hunted before reversals</li>
-                <li><strong>Order blocks</strong> – zones where institutions placed large orders</li>
-                <li><strong>Fair value gaps</strong> – imbalances that price tends to fill</li>
-                <li><strong>Market structure shifts</strong> – clear breaks indicating trend changes</li>
-            </ul>
-
-            <p>By learning to recognize these patterns, you position yourself on the right side of the market.</p>
-
-            <h2>Objective: Consistency & Precision</h2>
-            <p>The goal of this strategy is not to take hundreds of trades. It's to take <strong>high-quality trades with excellent risk-to-reward ratios</strong> (minimum 1:7). We prioritize:</p>
-
-            <div class="callout success">
-                <h4>Core Principles</h4>
-                <ul>
-                    <li><strong>Quality over quantity</strong> – Fewer trades, better setups</li>
-                    <li><strong>Precision entries</strong> – Waiting for confirmation, not guessing</li>
-                    <li><strong>Risk management</strong> – Never risking more than 1-2% per trade</li>
-                    <li><strong>Patience</strong> – The market rewards those who wait</li>
-                </ul>
+        <!-- Question 1 -->
+        <div class="question">
+            <div class="question-number">Question 1: Matrix Operations</div>
+            <div class="question-text">
+                Given: A = <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> and 
+                B = <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span>
             </div>
+            
+            <div class="solution">
+                <div class="sub-question">
+                    <div class="sub-title">(a) A + B</div>
+                    <div class="step">
+                        <div class="equation">
+                            A + B = <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> + 
+                            <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span> = 
+                            <span class="matrix"><table><tr><td>1+2</td><td>2+0</td></tr><tr><td>3+1</td><td>4+3</td></tr></table></span>
+                        </div>
+                        <div class="result">
+                            A + B = <span class="matrix"><table><tr><td>3</td><td>2</td></tr><tr><td>4</td><td>7</td></tr></table></span>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>Who Is This For?</h2>
-            <p>This eBook is designed for:</p>
-            <ul>
-                <li>Intermediate traders looking to refine their strategy</li>
-                <li>Traders frustrated with inconsistent results from indicator-based methods</li>
-                <li>Anyone willing to study price action and market structure seriously</li>
-                <li>Disciplined individuals who can follow a systematic approach</li>
-            </ul>
+                <div class="sub-question">
+                    <div class="sub-title">(b) 2A - B</div>
+                    <div class="step">
+                        <div class="equation">
+                            2A = 2 × <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> = 
+                            <span class="matrix"><table><tr><td>2</td><td>4</td></tr><tr><td>6</td><td>8</td></tr></table></span>
+                        </div>
+                        <div class="equation">
+                            2A - B = <span class="matrix"><table><tr><td>2</td><td>4</td></tr><tr><td>6</td><td>8</td></tr></table></span> - 
+                            <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span> = 
+                            <span class="matrix"><table><tr><td>0</td><td>4</td></tr><tr><td>5</td><td>5</td></tr></table></span>
+                        </div>
+                        <div class="result">
+                            2A - B = <span class="matrix"><table><tr><td>0</td><td>4</td></tr><tr><td>5</td><td>5</td></tr></table></span>
+                        </div>
+                    </div>
+                </div>
 
-            <p>If you're looking for a "get rich quick" scheme or a fully automated system, this is not for you. This strategy requires screen time, practice, and discipline.</p>
+                <div class="sub-question">
+                    <div class="sub-title">(c) AB</div>
+                    <div class="step">
+                        <div class="equation">
+                            AB = <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> × 
+                            <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span>
+                        </div>
+                        <div class="equation">
+                            AB₁₁ = 1(2) + 2(1) = 2 + 2 = 4<br>
+                            AB₁₂ = 1(0) + 2(3) = 0 + 6 = 6<br>
+                            AB₂₁ = 3(2) + 4(1) = 6 + 4 = 10<br>
+                            AB₂₂ = 3(0) + 4(3) = 0 + 12 = 12
+                        </div>
+                        <div class="result">
+                            AB = <span class="matrix"><table><tr><td>4</td><td>6</td></tr><tr><td>10</td><td>12</td></tr></table></span>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>How to Use This eBook</h2>
-            <p>Each chapter builds upon the previous one. Start from the beginning and work through sequentially. Take notes, backtest the concepts on historical charts, and practice in a demo account before risking real capital.</p>
-
-            <p>Remember: <strong>education is your best investment in trading.</strong></p>
-
-            <div class="disclaimer">
-                <strong>Reminder:</strong> This eBook is for educational purposes only and does not constitute financial advice. All trading involves risk.
+                <div class="sub-question">
+                    <div class="sub-title">(d) BA</div>
+                    <div class="step">
+                        <div class="equation">
+                            BA = <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span> × 
+                            <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span>
+                        </div>
+                        <div class="equation">
+                            BA₁₁ = 2(1) + 0(3) = 2 + 0 = 2<br>
+                            BA₁₂ = 2(2) + 0(4) = 4 + 0 = 4<br>
+                            BA₂₁ = 1(1) + 3(3) = 1 + 9 = 10<br>
+                            BA₂₂ = 1(2) + 3(4) = 2 + 12 = 14
+                        </div>
+                        <div class="result">
+                            BA = <span class="matrix"><table><tr><td>2</td><td>4</td></tr><tr><td>10</td><td>14</td></tr></table></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Chapter 1 -->
-        <div class="page" id="ch1">
-            <h1>Chapter 1</h1>
-            <h2>How I Start My Trading Day</h2>
+        <!-- Question 2 -->
+        <div class="question">
+            <div class="question-number">Question 2: Matrix Multiplication</div>
+            <div class="question-text">
+                Given: C = <span class="matrix"><table><tr><td>1</td><td>0</td><td>2</td></tr><tr><td>-1</td><td>3</td><td>1</td></tr></table></span> (2×3) and 
+                D = <span class="matrix"><table><tr><td>2</td><td>1</td></tr><tr><td>0</td><td>-1</td></tr><tr><td>4</td><td>3</td></tr></table></span> (3×2)
+            </div>
             
-            <p class="chapter-intro">Consistency in trading begins with consistency in preparation. Every successful trade starts before the market even opens.</p>
-
-            <h3>The Real Trading Window</h3>
-            <p>Not all hours are created equal in trading. The <span class="highlight">"real trading window"</span> refers to periods when market liquidity is at its peak and institutional activity is highest. This is when the best setups form and execute.</p>
-
-            <p>Why does this matter? Because during low-liquidity periods, price can move erratically without clear structure. Spreads widen, slippage increases, and patterns become unreliable. Smart traders focus their energy when smart money is most active.</p>
-
-            <h3>Identifying Optimal Liquidity Times</h3>
-            <p>The forex and gold markets operate 24 hours, but three main sessions drive the majority of volume:</p>
-
-            <table>
-                <tr>
-                    <th>Session</th>
-                    <th>Time (GMT)</th>
-                    <th>Key Characteristics</th>
-                </tr>
-                <tr>
-                    <td><strong>London Session</strong></td>
-                    <td>8:00 - 17:00</td>
-                    <td>Highest volume, clear trends, major moves</td>
-                </tr>
-                <tr>
-                    <td><strong>New York Session</strong></td>
-                    <td>13:00 - 22:00</td>
-                    <td>Strong volatility, US news impact</td>
-                </tr>
-                <tr>
-                    <td><strong>London/NY Overlap</strong></td>
-                    <td>13:00 - 17:00</td>
-                    <td>Peak liquidity, best trade execution</td>
-                </tr>
-            </table>
-
-            <div class="callout">
-                <h4>The Golden Window</h4>
-                <p>The <strong>London/New York overlap (13:00-17:00 GMT)</strong> is the most important trading period. This 4-hour window sees the highest institutional participation, tightest spreads, and most reliable price action. If you can only trade for a few hours per day, make it these hours.</p>
-            </div>
-
-            <h3>My Pre-Market Preparation Checklist</h3>
-            <p>Before placing a single trade, I go through this systematic checklist every day:</p>
-
-            <div class="callout success">
-                <h4>Daily Pre-Market Routine</h4>
-                <ol>
-                    <li><strong>Check Economic Calendar</strong> – Identify high-impact news events (NFP, FOMC, CPI, GDP). Avoid trading 30 minutes before and after major announcements.</li>
-                    <li><strong>Review Higher Time Frame Bias</strong> – Open 4H and 1H charts for your pairs. Determine the current trend and market structure. Are we bullish, bearish, or ranging?</li>
-                    <li><strong>Mark Key Levels</strong> – Identify and draw:
-                        <ul>
-                            <li>Recent highs and lows (liquidity pools)</li>
-                            <li>Order blocks (last bullish/bearish candle before strong moves)</li>
-                            <li>Fair value gaps (imbalances)</li>
-                            <li>Support and resistance zones</li>
-                        </ul>
-                    </li>
-                    <li><strong>Set Daily Bias</strong> – Based on HTF analysis, am I looking for longs, shorts, or staying flat today?</li>
-                    <li><strong>Wait for London Open or NY Open</strong> – Don't force trades during Asian session unless specifically trading that market.</li>
-                </ol>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <p>Traders who skip preparation tend to:</p>
-            <ul>
-                <li>Trade impulsively without context</li>
-                <li>Get caught in choppy, low-volume periods</li>
-                <li>Miss the forest for the trees (no HTF bias)</li>
-                <li>Enter positions right before major news events</li>
-            </ul>
-
-            <p>By starting your day with structure and clarity, you dramatically increase your edge. You know what you're looking for, when to look for it, and when to step aside.</p>
-
-            <div class="callout warning">
-                <h4>Pro Tip</h4>
-                <p>Create a written or digital trading journal. Each morning, write down your bias, key levels, and trade plan. This builds discipline and provides valuable data for reviewing your performance.</p>
+            <div class="solution">
+                <div class="step">
+                    <div class="step-title">Computing CD (2×2 matrix):</div>
+                    <div class="equation">
+                        CD₁₁ = 1(2) + 0(0) + 2(4) = 2 + 0 + 8 = 10<br>
+                        CD₁₂ = 1(1) + 0(-1) + 2(3) = 1 + 0 + 6 = 7<br>
+                        CD₂₁ = -1(2) + 3(0) + 1(4) = -2 + 0 + 4 = 2<br>
+                        CD₂₂ = -1(1) + 3(-1) + 1(3) = -1 - 3 + 3 = -1
+                    </div>
+                    <div class="result">
+                        CD = <span class="matrix"><table><tr><td>10</td><td>7</td></tr><tr><td>2</td><td>-1</td></tr></table></span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Chapter 2 -->
-        <div class="page" id="ch2">
-            <h1>Chapter 2</h1>
-            <h2>Pairs I Trade</h2>
+        <!-- Question 3 -->
+        <div class="question">
+            <div class="question-number">Question 3: Determinant and Inverse</div>
+            <div class="question-text">
+                Given: E = <span class="matrix"><table><tr><td>2</td><td>1</td></tr><tr><td>1</td><td>2</td></tr></table></span>
+            </div>
             
-            <p class="chapter-intro">Not all currency pairs are created equal. The best trades come from the most liquid, structurally clear instruments.</p>
+            <div class="solution">
+                <div class="step">
+                    <div class="step-title">Finding det(E):</div>
+                    <div class="equation">
+                        det(E) = (2)(2) - (1)(1) = 4 - 1 = 3
+                    </div>
+                    <div class="result">det(E) = 3</div>
+                </div>
 
-            <h3>My Core Pairs</h3>
-            <p>I focus exclusively on three instruments that consistently provide the best setups:</p>
-
-            <div class="callout">
-                <h4>Primary Trading Instruments</h4>
-                <ul>
-                    <li><strong>EUR/USD</strong> – The Euro vs. US Dollar</li>
-                    <li><strong>GBP/USD</strong> – The British Pound vs. US Dollar</li>
-                    <li><strong>XAU/USD</strong> – Gold vs. US Dollar</li>
-                </ul>
-            </div>
-
-            <h3>Why These Pairs?</h3>
-
-            <h4>1. EUR/USD – The King of Forex</h4>
-            <p>EUR/USD is the most traded currency pair in the world, accounting for roughly 25% of all forex transactions. This means:</p>
-            <ul>
-                <li><strong>Maximum liquidity</strong> – Orders fill instantly with minimal slippage</li>
-                <li><strong>Tight spreads</strong> – Often just 0.5-1.0 pips with good brokers</li>
-                <li><strong>Clean structure</strong> – Institutional flow creates clear patterns</li>
-                <li><strong>Predictable behavior</strong> – Responds well to SMC concepts</li>
-            </ul>
-
-            <h4>2. GBP/USD – Volatility With Structure</h4>
-            <p>Known as "Cable," GBP/USD offers more volatility than EUR/USD while maintaining institutional liquidity:</p>
-            <ul>
-                <li><strong>Larger moves</strong> – Great for hitting 1:7+ risk-to-reward targets</li>
-                <li><strong>Respects key levels</strong> – Order blocks and liquidity zones are highly reliable</li>
-                <li><strong>Active during London session</strong> – Aligns perfectly with our trading window</li>
-                <li><strong>Trending nature</strong> – When it moves, it moves with conviction</li>
-            </ul>
-
-            <h4>3. XAU/USD – Gold</h4>
-            <p>Gold is my favorite instrument for SMC trading. It exhibits the clearest institutional footprints:</p>
-            <ul>
-                <li><strong>Massive liquidity pools</strong> – Stop hunts are obvious and tradeable</li>
-                <li><strong>Respects order blocks religiously</strong> – Institutional zones act like magnets</li>
-                <li><strong>High volatility</strong> – Easily achieves 1:10+ R:R with proper entries</li>
-                <li><strong>Safe-haven flows</strong> – Reacts strongly to global economic events</li>
-            </ul>
-
-            <div class="callout success">
-                <h4>Why I Avoid Other Pairs</h4>
-                <p>Exotic pairs (e.g., USD/TRY, EUR/ZAR) and minor crosses (e.g., EUR/GBP, AUD/NZD) suffer from:</p>
-                <ul>
-                    <li>Wide spreads that eat into profits</li>
-                    <li>Low liquidity causing erratic price action</li>
-                    <li>Unclear market structure</li>
-                    <li>Higher susceptibility to manipulation</li>
-                </ul>
-                <p><strong>Stick to the majors and gold. Master three instruments rather than spreading yourself thin across dozens.</strong></p>
-            </div>
-
-            <h3>Broker Considerations</h3>
-            <p>The quality of your broker directly impacts your results. Look for:</p>
-            <ul>
-                <li><strong>Tight spreads</strong> – EUR/USD should be under 1 pip, GBP/USD under 1.5 pips, Gold under $0.20</li>
-                <li><strong>Fast execution</strong> – Orders should fill in milliseconds</li>
-                <li><strong>Regulation</strong> – Choose brokers regulated by FCA, ASIC, or equivalent authorities</li>
-                <li><strong>No stop hunting</strong> – Reputable brokers don't manipulate your stops</li>
-            </ul>
-
-            <div class="callout warning">
-                <h4>Spread Impact Example</h4>
-                <p>If you risk $100 to make $700 (1:7 R:R), but your broker has a 3-pip spread on EUR/USD versus a 0.8-pip spread elsewhere, you're losing $22 in additional costs per trade. Over 100 trades, that's $2,200 in pure waste.</p>
-            </div>
-
-            <h3>Can I Trade Crypto with This Strategy?</h3>
-            <p>Yes, SMC concepts apply to cryptocurrencies, especially major pairs like BTC/USD and ETH/USD. However, be aware:</p>
-            <ul>
-                <li>Crypto markets have higher volatility and wider swings</li>
-                <li>Liquidity can be lower, especially on smaller exchanges</li>
-                <li>24/7 markets mean no clear "session" structure</li>
-                <li>Leverage regulations vary significantly by region</li>
-            </ul>
-
-            <p>If you choose to trade crypto, apply the same principles: focus on the most liquid instruments and high-quality setups only.</p>
-        </div>
-
-        <!-- Chapter 3 -->
-        <div class="page" id="ch3">
-            <h1>Chapter 3</h1>
-            <h2>Time Frames</h2>
-            
-            <p class="chapter-intro">Using multiple time frames correctly is what separates amateur traders from professionals.</p>
-
-            <h3>The Three-Timeframe Approach</h3>
-            <p>Successful trading requires understanding what's happening at different time horizons. I use a simple yet powerful three-timeframe structure:</p>
-
-            <table>
-                <tr>
-                    <th>Time Frame</th>
-                    <th>Purpose</th>
-                    <th>What I Look For</th>
-                </tr>
-                <tr>
-                    <td><strong>4-Hour (H4)</strong></td>
-                    <td>Macro bias</td>
-                    <td>Overall trend, major structure breaks, key swing points</td>
-                </tr>
-                <tr>
-                    <td><strong>1-Hour (H1)</strong></td>
-                    <td>Directional bias</td>
-                    <td>Current market structure, order blocks, liquidity zones</td>
-                </tr>
-                <tr>
-                    <td><strong>15-Minute (M15)</strong></td>
-                    <td>Entry trigger</td>
-                    <td>Precise entry setups, liquidity sweeps, confirmations</td>
-                </tr>
-            </table>
-
-            <h3>The 4-Hour Chart (H4) – Your Compass</h3>
-            <p>The 4-hour chart shows you the <strong>bigger picture</strong>. Before you consider any trade, ask yourself:</p>
-            <ul>
-                <li>Is the H4 chart trending or ranging?</li>
-                <li>Where is the most recent market structure break?</li>
-                <li>What are the major swing highs and lows?</li>
-                <li>Are we near significant support or resistance?</li>
-            </ul>
-
-            <p>Think of H4 as your compass. It tells you the general direction institutional money is moving. <span class="highlight">Never trade against the H4 bias unless you have extremely strong confluence.</span></p>
-
-            <div class="example-box">
-                <h4>Example: H4 Analysis</h4>
-                <p>EUR/USD on H4 shows a clear uptrend with higher highs and higher lows. The most recent swing low is at 1.0800, and price recently broke above 1.1000 resistance. Current price: 1.1050.</p>
-                <p><strong>Bias:</strong> Bullish. I'm only looking for long (buy) setups on lower time frames.</p>
-            </div>
-
-            <h3>The 1-Hour Chart (H1) – Your Tactical Map</h3>
-            <p>Once you have your H4 bias, the 1-hour chart provides <strong>tactical context</strong>. Here you identify:</p>
-            <ul>
-                <li>The current market structure (bullish, bearish, or consolidating)</li>
-                <li>Order blocks – zones where institutions placed large orders</li>
-                <li>Liquidity pools – clusters of stops above highs or below lows</li>
-                <li>Fair value gaps – imbalances that price may fill</li>
-            </ul>
-
-            <p>The H1 chart answers: "Within the larger H4 trend, where exactly should I look for entries?"</p>
-
-            <div class="callout">
-                <h4>H1 Checklist</h4>
-                <ul>
-                    <li>Does H1 structure align with H4 bias?</li>
-                    <li>Where is the last bullish/bearish order block?</li>
-                    <li>Are there obvious liquidity pools to target or avoid?</li>
-                    <li>Has there been a recent market structure shift?</li>
-                </ul>
-            </div>
-
-            <h3>The 15-Minute Chart (M15) – Your Trigger</h3>
-            <p>This is where trades are executed. The M15 chart is for <strong>precision entries</strong>. You never trade on M15 without first having:</p>
-            <ol>
-                <li>Clear H4 bias</li>
-                <li>Supportive H1 structure</li>
-                <li>A specific order block or zone identified</li>
-            </ol>
-
-            <p>On M15, you're looking for the <strong>liquidity sweep + market structure shift (MSS) + confirmation</strong> pattern that signals institutional entry.</p>
-
-            <div class="example-box">
-                <h4>Example: Multi-Timeframe Trade Setup</h4>
-                <p><strong>H4 Bias:</strong> GBP/USD is bullish. Price broke above 1.2800 and is making higher highs.</p>
-                <p><strong>H1 Context:</strong> Price pulled back to a bullish order block at 1.2750. This zone previously acted as resistance and should now be support.</p>
-                <p><strong>M15 Entry:</strong> Price sweeps below 1.2750 (liquidity grab), then closes back above it with a strong bullish candle. This is your entry trigger.</p>
-                <p><strong>Entry:</strong> 1.2755 | <strong>Stop Loss:</strong> 1.2720 (35 pips) | <strong>Take Profit:</strong> 1.3000 (245 pips) | <strong>R:R:</strong> 1:7</p>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <p>Traders who use only one time frame suffer from:</p>
-            <ul>
-                <li><strong>No context</strong> – They don't know if they're trading with or against the trend</li>
-                <li><strong>Premature entries</strong> – They enter before the setup fully forms</li>
-                <li><strong>Poor stop placement</strong> – They don't know where structure truly invalidates</li>
-            </ul>
-
-            <p>By combining H4, H1, and M15, you gain:</p>
-            <ul>
-                <li>High conviction in your direction</li>
-                <li>Precise entry points</li>
-                <li>Logical stop loss placement</li>
-                <li>Clear profit targets based on structure</li>
-            </ul>
-
-            <div class="callout success">
-                <h4>The Golden Rule</h4>
-                <p><strong>H4 tells you WHAT (direction), H1 tells you WHERE (zones), M15 tells you WHEN (timing).</strong></p>
+                <div class="step">
+                    <div class="step-title">Finding E⁻¹:</div>
+                    <div class="equation">
+                        E⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">det(E)</span></span> × 
+                        <span class="matrix"><table><tr><td>d</td><td>-b</td></tr><tr><td>-c</td><td>a</td></tr></table></span> = 
+                        <span class="fraction"><span class="numerator">1</span><span class="denominator">3</span></span> × 
+                        <span class="matrix"><table><tr><td>2</td><td>-1</td></tr><tr><td>-1</td><td>2</td></tr></table></span>
+                    </div>
+                    <div class="result">
+                        E⁻¹ = <span class="matrix"><table><tr><td>2/3</td><td>-1/3</td></tr><tr><td>-1/3</td><td>2/3</td></tr></table></span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Chapter 4 -->
-        <div class="page" id="ch4">
-            <h1>Chapter 4</h1>
-            <h2>Entries & Exits</h2>
+        <!-- Question 4 -->
+        <div class="question">
+            <div class="question-number">Question 4: Gaussian Elimination</div>
+            <div class="question-text">
+                Solve the system:<br>
+                x + 2y + z = 7<br>
+                2x + 3y + 4z = 18<br>
+                x + y + z = 6
+            </div>
             
-            <p class="chapter-intro">Perfect entries and disciplined exits are what turn analysis into profit.</p>
+            <div class="solution">
+                <div class="step">
+                    <div class="step-title">Step 1: Augmented Matrix</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>2</td><td>1</td><td>|</td><td>7</td></tr>
+                            <tr><td>2</td><td>3</td><td>4</td><td>|</td><td>18</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>|</td><td>6</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <h3>The SMC Entry Formula</h3>
-            <p>Every trade must meet three criteria before execution:</p>
+                <div class="step">
+                    <div class="step-title">Step 2: R₂ → R₂ - 2R₁ and R₃ → R₃ - R₁</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>2</td><td>1</td><td>|</td><td>7</td></tr>
+                            <tr><td>0</td><td>-1</td><td>2</td><td>|</td><td>4</td></tr>
+                            <tr><td>0</td><td>-1</td><td>0</td><td>|</td><td>-1</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <div class="callout">
-                <h4>Entry Requirements (All Three Must Be Present)</h4>
-                <ol>
-                    <li><strong>Liquidity Sweep</strong> – Price takes out obvious highs or lows where retail stops are clustered</li>
-                    <li><strong>Market Structure Shift (MSS)</strong> – A clear break of the recent internal structure in the opposite direction</li>
-                    <li><strong>Confirmation</strong> – A strong momentum candle (or candles) showing institutional interest</li>
-                </ol>
-            </div>
+                <div class="step">
+                    <div class="step-title">Step 3: R₃ → R₃ - R₂</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>2</td><td>1</td><td>|</td><td>7</td></tr>
+                            <tr><td>0</td><td>-1</td><td>2</td><td>|</td><td>4</td></tr>
+                            <tr><td>0</td><td>0</td><td>-2</td><td>|</td><td>-5</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <h3>1. Liquidity Sweep Explained</h3>
-            <p>Institutions need liquidity to fill large orders. They often push price to areas where retail traders have placed stop losses, triggering those stops to provide the liquidity needed. This creates a "sweep" or "stop hunt."</p>
-
-            <p><strong>How to identify:</strong></p>
-            <ul>
-                <li>Look for recent swing highs (in downtrends) or swing lows (in uptrends)</li>
-                <li>Watch for price to push just beyond these levels with wicks
-                <li>The sweep often happens quickly with immediate reversal</li>
-                <li>Volume typically spikes during the sweep</li>
-            </ul>
-
-            <h3>2. Market Structure Shift (MSS)</h3>
-            <p>An MSS occurs when price breaks the most recent higher low (in an uptrend) or lower high (in a downtrend). This signals a potential change in short-term direction and institutional repositioning.</p>
-
-            <p><strong>For bullish setups:</strong> After sweeping lows, price must break above the most recent lower high to confirm bullish MSS.</p>
-            <p><strong>For bearish setups:</strong> After sweeping highs, price must break below the most recent higher low to confirm bearish MSS.</p>
-
-            <h3>3. Confirmation</h3>
-            <p>Never enter on the sweep alone. Wait for confirmation through:</p>
-            <ul>
-                <li>Strong momentum candle(s) in your intended direction</li>
-                <li>Candle closes beyond the MSS level</li>
-                <li>Rejection wicks showing institutional defense of the level</li>
-            </ul>
-
-            <div class="callout success">
-                <h4>Entry Checklist</h4>
-                <ul>
-                    <li>✓ H4 bias aligns with my trade direction</li>
-                    <li>✓ H1 shows clear order block or liquidity zone</li>
-                    <li>✓ M15 shows liquidity sweep</li>
-                    <li>✓ M15 shows market structure shift</li>
-                    <li>✓ Strong confirmation candle(s) present</li>
-                    <li>✓ Risk-to-reward is minimum 1:7</li>
-                    <li>✓ No major news in next 2 hours</li>
-                </ul>
-                <p><strong>If all boxes aren't checked, DO NOT TRADE.</strong></p>
-            </div>
-
-            <h3>Stop Loss Placement</h3>
-            <p>Your stop loss must be placed where your trade idea is proven wrong structurally. Common placements:</p>
-
-            <ul>
-                <li><strong>Beyond the sweep wick</strong> – Place stop 5-10 pips past the liquidity sweep low (for longs) or high (for shorts)</li>
-                <li><strong>Beyond the order block</strong> – If entering from an order block, stop goes below the block with buffer</li>
-                <li><strong>Beyond structure break</strong> – Place stop beyond the level that would invalidate your MSS</li>
-            </ul>
-
-            <div class="callout warning">
-                <h4>Never Use Arbitrary Stops</h4>
-                <p>Don't place stops based on "I want to risk $50" or "20 pips feels right." Stops must be based on <strong>market structure</strong>. If the structure-based stop is too large for your account, skip the trade—don't risk improper placement just to enter.</p>
-            </div>
-
-            <h3>Take Profit Targets</h3>
-            <p>Take profit should target the next significant liquidity pool or structural level:</p>
-
-            <ul>
-                <li><strong>Next opposite-side liquidity</strong> – Recent swing high (for longs) or swing low (for shorts)</li>
-                <li><strong>Fair value gaps</strong> – Unfilled imbalances price tends to return to</li>
-                <li><strong>Round numbers</strong> – Major psychological levels (1.3000, 1.2500, etc.)</li>
-                <li><strong>Order block zones</strong> – Opposite-side institutional areas</li>
-            </ul>
-
-            <p>Aim for <span class="highlight">minimum 1:7 risk-to-reward</span>. If the nearest structural target doesn't offer 1:7, wait for a better setup.</p>
-
-            <div class="example-box">
-                <h4>Complete Trade Example: EUR/USD Long</h4>
-                <p><strong>Setup:</strong></p>
-                <ul>
-                    <li><strong>H4 Bias:</strong> Bullish structure, recent break above 1.1000</li>
-                    <li><strong>H1 Context:</strong> Bullish order block at 1.1050-1.1060 zone</li>
-                    <li><strong>M15 Trigger:</strong> Price sweeps to 1.1048 (below order block), then breaks back above with strong bullish candle to 1.1065</li>
-                </ul>
-                <p><strong>Execution:</strong></p>
-                <ul>
-                    <li><strong>Entry:</strong> 1.1065 (after confirmation candle close)</li>
-                    <li><strong>Stop Loss:</strong> 1.1035 (below sweep wick with buffer) = 30 pips risk</li>
-                    <li><strong>Take Profit:</strong> 1.1275 (next major liquidity high) = 210 pips reward</li>
-                    <li><strong>Risk-to-Reward:</strong> 1:7</li>
-                </ul>
-                <p><strong>Result:</strong> If risking $100 on this trade, potential profit is $700.</p>
-            </div>
-
-            <div class="callout success">
-                <h4>Exit Checklist</h4>
-                <ul>
-                    <li>✓ Stop loss placed beyond structural invalidation point</li>
-                    <li>✓ Take profit targets next liquidity pool or major level</li>
-                    <li>✓ Risk-to-reward calculated and meets 1:7 minimum</li>
-                    <li>✓ Partial profit strategy planned (optional: take 50% at 1:3, let rest run to 1:7+)</li>
-                    <li>✓ Trailing stop strategy if trade moves strongly in your favor</li>
-                </ul>
-            </div>
-
-            <h3>Partial Profits & Trade Management</h3>
-            <p>Advanced traders often take partial profits along the way:</p>
-            <ul>
-                <li><strong>Scale out at 1:3</strong> – Take 50% profit, move stop to breakeven on remainder</li>
-                <li><strong>Trail remaining position</strong> – As price moves favorably, trail stop behind new structure</li>
-                <li><strong>Final target at 1:7+</strong> – Let the last portion run to major target</li>
-            </ul>
-
-            <p>This approach locks in profits while maintaining exposure for larger wins.</p>
-
-            <h3>Common Entry Mistakes to Avoid</h3>
-            <ul>
-                <li><strong>Entering too early</strong> – Before all three criteria are met</li>
-                <li><strong>FOMO entries</strong> – Jumping in because price is moving</li>
-                <li><strong>Counter-trend trades</strong> – Trading against H4 bias without strong confluence</li>
-                <li><strong>Ignoring confirmation</strong> – Entering on the sweep alone</li>
-                <li><strong>Moving stops</strong> – Never move stop loss further away after entry</li>
-            </ul>
-
-            <div class="callout danger">
-                <h4>The Cardinal Sin</h4>
-                <p><strong>NEVER move your stop loss to give a losing trade "more room."</strong> If your stop is hit, your analysis was wrong. Accept the loss and move on. Moving stops is how accounts blow up.</p>
+                <div class="step">
+                    <div class="step-title">Step 4: Back Substitution</div>
+                    <div class="equation">
+                        From Row 3: -2z = -5 → z = 5/2<br>
+                        From Row 2: -y + 2(5/2) = 4 → -y + 5 = 4 → y = 1<br>
+                        From Row 1: x + 2(1) + 5/2 = 7 → x = 7 - 2 - 5/2 = 5/2
+                    </div>
+                    <div class="result">
+                        Solution: x = 5/2, y = 1, z = 5/2
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Chapter 5 -->
-        <div class="page" id="ch5">
-            <h1>Chapter 5</h1>
-            <h2>Risk & Reward</h2>
+        <!-- Question 5 -->
+        <div class="question">
+            <div class="question-number">Question 5: Gauss-Jordan Elimination</div>
+            <div class="question-text">
+                Solve the system:<br>
+                2x - y + z = 1<br>
+                4x + y - z = 5<br>
+                -2x + 2y + z = -3
+            </div>
             
-            <p class="chapter-intro">Risk management is not what you do after you're profitable—it's what makes you profitable.</p>
+            <div class="solution">
+                <div class="step">
+                    <div class="step-title">Step 1: Augmented Matrix</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>2</td><td>-1</td><td>1</td><td>|</td><td>1</td></tr>
+                            <tr><td>4</td><td>1</td><td>-1</td><td>|</td><td>5</td></tr>
+                            <tr><td>-2</td><td>2</td><td>1</td><td>|</td><td>-3</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <h3>The 1:7 Risk-to-Reward Target</h3>
-            <p>The cornerstone of this strategy is achieving a <span class="highlight">minimum 1:7 risk-to-reward ratio</span> on every trade. This means for every dollar you risk, you aim to make seven dollars.</p>
+                <div class="step">
+                    <div class="step-title">Step 2: R₁ → R₁/2</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
+                            <tr><td>4</td><td>1</td><td>-1</td><td>|</td><td>5</td></tr>
+                            <tr><td>-2</td><td>2</td><td>1</td><td>|</td><td>-3</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <p><strong>Why 1:7?</strong></p>
-            <ul>
-                <li>You can be wrong 7 out of 10 times and still break even</li>
-                <li>A 50% win rate yields 250% profit on risk</li>
-                <li>Forces you to be selective and take only the best setups</li>
-                <li>Aligns with how institutional money trades (quality over quantity)</li>
-            </ul>
+                <div class="step">
+                    <div class="step-title">Step 3: R₂ → R₂ - 4R₁ and R₃ → R₃ + 2R₁</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
+                            <tr><td>0</td><td>3</td><td>-3</td><td>|</td><td>3</td></tr>
+                            <tr><td>0</td><td>1</td><td>2</td><td>|</td><td>-2</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <div class="example-box">
-                <h4>Win Rate Math</h4>
-                <p><strong>Scenario:</strong> 10 trades, 1:7 R:R, risking $100 per trade</p>
-                <p><strong>40% Win Rate (4 wins, 6 losses):</strong></p>
-                <ul>
-                    <li>Losses: 6 × $100 = -$600</li>
-                    <li>Wins: 4 × $700 = +$2,800</li>
-                    <li><strong>Net Profit: +$2,200</strong></li>
-                </ul>
-                <p>With just 4 winners out of 10, you're up $2,200. This is the power of asymmetric risk-reward.</p>
-            </example-box>
+                <div class="step">
+                    <div class="step-title">Step 4: R₂ → R₂/3</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
+                            <tr><td>0</td><td>1</td><td>-1</td><td>|</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>2</td><td>|</td><td>-2</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <h3>Risk Per Trade: 1-2% Maximum</h3>
-            <p>Never risk more than 1-2% of your total account balance on a single trade. This is non-negotiable.</p>
+                <div class="step">
+                    <div class="step-title">Step 5: R₃ → R₃ - R₂</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
+                            <tr><td>0</td><td>1</td><td>-1</td><td>|</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>3</td><td>|</td><td>-3</td></tr>
+                        </table></span>
+                    </div>
+                </div>
 
-            <p><strong>Why this matters:</strong></p>
-            <ul>
-                <li>Protects your account from catastrophic losses</li>
-                <li>Allows you to survive long losing streaks</li>
-                <li>Removes emotional pressure from individual trades</li>
-                <li>Professional standard across all successful traders</li>
-            </ul>
-
-            <div class="callout warning">
-                <h4>The Blowup Math</h4>
-                <p>If you risk 10% per trade, just 7 consecutive losses wipes out 50% of your account. You would need 100% gains just to get back to breakeven. Don't let this be you.</p>
-            </div>
-
-            <h3>Position Sizing Formula</h3>
-            <p>To determine your position size, use this simple formula:</p>
-
-            <div class="formula">
-                <strong>Position Size = (Account Balance × Risk %) ÷ Stop Loss Distance</strong>
-            </div>
-
-            <div class="example-box">
-                <h4>Position Sizing Example</h4>
-                <p><strong>Account Balance:</strong> $10,000</p>
-                <p><strong>Risk Per Trade:</strong> 1% = $100</p>
-                <p><strong>Trade Setup:</strong> EUR/USD Long</p>
-                <p><strong>Entry:</strong> 1.1065</p>
-                <p><strong>Stop Loss:</strong> 1.1035</p>
-                <p><strong>Stop Distance:</strong> 30 pips</p>
-                <p><strong>Calculation:</strong></p>
-                <p>For a standard lot (100,000 units), 1 pip = $10</p>
-                <p>30 pips = $300 risk per standard lot</p>
-                <p>To risk $100: $100 ÷ $300 = 0.33 standard lots = 33,000 units</p>
-                <p><strong>Position Size:</strong> 0.33 lots (33,000 units)</p>
-            </div>
-
-            <p>Most brokers and trading platforms have position size calculators built in. Use them to avoid manual errors.</p>
-
-            <h3>Account Growth Example</h3>
-            <p>Let's see how 1% risk with 1:7 R:R compounds over time:</p>
-
-            <table>
-                <tr>
-                    <th>Starting Balance</th>
-                    <th>Wins (40% rate)</th>
-                    <th>Losses (60%)</th>
-                    <th>Ending Balance</th>
-                </tr>
-                <tr>
-                    <td>$5,000</td>
-                    <td>12 wins × $350</td>
-                    <td>18 losses × $50</td>
-                    <td>$8,300</td>
-                </tr>
-                <tr>
-                    <td>$10,000</td>
-                    <td>12 wins × $700</td>
-                    <td>18 losses × $100</td>
-                    <td>$16,600</td>
-                </tr>
-                <tr>
-                    <td>$25,000</td>
-                    <td>12 wins × $1,750</td>
-                    <td>18 losses × $250</td>
-                    <td>$41,500</td>
-                </tr>
-            </table>
-
-            <p>Over just 30 trades with 40% win rate, accounts grow substantially. Consistency compounds.</p>
-
-            <h3>Psychology & Trade Selection</h3>
-            <p>The most important element of risk management isn't mathematical—it's psychological.</p>
-
-            <div class="callout">
-                <h4>The Quality Over Quantity Mindset</h4>
-                <p>Amateur traders take 50 mediocre trades per month. Professional traders take 5-10 exceptional trades. Which do you want to be?</p>
-                <p>Every trade should be a trade you're excited about—one where all stars align. If you're unsure, sit on your hands.</p>
-            </div>
-
-            <h3>Key Psychological Principles</h3>
-
-            <h4>1. Accept Losses as Business Expenses</h4>
-            <p>Losing trades are not failures; they're the cost of doing business. If you risk 1%, even 10 consecutive losses only cost 10% of your account. You'll recover with 2-3 winners.</p>
-
-            <h4>2. Never Trade Emotionally</h4>
-            <p>After a loss, don't revenge trade. After a big win, don't get overconfident. Stick to your process regardless of recent results.</p>
-
-            <h4>3. Trade Your Plan, Plan Your Trade</h4>
-            <p>Every trade should be planned before you enter. No impulsive decisions. Write down your entry, stop, target, and reasoning before clicking the button.</p>
-
-            <h4>4. Don't Trade to "Make Back" Losses</h4>
-            <p>The market doesn't owe you anything. Don't increase position size or take marginal setups trying to recover yesterday's loss. Trust the process.</p>
-
-            <div class="callout success">
-                <h4>The Trader's Oath</h4>
-                <ul>
-                    <li>I will only take trades with 1:7 minimum R:R</li>
-                    <li>I will never risk more than 1-2% per trade</li>
-                    <li>I will not move stops to give trades more room</li>
-                    <li>I will wait for all entry criteria before executing</li>
-                    <li>I will journal every trade, win or lose</li>
-                    <li>I will prioritize capital preservation above all else</li>
-                </ul>
-            </div>
-
-            <h3>When to Stop Trading</h3>
-            <p>Set daily and weekly loss limits:</p>
-            <ul>
-                <li><strong>Daily limit:</strong> If you lose 2% of your account in one day, stop trading until tomorrow</li>
-                <li><strong>Weekly limit:</strong> If you lose 5% in one week, take the rest of the week off</li>
-            </ul>
-
-            <p>This prevents emotional spirals and gives you time to review what went wrong.</p>
-
-            <div class="callout danger">
-                <h4>Warning Signs You're Trading Emotionally</h4>
-                <ul>
-                    <li>Taking trades without full analysis</li>
-                    <li>Increasing position size after losses</li>
-                    <li>Checking charts obsessively</li>
-                    <li>Feeling anxious about open positions</li>
-                    <li>Trading outside your planned hours</li>
-                </ul>
-                <p>If you recognize these behaviors, close your platform and step away. Come back tomorrow with a clear head.</p>
+                <div class="step">
+                    <div class="step-title">Step 6: R₃ → R₃/3 and Back Substitution</div>
+                    <div class="equation">
+                        z = -1<br>
+                        y - (-1) = 1 → y = 0<br>
+                        x - (1/2)(0) + (1/2)(-1) = 1/2 → x = 1
+                    </div>
+                    <div class="result">
+                        Solution: x = 1, y = 0, z = -1
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Chapter 6 -->
-        <div class="page" id="ch6">
-            <h1>Chapter 6</h1>
-            <h2>The Secret to Reading Candlestick Patterns</h2>
+        <!-- Question 6 -->
+        <div class="question">
+            <div class="question-number">Question 6: System Consistency</div>
+            <div class="question-text">
+                Check consistency and solve:<br>
+                x + y + z = 2<br>
+                2x + 2y + 2z = 5<br>
+                3x + 3y + 3z = 8
+            </div>
             
-            <p class="chapter-intro">Candlesticks don't just show price—they reveal the battle between buyers and sellers, and who's winning.</p>
-
-            <h3>Why Candlesticks Matter in SMC</h3>
-            <p>While Smart Money Concepts focuses on structure and liquidity, <strong>candlestick patterns provide confirmation</strong> of institutional activity. A single candle can tell you:</p>
-            <ul>
-                <li>Whether buyers or sellers are in control</li>
-                <li>If a level is being defended or violated</li>
-                <li>Whether a move is genuine or a trap</li>
-                <li>Optimal entry timing within your zone</li>
-            </ul>
-
-            <p>The key is not memorizing dozens of patterns—it's understanding <span class="highlight">context</span>.</p>
-
-            <h3>The Most Useful Candlestick Patterns</h3>
-
-            <h4>1. Pin Bar (Hammer / Shooting Star)</h4>
-            <p>A candle with a small body and long wick showing rejection.</p>
-            <ul>
-                <li><strong>Bullish Pin Bar:</strong> Long lower wick, small body at top. Shows buyers rejected lower prices</li>
-                <li><strong>Bearish Pin Bar:</strong> Long upper wick, small body at bottom. Shows sellers rejected higher prices</li>
-            </ul>
-            <p><strong>SMC Context:</strong> When a pin bar forms at an order block or after a liquidity sweep, it's powerful confirmation of institutional defense.</p>
-
-            <h4>2. Engulfing Candle</h4>
-            <p>A candle that completely engulfs the previous candle's body.</p>
-            <ul>
-                <li><strong>Bullish Engulfing:</strong> Large green candle engulfing previous red candle. Shows momentum shift to buyers</li>
-                <li><strong>Bearish Engulfing:</strong> Large red candle engulfing previous green candle. Shows momentum shift to sellers</li>
-            </ul>
-            <p><strong>SMC Context:</strong> After a liquidity sweep and MSS, an engulfing candle confirms institutional entry and provides your trigger.</p>
-
-            <h4>3. Inside Bar</h4>
-            <p>A candle whose high and low are completely within the previous candle's range. Shows consolidation and coiling energy.</p>
-            <p><strong>SMC Context:</strong> Inside bars at key levels suggest institutions are accumulating before a breakout. The break direction often indicates the next move.</p>
-
-            <h4>4. Wick Rejection</h4>
-            <p>Strong wicks (without specific patterns) show aggressive defense of levels.</p>
-            <ul>
-                <li><strong>Long lower wick:</strong> Buyers defending support</li>
-                <li><strong>Long upper wick:</strong> Sellers defending resistance</li>
-            </ul>
-            <p><strong>SMC Context:</strong> Wicks during liquidity sweeps are the footprints of stop hunts. The wick shows retail stops triggered, then institutional entry.</p>
-
-            <h3>Context Changes Everything</h3>
-            <p>A pin bar in isolation means little. But a pin bar:</p>
-            <ul>
-                <li>At a 1H order block</li>
-                <li>After a liquidity sweep</li>
-                <li>Aligned with H4 bias</li>
-                <li>During London open</li>
-            </ul>
-            <p>...is a high-probability setup.</p>
-
-            <div class="callout">
-                <h4>The Three Questions for Every Candle</h4>
-                <ol>
-                    <li><strong>Where is it forming?</strong> (at key structure, in dead zone, nowhere special?)</li>
-                    <li><strong>What does the wick show?</strong> (rejection up? rejection down? indecision?)</li>
-                    <li><strong>What happened before it?</strong> (liquidity sweep? MSS? nothing?)</li>
-                </ol>
-                <p>Answer these three questions and you'll know if the candle matters.</p>
-            </div>
-
-            <h3>M15 vs H1 Candle Reading</h3>
-
-            <h4>On M15 (Entry Timeframe)</h4>
-            <p>Look for:</p>
-            <ul>
-                <li>Sharp momentum candles after sweep (engulfing, large bodies)</li>
-                <li>Pin bars showing rejection back into order block</li>
-                <li>Candle closes beyond MSS level (confirmation)</li>
-                <li>Series of smaller candles followed by breakout (coiling)</li>
-            </ul>
-
-            <h4>On H1 (Bias Timeframe)</h4>
-            <p>Look for:</p>
-            <ul>
-                <li>Order blocks (last opposite-color candle before strong move)</li>
-                <li>Large engulfing candles showing structure breaks</li>
-                <li>Multiple rejection wicks at same level (strong zone)</li>
-                <li>Inside bar breakouts signaling direction</li>
-            </ul>
-
-            <h3>Combining Candlesticks with Liquidity & MSS</h3>
-            <p>Here's the complete pattern:</p>
-
-            <div class="example-box">
-                <h4>Bullish Entry Example with Candlesticks</h4>
-                <ol>
-                    <li><strong>Setup:</strong> H1 shows bullish order block at 1.2750. H4 bias is bullish.</li>
-                    <li><strong>Liquidity Sweep (M15):</strong> Price drops to 1.2745 with a long wick below 1.2750, triggering retail stops.</li>
-                    <li><strong>Rejection Candle (M15):</strong> Bullish pin bar forms with long lower wick and closes at 1.2758.</li>
-                    <li><strong>MSS (M15):</strong> Next candle breaks above recent lower high at 1.2765.</li>
-                    <li><strong>Confirmation (M15):</strong> Strong bullish engulfing candle closes at 1.2772.</li>
-                    <li><strong>Entry:</strong> Enter on close of engulfing candle at 1.2772.</li>
-                </ol>
-                <p>The combination of sweep + rejection + MSS + engulfing gives maximum confidence.</p>
-            </div>
-
-            <h3>What Candles DON'T Tell You</h3>
-            <p>Be careful not to over-rely on candlesticks alone:</p>
-            <ul>
-                <li>They don't predict the future—only show current sentiment</li>
-                <li>Single candles without context are often meaningless</li>
-                <li>Small timeframe candles (M1, M5) are too noisy to trust</li>
-                <li>News events can create unusual candles that violate patterns</li>
-            </ul>
-
-            <div class="callout warning">
-                <h4>The Novice Mistake</h4>
-                <p>New traders see a pin bar and immediately enter without checking:</p>
-                <ul>
-                    <li>Is this at a key level?</li>
-                    <li>Does it align with HTF bias?</li>
-                    <li>Was there a liquidity sweep?</li>
-                    <li>Is there structural confluence?</li>
-                </ul>
-                <p>Don't trade candles alone. Trade candles within the SMC framework.</p>
-            </div>
-
-            <h3>Practice Exercise</h3>
-            <p>Open your charts and look for:</p>
-            <ol>
-                <li>A clear H1 order block</li>
-                <li>Wait for price to return to that block on M15</li>
-                <li>Watch the candlestick patterns that form</li>
-                <li>Note: Do you see rejection wicks? Engulfing candles? Pin bars?</li>
-                <li>Did those candles lead to moves away from the block?</li>
-            </ol>
-
-            <p>Do this for 10 historical examples. You'll start recognizing the patterns intuitively.</p>
-        </div>
-
-        <!-- Chapter 7 -->
-        <div class="page" id="ch7">
-            <h1>Chapter 7</h1>
-            <h2>Chart Patterns I Look For in Trades</h2>
-            
-            <p class="chapter-intro">Smart Money leaves footprints. Learn to recognize them and you'll always know where the institutions are positioned.</p>
-
-            <h3>The Core SMC Patterns</h3>
-            <p>These are the patterns that form the foundation of every trade:</p>
-
-            <h4>1. Liquidity Pools</h4>
-            <p><strong>What they are:</strong> Clusters of stop losses sitting above recent highs or below recent lows.</p>
-            <p><strong>Why they matter:</strong> Institutions need liquidity to enter large positions. They push price to these pools to trigger stops and fill their orders.</p>
-            <p><strong>How to spot them:</strong></p>
-            <ul>
-                <li>Look for obvious swing highs in downtrends (buy-side liquidity)</li>
-                <li>Look for obvious swing lows in uptrends (sell-side liquidity)</li>
-                <li>Equal highs/lows are prime liquidity targets</li>
-                <li>Round numbers (1.3000, 1.2500) often hold psychological stops</li>
-            </ul>
-            <p><strong>Trading application:</strong> Expect price to sweep these levels before reversing. Use them as targets (if trading toward them) or entry zones (if trading the reversal from them).</p>
-
-            <h4>2. Fair Value Gaps (FVG) / Imbalances</h4>
-            <p><strong>What they are:</strong> Three-candle patterns where the first candle's high doesn't overlap with the third candle's low (or vice versa), leaving a "gap" or imbalance.</p>
-            <p><strong>Why they matter:</strong> Price moved so fast that it left inefficiency. The market often returns to "fill" these gaps.</p>
-            <p><strong>How to spot them:</strong></p>
-            <ul>
-                <li>Bullish FVG: Gap between candle 1's high and candle 3's low during upward move</li>
-                <li>Bearish FVG: Gap between candle 1's low and candle 3's high during downward move</li>
-                <li>More common on M15 and H1 during volatile moves</li>
-            </ul>
-            <p><strong>Trading application:</strong> Mark FVGs and expect price to return to them. They often serve as entry zones or targets.</p>
-
-            <h4>3. Order Blocks</h4>
-            <p><strong>What they are:</strong> The last opposite-colored candle before a strong impulsive move.</p>
-            <p><strong>Why they matter:</strong> They represent the zone where institutions placed large orders that initiated the move.</p>
-            <p><strong>How to spot them:</strong></p>
-            <ul>
-                <li>Bullish OB: Last red (bearish) candle before strong green (bullish) move up</li>
-                <li>Bearish OB: Last green (bullish) candle before strong red (bearish) move down</li>
-                <li>Works best on H1 and H4 timeframes</li>
-                <li>The candle should have a clear body (not just wicks)</li>
-            </ul>
-            <p><strong>Trading application:</strong> When price returns to an order block aligned with your bias, it's a prime entry zone. Institutions often defend these levels aggressively.</p>
-
-            <h4>4. Inefficiencies</h4>
-            <p><strong>What they are:</strong> Any area where price moved without consolidation—gaps, long wicks, fast candles.</p>
-            <p><strong>Why they matter:</strong> The market seeks to fill inefficiencies for balance.</p>
-            <p><strong>How to spot them:</strong> Look for areas of vertical price movement with no lateral consolidation.</p>
-            <p><strong>Trading application:</strong> Similar to FVGs, inefficiencies act as magnets for price to return and retest.</p>
-
-            <h4>5. Market Structure Breaks (MSB)</h4>
-            <p><strong>What they are:</strong> Price breaking above a lower high (bullish) or below a higher low (bearish), signaling a potential trend change.</p>
-            <p><strong>Why they matter:</strong> Confirms that momentum is shifting and institutions are repositioning.</p>
-            <p><strong>How to spot them:</strong></p>
-            <ul>
-                <li>In downtrend: Price breaks above the most recent lower high</li>
-                <li>In uptrend: Price breaks below the most recent higher low</li>
-                <li>Must be a clear, decisive break—not just a small wick</li>
-            </ul>
-            <p><strong>Trading application:</strong> MSB is part of your entry confirmation. After a liquidity sweep, wait for MSB before entering.</p>
-
-            <h4>6. Support/Resistance Flips</h4>
-            <p><strong>What they are:</strong> Previous resistance becoming support (in uptrends) or previous support becoming resistance (in downtrends).</p>
-            <p><strong>Why they matter:</strong> Shows institutional commitment to a level. Once flipped, the level becomes a strong zone.</p>
-            <p><strong>How to spot them:</strong></p>
-            <ul>
-                <li>Identify a level that previously acted as resistance</li>
-                <li>Price breaks above it decisively</li>
-                <li>Price returns and bounces from it (now support)</li>
-            </ul>
-            <p><strong>Trading application:</strong> Trade pullbacks to flipped levels aligned with overall bias.</p>
-
-            <h3>Quick Heuristics for Prioritizing Patterns</h3>
-            <p>Not all patterns are equal. Prioritize setups that have:</p>
-
-            <div class="callout success">
-                <h4>High-Priority Checklist</h4>
-                <ol>
-                    <li><strong>H4/H1 order block + liquidity pool</strong> – Highest probability</li>
-                    <li><strong>FVG within order block zone</strong> – Extra confluence</li>
-                    <li><strong>Multiple patterns stacked</strong> – OB + FVG + Liquidity = best setups</li>
-                    <li><strong>Fresh levels</strong> – Untested order blocks are stronger than previously tested ones</li>
-                    <li><strong>Aligned with HTF bias</strong> – Pattern in direction of H4 trend always preferred</li>
-                </ol>
-            </div>
-
-            <h3>Visual Pattern Recognition Guide</h3>
-
-            <h4>Step 1: Zoom Out to H4</h4>
-            <p>Identify the overall trend and major swing points. Mark the most recent swing highs and lows—these are your liquidity pools.</p>
-
-            <h4>Step 2: Drop to H1</h4>
-            <p>Within the H4 trend, find the last opposite-colored candle before a strong move. This is your order block. Also look for any fair value gaps left during fast moves.</p>
-
-            <h4>Step 3: Switch to M15</h4>
-            <p>Wait for price to return to your H1 order block or FVG. Watch for liquidity sweep below (for longs) or above (for shorts). Look for MSS confirmation.</p>
-
-            <h4>Step 4: Execute</h4>
-            <p>Once all criteria are met, enter the trade with stop beyond the sweep and target at the next liquidity pool.</p>
-
-            <div class="example-box">
-                <h4>Complete Pattern-to-Trade Example: GBP/USD Short</h4>
-                
-                <p><strong>H4 Analysis (Step 1):</strong></p>
-                <ul>
-                    <li>GBP/USD is in a bearish trend with lower highs and lower lows</li>
-                    <li>Most recent swing high: 1.2850 (liquidity pool)</li>
-                    <li>Current price: 1.2820</li>
-                    <li><strong>Bias: Bearish</strong></li>
-                </ul>
-
-                <p><strong>H1 Analysis (Step 2):</strong></p>
-                <ul>
-                    <li>Bearish order block identified at 1.2830-1.2840 zone</li>
-                    <li>This was the last bullish candle before the recent drop</li>
-                    <li>Fair value gap exists at 1.2835-1.2838</li>
-                    <li><strong>Target zone: 1.2830-1.2840</strong></li>
-                </ul>
-
-                <p><strong>M15 Execution (Step 3):</strong></p>
-                <ul>
-                    <li>Price rallies to 1.2852 (sweeping the 1.2850 liquidity high)</li>
-                    <li>Strong rejection wick forms—bearish pin bar</li>
-                    <li>Price closes back below 1.2850 at 1.2843</li>
-                    <li>MSS occurs as price breaks below recent higher low at 1.2835</li>
-                    <li>Bearish engulfing candle confirms at 1.2832</li>
-                </ul>
-
-                <p><strong>Trade Execution (Step 4):</strong></p>
-                <ul>
-                    <li><strong>Entry:</strong> 1.2832 (on engulfing candle close)</li>
-                    <li><strong>Stop Loss:</strong> 1.2862 (above liquidity sweep + buffer) = 30 pips</li>
-                    <li><strong>Take Profit:</strong> 1.2620 (next liquidity low) = 212 pips</li>
-                    <li><strong>Risk-to-Reward:</strong> 1:7.07</li>
-                </ul>
-
-                <p><strong>Result Scenario:</strong> If risking $150, potential profit is $1,060.</p>
-            </div>
-
-            <h3>Common Pattern Recognition Mistakes</h3>
-
-            <div class="callout warning">
-                <h4>Avoid These Errors</h4>
-                <ul>
-                    <li><strong>Seeing patterns that aren't there</strong> – Don't force order blocks or FVGs. They should be obvious.</li>
-                    <li><strong>Ignoring HTF context</strong> – A bearish order block in a strong H4 uptrend is a trap, not a trade.</li>
-                    <li><strong>Trading stale levels</strong> – Order blocks lose strength after multiple tests. Fresh is best.</li>
-                    <li><strong>Overcomplicating</strong> – You don't need 10 patterns aligned. OB + Liquidity + MSS is enough.</li>
-                </ul>
-            </div>
-
-            <h3>Practice Exercise</h3>
-            <p>Open your charts and complete this drill:</p>
-            <ol>
-                <li>Pick one of your trading pairs (EUR/USD, GBP/USD, or XAU/USD)</li>
-                <li>Go back 3 months in history on H4</li>
-                <li>Identify 5 clear liquidity pools (swing highs or lows)</li>
-                <li>For each pool, check if price swept it and reversed</li>
-                <li>Drop to H1 and find the order block price came from</li>
-                <li>Go to M15 and analyze the entry pattern (sweep + MSS + confirmation)</li>
-                <li>Calculate what the R:R would have been</li>
-            </ol>
-
-            <p>Do this for 20 historical setups. You'll start seeing patterns automatically in real-time.</p>
-        </div>
-
-        <!-- Chapter 8 -->
-        <div class="page" id="ch8">
-            <h1>Chapter 8</h1>
-            <h2>Key Terms You Need to Respect</h2>
-            
-            <p class="chapter-intro">Master the language, master the markets. These terms are your trading vocabulary.</p>
-
-            <h3>Essential Smart Money Concepts Terms</h3>
-
-            <h4>Liquidity</h4>
-            <p><strong>Definition:</strong> The availability of orders to fill positions, often clustered above highs and below lows as retail stop losses.</p>
-            <p><strong>Practical relevance:</strong> Institutions hunt liquidity before making large moves. Recognize liquidity pools to predict reversals and avoid getting stopped out prematurely.</p>
-
-            <h4>Order Block (OB)</h4>
-            <p><strong>Definition:</strong> The last opposite-direction candle before a strong impulsive move, representing where institutions placed significant orders.</p>
-            <p><strong>Practical relevance:</strong> Price often returns to order blocks before continuing. These zones provide high-probability entry points when aligned with bias.</p>
-
-            <h4>Fair Value Gap (FVG)</h4>
-            <p><strong>Definition:</strong> A three-candle pattern where price leaves an imbalance or "gap" due to fast movement, with candle 1's high not touching candle 3's low (or vice versa).</p>
-            <p><strong>Practical relevance:</strong> FVGs act as magnets—price frequently returns to fill them. Use them as target zones or entry refinement areas.</p>
-
-            <h4>Imbalance</h4>
-            <p><strong>Definition:</strong> Any area where price moved without equilibrium, leaving inefficiency in the market.</p>
-            <p><strong>Practical relevance:</strong> Similar to FVGs, imbalances suggest future price revisits. They help identify both entries and targets.</p>
-
-            <h4>Market Structure Shift (MSS)</h4>
-            <p><strong>Definition:</strong> A break of the most recent higher low (in uptrends) or lower high (in downtrends), signaling potential momentum change.</p>
-            <p><strong>Practical relevance:</strong> MSS confirms that institutional positioning is changing. It's a required element before entering trades—never enter without it.</p>
-
-            <h4>Sweep (Liquidity Sweep)</h4>
-            <p><strong>Definition:</strong> When price temporarily pushes beyond a key level to trigger stop losses, then reverses.</p>
-            <p><strong>Practical relevance:</strong> Sweeps reveal institutional manipulation—they hunt retail stops before entering. Recognize sweeps to enter at optimal prices rather than getting stopped out.</p>
-
-            <h4>Wick</h4>
-            <p><strong>Definition:</strong> The thin lines above and below a candlestick body showing price rejection and the high/low of the period.</p>
-            <p><strong>Practical relevance:</strong> Long wicks indicate strong rejection at levels. Wicks during sweeps confirm stop hunts. They show where institutions defended zones aggressively.</p>
-
-            <h3>Critical Trading Terms</h3>
-
-            <h4>Risk-to-Reward Ratio (R:R)</h4>
-            <p><strong>Definition:</strong> The relationship between how much you risk versus how much you stand to gain on a trade.</p>
-            <p><strong>Practical relevance:</strong> Minimum 1:7 R:R ensures long-term profitability even with win rates below 50%. Never take trades with less than this ratio.</p>
-
-            <h4>Drawdown</h4>
-            <p><strong>Definition:</strong> The peak-to-trough decline in your account balance, usually expressed as a percentage.</p>
-            <p><strong>Practical relevance:</strong> Drawdowns are inevitable. Proper risk management (1-2% per trade) keeps drawdowns manageable and recoverable. A 50% drawdown requires 100% gains to recover—avoid at all costs.</p>
-
-            <h4>Stop Hunt</h4>
-            <p><strong>Definition:</strong> Deliberate price manipulation by market makers to trigger retail stop losses before reversing direction.</p>
-            <p><strong>Practical relevance:</strong> Understanding stop hunts prevents you from placing stops in obvious areas. Place stops beyond sweep zones with structural buffer.</p>
-
-            <h4>Confluence</h4>
-            <p><strong>Definition:</strong> When multiple technical factors align at the same level (e.g., order block + FVG + liquidity pool).</p>
-            <p><strong>Practical relevance:</strong> Higher confluence equals higher probability setups. Look for 3+ confirming factors before entering trades.</p>
-
-            <h4>Bias</h4>
-            <p><strong>Definition:</strong> Your directional outlook based on higher-timeframe analysis—bullish (long), bearish (short), or neutral.</p>
-            <p><strong>Practical relevance:</strong> Having a clear daily bias prevents directionless trading. Your bias determines which setups you take and which you ignore.</p>
-
-            <h4>Premium vs Discount Zone</h4>
-            <p><strong>Definition:</strong> Premium = upper portion of a range (expensive to buy). Discount = lower portion of a range (cheap to buy).</p>
-            <p><strong>Practical relevance:</strong> In bullish bias, buy at discount zones. In bearish bias, sell at premium zones. Never buy at premium in uptrends or sell at discount in downtrends.</p>
-
-            <h4>Session</h4>
-            <p><strong>Definition:</strong> Specific trading hours when major financial centers are active (London, New York, Tokyo, Sydney).</p>
-            <p><strong>Practical relevance:</strong> Highest liquidity and best setups occur during London and New York sessions, especially their overlap. Trade quality improves significantly during these windows.</p>
-
-            <h4>Time Frame (TF)</h4>
-            <p><strong>Definition:</strong> The chart period—M15 (15-minute), H1 (1-hour), H4 (4-hour), etc.</p>
-            <p><strong>Practical relevance:</strong> Multiple time frames provide context. H4 for bias, H1 for zones, M15 for entries. Never trade on single time frame alone.</p>
-
-            <h4>Position Sizing</h4>
-            <p><strong>Definition:</strong> Calculating the appropriate trade volume based on account size, risk percentage, and stop loss distance.</p>
-            <p><strong>Practical relevance:</strong> Proper position sizing ensures you risk exactly 1-2% regardless of stop distance. Prevents overleveraging and account blow-ups.</p>
-
-            <h3>Psychological Trading Terms</h3>
-
-            <h4>FOMO (Fear of Missing Out)</h4>
-            <p><strong>Definition:</strong> The emotional urge to enter a trade because it's moving, even though your criteria aren't met.</p>
-            <p><strong>Practical relevance:</strong> FOMO leads to impulsive entries and losses. Remind yourself: there's always another trade. Miss the move, learn the lesson, catch the next one.</p>
-
-            <h4>Revenge Trading</h4>
-            <p><strong>Definition:</strong> Taking trades immediately after a loss to "get back" at the market or recover losses quickly.</p>
-            <p><strong>Practical relevance:</strong> Revenge trading is emotional, not strategic. It leads to bigger losses. After a loss, step away, analyze objectively, return with clear mind.</p>
-
-            <h4>Overtrading</h4>
-            <p><strong>Definition:</strong> Taking too many trades, often low-quality setups, due to boredom or impatience.</p>
-            <p><strong>Practical relevance:</strong> Quality over quantity. Taking 5 perfect setups per month beats 50 mediocre ones. More trades ≠ more profit. Better trades = more profit.</p>
-
-            <h4>Confirmation Bias</h4>
-            <p><strong>Definition:</strong> Seeing only information that supports your existing view and ignoring contradictory evidence.</p>
-            <p><strong>Practical relevance:</strong> Leads to ignoring warning signs and holding losing trades too long. Stay objective—if the setup deteriorates, exit regardless of your initial opinion.</p>
-
-            <div class="callout">
-                <h4>Terms You Must Respect</h4>
-                <p>These aren't just vocabulary—they're principles:</p>
-                <ul>
-                    <li><strong>Liquidity</strong> – The market's fuel. Follow it, don't fight it.</li>
-                    <li><strong>Structure</strong> – The market's skeleton. Respect breaks and shifts.</li>
-                    <li><strong>Risk Management</strong> – Your survival mechanism. 1-2% maximum, always.</li>
-                    <li><strong>Patience</strong> – Your competitive advantage. Wait for perfection.</li>
-                    <li><strong>Discipline</strong> – Your edge. Follow the plan even when it's hard.</li>
-                </ul>
-            </div>
-
-            <h3>Building Your Trading Vocabulary</h3>
-            <p>As you practice, these terms will become second nature. You'll think in terms of order blocks, liquidity sweeps, and market structure automatically.</p>
-
-            <p>Keep this chapter as a reference. Whenever you hear a term you're unsure about, come back here. Language mastery leads to concept mastery, which leads to trading mastery.</p>
-
-            <div class="callout success">
-                <h4>Final Vocabulary Exercise</h4>
-                <p>For the next 10 trades you analyze (live or historical):</p>
-                <ol>
-                    <li>Narrate your analysis using these exact terms</li>
-                    <li>Example: "H4 shows bullish bias. H1 order block at 1.1050 with fair value gap. M15 shows liquidity sweep to 1.1045, followed by MSS above 1.1055. Bearish wick shows rejection. Entry on confirmation candle at 1.1058 with 1:7.5 R:R."</li>
-                    <li>Record yourself or write it down</li>
-                </ol>
-                <p>This trains your brain to think in SMC language automatically.</p>
+            <div class="solution">
+                <div class="step">
+                    <div class="step-title">Analysis:</div>
+                    <div class="equation">
+                        Notice that:<br>
+                        Row 2 = 2 × Row 1, but 5 ≠ 2 × 2<br>
+                        Row 3 = 3 × Row 1, but 8 ≠ 3 × 2
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Augmented Matrix:</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>1</td><td>1</td><td>|</td><td>2</td></tr>
+                            <tr><td>2</td><td>2</td><td>2</td><td>|</td><td>5</td></tr>
+                            <tr><td>3</td><td>3</td><td>3</td><td>|</td><td>8</td></tr>
+                        </table></span>
+                    </div>
+                    <div class="equation">
+                        After R₂ → R₂ - 2R₁ and R₃ → R₃ - 3R₁:
+                    </div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>1</td><td>1</td><td>|</td><td>2</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>|</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>|</td><td>2</td></tr>
+                        </table></span>
+                    </div>
+                </div>
+
+                <div class="result">
+                    The system is INCONSISTENT (No Solution)<br>
+                    Reason: We have 0 = 1 and 0 = 2, which are contradictions.
+                </div>
             </div>
         </div>
 
-        <!-- Conclusion -->
-        <div class="page" id="conclusion">
-            <h1>Conclusion</h1>
+        <!-- Question 7 -->
+        <div class="question">
+            <div class="question-number">Question 7: Row Echelon Forms</div>
             
-            <p class="chapter-intro">You now have the complete framework. What matters next is execution.</p>
+            <div class="solution">
+                <div class="sub-question">
+                    <div class="sub-title">(a) Matrix:</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>5</td><td>6</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>2</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                        </table></span>
+                    </div>
+                    <div class="result">
+                        NOT in Row Echelon Form<br>
+                        Reason: Row 2 has a leading 1, but row 1 starts with 0. Also, row 4 has non-zero entries after a zero row.
+                    </div>
+                </div>
 
-            <h2>Putting It All Together</h2>
-            <p>This eBook has given you a complete trading system built on institutional logic:</p>
+                <div class="sub-question">
+                    <div class="sub-title">(b) Matrix:</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>2</td><td>-1</td><td>3</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>4</td><td>5</td><td>6</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                        </table></span>
+                    </div>
+                    <div class="result">
+                        IN Row Echelon Form<br>
+                        NOT in Reduced Row Echelon Form (pivots in columns 1, 2, 4 but not all are 1 and columns not cleared)
+                    </div>
+                </div>
 
-            <div class="callout success">
-                <h4>The Complete Strategy Recap</h4>
-                <ul>
-                    <li><strong>Preparation:</strong> Trade during London/NY overlap. Check news, mark levels, establish H4 bias daily.</li>
-                    <li><strong>Instruments:</strong> Focus on EUR/USD, GBP/USD, and XAU/USD exclusively for maximum liquidity and structure.</li>
-                    <li><strong>Time Frames:</strong> H4 for bias, H1 for zones, M15 for entries. Always align all three.</li>
-                    <li><strong>Entries:</strong> Liquidity sweep + Market Structure Shift + Confirmation. All three required, no exceptions.</li>
-                    <li><strong>Exits:</strong> Stop beyond structure, target next liquidity pool, minimum 1:7 R:R always.</li>
-                    <li><strong>Risk:</strong> Never exceed 1-2% per trade. Position size mathematically, not emotionally.</li>
-                    <li><strong>Patterns:</strong> Read candlesticks in context. Identify order blocks, FVGs, liquidity pools, and structure breaks.</li>
-                </ul>
-            </div>
+                <div class="sub-question">
+                    <div class="sub-title">(c) Matrix:</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>0</td><td>2</td><td>0</td><td>3</td></tr>
+                            <tr><td>0</td><td>1</td><td>-1</td><td>0</td><td>4</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>-2</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                        </table></span>
+                    </div>
+                    <div class="result">
+                        IN Reduced Row Echelon Form (RREF)<br>
+                        Reason: Leading 1s in columns 1, 2, 4; all entries above and below pivots are 0
+                    </div>
+                </div>
 
-            <h2>From Knowledge to Skill</h2>
-            <p>Understanding concepts is step one. Developing skill requires:</p>
-
-            <h3>1. Backtesting</h3>
-            <p>Go back 6-12 months on your charts. Identify 50 historical setups that match the criteria. Calculate their outcomes. This builds pattern recognition and confidence.</p>
-
-            <h3>2. Demo Trading</h3>
-            <p>Before risking real capital, take at least 30 trades in a demo account following the exact rules. Track your:</p>
-            <ul>
-                <li>Win rate</li>
-                <li>Average R:R</li>
-                <li>Biggest mistake patterns</li>
-                <li>Emotional responses</li>
-            </ul>
-
-            <h3>3. Journaling</h3>
-            <p>For every trade (demo and live), record:</p>
-            <ul>
-                <li>Screenshots of H4, H1, M15 at entry</li>
-                <li>Your reasoning (bias, patterns identified, confluence)</li>
-                <li>Entry price, stop, target, and actual outcome</li>
-                <li>Emotional state and lessons learned</li>
-            </ul>
-            <p>Your journal is your most valuable asset. Review it weekly to spot patterns in your decision-making.</p>
-
-            <h3>4. Continuous Learning</h3>
-            <p>Markets evolve. Never stop studying:</p>
-            <ul>
-                <li>Review losing trades to understand what you missed</li>
-                <li>Study winning trades to reinforce what works</li>
-                <li>Watch live price action daily to sharpen recognition</li>
-                <li>Stay humble—there's always more to learn</li>
-            </ul>
-
-            <h2>The Mindset of a Successful Trader</h2>
-            <p>Technical skill is only half the equation. The other half is psychology:</p>
-
-            <div class="callout">
-                <h4>Trader's Mindset Principles</h4>
-                <ul>
-                    <li><strong>Patience:</strong> The best traders take the fewest trades. Wait for A+ setups only.</li>
-                    <li><strong>Discipline:</strong> Follow your rules even when it's uncomfortable. Especially when it's uncomfortable.</li>
-                    <li><strong>Detachment:</strong> No single trade matters. You're playing a probabilistic game over hundreds of trades.</li>
-                    <li><strong>Honesty:</strong> Accept when you're wrong quickly. The market is always right; your opinion is not.</li>
-                    <li><strong>Consistency:</strong> Do the same thing every day. Same prep, same rules, same execution.</li>
-                </ul>
-            </div>
-
-            <h2>Common Pitfalls to Avoid</h2>
-            <div class="callout warning">
-                <h4>Watch Out For</h4>
-                <ul>
-                    <li><strong>Overconfidence after wins</strong> – One good trade doesn't make you a genius. Stay humble.</li>
-                    <li><strong>Desperation after losses</strong> – Never trade to recover. Take time, analyze, return fresh.</li>
-                    <li><strong>Ignoring rules "just this once"</strong> – Rules exist for a reason. No exceptions.</li>
-                    <li><strong>Comparing yourself to others</strong> – Everyone's journey is unique. Focus on your own growth.</li>
-                    <li><strong>Expecting overnight success</strong> – Trading mastery takes years, not weeks. Embrace the process.</li>
-                </ul>
-            </div>
-
-            <h2>Your Next Steps</h2>
-            <ol>
-                <li><strong>Re-read this eBook</strong> – Once is not enough. Read it multiple times until concepts are automatic.</li>
-                <li><strong>Set up your charts</strong> – Add H4, H1, and M15 for your three pairs. Start marking levels daily.</li>
-                <li><strong>Complete 20 backtests</strong> – Historical analysis builds confidence and pattern recognition.</li>
-                <li><strong>Open a demo account</strong> – Trade the strategy live (demo) for at least one month.</li>
-                <li><strong>Start a trading journal</strong> – Document everything. Your journal is your textbook.</li>
-                <li><strong>Be patient with yourself</strong> – Mastery takes time. Celebrate small wins. Learn from every loss.</li>
-            </ol>
-
-            <h2>Final Thoughts</h2>
-            <p>Trading is one of the most challenging yet rewarding skills you can develop. It requires intelligence, discipline, emotional control, and relentless dedication to improvement.</p>
-
-            <p>But here's the truth: <span class="highlight">you don't need to be perfect. You just need to be consistent.</span></p>
-
-            <p>Follow the system in this eBook. Trust the process. Give yourself time to develop. Focus on perfect execution rather than perfect results, and the results will follow.</p>
-
-            <p>The market will always be here tomorrow. Trade like it.</p>
-
-            <div class="callout success">
-                <h4>Remember</h4>
-                <p><em>"The goal is not to predict the market. The goal is to position yourself correctly when opportunities present themselves. Patience, precision, and discipline—master these three, and you master trading."</em></p>
-            </div>
-
-            <p style="margin-top: 40px; text-align: center; font-size: 1.2em;"><strong>Good luck, and trade wisely.</strong></p>
-        </div>
-
-        <!-- Author Page -->
-        <div class="page" id="author">
-            <h1>About the Author</h1>
-            
-            <p>This eBook represents years of market study, countless hours of chart analysis, and real trading experience in the forex and commodities markets. The Smart Money Concepts framework presented here is the culmination of learning from institutional trading patterns and distilling them into a systematic, repeatable approach.</p>
-
-            <h2>Philosophy</h2>
-            <p>I believe that successful trading is not about indicators, robots, or secret formulas. It's about understanding market mechanics, respecting institutional flow, and executing with unwavering discipline.</p>
-
-            <p>The strategies in this book work because they're based on how markets actually function—not on wishful thinking or marketing hype. Institutions move billions. Retail follows. Learn to think like the institutions, and you position yourself correctly.</p>
-
-            <h2>Mission</h2>
-            <p>My goal with this eBook is simple: to provide clear, actionable education that helps traders avoid the mistakes I made and accelerate their learning curve.</p>
-
-            <p>Too many resources overcomplicate trading or sell false promises. This eBook delivers reality—trading is hard, but with the right framework and discipline, it's absolutely achievable.</p>
-
-            <h2>Important Disclaimers</h2>
-            
-            <div class="disclaimer">
-                <strong>Educational Purposes Only</strong>
-                <p>This eBook is provided for educational and informational purposes only. Nothing contained herein constitutes financial, investment, legal, or trading advice.</p>
-            </div>
-
-            <div class="disclaimer">
-                <strong>Risk Acknowledgment</strong>
-                <p>Trading forex, gold, cryptocurrencies, and other leveraged instruments involves substantial risk of loss. Past performance is not indicative of future results. You should only trade with capital you can afford to lose entirely.</p>
-            </div>
-
-            <div class="disclaimer">
-                <strong>No Guarantees</strong>
-                <p>The author makes no guarantees or warranties regarding the accuracy, completeness, or profitability of the information provided. All trading decisions are the sole responsibility of the reader.</p>
-            </div>
-
-            <h2>Copyright & Usage</h2>
-            <p><strong>© 2025 Trading Education Series. All rights reserved.</strong></p>
-            <p>This eBook is protected by copyright law. It may not be reproduced, distributed, or transmitted in any form without explicit written permission from the author, except for personal educational use.</p>
-
-            <p>You may:</p>
-            <ul>
-                <li>Read and study this eBook for personal education</li>
-                <li>Print one copy for personal reference</li>
-                <li>Take notes and create personal study materials</li>
-            </ul>
-
-            <p>You may not:</p>
-            <ul>
-                <li>Resell or redistribute this eBook</li>
-                <li>Claim authorship or modify the content</li>
-                <li>Share publicly without permission</li>
-            </ul>
-
-            <h2>Connect & Continue Learning</h2>
-            <p>Trading is a journey, not a destination. Stay committed to continuous improvement, and remember that every professional trader was once exactly where you are now.</p>
-
-            <p style="margin-top: 40px; text-align: center;">
-                <strong>Thank you for reading.</strong><br>
-                <em>Now go apply what you've learned.</em>
-            </p>
-
-            <div style="margin-top: 60px; padding: 30px; background: #f8f9fa; border-radius: 8px; text-align: center;">
-                <h3 style="margin-bottom: 15px;">Final Reminder</h3>
-                <p style="font-size: 1.1em; color: #2c3e50;"><strong>This eBook is for educational purposes only and does not constitute financial advice. Trade responsibly. Manage risk. Never risk more than you can afford to lose.</strong></p>
+                <div class="sub-question">
+                    <div class="sub-title">(d) Matrix:</div>
+                    <div class="equation">
+                        <span class="matrix"><table>
+                            <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>7</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>-3</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>5</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>-2</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                        </table></span>
+                    </div>
+                    <div class="result">
+                        IN Reduced Row Echelon Form (RREF)<br>
+                        Reason: Leading 1s in columns 1, 2, 3, 4; all entries above and below pivots are 0; identity pattern
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- Question 8 - Determinants -->
+        <div class="question">
+            <div class="question-number">Question 8: Determinants</div>
+            
+            <div class="solution">
+                <div class="sub-question">
+                    <div class="sub-title">(a) i. det(A) where A = [2 3; 5 1]</div>
+                    <div class="step">
+                        <div class="equation">
+                            det(A) = (2)(1) - (3)(5) = 2 - 15 = -13
+                        </div>
+                        <div class="result">det(A) = -13</div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(a) ii. det(B) where B is 3×3</div>
+                    <div class="step">
+                        <div class="equation">
+                            B = <span class="matrix"><table>
+                                <tr><td>1</td><td>2</td><td>3</td></tr>
+                                <tr><td>0</td><td>-1</td><td>4</td></tr>
+                                <tr><td>2</td><td>1</td><td>0</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            Using cofactor expansion along row 1:<br>
+                            det(B) = 1|(-1)(0) - (4)(1)| - 2|(0)(0) - (4)(2)| + 3|(0)(1) - (-1)(2)|
+                        </div>
+                        <div class="equation">
+                            = 1(-4) - 2(-8) + 3(2)<br>
+                            = -4 + 16 + 6 = 18
+                        </div>
+                        <div class="result">det(B) = 18</div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(a) iii. det(C) where C is 4×4</div>
+                    <div class="step">
+                        <div class="equation">
+                            C = <span class="matrix"><table>
+                                <tr><td>3</td><td>1</td><td>2</td><td>0</td></tr>
+                                <tr><td>2</td><td>4</td><td>-1</td><td>3</td></tr>
+                                <tr><td>0</td><td>1</td><td>2</td><td>1</td></tr>
+                                <tr><td>1</td><td>0</td><td>3</td><td>2</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            Expanding along row 1 (choosing column 4 has a zero):<br>
+                            det(C) = 3·M₁₁ - 1·M₁₂ + 2·M₁₃ - 0·M₁₄
+                        </div>
+                        <div class="equation">
+                            After detailed calculation of 3×3 minors:<br>
+                            M₁₁ = |4 -1 3; 1 2 1; 0 3 2| = 4(4-3) - (-1)(2-0) + 3(3-0) = 4 + 2 + 9 = 15<br>
+                            M₁₂ = |2 -1 3; 0 2 1; 1 3 2| = 2(4-3) - (-1)(0-1) + 3(0-2) = 2 - 1 - 6 = -5<br>
+                            M₁₃ = |2 4 3; 0 1 1; 1 0 2| = 2(2-0) - 4(0-1) + 3(0-1) = 4 + 4 - 3 = 5
+                        </div>
+                        <div class="equation">
+                            det(C) = 3(15) - 1(-5) + 2(5) = 45 + 5 + 10 = 60
+                        </div>
+                        <div class="result">det(C) = 60</div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(a) iv. Upper Triangular Matrix D</div>
+                    <div class="step">
+                        <div class="equation">
+                            D = <span class="matrix"><table>
+                                <tr><td>5</td><td>2</td><td>3</td></tr>
+                                <tr><td>0</td><td>4</td><td>1</td></tr>
+                                <tr><td>0</td><td>0</td><td>-2</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            For upper triangular matrices, determinant = product of diagonal entries<br>
+                            det(D) = (5)(4)(-2) = -40
+                        </div>
+                        <div class="result">
+                            det(D) = -40<br>
+                            Comment: Upper triangular matrices have determinants equal to the product of their diagonal entries.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(a) v. Verify 2×2 determinant formula</div>
+                    <div class="step">
+                        <div class="equation">
+                            E = <span class="matrix"><table>
+                                <tr><td>a</td><td>b</td></tr>
+                                <tr><td>c</td><td>d</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            Using the definition of determinant:<br>
+                            det(E) = ad - bc ✓
+                        </div>
+                        <div class="result">Verified: det(E) = ad - bc</div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(b) Singular or Non-singular Matrices</div>
+                    <div class="step">
+                        <div class="step-title">Matrix F:</div>
+                        <div class="equation">
+                            F = <span class="matrix"><table>
+                                <tr><td>1</td><td>2</td><td>3</td></tr>
+                                <tr><td>2</td><td>4</td><td>6</td></tr>
+                                <tr><td>1</td><td>0</td><td>1</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            Notice Row 2 = 2 × Row 1<br>
+                            det(F) = 1(4-0) - 2(2-6) + 3(0-4) = 4 + 8 - 12 = 0
+                        </div>
+                        <div class="result">F is SINGULAR (det = 0, no inverse exists)</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Matrix G:</div>
+                        <div class="equation">
+                            G = <span class="matrix"><table>
+                                <tr><td>2</td><td>1</td><td>3</td></tr>
+                                <tr><td>0</td><td>1</td><td>4</td></tr>
+                                <tr><td>1</td><td>2</td><td>0</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            det(G) = 2(0-8) - 1(0-4) + 3(0-1) = -16 + 4 - 3 = -15
+                        </div>
+                        <div class="result">G is NON-SINGULAR (det = -15 ≠ 0, inverse exists)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 9 - Matrix Inverses -->
+        <div class="question">
+            <div class="question-number">Question 9: Matrix Inverses</div>
+            
+            <div class="solution">
+                <div class="sub-question">
+                    <div class="sub-title">(a) i. Inverse of A = [2 1; 5 3]</div>
+                    <div class="step">
+                        <div class="equation">
+                            det(A) = (2)(3) - (1)(5) = 6 - 5 = 1
+                        </div>
+                        <div class="equation">
+                            A⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">1</span></span> × 
+                            <span class="matrix"><table>
+                                <tr><td>3</td><td>-1</td></tr>
+                                <tr><td>-5</td><td>2</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="result">
+                            A⁻¹ = <span class="matrix"><table>
+                                <tr><td>3</td><td>-1</td></tr>
+                                <tr><td>-5</td><td>2</td></tr>
+                            </table></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(a) ii. Inverse of B (3×3 matrix)</div>
+                    <div class="step">
+                        <div class="equation">
+                            B = <span class="matrix"><table>
+                                <tr><td>1</td><td>2</td><td>3</td></tr>
+                                <tr><td>0</td><td>1</td><td>4</td></tr>
+                                <tr><td>5</td><td>6</td><td>0</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            det(B) = 1(0-24) - 2(0-20) + 3(0-5) = -24 + 40 - 15 = 1
+                        </div>
+                        <div class="equation">
+                            Computing cofactor matrix and transpose (adjugate):<br>
+                            After calculation: adj(B) = <span class="matrix"><table>
+                                <tr><td>-24</td><td>18</td><td>5</td></tr>
+                                <tr><td>20</td><td>-15</td><td>-4</td></tr>
+                                <tr><td>-5</td><td>4</td><td>1</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="result">
+                            B⁻¹ = <span class="matrix"><table>
+                                <tr><td>-24</td><td>18</td><td>5</td></tr>
+                                <tr><td>20</td><td>-15</td><td>-4</td></tr>
+                                <tr><td>-5</td><td>4</td><td>1</td></tr>
+                            </table></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(a) iii. Inverse of C = [4 7; 2 6]</div>
+                    <div class="step">
+                        <div class="equation">
+                            det(C) = (4)(6) - (7)(2) = 24 - 14 = 10
+                        </div>
+                        <div class="equation">
+                            C⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">10</span></span> × 
+                            <span class="matrix"><table>
+                                <tr><td>6</td><td>-7</td></tr>
+                                <tr><td>-2</td><td>4</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="result">
+                            C⁻¹ = <span class="matrix"><table>
+                                <tr><td>0.6</td><td>-0.7</td></tr>
+                                <tr><td>-0.2</td><td>0.4</td></tr>
+                            </table></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(b) Verify A⁻¹A = I</div>
+                    <div class="step">
+                        <div class="equation">
+                            Using A from part (a)i:<br>
+                            A⁻¹A = <span class="matrix"><table>
+                                <tr><td>3</td><td>-1</td></tr>
+                                <tr><td>-5</td><td>2</td></tr>
+                            </table></span> × 
+                            <span class="matrix"><table>
+                                <tr><td>2</td><td>1</td></tr>
+                                <tr><td>5</td><td>3</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            = <span class="matrix"><table>
+                                <tr><td>3(2)-1(5)</td><td>3(1)-1(3)</td></tr>
+                                <tr><td>-5(2)+2(5)</td><td>-5(1)+2(3)</td></tr>
+                            </table></span> = 
+                            <span class="matrix"><table>
+                                <tr><td>1</td><td>0</td></tr>
+                                <tr><td>0</td><td>1</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="result">Verified: A⁻¹A = I ✓</div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(c) Using formula A⁻¹ = (1/det(A))·adj(A)</div>
+                    <div class="step">
+                        <div class="equation">
+                            A = <span class="matrix"><table>
+                                <tr><td>3</td><td>1</td></tr>
+                                <tr><td>2</td><td>4</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            det(A) = (3)(4) - (1)(2) = 12 - 2 = 10
+                        </div>
+                        <div class="equation">
+                            adj(A) = <span class="matrix"><table>
+                                <tr><td>4</td><td>-1</td></tr>
+                                <tr><td>-2</td><td>3</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            A⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">10</span></span> × 
+                            <span class="matrix"><table>
+                                <tr><td>4</td><td>-1</td></tr>
+                                <tr><td>-2</td><td>3</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="result">
+                            A⁻¹ = <span class="matrix"><table>
+                                <tr><td>0.4</td><td>-0.1</td></tr>
+                                <tr><td>-0.2</td><td>0.3</td></tr>
+                            </table></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(d) Determine if B⁻¹ exists</div>
+                    <div class="step">
+                        <div class="equation">
+                            B = <span class="matrix"><table>
+                                <tr><td>2</td><td>1</td><td>0</td></tr>
+                                <tr><td>-1</td><td>3</td><td>2</td></tr>
+                                <tr><td>1</td><td>0</td><td>1</td></tr>
+                            </table></span>
+                        </div>
+                        <div class="equation">
+                            det(B) = 2(3-0) - 1(-1-2) + 0(0-3) = 6 + 3 + 0 = 9
+                        </div>
+                        <div class="result">
+                            Since det(B) = 9 ≠ 0, B⁻¹ EXISTS<br>
+                            The matrix is non-singular and invertible.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 10 - Properties -->
+        <div class="question">
+            <div class="question-number">Question 10: Determinant Properties</div>
+            
+            <div class="solution">
+                <div class="sub-question">
+                    <div class="sub-title">(a) Three Properties of Determinants</div>
+                    <div class="step">
+                        <div class="equation">
+                            <strong>Property 1:</strong> Multiplicative Property<br>
+                            det(AB) = det(A) · det(B)
+                        </div>
+                        <div class="equation">
+                            <strong>Property 2:</strong> Determinant of Transpose<br>
+                            det(Aᵀ) = det(A)
+                        </div>
+                        <div class="equation">
+                            <strong>Property 3:</strong> Scalar Multiplication<br>
+                            For an n×n matrix: det(kA) = kⁿ·det(A)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(b) Effect of Row Swap</div>
+                    <div class="step">
+                        <div class="equation">
+                            When two rows of a matrix are swapped, the determinant changes sign.
+                        </div>
+                        <div class="equation">
+                            If B is obtained from A by swapping two rows, then:<br>
+                            det(B) = -det(A)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(c) Why Nonzero Determinant for Inverse</div>
+                    <div class="step">
+                        <div class="equation">
+                            The inverse formula is: A⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">det(A)</span></span> · adj(A)
+                        </div>
+                        <div class="equation">
+                            If det(A) = 0, then 1/det(A) is undefined (division by zero).
+                        </div>
+                        <div class="equation">
+                            Additionally, det(A) = 0 means the matrix is singular (rows/columns are linearly dependent),<br>
+                            indicating the transformation is not invertible.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-title">(d) Calculate det(AB) and det(A⁻¹)</div>
+                    <div class="step">
+                        <div class="equation">
+                            Given: det(A) = 5 and det(B) = -2
+                        </div>
+                        <div class="equation">
+                            <strong>Finding det(AB):</strong><br>
+                            det(AB) = det(A) · det(B) = 5 · (-2) = -10
+                        </div>
+                        <div class="equation">
+                            <strong>Finding det(A⁻¹):</strong><br>
+                            Since A·A⁻¹ = I and det(I) = 1:<br>
+                            det(A) · det(A⁻¹) = 1<br>
+                            det(A⁻¹) = 1/det(A) = 1/5
+                        </div>
+                        <div class="result">
+                            det(AB) = -10<br>
+                            det(A⁻¹) = 1/5 = 0.2
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 11 - System with Parameter k -->
+        <div class="question">
+            <div class="question-number">Question 11: System with Parameter k</div>
+            <div class="question-text">
+                For what value of k does the following system have:<br>
+                (a) a unique solution, (b) infinite solutions, (c) no solution?<br><br>
+                2x + 3y = 5<br>
+                4x + ky = 10
+            </div>
+            
+            <div class="solution">
+                <div class="step">
+                    <div class="step-title">Calculate the Determinant:</div>
+                    <div class="equation">
+                        Δ = <span class="determinant"><table>
+                            <tr><td>2</td><td>3</td></tr>
+                            <tr><td>4</td><td>k</td></tr>
+                        </table></span> = 2k - 12
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">(a) Unique Solution:</div>
+                    <div class="equation">
+                        Condition: Δ ≠ 0<br>
+                        2k - 12 ≠ 0<br>
+                        2k ≠ 12<br>
+                        k ≠ 6
+                    </div>
+                    <div class="result">
+                        For k ≠ 6, the system has a UNIQUE SOLUTION
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">(b) Infinite Solutions:</div>
+                    <div class="equation">
+                        Condition: Δ = 0 and ratios equal<br>
+                        <span class="fraction"><span class="numerator">2</span><span class="denominator">4</span></span> = 
+                        <span class="fraction"><span class="numerator">3</span><span class="denominator">k</span></span> = 
+                        <span class="fraction"><span class="numerator">5</span><span class="denominator">10</span></span>
+                    </div>
+                    <div class="equation">
+                        From 2/4 = 3/k:<br>
+                        1/2 = 3/k → k = 6
+                    </div>
+                    <div class="equation">
+                        Check: 2/4 = 1/2 ✓, 3/6 = 1/2 ✓, 5/10 = 1/2 ✓
+                    </div>
+                    <div class="result">
+                        For k = 6, the system has INFINITE SOLUTIONS<br>
+                        (The equations represent the same line)
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">(c) No Solution:</div>
+                    <div class="equation">
+                        Condition: Δ = 0 but ratios of coefficients ≠ ratio of constants<br>
+                        This would require k = 6 BUT 2/4 = 3/k ≠ 5/10
+                    </div>
+                    <div class="equation">
+                        However, when k = 6, we have 2/4 = 3/6 = 5/10 = 1/2<br>
+                        So all ratios are equal.
+                    </div>
+                    <div class="result">
+                        There is NO VALUE of k for which the system has no solution<br>
+                        (The given system structure prevents parallel lines with different intercepts)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding: 30px; background: #667eea; color: white; border-radius: 10px;">
+            <h2>End of Solutions</h2>
+            <p style="margin-top: 10px;">All questions have been solved with detailed step-by-step explanations.</p>
+            <p>Linear Algebra I - Assignment Solutions</p>
+        </div>
     </div>
 </body>
 </html>
