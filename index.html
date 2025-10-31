@@ -3,1063 +3,1536 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linear Algebra I - Solutions</title>
+    <title>Brand Package Calculator</title>
     <style>
+        /* ========== CSS VARIABLES ========== */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========== GLOBAL STYLES ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
+            color: var(--dark);
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             padding: 20px;
-            color: #333;
         }
-        
+
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
         }
-        
+
+        /* ========== HEADER ========== */
         .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 40px 30px;
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
+            position: relative;
         }
-        
-        h1 {
-            color: #667eea;
-            font-size: 2.5em;
+
+        .header h1 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
+            font-weight: 700;
         }
-        
-        .course-info {
-            color: #666;
-            font-size: 1.1em;
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        
-        .question {
-            margin: 40px 0;
-            padding: 25px;
-            background: #f8f9fa;
-            border-left: 5px solid #667eea;
-            border-radius: 8px;
+
+        /* Live estimate badge */
+        .live-estimate {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
-        
-        .question-number {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 15px;
+
+        .live-estimate-amount {
+            display: block;
+            font-size: 1.5rem;
+            margin-top: 4px;
         }
-        
-        .question-text {
-            font-size: 1.1em;
+
+        /* ========== MAIN CONTENT ========== */
+        .content {
+            padding: 40px 30px;
+        }
+
+        .landing {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .landing h2 {
+            font-size: 2rem;
             margin-bottom: 20px;
-            color: #444;
+            color: var(--dark);
         }
-        
-        .solution {
-            background: white;
-            padding: 20px;
+
+        .landing p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border: none;
             border-radius: 8px;
-            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
-        
-        .step {
-            margin: 15px 0;
-            padding: 15px;
-            background: #f0f4ff;
-            border-radius: 5px;
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
         }
-        
-        .step-title {
-            font-weight: bold;
-            color: #667eea;
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        /* ========== PROGRESS BAR ========== */
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
             margin-bottom: 10px;
         }
-        
-        .matrix {
-            display: inline-block;
-            position: relative;
-            padding: 10px 20px;
-            margin: 10px;
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
         }
-        
-        .matrix::before,
-        .matrix::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 8px;
-            border: 2px solid #333;
-        }
-        
-        .matrix::before {
-            left: 0;
-            border-right: none;
-        }
-        
-        .matrix::after {
-            right: 0;
-            border-left: none;
-        }
-        
-        table {
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-        
-        td {
-            padding: 8px 15px;
+
+        .progress-text {
             text-align: center;
-            min-width: 50px;
+            color: var(--gray);
+            font-size: 0.9rem;
         }
-        
-        .equation {
-            font-family: 'Courier New', monospace;
-            background: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            border-left: 3px solid #764ba2;
+
+        /* ========== FORM STYLES ========== */
+        .step {
+            display: none;
         }
-        
-        .result {
-            background: #e8f5e9;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            font-weight: bold;
-            color: #2e7d32;
-            border-left: 4px solid #4caf50;
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
         }
-        
-        .sub-question {
-            margin: 20px 0;
-            padding-left: 20px;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .sub-title {
-            font-weight: bold;
-            color: #764ba2;
-            margin: 10px 0;
+
+        .form-group {
+            margin-bottom: 24px;
         }
-        
-        .fraction {
-            display: inline-block;
-            vertical-align: middle;
-            text-align: center;
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
         }
-        
-        .fraction .numerator {
-            border-bottom: 1px solid #333;
-            padding: 0 5px;
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
-        
-        .fraction .denominator {
-            padding: 0 5px;
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
         }
-        
-        .determinant {
-            display: inline-block;
+
+        /* Radio and checkbox cards */
+        .radio-group,
+        .checkbox-group {
+            display: grid;
+            gap: 12px;
+        }
+
+        .radio-card,
+        .checkbox-card {
             position: relative;
-            padding: 5px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
-        .determinant::before,
-        .determinant::after {
-            content: '';
+
+        .radio-card:hover,
+        .checkbox-card:hover {
+            border-color: var(--primary);
+            background: var(--light-gray);
+        }
+
+        .radio-card.selected,
+        .checkbox-card.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .radio-card input[type="radio"],
+        .checkbox-card input[type="checkbox"] {
             position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #333;
+            opacity: 0;
         }
-        
-        .determinant::before {
-            left: 5px;
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
         }
-        
-        .determinant::after {
-            right: 5px;
+
+        .card-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .card-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Package cards with slider */
+        .package-card {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .package-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .package-card.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .package-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .package-range {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .price-slider-container {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .price-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .price-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* ========== RECEIPT STYLES ========== */
+        .receipt {
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .receipt-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .receipt-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .receipt-section {
+            margin-bottom: 24px;
+        }
+
+        .receipt-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .receipt-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .receipt-line:last-child {
+            border-bottom: none;
+        }
+
+        .receipt-line.total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding-top: 16px;
+            margin-top: 16px;
+            border-top: 2px solid var(--dark);
+            color: var(--primary);
+        }
+
+        .receipt-label {
+            color: var(--gray);
+        }
+
+        .receipt-value {
+            font-weight: 600;
+        }
+
+        /* ========== NAVIGATION BUTTONS ========== */
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        /* ========== INFO TOOLTIP ========== */
+        .info-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            cursor: help;
+            margin-left: 6px;
+        }
+
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .live-estimate {
+                position: static;
+                margin: 20px auto 0;
+                display: inline-block;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* ========== PRINT STYLES ========== */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .header,
+            .nav-buttons,
+            .action-buttons,
+            .live-estimate {
+                display: none;
+            }
+
+            .receipt {
+                border: none;
+            }
+        }
+
+        /* ========== HIDDEN UTILITY ========== */
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <div class="header">
-            <h1>Linear Algebra I - Complete Solutions</h1>
-            <div class="course-info">
-                <p>Dr. Cham | Email: bmcham@utg.edu.gm</p>
-                <p>Date: October 18, 2025</p>
+            <div class="live-estimate" id="liveEstimate">
+                <div>Current Estimate</div>
+                <span class="live-estimate-amount" id="liveEstimateAmount">$0.00</span>
             </div>
+            <h1>Build Your Brand Package</h1>
+            <p>Get an instant estimate for your brand identity project</p>
         </div>
 
-        <!-- Question 1 -->
-        <div class="question">
-            <div class="question-number">Question 1: Matrix Operations</div>
-            <div class="question-text">
-                Given: A = <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> and 
-                B = <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span>
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Landing Page -->
+            <div id="landing" class="landing">
+                <h2>📦 Instant Brand Package Estimate</h2>
+                <p>Answer a few quick questions about your project needs, and we'll calculate a detailed price estimate with all deliverables, add-ons, and options tailored to your business.</p>
+                <button class="btn btn-primary" onclick="startQuestionnaire()">Start Questionnaire</button>
+                <br><br>
+                <button class="btn btn-secondary btn-small" onclick="loadExample()">Load Example</button>
             </div>
-            
-            <div class="solution">
-                <div class="sub-question">
-                    <div class="sub-title">(a) A + B</div>
-                    <div class="step">
-                        <div class="equation">
-                            A + B = <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> + 
-                            <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span> = 
-                            <span class="matrix"><table><tr><td>1+2</td><td>2+0</td></tr><tr><td>3+1</td><td>4+3</td></tr></table></span>
-                        </div>
-                        <div class="result">
-                            A + B = <span class="matrix"><table><tr><td>3</td><td>2</td></tr><tr><td>4</td><td>7</td></tr></table></span>
-                        </div>
+
+            <!-- Questionnaire -->
+            <div id="questionnaire" class="hidden">
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
                     </div>
+                    <div class="progress-text" id="progressText">Step 1 of 6</div>
                 </div>
 
-                <div class="sub-question">
-                    <div class="sub-title">(b) 2A - B</div>
-                    <div class="step">
-                        <div class="equation">
-                            2A = 2 × <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> = 
-                            <span class="matrix"><table><tr><td>2</td><td>4</td></tr><tr><td>6</td><td>8</td></tr></table></span>
-                        </div>
-                        <div class="equation">
-                            2A - B = <span class="matrix"><table><tr><td>2</td><td>4</td></tr><tr><td>6</td><td>8</td></tr></table></span> - 
-                            <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span> = 
-                            <span class="matrix"><table><tr><td>0</td><td>4</td></tr><tr><td>5</td><td>5</td></tr></table></span>
-                        </div>
-                        <div class="result">
-                            2A - B = <span class="matrix"><table><tr><td>0</td><td>4</td></tr><tr><td>5</td><td>5</td></tr></table></span>
-                        </div>
+                <!-- Step 1: Business Basics -->
+                <div class="step active" id="step1">
+                    <h2>Step 1: Business Basics</h2>
+                    
+                    <div class="form-group">
+                        <label for="businessName">Business Name (Optional)</label>
+                        <input type="text" id="businessName" placeholder="Enter your business name">
                     </div>
-                </div>
 
-                <div class="sub-question">
-                    <div class="sub-title">(c) AB</div>
-                    <div class="step">
-                        <div class="equation">
-                            AB = <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span> × 
-                            <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span>
-                        </div>
-                        <div class="equation">
-                            AB₁₁ = 1(2) + 2(1) = 2 + 2 = 4<br>
-                            AB₁₂ = 1(0) + 2(3) = 0 + 6 = 6<br>
-                            AB₂₁ = 3(2) + 4(1) = 6 + 4 = 10<br>
-                            AB₂₂ = 3(0) + 4(3) = 0 + 12 = 12
-                        </div>
-                        <div class="result">
-                            AB = <span class="matrix"><table><tr><td>4</td><td>6</td></tr><tr><td>10</td><td>12</td></tr></table></span>
-                        </div>
+                    <div class="form-group">
+                        <label for="businessType">Business Type</label>
+                        <select id="businessType">
+                            <option value="Freelancer">Freelancer</option>
+                            <option value="Startup">Startup</option>
+                            <option value="Tech company">Tech Company</option>
+                            <option value="Established brand">Established Brand</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
-                </div>
 
-                <div class="sub-question">
-                    <div class="sub-title">(d) BA</div>
-                    <div class="step">
-                        <div class="equation">
-                            BA = <span class="matrix"><table><tr><td>2</td><td>0</td></tr><tr><td>1</td><td>3</td></tr></table></span> × 
-                            <span class="matrix"><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></span>
-                        </div>
-                        <div class="equation">
-                            BA₁₁ = 2(1) + 0(3) = 2 + 0 = 2<br>
-                            BA₁₂ = 2(2) + 0(4) = 4 + 0 = 4<br>
-                            BA₂₁ = 1(1) + 3(3) = 1 + 9 = 10<br>
-                            BA₂₂ = 1(2) + 3(4) = 2 + 12 = 14
-                        </div>
-                        <div class="result">
-                            BA = <span class="matrix"><table><tr><td>2</td><td>4</td></tr><tr><td>10</td><td>14</td></tr></table></span>
+                    <div class="form-group">
+                        <label>Timeline Urgency</label>
+                        <div class="radio-group">
+                            <div class="radio-card" onclick="selectRadio('timeline', 'standard')">
+                                <input type="radio" name="timeline" value="standard" id="timelineStandard" checked>
+                                <div class="card-title">Standard (4–6 weeks)</div>
+                                <div class="card-description">Normal project timeline</div>
+                                <div class="card-price">No additional cost</div>
+                            </div>
+                            <div class="radio-card" onclick="selectRadio('timeline', 'rush')">
+                                <input type="radio" name="timeline" value="rush" id="timelineRush">
+                                <div class="card-title">Rush (2–3 weeks)</div>
+                                <div class="card-description">Faster delivery</div>
+                                <div class="card-price">+25% surcharge</div>
+                            </div>
+                            <div class="radio-card" onclick="selectRadio('timeline', 'asap')">
+                                <input type="radio" name="timeline" value="asap" id="timelineAsap">
+                                <div class="card-title">ASAP (1 week)</div>
+                                <div class="card-description">Express delivery</div>
+                                <div class="card-price">+50% surcharge</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Question 2 -->
-        <div class="question">
-            <div class="question-number">Question 2: Matrix Multiplication</div>
-            <div class="question-text">
-                Given: C = <span class="matrix"><table><tr><td>1</td><td>0</td><td>2</td></tr><tr><td>-1</td><td>3</td><td>1</td></tr></table></span> (2×3) and 
-                D = <span class="matrix"><table><tr><td>2</td><td>1</td></tr><tr><td>0</td><td>-1</td></tr><tr><td>4</td><td>3</td></tr></table></span> (3×2)
-            </div>
-            
-            <div class="solution">
-                <div class="step">
-                    <div class="step-title">Computing CD (2×2 matrix):</div>
-                    <div class="equation">
-                        CD₁₁ = 1(2) + 0(0) + 2(4) = 2 + 0 + 8 = 10<br>
-                        CD₁₂ = 1(1) + 0(-1) + 2(3) = 1 + 0 + 6 = 7<br>
-                        CD₂₁ = -1(2) + 3(0) + 1(4) = -2 + 0 + 4 = 2<br>
-                        CD₂₂ = -1(1) + 3(-1) + 1(3) = -1 - 3 + 3 = -1
-                    </div>
-                    <div class="result">
-                        CD = <span class="matrix"><table><tr><td>10</td><td>7</td></tr><tr><td>2</td><td>-1</td></tr></table></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <!-- Step 2: Package Selection -->
+                <div class="step" id="step2">
+                    <h2>Step 2: Choose Your Package</h2>
+                    
+                    <div class="form-group">
+                        <div class="package-card" onclick="selectPackage('starter')">
+                            <input type="radio" name="package" value="starter" id="packageStarter">
+                            <div class="package-header">
+                                <div class="package-name">Starter Brand Package</div>
+                                <div class="package-range">$1,000 – $2,500</div>
+                            </div>
+                            <div class="card-description">Perfect for freelancers and new businesses. Includes logo, basic brand colors, and essential identity elements.</div>
+                            <div class="price-slider-container" id="starterSlider" style="display: none;">
+                                <div class="slider-label">
+                                    <span>Adjust price:</span>
+                                    <span id="starterPrice">$1,750</span>
+                                </div>
+                                <input type="range" class="price-slider" min="1000" max="2500" value="1750" step="50" oninput="updatePackagePrice('starter', this.value)">
+                            </div>
+                        </div>
 
-        <!-- Question 3 -->
-        <div class="question">
-            <div class="question-number">Question 3: Determinant and Inverse</div>
-            <div class="question-text">
-                Given: E = <span class="matrix"><table><tr><td>2</td><td>1</td></tr><tr><td>1</td><td>2</td></tr></table></span>
-            </div>
-            
-            <div class="solution">
-                <div class="step">
-                    <div class="step-title">Finding det(E):</div>
-                    <div class="equation">
-                        det(E) = (2)(2) - (1)(1) = 4 - 1 = 3
-                    </div>
-                    <div class="result">det(E) = 3</div>
-                </div>
+                        <div class="package-card" onclick="selectPackage('professional')">
+                            <input type="radio" name="package" value="professional" id="packageProfessional">
+                            <div class="package-header">
+                                <div class="package-name">Professional Brand Identity</div>
+                                <div class="package-range">$3,000 – $8,000</div>
+                            </div>
+                            <div class="card-description">Comprehensive brand system for growing companies. Includes full brand guidelines, multiple logo variations, and collateral templates.</div>
+                            <div class="price-slider-container" id="professionalSlider" style="display: none;">
+                                <div class="slider-label">
+                                    <span>Adjust price:</span>
+                                    <span id="professionalPrice">$5,500</span>
+                                </div>
+                                <input type="range" class="price-slider" min="3000" max="8000" value="5500" step="100" oninput="updatePackagePrice('professional', this.value)">
+                            </div>
+                        </div>
 
-                <div class="step">
-                    <div class="step-title">Finding E⁻¹:</div>
-                    <div class="equation">
-                        E⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">det(E)</span></span> × 
-                        <span class="matrix"><table><tr><td>d</td><td>-b</td></tr><tr><td>-c</td><td>a</td></tr></table></span> = 
-                        <span class="fraction"><span class="numerator">1</span><span class="denominator">3</span></span> × 
-                        <span class="matrix"><table><tr><td>2</td><td>-1</td></tr><tr><td>-1</td><td>2</td></tr></table></span>
-                    </div>
-                    <div class="result">
-                        E⁻¹ = <span class="matrix"><table><tr><td>2/3</td><td>-1/3</td></tr><tr><td>-1/3</td><td>2/3</td></tr></table></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 4 -->
-        <div class="question">
-            <div class="question-number">Question 4: Gaussian Elimination</div>
-            <div class="question-text">
-                Solve the system:<br>
-                x + 2y + z = 7<br>
-                2x + 3y + 4z = 18<br>
-                x + y + z = 6
-            </div>
-            
-            <div class="solution">
-                <div class="step">
-                    <div class="step-title">Step 1: Augmented Matrix</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>2</td><td>1</td><td>|</td><td>7</td></tr>
-                            <tr><td>2</td><td>3</td><td>4</td><td>|</td><td>18</td></tr>
-                            <tr><td>1</td><td>1</td><td>1</td><td>|</td><td>6</td></tr>
-                        </table></span>
+                        <div class="package-card" onclick="selectPackage('premium')">
+                            <input type="radio" name="package" value="premium" id="packagePremium">
+                            <div class="package-header">
+                                <div class="package-name">Premium Full Brand System</div>
+                                <div class="package-range">$8,000 – $25,000</div>
+                            </div>
+                            <div class="card-description">Complete brand ecosystem for established businesses. Includes extensive guidelines, marketing templates, brand strategy, and ongoing support.</div>
+                            <div class="price-slider-container" id="premiumSlider" style="display: none;">
+                                <div class="slider-label">
+                                    <span>Adjust price:</span>
+                                    <span id="premiumPrice">$16,500</span>
+                                </div>
+                                <input type="range" class="price-slider" min="8000" max="25000" value="16500" step="500" oninput="updatePackagePrice('premium', this.value)">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-title">Step 2: R₂ → R₂ - 2R₁ and R₃ → R₃ - R₁</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>2</td><td>1</td><td>|</td><td>7</td></tr>
-                            <tr><td>0</td><td>-1</td><td>2</td><td>|</td><td>4</td></tr>
-                            <tr><td>0</td><td>-1</td><td>0</td><td>|</td><td>-1</td></tr>
-                        </table></span>
+                <!-- Step 3: Add-ons -->
+                <div class="step" id="step3">
+                    <h2>Step 3: Add-ons & Deliverables</h2>
+                    
+                    <div class="form-group">
+                        <label>Select additional services:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-card" onclick="toggleCheckbox('addonRevision')">
+                                <input type="checkbox" id="addonRevision" value="300">
+                                <div class="card-title">Extra Revision Round <span class="tooltip info-icon">?<span class="tooltiptext">Additional round of revisions beyond standard package</span></span></div>
+                                <div class="card-price">+$300</div>
+                            </div>
+
+                            <div class="checkbox-card" onclick="toggleCheckbox('addonSocial')">
+                                <input type="checkbox" id="addonSocial" value="500">
+                                <div class="card-title">Social Media Templates Bundle <span class="tooltip info-icon">?<span class="tooltiptext">Ready-to-use templates for Instagram, Facebook, Twitter, LinkedIn</span></span></div>
+                                <div class="card-price">+$500</div>
+                            </div>
+
+                            <div class="checkbox-card" onclick="toggleCheckbox('addonGuidelines')">
+                                <input type="checkbox" id="addonGuidelines" value="1200">
+                                <div class="card-title">Brand Guidelines PDF <span class="tooltip info-icon">?<span class="tooltiptext">Comprehensive interactive PDF with usage rules and examples</span></span></div>
+                                <div class="card-price">+$1,200</div>
+                            </div>
+
+                            <div class="checkbox-card" onclick="toggleCheckbox('addonMotion')">
+                                <input type="checkbox" id="addonMotion" value="1500">
+                                <div class="card-title">Motion/Animated Logo <span class="tooltip info-icon">?<span class="tooltiptext">Animated version of your logo for video and digital use</span></span></div>
+                                <div class="card-price">+$1,500</div>
+                            </div>
+
+                            <div class="checkbox-card" onclick="toggleCheckbox('addonWebsite')">
+                                <input type="checkbox" id="addonWebsite" value="2500">
+                                <div class="card-title">Website/Landing Page Design <span class="tooltip info-icon">?<span class="tooltiptext">Custom designed landing page or website mockup</span></span></div>
+                                <div class="card-price">+$2,500</div>
+                            </div>
+
+                            <div class="checkbox-card" onclick="toggleCheckbox('addonIllustration')">
+                                <input type="checkbox" id="addonIllustration" value="2000">
+                                <div class="card-title">Custom Illustration/Icon Set <span class="tooltip info-icon">?<span class="tooltiptext">Unique illustrations or icon set matching your brand</span></span></div>
+                                <div class="card-price">+$2,000</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-title">Step 3: R₃ → R₃ - R₂</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>2</td><td>1</td><td>|</td><td>7</td></tr>
-                            <tr><td>0</td><td>-1</td><td>2</td><td>|</td><td>4</td></tr>
-                            <tr><td>0</td><td>0</td><td>-2</td><td>|</td><td>-5</td></tr>
-                        </table></span>
+                <!-- Step 4: Licensing & Formats -->
+                <div class="step" id="step4">
+                    <h2>Step 4: Licensing & File Formats</h2>
+                    
+                    <div class="form-group">
+                        <label>Commercial License Needed?</label>
+                        <div class="radio-group">
+                            <div class="radio-card" onclick="selectRadio('license', 'no')">
+                                <input type="radio" name="license" value="no" id="licenseNo" checked>
+                                <div class="card-title">Standard Use</div>
+                                <div class="card-description">For your own business use</div>
+                                <div class="card-price">Included</div>
+                            </div>
+                            <div class="radio-card" onclick="selectRadio('license', 'yes')">
+                                <input type="radio" name="license" value="yes" id="licenseYes">
+                                <div class="card-title">Commercial License</div>
+                                <div class="card-description">For resale or client work</div>
+                                <div class="card-price">+$500</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>File Format Package</label>
+                        <div class="radio-group">
+                            <div class="radio-card" onclick="selectRadio('formats', 'basic')">
+                                <input type="radio" name="formats" value="basic" id="formatsBasic" checked>
+                                <div class="card-title">Basic Formats</div>
+                                <div class="card-description">AI, PNG, JPG, SVG</div>
+                                <div class="card-price">Included</div>
+                            </div>
+                            <div class="radio-card" onclick="selectRadio('formats', 'extended')">
+                                <input type="radio" name="formats" value="extended" id="formatsExtended">
+                                <div class="card-title">Extended Package</div>
+                                <div class="card-description">All basic formats + source files + working files</div>
+                                <div class="card-price">+$400</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-title">Step 4: Back Substitution</div>
-                    <div class="equation">
-                        From Row 3: -2z = -5 → z = 5/2<br>
-                        From Row 2: -y + 2(5/2) = 4 → -y + 5 = 4 → y = 1<br>
-                        From Row 1: x + 2(1) + 5/2 = 7 → x = 7 - 2 - 5/2 = 5/2
+                <!-- Step 5: Discounts & Final Details -->
+                <div class="step" id="step5">
+                    <h2>Step 5: Discounts & Payment Options</h2>
+                    
+                    <div class="form-group">
+                        <label for="promoCode">Promo Code (Optional)</label>
+                        <input type="text" id="promoCode" placeholder="Enter code: SAVE10 or LAUNCH5">
+                        <button class="btn btn-secondary btn-small" onclick="applyPromoCode()" style="margin-top: 10px;">Apply Code</button>
+                        <div id="promoMessage" style="margin-top: 10px; font-weight: 600;"></div>
                     </div>
-                    <div class="result">
-                        Solution: x = 5/2, y = 1, z = 5/2
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Question 5 -->
-        <div class="question">
-            <div class="question-number">Question 5: Gauss-Jordan Elimination</div>
-            <div class="question-text">
-                Solve the system:<br>
-                2x - y + z = 1<br>
-                4x + y - z = 5<br>
-                -2x + 2y + z = -3
-            </div>
-            
-            <div class="solution">
-                <div class="step">
-                    <div class="step-title">Step 1: Augmented Matrix</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>2</td><td>-1</td><td>1</td><td>|</td><td>1</td></tr>
-                            <tr><td>4</td><td>1</td><td>-1</td><td>|</td><td>5</td></tr>
-                            <tr><td>-2</td><td>2</td><td>1</td><td>|</td><td>-3</td></tr>
-                        </table></span>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="taxEnabled" onchange="updateCalculation()">
+                            Enable Tax
+                        </label>
+                        <div id="taxInputContainer" style="display: none; margin-top: 10px;">
+                            <label for="taxRate">Tax Rate (%)</label>
+                            <input type="number" id="taxRate" value="0" min="0" max="100" step="0.1" onchange="updateCalculation()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="depositEnabled" onchange="toggleDeposit()">
+                            Split Payment - Pay Deposit First
+                        </label>
+                        <div id="depositContainer" style="display: none; margin-top: 10px;">
+                            <label for="depositPercent">Deposit Percentage: <span id="depositPercentValue">25%</span></label>
+                            <input type="range" id="depositPercent" class="price-slider" min="10" max="50" value="25" step="5" oninput="updateDepositPercent(this.value)">
+                        </div>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-title">Step 2: R₁ → R₁/2</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
-                            <tr><td>4</td><td>1</td><td>-1</td><td>|</td><td>5</td></tr>
-                            <tr><td>-2</td><td>2</td><td>1</td><td>|</td><td>-3</td></tr>
-                        </table></span>
+                <!-- Step 6: Review & Receipt -->
+                <div class="step" id="step6">
+                    <h2>Step 6: Review & Receipt</h2>
+                    
+                    <div class="receipt" id="receipt">
+                        <!-- Receipt content will be generated by JavaScript -->
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-success" onclick="emailPackage()">📧 Email This Package</button>
+                        <button class="btn btn-secondary" onclick="copyToClipboard()">📋 Copy Email Text</button>
+                        <button class="btn btn-secondary" onclick="window.print()">🖨️ Print Receipt</button>
+                        <button class="btn btn-secondary" onclick="downloadJSON()">💾 Download JSON</button>
+                        <button class="btn btn-secondary" onclick="downloadTXT()">📄 Save as TXT</button>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-title">Step 3: R₂ → R₂ - 4R₁ and R₃ → R₃ + 2R₁</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
-                            <tr><td>0</td><td>3</td><td>-3</td><td>|</td><td>3</td></tr>
-                            <tr><td>0</td><td>1</td><td>2</td><td>|</td><td>-2</td></tr>
-                        </table></span>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">Step 4: R₂ → R₂/3</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
-                            <tr><td>0</td><td>1</td><td>-1</td><td>|</td><td>1</td></tr>
-                            <tr><td>0</td><td>1</td><td>2</td><td>|</td><td>-2</td></tr>
-                        </table></span>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">Step 5: R₃ → R₃ - R₂</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>-1/2</td><td>1/2</td><td>|</td><td>1/2</td></tr>
-                            <tr><td>0</td><td>1</td><td>-1</td><td>|</td><td>1</td></tr>
-                            <tr><td>0</td><td>0</td><td>3</td><td>|</td><td>-3</td></tr>
-                        </table></span>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">Step 6: R₃ → R₃/3 and Back Substitution</div>
-                    <div class="equation">
-                        z = -1<br>
-                        y - (-1) = 1 → y = 0<br>
-                        x - (1/2)(0) + (1/2)(-1) = 1/2 → x = 1
-                    </div>
-                    <div class="result">
-                        Solution: x = 1, y = 0, z = -1
-                    </div>
+                <!-- Navigation Buttons -->
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="backBtn" onclick="previousStep()" style="display: none;">← Back</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Next →</button>
                 </div>
             </div>
-        </div>
-
-        <!-- Question 6 -->
-        <div class="question">
-            <div class="question-number">Question 6: System Consistency</div>
-            <div class="question-text">
-                Check consistency and solve:<br>
-                x + y + z = 2<br>
-                2x + 2y + 2z = 5<br>
-                3x + 3y + 3z = 8
-            </div>
-            
-            <div class="solution">
-                <div class="step">
-                    <div class="step-title">Analysis:</div>
-                    <div class="equation">
-                        Notice that:<br>
-                        Row 2 = 2 × Row 1, but 5 ≠ 2 × 2<br>
-                        Row 3 = 3 × Row 1, but 8 ≠ 3 × 2
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">Augmented Matrix:</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>1</td><td>1</td><td>|</td><td>2</td></tr>
-                            <tr><td>2</td><td>2</td><td>2</td><td>|</td><td>5</td></tr>
-                            <tr><td>3</td><td>3</td><td>3</td><td>|</td><td>8</td></tr>
-                        </table></span>
-                    </div>
-                    <div class="equation">
-                        After R₂ → R₂ - 2R₁ and R₃ → R₃ - 3R₁:
-                    </div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>1</td><td>1</td><td>|</td><td>2</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>|</td><td>1</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>|</td><td>2</td></tr>
-                        </table></span>
-                    </div>
-                </div>
-
-                <div class="result">
-                    The system is INCONSISTENT (No Solution)<br>
-                    Reason: We have 0 = 1 and 0 = 2, which are contradictions.
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 7 -->
-        <div class="question">
-            <div class="question-number">Question 7: Row Echelon Forms</div>
-            
-            <div class="solution">
-                <div class="sub-question">
-                    <div class="sub-title">(a) Matrix:</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-                            <tr><td>1</td><td>0</td><td>0</td><td>5</td><td>6</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                            <tr><td>0</td><td>2</td><td>1</td><td>0</td><td>0</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-                        </table></span>
-                    </div>
-                    <div class="result">
-                        NOT in Row Echelon Form<br>
-                        Reason: Row 2 has a leading 1, but row 1 starts with 0. Also, row 4 has non-zero entries after a zero row.
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(b) Matrix:</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>2</td><td>-1</td><td>3</td><td>0</td></tr>
-                            <tr><td>0</td><td>1</td><td>4</td><td>5</td><td>6</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                        </table></span>
-                    </div>
-                    <div class="result">
-                        IN Row Echelon Form<br>
-                        NOT in Reduced Row Echelon Form (pivots in columns 1, 2, 4 but not all are 1 and columns not cleared)
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(c) Matrix:</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>0</td><td>2</td><td>0</td><td>3</td></tr>
-                            <tr><td>0</td><td>1</td><td>-1</td><td>0</td><td>4</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>-2</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                        </table></span>
-                    </div>
-                    <div class="result">
-                        IN Reduced Row Echelon Form (RREF)<br>
-                        Reason: Leading 1s in columns 1, 2, 4; all entries above and below pivots are 0
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(d) Matrix:</div>
-                    <div class="equation">
-                        <span class="matrix"><table>
-                            <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>7</td></tr>
-                            <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>-3</td></tr>
-                            <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>5</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>-2</td></tr>
-                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                        </table></span>
-                    </div>
-                    <div class="result">
-                        IN Reduced Row Echelon Form (RREF)<br>
-                        Reason: Leading 1s in columns 1, 2, 3, 4; all entries above and below pivots are 0; identity pattern
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 8 - Determinants -->
-        <div class="question">
-            <div class="question-number">Question 8: Determinants</div>
-            
-            <div class="solution">
-                <div class="sub-question">
-                    <div class="sub-title">(a) i. det(A) where A = [2 3; 5 1]</div>
-                    <div class="step">
-                        <div class="equation">
-                            det(A) = (2)(1) - (3)(5) = 2 - 15 = -13
-                        </div>
-                        <div class="result">det(A) = -13</div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(a) ii. det(B) where B is 3×3</div>
-                    <div class="step">
-                        <div class="equation">
-                            B = <span class="matrix"><table>
-                                <tr><td>1</td><td>2</td><td>3</td></tr>
-                                <tr><td>0</td><td>-1</td><td>4</td></tr>
-                                <tr><td>2</td><td>1</td><td>0</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            Using cofactor expansion along row 1:<br>
-                            det(B) = 1|(-1)(0) - (4)(1)| - 2|(0)(0) - (4)(2)| + 3|(0)(1) - (-1)(2)|
-                        </div>
-                        <div class="equation">
-                            = 1(-4) - 2(-8) + 3(2)<br>
-                            = -4 + 16 + 6 = 18
-                        </div>
-                        <div class="result">det(B) = 18</div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(a) iii. det(C) where C is 4×4</div>
-                    <div class="step">
-                        <div class="equation">
-                            C = <span class="matrix"><table>
-                                <tr><td>3</td><td>1</td><td>2</td><td>0</td></tr>
-                                <tr><td>2</td><td>4</td><td>-1</td><td>3</td></tr>
-                                <tr><td>0</td><td>1</td><td>2</td><td>1</td></tr>
-                                <tr><td>1</td><td>0</td><td>3</td><td>2</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            Expanding along row 1 (choosing column 4 has a zero):<br>
-                            det(C) = 3·M₁₁ - 1·M₁₂ + 2·M₁₃ - 0·M₁₄
-                        </div>
-                        <div class="equation">
-                            After detailed calculation of 3×3 minors:<br>
-                            M₁₁ = |4 -1 3; 1 2 1; 0 3 2| = 4(4-3) - (-1)(2-0) + 3(3-0) = 4 + 2 + 9 = 15<br>
-                            M₁₂ = |2 -1 3; 0 2 1; 1 3 2| = 2(4-3) - (-1)(0-1) + 3(0-2) = 2 - 1 - 6 = -5<br>
-                            M₁₃ = |2 4 3; 0 1 1; 1 0 2| = 2(2-0) - 4(0-1) + 3(0-1) = 4 + 4 - 3 = 5
-                        </div>
-                        <div class="equation">
-                            det(C) = 3(15) - 1(-5) + 2(5) = 45 + 5 + 10 = 60
-                        </div>
-                        <div class="result">det(C) = 60</div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(a) iv. Upper Triangular Matrix D</div>
-                    <div class="step">
-                        <div class="equation">
-                            D = <span class="matrix"><table>
-                                <tr><td>5</td><td>2</td><td>3</td></tr>
-                                <tr><td>0</td><td>4</td><td>1</td></tr>
-                                <tr><td>0</td><td>0</td><td>-2</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            For upper triangular matrices, determinant = product of diagonal entries<br>
-                            det(D) = (5)(4)(-2) = -40
-                        </div>
-                        <div class="result">
-                            det(D) = -40<br>
-                            Comment: Upper triangular matrices have determinants equal to the product of their diagonal entries.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(a) v. Verify 2×2 determinant formula</div>
-                    <div class="step">
-                        <div class="equation">
-                            E = <span class="matrix"><table>
-                                <tr><td>a</td><td>b</td></tr>
-                                <tr><td>c</td><td>d</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            Using the definition of determinant:<br>
-                            det(E) = ad - bc ✓
-                        </div>
-                        <div class="result">Verified: det(E) = ad - bc</div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(b) Singular or Non-singular Matrices</div>
-                    <div class="step">
-                        <div class="step-title">Matrix F:</div>
-                        <div class="equation">
-                            F = <span class="matrix"><table>
-                                <tr><td>1</td><td>2</td><td>3</td></tr>
-                                <tr><td>2</td><td>4</td><td>6</td></tr>
-                                <tr><td>1</td><td>0</td><td>1</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            Notice Row 2 = 2 × Row 1<br>
-                            det(F) = 1(4-0) - 2(2-6) + 3(0-4) = 4 + 8 - 12 = 0
-                        </div>
-                        <div class="result">F is SINGULAR (det = 0, no inverse exists)</div>
-                    </div>
-
-                    <div class="step">
-                        <div class="step-title">Matrix G:</div>
-                        <div class="equation">
-                            G = <span class="matrix"><table>
-                                <tr><td>2</td><td>1</td><td>3</td></tr>
-                                <tr><td>0</td><td>1</td><td>4</td></tr>
-                                <tr><td>1</td><td>2</td><td>0</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            det(G) = 2(0-8) - 1(0-4) + 3(0-1) = -16 + 4 - 3 = -15
-                        </div>
-                        <div class="result">G is NON-SINGULAR (det = -15 ≠ 0, inverse exists)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 9 - Matrix Inverses -->
-        <div class="question">
-            <div class="question-number">Question 9: Matrix Inverses</div>
-            
-            <div class="solution">
-                <div class="sub-question">
-                    <div class="sub-title">(a) i. Inverse of A = [2 1; 5 3]</div>
-                    <div class="step">
-                        <div class="equation">
-                            det(A) = (2)(3) - (1)(5) = 6 - 5 = 1
-                        </div>
-                        <div class="equation">
-                            A⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">1</span></span> × 
-                            <span class="matrix"><table>
-                                <tr><td>3</td><td>-1</td></tr>
-                                <tr><td>-5</td><td>2</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="result">
-                            A⁻¹ = <span class="matrix"><table>
-                                <tr><td>3</td><td>-1</td></tr>
-                                <tr><td>-5</td><td>2</td></tr>
-                            </table></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(a) ii. Inverse of B (3×3 matrix)</div>
-                    <div class="step">
-                        <div class="equation">
-                            B = <span class="matrix"><table>
-                                <tr><td>1</td><td>2</td><td>3</td></tr>
-                                <tr><td>0</td><td>1</td><td>4</td></tr>
-                                <tr><td>5</td><td>6</td><td>0</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            det(B) = 1(0-24) - 2(0-20) + 3(0-5) = -24 + 40 - 15 = 1
-                        </div>
-                        <div class="equation">
-                            Computing cofactor matrix and transpose (adjugate):<br>
-                            After calculation: adj(B) = <span class="matrix"><table>
-                                <tr><td>-24</td><td>18</td><td>5</td></tr>
-                                <tr><td>20</td><td>-15</td><td>-4</td></tr>
-                                <tr><td>-5</td><td>4</td><td>1</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="result">
-                            B⁻¹ = <span class="matrix"><table>
-                                <tr><td>-24</td><td>18</td><td>5</td></tr>
-                                <tr><td>20</td><td>-15</td><td>-4</td></tr>
-                                <tr><td>-5</td><td>4</td><td>1</td></tr>
-                            </table></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(a) iii. Inverse of C = [4 7; 2 6]</div>
-                    <div class="step">
-                        <div class="equation">
-                            det(C) = (4)(6) - (7)(2) = 24 - 14 = 10
-                        </div>
-                        <div class="equation">
-                            C⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">10</span></span> × 
-                            <span class="matrix"><table>
-                                <tr><td>6</td><td>-7</td></tr>
-                                <tr><td>-2</td><td>4</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="result">
-                            C⁻¹ = <span class="matrix"><table>
-                                <tr><td>0.6</td><td>-0.7</td></tr>
-                                <tr><td>-0.2</td><td>0.4</td></tr>
-                            </table></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(b) Verify A⁻¹A = I</div>
-                    <div class="step">
-                        <div class="equation">
-                            Using A from part (a)i:<br>
-                            A⁻¹A = <span class="matrix"><table>
-                                <tr><td>3</td><td>-1</td></tr>
-                                <tr><td>-5</td><td>2</td></tr>
-                            </table></span> × 
-                            <span class="matrix"><table>
-                                <tr><td>2</td><td>1</td></tr>
-                                <tr><td>5</td><td>3</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            = <span class="matrix"><table>
-                                <tr><td>3(2)-1(5)</td><td>3(1)-1(3)</td></tr>
-                                <tr><td>-5(2)+2(5)</td><td>-5(1)+2(3)</td></tr>
-                            </table></span> = 
-                            <span class="matrix"><table>
-                                <tr><td>1</td><td>0</td></tr>
-                                <tr><td>0</td><td>1</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="result">Verified: A⁻¹A = I ✓</div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(c) Using formula A⁻¹ = (1/det(A))·adj(A)</div>
-                    <div class="step">
-                        <div class="equation">
-                            A = <span class="matrix"><table>
-                                <tr><td>3</td><td>1</td></tr>
-                                <tr><td>2</td><td>4</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            det(A) = (3)(4) - (1)(2) = 12 - 2 = 10
-                        </div>
-                        <div class="equation">
-                            adj(A) = <span class="matrix"><table>
-                                <tr><td>4</td><td>-1</td></tr>
-                                <tr><td>-2</td><td>3</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            A⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">10</span></span> × 
-                            <span class="matrix"><table>
-                                <tr><td>4</td><td>-1</td></tr>
-                                <tr><td>-2</td><td>3</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="result">
-                            A⁻¹ = <span class="matrix"><table>
-                                <tr><td>0.4</td><td>-0.1</td></tr>
-                                <tr><td>-0.2</td><td>0.3</td></tr>
-                            </table></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(d) Determine if B⁻¹ exists</div>
-                    <div class="step">
-                        <div class="equation">
-                            B = <span class="matrix"><table>
-                                <tr><td>2</td><td>1</td><td>0</td></tr>
-                                <tr><td>-1</td><td>3</td><td>2</td></tr>
-                                <tr><td>1</td><td>0</td><td>1</td></tr>
-                            </table></span>
-                        </div>
-                        <div class="equation">
-                            det(B) = 2(3-0) - 1(-1-2) + 0(0-3) = 6 + 3 + 0 = 9
-                        </div>
-                        <div class="result">
-                            Since det(B) = 9 ≠ 0, B⁻¹ EXISTS<br>
-                            The matrix is non-singular and invertible.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 10 - Properties -->
-        <div class="question">
-            <div class="question-number">Question 10: Determinant Properties</div>
-            
-            <div class="solution">
-                <div class="sub-question">
-                    <div class="sub-title">(a) Three Properties of Determinants</div>
-                    <div class="step">
-                        <div class="equation">
-                            <strong>Property 1:</strong> Multiplicative Property<br>
-                            det(AB) = det(A) · det(B)
-                        </div>
-                        <div class="equation">
-                            <strong>Property 2:</strong> Determinant of Transpose<br>
-                            det(Aᵀ) = det(A)
-                        </div>
-                        <div class="equation">
-                            <strong>Property 3:</strong> Scalar Multiplication<br>
-                            For an n×n matrix: det(kA) = kⁿ·det(A)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(b) Effect of Row Swap</div>
-                    <div class="step">
-                        <div class="equation">
-                            When two rows of a matrix are swapped, the determinant changes sign.
-                        </div>
-                        <div class="equation">
-                            If B is obtained from A by swapping two rows, then:<br>
-                            det(B) = -det(A)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(c) Why Nonzero Determinant for Inverse</div>
-                    <div class="step">
-                        <div class="equation">
-                            The inverse formula is: A⁻¹ = <span class="fraction"><span class="numerator">1</span><span class="denominator">det(A)</span></span> · adj(A)
-                        </div>
-                        <div class="equation">
-                            If det(A) = 0, then 1/det(A) is undefined (division by zero).
-                        </div>
-                        <div class="equation">
-                            Additionally, det(A) = 0 means the matrix is singular (rows/columns are linearly dependent),<br>
-                            indicating the transformation is not invertible.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="sub-title">(d) Calculate det(AB) and det(A⁻¹)</div>
-                    <div class="step">
-                        <div class="equation">
-                            Given: det(A) = 5 and det(B) = -2
-                        </div>
-                        <div class="equation">
-                            <strong>Finding det(AB):</strong><br>
-                            det(AB) = det(A) · det(B) = 5 · (-2) = -10
-                        </div>
-                        <div class="equation">
-                            <strong>Finding det(A⁻¹):</strong><br>
-                            Since A·A⁻¹ = I and det(I) = 1:<br>
-                            det(A) · det(A⁻¹) = 1<br>
-                            det(A⁻¹) = 1/det(A) = 1/5
-                        </div>
-                        <div class="result">
-                            det(AB) = -10<br>
-                            det(A⁻¹) = 1/5 = 0.2
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 11 - System with Parameter k -->
-        <div class="question">
-            <div class="question-number">Question 11: System with Parameter k</div>
-            <div class="question-text">
-                For what value of k does the following system have:<br>
-                (a) a unique solution, (b) infinite solutions, (c) no solution?<br><br>
-                2x + 3y = 5<br>
-                4x + ky = 10
-            </div>
-            
-            <div class="solution">
-                <div class="step">
-                    <div class="step-title">Calculate the Determinant:</div>
-                    <div class="equation">
-                        Δ = <span class="determinant"><table>
-                            <tr><td>2</td><td>3</td></tr>
-                            <tr><td>4</td><td>k</td></tr>
-                        </table></span> = 2k - 12
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">(a) Unique Solution:</div>
-                    <div class="equation">
-                        Condition: Δ ≠ 0<br>
-                        2k - 12 ≠ 0<br>
-                        2k ≠ 12<br>
-                        k ≠ 6
-                    </div>
-                    <div class="result">
-                        For k ≠ 6, the system has a UNIQUE SOLUTION
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">(b) Infinite Solutions:</div>
-                    <div class="equation">
-                        Condition: Δ = 0 and ratios equal<br>
-                        <span class="fraction"><span class="numerator">2</span><span class="denominator">4</span></span> = 
-                        <span class="fraction"><span class="numerator">3</span><span class="denominator">k</span></span> = 
-                        <span class="fraction"><span class="numerator">5</span><span class="denominator">10</span></span>
-                    </div>
-                    <div class="equation">
-                        From 2/4 = 3/k:<br>
-                        1/2 = 3/k → k = 6
-                    </div>
-                    <div class="equation">
-                        Check: 2/4 = 1/2 ✓, 3/6 = 1/2 ✓, 5/10 = 1/2 ✓
-                    </div>
-                    <div class="result">
-                        For k = 6, the system has INFINITE SOLUTIONS<br>
-                        (The equations represent the same line)
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">(c) No Solution:</div>
-                    <div class="equation">
-                        Condition: Δ = 0 but ratios of coefficients ≠ ratio of constants<br>
-                        This would require k = 6 BUT 2/4 = 3/k ≠ 5/10
-                    </div>
-                    <div class="equation">
-                        However, when k = 6, we have 2/4 = 3/6 = 5/10 = 1/2<br>
-                        So all ratios are equal.
-                    </div>
-                    <div class="result">
-                        There is NO VALUE of k for which the system has no solution<br>
-                        (The given system structure prevents parallel lines with different intercepts)
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 50px; padding: 30px; background: #667eea; color: white; border-radius: 10px;">
-            <h2>End of Solutions</h2>
-            <p style="margin-top: 10px;">All questions have been solved with detailed step-by-step explanations.</p>
-            <p>Linear Algebra I - Assignment Solutions</p>
         </div>
     </div>
+
+    <script>
+        // ========== CONFIGURATION SECTION ==========
+        // Change these values to update pricing, packages, and promo codes
+        
+        const CONFIG = {
+            // Package pricing: min, max, and default (midpoint)
+            packages: {
+                starter: { min: 1000, max: 2500, default: 1750, name: 'Starter Brand Package' },
+                professional: { min: 3000, max: 8000, default: 5500, name: 'Professional Brand Identity' },
+                premium: { min: 8000, max: 25000, default: 16500, name: 'Premium Full Brand System' }
+            },
+            
+            // Add-on pricing (in dollars)
+            addons: {
+                revision: 300,
+                social: 500,
+                guidelines: 1200,
+                motion: 1500,
+                website: 2500,
+                illustration: 2000,
+                license: 500,
+                extendedFormats: 400
+            },
+            
+            // Timeline surcharge percentages
+            surcharges: {
+                standard: 0,      // 0%
+                rush: 0.25,       // 25%
+                asap: 0.50        // 50%
+            },
+            
+            // Promo codes and their discount percentages
+            promoCodes: {
+                'SAVE10': 0.10,   // 10% off
+                'LAUNCH5': 0.05   // 5% off
+            },
+            
+            // Timeline delivery estimates (in weeks)
+            deliveryTimes: {
+                standard: { min: 4, max: 6 },
+                rush: { min: 2, max: 3 },
+                asap: { min: 1, max: 1 }
+            },
+            
+            // Email recipient
+            emailTo: 'bambahimself711@gmail.com'
+        };
+
+        // ========== STATE MANAGEMENT ==========
+        let currentStep = 1;
+        const totalSteps = 6;
+        
+        let state = {
+            businessName: '',
+            businessType: 'Freelancer',
+            timeline: 'standard',
+            package: null,
+            packagePrice: 0,
+            addons: {
+                revision: false,
+                social: false,
+                guidelines: false,
+                motion: false,
+                website: false,
+                illustration: false
+            },
+            license: 'no',
+            formats: 'basic',
+            promoCode: '',
+            promoDiscount: 0,
+            taxEnabled: false,
+            taxRate: 0,
+            depositEnabled: false,
+            depositPercent: 25
+        };
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLiveEstimate();
+            updateRadioCards();
+        });
+
+        // ========== NAVIGATION FUNCTIONS ==========
+        function startQuestionnaire() {
+            document.getElementById('landing').classList.add('hidden');
+            document.getElementById('questionnaire').classList.remove('hidden');
+            updateProgress();
+        }
+
+        function nextStep() {
+            // Validation
+            if (currentStep === 2 && !state.package) {
+                alert('Please select a package to continue.');
+                return;
+            }
+
+            if (currentStep < totalSteps) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep++;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateProgress();
+                updateNavButtons();
+                
+                // Generate receipt on final step
+                if (currentStep === 6) {
+                    generateReceipt();
+                }
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateProgress();
+                updateNavButtons();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Step ${currentStep} of ${totalSteps}`;
+        }
+
+        function updateNavButtons() {
+            const backBtn = document.getElementById('backBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (currentStep === 1) {
+                backBtn.style.display = 'none';
+            } else {
+                backBtn.style.display = 'block';
+            }
+            
+            if (currentStep === totalSteps) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'block';
+            }
+        }
+
+        // ========== FORM INTERACTION FUNCTIONS ==========
+        function selectRadio(name, value) {
+            document.getElementById(`${name}${value.charAt(0).toUpperCase() + value.slice(1)}`).checked = true;
+            state[name] = value;
+            
+            // Update state based on input
+            if (name === 'timeline') {
+                updateCalculation();
+            } else if (name === 'license') {
+                updateCalculation();
+            } else if (name === 'formats') {
+                updateCalculation();
+            }
+            
+            updateRadioCards();
+            updateLiveEstimate();
+        }
+
+        function updateRadioCards() {
+            // Update all radio card styling
+            document.querySelectorAll('.radio-card').forEach(card => {
+                const radio = card.querySelector('input[type="radio"]');
+                if (radio && radio.checked) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+        }
+
+        function selectPackage(packageType) {
+            // Update state
+            state.package = packageType;
+            state.packagePrice = CONFIG.packages[packageType].default;
+            
+            // Update UI
+            document.querySelectorAll('.package-card').forEach(card => {
+                card.classList.remove('selected');
+                const slider = card.querySelector('.price-slider-container');
+                if (slider) slider.style.display = 'none';
+            });
+            
+            const selectedCard = document.querySelector(`.package-card input[value="${packageType}"]`).closest('.package-card');
+            selectedCard.classList.add('selected');
+            
+            // Show slider for selected package
+            document.getElementById(`${packageType}Slider`).style.display = 'block';
+            
+            // Check the radio button
+            document.getElementById(`package${packageType.charAt(0).toUpperCase() + packageType.slice(1)}`).checked = true;
+            
+            updateLiveEstimate();
+        }
+
+        function updatePackagePrice(packageType, value) {
+            state.packagePrice = parseFloat(value);
+            document.getElementById(`${packageType}Price`).textContent = `${formatNumber(value)}`;
+            updateLiveEstimate();
+        }
+
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            checkbox.checked = !checkbox.checked;
+            
+            // Update state
+            const addonName = id.replace('addon', '').toLowerCase();
+            state.addons[addonName] = checkbox.checked;
+            
+            // Update card styling
+            const card = checkbox.closest('.checkbox-card');
+            if (checkbox.checked) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+            
+            updateLiveEstimate();
+        }
+
+        function applyPromoCode() {
+            const code = document.getElementById('promoCode').value.trim().toUpperCase();
+            const message = document.getElementById('promoMessage');
+            
+            if (CONFIG.promoCodes[code]) {
+                state.promoCode = code;
+                state.promoDiscount = CONFIG.promoCodes[code];
+                message.textContent = `✓ Code applied! ${(CONFIG.promoCodes[code] * 100)}% discount`;
+                message.style.color = 'var(--success)';
+            } else if (code === '') {
+                state.promoCode = '';
+                state.promoDiscount = 0;
+                message.textContent = '';
+            } else {
+                message.textContent = '✗ Invalid promo code';
+                message.style.color = 'var(--danger)';
+            }
+            
+            updateLiveEstimate();
+        }
+
+        function updateCalculation() {
+            // Get current values from form
+            state.businessName = document.getElementById('businessName').value;
+            state.businessType = document.getElementById('businessType').value;
+            
+            // Update tax
+            const taxEnabled = document.getElementById('taxEnabled').checked;
+            state.taxEnabled = taxEnabled;
+            document.getElementById('taxInputContainer').style.display = taxEnabled ? 'block' : 'none';
+            
+            if (taxEnabled) {
+                state.taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+            }
+            
+            updateLiveEstimate();
+        }
+
+        function toggleDeposit() {
+            const enabled = document.getElementById('depositEnabled').checked;
+            state.depositEnabled = enabled;
+            document.getElementById('depositContainer').style.display = enabled ? 'block' : 'none';
+            updateLiveEstimate();
+        }
+
+        function updateDepositPercent(value) {
+            state.depositPercent = parseFloat(value);
+            document.getElementById('depositPercentValue').textContent = value + '%';
+            updateLiveEstimate();
+        }
+
+        // ========== CALCULATION FUNCTIONS ==========
+        function calculateBasePrice() {
+            return state.packagePrice || 0;
+        }
+
+        function calculateAddons() {
+            let total = 0;
+            
+            if (state.addons.revision) total += CONFIG.addons.revision;
+            if (state.addons.social) total += CONFIG.addons.social;
+            if (state.addons.guidelines) total += CONFIG.addons.guidelines;
+            if (state.addons.motion) total += CONFIG.addons.motion;
+            if (state.addons.website) total += CONFIG.addons.website;
+            if (state.addons.illustration) total += CONFIG.addons.illustration;
+            if (state.license === 'yes') total += CONFIG.addons.license;
+            if (state.formats === 'extended') total += CONFIG.addons.extendedFormats;
+            
+            return total;
+        }
+
+        function calculateSurcharge(baseAmount) {
+            const surchargeRate = CONFIG.surcharges[state.timeline] || 0;
+            return baseAmount * surchargeRate;
+        }
+
+        function calculateDiscount(amount) {
+            return amount * state.promoDiscount;
+        }
+
+        function calculateTax(amount) {
+            if (!state.taxEnabled) return 0;
+            return amount * (state.taxRate / 100);
+        }
+
+        function calculateDeposit(total) {
+            if (!state.depositEnabled) return 0;
+            return total * (state.depositPercent / 100);
+        }
+
+        function calculateTotal() {
+            // Step 1: Base + Add-ons
+            const basePrice = calculateBasePrice();
+            const addons = calculateAddons();
+            const beforeSurcharge = basePrice + addons;
+            
+            // Step 2: Apply urgency surcharge
+            const surcharge = calculateSurcharge(beforeSurcharge);
+            const afterSurcharge = beforeSurcharge + surcharge;
+            
+            // Step 3: Apply discount
+            const discount = calculateDiscount(afterSurcharge);
+            const afterDiscount = afterSurcharge - discount;
+            
+            // Step 4: Apply tax
+            const tax = calculateTax(afterDiscount);
+            const finalTotal = afterDiscount + tax;
+            
+            // Step 5: Calculate deposit
+            const deposit = calculateDeposit(finalTotal);
+            const balance = finalTotal - deposit;
+            
+            return {
+                basePrice,
+                addons,
+                beforeSurcharge,
+                surcharge,
+                afterSurcharge,
+                discount,
+                afterDiscount,
+                tax,
+                finalTotal,
+                deposit,
+                balance
+            };
+        }
+
+        function updateLiveEstimate() {
+            const calc = calculateTotal();
+            document.getElementById('liveEstimateAmount').textContent = `${formatNumber(calc.finalTotal)}`;
+        }
+
+        // ========== RECEIPT GENERATION ==========
+        function generateReceipt() {
+            const calc = calculateTotal();
+            const receipt = document.getElementById('receipt');
+            
+            let html = `
+                <div class="receipt-header">
+                    <h2>📋 Brand Package Estimate</h2>
+                    <p>${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    ${state.businessName ? `<p><strong>${state.businessName}</strong></p>` : ''}
+                </div>
+                
+                <div class="receipt-section">
+                    <h3>Project Details</h3>
+                    <div class="receipt-line">
+                        <span class="receipt-label">Business Type:</span>
+                        <span class="receipt-value">${state.businessType}</span>
+                    </div>
+                    <div class="receipt-line">
+                        <span class="receipt-label">Timeline:</span>
+                        <span class="receipt-value">${getTimelineName()} ${getEstimatedDelivery()}</span>
+                    </div>
+                </div>
+                
+                <div class="receipt-section">
+                    <h3>Package & Pricing</h3>
+                    <div class="receipt-line">
+                        <span class="receipt-label">${CONFIG.packages[state.package].name}</span>
+                        <span class="receipt-value">${formatNumber(calc.basePrice)}</span>
+                    </div>
+            `;
+            
+            // Add-ons
+            if (calc.addons > 0) {
+                html += '<h3>Add-ons</h3>';
+                if (state.addons.revision) html += `<div class="receipt-line"><span class="receipt-label">Extra Revision Round</span><span class="receipt-value">${formatNumber(CONFIG.addons.revision)}</span></div>`;
+                if (state.addons.social) html += `<div class="receipt-line"><span class="receipt-label">Social Media Templates</span><span class="receipt-value">${formatNumber(CONFIG.addons.social)}</span></div>`;
+                if (state.addons.guidelines) html += `<div class="receipt-line"><span class="receipt-label">Brand Guidelines PDF</span><span class="receipt-value">${formatNumber(CONFIG.addons.guidelines)}</span></div>`;
+                if (state.addons.motion) html += `<div class="receipt-line"><span class="receipt-label">Motion/Animated Logo</span><span class="receipt-value">${formatNumber(CONFIG.addons.motion)}</span></div>`;
+                if (state.addons.website) html += `<div class="receipt-line"><span class="receipt-label">Website/Landing Page Design</span><span class="receipt-value">${formatNumber(CONFIG.addons.website)}</span></div>`;
+                if (state.addons.illustration) html += `<div class="receipt-line"><span class="receipt-label">Custom Illustration/Icon Set</span><span class="receipt-value">${formatNumber(CONFIG.addons.illustration)}</span></div>`;
+                if (state.license === 'yes') html += `<div class="receipt-line"><span class="receipt-label">Commercial License</span><span class="receipt-value">${formatNumber(CONFIG.addons.license)}</span></div>`;
+                if (state.formats === 'extended') html += `<div class="receipt-line"><span class="receipt-label">Extended File Formats</span><span class="receipt-value">${formatNumber(CONFIG.addons.extendedFormats)}</span></div>`;
+            }
+            
+            html += `</div><div class="receipt-section"><h3>Cost Breakdown</h3>`;
+            
+            // Subtotal before surcharge
+            html += `<div class="receipt-line">
+                <span class="receipt-label">Subtotal (Package + Add-ons)</span>
+                <span class="receipt-value">${formatNumber(calc.beforeSurcharge)}</span>
+            </div>`;
+            
+            // Surcharge
+            if (calc.surcharge > 0) {
+                html += `<div class="receipt-line">
+                    <span class="receipt-label">Urgency Surcharge (${CONFIG.surcharges[state.timeline] * 100}%)</span>
+                    <span class="receipt-value">${formatNumber(calc.surcharge)}</span>
+                </div>`;
+            }
+            
+            // After surcharge
+            if (calc.surcharge > 0) {
+                html += `<div class="receipt-line">
+                    <span class="receipt-label">Subtotal After Surcharge</span>
+                    <span class="receipt-value">${formatNumber(calc.afterSurcharge)}</span>
+                </div>`;
+            }
+            
+            // Discount
+            if (calc.discount > 0) {
+                html += `<div class="receipt-line">
+                    <span class="receipt-label">Discount (${state.promoCode} - ${state.promoDiscount * 100}%)</span>
+                    <span class="receipt-value" style="color: var(--success);">-${formatNumber(calc.discount)}</span>
+                </div>`;
+            }
+            
+            // After discount (before tax)
+            if (calc.discount > 0 || calc.tax > 0) {
+                html += `<div class="receipt-line">
+                    <span class="receipt-label">Subtotal After Discount</span>
+                    <span class="receipt-value">${formatNumber(calc.afterDiscount)}</span>
+                </div>`;
+            }
+            
+            // Tax
+            if (calc.tax > 0) {
+                html += `<div class="receipt-line">
+                    <span class="receipt-label">Tax (${state.taxRate}%)</span>
+                    <span class="receipt-value">${formatNumber(calc.tax)}</span>
+                </div>`;
+            }
+            
+            // Total
+            html += `<div class="receipt-line total">
+                <span class="receipt-label">Total Amount</span>
+                <span class="receipt-value">${formatNumber(calc.finalTotal)}</span>
+            </div>`;
+            
+            // Deposit
+            if (state.depositEnabled) {
+                html += `<div class="receipt-line" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--border);">
+                    <span class="receipt-label">Deposit Required (${state.depositPercent}%)</span>
+                    <span class="receipt-value" style="color: var(--primary);">${formatNumber(calc.deposit)}</span>
+                </div>
+                <div class="receipt-line">
+                    <span class="receipt-label">Balance Due</span>
+                    <span class="receipt-value">${formatNumber(calc.balance)}</span>
+                </div>`;
+            }
+            
+            html += '</div>';
+            
+            receipt.innerHTML = html;
+        }
+
+        // ========== EMAIL & EXPORT FUNCTIONS ==========
+        function emailPackage() {
+            const calc = calculateTotal();
+            const subject = `Brand package inquiry — ${state.businessName || 'Anonymous'} — ${CONFIG.packages[state.package].name}`;
+            
+            let body = `Hello,
+
+I'm interested in a brand package with the following details:
+
+BUSINESS INFORMATION
+${state.businessName ? `Business Name: ${state.businessName}` : ''}
+Business Type: ${state.businessType}
+
+PACKAGE SELECTION
+Selected Package: ${CONFIG.packages[state.package].name}
+Base Price: ${formatNumber(calc.basePrice)}
+
+TIMELINE
+Urgency: ${getTimelineName()}
+${calc.surcharge > 0 ? `Surcharge: ${formatNumber(calc.surcharge)} (${CONFIG.surcharges[state.timeline] * 100}%)` : 'Surcharge: None'}
+Estimated Delivery: ${getEstimatedDelivery()}
+
+ADD-ONS & OPTIONS`;
+
+            if (state.addons.revision) body += `\n- Extra Revision Round: ${formatNumber(CONFIG.addons.revision)}`;
+            if (state.addons.social) body += `\n- Social Media Templates: ${formatNumber(CONFIG.addons.social)}`;
+            if (state.addons.guidelines) body += `\n- Brand Guidelines PDF: ${formatNumber(CONFIG.addons.guidelines)}`;
+            if (state.addons.motion) body += `\n- Motion/Animated Logo: ${formatNumber(CONFIG.addons.motion)}`;
+            if (state.addons.website) body += `\n- Website/Landing Page Design: ${formatNumber(CONFIG.addons.website)}`;
+            if (state.addons.illustration) body += `\n- Custom Illustration/Icon Set: ${formatNumber(CONFIG.addons.illustration)}`;
+            if (state.license === 'yes') body += `\n- Commercial License: ${formatNumber(CONFIG.addons.license)}`;
+            if (state.formats === 'extended') body += `\n- Extended File Formats: ${formatNumber(CONFIG.addons.extendedFormats)}`;
+            
+            body += `\n\nPRICING SUMMARY
+Subtotal: ${formatNumber(calc.beforeSurcharge)}`;
+            if (calc.surcharge > 0) body += `\nAfter Surcharge: ${formatNumber(calc.afterSurcharge)}`;
+            if (calc.discount > 0) body += `\nDiscount (${state.promoCode}): -${formatNumber(calc.discount)}`;
+            if (calc.tax > 0) body += `\nTax (${state.taxRate}%): ${formatNumber(calc.tax)}`;
+            body += `\n\nFINAL TOTAL: ${formatNumber(calc.finalTotal)}`;
+            
+            if (state.depositEnabled) {
+                body += `\n\nPAYMENT PLAN
+Deposit (${state.depositPercent}%): ${formatNumber(calc.deposit)}
+Balance Due: ${formatNumber(calc.balance)}`;
+            }
+            
+            body += `\n\nPlease contact me to discuss next steps.
+
+Thank you!`;
+            
+            const mailtoLink = `mailto:${CONFIG.emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
+
+        function copyToClipboard() {
+            const calc = calculateTotal();
+            let text = `Brand Package Inquiry
+${state.businessName ? `Business: ${state.businessName}\n` : ''}Business Type: ${state.businessType}
+Package: ${CONFIG.packages[state.package].name}
+Timeline: ${getTimelineName()}
+Estimated Delivery: ${getEstimatedDelivery()}
+
+BASE PRICE: ${formatNumber(calc.basePrice)}
+
+ADD-ONS:`;
+
+            if (state.addons.revision) text += `\n- Extra Revision Round: ${formatNumber(CONFIG.addons.revision)}`;
+            if (state.addons.social) text += `\n- Social Media Templates: ${formatNumber(CONFIG.addons.social)}`;
+            if (state.addons.guidelines) text += `\n- Brand Guidelines PDF: ${formatNumber(CONFIG.addons.guidelines)}`;
+            if (state.addons.motion) text += `\n- Motion/Animated Logo: ${formatNumber(CONFIG.addons.motion)}`;
+            if (state.addons.website) text += `\n- Website/Landing Page: ${formatNumber(CONFIG.addons.website)}`;
+            if (state.addons.illustration) text += `\n- Custom Illustration/Icon Set: ${formatNumber(CONFIG.addons.illustration)}`;
+            if (state.license === 'yes') text += `\n- Commercial License: ${formatNumber(CONFIG.addons.license)}`;
+            if (state.formats === 'extended') text += `\n- Extended Formats: ${formatNumber(CONFIG.addons.extendedFormats)}`;
+            
+            text += `\n\nSUBTOTAL: ${formatNumber(calc.beforeSurcharge)}`;
+            if (calc.surcharge > 0) text += `\nSurcharge: ${formatNumber(calc.surcharge)}`;
+            if (calc.discount > 0) text += `\nDiscount: -${formatNumber(calc.discount)}`;
+            if (calc.tax > 0) text += `\nTax: ${formatNumber(calc.tax)}`;
+            text += `\n\nFINAL TOTAL: ${formatNumber(calc.finalTotal)}`;
+            
+            if (state.depositEnabled) {
+                text += `\n\nDeposit: ${formatNumber(calc.deposit)}\nBalance: ${formatNumber(calc.balance)}`;
+            }
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Email text copied to clipboard!');
+            });
+        }
+
+        function downloadJSON() {
+            const calc = calculateTotal();
+            const data = {
+                timestamp: new Date().toISOString(),
+                businessName: state.businessName,
+                businessType: state.businessType,
+                timeline: state.timeline,
+                package: {
+                    type: state.package,
+                    name: CONFIG.packages[state.package].name,
+                    price: calc.basePrice
+                },
+                addons: {
+                    revision: state.addons.revision,
+                    social: state.addons.social,
+                    guidelines: state.addons.guidelines,
+                    motion: state.addons.motion,
+                    website: state.addons.website,
+                    illustration: state.addons.illustration
+                },
+                license: state.license,
+                formats: state.formats,
+                promoCode: state.promoCode,
+                calculations: calc,
+                estimatedDelivery: getEstimatedDelivery()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `brand-package-estimate-${Date.now()}.json`;
+            a.click();
+        }
+
+        function downloadTXT() {
+            const calc = calculateTotal();
+            let text = `BRAND PACKAGE ESTIMATE
+Generated: ${new Date().toLocaleString()}
+
+=================================
+BUSINESS DETAILS
+=================================
+${state.businessName ? `Business: ${state.businessName}\n` : ''}Business Type: ${state.businessType}
+Timeline: ${getTimelineName()}
+Estimated Delivery: ${getEstimatedDelivery()}
+
+=================================
+PACKAGE SELECTION
+=================================
+${CONFIG.packages[state.package].name}
+Price: ${formatNumber(calc.basePrice)}
+
+=================================
+ADD-ONS & OPTIONS
+=================================`;
+
+            if (state.addons.revision) text += `\nExtra Revision Round: ${formatNumber(CONFIG.addons.revision)}`;
+            if (state.addons.social) text += `\nSocial Media Templates: ${formatNumber(CONFIG.addons.social)}`;
+            if (state.addons.guidelines) text += `\nBrand Guidelines PDF: ${formatNumber(CONFIG.addons.guidelines)}`;
+            if (state.addons.motion) text += `\nMotion/Animated Logo: ${formatNumber(CONFIG.addons.motion)}`;
+            if (state.addons.website) text += `\nWebsite/Landing Page: ${formatNumber(CONFIG.addons.website)}`;
+            if (state.addons.illustration) text += `\nCustom Illustration/Icon Set: ${formatNumber(CONFIG.addons.illustration)}`;
+            if (state.license === 'yes') text += `\nCommercial License: ${formatNumber(CONFIG.addons.license)}`;
+            if (state.formats === 'extended') text += `\nExtended File Formats: ${formatNumber(CONFIG.addons.extendedFormats)}`;
+            
+            text += `\n\n=================================
+PRICING BREAKDOWN
+=================================
+Subtotal (Package + Add-ons): ${formatNumber(calc.beforeSurcharge)}`;
+            if (calc.surcharge > 0) text += `\nUrgency Surcharge (${CONFIG.surcharges[state.timeline] * 100}%): ${formatNumber(calc.surcharge)}`;
+            if (calc.discount > 0) text += `\nDiscount (${state.promoCode} - ${state.promoDiscount * 100}%): -${formatNumber(calc.discount)}`;
+            if (calc.tax > 0) text += `\nTax (${state.taxRate}%): ${formatNumber(calc.tax)}`;
+            text += `\n\nFINAL TOTAL: ${formatNumber(calc.finalTotal)}`;
+            
+            if (state.depositEnabled) {
+                text += `\n\n=================================
+PAYMENT PLAN
+=================================
+Deposit Required (${state.depositPercent}%): ${formatNumber(calc.deposit)}
+Balance Due: ${formatNumber(calc.balance)}`;
+            }
+            
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `brand-package-estimate-${Date.now()}.txt`;
+            a.click();
+        }
+
+        // ========== UTILITY FUNCTIONS ==========
+        function formatNumber(num) {
+            return parseFloat(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function getTimelineName() {
+            const names = {
+                standard: 'Standard (4–6 weeks)',
+                rush: 'Rush (2–3 weeks)',
+                asap: 'ASAP (1 week)'
+            };
+            return names[state.timeline] || 'Standard';
+        }
+
+        function getEstimatedDelivery() {
+            const times = CONFIG.deliveryTimes[state.timeline];
+            const today = new Date();
+            const minWeeks = times.min * 7;
+            const maxWeeks = times.max * 7;
+            
+            const minDate = new Date(today);
+            minDate.setDate(today.getDate() + minWeeks);
+            
+            const maxDate = new Date(today);
+            maxDate.setDate(today.getDate() + maxWeeks);
+            
+            return `(${minDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${maxDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })})`;
+        }
+
+        // ========== LOAD EXAMPLE DATA ==========
+        function loadExample() {
+            // Prefill form with example data
+            document.getElementById('businessName').value = 'TechStart Solutions';
+            state.businessName = 'TechStart Solutions';
+            
+            document.getElementById('businessType').value = 'Startup';
+            state.businessType = 'Startup';
+            
+            selectRadio('timeline', 'rush');
+            
+            // Start questionnaire
+            startQuestionnaire();
+            
+            // Move to step 2 after a brief delay
+            setTimeout(() => {
+                nextStep();
+                setTimeout(() => {
+                    selectPackage('professional');
+                    updatePackagePrice('professional', 6000);
+                }, 300);
+            }, 300);
+        }
+    </script>
 </body>
 </html>
