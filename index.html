@@ -3,374 +3,487 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethical Hacking Challenges in Blockchain Systems</title>
+    <title>End Hunger in The Gambia</title>
     <style>
+        /* ========================================
+           COLOR PALETTE (Warm Humanity Theme)
+           ========================================
+           Background: #FAF7F2
+           Primary Text: #1F2937
+           Highlight Text: #EAB308
+           CTA/Donation Accent: #F97316
+           Secondary Brown: #8B5E3C
+           
+           TO CHANGE COLORS: Replace these hex values throughout the CSS
+        ======================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FAF7F2;
+            color: #1F2937;
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            color: #000000;
+            overflow-x: hidden;
         }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-size: 16px;
-            color: #ADD8E6;
+        
+        /* ========================================
+           SLIDESHOW CONTAINER
+        ======================================== */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        /* ========================================
+           RADIO BUTTONS (Hidden - Controls Slides)
+           These control which slide is visible
+        ======================================== */
+        input[type="radio"] {
+            display: none;
+        }
+        
+        /* ========================================
+           SLIDE STRUCTURE
+           Each slide is hidden by default
+        ======================================== */
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        /* Show active slide with fade effect */
+        #slide1:checked ~ .slides .slide:nth-child(1),
+        #slide2:checked ~ .slides .slide:nth-child(2),
+        #slide3:checked ~ .slides .slide:nth-child(3),
+        #slide4:checked ~ .slides .slide:nth-child(4),
+        #slide5:checked ~ .slides .slide:nth-child(5),
+        #slide6:checked ~ .slides .slide:nth-child(6),
+        #slide7:checked ~ .slides .slide:nth-child(7),
+        #slide8:checked ~ .slides .slide:nth-child(8),
+        #slide9:checked ~ .slides .slide:nth-child(9) {
+            display: flex;
+            opacity: 1;
+        }
+        
+        /* ========================================
+           SLIDE CONTENT LAYOUT
+           Left: Image | Right: Text
+        ======================================== */
+        .slide-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            width: 100%;
+        }
+        
+        /* ========================================
+           IMAGE STYLING (Circular)
+           TO REPLACE IMAGES: Change the src attribute in the HTML
+        ======================================== */
+        .slide-image {
+            flex: 0 0 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #8B5E3C;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* ========================================
+           TEXT STYLING
+           TO CHANGE CAPTIONS: Edit the text in the HTML
+        ======================================== */
+        .slide-text {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .slide-text p {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: #1F2937;
+        }
+        
+        /* Highlight important words */
+        .highlight {
+            color: #EAB308;
             font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
         }
-
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
+        
+        /* CTA (Call to Action) styling for donation slide */
+        .cta {
+            color: #F97316;
+            font-weight: bold;
+            font-size: 2rem;
         }
-
-        .title-page {
-            text-align: center;
-            margin-bottom: 40px;
+        
+        /* ========================================
+           NAVIGATION DOTS
+           Click to jump to specific slides
+        ======================================== */
+        .navigation {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
         }
-
-        .section {
-            margin-bottom: 30px;
+        
+        .nav-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #8B5E3C;
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-
-        .page-break {
-            page-break-after: always;
-            margin: 40px 0;
-            border-bottom: 1px solid #ccc;
+        
+        .nav-dot:hover,
+        .nav-dot:focus {
+            opacity: 0.8;
+            transform: scale(1.2);
+            outline: 2px solid #F97316;
+            outline-offset: 3px;
         }
-
-        .toc-item {
-            margin-left: 20px;
+        
+        /* Active dot highlighting */
+        #slide1:checked ~ .navigation label:nth-child(1),
+        #slide2:checked ~ .navigation label:nth-child(2),
+        #slide3:checked ~ .navigation label:nth-child(3),
+        #slide4:checked ~ .navigation label:nth-child(4),
+        #slide5:checked ~ .navigation label:nth-child(5),
+        #slide6:checked ~ .navigation label:nth-child(6),
+        #slide7:checked ~ .navigation label:nth-child(7),
+        #slide8:checked ~ .navigation label:nth-child(8),
+        #slide9:checked ~ .navigation label:nth-child(9) {
+            opacity: 1;
+            background-color: #F97316;
+            transform: scale(1.3);
         }
-
-        .list-item {
-            margin-left: 40px;
-            margin-bottom: 10px;
+        
+        /* ========================================
+           CSS-ONLY AUTOPLAY (Optional)
+           TO ADJUST SPEED: Change the animation-duration value below
+           TO DISABLE: Comment out the @keyframes and animation rules
+        ======================================== */
+        @keyframes autoplay {
+            0%, 11.11% { /* Slide 1 visible */
+                opacity: 1;
+            }
+            11.12%, 100% {
+                opacity: 0;
+            }
         }
-
-        .reference {
-            margin-left: 40px;
-            text-indent: -40px;
-            margin-bottom: 10px;
+        
+        /* Autoplay timing for each slide (9 seconds per slide = 81s total) */
+        /* TO CHANGE SPEED: Modify animation-duration (e.g., 54s for 6s per slide) */
+        .slides {
+            animation: none; /* Autoplay disabled by default - enable by uncommenting below */
+            /* animation: autoplay 81s infinite; */
+        }
+        
+        /* ========================================
+           MOBILE RESPONSIVENESS
+           Image moves above text on small screens
+        ======================================== */
+        @media (max-width: 768px) {
+            .slide-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .slide-image {
+                flex: 0 0 250px;
+                height: 250px;
+            }
+            
+            .slide-text p {
+                font-size: 1.4rem;
+                text-align: center;
+            }
+            
+            .cta {
+                font-size: 1.6rem;
+            }
+            
+            .slideshow-container {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slide-image {
+                flex: 0 0 200px;
+                height: 200px;
+            }
+            
+            .slide-text p {
+                font-size: 1.2rem;
+            }
+            
+            .cta {
+                font-size: 1.4rem;
+            }
+            
+            .navigation {
+                bottom: 1rem;
+                gap: 0.7rem;
+            }
+            
+            .nav-dot {
+                width: 12px;
+                height: 12px;
+            }
+        }
+        
+        /* ========================================
+           ACCESSIBILITY
+           High contrast and keyboard navigation support
+        ======================================== */
+        *:focus {
+            outline: 3px solid #F97316;
+            outline-offset: 3px;
         }
     </style>
 </head>
 <body>
-
-<div class="title-page">
-    <h1>Title Page</h1>
-    <h2>Title of Study:</h2>
-    <p>Ethical Hacking Challenges in Blockchain Systems: Vulnerabilities, Mitigation Strategies, and Future Directions</p>
-    
-    <h2> Name:</h2>
-    <p>Isatou Jallow</p>
-    
-    <h2>Matric Number:</h2>
-    <p>22226051</p>
-    
-    <h2>Email:</h2>
-    <p>ij22226051@utg.edu.gm</p>
-    
-    
-    <h2>Department Where Proposal is to be Submitted:</h2>
-    <p>School of information and Communication Technology, University of the Gambia </p>
-    
-    <h2>Date:</h2>
-    <p>October 2025</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Attestation (Page ii)</h1>
-    <p>I hereby declare that this proposal is my original work and has not been submitted to any other institution for a similar purpose. All sources used have been duly acknowledged.</p>
-    
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Executive Summary (Page iii)</h1>
-    
-    <h2>Background</h2>
-    <p>Blockchain technology has been a game-changer since its debut in 2008 with Bitcoin, offering secure, decentralized ways to handle transactions. But let's be real—it's not without its flaws. Systems like Ethereum have opened doors to smart contracts and dApps, yet they've also invited cyber threats. Ethical hacking plays a key role here, helping spot weaknesses before bad actors do. Still, the unique setup of blockchains—think immutable ledgers and decentralized networks—makes this a tough job, as seen in big incidents like the 2016 DAO hack.</p>
-    
-    <h2>Aim</h2>
-    <p>Our goal is to dig into the hurdles ethical hackers face when tackling blockchain systems and come up with practical ways to tackle them for better security.</p>
-    
-    <h2>Methodology</h2>
-    <p>We'll mix things up with qualitative dives into past hacks and quantitative surveys of real hackers. Data will come from online discussions, interviews, and hands-on simulations using tools like Metasploit. We'll keep everything ethical, getting consent and making sure no live systems are at risk.</p>
-    
-    <h2>Expected Results</h2>
-    <p>We expect to pinpoint major issues like smart contract bugs and oracle tricks, plus suggest solid fixes. Surveys might show that human errors cause most problems, and our strategies could cut vulnerability detection time.</p>
-    
-    <h2>Dissemination Plan</h2>
-    <p>We'll share our findings through a journal article, a conference talk, and a free online report. Plus, we'll run workshops to help developers put this into practice right away.</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Table of Contents (Page iv)</h1>
-    <div class="toc-item">
-        <p>1. Introduction ................................................................................................................................ 1</p>
-        <p>1.1 Background/Introduction ...................................................................................................... 1</p>
-        <p>1.2 Problem Statement ................................................................................................................ 3</p>
-        <p>1.3 Justification of Study ............................................................................................................ 4</p>
-        <p>2. Aim and Objectives ....................................................................................................................... 6</p>
-        <p>2.1 Aim ....................................................................................................................................... 6</p>
-        <p>2.2 Objectives ............................................................................................................................ 6</p>
-        <p>2.3 Research Questions .............................................................................................................. 7</p>
-        <p>2.4 Hypothesis ........................................................................................................................... 7</p>
-        <p>3. Literature Review ......................................................................................................................... 8</p>
-        <p>3.1 Evolution of Blockchain Technology and Security .................................................................. 8</p>
-        <p>3.2 Common Vulnerabilities in Blockchain Systems .................................................................... 10</p>
-        <p>3.3 Ethical Hacking in Cybersecurity: Principles and Applications ................................................ 12</p>
-        <p>3.4 Challenges in Ethical Hacking Blockchain Systems ................................................................ 14</p>
-        <p>3.5 Case Studies of Blockchain Hacks and Ethical Responses ....................................................... 16</p>
-        <p>3.6 Mitigation Strategies and Emerging Technologies ................................................................. 18</p>
-        <p>3.7 Gaps in Existing Literature ................................................................................................... 20</p>
-        <p>4. Methodology ................................................................................................................................ 22</p>
-        <p>4.1 Study Design ....................................................................................................................... 22</p>
-        <p>4.2 Study Location .................................................................................................................... 23</p>
-        <p>4.3 Study Population ................................................................................................................. 23</p>
-        <p>4.4 Sample Size Determination .................................................................................................. 26</p>
-        <p>4.5 Sampling Technique ............................................................................................................ 27</p>
-        <p>4.6 Ethical Consideration ........................................................................................................... 28</p>
-        <p>4.7 Data Collection .................................................................................................................... 29</p>
-        <p>4.8 Data Management ................................................................................................................ 30</p>
-        <p>4.9 Dissemination ...................................................................................................................... 32</p>
-        <p>4.10 Work Plan/Schedule ........................................................................................................... 33</p>
-        <p>References ........................................................................................................................................ 34</p>
-        <p>Appendices ....................................................................................................................................... 36</p>
+    <div class="slideshow-container">
+        <!-- 
+        ========================================
+        RADIO BUTTON CONTROLS
+        These hidden inputs control which slide is shown
+        ========================================
+        -->
+        <input type="radio" name="slide" id="slide1" checked>
+        <input type="radio" name="slide" id="slide2">
+        <input type="radio" name="slide" id="slide3">
+        <input type="radio" name="slide" id="slide4">
+        <input type="radio" name="slide" id="slide5">
+        <input type="radio" name="slide" id="slide6">
+        <input type="radio" name="slide" id="slide7">
+        <input type="radio" name="slide" id="slide8">
+        <input type="radio" name="slide" id="slide9">
+        
+        <!-- 
+        ========================================
+        SLIDES CONTAINER
+        ========================================
+        TO ADD A NEW SLIDE:
+        1. Copy a <section class="slide"> block
+        2. Update the image src and alt text
+        3. Update the caption text
+        4. Add a new radio button above
+        5. Add a new navigation dot below
+        
+        TO REPLACE IMAGES:
+        Change the src="..." attribute to your image URL
+        
+        EXAMPLE COMMENTED OUT SLIDE:
+        <section class="slide">
+            <div class="slide-content">
+                <figure class="slide-image">
+                    <img src="https://example.com/your-image.jpg" alt="Description of image">
+                </figure>
+                <figcaption class="slide-text">
+                    <p>Your caption text here with <span class="highlight">highlighted words</span></p>
+                </figcaption>
+            </div>
+        </section>
+        ======================================== 
+        -->
+        <div class="slides">
+            <!-- Slide 1 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=600&fit=crop" alt="Child affected by malnutrition in The Gambia">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p><span class="highlight">1 in 4 children</span> in The Gambia is affected by chronic malnutrition.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 2 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&h=600&fit=crop" alt="Statistics showing child hunger in The Gambia">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p>That's <span class="highlight">25% of all Gambian children</span> facing hunger.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 3 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=600&fit=crop" alt="Government accountability and international aid">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p>The Government receives <span class="highlight">millions of dollars in international aid</span> to combat hunger, yet still embezzles the funds without spending a "single" dalasi to fight hunger in this nation.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 4 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1509099863731-ef4bff19e808?w=600&h=600&fit=crop" alt="Wealth disparity and priorities">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p>The rich neglect the poor, yet spend over <span class="highlight">D100,000 on a single ticket</span> for a Wally Secka concert.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 5 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=600&fit=crop" alt="Community unity and support">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p>But with <span class="highlight">joined hands</span>, no child must remain hungry.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 6 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=600&h=600&fit=crop" alt="Every contribution matters">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p>Every <span class="highlight">shared dalasi</span> becomes strength for a hungry child.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 7 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=600&fit=crop" alt="Breaking the cycle of hunger">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p>Together, we can <span class="highlight">break the cycle of hunger</span> and give every Gambian child a real chance at life.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 8 - CTA (Call to Action) -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&h=600&fit=crop" alt="Donate to support hungry children">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p class="cta">Please support the cause by donating through Wave Mobile Money: +220 235 4552.</p>
+                    </figcaption>
+                </div>
+            </section>
+            
+            <!-- Slide 9 -->
+            <section class="slide">
+                <div class="slide-content">
+                    <figure class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600&h=600&fit=crop" alt="Empowered nation through proper nutrition">
+                    </figure>
+                    <figcaption class="slide-text">
+                        <p>A nation fed is a nation <span class="highlight">empowered and unstoppable</span>.</p>
+                    </figcaption>
+                </div>
+            </section>
+        </div>
+        
+        <!-- 
+        ========================================
+        NAVIGATION DOTS
+        Click these to jump to specific slides
+        TO ADD MORE DOTS: Add a new label for each new slide
+        ======================================== 
+        -->
+        <nav class="navigation" aria-label="Slide navigation">
+            <label for="slide1" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 1"></label>
+            <label for="slide2" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 2"></label>
+            <label for="slide3" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 3"></label>
+            <label for="slide4" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 4"></label>
+            <label for="slide5" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 5"></label>
+            <label for="slide6" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 6"></label>
+            <label for="slide7" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 7"></label>
+            <label for="slide8" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 8"></label>
+            <label for="slide9" class="nav-dot" tabindex="0" role="button" aria-label="Go to slide 9"></label>
+        </nav>
     </div>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>List of Tables (Page v)</h1>
-    <p>Table 1: Summary of Blockchain Vulnerabilities and Ethical Hacking Challenges ............................ 15</p>
-    <p>Table 2: Case Studies of Major Blockchain Hacks ............................................................................. 17</p>
-    <p>Table 3: Proposed Mitigation Strategies ............................................................................................ 19</p>
-    <p>Table 4: Data Analysis Tools and Techniques .................................................................................... 32</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>List of Figures (Page vi)</h1>
-    <p>Figure 1: Blockchain Architecture Overview ....................................................................................... 9</p>
-    <p>Figure 2: Ethical Hacking Process in Blockchain Systems .................................................................. 13</p>
-    <p>Figure 3: Timeline of Key Blockchain Exploits ................................................................................... 16</p>
-    <p>Figure 4: Research Methodology Flowchart ....................................................................................... 22</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>List of Abbreviations (Page vii)</h1>
-    <p>- APT: Advanced Persistent Threat</p>
-    <p>- DAO: Decentralized Autonomous Organization</p>
-    <p>- dApp: Decentralized Application</p>
-    <p>- PoW: Proof-of-Work</p>
-    <p>- PoS: Proof-of-Stake</p>
-    <p>- ZKP: Zero-Knowledge Proof</p>
-    <p>- GDPR: General Data Protection Regulation</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Chapter One - 1.0 Introduction (Page 1)</h1>
     
-    <h2>1.1 Background/Introduction</h2>
-    <p>Blockchain started making waves back in 2008 with Satoshi Nakamoto's Bitcoin idea, changing how we think about digital money through its decentralized, unchangeable ledgers powered by crypto (Nakamoto, 2008). Unlike old-school databases, it uses things like Proof-of-Work or Proof-of-Stake to keep everything secure and trustworthy. Ethereum took it further by adding smart contracts, which let people build apps and even NFTs on the blockchain.</p>
+    <!-- 
+    ========================================
+    CUSTOMIZATION GUIDE
+    ========================================
     
-    <p>But with great power comes great risk—these systems aren't immune to attacks. We've seen massive hacks, like the one that hit the DAO in 2016, costing millions because of flaws in the code (Vigna & Casey, 2016). That's where ethical hacking comes in: it's like being a friendly detective, testing systems legally to find weak spots before the bad guys do. In blockchain world, this means poking at consensus rules, crypto layers, and app interfaces using tools like Burp Suite.</p>
+    1. TO REPLACE IMAGE URLS:
+       - Find the <img src="..."> tags
+       - Replace the URL in the src attribute
+       - Update the alt text to describe the new image
     
-    <p>The tricky part? Blockchains are decentralized, so there's no single point to hack, and once something's on the chain, it's there forever. This makes ethical testing way more complex. As DeFi grows, so do the dangers, and we need better ways to handle them. Globally, blockchain's worth over a trillion dollars now (CoinMarketCap, 2023), but security hasn't kept up—Chainalysis reports show billions lost to theft in recent years (Chainalysis, 2023). Our study aims to make ethical hacking more effective here, blending tech fixes with real-world smarts.</p>
+    2. TO CHANGE CAPTIONS:
+       - Find the <p> text inside <figcaption class="slide-text">
+       - Replace with your new text
+       - Use <span class="highlight"> for emphasized words
+       - Use class="cta" on <p> for call-to-action styling
     
-    <h2>1.2 Problem Statement</h2>
-    <p>Even with all the progress, ethical hackers still hit roadblocks when dealing with blockchain systems. The decentralized nature throws off standard testing, smart contract errors keep popping up, and things like oracle issues in DeFi add extra layers of trouble. Plus, without clear rules or tools tailored for blockchains, it's hard to do this consistently, leaving systems open to big losses. This research tackles these problems head-on, exploring the challenges and suggesting real fixes to make ethical hacking work better in this space.</p>
+    3. TO ADJUST AUTOPLAY SPEED:
+       - Find the .slides animation rule in CSS
+       - Uncomment the animation line
+       - Change "81s" to your desired total duration
+       - Formula: (seconds per slide) × (number of slides)
+       - Example: 6s per slide × 9 slides = 54s
     
-    <h2>1.3 Justification of Study</h2>
-    <p>Why bother? Because blockchain hacks are costing the world billions, and we can't just sit back. Ethically, this helps build safer tech without hurting anyone. For academics, it's filling a hole in the research on blockchain security. And practically, our ideas could shape new standards, cutting down on cyber risks and building more trust in these systems. It's about turning potential disasters into opportunities for better protection.</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Chapter Two - 2.0 Aim and Objectives (Page 6)</h1>
+    4. TO CHANGE COLOR PALETTE:
+       - Find the color palette section in CSS (top of <style>)
+       - Replace the hex codes with your colors:
+         * Background: #FAF7F2
+         * Primary Text: #1F2937
+         * Highlight Text: #EAB308
+         * CTA/Donation: #F97316
+         * Secondary Brown: #8B5E3C
     
-    <h2>2.1 Aim</h2>
-    <p>We're aiming to explore the real challenges ethical hackers run into with blockchain systems and figure out ways to overcome them for stronger security overall.</p>
+    5. TO ADD MORE SLIDES:
+       - Copy an entire <section class="slide">...</section> block
+       - Paste it before the closing </div> of .slides
+       - Add a new <input type="radio" name="slide" id="slideX">
+       - Add a new navigation dot <label for="slideX">
+       - Update the CSS :checked selectors to include the new slide
     
-    <h2>2.2 Objectives</h2>
-    <div class="list-item">
-        <p>1. Spot the main weak points in blockchain setups by looking at past studies and examples.</p>
-        <p>2. Check out what's holding back current ethical hacking methods in decentralized worlds.</p>
-        <p>3. Suggest practical fixes and frameworks to make hacking these systems more effective.</p>
-        <p>4. Test these ideas through simulations and feedback to see how well they hold up.</p>
-    </div>
-    
-    <h2>2.3 Research Questions</h2>
-    <div class="list-item">
-        <p>1. What are the biggest hurdles for ethical hackers in blockchain environments?</p>
-        <p>2. How do common blockchain flaws make hacking harder?</p>
-        <p>3. What strategies can we use to fix these issues?</p>
-        <p>4. How well do these new approaches work in actual security scenarios?</p>
-    </div>
-    
-    <h2>2.4 Hypothesis</h2>
-    <p>H1: The main challenges in ethical hacking blockchains come from their decentralized and unchangeable design, leading to more misses in finding vulnerabilities than in regular systems.</p>
-    <p>H2: Adding AI tools to the mix could speed up spotting issues by at least 30%.</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Chapter Three - 3.0 Literature Review (Page 8)</h1>
-    
-    <h2>3.1 Evolution of Blockchain Technology and Security</h2>
-    <p>It all kicked off with Bitcoin's Proof-of-Work, making transactions hard to tamper with through hashing and group agreement (Nakamoto, 2008). Then came Ethereum with its programmable contracts, which were cool but risky, as the 2016 DAO hack showed (Vigna & Casey, 2016). Security has improved, like with Ethereum switching to Proof-of-Stake in 2022 to save energy (Ethereum Foundation, 2022). But threats persist—studies say 60% of attacks target smart contracts (Chainalysis, 2023). Ethical hacking has grown from basic checks to automated tools, yet blockchains need their own special tactics.</p>
-    
-    <h2>3.2 Common Vulnerabilities in Blockchain Systems</h2>
-    <p>Think 51% attacks on Proof-of-Work chains, where one group takes over the network (Gervais et al., 2016); bugs in smart contracts like overflow mistakes; and oracle problems in DeFi that can be tricked (Christidis & Devetsikiotis, 2016). Immunefi's 2023 report found over 1,000 bugs, with logic errors being a big culprit (Immunefi, 2023). These are tough for ethical hackers because you can't just undo things on an immutable chain.</p>
-    
-    <h2>3.3 Ethical Hacking in Cybersecurity: Principles and Applications</h2>
-    <p>Ethical hacking sticks to rules like those from OWASP, covering steps from scouting to testing (OWASP, 2023). For blockchains, it means checking algorithms and app layers. Reviews like Kumar et al. (2022) show it's good at finding hidden flaws, but tools often fall short in decentralized settings.</p>
-    
-    <h2>3.4 Challenges in Ethical Hacking Blockchain Systems</h2>
-    <p>The big ones? Scaling up for huge networks eats resources, crypto puzzles require deep knowledge, and legal gray areas can make testing feel risky (Zheng et al., 2018). No central access point complicates things, and you need perfect replicas for tests. Surveys reveal 70% of hackers struggle with blockchain tools (PwC, 2022).</p>
-    
-    <h2>3.5 Case Studies of Blockchain Hacks and Ethical Responses</h2>
-    <p>Mt. Gox in 2014 lost $450 million from bad key handling (Moore & Christin, 2013)—audits helped afterward. The 2021 Poly Network hack stole $611 million but was fixed by community effort (Poly Network, 2021). These stories highlight why proactive ethical hacking matters.</p>
-    
-    <h2>3.6 Mitigation Strategies and Emerging Technologies</h2>
-    <p>Ideas include verifying contracts formally and using AI for spotting oddities (Kosba et al., 2016). Zero-Knowledge Proofs add privacy to cut risks (Ben-Sasson et al., 2014). Mixing hacking with forensics seems promising.</p>
-    
-    <h2>3.7 Gaps in Existing Literature</h2>
-    <p>We know about the vulnerabilities, but not enough on how well ethical hacking works in practice. Most focus on attacks, not the hacker's side. Our study bridges that with mixed insights.</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Chapter Four - 4.0 Methodology (Page 22)</h1>
-    
-    <h2>4.1 Study Design</h2>
-    <p>We'll use a mixed-methods setup, blending deep dives into hack stories with surveys to get a full picture of ethical hacking woes in blockchains. Qualitative parts unpack real cases, while quantitative ones measure experiences and tool success.</p>
-    
-    <h2>4.2 Study Location</h2>
-    <p>Everything happens online, with data from web platforms and simulations on cloud setups like AWS or local VMs for safe, controlled runs.</p>
-    
-    <h2>4.3 Study Population</h2>
-    <p>We're targeting ethical hackers, blockchain coders, and security pros who've worked with decentralized tech. We'll find them on spots like Reddit's r/cybersecurity and pro networks.</p>
-    
-    <h3>A. Qualitative Design</h3>
-    <p>We'll gather stories through interviews and hack report reviews, then pull out common themes for deeper understanding.</p>
-    
-    <h3>B. Quantitative Design</h3>
-    <p>Surveys with rating scales will quantify things like tool ease and success rates, crunched for patterns.</p>
-    
-    <h2>4.4 Sample Size Determination</h2>
-    <p>For interviews, 20 experts should give us enough depth. For surveys, we're aiming for 200 responses, based on stats for 95% confidence and a small error margin, assuming challenges are common.</p>
-    
-    <h2>4.5 Sampling Technique</h2>
-    <p>We'll pick interview folks based on their know-how, and use easy online surveys to reach more people.</p>
-    
-    <h2>4.6 Ethical Consideration</h2>
-    <p>Everyone gets clear consent, and we'll anonymize data to follow GDPR. No real disruptions—just isolated tests. We'll get approval from an ethics board first.</p>
-    
-    <h2>4.7 Data Collection</h2>
-    <p>Interviews via Zoom, taped with permission. Surveys on Google Forms. Simulations with Ganache to test vulnerabilities.</p>
-    
-    <h2>4.8 Data Management</h2>
-    
-    <h3>4.8.1 Data Handling</h3>
-    <p>We'll keep everything locked up on encrypted storage, with only us accessing it.</p>
-    
-    <h3>4.8.2 Data Entry</h3>
-    <p>Qualitative stuff transcribed by hand; quantitative goes straight into SPSS.</p>
-    
-    <h3>4.8.3 Data Analysis Plan</h3>
-    <p>Themes from qualitative data; stats like regressions from quantitative, using NVivo and SPSS.</p>
-    
-    <h2>4.9 Dissemination</h2>
-    <p>We'll spread the word as planned in the summary, with articles, talks, and hands-on sessions.</p>
-    
-    <h2>4.10 Work Plan/Schedule</h2>
-    <p>- Month 1: Wrap up the literature review, finalize the design, and start gathering data.</p>
-    <p>- Month 2: Finish data collection, run analyses, and put together the final report with dissemination.</p>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>References (Page 34)</h1>
-    <div class="reference">
-        <p>Ben-Sasson, E., et al. (2014). Zerocash: Decentralized Anonymous Payments from Bitcoin. IEEE.</p>
-    </div>
-    <div class="reference">
-        <p>Chainalysis. (2023). Crypto Crime Report.</p>
-    </div>
-    <div class="reference">
-        <p>Christidis, K., & Devetsikiotis, M. (2016). Blockchains and Smart Contracts for the IoT. IEEE Access.</p>
-    </div>
-    <div class="reference">
-        <p>Ethereum Foundation. (2022). Ethereum 2.0 Upgrade.</p>
-    </div>
-    <div class="reference">
-        <p>Gervais, A., et al. (2016). On the Security and Performance of Proof-of-Work Blockchains. ACM.</p>
-    </div>
-    <div class="reference">
-        <p>Immunefi. (2023). Bug Bounty Report.</p>
-    </div>
-    <div class="reference">
-        <p>Kosba, A., et al. (2016). Hawk: The Blockchain Model of Cryptography and Privacy-Preserving Smart Contracts. IEEE.</p>
-    </div>
-    <div class="reference">
-        <p>Kumar, A., et al. (2022). Ethical Hacking in Blockchain: A Review. Journal of Cybersecurity.</p>
-    </div>
-    <div class="reference">
-        <p>MITRE. (2023). ATT&CK for Blockchain.</p>
-    </div>
-    <div class="reference">
-        <p>Moore, T., & Christin, N. (2013). Beware the Middleman: Empirical Analysis of Bitcoin-Exchange Risk. Financial Cryptography.</p>
-    </div>
-    <div class="reference">
-        <p>Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.</p>
-    </div>
-    <div class="reference">
-        <p>OWASP. (2023). Testing Guide.</p>
-    </div>
-    <div class="reference">
-        <p>Poly Network. (2021). Hack Incident Report.</p>
-    </div>
-    <div class="reference">
-        <p>PwC. (2022). Global Crypto Survey.</p>
-    </div>
-    <div class="reference">
-        <p>Vigna, P., & Casey, M. J. (2016). The Age of Cryptocurrency. St. Martin's Press.</p>
-    </div>
-    <div class="reference">
-        <p>Zheng, W., et al. (2018). Blockchain Challenges and Opportunities: A Survey. International Journal of Web and Grid Services.</p>
-    </div>
-</div>
-
-<div class="page-break"></div>
-
-<div class="section">
-    <h1>Appendices (Page 36)</h1>
-    <p>Appendix A: Interview Guide</p>
-    <p>Appendix B: Survey Questionnaire</p>
-    <p>Appendix C: Sample Blockchain Simulation Code</p>
-</div>
-
+    ========================================
+    -->
 </body>
 </html>
