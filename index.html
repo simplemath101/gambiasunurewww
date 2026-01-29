@@ -44,17 +44,11 @@
             padding: 40px 20px;
         }
         .logo-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 20px;
-        }
-        .logo-image {
-            width: clamp(200px, 50vw, 550px);
+            width: clamp(120px, 30vw, 200px);
             height: auto;
-            max-height: 250px;
+            max-height: 80px;
             object-fit: contain;
+            margin-bottom: 15px;
         }
         .wave-text {
             font-size: clamp(60px, 12vw, 120px);
@@ -104,6 +98,15 @@
         .payment-option:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .payment-option.wave {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .payment-option.wave:hover {
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
         
         .payment-option.gtbank {
@@ -178,14 +181,6 @@
             .top-section, .bottom-section {
                 padding: 30px 15px;
             }
-            .logo-section {
-                flex-direction: column;
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-            .logo-image {
-                max-height: 150px;
-            }
             .message {
                 margin-top: 15px;
             }
@@ -205,13 +200,6 @@
             .top-section, .bottom-section {
                 padding: 20px 15px;
             }
-            .logo-section {
-                margin-bottom: 15px;
-                gap: 10px;
-            }
-            .logo-image {
-                max-height: 100px;
-            }
             .message {
                 margin-top: 10px;
             }
@@ -228,9 +216,6 @@
         
         /* Very small devices */
         @media (max-width: 360px) {
-            .logo-image {
-                max-height: 80px;
-            }
             .message p {
                 line-height: 1.2;
             }
@@ -248,14 +233,6 @@
                 flex: none;
                 padding: 15px;
             }
-            .logo-section {
-                margin-bottom: 10px;
-                flex-direction: row;
-                gap: 15px;
-            }
-            .logo-image {
-                max-height: 60px;
-            }
             .message {
                 margin-top: 10px;
             }
@@ -268,10 +245,6 @@
 <body>
     <div class="container">
         <div class="top-section">
-            <div class="logo-section">
-                <img src="https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png" alt="Wave Logo" class="logo-image">
-            </div>
-            
             <div class="message">
                 <p>Please support the cause</p>
                 <p>by donating through:</p>
@@ -280,7 +253,8 @@
         
         <div class="bottom-section">
             <div class="payment-section">
-                <div class="payment-option">
+                <div class="payment-option wave">
+                    <img src="https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png" alt="Wave Logo" class="logo-section">
                     <h2>Wave Mobile Money</h2>
                     <p class="account-number">+220 6371941</p>
                 </div>
