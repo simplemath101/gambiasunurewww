@@ -34,17 +34,17 @@
             height: 50vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
-            padding: 20px 15px;
+            padding: 20px 15px 10px;
         }
         .bottom-section {
             height: 50vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 20px 15px;
+            padding: 10px 15px 20px;
         }
         .logo-section {
             width: clamp(100px, 25vw, 180px);
@@ -71,6 +71,7 @@
         }
         .message p:nth-child(2) {
             animation-delay: 0.4s;
+            margin-bottom: 0;
         }
         
         .payment-section {
@@ -83,6 +84,7 @@
             width: 100%;
             max-width: 800px;
             padding: 0 10px;
+            margin-top: 20px;
         }
         
         .payment-option {
@@ -187,20 +189,22 @@
         /* Mobile phones */
         @media (max-width: 480px) {
             .top-section {
-                padding: 15px 12px;
-                height: 50vh;
+                padding: 15px 12px 8px;
             }
             .bottom-section {
-                padding: 15px 12px;
-                height: 50vh;
+                padding: 8px 12px 15px;
             }
             .message p {
                 margin-bottom: 6px;
                 line-height: 1.15;
             }
+            .message p:nth-child(2) {
+                margin-bottom: 0;
+            }
             .payment-section {
                 gap: 8px;
                 padding: 0 8px;
+                margin-top: 15px;
             }
             .payment-option {
                 padding: 12px 10px;
@@ -218,13 +222,18 @@
         
         /* Very small devices */
         @media (max-width: 360px) {
-            .top-section,
+            .top-section {
+                padding: 12px 10px 6px;
+            }
             .bottom-section {
-                padding: 12px 10px;
+                padding: 6px 10px 12px;
             }
             .message p {
                 line-height: 1.1;
                 margin-bottom: 5px;
+            }
+            .message p:nth-child(2) {
+                margin-bottom: 0;
             }
             .payment-option {
                 padding: 10px 8px;
@@ -235,6 +244,7 @@
             }
             .payment-section {
                 gap: 6px;
+                margin-top: 12px;
             }
         }
         
@@ -244,14 +254,26 @@
             .bottom-section {
                 height: auto;
                 min-height: 50vh;
-                padding: 10px;
+                padding: 8px 10px;
+            }
+            .top-section {
+                justify-content: flex-end;
+                padding-bottom: 5px;
+            }
+            .bottom-section {
+                justify-content: flex-start;
+                padding-top: 5px;
             }
             .message p {
                 margin-bottom: 5px;
                 font-size: clamp(20px, 4.5vw, 40px);
             }
+            .message p:nth-child(2) {
+                margin-bottom: 0;
+            }
             .payment-section {
                 gap: 6px;
+                margin-top: 10px;
             }
             .payment-option {
                 padding: 8px;
@@ -268,26 +290,37 @@
                 font-size: clamp(18px, 4vw, 36px);
                 margin-bottom: 4px;
             }
+            .message p:nth-child(2) {
+                margin-bottom: 0;
+            }
             .payment-option h2 {
                 font-size: clamp(14px, 3vw, 28px);
             }
             .account-number {
                 font-size: clamp(12px, 2.8vw, 22px);
             }
+            .payment-section {
+                margin-top: 8px;
+            }
         }
         
         /* Tablet range */
         @media (min-width: 481px) and (max-width: 768px) {
-            .top-section, .bottom-section {
-                padding: 20px 15px;
+            .top-section {
+                padding: 20px 15px 12px;
+            }
+            .bottom-section {
+                padding: 12px 15px 20px;
             }
         }
         
         /* Desktop - prevent over-stretching */
         @media (min-width: 769px) {
-            .top-section,
+            .top-section {
+                padding: 30px 20px 15px;
+            }
             .bottom-section {
-                padding: 30px 20px;
+                padding: 15px 20px 30px;
             }
         }
         
