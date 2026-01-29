@@ -76,7 +76,7 @@
         .payment-section {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
             animation-delay: 0.6s;
@@ -89,7 +89,7 @@
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: clamp(16px, 3.5vw, 30px);
+            padding: clamp(14px, 3vw, 26px);
             border: 2px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -97,6 +97,15 @@
         .payment-option:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .payment-option.aps {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .payment-option.aps:hover {
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
         
         .payment-option.wave {
@@ -127,16 +136,16 @@
         
         .payment-option h2 {
             color: white;
-            font-size: clamp(20px, 4vw, 38px);
-            margin-bottom: 10px;
+            font-size: clamp(18px, 3.8vw, 36px);
+            margin-bottom: 8px;
             font-weight: 700;
         }
         
         .account-number {
             color: white !important;
-            font-size: clamp(18px, 3.5vw, 32px);
+            font-size: clamp(16px, 3.2vw, 30px);
             font-weight: 700;
-            margin: 5px 0;
+            margin: 4px 0;
         }
         
         .account-number a {
@@ -148,7 +157,7 @@
             color: rgba(255, 255, 255, 0.95) !important;
             font-size: clamp(14px, 2.8vw, 24px);
             font-weight: 600;
-            margin: 5px 0;
+            margin: 4px 0;
         }
         
         .account-name a {
@@ -158,9 +167,9 @@
         
         .divider {
             color: white;
-            font-size: clamp(16px, 3vw, 28px);
+            font-size: clamp(14px, 2.8vw, 24px);
             font-weight: 700;
-            margin: 6px 0;
+            margin: 5px 0;
             opacity: 0.8;
         }
         
@@ -190,20 +199,20 @@
                 line-height: 1.15;
             }
             .payment-section {
-                gap: 10px;
+                gap: 8px;
                 padding: 0 8px;
             }
             .payment-option {
-                padding: 14px 12px;
+                padding: 12px 10px;
                 border-radius: 14px;
             }
             .bank-logo,
             .logo-section {
-                max-height: 50px;
+                max-height: 45px;
                 margin-bottom: 8px;
             }
             .payment-option h2 {
-                margin-bottom: 8px;
+                margin-bottom: 6px;
             }
         }
         
@@ -218,14 +227,14 @@
                 margin-bottom: 5px;
             }
             .payment-option {
-                padding: 12px 10px;
+                padding: 10px 8px;
             }
             .bank-logo,
             .logo-section {
-                max-height: 45px;
+                max-height: 40px;
             }
             .payment-section {
-                gap: 8px;
+                gap: 6px;
             }
         }
         
@@ -242,14 +251,14 @@
                 font-size: clamp(20px, 4.5vw, 40px);
             }
             .payment-section {
-                gap: 8px;
+                gap: 6px;
             }
             .payment-option {
-                padding: 10px;
+                padding: 8px;
             }
             .bank-logo,
             .logo-section {
-                max-height: 40px;
+                max-height: 35px;
             }
         }
         
@@ -260,10 +269,10 @@
                 margin-bottom: 4px;
             }
             .payment-option h2 {
-                font-size: clamp(16px, 3.5vw, 30px);
+                font-size: clamp(14px, 3vw, 28px);
             }
             .account-number {
-                font-size: clamp(14px, 3vw, 24px);
+                font-size: clamp(12px, 2.8vw, 22px);
             }
         }
         
@@ -313,6 +322,15 @@
                     <img src="https://www.wave.com/img/terms/gtbank-logo.png" alt="GT Bank Logo" class="bank-logo">
                     <h2>GT Bank</h2>
                     <p class="account-number">Account No.: 2032202001590</p>
+                </div>
+                
+                <div class="divider">OR</div>
+                
+                <div class="payment-option aps">
+                    <!-- Replace this URL with the actual APS Wallet logo URL -->
+                    <img src="https://play-lh.googleusercontent.com/SM70HDMXD0coca5AhF_OSmYyFkqW7xrQ1PApymmqG9sNCmuB5ZA_ZbKMz9QMWE5IjA5U" alt="APS Wallet Logo" class="logo-section">
+                    <h2>APS WALLET</h2>
+                    <p class="account-number">+220 6371941</p>
                 </div>
             </div>
         </div>
