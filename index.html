@@ -12,12 +12,12 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: transparent;
+            background: linear-gradient(180deg, #1E7F5C 0%, #145A32 50%, #145A32 50%, #0F3D2E 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             padding: 0;
             margin: 0;
             overflow-x: hidden;
@@ -25,28 +25,26 @@
         .container {
             text-align: center;
             width: 100%;
-            max-width: 100%;
+            max-width: 900px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            min-height: 50vh;
-            background: linear-gradient(to bottom, 
-                transparent 0%, 
-                rgba(0, 0, 0, 0.3) 10%,
-                rgba(0, 0, 0, 0.7) 30%,
-                rgba(0, 0, 0, 0.85) 100%);
-            backdrop-filter: blur(8px);
-            padding: 20px 15px 40px;
+            min-height: 100vh;
         }
         .top-section {
-            display: none;
-        }
-        .bottom-section {
+            height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             align-items: center;
-            padding: 0;
+            padding: 20px 15px 10px;
+        }
+        .bottom-section {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 15px 60px;
         }
         .logo-section {
             width: clamp(100px, 25vw, 180px);
@@ -58,16 +56,15 @@
         .message {
             color: white;
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 0;
         }
         .message p {
-            font-size: clamp(20px, 5vw, 42px);
+            font-size: clamp(24px, 5.5vw, 56px);
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
         }
         .message p:nth-child(1) {
             animation-delay: 0.2s;
@@ -80,38 +77,28 @@
         .payment-section {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
             animation-delay: 0.6s;
             width: 100%;
-            max-width: 500px;
-            padding: 0 15px;
-            margin-top: 0;
+            max-width: 800px;
+            padding: 0 10px;
+            margin-top: 20px;
         }
         
         .payment-option {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: clamp(16px, 3.5vw, 24px);
-            border: 2px solid rgba(255, 255, 255, 0.4);
+            padding: clamp(14px, 3vw, 26px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         
         .payment-option:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .payment-option.wave {
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-        
-        .payment-option.wave:hover {
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
         
         .payment-option.aps {
@@ -123,20 +110,35 @@
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
         
+        .payment-option.wave {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .payment-option.wave:hover {
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        .bank-logo {
+            width: clamp(100px, 25vw, 180px);
+            height: auto;
+            max-height: 60px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        
         .payment-option h2 {
             color: white;
-            font-size: clamp(16px, 3.5vw, 28px);
+            font-size: clamp(18px, 3.8vw, 36px);
             margin-bottom: 8px;
             font-weight: 700;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
         
         .account-number {
             color: white !important;
-            font-size: clamp(15px, 3vw, 26px);
+            font-size: clamp(16px, 3.2vw, 30px);
             font-weight: 700;
             margin: 4px 0;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
         
         .account-number a {
@@ -144,13 +146,24 @@
             text-decoration: none;
         }
         
+        .account-name {
+            color: rgba(255, 255, 255, 0.95) !important;
+            font-size: clamp(14px, 2.8vw, 24px);
+            font-weight: 600;
+            margin: 4px 0;
+        }
+        
+        .account-name a {
+            color: rgba(255, 255, 255, 0.95) !important;
+            text-decoration: none;
+        }
+        
         .divider {
             color: white;
-            font-size: clamp(14px, 2.8vw, 22px);
+            font-size: clamp(14px, 2.8vw, 24px);
             font-weight: 700;
-            margin: 8px 0;
-            opacity: 0.9;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            margin: 5px 0;
+            opacity: 0.8;
         }
         
         @keyframes fadeInUp {
@@ -166,26 +179,31 @@
         
         /* Mobile phones */
         @media (max-width: 480px) {
-            .container {
-                padding: 15px 12px 35px;
+            .top-section {
+                padding: 15px 12px 8px;
+            }
+            .bottom-section {
+                padding: 8px 12px 50px;
             }
             .message p {
-                margin-bottom: 5px;
+                margin-bottom: 6px;
                 line-height: 1.15;
             }
             .message p:nth-child(2) {
-                margin-bottom: 12px;
+                margin-bottom: 0;
             }
             .payment-section {
-                gap: 10px;
-                padding: 0 12px;
+                gap: 8px;
+                padding: 0 8px;
+                margin-top: 15px;
             }
             .payment-option {
-                padding: 14px 12px;
+                padding: 12px 10px;
                 border-radius: 14px;
             }
+            .bank-logo,
             .logo-section {
-                max-height: 50px;
+                max-height: 45px;
                 margin-bottom: 8px;
             }
             .payment-option h2 {
@@ -195,66 +213,130 @@
         
         /* Very small devices */
         @media (max-width: 360px) {
-            .container {
-                padding: 12px 10px 30px;
+            .top-section {
+                padding: 12px 10px 6px;
+            }
+            .bottom-section {
+                padding: 6px 10px 45px;
             }
             .message p {
                 line-height: 1.1;
-                margin-bottom: 4px;
+                margin-bottom: 5px;
             }
             .message p:nth-child(2) {
-                margin-bottom: 10px;
+                margin-bottom: 0;
             }
             .payment-option {
-                padding: 12px 10px;
+                padding: 10px 8px;
             }
+            .bank-logo,
             .logo-section {
-                max-height: 45px;
+                max-height: 40px;
             }
             .payment-section {
-                gap: 8px;
+                gap: 6px;
+                margin-top: 12px;
             }
         }
         
         /* Landscape orientation on mobile */
         @media (max-height: 667px) and (orientation: landscape) {
-            .container {
-                padding: 10px 12px 25px;
+            .top-section,
+            .bottom-section {
+                height: auto;
+                min-height: 50vh;
+                padding: 8px 10px;
+            }
+            .top-section {
+                justify-content: flex-end;
+                padding-bottom: 5px;
+            }
+            .bottom-section {
+                justify-content: flex-start;
+                padding-top: 5px;
+                padding-bottom: 35px;
             }
             .message p {
-                margin-bottom: 4px;
-                font-size: clamp(18px, 4vw, 32px);
+                margin-bottom: 5px;
+                font-size: clamp(20px, 4.5vw, 40px);
             }
             .message p:nth-child(2) {
-                margin-bottom: 10px;
+                margin-bottom: 0;
             }
             .payment-section {
-                gap: 8px;
+                gap: 6px;
+                margin-top: 10px;
             }
             .payment-option {
-                padding: 10px;
+                padding: 8px;
             }
+            .bank-logo,
             .logo-section {
-                max-height: 40px;
+                max-height: 35px;
+            }
+        }
+        
+        /* Extra short landscape screens */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .bottom-section {
+                padding-bottom: 30px;
+            }
+            .message p {
+                font-size: clamp(18px, 4vw, 36px);
+                margin-bottom: 4px;
+            }
+            .message p:nth-child(2) {
+                margin-bottom: 0;
+            }
+            .payment-option h2 {
+                font-size: clamp(14px, 3vw, 28px);
+            }
+            .account-number {
+                font-size: clamp(12px, 2.8vw, 22px);
+            }
+            .payment-section {
+                margin-top: 8px;
             }
         }
         
         /* Tablet range */
         @media (min-width: 481px) and (max-width: 768px) {
+            .top-section {
+                padding: 20px 15px 12px;
+            }
+            .bottom-section {
+                padding: 12px 15px 55px;
+            }
+        }
+        
+        /* Desktop - prevent over-stretching */
+        @media (min-width: 769px) {
+            .top-section {
+                padding: 30px 20px 15px;
+            }
+            .bottom-section {
+                padding: 15px 20px 70px;
+            }
+        }
+        
+        /* Very tall screens */
+        @media (min-height: 900px) {
             .container {
-                padding: 20px 20px 45px;
+                max-height: 900px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="bottom-section">
+        <div class="top-section">
             <div class="message">
                 <p>Please support the cause</p>
                 <p>by donating through:</p>
             </div>
-            
+        </div>
+        
+        <div class="bottom-section">
             <div class="payment-section">
                 <div class="payment-option wave">
                     <img src="https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png" alt="Wave Logo" class="logo-section">
@@ -265,6 +347,7 @@
                 <div class="divider">OR</div>
                 
                 <div class="payment-option aps">
+                    <!-- Replace this URL with the actual APS Wallet logo URL -->
                     <img src="https://play-lh.googleusercontent.com/SM70HDMXD0coca5AhF_OSmYyFkqW7xrQ1PApymmqG9sNCmuB5ZA_ZbKMz9QMWE5IjA5U" alt="APS Wallet Logo" class="logo-section">
                     <h2>APS WALLET</h2>
                     <p class="account-number">+220 7506134</p>
