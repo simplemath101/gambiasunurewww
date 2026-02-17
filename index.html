@@ -2,395 +2,649 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wave Donation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ramadan Quiz Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(180deg, #1E7F5C 0%, #145A32 50%, #145A32 50%, #0F3D2E 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
             margin: 0;
-            overflow-x: hidden;
+            padding: 0;
         }
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 900px;
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #0a0a1a;
+            color: #fff;
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .top-section {
-            height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            padding: 20px 15px 10px;
+            min-height: 100vh;
+            overflow: hidden;
         }
-        .bottom-section {
-            height: 50vh;
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Background image with low opacity overlay */
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=1200');
+            /* 👆 REPLACE THIS URL with your Ramadan themed image URL */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* Low opacity background image */
+            z-index: 0;
+        }
+
+        /* Deep teal/navy gradient overlay on top of background image */
+        .container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg,
+                rgba(5, 30, 60, 0.92) 0%,
+                rgba(10, 20, 50, 0.88) 40%,
+                rgba(30, 10, 60, 0.90) 100%
+            );
+            z-index: 1;
+        }
+
+        /* Decorative crescent moon top-right */
+        .moon-deco {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            box-shadow: inset -30px -10px 0 0 rgba(255, 215, 80, 0.18);
+            border: 2px solid rgba(255, 215, 80, 0.12);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Star decorations */
+        .stars-deco {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 220, 100, 0.7);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Content is above both pseudo-elements */
+        .question-number {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(20, 60, 80, 0.9), rgba(10, 30, 60, 0.9));
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(100, 200, 255, 0.15), 0 0 0 1px rgba(255, 215, 80, 0.3);
+            z-index: 10;
+            text-align: center;
+            min-width: 140px;
+            color: #ffd740;
+            text-shadow: 0 0 12px rgba(255, 215, 80, 0.5);
+            white-space: nowrap;
+        }
+
+        /* Ramadan icon/title badge */
+        .ramadan-badge {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 215, 80, 0.08);
+            border: 1px solid rgba(255, 215, 80, 0.25);
+            border-radius: 30px;
+            padding: 5px 15px;
+        }
+
+        .ramadan-badge span {
+            font-family: 'Amiri', serif;
+            font-size: 0.95rem;
+            color: rgba(255, 215, 80, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .question-container {
+            width: 92%;
+            margin-top: 60px;
+            height: calc(100% - 120px);
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            padding: 10px 15px 60px;
+            background: linear-gradient(160deg,
+                rgba(10, 35, 80, 0.75) 0%,
+                rgba(15, 25, 65, 0.80) 100%
+            );
+            border: 1px solid rgba(255, 215, 80, 0.2);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(100, 180, 255, 0.04),
+                0 0 0 1px rgba(255, 255, 255, 0.04);
+            position: relative;
+            z-index: 10;
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.5s;
+            overflow: hidden;
         }
-        .logo-section {
-            width: clamp(100px, 25vw, 180px);
-            height: auto;
-            max-height: 60px;
-            object-fit: contain;
-            margin-bottom: 10px;
+
+        /* Top gold shimmer line */
+        .question-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 215, 80, 0.6),
+                transparent
+            );
+            border-radius: 2px;
         }
-        .message {
-            color: white;
-            margin-top: 0;
-            margin-bottom: 0;
-            max-width: 800px;
+
+        .timer-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 12px;
         }
-        
-        .stat-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: clamp(16px, 3.5vw, 28px);
-            margin-bottom: clamp(16px, 4vw, 32px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.2s;
+
+        .timer-container {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
         }
-        
-        .stat-box p {
-            font-size: clamp(18px, 4vw, 32px);
-            font-weight: 600;
-            line-height: 1.4;
-            margin: 0;
-            color: rgba(255, 255, 255, 0.95);
+
+        .timer {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd740, #ffaa00);
+            width: 100%;
+            transition: width 10s linear, background 0.5s;
+            box-shadow: 0 0 8px rgba(255, 215, 64, 0.5);
         }
-        
-        .stat-highlight {
-            color: #FFD700;
+
+        .timer.paused {
+            transition: none;
+        }
+
+        .timer.ending {
+            background: linear-gradient(90deg, #ff4444, #ff0000);
+            box-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+        }
+
+        .countdown {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #ffd740;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+            border: 1px solid rgba(255, 215, 80, 0.3);
+        }
+
+        .countdown.hidden {
+            display: none;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 165px;
+            margin: 6px 0 14px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 215, 80, 0.15);
+        }
+
+        .question-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* TikTok Banner */
+        .tiktok-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px 12px;
+            z-index: 10;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 80, 0.25);
+            max-width: 90%;
+        }
+
+        .tiktok-logo {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            flex-shrink: 0;
+            opacity: 0.75;
+        }
+
+        .tiktok-text {
             font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0.75;
+            color: #ffd740;
         }
-        
-        .call-to-action {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.4s;
+
+        @keyframes subtle-pulse {
+            0%   { transform: translate(-50%, -50%) scale(1); }
+            50%  { transform: translate(-50%, -50%) scale(1.03); }
+            100% { transform: translate(-50%, -50%) scale(1); }
         }
-        
-        .call-to-action p {
-            font-size: clamp(22px, 4.8vw, 48px);
+
+        .tiktok-banner {
+            animation: subtle-pulse 3s ease-in-out infinite;
+        }
+
+        .question {
+            font-family: 'Amiri', serif;
+            font-size: 1.45rem;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 6px;
+            margin-bottom: 16px;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            padding: 0 6px;
+            line-height: 1.45;
+            color: #fff;
         }
-        
-        .call-to-action p:last-child {
-            margin-bottom: 0;
-        }
-        
-        .payment-section {
+
+        .options {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.8s;
             width: 100%;
-            max-width: 800px;
-            padding: 0 10px;
-            margin-top: 20px;
+            margin-top: 4px;
         }
-        
-        .payment-option {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: clamp(14px, 3vw, 26px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .payment-option:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .payment-option.aps {
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-        
-        .payment-option.aps:hover {
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-        }
-        
-        .payment-option.wave {
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-        
-        .payment-option.wave:hover {
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-        }
-        
-        .bank-logo {
-            width: clamp(100px, 25vw, 180px);
-            height: auto;
-            max-height: 60px;
-            object-fit: contain;
-            margin-bottom: 10px;
-        }
-        
-        .payment-option h2 {
+
+        .option {
+            background: linear-gradient(135deg,
+                rgba(255, 215, 80, 0.08),
+                rgba(100, 160, 220, 0.08)
+            );
+            border: 1px solid rgba(255, 215, 80, 0.22);
             color: white;
-            font-size: clamp(18px, 3.8vw, 36px);
-            margin-bottom: 8px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.25s;
             font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.3px;
         }
-        
-        .account-number {
-            color: white !important;
-            font-size: clamp(16px, 3.2vw, 30px);
-            font-weight: 700;
-            margin: 4px 0;
+
+        .option:active {
+            background: rgba(255, 215, 80, 0.18);
+            transform: scale(0.98);
         }
-        
-        .account-number a {
-            color: white !important;
-            text-decoration: none;
+
+        .option.correct {
+            background: linear-gradient(135deg, #1a6e3c, #27ae60);
+            border-color: #2ecc71;
+            box-shadow: 0 0 16px rgba(46, 204, 113, 0.4);
         }
-        
-        .account-name {
-            color: rgba(255, 255, 255, 0.95) !important;
-            font-size: clamp(14px, 2.8vw, 24px);
-            font-weight: 600;
-            margin: 4px 0;
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #6e1a1a, #c0392b);
+            border-color: #e74c3c;
+            box-shadow: 0 0 16px rgba(231, 76, 60, 0.4);
         }
-        
-        .account-name a {
-            color: rgba(255, 255, 255, 0.95) !important;
-            text-decoration: none;
+
+        .question-container.exit {
+            transform: translateX(-110%);
+            opacity: 0;
         }
-        
-        .divider {
-            color: white;
-            font-size: clamp(14px, 2.8vw, 24px);
-            font-weight: 700;
-            margin: 5px 0;
-            opacity: 0.8;
+
+        .question-container.enter {
+            transform: translateX(110%);
+            opacity: 0;
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        /* Bottom crescent decoration */
+        .bottom-deco {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.35;
         }
-        
-        /* Mobile phones */
-        @media (max-width: 480px) {
-            .top-section {
-                padding: 15px 12px 8px;
-            }
-            .bottom-section {
-                padding: 8px 12px 50px;
-            }
-            .stat-box {
-                padding: 14px;
-                margin-bottom: 14px;
-            }
-            .stat-box p {
-                font-size: clamp(16px, 3.6vw, 22px);
-            }
-            .call-to-action p {
-                margin-bottom: 5px;
-            }
-            .payment-section {
-                gap: 8px;
-                padding: 0 8px;
-                margin-top: 15px;
-            }
-            .payment-option {
-                padding: 12px 10px;
-                border-radius: 14px;
-            }
-            .bank-logo,
-            .logo-section {
-                max-height: 45px;
-                margin-bottom: 8px;
-            }
-            .payment-option h2 {
-                margin-bottom: 6px;
-            }
+
+        .deco-line {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffd740);
         }
-        
-        /* Very small devices */
-        @media (max-width: 360px) {
-            .top-section {
-                padding: 12px 10px 6px;
-            }
-            .bottom-section {
-                padding: 6px 10px 45px;
-            }
-            .stat-box {
-                padding: 12px;
-                margin-bottom: 12px;
-            }
-            .payment-option {
-                padding: 10px 8px;
-            }
-            .bank-logo,
-            .logo-section {
-                max-height: 40px;
-            }
-            .payment-section {
-                gap: 6px;
-                margin-top: 12px;
-            }
+
+        .deco-line.right {
+            background: linear-gradient(90deg, #ffd740, transparent);
         }
-        
-        /* Landscape orientation on mobile */
-        @media (max-height: 667px) and (orientation: landscape) {
-            .top-section,
-            .bottom-section {
-                height: auto;
-                min-height: 50vh;
-                padding: 8px 10px;
-            }
-            .top-section {
-                justify-content: flex-end;
-                padding-bottom: 5px;
-            }
-            .bottom-section {
-                justify-content: flex-start;
-                padding-top: 5px;
-                padding-bottom: 35px;
-            }
-            .stat-box {
-                padding: 10px;
-                margin-bottom: 10px;
-            }
-            .stat-box p {
-                font-size: clamp(15px, 3.3vw, 22px);
-            }
-            .call-to-action p {
-                font-size: clamp(18px, 4vw, 36px);
-                margin-bottom: 4px;
-            }
-            .payment-section {
-                gap: 6px;
-                margin-top: 10px;
-            }
-            .payment-option {
-                padding: 8px;
-            }
-            .bank-logo,
-            .logo-section {
-                max-height: 35px;
-            }
-        }
-        
-        /* Extra short landscape screens */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .bottom-section {
-                padding-bottom: 30px;
-            }
-            .stat-box p {
-                font-size: clamp(13px, 2.8vw, 20px);
-            }
-            .call-to-action p {
-                font-size: clamp(16px, 3.5vw, 32px);
-                margin-bottom: 3px;
-            }
-            .payment-option h2 {
-                font-size: clamp(14px, 3vw, 28px);
-            }
-            .account-number {
-                font-size: clamp(12px, 2.8vw, 22px);
-            }
-            .payment-section {
-                margin-top: 8px;
-            }
-        }
-        
-        /* Tablet range */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .top-section {
-                padding: 20px 15px 12px;
-            }
-            .bottom-section {
-                padding: 12px 15px 55px;
-            }
-        }
-        
-        /* Desktop - prevent over-stretching */
-        @media (min-width: 769px) {
-            .top-section {
-                padding: 30px 20px 15px;
-            }
-            .bottom-section {
-                padding: 15px 20px 70px;
-            }
-        }
-        
-        /* Very tall screens */
-        @media (min-height: 900px) {
-            .container {
-                max-height: 900px;
-            }
+
+        .deco-star {
+            font-size: 10px;
+            color: #ffd740;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="top-section">
-            <div class="message">
-                <div class="stat-box">
-                    <p>Did you know? In The Gambia, <span class="stat-highlight">1 in 4 families</span> cannot afford a single meal to break their fast during Ramadan. <strong>But your donation can change that.</strong></p>
+        <!-- Decorative elements -->
+        <div class="moon-deco"></div>
+        <div class="stars-deco" id="stars-deco"></div>
+
+        <div class="question-number" id="question-number">☪️ Question 1 / 10</div>
+
+        <div class="question-container" id="question-container">
+            <div class="timer-section">
+                <div class="timer-container">
+                    <div class="timer paused" id="timer"></div>
                 </div>
-                <div class="call-to-action">
-                    <p>Please support the cause</p>
-                    <p>by donating through:</p>
+                <div class="countdown hidden" id="countdown">10</div>
+            </div>
+
+            <div class="image-container" id="image-container">
+                <img class="question-image" id="question-image" src="/api/placeholder/400/165" alt="Question illustration">
+                <div class="tiktok-banner">
+                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+                    </svg>
+                    <span class="tiktok-text">FOLLOW @BARAKAH CHARITY GM</span>
                 </div>
+            </div>
+
+            <div class="question" id="question">What is the name of the month of fasting in Islam?</div>
+
+            <div class="options" id="options">
+                <button class="option">Ramadan</button>
+                <button class="option">Sha'ban</button>
+                <button class="option">Muharram</button>
+                <button class="option">Dhul Hijjah</button>
             </div>
         </div>
-        
-        <div class="bottom-section">
-            <div class="payment-section">
-                <div class="payment-option wave">
-                    <img src="https://www.finextra.com/finextra-images/top_pics/xl/81c5cb874171f3560810f9dc12ecdc5e8f85193d.png" alt="Wave Logo" class="logo-section">
-                    <h2>Wave Mobile Money</h2>
-                    <p class="account-number">+220 4032368</p>
-                </div>
-                
-                <div class="divider">OR</div>
-                
-                <div class="payment-option aps">
-                    <!-- Replace this URL with the actual APS Wallet logo URL -->
-                    <img src="https://play-lh.googleusercontent.com/SM70HDMXD0coca5AhF_OSmYyFkqW7xrQ1PApymmqG9sNCmuB5ZA_ZbKMz9QMWE5IjA5U" alt="APS Wallet Logo" class="logo-section">
-                    <h2>APS WALLET</h2>
-                    <p class="account-number">+220 7506134</p>
-                </div>
-            </div>
+
+        <div class="bottom-deco">
+            <div class="deco-line"></div>
+            <span class="deco-star">✦</span>
+            <span class="deco-star" style="font-size:14px">☪</span>
+            <span class="deco-star">✦</span>
+            <div class="deco-line right"></div>
         </div>
     </div>
+
+    <script>
+        // Generate twinkling stars
+        const starsContainer = document.getElementById('stars-deco');
+        for (let i = 0; i < 25; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 2) + 's';
+            const size = 1 + Math.random() * 3;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            starsContainer.appendChild(star);
+        }
+
+        const questions = [
+            {
+                question: "In which month of the Islamic lunar calendar does Ramadan fall?",
+                options: ["7th month", "9th month", "11th month", "12th month"],
+                correctIndex: 1,
+                readTime: 5000,
+                imageSrc: "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=800&q=80"
+            },
+            {
+                question: "What is the name of the pre-dawn meal eaten before fasting begins in Ramadan?",
+                options: ["Iftar", "Suhoor", "Tarawih", "Zakat"],
+                correctIndex: 1,
+                readTime: 5000,
+                imageSrc: "https://images.unsplash.com/photo-1563699785-7455f1b80e7b?w=800&q=80"
+            },
+            {
+                question: "What is the meal called when Muslims break their fast at sunset during Ramadan?",
+                options: ["Suhoor", "Eid meal", "Iftar", "Sadaqah"],
+                correctIndex: 2,
+                readTime: 5000,
+                imageSrc: "https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=800&q=80"
+            },
+            {
+                question: "With what food is it traditionally recommended (Sunnah) to break the fast?",
+                options: ["Figs", "Olives", "Dates", "Bread"],
+                correctIndex: 2,
+                readTime: 5000,
+                imageSrc: "https://images.unsplash.com/photo-1618677831708-0e7fda3148b4?w=800&q=80"
+            },
+            {
+                question: "The Night of Power (Laylat al-Qadr) is believed to occur in which last nights of Ramadan?",
+                options: ["First 10 nights", "Middle 10 nights", "Last 10 nights", "Last 3 nights"],
+                correctIndex: 2,
+                readTime: 6000,
+                imageSrc: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&q=80"
+            },
+            {
+                question: "Which special nightly prayers are performed during Ramadan?",
+                options: ["Tahajjud", "Tarawih", "Witr", "Ishraq"],
+                correctIndex: 1,
+                readTime: 5000,
+                imageSrc: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=800&q=80"
+            },
+            {
+                question: "In which year was the first Ramadan fast observed by Muslims?",
+                options: ["1 AH / 623 CE", "2 AH / 624 CE", "5 AH / 626 CE", "10 AH / 631 CE"],
+                correctIndex: 1,
+                readTime: 6000,
+                imageSrc: "https://images.unsplash.com/photo-1548438294-1ad5d5f4f063?w=800&q=80"
+            },
+            {
+                question: "The Zakat al-Fitr charity must be given before which prayer at the end of Ramadan?",
+                options: ["Fajr prayer on Eid day", "Isha prayer on last night", "Jumuah prayer", "Asr prayer on Eid day"],
+                correctIndex: 0,
+                readTime: 6000,
+                imageSrc: "https://images.unsplash.com/photo-1561676700-98f3ce01e0c5?w=800&q=80"
+            },
+            {
+                question: "What is the Islamic practice of seclusion/retreat in the mosque during the last 10 days of Ramadan called?",
+                options: ["Hijrah", "Itikaf", "Hajj", "Dawah"],
+                correctIndex: 1,
+                readTime: 6000,
+                imageSrc: "https://images.unsplash.com/photo-1597138804456-e7dca7f59d54?w=800&q=80"
+            },
+            {
+                question: "Which holy event is commemorated during Laylat al-Qadr in Ramadan?",
+                options: ["The birth of Prophet Muhammad ﷺ", "The first revelation of the Quran", "The Hijra to Madinah", "The conquest of Makkah"],
+                correctIndex: 1,
+                readTime: 6000,
+                imageSrc: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let timerInterval;
+        let countdownInterval;
+        let optionsClickable = true;
+
+        const questionElement = document.getElementById('question');
+        const optionsContainer = document.getElementById('options');
+        const timerElement = document.getElementById('timer');
+        const countdownElement = document.getElementById('countdown');
+        const questionNumberElement = document.getElementById('question-number');
+        const questionContainerElement = document.getElementById('question-container');
+        const questionImageElement = document.getElementById('question-image');
+
+        function loadQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                questionNumberElement.textContent = `☪️ Question ${currentQuestionIndex + 1} / 10`;
+                questionContainerElement.classList.add('enter');
+
+                setTimeout(() => {
+                    questionContainerElement.classList.remove('enter', 'exit');
+
+                    const currentQuestion = questions[currentQuestionIndex];
+                    questionElement.textContent = currentQuestion.question;
+                    questionImageElement.src = currentQuestion.imageSrc;
+
+                    optionsContainer.innerHTML = '';
+                    currentQuestion.options.forEach((option, index) => {
+                        const button = document.createElement('button');
+                        button.className = 'option';
+                        button.textContent = option;
+                        button.addEventListener('click', () => {
+                            if (optionsClickable) checkAnswer(index);
+                        });
+                        optionsContainer.appendChild(button);
+                    });
+
+                    startTimerWithPause(currentQuestion.readTime);
+                    optionsClickable = true;
+                }, 50);
+
+            } else {
+                currentQuestionIndex = 0;
+                loadQuestion();
+            }
+        }
+
+        function startTimerWithPause(pauseTime) {
+            timerElement.style.transition = 'none';
+            timerElement.style.width = '100%';
+            timerElement.classList.add('paused');
+            timerElement.classList.remove('ending');
+            countdownElement.classList.add('hidden');
+
+            void timerElement.offsetWidth;
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
+
+            setTimeout(() => {
+                timerElement.classList.remove('paused');
+                timerElement.style.transition = 'width 10s linear, background 0.5s';
+                timerElement.style.width = '0%';
+
+                let secondsLeft = 10;
+                countdownElement.textContent = secondsLeft;
+                countdownElement.classList.remove('hidden');
+
+                countdownInterval = setInterval(() => {
+                    secondsLeft--;
+                    countdownElement.textContent = secondsLeft;
+
+                    if (secondsLeft <= 3) {
+                        timerElement.classList.add('ending');
+                    }
+                    if (secondsLeft <= 0) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+
+                timerInterval = setTimeout(() => {
+                    if (optionsClickable) {
+                        optionsClickable = false;
+                        clearInterval(countdownInterval);
+                        const options = document.querySelectorAll('.option');
+                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
+                        setTimeout(() => transitionToNextQuestion(), 1500);
+                    }
+                }, 10000);
+            }, pauseTime);
+        }
+
+        function checkAnswer(selectedIndex) {
+            optionsClickable = false;
+            clearTimeout(timerInterval);
+            clearInterval(countdownInterval);
+
+            const currentQuestion = questions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+
+            if (selectedIndex === currentQuestion.correctIndex) {
+                options[selectedIndex].classList.add('correct');
+            } else {
+                options[selectedIndex].classList.add('incorrect');
+                options[currentQuestion.correctIndex].classList.add('correct');
+            }
+
+            setTimeout(() => transitionToNextQuestion(), 1500);
+        }
+
+        function transitionToNextQuestion() {
+            questionContainerElement.classList.add('exit');
+            setTimeout(() => {
+                currentQuestionIndex++;
+                loadQuestion();
+            }, 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadQuestion);
+    </script>
 </body>
 </html>
