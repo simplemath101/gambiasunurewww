@@ -4,19 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ramadan Quiz Challenge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #0a0a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #000;
             color: #fff;
             display: flex;
             justify-content: center;
@@ -28,6 +21,7 @@
         .container {
             width: 100%;
             height: 100vh;
+            background: radial-gradient(ellipse at top, #1a0a2e 0%, #0d1b3e 40%, #0a0f1e 100%);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -35,616 +29,523 @@
             align-items: center;
         }
 
-        /* Background image with low opacity overlay */
-        .container::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=1200');
-            /* 👆 REPLACE THIS URL with your Ramadan themed image URL */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15; /* Low opacity background image */
-            z-index: 0;
-        }
-
-        /* Deep teal/navy gradient overlay on top of background image */
-        .container::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(160deg,
-                rgba(5, 30, 60, 0.92) 0%,
-                rgba(10, 20, 50, 0.88) 40%,
-                rgba(30, 10, 60, 0.90) 100%
-            );
-            z-index: 1;
-        }
-
-        /* Decorative crescent moon top-right */
-        .moon-deco {
-            position: absolute;
-            top: -30px;
-            right: -30px;
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            box-shadow: inset -30px -10px 0 0 rgba(255, 215, 80, 0.18);
-            border: 2px solid rgba(255, 215, 80, 0.12);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* Star decorations */
-        .stars-deco {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
+        /* ── Stars ── */
+        .stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
         .star {
             position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 220, 100, 0.7);
+            background: #fff;
             border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite;
+            animation: twinkle var(--d) ease-in-out infinite alternate;
         }
-
         @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
+            from { opacity: 0.1; transform: scale(0.8); }
+            to   { opacity: 1;   transform: scale(1.2); }
         }
 
-        /* Content is above both pseudo-elements */
+        /* ── Moon ── */
+        .moon {
+            position: absolute;
+            top: 10px; right: 16px;
+            width: 56px; height: 56px;
+            z-index: 2;
+            filter: drop-shadow(0 0 12px rgba(255,215,80,.8));
+        }
+
+        /* ── Lanterns ── */
+        .lantern {
+            position: absolute;
+            top: 54px;
+            font-size: 2rem;
+            z-index: 2;
+            animation: swing 3s ease-in-out infinite alternate;
+            transform-origin: top center;
+        }
+        .lantern-l { left: 14px; }
+        .lantern-r { right: 14px; animation-direction: alternate-reverse; }
+        @keyframes swing {
+            from { transform: rotate(-8deg); }
+            to   { transform: rotate(8deg);  }
+        }
+
+        /* ── Mosque silhouette ── */
+        .mosque {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 75px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .15;
+        }
+
+        /* ── Question badge ── */
         .question-number {
             position: absolute;
-            top: 12px;
-            left: 50%;
+            top: 12px; left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, rgba(20, 60, 80, 0.9), rgba(10, 30, 60, 0.9));
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-weight: 900;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(100, 200, 255, 0.15), 0 0 0 1px rgba(255, 215, 80, 0.3);
+            background: linear-gradient(135deg,#7c3800,#c87000,#f5c518,#c87000,#7c3800);
+            padding: 7px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.15rem;
+            box-shadow: 0 0 14px rgba(212,160,23,.7), inset 0 0 6px rgba(0,0,0,.3);
             z-index: 10;
+            border: 2px solid #ffe066;
+            min-width: 150px;
             text-align: center;
-            min-width: 140px;
-            color: #ffd740;
-            text-shadow: 0 0 12px rgba(255, 215, 80, 0.5);
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+            letter-spacing: .5px;
             white-space: nowrap;
         }
 
-        /* Ramadan icon/title badge */
-        .ramadan-badge {
+        /* ── Mubarak subtitle ── */
+        .ramadan-header {
             position: absolute;
-            top: 50px;
-            left: 50%;
+            top: 50px; left: 50%;
             transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 215, 80, 0.08);
-            border: 1px solid rgba(255, 215, 80, 0.25);
-            border-radius: 30px;
-            padding: 5px 15px;
+            font-size: .66rem;
+            color: #ffe066;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: .7;
+            white-space: nowrap;
+            z-index: 3;
+            text-shadow: 0 0 8px rgba(212,160,23,.8);
         }
 
-        .ramadan-badge span {
-            font-family: 'Amiri', serif;
-            font-size: 0.95rem;
-            color: rgba(255, 215, 80, 0.8);
-            letter-spacing: 1px;
-        }
+        /* ══════════════════════════════════════
+           ANTI-THEFT WATERMARK STRATEGY
+           The handle is split into three layers:
+           1. A diagonal repeat watermark behind content (pointer-events:none, low opacity)
+           2. The handle baked into the HEADER of every question card (always visible)
+           3. A thin gold bar at very bottom — blurring it breaks the card border
+        ══════════════════════════════════════ */
 
-        .question-container {
-            width: 92%;
-            margin-top: 60px;
-            height: calc(100% - 120px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background: linear-gradient(160deg,
-                rgba(10, 35, 80, 0.75) 0%,
-                rgba(15, 25, 65, 0.80) 100%
-            );
-            border: 1px solid rgba(255, 215, 80, 0.2);
-            border-radius: 20px;
-            padding: 16px;
-            box-shadow:
-                0 0 30px rgba(0, 0, 0, 0.5),
-                inset 0 0 30px rgba(100, 180, 255, 0.04),
-                0 0 0 1px rgba(255, 255, 255, 0.04);
-            position: relative;
-            z-index: 10;
-            transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.5s;
-            overflow: hidden;
-        }
-
-        /* Top gold shimmer line */
-        .question-container::before {
-            content: '';
+        /* Layer 1 – Diagonal repeat watermark (behind everything inside the card) */
+        .watermark-bg {
             position: absolute;
-            top: 0;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(255, 215, 80, 0.6),
-                transparent
-            );
-            border-radius: 2px;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            border-radius: 18px;
+        }
+        .watermark-bg::before {
+            content: '@barakah.charity.gm  •  @barakah.charity.gm  •  @barakah.charity.gm  •  @barakah.charity.gm  •  @barakah.charity.gm';
+            position: absolute;
+            top: -30px; left: -40px;
+            width: 200%; height: 200%;
+            color: rgba(255,220,80,0.07);
+            font-size: .75rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            word-spacing: 12px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            transform: rotate(-30deg);
+            line-height: 2.8rem;
+            pointer-events: none;
+            user-select: none;
         }
 
-        .timer-section {
-            width: 100%;
+        /* Layer 2 – Handle baked into card header bar (blurring = ruins the whole card top) */
+        .card-header-bar {
+            width: calc(100% + 30px);
+            margin: -15px -15px 14px -15px;
+            background: linear-gradient(90deg,
+                rgba(212,160,23,0.18) 0%,
+                rgba(212,160,23,0.28) 40%,
+                rgba(212,160,23,0.18) 100%);
+            border-bottom: 1px solid rgba(212,160,23,0.4);
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            position: relative;
+            z-index: 2;
+            border-radius: 18px 18px 0 0;
+        }
+
+        /* Timer lives inside the header bar */
+        .timer-wrap {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            margin-bottom: 12px;
+            gap: 4px;
         }
-
         .timer-container {
             width: 100%;
-            height: 6px;
-            background-color: rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
+            height: 8px;
+            background: rgba(255,255,255,.12);
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid rgba(212,160,23,.3);
         }
-
         .timer {
             height: 100%;
-            background: linear-gradient(90deg, #ffd740, #ffaa00);
+            background: linear-gradient(90deg,#ffe066,#f5a623);
             width: 100%;
-            transition: width 10s linear, background 0.5s;
-            box-shadow: 0 0 8px rgba(255, 215, 64, 0.5);
+            transition: width 7s linear;
+            border-radius: 8px;
         }
+        .timer.paused  { transition: none; }
+        .timer.ending  { background: linear-gradient(90deg,#ff4444,#ff0000); }
 
-        .timer.paused {
-            transition: none;
-        }
-
-        .timer.ending {
-            background: linear-gradient(90deg, #ff4444, #ff0000);
-            box-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
-        }
-
-        .countdown {
-            font-size: 1rem;
+        /* Handle text in header bar */
+        .handle-tag {
+            font-size: .72rem;
             font-weight: 900;
-            color: #ffd740;
-            background-color: rgba(0, 0, 0, 0.4);
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-            border: 1px solid rgba(255, 215, 80, 0.3);
-        }
-
-        .countdown.hidden {
-            display: none;
-        }
-
-        .image-container {
-            width: 100%;
-            height: 165px;
-            margin: 6px 0 14px;
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 215, 80, 0.15);
-        }
-
-        .question-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        /* TikTok Banner */
-        .tiktok-banner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(4px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 6px 12px;
-            z-index: 10;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 215, 80, 0.25);
-            max-width: 90%;
-        }
-
-        .tiktok-logo {
-            width: 16px;
-            height: 16px;
-            margin-right: 6px;
-            flex-shrink: 0;
-            opacity: 0.75;
-        }
-
-        .tiktok-text {
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 0.5px;
+            color: #ffe066;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 8px rgba(212,160,23,.9), 0 0 2px #000;
             white-space: nowrap;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        /* Countdown bubble */
+        .countdown {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#7c3800,#c87000);
+            border: 2px solid #ffe066;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; font-weight: bold;
+            color: #fff; text-shadow: 1px 1px 2px #000;
+            flex-shrink: 0;
+        }
+        .countdown.hidden { display: none; }
+
+        /* ── Main question card ── */
+        .question-container {
+            width: 90%;
+            margin-top: 72px;
+            height: calc(100% - 152px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(160deg,rgba(10,20,60,.9) 0%,rgba(30,10,60,.9) 100%);
+            border-radius: 18px;
+            padding: 15px;
+            box-shadow: 0 0 25px rgba(212,160,23,.35), 0 0 60px rgba(100,0,150,.2);
+            border: 1.5px solid rgba(212,160,23,.5);
+            position: relative;
+            transition: transform .5s, opacity .5s;
             overflow: hidden;
-            text-overflow: ellipsis;
-            opacity: 0.75;
-            color: #ffd740;
+            z-index: 5;
         }
 
-        @keyframes subtle-pulse {
-            0%   { transform: translate(-50%, -50%) scale(1); }
-            50%  { transform: translate(-50%, -50%) scale(1.03); }
-            100% { transform: translate(-50%, -50%) scale(1); }
+        /* Corner stars */
+        .question-container::before,
+        .question-container::after {
+            content: '✦';
+            position: absolute;
+            font-size: 1.3rem;
+            color: rgba(212,160,23,.5);
+            top: 56px; /* below header bar */
         }
+        .question-container::before { left: 14px; }
+        .question-container::after  { right: 14px; }
 
-        .tiktok-banner {
-            animation: subtle-pulse 3s ease-in-out infinite;
-        }
-
+        /* ── Question text ── */
         .question {
-            font-family: 'Amiri', serif;
             font-size: 1.45rem;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-weight: bold;
+            margin: 8px 0 18px;
             text-align: center;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-            padding: 0 6px;
-            line-height: 1.45;
+            text-shadow: 2px 2px 5px rgba(0,0,0,.9);
+            padding: 0 10px;
             color: #fff;
+            line-height: 1.38;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* ── Options ── */
         .options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 11px;
             width: 100%;
-            margin-top: 4px;
+            position: relative;
+            z-index: 2;
         }
 
         .option {
-            background: linear-gradient(135deg,
-                rgba(255, 215, 80, 0.08),
-                rgba(100, 160, 220, 0.08)
-            );
-            border: 1px solid rgba(255, 215, 80, 0.22);
-            color: white;
-            padding: 14px 16px;
+            background: linear-gradient(135deg,rgba(60,20,100,.7),rgba(10,20,80,.7));
+            border: 1.5px solid rgba(212,160,23,.5);
+            color: #fff;
+            padding: 14px;
             border-radius: 12px;
-            font-family: 'Tajawal', sans-serif;
             font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.25s;
-            font-weight: 700;
+            transition: all .25s;
+            font-weight: bold;
             text-align: center;
-            letter-spacing: 0.3px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,.6);
         }
-
-        .option:active {
-            background: rgba(255, 215, 80, 0.18);
-            transform: scale(0.98);
-        }
-
+        .option:active { transform: scale(.98); background: rgba(212,160,23,.2); }
         .option.correct {
-            background: linear-gradient(135deg, #1a6e3c, #27ae60);
+            background: linear-gradient(135deg,#1a7a2e,#27ae60);
             border-color: #2ecc71;
-            box-shadow: 0 0 16px rgba(46, 204, 113, 0.4);
+            box-shadow: 0 0 12px rgba(46,204,113,.6);
         }
-
         .option.incorrect {
-            background: linear-gradient(135deg, #6e1a1a, #c0392b);
+            background: linear-gradient(135deg,#7a1a1a,#c0392b);
             border-color: #e74c3c;
-            box-shadow: 0 0 16px rgba(231, 76, 60, 0.4);
+            box-shadow: 0 0 12px rgba(231,76,60,.6);
         }
 
-        .question-container.exit {
-            transform: translateX(-110%);
-            opacity: 0;
+        /* Layer 3 – Footer watermark bar (blurring it breaks card's bottom border) */
+        .card-footer-bar {
+            width: calc(100% + 30px);
+            margin: 14px -15px -15px -15px;
+            background: linear-gradient(90deg,
+                rgba(212,160,23,0.12) 0%,
+                rgba(212,160,23,0.22) 50%,
+                rgba(212,160,23,0.12) 100%);
+            border-top: 1px solid rgba(212,160,23,.35);
+            padding: 5px 14px;
+            text-align: center;
+            font-size: .65rem;
+            font-weight: 800;
+            color: rgba(255,220,80,.55);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            user-select: none;
+            position: relative;
+            z-index: 2;
+            border-radius: 0 0 18px 18px;
         }
 
-        .question-container.enter {
-            transform: translateX(110%);
-            opacity: 0;
-        }
-
-        /* Bottom crescent decoration */
-        .bottom-deco {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            opacity: 0.35;
-        }
-
-        .deco-line {
-            width: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #ffd740);
-        }
-
-        .deco-line.right {
-            background: linear-gradient(90deg, #ffd740, transparent);
-        }
-
-        .deco-star {
-            font-size: 10px;
-            color: #ffd740;
-        }
+        /* ── Slide transitions ── */
+        .question-container.exit  { transform: translateX(-100%); opacity: 0; }
+        .question-container.enter { transform: translateX(100%);  opacity: 0; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Decorative elements -->
-        <div class="moon-deco"></div>
-        <div class="stars-deco" id="stars-deco"></div>
+<div class="container">
 
-        <div class="question-number" id="question-number">☪️ Question 1 / 10</div>
+    <!-- Stars -->
+    <div class="stars" id="stars"></div>
 
-        <div class="question-container" id="question-container">
-            <div class="timer-section">
+    <!-- Moon -->
+    <svg class="moon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="mg" cx="40%" cy="40%" r="60%">
+                <stop offset="0%"   stop-color="#fff9c4"/>
+                <stop offset="100%" stop-color="#f5a623"/>
+            </radialGradient>
+        </defs>
+        <circle cx="52" cy="50" r="38" fill="url(#mg)"/>
+        <circle cx="72" cy="40" r="33" fill="#0d1b3e"/>
+    </svg>
+
+    <!-- Lanterns -->
+    <div class="lantern lantern-l">🪔</div>
+    <div class="lantern lantern-r">🪔</div>
+
+    <!-- Mosque silhouette -->
+    <svg class="mosque" viewBox="0 0 800 80" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+        <path fill="white" d="M0,80 L0,55 L30,55 L30,35 L50,35 L50,25 Q60,5 70,25 L70,35 L90,35 L90,55 L120,55 L120,40 L140,40 L140,30 L160,30 L160,20 Q175,0 190,20 L190,30 L210,30 L210,40 L230,40 L230,55 L280,55 L280,40 L300,40 L300,30 L320,30 L320,20 Q340,0 360,20 L360,30 L380,30 L380,40 L400,40 L400,55 L450,55 L450,30 L470,30 L470,20 Q490,0 510,20 L510,30 L530,30 L530,55 L570,55 L570,40 L590,40 L590,30 L610,30 L610,20 Q625,2 640,20 L640,30 L660,30 L660,40 L680,40 L680,55 L710,55 L710,35 L730,35 L730,25 Q740,5 750,25 L750,35 L770,35 L770,55 L800,55 L800,80 Z"/>
+    </svg>
+
+    <!-- Badge -->
+    <div class="question-number" id="question-number">Question: 1/10</div>
+    <div class="ramadan-header">🌙 Ramadan Mubarak 🌙</div>
+
+    <!-- ═══ Question card ═══ -->
+    <div class="question-container" id="question-container">
+
+        <!-- Layer 1: diagonal watermark bg -->
+        <div class="watermark-bg"></div>
+
+        <!-- Layer 2: header bar with timer + handle baked in -->
+        <div class="card-header-bar">
+            <span class="handle-tag">@barakah.charity.gm</span>
+            <div class="timer-wrap">
                 <div class="timer-container">
                     <div class="timer paused" id="timer"></div>
                 </div>
-                <div class="countdown hidden" id="countdown">10</div>
             </div>
-
-            <div class="image-container" id="image-container">
-                <img class="question-image" id="question-image" src="/api/placeholder/400/165" alt="Question illustration">
-                <div class="tiktok-banner">
-                    <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
-                        <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
-                    </svg>
-                    <span class="tiktok-text">FOLLOW @BARAKAH CHARITY GM</span>
-                </div>
-            </div>
-
-            <div class="question" id="question">What is the name of the month of fasting in Islam?</div>
-
-            <div class="options" id="options">
-                <button class="option">Ramadan</button>
-                <button class="option">Sha'ban</button>
-                <button class="option">Muharram</button>
-                <button class="option">Dhul Hijjah</button>
-            </div>
+            <div class="countdown hidden" id="countdown">7</div>
         </div>
 
-        <div class="bottom-deco">
-            <div class="deco-line"></div>
-            <span class="deco-star">✦</span>
-            <span class="deco-star" style="font-size:14px">☪</span>
-            <span class="deco-star">✦</span>
-            <div class="deco-line right"></div>
-        </div>
+        <!-- Question -->
+        <div class="question" id="question">Loading…</div>
+
+        <!-- Options -->
+        <div class="options" id="options"></div>
+
+        <!-- Layer 3: footer watermark bar -->
+        <div class="card-footer-bar">🌙 &nbsp; @barakah.charity.gm &nbsp; • &nbsp; Ramadan Mubarak &nbsp; 🌙</div>
+
     </div>
+</div>
 
-    <script>
-        // Generate twinkling stars
-        const starsContainer = document.getElementById('stars-deco');
-        for (let i = 0; i < 25; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            star.style.animationDuration = (2 + Math.random() * 2) + 's';
-            const size = 1 + Math.random() * 3;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            starsContainer.appendChild(star);
-        }
+<script>
+/* ── Starfield ── */
+(function () {
+    const c = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const z = Math.random() * 2.5 + 0.5;
+        s.style.cssText = `width:${z}px;height:${z}px;top:${Math.random()*60}%;left:${Math.random()*100}%;--d:${(Math.random()*3+1.5).toFixed(1)}s;`;
+        c.appendChild(s);
+    }
+})();
 
-        const questions = [
-            {
-                question: "In which month of the Islamic lunar calendar does Ramadan fall?",
-                options: ["7th month", "9th month", "11th month", "12th month"],
-                correctIndex: 1,
-                readTime: 5000,
-                imageSrc: "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=800&q=80"
-            },
-            {
-                question: "What is the name of the pre-dawn meal eaten before fasting begins in Ramadan?",
-                options: ["Iftar", "Suhoor", "Tarawih", "Zakat"],
-                correctIndex: 1,
-                readTime: 5000,
-                imageSrc: "https://images.unsplash.com/photo-1563699785-7455f1b80e7b?w=800&q=80"
-            },
-            {
-                question: "What is the meal called when Muslims break their fast at sunset during Ramadan?",
-                options: ["Suhoor", "Eid meal", "Iftar", "Sadaqah"],
-                correctIndex: 2,
-                readTime: 5000,
-                imageSrc: "https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=800&q=80"
-            },
-            {
-                question: "With what food is it traditionally recommended (Sunnah) to break the fast?",
-                options: ["Figs", "Olives", "Dates", "Bread"],
-                correctIndex: 2,
-                readTime: 5000,
-                imageSrc: "https://images.unsplash.com/photo-1618677831708-0e7fda3148b4?w=800&q=80"
-            },
-            {
-                question: "The Night of Power (Laylat al-Qadr) is believed to occur in which last nights of Ramadan?",
-                options: ["First 10 nights", "Middle 10 nights", "Last 10 nights", "Last 3 nights"],
-                correctIndex: 2,
-                readTime: 6000,
-                imageSrc: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&q=80"
-            },
-            {
-                question: "Which special nightly prayers are performed during Ramadan?",
-                options: ["Tahajjud", "Tarawih", "Witr", "Ishraq"],
-                correctIndex: 1,
-                readTime: 5000,
-                imageSrc: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=800&q=80"
-            },
-            {
-                question: "In which year was the first Ramadan fast observed by Muslims?",
-                options: ["1 AH / 623 CE", "2 AH / 624 CE", "5 AH / 626 CE", "10 AH / 631 CE"],
-                correctIndex: 1,
-                readTime: 6000,
-                imageSrc: "https://images.unsplash.com/photo-1548438294-1ad5d5f4f063?w=800&q=80"
-            },
-            {
-                question: "The Zakat al-Fitr charity must be given before which prayer at the end of Ramadan?",
-                options: ["Fajr prayer on Eid day", "Isha prayer on last night", "Jumuah prayer", "Asr prayer on Eid day"],
-                correctIndex: 0,
-                readTime: 6000,
-                imageSrc: "https://images.unsplash.com/photo-1561676700-98f3ce01e0c5?w=800&q=80"
-            },
-            {
-                question: "What is the Islamic practice of seclusion/retreat in the mosque during the last 10 days of Ramadan called?",
-                options: ["Hijrah", "Itikaf", "Hajj", "Dawah"],
-                correctIndex: 1,
-                readTime: 6000,
-                imageSrc: "https://images.unsplash.com/photo-1597138804456-e7dca7f59d54?w=800&q=80"
-            },
-            {
-                question: "Which holy event is commemorated during Laylat al-Qadr in Ramadan?",
-                options: ["The birth of Prophet Muhammad ﷺ", "The first revelation of the Quran", "The Hijra to Madinah", "The conquest of Makkah"],
-                correctIndex: 1,
-                readTime: 6000,
-                imageSrc: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80"
-            }
-        ];
+/* ── Questions ── */
+const questions = [
+    {
+        question: "In Islam, during which month does Ramadan occur?",
+        options: ["Shawwal", "Rajab", "The 9th month", "Dhul Hijjah"],
+        correctIndex: 2, readTime: 5000
+    },
+    {
+        question: "What is the pre-dawn meal eaten before fasting begins called?",
+        options: ["Iftar", "Suhoor", "Zakat", "Sadaqah"],
+        correctIndex: 1, readTime: 5000
+    },
+    {
+        question: "What is the meal used to break the fast at sunset called?",
+        options: ["Suhoor", "Tarawih", "Iftar", "Eid"],
+        correctIndex: 2, readTime: 5000
+    },
+    {
+        question: "With which food did Prophet Muhammad (SAW) traditionally break his fast?",
+        options: ["Figs", "Pomegranate", "Dates", "Olives"],
+        correctIndex: 2, readTime: 5000
+    },
+    {
+        question: "What is the special nightly prayer performed during Ramadan called?",
+        options: ["Tahajjud", "Tarawih", "Witr", "Jumu'ah"],
+        correctIndex: 1, readTime: 6000
+    },
+    {
+        question: "Laylat al-Qadr (Night of Power) falls in which part of Ramadan?",
+        options: ["First 10 nights", "Middle 10 nights", "Last 10 nights", "First night only"],
+        correctIndex: 2, readTime: 6000
+    },
+    {
+        question: "Which holy book was revealed during the month of Ramadan?",
+        options: ["Torah", "Bible", "Zabur", "The Quran"],
+        correctIndex: 3, readTime: 5000
+    },
+    {
+        question: "What is the obligatory charity paid at the end of Ramadan called?",
+        options: ["Zakat al-Fitr", "Sadaqah", "Khums", "Jizya"],
+        correctIndex: 0, readTime: 6000
+    },
+    {
+        question: "What is the celebration marking the end of Ramadan called?",
+        options: ["Eid al-Adha", "Mawlid", "Eid al-Fitr", "Isra Mi'raj"],
+        correctIndex: 2, readTime: 5000
+    },
+    {
+        question: "How many times a day are Muslims required to pray during Ramadan?",
+        options: ["3 times", "4 times", "5 times", "7 times"],
+        correctIndex: 2, readTime: 5000
+    }
+];
 
-        let currentQuestionIndex = 0;
-        let timerInterval;
-        let countdownInterval;
-        let optionsClickable = true;
+/* ── State ── */
+let idx = 0, timerTO, cdInt, clickable = true;
 
-        const questionElement = document.getElementById('question');
-        const optionsContainer = document.getElementById('options');
-        const timerElement = document.getElementById('timer');
-        const countdownElement = document.getElementById('countdown');
-        const questionNumberElement = document.getElementById('question-number');
-        const questionContainerElement = document.getElementById('question-container');
-        const questionImageElement = document.getElementById('question-image');
+const qEl    = document.getElementById('question');
+const opEl   = document.getElementById('options');
+const tEl    = document.getElementById('timer');
+const cdEl   = document.getElementById('countdown');
+const numEl  = document.getElementById('question-number');
+const cardEl = document.getElementById('question-container');
 
-        function loadQuestion() {
-            if (currentQuestionIndex < questions.length) {
-                questionNumberElement.textContent = `☪️ Question ${currentQuestionIndex + 1} / 10`;
-                questionContainerElement.classList.add('enter');
+/* ── Load ── */
+function load() {
+    if (idx >= questions.length) idx = 0;
+    numEl.textContent = `Question: ${idx + 1}/10`;
+    cardEl.classList.add('enter');
 
-                setTimeout(() => {
-                    questionContainerElement.classList.remove('enter', 'exit');
+    setTimeout(() => {
+        cardEl.classList.remove('enter', 'exit');
+        const q = questions[idx];
+        qEl.textContent = q.question;
 
-                    const currentQuestion = questions[currentQuestionIndex];
-                    questionElement.textContent = currentQuestion.question;
-                    questionImageElement.src = currentQuestion.imageSrc;
+        opEl.innerHTML = '';
+        q.options.forEach((o, i) => {
+            const b = document.createElement('button');
+            b.className = 'option';
+            b.textContent = o;
+            b.addEventListener('click', () => { if (clickable) check(i); });
+            opEl.appendChild(b);
+        });
 
-                    optionsContainer.innerHTML = '';
-                    currentQuestion.options.forEach((option, index) => {
-                        const button = document.createElement('button');
-                        button.className = 'option';
-                        button.textContent = option;
-                        button.addEventListener('click', () => {
-                            if (optionsClickable) checkAnswer(index);
-                        });
-                        optionsContainer.appendChild(button);
-                    });
+        startTimer(q.readTime);
+        clickable = true;
+    }, 50);
+}
 
-                    startTimerWithPause(currentQuestion.readTime);
-                    optionsClickable = true;
-                }, 50);
+/* ── Timer ── */
+function startTimer(pause) {
+    tEl.style.transition = 'none';
+    tEl.style.width = '100%';
+    tEl.classList.add('paused');
+    tEl.classList.remove('ending');
+    cdEl.classList.add('hidden');
+    void tEl.offsetWidth;
+    clearTimeout(timerTO);
+    clearInterval(cdInt);
 
-            } else {
-                currentQuestionIndex = 0;
-                loadQuestion();
-            }
-        }
+    setTimeout(() => {
+        tEl.classList.remove('paused');
+        tEl.style.transition = 'width 7s linear';
+        tEl.style.width = '0%';
 
-        function startTimerWithPause(pauseTime) {
-            timerElement.style.transition = 'none';
-            timerElement.style.width = '100%';
-            timerElement.classList.add('paused');
-            timerElement.classList.remove('ending');
-            countdownElement.classList.add('hidden');
+        let s = 7;
+        cdEl.textContent = s;
+        cdEl.classList.remove('hidden');
 
-            void timerElement.offsetWidth;
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
+        cdInt = setInterval(() => {
+            s--;
+            cdEl.textContent = s;
+            if (s <= 3) tEl.classList.add('ending');
+            if (s <= 0) clearInterval(cdInt);
+        }, 1000);
 
-            setTimeout(() => {
-                timerElement.classList.remove('paused');
-                timerElement.style.transition = 'width 10s linear, background 0.5s';
-                timerElement.style.width = '0%';
+        timerTO = setTimeout(() => {
+            if (!clickable) return;
+            clickable = false;
+            clearInterval(cdInt);
+            document.querySelectorAll('.option')[questions[idx].correctIndex].classList.add('correct');
+            setTimeout(next, 1500);
+        }, 7000);
+    }, pause);
+}
 
-                let secondsLeft = 10;
-                countdownElement.textContent = secondsLeft;
-                countdownElement.classList.remove('hidden');
+/* ── Answer ── */
+function check(i) {
+    clickable = false;
+    clearTimeout(timerTO);
+    clearInterval(cdInt);
+    const opts = document.querySelectorAll('.option');
+    const correct = questions[idx].correctIndex;
+    opts[i].classList.add(i === correct ? 'correct' : 'incorrect');
+    if (i !== correct) opts[correct].classList.add('correct');
+    setTimeout(next, 1500);
+}
 
-                countdownInterval = setInterval(() => {
-                    secondsLeft--;
-                    countdownElement.textContent = secondsLeft;
+/* ── Next ── */
+function next() {
+    cardEl.classList.add('exit');
+    setTimeout(() => { idx++; load(); }, 500);
+}
 
-                    if (secondsLeft <= 3) {
-                        timerElement.classList.add('ending');
-                    }
-                    if (secondsLeft <= 0) {
-                        clearInterval(countdownInterval);
-                    }
-                }, 1000);
-
-                timerInterval = setTimeout(() => {
-                    if (optionsClickable) {
-                        optionsClickable = false;
-                        clearInterval(countdownInterval);
-                        const options = document.querySelectorAll('.option');
-                        options[questions[currentQuestionIndex].correctIndex].classList.add('correct');
-                        setTimeout(() => transitionToNextQuestion(), 1500);
-                    }
-                }, 10000);
-            }, pauseTime);
-        }
-
-        function checkAnswer(selectedIndex) {
-            optionsClickable = false;
-            clearTimeout(timerInterval);
-            clearInterval(countdownInterval);
-
-            const currentQuestion = questions[currentQuestionIndex];
-            const options = document.querySelectorAll('.option');
-
-            if (selectedIndex === currentQuestion.correctIndex) {
-                options[selectedIndex].classList.add('correct');
-            } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[currentQuestion.correctIndex].classList.add('correct');
-            }
-
-            setTimeout(() => transitionToNextQuestion(), 1500);
-        }
-
-        function transitionToNextQuestion() {
-            questionContainerElement.classList.add('exit');
-            setTimeout(() => {
-                currentQuestionIndex++;
-                loadQuestion();
-            }, 500);
-        }
-
-        document.addEventListener('DOMContentLoaded', loadQuestion);
-    </script>
+document.addEventListener('DOMContentLoaded', load);
+</script>
 </body>
 </html>
