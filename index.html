@@ -198,8 +198,6 @@
         }
         .countdown.hidden { display: none; }
 
-
-
         .question-container {
             width: 90%;
             margin-top: 72px;
@@ -303,9 +301,49 @@
 
         .question-container.exit  { transform: translateX(-100%); opacity: 0; }
         .question-container.enter { transform: translateX(100%);  opacity: 0; }
+
+        /* iOS unlock tap overlay — shown until audio is unlocked */
+        #tap-to-start {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.82);
+            gap: 18px;
+            cursor: pointer;
+        }
+        #tap-to-start .moon-icon { font-size: 3.5rem; animation: pulse 1.6s ease-in-out infinite alternate; }
+        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.12); } }
+        #tap-to-start .tap-label {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffe066;
+            text-shadow: 0 0 18px rgba(212,160,23,.9);
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 0 30px;
+        }
+        #tap-to-start .tap-sub {
+            font-size: .85rem;
+            color: rgba(255,220,80,.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        #tap-to-start.hidden { display: none; }
     </style>
 </head>
 <body>
+
+<!-- ── iOS Audio Unlock Overlay ── -->
+<div id="tap-to-start">
+    <div class="moon-icon">🌙</div>
+    <div class="tap-label">Tap to Start the<br>Ramadan Quiz!</div>
+    <div class="tap-sub">Tap anywhere to begin</div>
+</div>
+
 <div class="container">
 
     <div class="stars" id="stars"></div>
@@ -342,7 +380,6 @@
                     <div class="timer paused" id="timer"></div>
                 </div>
             </div>
-
             <div class="countdown hidden" id="countdown">7</div>
         </div>
 
@@ -369,41 +406,73 @@
 
 /* ══════════════════════════════════════════
    AUDIO ENGINE  (Web Audio API — no files)
+   iOS FIX: AudioContext created & unlocked
+   on first direct user tap. All ticks are
+   pre-scheduled via audio clock (not setInterval)
+   so iOS doesn't block them.
 ══════════════════════════════════════════ */
 let audioCtx = null;
+let audioUnlocked = false;
 
 function getCtx() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
     return audioCtx;
 }
 
-/* Tick — realistic wall clock tick-tock (alternates each call) */
-let tickPhase = 0; // 0 = tick, 1 = tock
-function playTick() {
+/* Called on very first tap — plays a silent buffer to unlock iOS audio */
+function unlockAudio() {
+    if (audioUnlocked) return;
+    audioUnlocked = true;
+
     const ctx = getCtx();
-    const now = ctx.currentTime;
+
+    // Play a silent 1-frame buffer — this is the iOS unlock trick
+    const silentBuf = ctx.createBuffer(1, 1, ctx.sampleRate);
+    const silentSrc = ctx.createBufferSource();
+    silentSrc.buffer = silentBuf;
+    silentSrc.connect(ctx.destination);
+    silentSrc.start(0);
+
+    // Resume if suspended (required on some iOS versions)
+    if (ctx.state === 'suspended') {
+        ctx.resume();
+    }
+
+    // Hide the overlay and start the quiz
+    document.getElementById('tap-to-start').classList.add('hidden');
+    load();
+}
+
+/* Tap overlay — fires unlockAudio on first interaction */
+document.getElementById('tap-to-start').addEventListener('touchstart', unlockAudio, { once: true });
+document.getElementById('tap-to-start').addEventListener('click', unlockAudio, { once: true });
+
+/* Tick — tick/tock alternate, accepts an audioContext startTime for pre-scheduling */
+let tickPhase = 0;
+function playTick(startTime) {
+    const ctx = getCtx();
+    const now = (startTime !== undefined) ? startTime : ctx.currentTime;
     const isTick = tickPhase === 0;
     tickPhase ^= 1;
 
-    // ── Mechanical impact body: shaped noise through a resonant bandpass ──
+    // Impact noise
     const impactLen = Math.floor(ctx.sampleRate * 0.055);
     const impactBuf = ctx.createBuffer(1, impactLen, ctx.sampleRate);
     const impData = impactBuf.getChannelData(0);
     for (let i = 0; i < impactLen; i++) {
-        // Fast attack, exponential decay — hammer-on-escapement shape
         const env = Math.exp(-i / (impactLen * 0.18));
         impData[i] = (Math.random() * 2 - 1) * env;
     }
     const impSrc = ctx.createBufferSource();
     impSrc.buffer = impactBuf;
 
-    // Bandpass tuned differently for tick vs tock
     const bpf = ctx.createBiquadFilter();
     bpf.type = 'bandpass';
-    bpf.frequency.value = isTick ? 1900 : 1200; // tick = brighter, tock = deeper
+    bpf.frequency.value = isTick ? 1900 : 1200;
     bpf.Q.value = isTick ? 6 : 5;
 
-    // Narrow high-mid notch to remove harshness
     const notch = ctx.createBiquadFilter();
     notch.type = 'peaking';
     notch.frequency.value = 3500;
@@ -420,7 +489,7 @@ function playTick() {
     impGain.connect(ctx.destination);
     impSrc.start(now);
 
-    // ── Woody resonant body tone (the "case" of the clock vibrating) ──
+    // Body tone
     const bodyOsc = ctx.createOscillator();
     bodyOsc.type = 'sine';
     bodyOsc.frequency.setValueAtTime(isTick ? 520 : 370, now);
@@ -433,7 +502,7 @@ function playTick() {
     bodyOsc.start(now);
     bodyOsc.stop(now + 0.07);
 
-    // ── Faint high click transient (escapement tooth) ──
+    // High transient click
     const transLen = Math.floor(ctx.sampleRate * 0.004);
     const transBuf = ctx.createBuffer(1, transLen, ctx.sampleRate);
     const tData = transBuf.getChannelData(0);
@@ -454,12 +523,11 @@ function playTick() {
     transSrc.start(now);
 }
 
-/* Microwave ding — two-tone bell shimmer */
+/* Ding */
 function playDing() {
     const ctx = getCtx();
     const now = ctx.currentTime;
-    const freqs = [1318.5, 1760, 2217]; // E6, A6, C#7
-
+    const freqs = [1318.5, 1760, 2217];
     freqs.forEach((freq, i) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -475,32 +543,26 @@ function playDing() {
     });
 }
 
-/* Swoosh — filtered noise burst */
+/* Swoosh */
 function playSwoosh() {
     const ctx = getCtx();
     const duration = 0.55;
     const now = ctx.currentTime;
-
     const bufSize = ctx.sampleRate * duration;
     const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
     const data = buf.getChannelData(0);
     for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
-
     const src = ctx.createBufferSource();
     src.buffer = buf;
-
-    // Bandpass to make it "whoosh" instead of static
     const bpf = ctx.createBiquadFilter();
     bpf.type = 'bandpass';
     bpf.frequency.setValueAtTime(800, now);
     bpf.frequency.linearRampToValueAtTime(200, now + duration);
     bpf.Q.value = 1.5;
-
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0, now);
     gain.gain.linearRampToValueAtTime(0.45, now + 0.06);
     gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-
     src.connect(bpf);
     bpf.connect(gain);
     gain.connect(ctx.destination);
@@ -508,12 +570,30 @@ function playSwoosh() {
     src.stop(now + duration);
 }
 
-/* ══════════════════════════════════════════
-   TTS DISABLED
-══════════════════════════════════════════ */
-function stopSpeaking() {}
+/*
+ * iOS FIX: startTicking() now pre-schedules ALL 7 ticks
+ * using the Web Audio clock (ctx.currentTime + offset).
+ * This happens in one synchronous call so iOS doesn't block it.
+ * setInterval is only used for the visual countdown — not audio.
+ */
+let scheduledTickTimeouts = [];
 
+function startTicking(audioStartTime) {
+    stopTicking();
+    tickPhase = 0;
+    const ctx = getCtx();
+    // Schedule all 7 ticks in advance using audio time
+    for (let i = 0; i < 7; i++) {
+        const scheduleAt = audioStartTime + i; // one per second
+        playTick(scheduleAt);
+    }
+}
 
+function stopTicking() {
+    // Nothing to cancel since Web Audio handles timing internally.
+    // We just reset phase for next round.
+    tickPhase = 0;
+}
 
 /* ══════════════════════════════════════════
    QUESTIONS
@@ -532,7 +612,7 @@ const questions = [
 ];
 
 /* ── State ── */
-let idx = 0, timerTO, cdInt, tickInt, clickable = true;
+let idx = 0, timerTO, cdInt, clickable = true;
 
 const qEl    = document.getElementById('question');
 const opEl   = document.getElementById('options');
@@ -568,22 +648,6 @@ function load() {
     }, 50);
 }
 
-/* ── Ticking loop ── */
-function startTicking() {
-    stopTicking();
-    let count = 0;
-    tickInt = setInterval(() => {
-        playTick();
-        count++;
-        if (count >= 7) stopTicking();
-    }, 1000);
-}
-function stopTicking() {
-    clearInterval(tickInt);
-    tickInt = null;
-    tickPhase = 0;
-}
-
 /* ── Timer ── */
 function startTimer(pause) {
     tEl.style.transition = 'none';
@@ -594,9 +658,10 @@ function startTimer(pause) {
     void tEl.offsetWidth;
     clearTimeout(timerTO);
     clearInterval(cdInt);
-    stopTicking();
 
     setTimeout(() => {
+        const ctx = getCtx();
+
         tEl.classList.remove('paused');
         tEl.style.transition = 'width 7s linear';
         tEl.style.width = '0%';
@@ -605,8 +670,11 @@ function startTimer(pause) {
         cdEl.textContent = s;
         cdEl.classList.remove('hidden');
 
-        startTicking(); // begin tick sounds
+        // Pre-schedule all ticks from the audio clock perspective
+        // so iOS doesn't block them (they're all scheduled in this one call)
+        startTicking(ctx.currentTime);
 
+        // Visual-only countdown (setInterval is fine for visuals)
         cdInt = setInterval(() => {
             s--;
             cdEl.textContent = s;
@@ -618,7 +686,6 @@ function startTimer(pause) {
             if (!clickable) return;
             clickable = false;
             clearInterval(cdInt);
-            stopTicking();
             const correctBtn = document.querySelectorAll('.option')[questions[idx].correctIndex];
             correctBtn.classList.add('correct');
             playDing();
@@ -632,8 +699,6 @@ function check(i) {
     clickable = false;
     clearTimeout(timerTO);
     clearInterval(cdInt);
-    stopTicking();
-    stopSpeaking();
     const opts = document.querySelectorAll('.option');
     const correct = questions[idx].correctIndex;
     opts[i].classList.add(i === correct ? 'correct' : 'incorrect');
@@ -644,18 +709,14 @@ function check(i) {
 
 /* ── Next ── */
 function next() {
-    stopSpeaking();
     playSwoosh();
     cardEl.classList.add('exit');
     setTimeout(() => { idx++; load(); }, 500);
 }
 
-document.addEventListener('DOMContentLoaded', load);
-
-/* Resume AudioContext on first user interaction (Safari/iOS policy) */
-document.addEventListener('click', () => {
-    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-}, { once: true });
+// Note: load() is NOT called on DOMContentLoaded anymore.
+// It's called inside unlockAudio() after the user taps,
+// which is required for iOS audio to work.
 </script>
 </body>
 </html>
