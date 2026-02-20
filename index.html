@@ -29,7 +29,6 @@
             align-items: center;
         }
 
-        /* ── Stars ── */
         .stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
         .star {
             position: absolute;
@@ -42,7 +41,6 @@
             to   { opacity: 1;   transform: scale(1.2); }
         }
 
-        /* ── Moon ── */
         .moon {
             position: absolute;
             top: 10px; right: 16px;
@@ -51,7 +49,6 @@
             filter: drop-shadow(0 0 12px rgba(255,215,80,.8));
         }
 
-        /* ── Lanterns ── */
         .lantern {
             position: absolute;
             top: 54px;
@@ -67,7 +64,6 @@
             to   { transform: rotate(8deg);  }
         }
 
-        /* ── Mosque silhouette ── */
         .mosque {
             position: absolute;
             bottom: 0; left: 0;
@@ -77,7 +73,6 @@
             opacity: .15;
         }
 
-        /* ── Question badge ── */
         .question-number {
             position: absolute;
             top: 12px; left: 50%;
@@ -98,7 +93,6 @@
             white-space: nowrap;
         }
 
-        /* ── Mubarak subtitle ── */
         .ramadan-header {
             position: absolute;
             top: 50px; left: 50%;
@@ -113,15 +107,6 @@
             text-shadow: 0 0 8px rgba(212,160,23,.8);
         }
 
-        /* ══════════════════════════════════════
-           ANTI-THEFT WATERMARK STRATEGY
-           The handle is split into three layers:
-           1. A diagonal repeat watermark behind content (pointer-events:none, low opacity)
-           2. The handle baked into the HEADER of every question card (always visible)
-           3. A thin gold bar at very bottom — blurring it breaks the card border
-        ══════════════════════════════════════ */
-
-        /* Layer 1 – Diagonal repeat watermark (behind everything inside the card) */
         .watermark-bg {
             position: absolute;
             inset: 0;
@@ -148,7 +133,6 @@
             user-select: none;
         }
 
-        /* Layer 2 – Handle baked into card header bar (blurring = ruins the whole card top) */
         .card-header-bar {
             width: calc(100% + 30px);
             margin: -15px -15px 14px -15px;
@@ -167,7 +151,6 @@
             border-radius: 18px 18px 0 0;
         }
 
-        /* Timer lives inside the header bar */
         .timer-wrap {
             flex: 1;
             display: flex;
@@ -192,7 +175,6 @@
         .timer.paused  { transition: none; }
         .timer.ending  { background: linear-gradient(90deg,#ff4444,#ff0000); }
 
-        /* Handle text in header bar */
         .handle-tag {
             font-size: .72rem;
             font-weight: 900;
@@ -204,7 +186,6 @@
             flex-shrink: 0;
         }
 
-        /* Countdown bubble */
         .countdown {
             width: 32px; height: 32px;
             border-radius: 50%;
@@ -217,7 +198,8 @@
         }
         .countdown.hidden { display: none; }
 
-        /* ── Main question card ── */
+
+
         .question-container {
             width: 90%;
             margin-top: 72px;
@@ -236,19 +218,17 @@
             z-index: 5;
         }
 
-        /* Corner stars */
         .question-container::before,
         .question-container::after {
             content: '✦';
             position: absolute;
             font-size: 1.3rem;
             color: rgba(212,160,23,.5);
-            top: 56px; /* below header bar */
+            top: 56px;
         }
         .question-container::before { left: 14px; }
         .question-container::after  { right: 14px; }
 
-        /* ── Question text ── */
         .question {
             font-size: 1.45rem;
             font-weight: bold;
@@ -266,7 +246,6 @@
             justify-content: center;
         }
 
-        /* ── Options ── */
         .options {
             display: flex;
             flex-direction: column;
@@ -301,7 +280,6 @@
             box-shadow: 0 0 12px rgba(231,76,60,.6);
         }
 
-        /* Layer 3 – Footer watermark bar (blurring it breaks card's bottom border) */
         .card-footer-bar {
             width: calc(100% + 30px);
             margin: 14px -15px -15px -15px;
@@ -323,7 +301,6 @@
             border-radius: 0 0 18px 18px;
         }
 
-        /* ── Slide transitions ── */
         .question-container.exit  { transform: translateX(-100%); opacity: 0; }
         .question-container.enter { transform: translateX(100%);  opacity: 0; }
     </style>
@@ -331,10 +308,8 @@
 <body>
 <div class="container">
 
-    <!-- Stars -->
     <div class="stars" id="stars"></div>
 
-    <!-- Moon -->
     <svg class="moon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <radialGradient id="mg" cx="40%" cy="40%" r="60%">
@@ -346,26 +321,20 @@
         <circle cx="72" cy="40" r="33" fill="#0d1b3e"/>
     </svg>
 
-    <!-- Lanterns -->
     <div class="lantern lantern-l">🪔</div>
     <div class="lantern lantern-r">🪔</div>
 
-    <!-- Mosque silhouette -->
     <svg class="mosque" viewBox="0 0 800 80" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
         <path fill="white" d="M0,80 L0,55 L30,55 L30,35 L50,35 L50,25 Q60,5 70,25 L70,35 L90,35 L90,55 L120,55 L120,40 L140,40 L140,30 L160,30 L160,20 Q175,0 190,20 L190,30 L210,30 L210,40 L230,40 L230,55 L280,55 L280,40 L300,40 L300,30 L320,30 L320,20 Q340,0 360,20 L360,30 L380,30 L380,40 L400,40 L400,55 L450,55 L450,30 L470,30 L470,20 Q490,0 510,20 L510,30 L530,30 L530,55 L570,55 L570,40 L590,40 L590,30 L610,30 L610,20 Q625,2 640,20 L640,30 L660,30 L660,40 L680,40 L680,55 L710,55 L710,35 L730,35 L730,25 Q740,5 750,25 L750,35 L770,35 L770,55 L800,55 L800,80 Z"/>
     </svg>
 
-    <!-- Badge -->
     <div class="question-number" id="question-number">Question: 1/10</div>
     <div class="ramadan-header">🌙 Ramadan Mubarak 🌙</div>
 
-    <!-- ═══ Question card ═══ -->
     <div class="question-container" id="question-container">
 
-        <!-- Layer 1: diagonal watermark bg -->
         <div class="watermark-bg"></div>
 
-        <!-- Layer 2: header bar with timer + handle baked in -->
         <div class="card-header-bar">
             <span class="handle-tag">@barakah.charity.gm</span>
             <div class="timer-wrap">
@@ -373,16 +342,13 @@
                     <div class="timer paused" id="timer"></div>
                 </div>
             </div>
+
             <div class="countdown hidden" id="countdown">7</div>
         </div>
 
-        <!-- Question -->
         <div class="question" id="question">Loading…</div>
-
-        <!-- Options -->
         <div class="options" id="options"></div>
 
-        <!-- Layer 3: footer watermark bar -->
         <div class="card-footer-bar">🌙 &nbsp; @barakah.charity.gm &nbsp; • &nbsp; Ramadan Mubarak &nbsp; 🌙</div>
 
     </div>
@@ -401,62 +367,172 @@
     }
 })();
 
-/* ── Questions ── */
-const questions = [
-    {
-        question: "In Islam, during which month does Ramadan occur?",
-        options: ["Shawwal", "Rajab", "The 9th month", "Dhul Hijjah"],
-        correctIndex: 2, readTime: 5000
-    },
-    {
-        question: "What is the pre-dawn meal eaten before fasting begins called?",
-        options: ["Iftar", "Suhoor", "Zakat", "Sadaqah"],
-        correctIndex: 1, readTime: 5000
-    },
-    {
-        question: "What is the meal used to break the fast at sunset called?",
-        options: ["Suhoor", "Tarawih", "Iftar", "Eid"],
-        correctIndex: 2, readTime: 5000
-    },
-    {
-        question: "With which food did Prophet Muhammad (SAW) traditionally break his fast?",
-        options: ["Figs", "Pomegranate", "Dates", "Olives"],
-        correctIndex: 2, readTime: 5000
-    },
-    {
-        question: "What is the special nightly prayer performed during Ramadan called?",
-        options: ["Tahajjud", "Tarawih", "Witr", "Jumu'ah"],
-        correctIndex: 1, readTime: 6000
-    },
-    {
-        question: "Laylat al-Qadr (Night of Power) falls in which part of Ramadan?",
-        options: ["First 10 nights", "Middle 10 nights", "Last 10 nights", "First night only"],
-        correctIndex: 2, readTime: 6000
-    },
-    {
-        question: "Which holy book was revealed during the month of Ramadan?",
-        options: ["Torah", "Bible", "Zabur", "The Quran"],
-        correctIndex: 3, readTime: 5000
-    },
-    {
-        question: "What is the obligatory charity paid at the end of Ramadan called?",
-        options: ["Zakat al-Fitr", "Sadaqah", "Khums", "Jizya"],
-        correctIndex: 0, readTime: 6000
-    },
-    {
-        question: "What is the celebration marking the end of Ramadan called?",
-        options: ["Eid al-Adha", "Mawlid", "Eid al-Fitr", "Isra Mi'raj"],
-        correctIndex: 2, readTime: 5000
-    },
-    {
-        question: "How many times a day are Muslims required to pray during Ramadan?",
-        options: ["3 times", "4 times", "5 times", "7 times"],
-        correctIndex: 2, readTime: 5000
+/* ══════════════════════════════════════════
+   AUDIO ENGINE  (Web Audio API — no files)
+══════════════════════════════════════════ */
+let audioCtx = null;
+
+function getCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    return audioCtx;
+}
+
+/* Tick — realistic wall clock tick-tock (alternates each call) */
+let tickPhase = 0; // 0 = tick, 1 = tock
+function playTick() {
+    const ctx = getCtx();
+    const now = ctx.currentTime;
+    const isTick = tickPhase === 0;
+    tickPhase ^= 1;
+
+    // ── Mechanical impact body: shaped noise through a resonant bandpass ──
+    const impactLen = Math.floor(ctx.sampleRate * 0.055);
+    const impactBuf = ctx.createBuffer(1, impactLen, ctx.sampleRate);
+    const impData = impactBuf.getChannelData(0);
+    for (let i = 0; i < impactLen; i++) {
+        // Fast attack, exponential decay — hammer-on-escapement shape
+        const env = Math.exp(-i / (impactLen * 0.18));
+        impData[i] = (Math.random() * 2 - 1) * env;
     }
+    const impSrc = ctx.createBufferSource();
+    impSrc.buffer = impactBuf;
+
+    // Bandpass tuned differently for tick vs tock
+    const bpf = ctx.createBiquadFilter();
+    bpf.type = 'bandpass';
+    bpf.frequency.value = isTick ? 1900 : 1200; // tick = brighter, tock = deeper
+    bpf.Q.value = isTick ? 6 : 5;
+
+    // Narrow high-mid notch to remove harshness
+    const notch = ctx.createBiquadFilter();
+    notch.type = 'peaking';
+    notch.frequency.value = 3500;
+    notch.gain.value = -9;
+    notch.Q.value = 2;
+
+    const impGain = ctx.createGain();
+    impGain.gain.setValueAtTime(isTick ? 2.2 : 1.8, now);
+    impGain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+
+    impSrc.connect(bpf);
+    bpf.connect(notch);
+    notch.connect(impGain);
+    impGain.connect(ctx.destination);
+    impSrc.start(now);
+
+    // ── Woody resonant body tone (the "case" of the clock vibrating) ──
+    const bodyOsc = ctx.createOscillator();
+    bodyOsc.type = 'sine';
+    bodyOsc.frequency.setValueAtTime(isTick ? 520 : 370, now);
+    bodyOsc.frequency.exponentialRampToValueAtTime(isTick ? 480 : 340, now + 0.06);
+    const bodyGain = ctx.createGain();
+    bodyGain.gain.setValueAtTime(isTick ? 0.18 : 0.14, now);
+    bodyGain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+    bodyOsc.connect(bodyGain);
+    bodyGain.connect(ctx.destination);
+    bodyOsc.start(now);
+    bodyOsc.stop(now + 0.07);
+
+    // ── Faint high click transient (escapement tooth) ──
+    const transLen = Math.floor(ctx.sampleRate * 0.004);
+    const transBuf = ctx.createBuffer(1, transLen, ctx.sampleRate);
+    const tData = transBuf.getChannelData(0);
+    for (let i = 0; i < transLen; i++) {
+        tData[i] = (Math.random() * 2 - 1) * (1 - i / transLen);
+    }
+    const transSrc = ctx.createBufferSource();
+    transSrc.buffer = transBuf;
+    const hpf = ctx.createBiquadFilter();
+    hpf.type = 'highpass';
+    hpf.frequency.value = 5000;
+    const transGain = ctx.createGain();
+    transGain.gain.setValueAtTime(0.9, now);
+    transGain.gain.exponentialRampToValueAtTime(0.001, now + 0.004);
+    transSrc.connect(hpf);
+    hpf.connect(transGain);
+    transGain.connect(ctx.destination);
+    transSrc.start(now);
+}
+
+/* Microwave ding — two-tone bell shimmer */
+function playDing() {
+    const ctx = getCtx();
+    const now = ctx.currentTime;
+    const freqs = [1318.5, 1760, 2217]; // E6, A6, C#7
+
+    freqs.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + i * 0.07);
+        gain.gain.setValueAtTime(0, now + i * 0.07);
+        gain.gain.linearRampToValueAtTime(0.38, now + i * 0.07 + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 1.4);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + i * 0.07);
+        osc.stop(now + i * 0.07 + 1.5);
+    });
+}
+
+/* Swoosh — filtered noise burst */
+function playSwoosh() {
+    const ctx = getCtx();
+    const duration = 0.55;
+    const now = ctx.currentTime;
+
+    const bufSize = ctx.sampleRate * duration;
+    const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+
+    // Bandpass to make it "whoosh" instead of static
+    const bpf = ctx.createBiquadFilter();
+    bpf.type = 'bandpass';
+    bpf.frequency.setValueAtTime(800, now);
+    bpf.frequency.linearRampToValueAtTime(200, now + duration);
+    bpf.Q.value = 1.5;
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.45, now + 0.06);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+    src.connect(bpf);
+    bpf.connect(gain);
+    gain.connect(ctx.destination);
+    src.start(now);
+    src.stop(now + duration);
+}
+
+/* ══════════════════════════════════════════
+   TTS DISABLED
+══════════════════════════════════════════ */
+function stopSpeaking() {}
+
+
+
+/* ══════════════════════════════════════════
+   QUESTIONS
+══════════════════════════════════════════ */
+const questions = [
+    { question: "In Islam, during which month does Ramadan occur?",          options: ["Shawwal","Rajab","The 9th month","Dhul Hijjah"],     correctIndex: 2, readTime: 5000 },
+    { question: "What is the pre-dawn meal eaten before fasting begins called?", options: ["Iftar","Suhoor","Zakat","Sadaqah"],              correctIndex: 1, readTime: 5000 },
+    { question: "What is the meal used to break the fast at sunset called?", options: ["Suhoor","Tarawih","Iftar","Eid"],                    correctIndex: 2, readTime: 5000 },
+    { question: "With which food did Prophet Muhammad (SAW) traditionally break his fast?", options: ["Figs","Pomegranate","Dates","Olives"], correctIndex: 2, readTime: 5000 },
+    { question: "What is the special nightly prayer performed during Ramadan called?", options: ["Tahajjud","Tarawih","Witr","Jumu'ah"],      correctIndex: 1, readTime: 6000 },
+    { question: "Laylat al-Qadr (Night of Power) falls in which part of Ramadan?", options: ["First 10 nights","Middle 10 nights","Last 10 nights","First night only"], correctIndex: 2, readTime: 6000 },
+    { question: "Which holy book was revealed during the month of Ramadan?", options: ["Torah","Bible","Zabur","The Quran"],                 correctIndex: 3, readTime: 5000 },
+    { question: "What is the obligatory charity paid at the end of Ramadan called?", options: ["Zakat al-Fitr","Sadaqah","Khums","Jizya"],   correctIndex: 0, readTime: 6000 },
+    { question: "What is the celebration marking the end of Ramadan called?", options: ["Eid al-Adha","Mawlid","Eid al-Fitr","Isra Mi'raj"], correctIndex: 2, readTime: 5000 },
+    { question: "How many times a day are Muslims required to pray during Ramadan?", options: ["3 times","4 times","5 times","7 times"],      correctIndex: 2, readTime: 5000 }
 ];
 
 /* ── State ── */
-let idx = 0, timerTO, cdInt, clickable = true;
+let idx = 0, timerTO, cdInt, tickInt, clickable = true;
 
 const qEl    = document.getElementById('question');
 const opEl   = document.getElementById('options');
@@ -485,9 +561,27 @@ function load() {
             opEl.appendChild(b);
         });
 
+        clickable = false;
         startTimer(q.readTime);
         clickable = true;
+
     }, 50);
+}
+
+/* ── Ticking loop ── */
+function startTicking() {
+    stopTicking();
+    let count = 0;
+    tickInt = setInterval(() => {
+        playTick();
+        count++;
+        if (count >= 7) stopTicking();
+    }, 1000);
+}
+function stopTicking() {
+    clearInterval(tickInt);
+    tickInt = null;
+    tickPhase = 0;
 }
 
 /* ── Timer ── */
@@ -500,6 +594,7 @@ function startTimer(pause) {
     void tEl.offsetWidth;
     clearTimeout(timerTO);
     clearInterval(cdInt);
+    stopTicking();
 
     setTimeout(() => {
         tEl.classList.remove('paused');
@@ -509,6 +604,8 @@ function startTimer(pause) {
         let s = 7;
         cdEl.textContent = s;
         cdEl.classList.remove('hidden');
+
+        startTicking(); // begin tick sounds
 
         cdInt = setInterval(() => {
             s--;
@@ -521,7 +618,10 @@ function startTimer(pause) {
             if (!clickable) return;
             clickable = false;
             clearInterval(cdInt);
-            document.querySelectorAll('.option')[questions[idx].correctIndex].classList.add('correct');
+            stopTicking();
+            const correctBtn = document.querySelectorAll('.option')[questions[idx].correctIndex];
+            correctBtn.classList.add('correct');
+            playDing();
             setTimeout(next, 1500);
         }, 7000);
     }, pause);
@@ -532,20 +632,30 @@ function check(i) {
     clickable = false;
     clearTimeout(timerTO);
     clearInterval(cdInt);
+    stopTicking();
+    stopSpeaking();
     const opts = document.querySelectorAll('.option');
     const correct = questions[idx].correctIndex;
     opts[i].classList.add(i === correct ? 'correct' : 'incorrect');
     if (i !== correct) opts[correct].classList.add('correct');
+    playDing();
     setTimeout(next, 1500);
 }
 
 /* ── Next ── */
 function next() {
+    stopSpeaking();
+    playSwoosh();
     cardEl.classList.add('exit');
     setTimeout(() => { idx++; load(); }, 500);
 }
 
 document.addEventListener('DOMContentLoaded', load);
+
+/* Resume AudioContext on first user interaction (Safari/iOS policy) */
+document.addEventListener('click', () => {
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+}, { once: true });
 </script>
 </body>
 </html>
