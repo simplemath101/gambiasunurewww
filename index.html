@@ -1,722 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ramadan Quiz Challenge</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramadan Carousel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
+  body {
+    background: #f5f5f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+  }
 
-        .container {
-            width: 100%;
-            height: 100vh;
-            background: radial-gradient(ellipse at top, #1a0a2e 0%, #0d1b3e 40%, #0a0f1e 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  .carousel-wrapper {
+    position: relative;
+    width: 420px;
+  }
 
-        .stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle var(--d) ease-in-out infinite alternate;
-        }
-        @keyframes twinkle {
-            from { opacity: 0.1; transform: scale(0.8); }
-            to   { opacity: 1;   transform: scale(1.2); }
-        }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1);
+    width: 100%;
+  }
 
-        .moon {
-            position: absolute;
-            top: 10px; right: 16px;
-            width: 56px; height: 56px;
-            z-index: 2;
-            filter: drop-shadow(0 0 12px rgba(255,215,80,.8));
-        }
+  .slide {
+    min-width: 420px;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 48px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    position: relative;
+    overflow: hidden;
+  }
 
-        .lantern {
-            position: absolute;
-            top: 54px;
-            font-size: 2rem;
-            z-index: 2;
-            animation: swing 3s ease-in-out infinite alternate;
-            transform-origin: top center;
-        }
-        .lantern-l { left: 14px; }
-        .lantern-r { right: 14px; animation-direction: alternate-reverse; }
-        @keyframes swing {
-            from { transform: rotate(-8deg); }
-            to   { transform: rotate(8deg);  }
-        }
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f5c518, #f0a500);
+  }
 
-        .mosque {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 75px;
-            pointer-events: none;
-            z-index: 0;
-            opacity: .15;
-        }
+  .slide-number {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: #ccc;
+    letter-spacing: 2px;
+  }
 
-        .question-number {
-            position: absolute;
-            top: 12px; left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg,#7c3800,#c87000,#f5c518,#c87000,#7c3800);
-            padding: 7px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.15rem;
-            box-shadow: 0 0 14px rgba(212,160,23,.7), inset 0 0 6px rgba(0,0,0,.3);
-            z-index: 10;
-            border: 2px solid #ffe066;
-            min-width: 150px;
-            text-align: center;
-            color: #fff;
-            text-shadow: 1px 1px 3px #000;
-            letter-spacing: .5px;
-            white-space: nowrap;
-        }
+  .statement {
+    text-align: center;
+    padding: 0 8px;
+  }
 
-        .ramadan-header {
-            position: absolute;
-            top: 50px; left: 50%;
-            transform: translateX(-50%);
-            font-size: .66rem;
-            color: #ffe066;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: .7;
-            white-space: nowrap;
-            z-index: 3;
-            text-shadow: 0 0 8px rgba(212,160,23,.8);
-        }
+  .statement p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.5;
+  }
 
-        .watermark-bg {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-            border-radius: 18px;
-        }
-        .watermark-bg::before {
-            content: '@barakah.charity.gm  •  @barakah.charity.gm  •  @barakah.charity.gm  •  @barakah.charity.gm  •  @barakah.charity.gm';
-            position: absolute;
-            top: -30px; left: -40px;
-            width: 200%; height: 200%;
-            color: rgba(255,220,80,0.07);
-            font-size: .75rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            word-spacing: 12px;
-            white-space: pre-wrap;
-            word-break: break-all;
-            transform: rotate(-30deg);
-            line-height: 2.8rem;
-            pointer-events: none;
-            user-select: none;
-        }
+  .highlight {
+    background: #f5c518;
+    padding: 0 4px 2px;
+    border-radius: 3px;
+    color: #111;
+  }
 
-        .card-header-bar {
-            width: calc(100% + 30px);
-            margin: -15px -15px 14px -15px;
-            background: linear-gradient(90deg,
-                rgba(212,160,23,0.18) 0%,
-                rgba(212,160,23,0.28) 40%,
-                rgba(212,160,23,0.18) 100%);
-            border-bottom: 1px solid rgba(212,160,23,0.4);
-            padding: 6px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            position: relative;
-            z-index: 2;
-            border-radius: 18px 18px 0 0;
-        }
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f5c518;
+    box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
+    /* placeholder style */
+    background: #e8e8e0;
+  }
 
-        .timer-wrap {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .timer-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(255,255,255,.12);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(212,160,23,.3);
-        }
-        .timer {
-            height: 100%;
-            background: linear-gradient(90deg,#ffe066,#f5a623);
-            width: 100%;
-            transition: width 7s linear;
-            border-radius: 8px;
-        }
-        .timer.paused  { transition: none; }
-        .timer.ending  { background: linear-gradient(90deg,#ff4444,#ff0000); }
+  .img-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #f5c518;
+    box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
+    background: #e8e8e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
 
-        .handle-tag {
-            font-size: .72rem;
-            font-weight: 900;
-            color: #ffe066;
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 8px rgba(212,160,23,.9), 0 0 2px #000;
-            white-space: nowrap;
-            user-select: none;
-            flex-shrink: 0;
-        }
+  .img-placeholder svg {
+    opacity: 0.35;
+  }
 
-        .countdown {
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg,#7c3800,#c87000);
-            border: 2px solid #ffe066;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; font-weight: bold;
-            color: #fff; text-shadow: 1px 1px 2px #000;
-            flex-shrink: 0;
-        }
-        .countdown.hidden { display: none; }
+  /* Navigation */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
 
-        .question-container {
-            width: 90%;
-            margin-top: 72px;
-            height: calc(100% - 152px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: linear-gradient(160deg,rgba(10,20,60,.9) 0%,rgba(30,10,60,.9) 100%);
-            border-radius: 18px;
-            padding: 15px;
-            box-shadow: 0 0 25px rgba(212,160,23,.35), 0 0 60px rgba(100,0,150,.2);
-            border: 1.5px solid rgba(212,160,23,.5);
-            position: relative;
-            transition: transform .5s, opacity .5s;
-            overflow: hidden;
-            z-index: 5;
-        }
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #111;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
 
-        .question-container::before,
-        .question-container::after {
-            content: '✦';
-            position: absolute;
-            font-size: 1.3rem;
-            color: rgba(212,160,23,.5);
-            top: 56px;
-        }
-        .question-container::before { left: 14px; }
-        .question-container::after  { right: 14px; }
+  .nav-btn:hover {
+    background: #f5c518;
+    border-color: #f5c518;
+    transform: scale(1.08);
+  }
 
-        .question {
-            font-size: 1.45rem;
-            font-weight: bold;
-            margin: 8px 0 18px;
-            text-align: center;
-            text-shadow: 2px 2px 5px rgba(0,0,0,.9);
-            padding: 0 10px;
-            color: #fff;
-            line-height: 1.38;
-            position: relative;
-            z-index: 2;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  .nav-btn svg { display: block; }
 
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-            width: 100%;
-            position: relative;
-            z-index: 2;
-        }
+  .dots {
+    display: flex;
+    gap: 8px;
+  }
 
-        .option {
-            background: linear-gradient(135deg,rgba(60,20,100,.7),rgba(10,20,80,.7));
-            border: 1.5px solid rgba(212,160,23,.5);
-            color: #fff;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all .25s;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 1px 1px 2px rgba(0,0,0,.6);
-        }
-        .option:active { transform: scale(.98); background: rgba(212,160,23,.2); }
-        .option.correct {
-            background: linear-gradient(135deg,#1a7a2e,#27ae60);
-            border-color: #2ecc71;
-            box-shadow: 0 0 12px rgba(46,204,113,.6);
-        }
-        .option.incorrect {
-            background: linear-gradient(135deg,#7a1a1a,#c0392b);
-            border-color: #e74c3c;
-            box-shadow: 0 0 12px rgba(231,76,60,.6);
-        }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
 
-        .card-footer-bar {
-            width: calc(100% + 30px);
-            margin: 14px -15px -15px -15px;
-            background: linear-gradient(90deg,
-                rgba(212,160,23,0.12) 0%,
-                rgba(212,160,23,0.22) 50%,
-                rgba(212,160,23,0.12) 100%);
-            border-top: 1px solid rgba(212,160,23,.35);
-            padding: 5px 14px;
-            text-align: center;
-            font-size: .65rem;
-            font-weight: 800;
-            color: rgba(255,220,80,.55);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            user-select: none;
-            position: relative;
-            z-index: 2;
-            border-radius: 0 0 18px 18px;
-        }
+  .dot.active {
+    background: #f5c518;
+    transform: scale(1.3);
+  }
 
-        .question-container.exit  { transform: translateX(-100%); opacity: 0; }
-        .question-container.enter { transform: translateX(100%);  opacity: 0; }
-
-        /* iOS unlock tap overlay — shown until audio is unlocked */
-        #tap-to-start {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.82);
-            gap: 18px;
-            cursor: pointer;
-        }
-        #tap-to-start .moon-icon { font-size: 3.5rem; animation: pulse 1.6s ease-in-out infinite alternate; }
-        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.12); } }
-        #tap-to-start .tap-label {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #ffe066;
-            text-shadow: 0 0 18px rgba(212,160,23,.9);
-            letter-spacing: 1px;
-            text-align: center;
-            padding: 0 30px;
-        }
-        #tap-to-start .tap-sub {
-            font-size: .85rem;
-            color: rgba(255,220,80,.6);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        #tap-to-start.hidden { display: none; }
-    </style>
+  /* Overflow clip */
+  .carousel-viewport {
+    overflow: hidden;
+    border-radius: 24px;
+  }
+</style>
 </head>
 <body>
 
-<!-- ── iOS Audio Unlock Overlay ── -->
-<div id="tap-to-start">
-    <div class="moon-icon">🌙</div>
-    <div class="tap-label">Tap to Start the<br>Ramadan Quiz!</div>
-    <div class="tap-sub">Tap anywhere to begin</div>
-</div>
+<div class="carousel-wrapper">
+  <div class="carousel-viewport">
+    <div class="carousel-track" id="track">
 
-<div class="container">
-
-    <div class="stars" id="stars"></div>
-
-    <svg class="moon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="mg" cx="40%" cy="40%" r="60%">
-                <stop offset="0%"   stop-color="#fff9c4"/>
-                <stop offset="100%" stop-color="#f5a623"/>
-            </radialGradient>
-        </defs>
-        <circle cx="52" cy="50" r="38" fill="url(#mg)"/>
-        <circle cx="72" cy="40" r="33" fill="#0d1b3e"/>
-    </svg>
-
-    <div class="lantern lantern-l">🪔</div>
-    <div class="lantern lantern-r">🪔</div>
-
-    <svg class="mosque" viewBox="0 0 800 80" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
-        <path fill="white" d="M0,80 L0,55 L30,55 L30,35 L50,35 L50,25 Q60,5 70,25 L70,35 L90,35 L90,55 L120,55 L120,40 L140,40 L140,30 L160,30 L160,20 Q175,0 190,20 L190,30 L210,30 L210,40 L230,40 L230,55 L280,55 L280,40 L300,40 L300,30 L320,30 L320,20 Q340,0 360,20 L360,30 L380,30 L380,40 L400,40 L400,55 L450,55 L450,30 L470,30 L470,20 Q490,0 510,20 L510,30 L530,30 L530,55 L570,55 L570,40 L590,40 L590,30 L610,30 L610,20 Q625,2 640,20 L640,30 L660,30 L660,40 L680,40 L680,55 L710,55 L710,35 L730,35 L730,25 Q740,5 750,25 L750,35 L770,35 L770,55 L800,55 L800,80 Z"/>
-    </svg>
-
-    <div class="question-number" id="question-number">Question: 1/10</div>
-    <div class="ramadan-header">🌙 Ramadan Mubarak 🌙</div>
-
-    <div class="question-container" id="question-container">
-
-        <div class="watermark-bg"></div>
-
-        <div class="card-header-bar">
-            <span class="handle-tag">@barakah.charity.gm</span>
-            <div class="timer-wrap">
-                <div class="timer-container">
-                    <div class="timer paused" id="timer"></div>
-                </div>
-            </div>
-            <div class="countdown hidden" id="countdown">7</div>
+      <!-- Slide 1 -->
+      <div class="slide">
+        <span class="slide-number">01 / 04</span>
+        <div class="statement">
+          <p>In The Gambia, <span class="highlight">1 in 4 families</span> does not have a single meal for iftar during Ramadan.</p>
         </div>
+        <div class="img-placeholder">
+          <!-- Replace src below with your image URL -->
+          <!-- <img class="profile-img" src="YOUR_IMAGE_URL_HERE" alt="Family"> -->
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+      </div>
 
-        <div class="question" id="question">Loading…</div>
-        <div class="options" id="options"></div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <span class="slide-number">02 / 04</span>
+        <div class="statement">
+          <p>That's <span class="highlight">25% of families</span> in The Gambia unable to afford even one meal to break their fast.</p>
+        </div>
+        <div class="img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+      </div>
 
-        <div class="card-footer-bar">🌙 &nbsp; @barakah.charity.gm &nbsp; • &nbsp; Ramadan Mubarak &nbsp; 🌙</div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <span class="slide-number">03 / 04</span>
+        <div class="statement">
+          <p>With the <span class="highlight">sudden spike in food prices</span>, many households are struggling more than ever.</p>
+        </div>
+        <div class="img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide">
+        <span class="slide-number">04 / 04</span>
+        <div class="statement">
+          <p>But <span class="highlight">your donation</span> can change that.</p>
+        </div>
+        <div class="img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+      </div>
 
     </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <button class="nav-btn" id="prev" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <div class="dots">
+      <div class="dot active" data-idx="0"></div>
+      <div class="dot" data-idx="1"></div>
+      <div class="dot" data-idx="2"></div>
+      <div class="dot" data-idx="3"></div>
+    </div>
+    <button class="nav-btn" id="next" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </div>
 </div>
 
 <script>
-/* ── Starfield ── */
-(function () {
-    const c = document.getElementById('stars');
-    for (let i = 0; i < 80; i++) {
-        const s = document.createElement('div');
-        s.className = 'star';
-        const z = Math.random() * 2.5 + 0.5;
-        s.style.cssText = `width:${z}px;height:${z}px;top:${Math.random()*60}%;left:${Math.random()*100}%;--d:${(Math.random()*3+1.5).toFixed(1)}s;`;
-        c.appendChild(s);
-    }
-})();
+  const track = document.getElementById('track');
+  const dots = document.querySelectorAll('.dot');
+  let current = 0;
+  const total = 4;
 
-/* ══════════════════════════════════════════
-   AUDIO ENGINE  (Web Audio API — no files)
-   iOS FIX: AudioContext created & unlocked
-   on first direct user tap. All ticks are
-   pre-scheduled via audio clock (not setInterval)
-   so iOS doesn't block them.
-══════════════════════════════════════════ */
-let audioCtx = null;
-let audioUnlocked = false;
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = `translateX(-${current * 420}px)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
 
-function getCtx() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    return audioCtx;
-}
+  document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
 
-/* Called on very first tap — plays a silent buffer to unlock iOS audio */
-function unlockAudio() {
-    if (audioUnlocked) return;
-    audioUnlocked = true;
-
-    const ctx = getCtx();
-
-    // Play a silent 1-frame buffer — this is the iOS unlock trick
-    const silentBuf = ctx.createBuffer(1, 1, ctx.sampleRate);
-    const silentSrc = ctx.createBufferSource();
-    silentSrc.buffer = silentBuf;
-    silentSrc.connect(ctx.destination);
-    silentSrc.start(0);
-
-    // Resume if suspended (required on some iOS versions)
-    if (ctx.state === 'suspended') {
-        ctx.resume();
-    }
-
-    // Hide the overlay and start the quiz
-    document.getElementById('tap-to-start').classList.add('hidden');
-    load();
-}
-
-/* Tap overlay — fires unlockAudio on first interaction */
-document.getElementById('tap-to-start').addEventListener('touchstart', unlockAudio, { once: true });
-document.getElementById('tap-to-start').addEventListener('click', unlockAudio, { once: true });
-
-/* Tick — tick/tock alternate, accepts an audioContext startTime for pre-scheduling */
-let tickPhase = 0;
-function playTick(startTime) {
-    const ctx = getCtx();
-    const now = (startTime !== undefined) ? startTime : ctx.currentTime;
-    const isTick = tickPhase === 0;
-    tickPhase ^= 1;
-
-    // Impact noise
-    const impactLen = Math.floor(ctx.sampleRate * 0.055);
-    const impactBuf = ctx.createBuffer(1, impactLen, ctx.sampleRate);
-    const impData = impactBuf.getChannelData(0);
-    for (let i = 0; i < impactLen; i++) {
-        const env = Math.exp(-i / (impactLen * 0.18));
-        impData[i] = (Math.random() * 2 - 1) * env;
-    }
-    const impSrc = ctx.createBufferSource();
-    impSrc.buffer = impactBuf;
-
-    const bpf = ctx.createBiquadFilter();
-    bpf.type = 'bandpass';
-    bpf.frequency.value = isTick ? 1900 : 1200;
-    bpf.Q.value = isTick ? 6 : 5;
-
-    const notch = ctx.createBiquadFilter();
-    notch.type = 'peaking';
-    notch.frequency.value = 3500;
-    notch.gain.value = -9;
-    notch.Q.value = 2;
-
-    const impGain = ctx.createGain();
-    impGain.gain.setValueAtTime(isTick ? 2.2 : 1.8, now);
-    impGain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
-
-    impSrc.connect(bpf);
-    bpf.connect(notch);
-    notch.connect(impGain);
-    impGain.connect(ctx.destination);
-    impSrc.start(now);
-
-    // Body tone
-    const bodyOsc = ctx.createOscillator();
-    bodyOsc.type = 'sine';
-    bodyOsc.frequency.setValueAtTime(isTick ? 520 : 370, now);
-    bodyOsc.frequency.exponentialRampToValueAtTime(isTick ? 480 : 340, now + 0.06);
-    const bodyGain = ctx.createGain();
-    bodyGain.gain.setValueAtTime(isTick ? 0.18 : 0.14, now);
-    bodyGain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
-    bodyOsc.connect(bodyGain);
-    bodyGain.connect(ctx.destination);
-    bodyOsc.start(now);
-    bodyOsc.stop(now + 0.07);
-
-    // High transient click
-    const transLen = Math.floor(ctx.sampleRate * 0.004);
-    const transBuf = ctx.createBuffer(1, transLen, ctx.sampleRate);
-    const tData = transBuf.getChannelData(0);
-    for (let i = 0; i < transLen; i++) {
-        tData[i] = (Math.random() * 2 - 1) * (1 - i / transLen);
-    }
-    const transSrc = ctx.createBufferSource();
-    transSrc.buffer = transBuf;
-    const hpf = ctx.createBiquadFilter();
-    hpf.type = 'highpass';
-    hpf.frequency.value = 5000;
-    const transGain = ctx.createGain();
-    transGain.gain.setValueAtTime(0.9, now);
-    transGain.gain.exponentialRampToValueAtTime(0.001, now + 0.004);
-    transSrc.connect(hpf);
-    hpf.connect(transGain);
-    transGain.connect(ctx.destination);
-    transSrc.start(now);
-}
-
-/* Ding */
-function playDing() {
-    const ctx = getCtx();
-    const now = ctx.currentTime;
-    const freqs = [1318.5, 1760, 2217];
-    freqs.forEach((freq, i) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now + i * 0.07);
-        gain.gain.setValueAtTime(0, now + i * 0.07);
-        gain.gain.linearRampToValueAtTime(0.38, now + i * 0.07 + 0.015);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 1.4);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now + i * 0.07);
-        osc.stop(now + i * 0.07 + 1.5);
-    });
-}
-
-/* Swoosh */
-function playSwoosh() {
-    const ctx = getCtx();
-    const duration = 0.55;
-    const now = ctx.currentTime;
-    const bufSize = ctx.sampleRate * duration;
-    const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
-    const data = buf.getChannelData(0);
-    for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
-    const src = ctx.createBufferSource();
-    src.buffer = buf;
-    const bpf = ctx.createBiquadFilter();
-    bpf.type = 'bandpass';
-    bpf.frequency.setValueAtTime(800, now);
-    bpf.frequency.linearRampToValueAtTime(200, now + duration);
-    bpf.Q.value = 1.5;
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.45, now + 0.06);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-    src.connect(bpf);
-    bpf.connect(gain);
-    gain.connect(ctx.destination);
-    src.start(now);
-    src.stop(now + duration);
-}
-
-/*
- * iOS FIX: startTicking() now pre-schedules ALL 7 ticks
- * using the Web Audio clock (ctx.currentTime + offset).
- * This happens in one synchronous call so iOS doesn't block it.
- * setInterval is only used for the visual countdown — not audio.
- */
-let scheduledTickTimeouts = [];
-
-function startTicking(audioStartTime) {
-    stopTicking();
-    tickPhase = 0;
-    const ctx = getCtx();
-    // Schedule all 7 ticks in advance using audio time
-    for (let i = 0; i < 7; i++) {
-        const scheduleAt = audioStartTime + i; // one per second
-        playTick(scheduleAt);
-    }
-}
-
-function stopTicking() {
-    // Nothing to cancel since Web Audio handles timing internally.
-    // We just reset phase for next round.
-    tickPhase = 0;
-}
-
-/* ══════════════════════════════════════════
-   QUESTIONS
-══════════════════════════════════════════ */
-const questions = [
-    { question: "In Islam, what is the name of the sacred month during which Muslims fast from dawn to sunset?", options: ["Christmas","Ramadan","Muharram","Rajab"], correctIndex: 0, readTime: 5000 },
-    { question: "From what time of day does the fast begin during Ramadan?", options: ["Sunrise","Midnight","Dawn","Noon"], correctIndex: 2, readTime: 5000 },
-    { question: "At what time of day do Muslims break their fast during Ramadan?", options: ["Sunset","Afternoon","Midnight","Late morning"], correctIndex: 0, readTime: 5000 },
-    { question: "What is the pre-dawn meal eaten before the fast begins called?", options: ["Iftar","Suhoor","Eid","Zakat"], correctIndex: 1, readTime: 5000 },
-    { question: "What is the meal called that breaks the fast at sunset?", options: ["Suhoor","Tarawih","Iftar","Hajj"], correctIndex: 2, readTime: 5000 },
-    { question: "What phrase is commonly said to wish someone a blessed Ramadan?", options: ["Eid Mubarak","Ramadan Mubarak","Allahu Akbar","SubhanAllah"], correctIndex: 1, readTime: 6000 },
-    { question: "What celebration marks the end of Ramadan?", options: ["Eid al-Adha","Laylat al-Qadr","Eid al-Fitr","Mawlid"], correctIndex: 2, readTime: 5000 },
-    { question: "Which fruit is traditionally used to break the fast?", options: ["Apple","Banana","Dates","Grapes"], correctIndex: 2, readTime: 5000 },
-    { question: "Besides abstaining from food and drink, what are Muslims especially encouraged to increase during Ramadan?", options: ["Shopping","Sleeping","Prayer and good deeds","Traveling"], correctIndex: 2, readTime: 6000 },
-    { question: "Ramadan follows which calendar?", options: ["Gregorian calendar","Julian calendar","Islamic lunar calendar","Solar calendar"], correctIndex: 2, readTime: 6000 }
-];
-
-/* ── State ── */
-let idx = 0, timerTO, cdInt, clickable = true;
-
-const qEl    = document.getElementById('question');
-const opEl   = document.getElementById('options');
-const tEl    = document.getElementById('timer');
-const cdEl   = document.getElementById('countdown');
-const numEl  = document.getElementById('question-number');
-const cardEl = document.getElementById('question-container');
-
-/* ── Load ── */
-function load() {
-    if (idx >= questions.length) idx = 0;
-    numEl.textContent = `Question: ${idx + 1}/10`;
-    cardEl.classList.add('enter');
-
-    setTimeout(() => {
-        cardEl.classList.remove('enter', 'exit');
-        const q = questions[idx];
-        qEl.textContent = q.question;
-
-        opEl.innerHTML = '';
-        q.options.forEach((o, i) => {
-            const b = document.createElement('button');
-            b.className = 'option';
-            b.textContent = o;
-            b.addEventListener('click', () => { if (clickable) check(i); });
-            opEl.appendChild(b);
-        });
-
-        clickable = false;
-        startTimer(q.readTime);
-        clickable = true;
-
-    }, 50);
-}
-
-/* ── Timer ── */
-function startTimer(pause) {
-    tEl.style.transition = 'none';
-    tEl.style.width = '100%';
-    tEl.classList.add('paused');
-    tEl.classList.remove('ending');
-    cdEl.classList.add('hidden');
-    void tEl.offsetWidth;
-    clearTimeout(timerTO);
-    clearInterval(cdInt);
-
-    setTimeout(() => {
-        const ctx = getCtx();
-
-        tEl.classList.remove('paused');
-        tEl.style.transition = 'width 7s linear';
-        tEl.style.width = '0%';
-
-        let s = 7;
-        cdEl.textContent = s;
-        cdEl.classList.remove('hidden');
-
-        // Pre-schedule all ticks from the audio clock perspective
-        // so iOS doesn't block them (they're all scheduled in this one call)
-        startTicking(ctx.currentTime);
-
-        // Visual-only countdown (setInterval is fine for visuals)
-        cdInt = setInterval(() => {
-            s--;
-            cdEl.textContent = s;
-            if (s <= 3) tEl.classList.add('ending');
-            if (s <= 0) clearInterval(cdInt);
-        }, 1000);
-
-        timerTO = setTimeout(() => {
-            if (!clickable) return;
-            clickable = false;
-            clearInterval(cdInt);
-            const correctBtn = document.querySelectorAll('.option')[questions[idx].correctIndex];
-            correctBtn.classList.add('correct');
-            playDing();
-            setTimeout(next, 1500);
-        }, 7000);
-    }, pause);
-}
-
-/* ── Answer ── */
-function check(i) {
-    clickable = false;
-    clearTimeout(timerTO);
-    clearInterval(cdInt);
-    const opts = document.querySelectorAll('.option');
-    const correct = questions[idx].correctIndex;
-    opts[i].classList.add(i === correct ? 'correct' : 'incorrect');
-    if (i !== correct) opts[correct].classList.add('correct');
-    playDing();
-    setTimeout(next, 1500);
-}
-
-/* ── Next ── */
-function next() {
-    playSwoosh();
-    cardEl.classList.add('exit');
-    setTimeout(() => { idx++; load(); }, 500);
-}
-
-// Note: load() is NOT called on DOMContentLoaded anymore.
-// It's called inside unlockAudio() after the user taps,
-// which is required for iOS audio to work.
+  // Touch / swipe support
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
 </script>
 </body>
 </html>
