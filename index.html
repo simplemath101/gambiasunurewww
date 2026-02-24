@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ramadan Carousel</title>
+<title>Ramadan Carousel – TikTok</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #f5f5f0;
+    background: #1a1a1a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,43 +17,68 @@
     font-family: 'Lato', sans-serif;
   }
 
+  /* TikTok aspect ratio: 9:16 = 405 x 720px (display size) */
   .carousel-wrapper {
     position: relative;
-    width: 420px;
+    width: 405px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .carousel-viewport {
+    overflow: hidden;
+    border-radius: 20px;
+    width: 405px;
+    height: 720px;
+    position: relative;
+    flex-shrink: 0;
   }
 
   .carousel-track {
     display: flex;
+    height: 100%;
     transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1);
-    width: 100%;
   }
 
   /* ── Slides 1–4 ── */
   .slide {
-    min-width: 420px;
+    min-width: 405px;
+    height: 720px;
     background: #ffffff;
-    border-radius: 24px;
-    padding: 48px 40px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    justify-content: center;
+    gap: 36px;
     position: relative;
     overflow: hidden;
+    padding: 60px 40px 80px;
   }
 
   .slide::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 4px;
+    height: 5px;
     background: linear-gradient(90deg, #f5c518, #f0a500);
+  }
+
+  /* Decorative background crescent */
+  .slide::after {
+    content: '🌙';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    font-size: 180px;
+    opacity: 0.04;
+    pointer-events: none;
+    line-height: 1;
   }
 
   .slide-number {
     position: absolute;
-    top: 20px;
+    top: 22px;
     right: 24px;
     font-family: 'Playfair Display', serif;
     font-size: 13px;
@@ -61,55 +86,88 @@
     letter-spacing: 2px;
   }
 
-  .statement { text-align: center; padding: 0 8px; }
+  .statement {
+    text-align: center;
+    padding: 0 12px;
+    z-index: 1;
+  }
 
   .statement p {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
     color: #111;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   .highlight {
     background: #f5c518;
-    padding: 0 4px 2px;
+    padding: 0 5px 3px;
     border-radius: 3px;
     color: #111;
   }
 
   .profile-img {
-    width: 120px;
-    height: 120px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #f5c518;
-    box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
+    border: 5px solid #f5c518;
+    box-shadow: 0 8px 40px rgba(245, 197, 24, 0.35);
     background: #e8e8e0;
     flex-shrink: 0;
+    z-index: 1;
+  }
+
+  /* Bottom brand strip on slides 1–4 */
+  .slide-brand {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 56px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .slide-brand-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #f5c518;
+  }
+
+  .slide-brand-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
   }
 
   /* ── Slide 5 – Wave ── */
   .slide-wave {
-    min-width: 420px;
-    border-radius: 24px;
-    padding: 52px 40px 48px;
+    min-width: 405px;
+    height: 720px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 22px;
+    justify-content: center;
+    gap: 24px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(160deg, #0ab0f0 0%, #0077c8 55%, #004f99 100%);
-    box-shadow: 0 8px 40px rgba(0, 119, 200, 0.45);
+    padding: 60px 40px 80px;
   }
 
   .slide-wave::before {
     content: '🌙';
     position: absolute;
-    top: -18px;
-    right: -14px;
-    font-size: 110px;
+    top: -30px;
+    right: -20px;
+    font-size: 200px;
     opacity: 0.07;
     pointer-events: none;
     line-height: 1;
@@ -118,7 +176,7 @@
   .slide-wave::after {
     content: '✦ ✦ ✦';
     position: absolute;
-    bottom: 20px;
+    bottom: 72px;
     left: 50%;
     transform: translateX(-50%);
     color: rgba(255,255,255,0.15);
@@ -126,9 +184,20 @@
     letter-spacing: 12px;
   }
 
+  /* Stars top-left */
+  .stars-deco {
+    position: absolute;
+    top: 30px;
+    left: 24px;
+    font-size: 20px;
+    opacity: 0.25;
+    letter-spacing: 6px;
+    pointer-events: none;
+  }
+
   .wave-slide-number {
     position: absolute;
-    top: 20px;
+    top: 22px;
     right: 24px;
     font-family: 'Playfair Display', serif;
     font-size: 13px;
@@ -136,21 +205,20 @@
     letter-spacing: 2px;
   }
 
-  /* Wave image – circular, just like profile images */
   .wave-img {
-    width: 110px;
-    height: 110px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid rgba(255,255,255,0.6);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
     background: rgba(255,255,255,0.15);
     flex-shrink: 0;
   }
 
   .wave-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 900;
     color: #fff;
     text-align: center;
@@ -161,7 +229,7 @@
   .wave-heading span {
     background: #f5c518;
     color: #111;
-    padding: 0 5px 2px;
+    padding: 0 6px 3px;
     border-radius: 3px;
   }
 
@@ -172,29 +240,12 @@
     border-radius: 2px;
   }
 
-  .wave-brand-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
   .wave-wordmark {
     font-family: 'Lato', sans-serif;
     font-weight: 900;
-    font-size: 32px;
+    font-size: 36px;
     color: #fff;
     letter-spacing: -0.5px;
-  }
-
-  .wave-tag {
-    font-size: 11px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.8);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    background: rgba(255,255,255,0.18);
-    padding: 4px 10px;
-    border-radius: 20px;
   }
 
   .wave-number {
@@ -203,40 +254,53 @@
     gap: 12px;
     background: #fff;
     border-radius: 50px;
-    padding: 14px 28px;
+    padding: 16px 32px;
     color: #0077c8;
     font-family: 'Lato', sans-serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 900;
     letter-spacing: 1.5px;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 28px rgba(0,0,0,0.2);
     transition: transform 0.15s, box-shadow 0.15s;
   }
 
   .wave-number:hover {
     transform: scale(1.04);
-    box-shadow: 0 6px 28px rgba(0,0,0,0.22);
+    box-shadow: 0 8px 36px rgba(0,0,0,0.28);
   }
 
   .wave-number svg { flex-shrink: 0; }
 
-  .wave-hint {
-    font-size: 12px;
-    color: rgba(255,255,255,0.6);
-    font-weight: 400;
-    letter-spacing: 0.3px;
-  }
-
   .wave-msg {
     font-family: 'Lato', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.78);
     text-align: center;
-    line-height: 1.6;
-    max-width: 280px;
-    padding-bottom: 16px;
+    line-height: 1.65;
+    max-width: 290px;
+  }
+
+  /* Bottom strip wave slide */
+  .wave-bottom-strip {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 56px;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wave-bottom-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
   }
 
   /* ── Navigation ── */
@@ -245,7 +309,7 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin-top: 24px;
+    margin-top: 20px;
   }
 
   .nav-btn {
@@ -253,13 +317,13 @@
     height: 44px;
     border-radius: 50%;
     background: #fff;
-    border: 2px solid #111;
+    border: 2px solid #444;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.2s, transform 0.15s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
 
   .nav-btn:hover {
@@ -276,7 +340,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #ccc;
+    background: #555;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
   }
@@ -284,11 +348,6 @@
   .dot.active {
     background: #f5c518;
     transform: scale(1.3);
-  }
-
-  .carousel-viewport {
-    overflow: hidden;
-    border-radius: 24px;
   }
 </style>
 </head>
@@ -301,42 +360,63 @@
       <!-- Slide 1 -->
       <div class="slide">
         <span class="slide-number">01 / 05</span>
+        <img class="profile-img" src="https://img.freepik.com/premium-photo/poor-african-large-family-against-backdrop-collapsing-house_524824-2643.jpg" alt="Slide 1 image">
         <div class="statement">
           <p>In The Gambia, <span class="highlight">1 in 4 families</span> does not have a single meal for iftar during Ramadan.</p>
         </div>
-        <img class="profile-img" src="https://img.freepik.com/premium-photo/poor-african-large-family-against-backdrop-collapsing-house_524824-2643.jpg" alt="Slide 1 image">
+        <div class="slide-brand">
+          <div class="slide-brand-dot"></div>
+          <span class="slide-brand-text">Ramadan Relief · The Gambia</span>
+          <div class="slide-brand-dot"></div>
+        </div>
       </div>
 
       <!-- Slide 2 -->
       <div class="slide">
         <span class="slide-number">02 / 05</span>
+        <img class="profile-img" src="https://islamic-relief.org/wp-content/uploads/2022/05/Guardian-Kenya-3.webp" alt="Slide 2 image">
         <div class="statement">
           <p>That's <span class="highlight">25% of families</span> in The Gambia unable to afford even one meal to break their fast.</p>
         </div>
-        <img class="profile-img" src="https://islamic-relief.org/wp-content/uploads/2022/05/Guardian-Kenya-3.webp" alt="Slide 2 image">
+        <div class="slide-brand">
+          <div class="slide-brand-dot"></div>
+          <span class="slide-brand-text">Ramadan Relief · The Gambia</span>
+          <div class="slide-brand-dot"></div>
+        </div>
       </div>
 
       <!-- Slide 3 -->
       <div class="slide">
         <span class="slide-number">03 / 05</span>
+        <img class="profile-img" src="https://media.gettyimages.com/id/2077627094/video/muslims-living-in-tent-cities-in-somali-welcome-arrival-of-ramadan-in-poverty.jpg?s=640x640&k=20&c=8E_5OFyk2p7t7kRmyP2bzHBUsW9hooo0mZrwCs_cxN4=" alt="Slide 3 image">
         <div class="statement">
           <p>With the <span class="highlight">sudden spike in food prices</span>, many households are struggling more than ever.</p>
         </div>
-        <img class="profile-img" src="https://media.gettyimages.com/id/2077627094/video/muslims-living-in-tent-cities-in-somali-welcome-arrival-of-ramadan-in-poverty.jpg?s=640x640&k=20&c=8E_5OFyk2p7t7kRmyP2bzHBUsW9hooo0mZrwCs_cxN4=" alt="Slide 3 image">
+        <div class="slide-brand">
+          <div class="slide-brand-dot"></div>
+          <span class="slide-brand-text">Ramadan Relief · The Gambia</span>
+          <div class="slide-brand-dot"></div>
+        </div>
       </div>
 
       <!-- Slide 4 -->
       <div class="slide">
         <span class="slide-number">04 / 05</span>
+        <img class="profile-img" src="https://en.people.cn/NMediaFile/2021/0416/FOREIGN202104160823000523869427834.jpg" alt="Slide 4 image">
         <div class="statement">
           <p>But <span class="highlight">your donation</span> can change that.</p>
         </div>
-        <img class="profile-img" src="https://en.people.cn/NMediaFile/2021/0416/FOREIGN202104160823000523869427834.jpg" alt="Slide 4 image">
+        <div class="slide-brand">
+          <div class="slide-brand-dot"></div>
+          <span class="slide-brand-text">Ramadan Relief · The Gambia</span>
+          <div class="slide-brand-dot"></div>
+        </div>
       </div>
 
       <!-- Slide 5 – Wave Donation -->
       <div class="slide-wave">
         <span class="wave-slide-number">05 / 05</span>
+        <span class="stars-deco">✦ ✦</span>
 
         <p class="wave-heading">
           Support a family this<br><span>blessed Ramadan</span> 🌙
@@ -356,6 +436,10 @@
         </a>
 
         <p class="wave-msg">Please support a family in need in this blessed holy month of Ramadan. Every dalasi makes a difference.</p>
+
+        <div class="wave-bottom-strip">
+          <span class="wave-bottom-text">Ramadan Relief · The Gambia</span>
+        </div>
       </div>
 
     </div>
@@ -364,7 +448,7 @@
   <!-- Navigation -->
   <div class="nav">
     <button class="nav-btn" id="prev" aria-label="Previous">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="15 18 9 12 15 6"/>
       </svg>
     </button>
@@ -376,7 +460,7 @@
       <div class="dot" data-idx="4"></div>
     </div>
     <button class="nav-btn" id="next" aria-label="Next">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="9 18 15 12 9 6"/>
       </svg>
     </button>
@@ -388,10 +472,11 @@
   const dots = document.querySelectorAll('.dot');
   let current = 0;
   const total = 5;
+  const slideWidth = 405;
 
   function goTo(idx) {
     current = (idx + total) % total;
-    track.style.transform = `translateX(-${current * 420}px)`;
+    track.style.transform = `translateX(-${current * slideWidth}px)`;
     dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
