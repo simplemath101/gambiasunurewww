@@ -191,7 +191,7 @@ input,textarea,select{font-family:'Outfit',sans-serif}
 ══════════════════════════════════════ */
 
 /* Wizard shell */
-.wiz-view{background:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+.wiz-view{background:var(--ink);min-height:100vh;height:100%;display:flex;flex-direction:column}
 .wiz-header{
   padding:1.1rem 2.5rem;
   display:flex;align-items:center;justify-content:space-between;
@@ -307,11 +307,11 @@ input,textarea,select{font-family:'Outfit',sans-serif}
   background:rgba(212,168,83,.06);
   border:1px solid rgba(212,168,83,.15);
   border-radius:10px;
-  display:flex;align-items:flex-start;gap:1rem;
+  align-items:flex-start;gap:1rem;
   animation:fadeUp .3s var(--ease);
   display:none;
 }
-.industry-hint.visible{display:flex}
+.industry-hint.visible{display:flex;align-items:flex-start;gap:1rem}
 .industry-hint-ico{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
 .industry-hint h4{font-size:.85rem;font-weight:600;color:var(--gold);margin-bottom:.25rem}
 .industry-hint p{font-size:.8rem;color:var(--muted);line-height:1.6}
@@ -667,8 +667,8 @@ input,textarea,select{font-family:'Outfit',sans-serif}
   <nav class="nav" id="main-nav">
     <div class="nav-logo" onclick="showView('v-landing')">Folio<span>.</span></div>
     <div class="nav-links">
-      <a onclick="scrollTo('#features')">Features</a>
-      <a onclick="scrollTo('#templates')">Templates</a>
+      <a href="#features" onclick="scrollToAnchor('#features')">Features</a>
+      <a href="#templates" onclick="scrollToAnchor('#templates')">Templates</a>
       <button class="btn btn-outline btn-sm" onclick="startWizard()">Get Started</button>
     </div>
   </nav>
@@ -684,7 +684,7 @@ input,textarea,select{font-family:'Outfit',sans-serif}
       <p class="hero-sub">Answer a guided setup wizard, then fill six easy steps. We'll generate a stunning animated portfolio and a professional downloadable resume — instantly.</p>
       <div class="hero-ctas">
         <button class="btn btn-gold btn-lg" onclick="startWizard()">Create My Portfolio →</button>
-        <button class="btn btn-ghost btn-lg" onclick="scrollTo('#templates')">See Examples</button>
+        <button class="btn btn-ghost btn-lg" onclick="scrollToAnchor('#templates')">See Examples</button>
       </div>
       <div class="hero-stats">
         <div><div class="stat-num">3 min</div><div class="stat-lbl">average build time</div></div>
@@ -761,7 +761,7 @@ input,textarea,select{font-family:'Outfit',sans-serif}
     <div class="footer-inner">
       <div class="footer-brand"><div class="footer-logo">Folio<span>.</span></div><p>Build stunning portfolios & resumes without writing a line of code.</p></div>
       <div class="footer-links">
-        <div class="footer-col"><h5>Product</h5><a onclick="startWizard()">Create Portfolio</a><a onclick="scrollTo('#features')">Features</a><a onclick="scrollTo('#templates')">Templates</a></div>
+        <div class="footer-col"><h5>Product</h5><a href="#" onclick="startWizard()">Create Portfolio</a><a href="#features" onclick="scrollToAnchor('#features')">Features</a><a href="#templates" onclick="scrollToAnchor('#templates')">Templates</a></div>
         <div class="footer-col"><h5>Info</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy</a></div>
       </div>
     </div>
@@ -1288,19 +1288,21 @@ let qrLoaded = false;
 const STEP_LABELS = ['Personal','Skills','Experience','Education','Projects','Contact'];
 
 function loadData(){
+  // Load portfolio content
   try{ const r=localStorage.getItem(SK); D=r?JSON.parse(r):null; }
   catch(e){ D=null; }
   if(!D||!D.personal) D=JSON.parse(JSON.stringify(SAMPLE));
-  try{ const w=localStorage.getItem(WK); W=w?JSON.parse(w):null; }
-  catch(e){ W=null; }
-  if(!W) W=JSON.parse(JSON.stringify(DEFAULT_WIZARD));
-  // restore palette/font objects by id if they were stripped
-  if(W.palette && typeof W.palette === 'string'){
-    W.palette = PALETTES.find(p=>p.id===W.palette)||PALETTES[0];
-  }
-  if(W.font && typeof W.font === 'string'){
-    W.font = FONTS.find(f=>f.id===W.font)||FONTS[1];
-  }
+
+  // Load wizard selections — always re-hydrate to full objects from stored IDs
+  let saved={};
+  try{ const w=localStorage.getItem(WK); saved=w?JSON.parse(w):{}; }
+  catch(e){ saved={}; }
+
+  W = {
+    industry: INDUSTRIES.find(i=>i.id===saved.industry) || null,
+    palette:  PALETTES.find(p=>p.id===saved.palette)    || PALETTES[0],
+    font:     FONTS.find(f=>f.id===saved.font)          || FONTS[1],
+  };
 }
 loadData();
 
@@ -1349,7 +1351,7 @@ function skipWizard(){
 // ═══════════════════════════════════════════════════
 const mainNav=document.getElementById('main-nav');
 window.addEventListener('scroll',()=>mainNav&&mainNav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
-function scrollTo(sel){ document.querySelector(sel)?.scrollIntoView({behavior:'smooth',block:'start'}); }
+function scrollToAnchor(sel){ document.querySelector(sel)?.scrollIntoView({behavior:'smooth',block:'start'}); }
 const landObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');landObs.unobserve(e.target);} });
 },{threshold:.1,rootMargin:'0px 0px -50px 0px'});
@@ -1365,6 +1367,8 @@ function initWizardPanels(){
   renderFontGrid();
   updateWizProgress();
   updateWizNav();
+  // Restore hint if industry was previously selected
+  if(W.industry) showIndustryHint();
 }
 
 // ── Step navigation ──────────────────────────────────
@@ -1432,10 +1436,12 @@ function selectIndustry(id){
 function showIndustryHint(){
   const hint=document.getElementById('industry-hint');
   if(!hint||!W.industry) return;
-  document.getElementById('hint-title').textContent = W.industry.label;
-  document.getElementById('hint-desc').textContent  = W.industry.hint;
-  const tags=document.getElementById('hint-tags');
-  if(tags) tags.innerHTML = W.industry.sections.map(s=>`<span class="industry-hint-tag">${s}</span>`).join('');
+  const titleEl=document.getElementById('hint-title');
+  const descEl=document.getElementById('hint-desc');
+  const tagsEl=document.getElementById('hint-tags');
+  if(titleEl) titleEl.textContent = W.industry.label;
+  if(descEl)  descEl.textContent  = W.industry.hint;
+  if(tagsEl)  tagsEl.innerHTML    = (W.industry.sections||[]).map(s=>`<span class="industry-hint-tag">${s}</span>`).join('');
   hint.classList.add('visible');
 }
 
@@ -1458,8 +1464,7 @@ function selectPalette(id){
   W.palette = PALETTES.find(p=>p.id===id)||PALETTES[0];
   saveWizard();
   renderPaletteGrid();
-  // Live-apply to CSS variables immediately
-  applyWizardToDOM();
+  applyWizardToDOM(); // live-preview the color change
 }
 
 // ── STEP 3: FontPreviewCard component ───────────────────
@@ -1484,14 +1489,9 @@ function selectFont(id){
 }
 
 // ── Apply wizard selections to CSS custom properties ────
+// Apply wizard palette + font selections to CSS custom properties
+// Called whenever preview/CV is shown, and on initial load
 function applyWizardToDOM(){
-  // Re-hydrate W from storage if needed
-  if(!W.palette || !W.palette.primary){
-    const saved = JSON.parse(localStorage.getItem(WK)||'{}');
-    W.palette = PALETTES.find(p=>p.id===saved.palette)||PALETTES[0];
-    W.font    = FONTS.find(f=>f.id===saved.font)||FONTS[1];
-    W.industry= INDUSTRIES.find(i=>i.id===saved.industry)||null;
-  }
   const root = document.documentElement;
   if(W.palette){
     root.style.setProperty('--dw-primary', W.palette.primary);
