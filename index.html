@@ -648,6 +648,182 @@ input,textarea,select{font-family:'Outfit',sans-serif}
 .cv-scon-i small{font-family:'JetBrains Mono',monospace;font-size:7pt;color:#aaa9a0;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.08rem}
 .cv-scon-i span{color:#1a1a14}
 
+/* ══════════════════════════════════════
+   FEATURE 3 — DESIGNER THEME
+   Warm canvas · ink text · coral accent
+══════════════════════════════════════ */
+[data-theme=designer]{
+  --t-bg:#fdf8f2;
+  --t-bg2:#f7f0e6;
+  --t-bg3:#efe5d6;
+  --t-surf:#fff;
+  --t-b:rgba(0,0,0,.07);
+  --t-b2:rgba(0,0,0,.13);
+  --t-acc:var(--dw-primary,#c0633a);  /* coral/terracotta — overridden by palette */
+  --t-acc2:var(--dw-accent,#e8a87c);
+  --t-tx:#2c1f14;
+  --t-mu:#7a6a5a;
+  --t-di:#c5b8a8;
+  --t-wh:#2c1f14;
+  --t-fh:var(--dw-font-display,'Cormorant Garamond',serif);
+  --t-fb:var(--dw-font-body,'Outfit',sans-serif);
+  --t-fm:'JetBrains Mono',monospace;
+}
+/* Designer theme: no dark orbs, gentle warm glow instead */
+[data-theme=designer] .pt-hero{
+  background:linear-gradient(160deg,#fdf8f2 60%,#f5e8d6);
+}
+[data-theme=designer] .pt-orb{
+  opacity:.06;
+  background:var(--t-acc) !important;
+  filter:blur(120px);
+}
+[data-theme=designer] .pt-o2{background:var(--t-acc2) !important}
+[data-theme=designer] .pt-name{color:#2c1f14}
+[data-theme=designer] .pt-hl-p{color:#fff}
+[data-theme=designer] .pt-pc:hover{box-shadow:0 12px 40px rgba(192,99,58,.1)}
+[data-theme=designer] .pt-ptg{
+  background:rgba(192,99,58,.07);
+  border-color:rgba(192,99,58,.18);
+}
+
+/* ══════════════════════════════════════
+   FEATURE 5 — MOBILE HAMBURGER NAV
+   Appended — does not modify existing rules
+══════════════════════════════════════ */
+/* Hamburger button — hidden on desktop */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  width:38px;height:38px;
+  border-radius:8px;
+  border:1px solid var(--border2);
+  background:transparent;
+  cursor:pointer;
+  transition:background var(--t),border-color var(--t);
+  flex-shrink:0;
+}
+.nav-hamburger:hover{background:var(--ink3);border-color:var(--border3)}
+.nav-hamburger span{
+  display:block;width:18px;height:1.5px;
+  background:var(--text);border-radius:2px;
+  transition:transform .3s var(--ease),opacity .3s;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* Mobile drawer */
+.mobile-nav-drawer{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:190;
+  background:rgba(8,8,16,.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);
+  padding:5rem 2rem 2rem;
+  transform:translateY(-110%);
+  transition:transform .38s var(--ease);
+  display:flex;flex-direction:column;gap:.2rem;
+}
+.mobile-nav-drawer.open{transform:translateY(0)}
+.mnd-link{
+  display:flex;align-items:center;
+  padding:.95rem 1.1rem;
+  border-radius:10px;
+  color:var(--text);
+  font-size:1rem;font-weight:500;
+  border:1px solid transparent;
+  transition:background var(--t),border-color var(--t),color var(--t);
+  cursor:pointer;
+}
+.mnd-link:hover{background:var(--ink3);border-color:var(--border)}
+.mnd-link-accent{
+  margin-top:.5rem;
+  background:var(--gold);
+  color:#080810;
+  font-weight:700;
+  justify-content:center;
+}
+.mnd-link-accent:hover{background:var(--gold2);border-color:var(--gold2)}
+.mnd-sep{height:1px;background:var(--border);margin:.4rem 0}
+
+/* Show hamburger + hide text links on mobile */
+@media(max-width:768px){
+  .nav-hamburger{display:flex}
+  .nav-links .nav-hide-mobile{display:none}
+  .nav-links .btn{display:none} /* hide desktop CTA; mobile drawer has its own */
+}
+
+/* ── PUBLISH BUTTON STATE STYLES ── */
+.cb-publish{
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  color:#fff;font-weight:700;
+  border:none;
+}
+.cb-publish:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 4px 20px rgba(99,102,241,.4)}
+.cb-publish:disabled{opacity:.55;transform:none;cursor:not-allowed}
+
+/* Deploy success URL badge inside share panel */
+.deploy-live-url{
+  margin-top:.75rem;
+  padding:.65rem .9rem;
+  background:rgba(34,197,94,.1);
+  border:1px solid rgba(34,197,94,.25);
+  border-radius:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
+  color:#4ade80;
+  word-break:break-all;
+  line-height:1.5;
+  display:none;
+}
+.deploy-live-url.visible{display:block}
+.deploy-live-url a{color:#4ade80;text-decoration:underline}
+
+/* Error toast */
+.toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);
+  z-index:9999;
+  background:#1e0a0a;
+  border:1px solid rgba(238,0,85,.3);
+  color:#ff6b8a;
+  padding:.85rem 1.4rem;
+  border-radius:10px;
+  font-size:.88rem;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  display:flex;align-items:center;gap:.75rem;
+  transition:transform .35s var(--ease),opacity .35s;
+  opacity:0;
+  max-width:calc(100vw - 3rem);
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast-close{background:none;border:none;color:rgba(255,107,138,.6);font-size:1.1rem;cursor:pointer;padding:0;line-height:1;flex-shrink:0}
+.toast-close:hover{color:#ff6b8a}
+
+/* ── ADAPTIVE SECTION BADGE ── */
+.pt-industry-badge{
+  display:inline-flex;align-items:center;gap:.35em;
+  padding:.22em .7em;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
+  font-family:var(--t-fm);
+  font-size:.65rem;
+  color:var(--t-acc);
+  letter-spacing:.05em;
+  margin-left:.5rem;
+  vertical-align:middle;
+}
+[data-theme=minimal] .pt-industry-badge,
+[data-theme=designer] .pt-industry-badge{
+  background:rgba(0,0,0,.05);
+  border-color:rgba(0,0,0,.1);
+}
+
 /* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -667,11 +843,23 @@ input,textarea,select{font-family:'Outfit',sans-serif}
   <nav class="nav" id="main-nav">
     <div class="nav-logo" onclick="showView('v-landing')">Folio<span>.</span></div>
     <div class="nav-links">
-      <a href="#features" onclick="scrollToAnchor('#features')">Features</a>
-      <a href="#templates" onclick="scrollToAnchor('#templates')">Templates</a>
+      <a class="nav-hide-mobile" href="#features" onclick="scrollToAnchor('#features')">Features</a>
+      <a class="nav-hide-mobile" href="#templates" onclick="scrollToAnchor('#templates')">Templates</a>
       <button class="btn btn-outline btn-sm" onclick="startWizard()">Get Started</button>
     </div>
+    <!-- Mobile hamburger (hidden on desktop via CSS) -->
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile nav drawer — slides down over content -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" role="navigation">
+    <a class="mnd-link" href="#features" onclick="closeMobileNav();scrollToAnchor('#features')">✦ Features</a>
+    <a class="mnd-link" href="#templates" onclick="closeMobileNav();scrollToAnchor('#templates')">◈ Templates</a>
+    <div class="mnd-sep"></div>
+    <button class="mnd-link mnd-link-accent" onclick="closeMobileNav();startWizard()">Create My Portfolio →</button>
+  </div>
 
   <section class="hero">
     <div class="hero-bg">
@@ -976,6 +1164,7 @@ input,textarea,select{font-family:'Outfit',sans-serif}
     <button class="cb cb-out" id="cust-toggle">⚙ Customize</button>
     <button class="cb cb-out" onclick="showView('v-cv')">📄 View CV</button>
     <button class="cb cb-pur" onclick="openShare()">⊞ Share</button>
+    <button class="cb cb-publish" id="publish-btn" onclick="publishPortfolio()">🚀 Publish</button>
     <button class="cb cb-gold" onclick="showView('v-cv')">↓ Download CV</button>
   </div>
   <div class="pv-body">
@@ -988,10 +1177,13 @@ input,textarea,select{font-family:'Outfit',sans-serif}
         <button class="tch on" data-theme="developer" onclick="setTheme('developer')"><div class="tch-dot" style="background:linear-gradient(135deg,#d4a853,#8b5cf6)"></div>Developer · Dark</button>
         <button class="tch" data-theme="minimal" onclick="setTheme('minimal')"><div class="tch-dot" style="background:linear-gradient(135deg,#f6f4ee,#2b4a10)"></div>Minimal · Light</button>
         <button class="tch" data-theme="creative" onclick="setTheme('creative')"><div class="tch-dot" style="background:linear-gradient(135deg,#a78bfa,#f472b6)"></div>Creative · Vibrant</button>
+        <button class="tch" data-theme="designer" onclick="setTheme('designer')"><div class="tch-dot" style="background:linear-gradient(135deg,#fdf8f2,#c0633a)"></div>Designer · Canvas</button>
       </div>
     </div>
     <div class="cust-sec"><h4>Share Your Portfolio</h4>
       <div class="share-box"><input class="share-input" id="share-url" readonly value="folio.app/your-name"/><button class="copy-btn" id="copy-btn" onclick="copyURL()">Copy</button></div>
+      <!-- Live deploy URL — shown after successful publish -->
+      <div class="deploy-live-url" id="deploy-live-url"></div>
       <div class="qr-wrap" id="qr-wrap"></div>
       <div class="soc-btns"><button class="soc-btn" onclick="shareTw()">🐦 Twitter</button><button class="soc-btn" onclick="shareLi()">💼 LinkedIn</button></div>
     </div>
@@ -1020,6 +1212,12 @@ input,textarea,select{font-family:'Outfit',sans-serif}
     </div>
     <div class="cv-wrap"><div id="cv-paper"></div></div>
   </div>
+</div>
+
+<!-- ── GLOBAL ERROR TOAST ── -->
+<div class="toast" id="global-toast" role="alert">
+  <span id="toast-msg">Something went wrong.</span>
+  <button class="toast-close" onclick="hideToast()">✕</button>
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -1985,6 +2183,343 @@ function h(s){
 
 // ── Init: apply wizard on first load ────────────────────
 applyWizardToDOM();
+
+// ═══════════════════════════════════════════════════
+// FEATURE 4 — INDUSTRY-ADAPTIVE SECTION LABELS
+// Returns overridden labels based on selected industry
+// ═══════════════════════════════════════════════════
+
+/**
+ * getIndustryLabels(industryId)
+ * Returns an object with section label overrides for the given industry.
+ * Falls back to defaults for all unspecified fields.
+ */
+function getIndustryLabels(industryId) {
+  const defaults = {
+    projectsEyebrow:  'My work',
+    projectsTitle:    'Featured <em>projects</em>',
+    projectCardBadge: null,         // extra badge on project cards (or null)
+    showPublicationBadge: false,    // show "Publication" badge when github link present
+    expEyebrow:       "Where I've worked",
+    expTitle:         'Work <em>experience</em>',
+  };
+
+  const overrides = {
+    // UI/UX Design + Graphic Design → Case Studies + Design Process
+    uxdesign: {
+      projectsEyebrow: 'Design work',
+      projectsTitle:   'Case <em>studies</em>',
+      projectCardBadge:'Design Process',
+    },
+    graphic: {
+      projectsEyebrow: 'Creative work',
+      projectsTitle:   'Case <em>studies</em>',
+      projectCardBadge:'Creative Brief',
+    },
+
+    // Data Science / AI + Research → Research & Models + Publications badge
+    data: {
+      projectsEyebrow: 'Research & models',
+      projectsTitle:   'Research &amp; <em>models</em>',
+      showPublicationBadge: true,
+    },
+    research: {
+      projectsEyebrow: 'Research work',
+      projectsTitle:   'Research &amp; <em>publications</em>',
+      showPublicationBadge: true,
+    },
+
+    // Education / Academia → Teaching & Research timeline
+    education: {
+      expEyebrow: 'Teaching & research',
+      expTitle:   'Teaching &amp; <em>research</em>',
+    },
+    academia: {
+      expEyebrow: 'Teaching & research',
+      expTitle:   'Teaching &amp; <em>research</em>',
+    },
+  };
+
+  return { ...defaults, ...(overrides[industryId] || {}) };
+}
+
+// ═══════════════════════════════════════════════════
+// FEATURE 4 — Wire getIndustryLabels into renderPortfolio
+// We patch renderPortfolio by replacing its section strings
+// using the labels from getIndustryLabels at render time.
+//
+// Strategy: wrap the existing renderPortfolio with a decorator
+// that temporarily shadows the section HTML strings.
+// ═══════════════════════════════════════════════════
+const _origRenderPortfolio = renderPortfolio;
+
+// Override renderPortfolio to inject adaptive labels
+renderPortfolio = function() {
+  const industryId = W.industry?.id || null;
+  const lbl = getIndustryLabels(industryId);
+
+  // Store labels in a module-scope var so the template can read them
+  window.__PT_LABELS__ = lbl;
+
+  // Call the patched version which reads window.__PT_LABELS__
+  _renderPortfolioAdaptive();
+};
+
+function _renderPortfolioAdaptive() {
+  const root = document.getElementById('pt-root'); if (!root) return;
+  const p = D.personal, c = D.contact;
+  const lbl = window.__PT_LABELS__ || getIndustryLabels(null);
+
+  root.innerHTML = `
+  <div class="pt" style="background:var(--t-bg);color:var(--t-tx);font-family:var(--t-fb)">
+    <section class="pt-hero">
+      <div class="pt-orb pt-o1"></div><div class="pt-orb pt-o2"></div>
+      <div class="pt-hi">
+        <div class="pt-greet">Hello, I'm</div>
+        <h1 class="pt-name">${h(p.name||'Your Name')}</h1>
+        <div class="pt-ttl">${h(p.title||'Professional Title')}</div>
+        ${p.bio?`<p class="pt-bio">${h(p.bio)}</p>`:''}
+        <div class="pt-hlinks">
+          ${c.email?`<a href="mailto:${h(c.email)}" class="pt-hl pt-hl-p">✉ Email Me</a>`:''}
+          ${c.github?`<a href="https://${h(c.github)}" class="pt-hl" target="_blank">⌥ GitHub</a>`:''}
+          ${c.linkedin?`<a href="https://${h(c.linkedin)}" class="pt-hl" target="_blank">⊞ LinkedIn</a>`:''}
+          <button class="pt-hl" onclick="showView('v-cv')" style="cursor:pointer">↓ Download CV</button>
+        </div>
+        ${p.photo?`<img class="pt-photo" src="${p.photo}" alt="${h(p.name)}"/>`:''}
+      </div>
+    </section>
+
+    ${(p.bio||p.location)?`
+    <section class="pt-sec" id="pt-about"><div class="pt-con">
+      <div class="pt-ey">About me</div>
+      <h2 class="pt-stitle">A little about <em>myself</em></h2>
+      <div class="pt-ag ptr">
+        <div class="pt-atx">${h(p.bio||'')}</div>
+        <div class="pt-meta">
+          ${p.name?`<div class="pt-mi"><span class="pt-mico">◈</span><div class="pt-mv"><small>Name</small><strong>${h(p.name)}</strong></div></div>`:''}
+          ${p.title?`<div class="pt-mi"><span class="pt-mico">⬡</span><div class="pt-mv"><small>Role</small><strong>${h(p.title)}</strong></div></div>`:''}
+          ${p.location?`<div class="pt-mi"><span class="pt-mico">◉</span><div class="pt-mv"><small>Location</small><strong>${h(p.location)}</strong></div></div>`:''}
+          ${c.email?`<div class="pt-mi"><span class="pt-mico">✉</span><div class="pt-mv"><small>Email</small><strong>${h(c.email)}</strong></div></div>`:''}
+        </div>
+      </div>
+    </div></section>`:''}
+
+    ${D.skills.length?`
+    <section class="pt-sec" id="pt-skills"><div class="pt-con">
+      <div class="pt-ey">What I do</div>
+      <h2 class="pt-stitle">Skills &amp; <em>expertise</em></h2>
+      <div class="pt-sg">
+        ${D.skills.map((s,i)=>`
+          <div class="pt-ski ptr" style="--delay:${i*.07}s">
+            <div class="pt-skh"><span class="pt-skn">${h(s.name)}</span><span class="pt-skp">${s.level}%</span></div>
+            <div class="pt-sbg"><div class="pt-sbl" data-w="${s.level}" style="--delay:${.3+i*.08}s"></div></div>
+          </div>`).join('')}
+      </div>
+    </div></section>`:''}
+
+    ${D.projects.length?`
+    <section class="pt-sec" id="pt-projects"><div class="pt-con">
+      <div class="pt-ey">${lbl.projectsEyebrow}</div>
+      <h2 class="pt-stitle">${lbl.projectsTitle}</h2>
+      <div class="pt-pg">
+        ${D.projects.map((proj,i)=>`
+          <div class="pt-pc ptr" style="--delay:${i*.1}s">
+            <div class="pt-pi">${proj.image?`<img src="${proj.image}" alt="${h(proj.title)}" style="width:100%;height:100%;object-fit:cover"/>`:'⬡'}</div>
+            <div class="pt-pb">
+              <div class="pt-pt">
+                ${h(proj.title)}
+                ${lbl.projectCardBadge?`<span class="pt-industry-badge">${lbl.projectCardBadge}</span>`:''}
+                ${lbl.showPublicationBadge&&(proj.github&&proj.github!=='#')?`<span class="pt-industry-badge">📄 Publication</span>`:''}
+              </div>
+              <p class="pt-pd">${h(proj.desc)}</p>
+              ${proj.tech?`<div class="pt-ptgs">${proj.tech.split(',').map(t=>`<span class="pt-ptg">${h(t.trim())}</span>`).join('')}</div>`:''}
+              <div class="pt-pls">
+                ${proj.github&&proj.github!=='#'?`<a href="${h(proj.github)}" class="pt-pl" target="_blank">⌥ GitHub</a>`:''}
+                ${proj.demo&&proj.demo!=='#'?`<a href="${h(proj.demo)}" class="pt-pl" target="_blank">↗ Live Demo</a>`:''}
+              </div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div></section>`:''}
+
+    ${D.experience.length?`
+    <section class="pt-sec" id="pt-exp"><div class="pt-con">
+      <div class="pt-ey">${lbl.expEyebrow}</div>
+      <h2 class="pt-stitle">${lbl.expTitle}</h2>
+      <div class="pt-tl">
+        ${D.experience.map((e,i)=>`
+          <div class="pt-te ptr" style="--delay:${i*.12}s">
+            <div class="pt-td">${h(e.duration)}</div>
+            <div class="pt-tr">${h(e.role)}</div>
+            <div class="pt-tc">${h(e.company)}</div>
+            <p class="pt-tds">${h(e.desc)}</p>
+          </div>`).join('')}
+      </div>
+    </div></section>`:''}
+
+    ${D.education.length?`
+    <section class="pt-sec" id="pt-edu"><div class="pt-con">
+      <div class="pt-ey">Background</div>
+      <h2 class="pt-stitle">Education &amp; <em>learning</em></h2>
+      <div class="pt-eg">
+        ${D.education.map((e,i)=>`
+          <div class="pt-ec ptr" style="--delay:${i*.1}s">
+            <div class="pt-eic">🎓</div>
+            <div class="pt-edg">${h(e.degree)}</div>
+            <div class="pt-ein">${h(e.institution)}</div>
+            <div class="pt-eyr">${h(e.year)}</div>
+          </div>`).join('')}
+      </div>
+    </div></section>`:''}
+
+    <section class="pt-sec" id="pt-contact"><div class="pt-con">
+      <div class="pt-ey">Get in touch</div>
+      <h2 class="pt-stitle">Let's <em>connect</em></h2>
+      <div class="pt-cg">
+        ${c.email?`<a href="mailto:${h(c.email)}" class="pt-cc ptr"><span class="pt-cico">✉</span><div><span class="pt-clb">Email</span><span class="pt-cv">${h(c.email)}</span></div></a>`:''}
+        ${c.linkedin?`<a href="https://${h(c.linkedin)}" class="pt-cc ptr" style="--delay:.08s" target="_blank"><span class="pt-cico">⊞</span><div><span class="pt-clb">LinkedIn</span><span class="pt-cv">${h(c.linkedin)}</span></div></a>`:''}
+        ${c.github?`<a href="https://${h(c.github)}" class="pt-cc ptr" style="--delay:.16s" target="_blank"><span class="pt-cico">⌥</span><div><span class="pt-clb">GitHub</span><span class="pt-cv">${h(c.github)}</span></div></a>`:''}
+        ${c.website?`<a href="https://${h(c.website)}" class="pt-cc ptr" style="--delay:.24s" target="_blank"><span class="pt-cico">◉</span><div><span class="pt-clb">Website</span><span class="pt-cv">${h(c.website)}</span></div></a>`:''}
+      </div>
+    </div></section>
+
+    <footer class="pt-foot"><span>Built with <b>Folio.</b></span></footer>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════
+// FEATURE 2 — PUBLISH / DEPLOY FLOW
+// Calls backend POST /deploy, handles states + errors
+// ═══════════════════════════════════════════════════
+
+// Backend endpoint — update this to your server URL
+const DEPLOY_ENDPOINT = 'http://localhost:3001/deploy';
+
+async function publishPortfolio() {
+  const btn = document.getElementById('publish-btn');
+  if (!btn) return;
+
+  // Set loading state
+  btn.textContent = '⏳ Publishing…';
+  btn.disabled = true;
+
+  try {
+    // Build the HTML string to send (the rendered portfolio inner HTML)
+    const ptRoot = document.getElementById('pt-root');
+    const portfolioHTML = ptRoot ? ptRoot.outerHTML : '';
+
+    // Build slug from name
+    const slug = (D.personal?.name || 'portfolio')
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+
+    const payload = {
+      slug,
+      name:    D.personal?.name  || 'Portfolio',
+      html:    portfolioHTML,
+      wizard:  { industry: W.industry?.id, palette: W.palette?.id, font: W.font?.id },
+      theme:   activeTheme,
+    };
+
+    const res = await fetch(DEPLOY_ENDPOINT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: `Server error ${res.status}` }));
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    const liveURL = data.url;
+
+    // ── Success: update share panel with real URL ──
+    const shareInput = document.getElementById('share-url');
+    if (shareInput) shareInput.value = liveURL;
+
+    // Show live URL badge
+    const badge = document.getElementById('deploy-live-url');
+    if (badge) {
+      badge.innerHTML = `🌐 Live: <a href="${liveURL}" target="_blank">${liveURL}</a>`;
+      badge.classList.add('visible');
+    }
+
+    // Regenerate QR with real URL
+    loadQR();
+
+    // Open share panel so user sees the result
+    openShare();
+
+    btn.textContent = '✓ Published!';
+    setTimeout(() => { btn.textContent = '🚀 Publish'; btn.disabled = false; }, 4000);
+
+  } catch (err) {
+    btn.textContent = '🚀 Publish';
+    btn.disabled = false;
+    showToast(`Publish failed: ${err.message}`);
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// FEATURE 2 — TOAST SYSTEM
+// ═══════════════════════════════════════════════════
+let _toastTimer = null;
+
+function showToast(msg, duration = 5000) {
+  const toast = document.getElementById('global-toast');
+  const msgEl = document.getElementById('toast-msg');
+  if (!toast || !msgEl) return;
+  msgEl.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(hideToast, duration);
+}
+
+function hideToast() {
+  document.getElementById('global-toast')?.classList.remove('show');
+}
+
+// ═══════════════════════════════════════════════════
+// FEATURE 5 — MOBILE HAMBURGER NAV
+// ═══════════════════════════════════════════════════
+(function initMobileNav() {
+  const hamburger = document.getElementById('nav-hamburger');
+  const drawer    = document.getElementById('mobile-nav-drawer');
+  if (!hamburger || !drawer) return;
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      drawer.classList.add('open');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (
+      drawer.classList.contains('open') &&
+      !drawer.contains(e.target) &&
+      e.target !== hamburger &&
+      !hamburger.contains(e.target)
+    ) {
+      closeMobileNav();
+    }
+  });
+})();
+
+function closeMobileNav() {
+  document.getElementById('mobile-nav-drawer')?.classList.remove('open');
+  const h = document.getElementById('nav-hamburger');
+  if (h) { h.classList.remove('open'); h.setAttribute('aria-expanded','false'); }
+}
 </script>
 </body>
 </html>
