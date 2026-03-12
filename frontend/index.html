@@ -6,6 +6,8 @@
 <title>Folio — Portfolio & CV Generator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@300;400;600;700&family=Pacifico&family=Baloo+2:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<!-- QR Code library — preloaded so it's ready when the share panel opens -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 /* ═══════════════════════════════════════════════════════
    FOLIO v2 — Portfolio & CV Generator
@@ -506,7 +508,8 @@ input,textarea,select{font-family:'Outfit',sans-serif}
 .share-input{flex:1;background:var(--ink3);border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:.48rem .8rem;font-size:.75rem;font-family:'JetBrains Mono',monospace;outline:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .copy-btn{background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.2);color:var(--gold);padding:.48rem .8rem;border-radius:6px;font-size:.75rem;transition:all .2s;cursor:pointer}
 .copy-btn:hover{background:rgba(212,168,83,.2)}
-.qr-wrap{display:flex;justify-content:center;margin-top:.75rem}
+.qr-wrap{display:flex;justify-content:center;margin-top:.75rem;min-height:0}
+.qr-hint{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:.5rem;letter-spacing:.04em}
 .soc-btns{display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap}
 .soc-btn{flex:1;padding:.5rem;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:.75rem;text-align:center;transition:all .2s;cursor:pointer}
 .soc-btn:hover{border-color:var(--border3);color:var(--text)}
@@ -1302,7 +1305,9 @@ input,textarea,select{font-family:'Outfit',sans-serif}
       <div class="share-box"><input class="share-input" id="share-url" readonly value="folio.app/your-name"/><button class="copy-btn" id="copy-btn" onclick="copyURL()">Copy</button></div>
       <!-- Live deploy URL — shown after successful publish -->
       <div class="deploy-live-url" id="deploy-live-url"></div>
+      <!-- QR code — renders as soon as share panel opens -->
       <div class="qr-wrap" id="qr-wrap"></div>
+      <div class="qr-hint" id="qr-hint" style="display:none">📱 Scan to open portfolio</div>
       <div class="soc-btns"><button class="soc-btn" onclick="shareTw()">🐦 Twitter</button><button class="soc-btn" onclick="shareLi()">💼 LinkedIn</button></div>
     </div>
     <div class="cust-sec"><h4>Actions</h4>
@@ -1600,7 +1605,6 @@ let activeTheme = localStorage.getItem(TK) || 'developer';
 let D, W;     // D = portfolio data, W = wizard selections
 let curWizStep = 1;
 let ptObs = null;
-let qrLoaded = false;
 const STEP_LABELS = ['Personal','Skills','Experience','Education','Projects','Contact'];
 
 function loadData(){
@@ -2198,18 +2202,29 @@ function shareLi(){
   window.open(`https://linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://'+url)}`,'_blank');
 }
 function loadQR(){
-  const wrap=document.getElementById('qr-wrap'); if(!wrap) return;
-  wrap.innerHTML='';
-  const url=document.getElementById('share-url')?.value||'folio.app';
-  const dark = W.palette?.primary || '#d4a853';
-  if(window.QRCode){
-    new QRCode(wrap,{text:'https://'+url,width:110,height:110,colorDark:dark,colorLight:'#0e0e1a',correctLevel:QRCode.CorrectLevel.H});
-  } else if(!qrLoaded){
-    qrLoaded=true;
-    const s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
-    s.onload=()=>loadQR();
-    document.head.appendChild(s);
+  const wrap = document.getElementById('qr-wrap');
+  const hint = document.getElementById('qr-hint');
+  if (!wrap) return;
+
+  // Get the URL to encode — prefer real deployed URL, fall back to share-url field
+  const urlField = document.getElementById('share-url');
+  const rawURL   = urlField?.value || 'folio.app/portfolio';
+  const fullURL  = rawURL.startsWith('http') ? rawURL : 'https://' + rawURL;
+
+  // Clear any previous QR render
+  wrap.innerHTML = '';
+
+  // Use the preloaded QRCode library (spec API)
+  if (window.QRCode) {
+    new QRCode(wrap, {
+      text:        fullURL,
+      width:       200,
+      height:      200,
+      colorDark:   W.palette?.primary || '#d4a853',
+      colorLight:  activeTheme === 'minimal' || activeTheme === 'designer' ? '#ffffff' : '#0e0e1a',
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+    if (hint) hint.style.display = 'block';
   }
 }
 
