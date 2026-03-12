@@ -829,9 +829,127 @@ input,textarea,select{font-family:'Outfit',sans-serif}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1024px){.features-grid{grid-template-columns:1fr 1fr}.feat-card--span{grid-row:auto}.tmpl-grid{grid-template-columns:1fr}.industry-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}}
-@media(max-width:768px){.nav-links a:not(.btn){display:none}.features-grid{grid-template-columns:1fr}.steps-row{flex-direction:column}.step-arr{transform:rotate(90deg)}.hero-title{font-size:clamp(2.5rem,12vw,4rem)}.frow{grid-template-columns:1fr}.fg.full{grid-column:auto}.bld-main{padding:2rem 1rem}.pt-photo{display:none}.cust{width:100%;top:auto;bottom:0;height:78vh;transform:translateY(100%)}.cust.open{transform:translateY(0)}.cv-head{grid-template-columns:1fr}.cv-body{grid-template-columns:1fr}.cv-side{border-left:none;border-top:1px solid #e5e3de}.ps-lbl{display:none}.pv-chrome{padding:.6rem 1rem}.cta-inner{padding:3.5rem 2rem}.footer-inner{flex-direction:column;gap:2rem}.footer-links{gap:2rem}.wiz-main{padding:2rem 1rem}.palette-grid,.font-grid{grid-template-columns:1fr 1fr}.industry-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}}
-@media print{.cv-chrome{display:none}#cv-paper{box-shadow:none}.cv-wrap{margin:0;padding:0;max-width:none}.cv-view{background:#fff}}
+@media(max-width:1024px){
+  .features-grid{grid-template-columns:1fr 1fr}
+  .feat-card--span{grid-row:auto}
+  .tmpl-grid{grid-template-columns:1fr}
+  .industry-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+}
+
+@media(max-width:768px){
+  /* ── Global spacing ── */
+  .wrap{padding:0 1.1rem}
+
+  /* ── Nav ── */
+  .nav{padding:.85rem 1.1rem}
+  .nav-links a:not(.btn){display:none}
+
+  /* ── Hero ── */
+  .hero{padding:5rem 0 3rem;min-height:auto}
+  .hero-title{font-size:clamp(2.2rem,10vw,3.5rem)}
+  .hero-sub{font-size:.95rem;max-width:100%}
+  .hero-ctas{flex-direction:column;align-items:flex-start}
+  .hero-ctas .btn{width:100%;justify-content:center}
+  .hero-stats{flex-wrap:wrap;gap:1.2rem}
+  .stat-sep{display:none}
+
+  /* ── Feature cards ── */
+  .features-grid{grid-template-columns:1fr}
+  .features-sec{padding:5rem 0}
+  .feat-card{padding:1.6rem}
+
+  /* ── Steps ── */
+  .steps-row{flex-direction:column;gap:.5rem}
+  .step-arr{transform:rotate(90deg);padding:.2rem 0;align-self:center}
+  .step-item{min-width:unset;width:100%}
+  .steps-sec{padding:4rem 0}
+
+  /* ── CTA / Footer ── */
+  .cta-inner{padding:2.8rem 1.4rem}
+  .cta-banner{padding:4rem 0}
+  .footer-inner{flex-direction:column;gap:2rem}
+  .footer-links{gap:2rem;flex-wrap:wrap}
+
+  /* ── Wizard ── */
+  .wiz-header{padding:.85rem 1.1rem}
+  .wiz-prog{padding:1rem 1.1rem}
+  .wiz-main{padding:1.5rem 1.1rem}
+  .industry-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.6rem}
+  .sel-card{padding:1rem .7rem}
+  .sel-card-icon{font-size:1.3rem}
+  .palette-grid{grid-template-columns:1fr 1fr;gap:.75rem}
+  .font-grid{grid-template-columns:1fr 1fr;gap:.75rem}
+  .wiz-nav{padding:1rem 1.1rem}
+  .wiz-panel-head h2{font-size:1.6rem}
+
+  /* ── Builder ── */
+  .bld-header{padding:.85rem 1.1rem}
+  .prog-wrap{padding:1rem 1.1rem}
+  .bld-context{padding:.6rem 1.1rem;font-size:.72rem}
+  .bld-main{padding:1.5rem 1.1rem}
+  .frow{grid-template-columns:1fr}
+  .fg.full{grid-column:auto}
+  .sp-head h2{font-size:1.7rem}
+  .ps-lbl{display:none}
+
+  /* ── Portfolio preview chrome ── */
+  .pv-chrome{
+    padding:.5rem .75rem;
+    gap:.35rem;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .pv-chrome::-webkit-scrollbar{display:none}
+  .pv-logo{font-size:1rem;flex-shrink:0;margin-right:.25rem}
+  .pv-chrome .cb{
+    font-size:.72rem;
+    padding:.4em .7em;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  /* ── Portfolio sections ── */
+  .pt-sec{padding:3.5rem 1.1rem}
+  .pt-hero{padding:3.5rem 1.1rem 3rem}
+  .pt-photo{display:none}
+  .pt-ag{grid-template-columns:1fr;gap:1.8rem}
+  .pt-sg{grid-template-columns:1fr}
+  .pt-pg{grid-template-columns:1fr}
+  .pt-eg{grid-template-columns:1fr}
+  .pt-cg{grid-template-columns:1fr}
+  .pt-name{font-size:clamp(2rem,9vw,3rem)}
+
+  /* ── Customizer panel ── */
+  .cust{width:100%;top:auto;bottom:0;height:80vh;transform:translateY(100%);border-left:none;border-top:1px solid var(--border)}
+  .cust.open{transform:translateY(0)}
+
+  /* ── CV ── */
+  .cv-head{grid-template-columns:1fr}
+  .cv-body{grid-template-columns:1fr}
+  .cv-side{border-left:none;border-top:1px solid #e5e3de}
+  .cv-main{padding:1.4rem 1.2rem}
+  .cv-side{padding:1.4rem 1.2rem}
+  .cv-chrome{padding:.7rem 1rem}
+  .cv-wrap{padding:0 .5rem 3rem}
+}
+
+/* Extra small screens — phones under 400px */
+@media(max-width:400px){
+  .industry-grid{grid-template-columns:repeat(auto-fill,minmax(88px,1fr))}
+  .palette-grid,.font-grid{grid-template-columns:1fr}
+  .hero-title{font-size:clamp(2rem,11vw,2.8rem)}
+  .pv-chrome .cb{font-size:.68rem;padding:.35em .55em}
+  .wiz-btn-next,.wiz-btn-back{padding:.65rem 1.2rem;font-size:.85rem}
+}
+
+@media print{
+  .cv-chrome{display:none}
+  #cv-paper{box-shadow:none}
+  .cv-wrap{margin:0;padding:0;max-width:none}
+  .cv-view{background:#fff}
+}
 </style>
 </head>
 <body>
@@ -2393,7 +2511,7 @@ function _renderPortfolioAdaptive() {
 // ═══════════════════════════════════════════════════
 
 // Backend endpoint — update this to your server URL
-const DEPLOY_ENDPOINT = 'http://localhost:3001/deploy';
+const DEPLOY_ENDPOINT = 'https://portfolio-generator-2n7v.onrender.com/';
 
 async function publishPortfolio() {
   const btn = document.getElementById('publish-btn');
